@@ -1,0 +1,25 @@
+{
+    "code": "0",
+    "message": "success",
+    "data": [
+        {
+            "mallSubId": "2c9f6c94621970a801626a35cb4d0175",
+            "mallCategoryId": "4",
+            "mallSubName": "名酒",
+            "comments": ""
+        },
+        {
+            "mallSubId": "2c9f6c94621970a801626a363e5a0176",
+            "mallCategoryId": "4",
+            "mallSubName": "宝丰",
+            "comments": ""
+        },
+        {
+            "mallSubId": "2c9f6c94679b4fb10167f7de126815d7",
+            "mallCategoryId": "4",
+            "mallSubName": "竹叶青",
+            "comments": "null"
+        }
+    ],
+    "comments": "null"
+}

@@ -1,0 +1,158 @@
+import 'package:flutter/material.dart';
+
+import 'package:jh_flutter_demo/login/login_page.dart';
+
+import 'package:jh_flutter_demo/one/one_page.dart';
+import 'package:jh_flutter_demo/two/two_page.dart';
+import 'package:jh_flutter_demo/three/three_page.dart';
+import 'package:jh_flutter_demo/four/four_page.dart';
+import 'package:jh_flutter_demo/four/set_page.dart';
+
+import 'package:jh_flutter_demo/demoLists/demoLists_page.dart';
+
+
+
+import 'package:jh_flutter_demo/demoLists/ui/uidemoLists.dart';
+import 'package:jh_flutter_demo/demoLists/ui/ui_page.dart';
+//http
+import 'package:jh_flutter_demo/demoLists/http/httpdemoLists_page.dart';
+import 'package:jh_flutter_demo/demoLists/http/httpTest1_page.dart';
+import 'package:jh_flutter_demo/demoLists/http/httppagetest_page.dart';
+
+import 'package:jh_flutter_demo/demoLists/listView/ListViewdemoLists_page.dart';
+import '../demoLists/listView/ListViewTest.dart';
+import '../demoLists/listView/ListViewTest2.dart';
+import '../demoLists/listView/ListViewTest3.dart';
+import '../demoLists/listView/ListViewTest4.dart';
+import '../demoLists/listView/ListViewTest5.dart';
+import '../demoLists/listView/ListViewTest_Card.dart';
+import '../demoLists/listView/ListViewTest_CustomVC.dart';
+import '../demoLists/listView/ListViewTest_SimplePullDown.dart';
+import '../demoLists/listView/ListViewTest_PullDownVC.dart';
+
+import 'package:jh_flutter_demo/demoLists/gridView/gridViewdemoLists_page.dart';
+import '../demoLists/gridView/gridViewTest1.dart';
+import '../demoLists/gridView/gridViewTest2.dart';
+import '../demoLists/gridView/gridViewTest3.dart';
+import '../demoLists/gridView/gridViewTest4.dart';
+//alert
+import 'package:jh_flutter_demo/demoLists/Alert/alertdemoLists_page.dart';
+import '../demoLists/alert/bottomSheetTest.dart';
+import '../demoLists/alert/alertTest.dart';
+//toast
+import 'package:jh_flutter_demo/demoLists/alert/toast/toastDemoLists_page.dart';
+import 'package:jh_flutter_demo/demoLists/alert/toast/ToastTest.dart';
+
+//other
+import 'package:jh_flutter_demo/demoLists/other/formTest.dart';
+import 'package:jh_flutter_demo/demoLists/other/photoSelectTest.dart';
+import '../demoLists/other/passValue_page.dart';
+import '../demoLists/other/passValue_page2.dart';
+import '../demoLists/other/navTest.dart';
+
+
+
+
+final String home = '/';
+
+final String loginPage = 'LoginPage';
+final String onePage = '/onePage';
+final String twoPage = '/twoPage';
+final String threePage = '/threePage';
+final String fourPage = '/fourPage';
+
+final String demoListsPage = 'DemoListsPage';
+
+
+
+
+// 配置路由命名信息
+final routes = {
+
+  loginPage: (context) => LoginPage(),
+  onePage: (context) => OnePage(),
+  twoPage: (context) => TwoPage(),
+  threePage: (context) => ThreePage(),
+  fourPage: (context) => FourPage(),
+  "SetPage": (context) => SetPage(),
+
+  demoListsPage: (context) => DemoListsPage(),
+
+
+  //ui
+  "UIDemoListsPage": (context) => UIDemoListsPage(),
+  "UIPage": (context) => UIPage(),
+  //http
+  "HttpDemoListsPage": (context) => HttpDemoListsPage(),
+  "HttpTest1Page": (context) => HttpTest1Page(),
+  "HttpPageTestPage": (context) => HttpPageTestPage(),
+
+  "ListViewDemoListsPage": (context) => ListViewDemoListsPage(),
+      "ListViewTest": (context) => ListViewTest(),
+      "ListViewTest2": (context) => ListViewTest2(),
+      "ListViewTest3": (context) => ListViewTest3(),
+      "ListViewTest4": (context) => ListViewTest4(),
+      "ListViewTest5": (context) => ListViewTest5(),
+      "ListViewTest_Card": (context) => ListViewTest_Card(),
+      "ListViewTest_CustomVC": (context) => ListViewTest_CustomVC(),
+      "ListViewTest_SimplePullDown": (context) => ListViewTest_SimplePullDown(),
+      "ListViewTest_PullDownVC": (context) => ListViewTest_PullDownVC(),
+
+  "GridViewDemoListsPage": (context) => GridViewDemoListsPage(),
+      "GridViewTest1": (context) => GridViewTest1(),
+      "GridViewTest2": (context) => GridViewTest2(),
+      "GridViewTest3": (context) => GridViewTest3(),
+      "GridViewTest4": (context) => GridViewTest4(),
+
+  //Alert
+  "AlertDemoListsPage": (context) => AlertDemoListsPage(),
+
+      "AlertTestPage": (context) => AlertTestPage(),
+      "BottomSheetTest": (context) => BottomSheetTest(),
+      //toast
+      "ToastDemoListsPage": (context) => ToastDemoListsPage(),
+      "ToastTestPage": (context) => ToastTestPage(),
+
+
+  //other
+  "FormTest": (context) => FormTest(),
+  "PhotoSelectTest": (context) => PhotoSelectTest(),
+  "PassValuePage": (context) => PassValuePage(),
+  "PassValuePage2": (context) => PassValuePage2(),
+  "NavTestPage": (context) => NavTestPage(),
+
+
+
+};
+
+class UnknownPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('跳转错误'),
+        centerTitle: true,
+      ),
+    );
+  }
+}
+
+//// 配置路由命名信息
+//final routes = {
+////  home: (context) => Home(),
+////  secondPage: (context) => Second(),
+////  threePage: (context) => Three(),
+////  fourPage: (context) => four(),
+//};
+//
+//class UnknownPage extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return Scaffold(
+//      appBar: AppBar(
+//        title: Text('跳转错误'),
+//        centerTitle: true,
+//      ),
+//    );
+//  }
+//}
