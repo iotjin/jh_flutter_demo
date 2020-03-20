@@ -24,7 +24,7 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   # toast https://pub.flutter-io.cn/packages/jhtoast
-  jhtoast: ^0.1.0
+  jhtoast: ^0.2.0
 
 
   #网络请求 https://pub.dev/packages/dio#-installing-tab-

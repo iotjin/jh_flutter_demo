@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhButton.dart';
 import 'package:jh_flutter_demo/baseTabBar.dart';
-import 'dart:io';
-import 'package:flutter/services.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhForm.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
+import 'package:jh_flutter_demo/configs/colors.dart';
 
-class LoginPage extends StatefulWidget {
+class FindPwdPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _FindPwdPageState createState() => _FindPwdPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _FindPwdPageState extends State<FindPwdPage> {
 
   TextEditingController _nameController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
@@ -26,21 +25,11 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
-    _nameController.text = "jin";
+    _nameController.text = "";
     if (_nameController.text != null) {
       _nameAutoFocus = false;
     }
     super.initState();
-
-    if (Platform.isIOS) {
-//      SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
-//        statusBarColor: Colors.red,
-//      );
-//      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-//      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
-    }
-
-
 
   }
 
@@ -48,18 +37,32 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
 
     return
-    Scaffold(
-      body:  KeyboardActions(
-        config: jhForm.getKeyboardConfig(context, [_node1,_node2]),
-        child: _mainBody(),
-      )
+      Scaffold(
 
-    );
+          appBar:  AppBar(
+            title: Text("重置密码",style: TextStyle(fontSize:18)),
+//              centerTitle:false,
+            leading:
+            InkWell(
+              onTap: ()  => Navigator.pop(context),
+              child:
+                  Icon(Icons.arrow_back_ios,color: Colors.grey,),
+            ),
+//            backgroundColor: KColor.kWeiXinThemeColor,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+
+          body:  KeyboardActions(
+            config: jhForm.getKeyboardConfig(context, [_node1,_node2]),
+            child: _mainBody(),
+          )
+
+      );
   }
 
   Widget _mainBody(){
     return
-
       Stack(
 
         children: <Widget>[
@@ -69,32 +72,18 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child:  Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
 
-                  SafeArea(child:
-                  Align(
-                    alignment: Alignment.topRight,
-                    child:
-                      InkWell(
-                        child: Text("注册",style: TextStyle(fontSize: 18)),
-                        onTap: (){
-                          Navigator.pushNamed(context, "RegisterPage");
-                        },
-                      )
-                  ),
-                  ),
-
-                  SizedBox(height: 50),
-                  Image.asset("assets/images/lufei.png",width: 100,),
-                  SizedBox(height: 50),
+//                SizedBox(height: 50),
                   TextFormField(
                     focusNode: _node1,
                     controller: _nameController,
                     decoration: InputDecoration(
-//                    labelText: "用户名",
+                      labelText: "用户名",
                       hintText: "请输入用户名",
                       hintStyle: TextStyle(fontSize: 15),
-                      prefixIcon: Icon(Icons.person),
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                               color: Theme.of(context).primaryColor,
@@ -114,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                     focusNode: _node2,
                     controller: _pwdController,
                     decoration: InputDecoration(
-//                    labelText: "密码",
+                        labelText: "密码",
                         hintText: "请输入密码",
                         hintStyle: TextStyle(fontSize: 15),
                         focusedBorder: UnderlineInputBorder(
@@ -129,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
                                 width: 0.5
                             )
                         ),
-                        prefixIcon: Icon(Icons.lock),
                         suffixIcon: IconButton(
                           icon: Icon(
                               pwdShow ?  Icons.visibility :Icons.visibility_off),
@@ -143,28 +131,16 @@ class _LoginPageState extends State<LoginPage> {
 
                   ),
                   SizedBox(height: 50),
-                  JhButton(text: "登 录",
+                  JhButton(text: "重 置",
                       onPressed: _ClickOkBtn
-                  ),
-                  SizedBox(height: 10),
-                  Container(
-                    height: 40.0,
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      child: Text('忘记密码',),
-                      onTap: () => Navigator.pushNamed(context, "FindPwdPage")
-                    ),
-                  ),
-
+                  )
                 ],
               ),
 
             ),
-          ),
-
+          )
 
         ],
-
       );
 
 
@@ -183,19 +159,16 @@ class _LoginPageState extends State<LoginPage> {
 
 
     var hide =  JhToast.showLoadingText_iOS(context,
-      msg:"正在登录...",
+      msg:"正在注册...",
     );
     Future.delayed(Duration(seconds: 1),(){
 
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => (BaseTabBar()
-      )));
-
+      Navigator.pop(context);
       hide();
 
     });
 
-    
+
   }
 
 

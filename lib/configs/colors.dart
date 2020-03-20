@@ -12,7 +12,7 @@ class KColor {
 //  static Color ThemeColor =  Color.fromRGBO(59, 184, 21, 1);
 //  static const Color app_main = Color(0xFF4688FA);
 
-
+  static Color  kLineColor = Color(0xFFE6E6E6);//230
   static Color transparent = Colors.transparent;
 
   static Color appBarGradientStartColor = Color(0xFF2171F5); //渐变 开始色

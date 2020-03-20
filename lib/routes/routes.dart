@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:jh_flutter_demo/login/login_page.dart';
+import 'package:jh_flutter_demo/login/register_page.dart';
+import 'package:jh_flutter_demo/login/findPwd_page.dart';
 
 import 'package:jh_flutter_demo/one/one_page.dart';
 import 'package:jh_flutter_demo/two/two_page.dart';
@@ -70,6 +72,9 @@ final String demoListsPage = 'DemoListsPage';
 final routes = {
 
   loginPage: (context) => LoginPage(),
+  "RegisterPage": (context) => RegisterPage(),
+  "FindPwdPage": (context) => FindPwdPage(),
+
   onePage: (context) => OnePage(),
   twoPage: (context) => TwoPage(),
   threePage: (context) => ThreePage(),
