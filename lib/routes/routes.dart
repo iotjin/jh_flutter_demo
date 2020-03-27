@@ -9,6 +9,8 @@ import 'package:jh_flutter_demo/two/two_page.dart';
 import 'package:jh_flutter_demo/three/three_page.dart';
 import 'package:jh_flutter_demo/four/four_page.dart';
 import 'package:jh_flutter_demo/four/set_page.dart';
+import 'package:jh_flutter_demo/four/about_page.dart';
+import 'package:jh_flutter_demo/four/about_ios_page.dart';
 
 import 'package:jh_flutter_demo/demoLists/demoLists_page.dart';
 
@@ -51,6 +53,7 @@ import 'package:jh_flutter_demo/demoLists/other/photoSelectTest.dart';
 import '../demoLists/other/passValue_page.dart';
 import '../demoLists/other/passValue_page2.dart';
 import '../demoLists/other/navTest.dart';
+import '../demoLists/other/textfeld_test_page.dart';
 
 
 
@@ -70,7 +73,6 @@ final String demoListsPage = 'DemoListsPage';
 
 // 配置路由命名信息
 final routes = {
-
   loginPage: (context) => LoginPage(),
   "RegisterPage": (context) => RegisterPage(),
   "FindPwdPage": (context) => FindPwdPage(),
@@ -80,6 +82,8 @@ final routes = {
   threePage: (context) => ThreePage(),
   fourPage: (context) => FourPage(),
   "SetPage": (context) => SetPage(),
+  "AboutPage": (context) => AboutPage(),
+  "AboutIOSPage": (context) => AboutIOSPage(),
 
   demoListsPage: (context) => DemoListsPage(),
 
@@ -125,6 +129,7 @@ final routes = {
   "PassValuePage": (context) => PassValuePage(),
   "PassValuePage2": (context) => PassValuePage2(),
   "NavTestPage": (context) => NavTestPage(),
+  "TextFieldTestPage": (context) => TextFieldTestPage(),
 
 
 

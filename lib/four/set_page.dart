@@ -7,7 +7,7 @@ import 'package:jhtoast/jhtoast.dart';
 
 class SetPage extends StatelessWidget {
 
-  final List titleData = ["账号安全","关于","退出登录"];
+  final List titleData = ["账号安全","关于","关于iOS","退出登录"];
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,16 @@ class SetPage extends StatelessWidget {
         dataArr: titleData,
         callBack: (index,str){
 
+
+          if(str == "关于"){
+            Navigator.pushNamed(context, "AboutPage");
+          }
+          if(str == "关于iOS"){
+            Navigator.pushNamed(context, "AboutIOSPage");
+          }
+
+
           if(str == "退出登录"){
-
-
 
             JhBottomSheet.showText(context,
                 title: "请选择操作",

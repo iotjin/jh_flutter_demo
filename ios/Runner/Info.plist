@@ -27,11 +27,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>是否允许"APP"使用您的相机,以便于进行XXX等操作</string>
+	<string>是否允许&quot;APP&quot;使用您的相机,以便于进行XXX等操作</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>是否允许"APP"访问您的相册,以便于保存图片</string>
+	<string>是否允许&quot;APP&quot;访问您的相册,以便于保存图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>是否允许"APP"访问您的相册,以便于进行图片上传等操作</string>
+	<string>是否允许&quot;APP&quot;访问您的相册,以便于进行图片上传等操作</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
@@ -49,5 +49,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
 </dict>
 </plist>

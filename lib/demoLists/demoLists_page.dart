@@ -4,10 +4,10 @@ import 'package:jh_flutter_demo/routes/routes.dart' as Luyou;
 
 class DemoListsPage extends StatelessWidget {
 
-  final List titleData = ["UI","ListView","GridView","弹框","Form","图片选择","跳转传值和回传","网络请求","baseNav"];
+  final List titleData = ["UI","ListView","GridView","弹框","Form","图片选择","跳转传值和回传","网络请求","baseNav","JhLoginTextField"];
   final List routeData = ["UIDemoListsPage","ListViewDemoListsPage","GridViewDemoListsPage",
     "AlertDemoListsPage","FormTest","PhotoSelectTest","PassValuePage","HttpDemoListsPage",
-    "NavTestPage",
+    "NavTestPage","TextFieldTestPage",
   ];
 
   @override

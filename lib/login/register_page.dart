@@ -15,9 +15,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextEditingController _nameController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
+  TextEditingController _phoneController = new TextEditingController();
+  TextEditingController _codeController = new TextEditingController();
 
   final FocusNode _node1 = FocusNode();
   final FocusNode _node2 = FocusNode();
+  final FocusNode _node3 = FocusNode();
+  final FocusNode _node4 = FocusNode();
 
   bool pwdShow = false; //密码是否显示明文
   bool _nameAutoFocus = true;

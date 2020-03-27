@@ -51,7 +51,8 @@ class ClickItem extends StatelessWidget {
                     maxLines: maxLines,
                     textAlign: maxLines == 1 ? TextAlign.right : textAlign,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.subtitle.copyWith(fontSize: 14)
+//                    style: Theme.of(context).textTheme.subtitle.copyWith(fontSize: 14.0)
+                style: TextStyle(fontSize: 14.0,color: Color(0xFF999999)),
                 ),
               ),
             ),
@@ -61,6 +62,7 @@ class ClickItem extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(top: maxLines == 1 ? 0.0 : 2.0),
                 child:  Icon(Icons.arrow_forward_ios,size: 18,color: Color(0xFFC8C8C8),),
+//              child: Image.asset('assets/images/ic_arrow_right.png', height: 16.0, width: 16.0),
               ),
             )
           ],

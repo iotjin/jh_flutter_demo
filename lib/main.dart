@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/configs/colors.dart';
 import 'routes/routes.dart'as luyou;
 import 'dart:io';
-
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhAlert.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -51,6 +51,12 @@ void main() {
     print("Android");
   }else if (Platform.isIOS) {
     print("iOS");
+  }
+
+  // 透明状态栏
+  if (Platform.isAndroid) {
+    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
 
 }

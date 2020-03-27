@@ -6,7 +6,26 @@ import 'package:flutter/services.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhForm.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
+import 'package:flui/src/widgets/avatar.dart';
+import 'package:jh_flutter_demo/JhTools/tools/jhColorTool.dart';
+import 'package:jh_flutter_demo/JhTools/widgets/jhLoginTextField.dart';
 
+
+/*
+*        keyboardType: TextInputType.numberWithOptions(decimal: true),//设置键盘为可录入小数的数字
+         inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],//设置只能录入数字[0-9]
+
+         WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),//只允许输入字母
+         WhitelistingTextInputFormatter.digitsOnly],//只允许输入数字
+         WhitelistingTextInputFormatter(RegExp("[0-9.]")),//只允许输入小数
+         BlacklistingTextInputFormatter(RegExp("[abFeG])), //黑名单
+
+         WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9]")) ,
+         LengthLimitingTextInputFormatter(20)
+
+
+
+* */
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -14,23 +33,22 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  TextEditingController _nameController = new TextEditingController();
-  TextEditingController _pwdController = new TextEditingController();
-
   final FocusNode _node1 = FocusNode();
   final FocusNode _node2 = FocusNode();
 
-  bool pwdShow = false; //密码是否显示明文
-  bool _nameAutoFocus = true;
+  var _name ='jin';
+  var _pwd = '';
+
+  Color logoColor;
 
   @override
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
-    _nameController.text = "jin";
-    if (_nameController.text != null) {
-      _nameAutoFocus = false;
-    }
+
     super.initState();
+
+    logoColor = JhColorTool.randomColor();
+
 
     if (Platform.isIOS) {
 //      SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
@@ -40,11 +58,15 @@ class _LoginPageState extends State<LoginPage> {
 //      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     }
 
-
-
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print("login dispose");
   }
 
-  @override
+@override
   Widget build(BuildContext context) {
 
     return
@@ -85,61 +107,26 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   SizedBox(height: 50),
-                  Image.asset("assets/images/lufei.png",width: 100,),
-                  SizedBox(height: 50),
-                  TextFormField(
-                    focusNode: _node1,
-                    controller: _nameController,
-                    decoration: InputDecoration(
-//                    labelText: "用户名",
-                      hintText: "请输入用户名",
-                      hintStyle: TextStyle(fontSize: 15),
-                      prefixIcon: Icon(Icons.person),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).primaryColor,
-                              width: 0.8
-                          )
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color:  Colors.grey,
-                              width: 0.5
-                          )
-                      ),
-                    ),
+//                  Image.asset("assets/images/lufei.png",width: 100,),
+
+                  FLAvatar(
+//                  color: Colors.blue,
+                    color: logoColor,
+                    width: 100,
+                    height: 100,
+//                    radius: 0,
+                    text: 'Logo',
+                    textStyle: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+
+                  SizedBox(height: 30),
+                  JhLoginTextField(text:_name,hintText: "请输入用户名",focusNode:_node1,leftIcon: Icon(Icons.person),isShowDeleteBtn: true,
+                    inputCallBack: (value)=> _name=value
                   ),
                   SizedBox(height: 10),
-                  TextFormField(
-                    focusNode: _node2,
-                    controller: _pwdController,
-                    decoration: InputDecoration(
-//                    labelText: "密码",
-                        hintText: "请输入密码",
-                        hintStyle: TextStyle(fontSize: 15),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor,
-                                width: 0.8
-                            )
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color:  Colors.grey,
-                                width: 0.5
-                            )
-                        ),
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                              pwdShow ?  Icons.visibility :Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              pwdShow = !pwdShow;
-                            });
-                          },
-                        )),
-                    obscureText: !pwdShow,
+
+                  JhLoginTextField(hintText: "请输入密码",focusNode:_node2,leftIcon: Icon(Icons.lock),isShowDeleteBtn: true,isPwd: true,
+                    inputCallBack: (value)=>_pwd =value
 
                   ),
                   SizedBox(height: 50),
@@ -180,6 +167,8 @@ class _LoginPageState extends State<LoginPage> {
 //    Navigator.pushReplacementNamed(context, "BaseTabBar");
 
 
+    print('name =$_name');
+    print('pwd =$_pwd');
 
 
     var hide =  JhToast.showLoadingText_iOS(context,
