@@ -47,13 +47,17 @@ import '../demoLists/alert/alertTest.dart';
 import 'package:jh_flutter_demo/demoLists/alert/toast/toastDemoLists_page.dart';
 import 'package:jh_flutter_demo/demoLists/alert/toast/ToastTest.dart';
 
+//表单
+import 'package:jh_flutter_demo/demoLists/form/formDemoLists_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/loginTextFeld_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/inputTextFieldTest_page.dart';
+
 //other
 import 'package:jh_flutter_demo/demoLists/other/formTest.dart';
 import 'package:jh_flutter_demo/demoLists/other/photoSelectTest.dart';
 import '../demoLists/other/passValue_page.dart';
 import '../demoLists/other/passValue_page2.dart';
 import '../demoLists/other/navTest.dart';
-import '../demoLists/other/textfeld_test_page.dart';
 
 
 
@@ -122,6 +126,11 @@ final routes = {
       "ToastDemoListsPage": (context) => ToastDemoListsPage(),
       "ToastTestPage": (context) => ToastTestPage(),
 
+  //表单
+  "FormDemoListsPage": (context) => FormDemoListsPage(),
+  "LoginTextFieldTestPage": (context) => LoginTextFieldTestPage(),
+  "InputTextFieldTestPage": (context) => InputTextFieldTestPage(),
+
 
   //other
   "FormTest": (context) => FormTest(),
@@ -129,7 +138,7 @@ final routes = {
   "PassValuePage": (context) => PassValuePage(),
   "PassValuePage2": (context) => PassValuePage2(),
   "NavTestPage": (context) => NavTestPage(),
-  "TextFieldTestPage": (context) => TextFieldTestPage(),
+
 
 
 

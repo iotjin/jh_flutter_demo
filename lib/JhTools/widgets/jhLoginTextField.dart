@@ -1,3 +1,9 @@
+/**
+ *  jhLoginTextField.dart
+ *
+ *  Created by iotjin on 2020/03/26.
+ *  description:  登录输入框
+ */
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

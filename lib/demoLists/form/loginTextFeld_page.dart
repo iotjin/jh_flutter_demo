@@ -5,12 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhButton.dart';
 import 'package:jhtoast/jhtoast.dart';
 
-class TextFieldTestPage extends StatefulWidget {
+class LoginTextFieldTestPage extends StatefulWidget {
   @override
-  _TextFieldTestPageState createState() => _TextFieldTestPageState();
+  _LoginTextFieldTestPageState createState() => _LoginTextFieldTestPageState();
 }
 
-class _TextFieldTestPageState extends State<TextFieldTestPage> {
+class _LoginTextFieldTestPageState extends State<LoginTextFieldTestPage> {
 
   var _name ='';
   var _pwd = '';

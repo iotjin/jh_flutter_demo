@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 //import 'package:dio_http_cache/dio_http_cache.dart';
 
 var dataArr;
-var pageIndex =0;//页数
+var pageIndex = 0;//页数
 
 class HttpPageTestPage extends StatefulWidget {
   @override
@@ -27,8 +27,9 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
   var dio = new Dio();
   void getNewData()async{
     pageIndex =0;
+    print("pageIndex- ${pageIndex}");
     var response = await dio.post(url, data:{"page":pageIndex,});
-    dataArr =response.data["data"]["listData"];
+    dataArr =response.data["data"];
     setState(() {
       _count =dataArr.length==null? 0:dataArr.length;
       print("最新条数"+_count.toString());
@@ -37,8 +38,9 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
   }
   void getMoreData()async{
     pageIndex++;
+    print("more pageIndex- ${pageIndex}");
     var response = await dio.post(url, data:{"page":pageIndex,});
-    var moreData =response.data["data"]["listData"];
+    var moreData =response.data["data"];
     dataArr =dataArr+moreData;
     setState(() {
       _count =dataArr.length==null? 0:dataArr.length;
@@ -56,6 +58,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
         ),
         body:EasyRefresh(
             controller: _controller,
+//            firstRefresh: false,
             firstRefresh: true,
             onRefresh: () async{
               print("下拉刷新-----");
