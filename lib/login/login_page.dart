@@ -8,7 +8,7 @@ import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:flui/src/widgets/avatar.dart';
 import 'package:jh_flutter_demo/JhTools/tools/jhColorTool.dart';
-import 'package:jh_flutter_demo/JhTools/widgets/jhLoginTextField.dart';
+import 'package:jh_flutter_demo/JhTools/JhForm/jhLoginTextField.dart';
 
 
 /*
@@ -64,6 +64,8 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement dispose
     super.dispose();
     print("login dispose");
+    _node1.unfocus();
+    _node2.unfocus();
   }
 
 @override
@@ -120,12 +122,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
 
                   SizedBox(height: 30),
-                  JhLoginTextField(text:_name,hintText: "请输入用户名",focusNode:_node1,leftIcon: Icon(Icons.person),isShowDeleteBtn: true,
+                  JhLoginTextField(text:_name,hintText: "请输入用户名",focusNode:_node1,leftWidget: Icon(Icons.person),isShowDeleteBtn: true,
                     inputCallBack: (value)=> _name=value
                   ),
                   SizedBox(height: 10),
 
-                  JhLoginTextField(hintText: "请输入密码",focusNode:_node2,leftIcon: Icon(Icons.lock),isShowDeleteBtn: true,isPwd: true,
+                  JhLoginTextField(hintText: "请输入密码",focusNode:_node2,leftWidget: Icon(Icons.lock),isShowDeleteBtn: true,isPwd: true,
                     inputCallBack: (value)=>_pwd =value
 
                   ),

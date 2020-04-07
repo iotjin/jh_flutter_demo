@@ -51,6 +51,8 @@ import 'package:jh_flutter_demo/demoLists/alert/toast/ToastTest.dart';
 import 'package:jh_flutter_demo/demoLists/form/formDemoLists_page.dart';
 import 'package:jh_flutter_demo/demoLists/form/loginTextFeld_page.dart';
 import 'package:jh_flutter_demo/demoLists/form/inputTextFieldTest_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/formInputCellTest_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/formSelectCellTest_page.dart';
 
 //other
 import 'package:jh_flutter_demo/demoLists/other/formTest.dart';
@@ -130,6 +132,9 @@ final routes = {
   "FormDemoListsPage": (context) => FormDemoListsPage(),
   "LoginTextFieldTestPage": (context) => LoginTextFieldTestPage(),
   "InputTextFieldTestPage": (context) => InputTextFieldTestPage(),
+  "FormInputCellTestPage": (context) => FormInputCellTestPage(),
+  "FormSelectCellTestPage": (context) => FormSelectCellTestPage(),
+
 
 
   //other

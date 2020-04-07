@@ -39,6 +39,8 @@ class _InputTextFieldTestPageState extends State<InputTextFieldTestPage> {
                       inputFormatters:[WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9]")) ,
                         LengthLimitingTextInputFormatter(10)]),
                   SizedBox(height: 10),
+                  JhTextField(hintText:'左侧自定义，maxLength=15',leftWidget: Container(color: Colors.yellow,width: 100,),maxLength: 15,),
+                  SizedBox(height: 10),
                   JhTextField(hintText:'右侧自定义，maxLength=15',rightWidget: Container(color: Colors.yellow,width: 100,),maxLength: 15,),
                   SizedBox(height: 10),
                   JhTextField(hintText: "设置maxLines=5，设置边框",maxLines:5,
@@ -51,7 +53,7 @@ class _InputTextFieldTestPageState extends State<InputTextFieldTestPage> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  JhTextField(hintText: "默认显示1行，自动换行，最多10行，500字符",
+                  JhTextField(hintText: "默认1行，自动换行，最多5行，100字符",
                     border: OutlineInputBorder(
                           borderRadius: const BorderRadius.all(Radius.circular(4)),
                           borderSide: BorderSide(

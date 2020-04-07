@@ -75,52 +75,6 @@ class BaseScrollView extends StatelessWidget {
               },
             ),
 
-            ConstrainedBox(
-                constraints: BoxConstraints(
-                    minWidth: double.infinity, //宽度尽可能大
-                    minHeight: 50.0 //最小高度为50像素
-                ),
-//                height: 50.0,
-//                margin:  const EdgeInsets.only(left: 16.0),
-//                width: double.infinity,
-//                decoration: BoxDecoration(
-//                    border: Border(
-//                      bottom: Divider.createBorderSide(context, width: 0.6),
-//                    )
-//                ),
-
-                child:
-            Row(
-                children: <Widget>[
-                  Text('111'),
-                  Expanded(
-                    child: TextField(
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 5,
-                      minLines: 1,
-                      decoration: const InputDecoration(
-                        hintText: '输入',
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        isDense: true,
-//                        border: const OutlineInputBorder(
-//                          gapPadding: 0,
-//                          borderRadius: const BorderRadius.all(Radius.circular(4)),
-//                          borderSide: BorderSide(
-//                            width: 1,
-//                            style: BorderStyle.none,
-//                          ),
-//                        ),
-                      ),
-                    ),
-                  ),
-                  Text('222'),
-                ]
-            )
-        )
-
-
 
           ],
         ),

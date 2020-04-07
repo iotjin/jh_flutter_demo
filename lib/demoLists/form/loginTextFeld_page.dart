@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/baseAppBar.dart';
-import 'package:jh_flutter_demo/JhTools/widgets/jhLoginTextField.dart';
+import 'package:jh_flutter_demo/JhTools/JhForm/jhLoginTextField.dart';
 import 'package:flutter/services.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhButton.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -44,12 +44,15 @@ class _LoginTextFieldTestPageState extends State<LoginTextFieldTestPage> {
                     inputFormatters:[WhitelistingTextInputFormatter(RegExp("[0-9]")) ,
                       LengthLimitingTextInputFormatter(5)]),
 
-                JhLoginTextField(hintText: "左侧添加按钮",leftIcon: Icon(Icons.perm_identity)),
+//                JhLoginTextField(hintText: "左侧添加按钮",leftWidget: Icon(Icons.perm_identity)),
 
-                JhLoginTextField(text: _name,hintText: "请输入用户名",leftIcon: Icon(Icons.person),isShowDeleteBtn: true,
+                JhLoginTextField(hintText:'左侧自定义',
+                  leftWidget: Container(color: Colors.yellow,width: 50,),),
+                JhLoginTextField(hintText: "请输入手机号",leftWidget: Container(width: 50,child: Center(child:Text("+86"))),keyboardType:TextInputType.phone, ),
+                JhLoginTextField(text: _name,hintText: "请输入用户名",leftWidget: Icon(Icons.person),isShowDeleteBtn: true,
                   inputCallBack: (value) => _name=value
                 ),
-                JhLoginTextField(text: _pwd,hintText: "请输入密码",leftIcon: Icon(Icons.lock),isShowDeleteBtn: true,isPwd: true,
+                JhLoginTextField(text: _pwd,hintText: "请输入密码",leftWidget: Icon(Icons.lock),isShowDeleteBtn: true,isPwd: true,
                   inputCallBack: (value) => _pwd =value
                 ),
 
