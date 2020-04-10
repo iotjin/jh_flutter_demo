@@ -63,13 +63,13 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
                   SizedBox(height: 50),
 
                   SizedBox(height: 30),
-                  JhLoginTextField(text:_phone,hintText: "手机号",focusNode:_node1,maxLength: 11,
+                  JhLoginTextField(text:_phone,hintText: "请输入手机号",focusNode:_node1,maxLength: 11,
                       keyboardType:TextInputType.number,
                       inputCallBack: (value)=> _phone=value
                   ),
                   SizedBox(height: 10),
 
-                  JhLoginTextField(hintText: "验证码",focusNode:_node2,maxLength: 6,
+                  JhLoginTextField(hintText: "请输入验证码",focusNode:_node2,maxLength: 6,
                       keyboardType:TextInputType.number,
                       rightWidget:
                       JhCountDownBtn(

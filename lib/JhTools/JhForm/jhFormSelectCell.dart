@@ -102,6 +102,7 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
               Row(
                   crossAxisAlignment:widget.topAlign==true ?CrossAxisAlignment.start:CrossAxisAlignment.center,
                   children: <Widget>[
+                    widget.leftWidget!=null?widget.leftWidget:Container(),
                     Container(width:_starW, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?_topSpace:0, 0, 0),
                       child: Text(widget.showRedStar ? "*":" ", style: TextStyle(fontSize: 18.0,color: Colors.red)),
                     ),
@@ -111,7 +112,6 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
                       Container(width: widget.space-_starW, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?_topSpace:0, 0, 0),
                         child: Text(widget.title, style: widget.titleStyle),),
                     ),
-                    widget.leftWidget!=null?widget.leftWidget:Container(),
                     Expanded(
                         child:
                         JhTextField(

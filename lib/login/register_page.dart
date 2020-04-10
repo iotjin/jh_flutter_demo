@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/JhTools/widgets/jhButton.dart';
-import 'package:jh_flutter_demo/baseTabBar.dart';
-import 'package:jh_flutter_demo/JhTools/widgets/jhForm.dart';
+import 'package:jh_flutter_demo/baseAppBar.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:jh_flutter_demo/JhTools/JhForm/jhKeyboardUtils.dart';
+import 'package:jh_flutter_demo/JhTools/JhForm/jhLoginTextField.dart';
+import 'package:jh_flutter_demo/JhTools/JhForm/jhCountDownBtn.dart';
+import 'package:jh_flutter_demo/JhTools/widgets/jhButton.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:jh_flutter_demo/configs/colors.dart';
+
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -13,27 +16,24 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-  TextEditingController _nameController = new TextEditingController();
-  TextEditingController _pwdController = new TextEditingController();
   TextEditingController _phoneController = new TextEditingController();
   TextEditingController _codeController = new TextEditingController();
+  TextEditingController _pwdController = new TextEditingController();
 
   final FocusNode _node1 = FocusNode();
   final FocusNode _node2 = FocusNode();
   final FocusNode _node3 = FocusNode();
-  final FocusNode _node4 = FocusNode();
 
-  bool pwdShow = false; //密码是否显示明文
-  bool _nameAutoFocus = true;
+  var _phone ='';
+  var _code = '';
+  var _pwd = '';
+
+
 
   @override
   void initState() {
-    // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
-    _nameController.text = "";
-    if (_nameController.text != null) {
-      _nameAutoFocus = false;
-    }
     super.initState();
+
 
   }
 
@@ -43,15 +43,10 @@ class _RegisterPageState extends State<RegisterPage> {
     return
       Scaffold(
 
-          appBar:  AppBar(
-            title: Text("账号注册",style: TextStyle(color: Colors.white,fontSize:18),),
-            backgroundColor: KColor.kWeiXinThemeColor,
-//            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-
+          appBar:
+          backAppBar(context, '账号注册',),
           body:  KeyboardActions(
-            config: jhForm.getKeyboardConfig(context, [_node1,_node2]),
+            config: JhKeyboardUtils.getKeyboardConfig(context, [_node1,_node2,_node3]),
             child: _mainBody(),
           )
 
@@ -69,64 +64,36 @@ class _RegisterPageState extends State<RegisterPage> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child:  Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
 
 //                SizedBox(height: 50),
-                TextFormField(
-                  focusNode: _node1,
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: "用户名",
-                    hintText: "请输入用户名",
-                    hintStyle: TextStyle(fontSize: 15),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor,
-                            width: 0.8
-                        )
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color:  Colors.grey,
-                            width: 0.5
-                        )
-                    ),
-                  ),
+                JhLoginTextField(text:_phone,hintText: "请输入手机号",labelText:'手机号',focusNode:_node1,maxLength: 11,
+                    keyboardType:TextInputType.number,
+                    inputCallBack: (value)=> _phone=value
                 ),
                 SizedBox(height: 10),
-                TextFormField(
-                  focusNode: _node2,
-                  controller: _pwdController,
-                  decoration: InputDecoration(
-                    labelText: "密码",
-                      hintText: "请输入密码",
-                      hintStyle: TextStyle(fontSize: 15),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).primaryColor,
-                              width: 0.8
-                          )
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color:  Colors.grey,
-                              width: 0.5
-                          )
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                            pwdShow ?  Icons.visibility :Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            pwdShow = !pwdShow;
-                          });
-                        },
-                      )),
-                  obscureText: !pwdShow,
+
+                JhLoginTextField(hintText: "请输入验证码",labelText:'验证码',focusNode:_node2,maxLength: 6,
+                    keyboardType:TextInputType.number,
+                    rightWidget:
+                    JhCountDownBtn(
+                        showBorder: true,
+                        getVCode:()async {
+                          return true;
+                        }
+                    ),
+                    inputCallBack: (value)=> _code =value
+                ),
+                SizedBox(height: 10),
+
+                JhLoginTextField(hintText: "请输入密码",labelText:'密码',focusNode:_node3,isShowDeleteBtn: true,isPwd: true,
+                    pwdClose: 'assets/images/ic_pwd_close.png',pwdOpen: 'assets/images/ic_pwd_open.png',
+                    inputCallBack: (value)=>_pwd =value
 
                 ),
+
+                SizedBox(height: 15),
                 SizedBox(height: 50),
                 JhButton(text: "注 册",
                     onPressed: _ClickOkBtn

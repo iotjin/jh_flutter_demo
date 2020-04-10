@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jh_flutter_demo/JhTools/JhForm/jhCountDownBtn.dart';
 
 const int _maxLines = 5;   //最大行数
 const int _maxLength = 100;  //最大录入长度
@@ -102,7 +103,7 @@ class _JhTextFieldState extends State<JhTextField> {
               hintText:  widget.hintText,
               hintStyle: widget.hintTextStyle,
               isDense: true,
-              contentPadding: widget.border!=InputBorder.none ?EdgeInsets.symmetric(horizontal: 5, vertical: 8):EdgeInsets.zero,
+              contentPadding: widget.border!=InputBorder.none ?EdgeInsets.symmetric(horizontal: 5, vertical: 8):EdgeInsets.fromLTRB(0, 8, 5, 8),
               border: widget.border
           ),
           onChanged: (value){

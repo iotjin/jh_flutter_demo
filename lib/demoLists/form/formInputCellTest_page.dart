@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/baseAppBar.dart';
 import 'package:jh_flutter_demo/JhTools/JhForm/jhFormInputCell.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 
 class FormInputCellTestPage extends StatefulWidget {
   @override
@@ -9,6 +10,8 @@ class FormInputCellTestPage extends StatefulWidget {
 }
 
 class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
+
+  bool _switchSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +52,18 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
                     rightWidget: Container(color: Colors.yellow,width: 150,height: 45,),
                     maxLength: 15,
                   ),
+
+                  JhFormInputCell(title: "左标题",hintText: '',enabled: false,
+                    rightWidget:
+                    CupertinoSwitch(
+                      value: _switchSelected,
+                      onChanged: (value) {
+                        setState(() {
+                          _switchSelected = value;
+                        });
+                      },
+                    ),
+                  ),
                   SizedBox(height: 10),
                   JhFormInputCell(title: "左标题",hintText: "设置边框,隐藏底部线",hiddenLine: true,
                     border: OutlineInputBorder(
@@ -64,6 +79,10 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
                       borderSide: BorderSide( width: 1,style: BorderStyle.none,),
                     ),
                   ),
+
+                  SizedBox(height: 10),
+
+
 
                 ],
               ),

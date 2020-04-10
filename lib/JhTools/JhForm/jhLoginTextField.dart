@@ -18,6 +18,7 @@ class JhLoginTextField extends StatefulWidget {
 
   final String text;
   final String hintText;
+  final String labelText;//top提示文字
   final TextInputType keyboardType;
   final FocusNode focusNode;
   final bool isPwd; //是否是密码，默认不是
@@ -35,6 +36,7 @@ class JhLoginTextField extends StatefulWidget {
     this.text: '',
     this.keyboardType: TextInputType.text,
     this.hintText: '',
+    this.labelText,
     this.focusNode,
     this.isPwd = false,
     this.leftWidget,
@@ -118,6 +120,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 //            [WhitelistingTextInputFormatter(RegExp('[0-9]'))] : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
             inputFormatters: widget.inputFormatters!=null ?widget.inputFormatters:[LengthLimitingTextInputFormatter(widget.maxLength)],
             decoration: InputDecoration(
+              labelText: widget.labelText!= null ?widget.labelText: null,
               hintText:  widget.hintText,
               hintStyle: _hintTextStyle,
               focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),

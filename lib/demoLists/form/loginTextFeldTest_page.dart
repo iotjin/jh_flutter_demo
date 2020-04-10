@@ -3,7 +3,7 @@ import 'package:jh_flutter_demo/baseAppBar.dart';
 import 'package:jh_flutter_demo/JhTools/JhForm/jhLoginTextField.dart';
 import 'package:flutter/services.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhButton.dart';
-import 'package:jhtoast/jhtoast.dart';
+import 'package:jh_flutter_demo/JhTools/JhForm/jhCountDownBtn.dart';
 
 class LoginTextFieldTestPage extends StatefulWidget {
   @override
@@ -50,7 +50,7 @@ class _LoginTextFieldTestPageState extends State<LoginTextFieldTestPage> {
                   leftWidget: Container(color: Colors.yellow,width: 50,),),
                 JhLoginTextField(hintText:'右侧自定义',rightWidget: Container(color: Colors.yellow,width: 100,height: 45,)),
                 JhLoginTextField(hintText: "请输入手机号",leftWidget: Container(width: 50,child: Center(child:Text("+86"))),keyboardType:TextInputType.phone, ),
-                JhLoginTextField(text: _name,hintText: "请输入用户名",leftWidget: Icon(Icons.person),isShowDeleteBtn: true,
+                JhLoginTextField(text: _name,hintText: "请输入用户名",labelText:'用户名',leftWidget: Icon(Icons.person),isShowDeleteBtn: true,
                   inputCallBack: (value) => _name=value
                 ),
                 JhLoginTextField(text: _pwd,hintText: "请输入密码(添加右侧密码图片)",leftWidget: Icon(Icons.lock),isShowDeleteBtn: true,
@@ -58,7 +58,16 @@ class _LoginTextFieldTestPageState extends State<LoginTextFieldTestPage> {
 
                   inputCallBack: (value) => _pwd =value
                 ),
-
+                JhLoginTextField(hintText: "验证码",maxLength: 6,
+                    keyboardType:TextInputType.number,
+                    rightWidget:
+                    JhCountDownBtn(
+                        showBorder: true,
+                        getVCode:()async {
+                          return true;
+                        }
+                    ),
+                ),
                 SizedBox(height: 50),
                 JhButton(text: "登 录",
                     onPressed:()=> _ClickOkBtn(context)
