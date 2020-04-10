@@ -9,6 +9,7 @@ class NavTestPage extends StatelessWidget {
     "nav-左侧返回，右侧文字",
     "nav-左侧返回，右侧图片",
     "nav-左侧自定义右侧文字",
+    "nav-设置透明背景色",
   ];
 
   @override
@@ -28,7 +29,9 @@ class NavTestPage extends StatelessWidget {
           if(index == 3) {
             Navigator.push(context, MaterialPageRoute(builder: (context) => (_nav4() )));//普通路由
           }
-          
+          if(index == 4) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => (_nav5() )));//普通路由
+          }
           
         }
     );
@@ -133,6 +136,33 @@ class _nav4 extends StatelessWidget {
         Navigator.pop(context);
         },
       ),
+
+    );
+  }
+}
+
+class _nav5 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar:
+      backAppBar(context, "透明背景色",
+          rightText: "发布",
+          rightItemCallBack: (){
+            print("点击右侧");
+          },
+        backgroundColor: Colors.transparent
+      ),
+      body:
+      Container(
+        child:
+        RaisedButton(child: Text("返回"),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        ),
+      )
+
 
     );
   }

@@ -79,6 +79,10 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
 
   @override
   Widget build(BuildContext context) {
+
+    double _starW = widget.showRedStar==false && widget.title.isEmpty ?0:8;
+    double _topSpace = 0 ;//title 顶对齐 间距
+
     return
 
       InkWell(
@@ -86,7 +90,7 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
         DecoratedBox(
           decoration: UnderlineTabIndicator(
               borderSide: BorderSide(width: 0.8, color: widget.hiddenLine== true ?Colors.transparent:Theme.of(context).dividerColor),
-              insets: EdgeInsets.fromLTRB(8,0,0,0)
+              insets: EdgeInsets.fromLTRB(_starW,0,0,0)
           ),
           child:
           ConstrainedBox(
@@ -98,22 +102,21 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
               Row(
                   crossAxisAlignment:widget.topAlign==true ?CrossAxisAlignment.start:CrossAxisAlignment.center,
                   children: <Widget>[
-                    Container(width:8, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?8:0, 0, 0),
+                    Container(width:_starW, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?_topSpace:0, 0, 0),
                       child: Text(widget.showRedStar ? "*":" ", style: TextStyle(fontSize: 18.0,color: Colors.red)),
                     ),
                     Offstage(
                       offstage: widget.title.isEmpty?true:false,
                       child:
-                      Container(width: widget.space-8, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?8:0, 0, 0),
+                      Container(width: widget.space-_starW, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?_topSpace:0, 0, 0),
                         child: Text(widget.title, style: widget.titleStyle),),
                     ),
+                    widget.leftWidget!=null?widget.leftWidget:Container(),
                     Expanded(
                         child:
                         JhTextField(
                           text: widget.text,
                           hintText: widget.hintText,
-                          leftWidget: widget.leftWidget,
-//                          rightWidget: widget.rightWidget,
                           enabled:false,
                           textStyle: widget.textStyle,
                           hintTextStyle: widget.hintTextStyle,

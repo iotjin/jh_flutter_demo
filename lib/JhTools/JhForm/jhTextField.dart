@@ -102,7 +102,7 @@ class _JhTextFieldState extends State<JhTextField> {
               hintText:  widget.hintText,
               hintStyle: widget.hintTextStyle,
               isDense: true,
-              contentPadding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+              contentPadding: widget.border!=InputBorder.none ?EdgeInsets.symmetric(horizontal: 5, vertical: 8):EdgeInsets.zero,
               border: widget.border
           ),
           onChanged: (value){

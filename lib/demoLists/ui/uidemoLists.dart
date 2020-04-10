@@ -3,8 +3,8 @@ import 'package:jh_flutter_demo/JhTools/widgets/jhTextList.dart';
 
 class UIDemoListsPage extends StatelessWidget {
 
-  final List titleData = ["UI"];
-  final List routeData = ["UIPage"];
+  final List titleData = ["UI","UI2"];
+  final List routeData = ["UIPage","UIPage2"];
 
 
   @override

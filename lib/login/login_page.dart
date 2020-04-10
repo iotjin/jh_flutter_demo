@@ -57,7 +57,6 @@ class _LoginPageState extends State<LoginPage> {
 //      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 //      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     }
-
   }
   @override
   void dispose() {
@@ -128,6 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: 10),
 
                   JhLoginTextField(hintText: "请输入密码",focusNode:_node2,leftWidget: Icon(Icons.lock),isShowDeleteBtn: true,isPwd: true,
+                    pwdClose: 'assets/images/ic_pwd_close.png',pwdOpen: 'assets/images/ic_pwd_open.png',
                     inputCallBack: (value)=>_pwd =value
 
                   ),
@@ -135,15 +135,30 @@ class _LoginPageState extends State<LoginPage> {
                   JhButton(text: "登 录",
                       onPressed: _ClickOkBtn
                   ),
-                  SizedBox(height: 10),
-                  Container(
-                    height: 40.0,
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      child: Text('忘记密码',),
-                      onTap: () => Navigator.pushNamed(context, "FindPwdPage")
-                    ),
-                  ),
+                  SizedBox(height: 15),
+
+                  Row(
+                    mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+                    children: <Widget>[
+                      Container(
+                        height: 50.0,
+                        child: GestureDetector(
+                            child: Text('验证码登录',),
+                            onTap: () => Navigator.pushNamed(context, "CodeLoginPage")
+                        ),
+                      ),
+                      Container(
+                        height: 50.0,
+//                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                            child: Text('忘记密码',),
+                            onTap: () => Navigator.pushNamed(context, "FindPwdPage")
+                        ),
+                      ),
+
+                    ],
+                  )
+                  
 
                 ],
               ),

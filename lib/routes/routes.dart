@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/login/login_page.dart';
 import 'package:jh_flutter_demo/login/register_page.dart';
 import 'package:jh_flutter_demo/login/findPwd_page.dart';
+import 'package:jh_flutter_demo/login/codeLogin_page.dart';
 
 import 'package:jh_flutter_demo/one/one_page.dart';
 import 'package:jh_flutter_demo/two/two_page.dart';
@@ -18,6 +19,7 @@ import 'package:jh_flutter_demo/demoLists/demoLists_page.dart';
 
 import 'package:jh_flutter_demo/demoLists/ui/uidemoLists.dart';
 import 'package:jh_flutter_demo/demoLists/ui/ui_page.dart';
+import 'package:jh_flutter_demo/demoLists/ui/ui_page2.dart';
 //http
 import 'package:jh_flutter_demo/demoLists/http/httpdemoLists_page.dart';
 import 'package:jh_flutter_demo/demoLists/http/httpTest1_page.dart';
@@ -82,6 +84,8 @@ final routes = {
   loginPage: (context) => LoginPage(),
   "RegisterPage": (context) => RegisterPage(),
   "FindPwdPage": (context) => FindPwdPage(),
+  "CodeLoginPage": (context) => CodeLoginPage(),
+
 
   onePage: (context) => OnePage(),
   twoPage: (context) => TwoPage(),
@@ -97,6 +101,7 @@ final routes = {
   //ui
   "UIDemoListsPage": (context) => UIDemoListsPage(),
   "UIPage": (context) => UIPage(),
+  "UIPage2": (context) => UIPage2(),
   //http
   "HttpDemoListsPage": (context) => HttpDemoListsPage(),
   "HttpTest1Page": (context) => HttpTest1Page(),

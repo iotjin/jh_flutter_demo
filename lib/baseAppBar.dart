@@ -7,7 +7,8 @@
 import 'package:flutter/material.dart';
 
 const Color _navbgColor = Color(0xFF3BB815);
-const Color _titleColor = Colors.white;
+const Color _titleColorWhite = Colors.white;
+const Color _titleColorBlack = Colors.black;
 const double _titleFontSize = 18.0;
 const double _textFontSize = 16.0;
 const double _itemSpace = 15.0; //右侧item间距
@@ -17,15 +18,17 @@ const double _imgWH = 22.0;
 backAppBar(BuildContext context, String title,{
   String rightText,
   String rightImgPath,
+  Color backgroundColor = _navbgColor,
   Function rightItemCallBack,
   Function backCallBack
 }){
-    return baseAppBar(context, title,
-       rightText: rightText,
+  return baseAppBar(context, title,
+      rightText: rightText,
       rightImgPath: rightImgPath,
-        rightItemCallBack:rightItemCallBack,
-      leftItemCallBack: backCallBack
-    );
+      rightItemCallBack:rightItemCallBack,
+      leftItemCallBack: backCallBack,
+      backgroundColor: backgroundColor
+  );
 }
 
 
@@ -33,10 +36,13 @@ baseAppBar(BuildContext context, String title, {
   String rightText,
   String rightImgPath,
   Widget leftItem,
+  Color backgroundColor = _navbgColor,
   Function rightItemCallBack,
   Function leftItemCallBack,
 })
 {
+
+ Color _color = backgroundColor==Colors.transparent? _titleColorBlack:_titleColorWhite;
 
   Widget rightItem=Text("");
   if(rightText!=null){
@@ -44,7 +50,9 @@ baseAppBar(BuildContext context, String title, {
       child:Container(
           margin: EdgeInsets.all(_itemSpace),
           color: Colors.transparent,
-          child: Center(child: Text(rightText,style: TextStyle(fontSize: _textFontSize,color: _titleColor)))
+          child: Center(child:
+          Text(rightText, style: TextStyle(fontSize: _textFontSize, color: _color))
+          )
       ),
       onTap: () {
         if(rightItemCallBack!=null){
@@ -64,12 +72,13 @@ baseAppBar(BuildContext context, String title, {
     );
   }
   return AppBar(
-    title: Text(title,style: TextStyle(fontSize: _titleFontSize,color: _titleColor)),
+    title: Text(title, style: TextStyle(fontSize: _titleFontSize, color: _color)),
     centerTitle: true,
-    backgroundColor: _navbgColor,
+    backgroundColor: backgroundColor,
+    elevation: 0,
     leading:leftItem!=null ?leftItem:
     IconButton(
-      icon: Icon(Icons.arrow_back_ios,color: Colors.white,),
+      icon: Icon(Icons.arrow_back_ios,color: _color),
       onPressed: () {
         if (leftItemCallBack == null) {
           _popThis(context);

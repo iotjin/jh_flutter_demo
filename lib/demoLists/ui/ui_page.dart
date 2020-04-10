@@ -11,32 +11,75 @@ class UIPage extends StatelessWidget {
         title: Text("UITest",style:TextStyle (color:  Colors.white)),
         elevation: 0.0,
       ),
-      body:
 
-      Column(
-        children: <Widget>[
-          testBtn,
-          textSection,testImage,testContainer,
-          testText
-        ],
-      ),
-
-//        testImage
-//        testText
-//        testPositioned  //绝对定位
-//        testContainer //Container
-//        ListView(children: _getListData()),
-//        textList
-
-//        Column(
-//            children: <Widget>[textSection],
-//        ),
-
-
-
+     body: BaseScrollView()
     );
+
   }
 }
+
+
+class BaseScrollView extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return
+
+      Scrollbar(
+          child: SingleChildScrollView(child:
+          Column(
+            children: <Widget>[
+
+
+
+
+          testBtn,
+          FlatButton( //即扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
+            child: Text("扁平按钮"),
+            onPressed: () {},
+          ),
+          RaisedButton(//即"漂浮"按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
+            child: Text("漂浮按钮"),
+            onPressed: () {},
+          ),
+
+          OutlineButton( //OutlineButton默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
+            child: Text("带边框的按钮"),
+            onPressed: () {},
+          ),
+
+          RaisedButton.icon(
+            icon: Icon(Icons.send),
+            label: Text("带图标的按钮"),
+            onPressed: () {},
+          ),
+
+          textSection,
+          testImage,
+          testContainer,
+          testText,
+          testImage,
+          testText,
+          testPositioned,  //绝对定位
+          testContainer ,//Container
+          textListView,
+          textListView0,
+
+          Container(height: 1500,width:double.infinity,color: Colors.yellow,child: Text("往下滑动"),),
+          Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),
+          Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),
+
+            ],
+          ),
+
+          )
+      );
+
+  }
+}
+
+
+
 
 
 

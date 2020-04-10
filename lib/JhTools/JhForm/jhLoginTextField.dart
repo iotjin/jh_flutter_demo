@@ -22,9 +22,13 @@ class JhLoginTextField extends StatefulWidget {
   final FocusNode focusNode;
   final bool isPwd; //是否是密码，默认不是
   final Widget leftWidget; //左侧widget ，默认隐藏
+  final Widget rightWidget; //右侧widget ，默认隐藏
+  final int maxLength; //最大长度，默认20
   final bool isShowDeleteBtn;  //是否显示右侧删除按钮，默认不显示
   final List<TextInputFormatter> inputFormatters;
   final _InputCallBack inputCallBack;
+  final String pwdOpen; //自定义密码图片路径 睁眼
+  final String pwdClose;//自定义密码图片路径 闭眼
 
   const JhLoginTextField({
     Key key,
@@ -34,9 +38,14 @@ class JhLoginTextField extends StatefulWidget {
     this.focusNode,
     this.isPwd = false,
     this.leftWidget,
+    this.rightWidget,
+    this.maxLength:20,
     this.isShowDeleteBtn = false,
     this.inputFormatters,
     this.inputCallBack,
+    this.pwdOpen,
+    this.pwdClose,
+
   }): super(key: key);
 
   @override
@@ -51,6 +60,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
    bool _isShowDelete;
    bool _isHideenPwdBtn; //是否隐藏 右侧密码明文切换按钮 ，密码样式才显示（isPwd =true），
    bool _pwdShow; //控制密码 明文切换
+   Widget _pwdImg; //自定义密码图片
 
   @override
   void initState() {
@@ -80,53 +90,141 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
   @override
   Widget build(BuildContext context) {
 
+    if(widget.pwdOpen!=null && widget.pwdClose!=null){
+      if(widget.pwdOpen.isNotEmpty && widget.pwdClose.isNotEmpty){
+        _pwdImg = _pwdShow ? ImageIcon(AssetImage(widget.pwdClose)):ImageIcon(AssetImage(widget.pwdOpen)) ;
+      }else{
+        _pwdImg = Icon(_pwdShow ? Icons.visibility_off : Icons.visibility);
+      }
+    }else{
+      _pwdImg = Icon(_pwdShow ? Icons.visibility_off : Icons.visibility);
+//      _pwdImg = _pwdShow?Image.asset("assets/images/ic_pwd_close.png",width: 18.0,):Image.asset("assets/images/ic_pwd_open.png",width: 18.0,);
+//      _pwdImg = _pwdShow?ImageIcon(AssetImage("assets/images/ic_pwd_close.png")):ImageIcon(AssetImage("assets/images/ic_pwd_open.png")) ;
+    }
+
     return
-      TextField(
-        focusNode: _focusNode,
-        controller: _textController,
-        keyboardType: widget.keyboardType,
-        style: _textStyle,
-        inputFormatters: widget.inputFormatters!=null ?widget.inputFormatters:[LengthLimitingTextInputFormatter(20)],
-        decoration: InputDecoration(
-          hintText:  widget.hintText,
-          hintStyle: _hintTextStyle,
-          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
-          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color:  Colors.grey,width: 0.5)),
-          prefixIcon: widget.leftWidget,
-          suffixIcon: Container(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Offstage(offstage: !widget.isShowDeleteBtn, child:
-                _isShowDelete
-                    ? IconButton(icon: Icon(Icons.cancel,color: Color(0xFFC8C8C8),size: 20,),
-                    onPressed: (){
-                      _textController.text = "";
-                      if(widget.inputCallBack!=null){
-                        widget.inputCallBack(_textController.text);
-                      }
-                    }
-                ): Text(""),
-                ),
-                Offstage( offstage: _isHideenPwdBtn, child:
-                IconButton(icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
-                  onPressed: () {
-                    setState(() {
-                      _pwdShow = !_pwdShow;
-                    });
-                  },
-                )
-                )
-              ],
+
+      Stack(
+        alignment: Alignment.centerRight,
+        children: <Widget>[
+
+          TextField(
+            focusNode: _focusNode,
+            controller: _textController,
+            keyboardType: widget.keyboardType,
+            style: _textStyle,
+//            // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
+//            inputFormatters: (widget.keyboardType == TextInputType.number || widget.keyboardType == TextInputType.phone) ?
+//            [WhitelistingTextInputFormatter(RegExp('[0-9]'))] : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
+            inputFormatters: widget.inputFormatters!=null ?widget.inputFormatters:[LengthLimitingTextInputFormatter(widget.maxLength)],
+            decoration: InputDecoration(
+              hintText:  widget.hintText,
+              hintStyle: _hintTextStyle,
+              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color:  Colors.grey,width: 0.5)),
+              prefixIcon: widget.leftWidget,
+//          suffixIcon:
             ),
+            obscureText: _pwdShow,
+            onChanged: (value){
+              if(widget.inputCallBack!=null){
+                widget.inputCallBack(_textController.text);
+              }
+            },
           ),
-        ),
-        obscureText: _pwdShow,
-        onChanged: (value){
-          if(widget.inputCallBack!=null){
-            widget.inputCallBack(_textController.text);
-          }
-        },
+
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Offstage(offstage: !widget.isShowDeleteBtn, child:
+              _isShowDelete
+                  ? IconButton(icon: Icon(Icons.cancel,color: Color(0xFFC8C8C8),size: 20,),
+                  onPressed: (){
+                    _textController.text = "";
+                    if(widget.inputCallBack!=null){
+                      widget.inputCallBack(_textController.text);
+                    }
+                  }
+              ): Text(""),
+              ),
+              Offstage( offstage: _isHideenPwdBtn, child:
+              IconButton(
+//                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
+//                  icon: Image.asset("assets/images/ic_pwd_close.png",width: 18.0,),
+                icon: _pwdImg,
+                iconSize: 18.0 ,
+                onPressed: () {
+                  setState(() {
+                    _pwdShow = !_pwdShow;
+                  });
+                },
+              )
+              ),
+              widget.rightWidget!=null?widget.rightWidget:Container(),
+            ],
+          ),
+        ],
       );
+
+
+  /*以下代码添加右侧自定义widget点击会弹出键盘*/
+
+
+//      TextField(
+//        focusNode: _focusNode,
+//        controller: _textController,
+//        keyboardType: widget.keyboardType,
+//        style: _textStyle,
+//        inputFormatters: widget.inputFormatters!=null ?widget.inputFormatters:[LengthLimitingTextInputFormatter(20)],
+//        decoration: InputDecoration(
+//          hintText:  widget.hintText,
+//          hintStyle: _hintTextStyle,
+//          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+//          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color:  Colors.grey,width: 0.5)),
+//          prefixIcon: widget.leftWidget,
+//          suffixIcon:
+//          Container(
+//            child: Row(
+//              mainAxisSize: MainAxisSize.min,
+//              children: <Widget>[
+//                Offstage(offstage: !widget.isShowDeleteBtn, child:
+//                _isShowDelete
+//                    ? IconButton(icon: Icon(Icons.cancel,color: Color(0xFFC8C8C8),size: 20,),
+//                    onPressed: (){
+//                      _textController.text = "";
+//                      if(widget.inputCallBack!=null){
+//                        widget.inputCallBack(_textController.text);
+//                      }
+//                    }
+//                ): Text(""),
+//                ),
+//                Offstage( offstage: _isHideenPwdBtn, child:
+//                IconButton(
+////                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
+////                  icon: Image.asset("assets/images/ic_pwd_close.png",width: 18.0,),
+//                  icon: _pwdImg,
+//                  iconSize: 18.0 ,
+//                  onPressed: () {
+//                    setState(() {
+//                      _pwdShow = !_pwdShow;
+//                    });
+//                  },
+//                )
+//                ),
+//                widget.rightWidget!=null?widget.rightWidget:Container(),
+//
+//              ],
+//            ),
+//          ),
+//        ),
+//        obscureText: _pwdShow,
+//        onChanged: (value){
+//          if(widget.inputCallBack!=null){
+//            widget.inputCallBack(_textController.text);
+//          }
+//        },
+//      );
+
+
   }
 }

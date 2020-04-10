@@ -35,7 +35,7 @@ class _FormSelectCellTestPageState extends State<FormSelectCellTestPage> {
                   JhFormSelectCell(title: "左标题",text: "红色文字",textStyle:TextStyle(fontSize: 15.0,color: Colors.red,),),
                   JhFormSelectCell(title: "左标题",text: "text靠右",textAlign: TextAlign.right,),
                   JhFormSelectCell(hintText:'左侧自定义',
-                    leftWidget: Container(color: Colors.yellow,width: 30,),
+                    leftWidget: Container(color: Colors.yellow,width: 92,height: 45,),
                     ),
                   JhFormSelectCell(title: "左标题",hintText:'右侧自定义',
                     rightWidget: Container(color: Colors.yellow,width: 150,height: 45,),

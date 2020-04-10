@@ -15,7 +15,12 @@ class OnePage extends StatelessWidget {
 //        elevation: 0.0,
 //      ),
 
-      baseAppBar(context, KString.oneTabTitle,leftItem: Container(),),
+      baseAppBar(context, KString.oneTabTitle,leftItem: Container(),
+      rightImgPath:'assets/images/ic_nav_add.png',
+        rightItemCallBack: (){
+
+        }
+      ),
 
       body:
       Column(children: <Widget>[

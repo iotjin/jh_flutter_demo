@@ -43,7 +43,7 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
                       inputFormatters:[WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9]")) ,
                         LengthLimitingTextInputFormatter(10)]),
                   JhFormInputCell(hintText:'左侧自定义，maxLength=15',
-                    leftWidget: Container(color: Colors.yellow,width: 100,),
+                    leftWidget: Container(color: Colors.yellow,width: 92,height: 45,),
                     maxLength: 15,),
                   JhFormInputCell(title: "左标题",hintText:'右侧自定义',
                     rightWidget: Container(color: Colors.yellow,width: 150,height: 45,),
