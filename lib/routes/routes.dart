@@ -55,6 +55,7 @@ import 'package:jh_flutter_demo/demoLists/form/loginTextFeldTest_page.dart';
 import 'package:jh_flutter_demo/demoLists/form/inputTextFieldTest_page.dart';
 import 'package:jh_flutter_demo/demoLists/form/formInputCellTest_page.dart';
 import 'package:jh_flutter_demo/demoLists/form/formSelectCellTest_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/setCellTest_page.dart';
 
 //other
 import 'package:jh_flutter_demo/demoLists/other/formTest.dart';
@@ -139,7 +140,7 @@ final routes = {
   "InputTextFieldTestPage": (context) => InputTextFieldTestPage(),
   "FormInputCellTestPage": (context) => FormInputCellTestPage(),
   "FormSelectCellTestPage": (context) => FormSelectCellTestPage(),
-
+  "SetCellTestPage": (context) => SetCellTestPage(),
 
 
   //other

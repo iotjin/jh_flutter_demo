@@ -19,6 +19,7 @@ class JhLoginTextField extends StatefulWidget {
   final String text;
   final String hintText;
   final String labelText;//top提示文字
+  final TextEditingController controller;
   final TextInputType keyboardType;
   final FocusNode focusNode;
   final bool isPwd; //是否是密码，默认不是
@@ -37,6 +38,7 @@ class JhLoginTextField extends StatefulWidget {
     this.keyboardType: TextInputType.text,
     this.hintText: '',
     this.labelText,
+    this.controller,
     this.focusNode,
     this.isPwd = false,
     this.leftWidget,
@@ -69,7 +71,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     // TODO: implement initState
     super.initState();
 
-    _textController = TextEditingController();
+    _textController = widget.controller!=null ? widget.controller : TextEditingController();
     _textController.text = widget.text;
     _focusNode = widget.focusNode !=null ?widget.focusNode : FocusNode();
     _isHideenPwdBtn = !widget.isPwd ;

@@ -33,18 +33,21 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   final FocusNode _node1 = FocusNode();
   final FocusNode _node2 = FocusNode();
 
   var _name ='jin';
   var _pwd = '';
 
+  bool _isClick = false;
+
   Color logoColor;
 
   @override
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
-
     super.initState();
 
     logoColor = JhColorTool.randomColor();
@@ -57,7 +60,33 @@ class _LoginPageState extends State<LoginPage> {
 //      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 //      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     }
+
+
+    _nameController.addListener(_verify);
+    _passwordController.addListener(_verify);
+
   }
+
+  void _verify() {
+    String name = _nameController.text;
+    String password = _passwordController.text;
+    bool isClick = true;
+    if (name.isEmpty || name.length < 3) {
+      isClick = false;
+    }
+    if (password.isEmpty || password.length < 6) {
+      isClick = false;
+    }
+
+    /// 状态不一样在刷新，避免重复不必要的setState
+    if (isClick != _isClick) {
+      setState(() {
+        _isClick = isClick;
+      });
+    }
+  }
+
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -122,18 +151,20 @@ class _LoginPageState extends State<LoginPage> {
 
                   SizedBox(height: 30),
                   JhLoginTextField(text:_name,hintText: "请输入用户名",focusNode:_node1,leftWidget: Icon(Icons.person),isShowDeleteBtn: true,
+                    controller: _nameController,
                     inputCallBack: (value)=> _name=value
                   ),
                   SizedBox(height: 10),
 
                   JhLoginTextField(hintText: "请输入密码",focusNode:_node2,leftWidget: Icon(Icons.lock),isShowDeleteBtn: true,isPwd: true,
+                    controller: _passwordController,
                     pwdClose: 'assets/images/ic_pwd_close.png',pwdOpen: 'assets/images/ic_pwd_open.png',
                     inputCallBack: (value)=>_pwd =value
 
                   ),
                   SizedBox(height: 50),
                   JhButton(text: "登 录",
-                      onPressed: _ClickOkBtn
+                      onPressed: _isClick ? _ClickOkBtn : null,
                   ),
                   SizedBox(height: 15),
 

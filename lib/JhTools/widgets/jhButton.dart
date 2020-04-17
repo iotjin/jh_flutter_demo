@@ -15,9 +15,13 @@ class JhButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatButton(
       onPressed: onPressed,
-      textColor: Colors.white,
-        color: Theme.of(context).primaryColor ,
+//      textColor: Colors.white,
+//      color: Theme.of(context).primaryColor ,
       //shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      textColor: Colors.white,
+      color:   Color(0xFF3BB815),
+      disabledTextColor: Colors.white54,
+      disabledColor: Color(0xa03BB815),
       child: Container(
         height: 48,
         width: double.infinity,
