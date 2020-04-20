@@ -47,7 +47,7 @@ class _nav1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(context, "微信",leftItem: Container()),
+      appBar: baseAppBar(context, "微信",),
       body: RaisedButton(child: Text("返回"),
         onPressed: (){
           Navigator.pop(context);

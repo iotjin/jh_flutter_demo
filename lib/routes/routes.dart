@@ -16,15 +16,41 @@ import 'package:jh_flutter_demo/four/about_ios_page.dart';
 import 'package:jh_flutter_demo/demoLists/demoLists_page.dart';
 
 
+//alert
+import 'package:jh_flutter_demo/demoLists/Alert/alertdemoLists_page.dart';
+import '../demoLists/alert/bottomSheetTest.dart';
+import '../demoLists/alert/alertTest.dart';
+//toast
+import 'package:jh_flutter_demo/demoLists/alert/toast/toastDemoLists_page.dart';
+import 'package:jh_flutter_demo/demoLists/alert/toast/ToastTest.dart';
 
-import 'package:jh_flutter_demo/demoLists/ui/uidemoLists.dart';
-import 'package:jh_flutter_demo/demoLists/ui/ui_page.dart';
-import 'package:jh_flutter_demo/demoLists/ui/ui_page2.dart';
+//chart
+import 'package:jh_flutter_demo/demoLists/chart/chartDemoList_page.dart';
+import 'package:jh_flutter_demo/demoLists/chart/chart_page1.dart';
+import 'package:jh_flutter_demo/demoLists/chart/chart_page2.dart';
+
+
+//表单
+import 'package:jh_flutter_demo/demoLists/form/formDemoLists_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/loginTextFeldTest_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/inputTextFieldTest_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/formInputCellTest_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/formSelectCellTest_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/setCellTest_page.dart';
+
+//gridView
+import 'package:jh_flutter_demo/demoLists/gridView/gridViewdemoLists_page.dart';
+import '../demoLists/gridView/gridViewTest1.dart';
+import '../demoLists/gridView/gridViewTest2.dart';
+import '../demoLists/gridView/gridViewTest3.dart';
+import '../demoLists/gridView/gridViewTest4.dart';
+
 //http
 import 'package:jh_flutter_demo/demoLists/http/httpdemoLists_page.dart';
 import 'package:jh_flutter_demo/demoLists/http/httpTest1_page.dart';
 import 'package:jh_flutter_demo/demoLists/http/httppagetest_page.dart';
 
+//ListView
 import 'package:jh_flutter_demo/demoLists/listView/ListViewdemoLists_page.dart';
 import '../demoLists/listView/ListViewTest.dart';
 import '../demoLists/listView/ListViewTest2.dart';
@@ -36,27 +62,6 @@ import '../demoLists/listView/ListViewTest_CustomVC.dart';
 import '../demoLists/listView/ListViewTest_SimplePullDown.dart';
 import '../demoLists/listView/ListViewTest_PullDownVC.dart';
 
-import 'package:jh_flutter_demo/demoLists/gridView/gridViewdemoLists_page.dart';
-import '../demoLists/gridView/gridViewTest1.dart';
-import '../demoLists/gridView/gridViewTest2.dart';
-import '../demoLists/gridView/gridViewTest3.dart';
-import '../demoLists/gridView/gridViewTest4.dart';
-//alert
-import 'package:jh_flutter_demo/demoLists/Alert/alertdemoLists_page.dart';
-import '../demoLists/alert/bottomSheetTest.dart';
-import '../demoLists/alert/alertTest.dart';
-//toast
-import 'package:jh_flutter_demo/demoLists/alert/toast/toastDemoLists_page.dart';
-import 'package:jh_flutter_demo/demoLists/alert/toast/ToastTest.dart';
-
-//表单
-import 'package:jh_flutter_demo/demoLists/form/formDemoLists_page.dart';
-import 'package:jh_flutter_demo/demoLists/form/loginTextFeldTest_page.dart';
-import 'package:jh_flutter_demo/demoLists/form/inputTextFieldTest_page.dart';
-import 'package:jh_flutter_demo/demoLists/form/formInputCellTest_page.dart';
-import 'package:jh_flutter_demo/demoLists/form/formSelectCellTest_page.dart';
-import 'package:jh_flutter_demo/demoLists/form/setCellTest_page.dart';
-
 //other
 import 'package:jh_flutter_demo/demoLists/other/formTest.dart';
 import 'package:jh_flutter_demo/demoLists/other/photoSelectTest.dart';
@@ -64,7 +69,9 @@ import '../demoLists/other/passValue_page.dart';
 import '../demoLists/other/passValue_page2.dart';
 import '../demoLists/other/navTest.dart';
 
-
+import 'package:jh_flutter_demo/demoLists/ui/uidemoLists.dart';
+import 'package:jh_flutter_demo/demoLists/ui/ui_page.dart';
+import 'package:jh_flutter_demo/demoLists/ui/ui_page2.dart';
 
 
 final String home = '/';
@@ -99,15 +106,42 @@ final routes = {
   demoListsPage: (context) => DemoListsPage(),
 
 
-  //ui
-  "UIDemoListsPage": (context) => UIDemoListsPage(),
-  "UIPage": (context) => UIPage(),
-  "UIPage2": (context) => UIPage2(),
+  //Alert
+  "AlertDemoListsPage": (context) => AlertDemoListsPage(),
+      "AlertTestPage": (context) => AlertTestPage(),
+      "BottomSheetTest": (context) => BottomSheetTest(),
+      //toast
+      "ToastDemoListsPage": (context) => ToastDemoListsPage(),
+      "ToastTestPage": (context) => ToastTestPage(),
+
+  //chart
+  "ChartDemoListPage": (context) => ChartDemoListPage(),
+  "ChartPage1": (context) => ChartPage1(),
+  "ChartPage2": (context) => ChartPage2(),
+
+
+
+  //表单
+  "FormDemoListsPage": (context) => FormDemoListsPage(),
+      "LoginTextFieldTestPage": (context) => LoginTextFieldTestPage(),
+      "InputTextFieldTestPage": (context) => InputTextFieldTestPage(),
+      "FormInputCellTestPage": (context) => FormInputCellTestPage(),
+      "FormSelectCellTestPage": (context) => FormSelectCellTestPage(),
+      "SetCellTestPage": (context) => SetCellTestPage(),
+
+  //GridView
+  "GridViewDemoListsPage": (context) => GridViewDemoListsPage(),
+      "GridViewTest1": (context) => GridViewTest1(),
+      "GridViewTest2": (context) => GridViewTest2(),
+      "GridViewTest3": (context) => GridViewTest3(),
+      "GridViewTest4": (context) => GridViewTest4(),
+
   //http
   "HttpDemoListsPage": (context) => HttpDemoListsPage(),
-  "HttpTest1Page": (context) => HttpTest1Page(),
-  "HttpPageTestPage": (context) => HttpPageTestPage(),
+      "HttpTest1Page": (context) => HttpTest1Page(),
+      "HttpPageTestPage": (context) => HttpPageTestPage(),
 
+  //ListView
   "ListViewDemoListsPage": (context) => ListViewDemoListsPage(),
       "ListViewTest": (context) => ListViewTest(),
       "ListViewTest2": (context) => ListViewTest2(),
@@ -119,30 +153,6 @@ final routes = {
       "ListViewTest_SimplePullDown": (context) => ListViewTest_SimplePullDown(),
       "ListViewTest_PullDownVC": (context) => ListViewTest_PullDownVC(),
 
-  "GridViewDemoListsPage": (context) => GridViewDemoListsPage(),
-      "GridViewTest1": (context) => GridViewTest1(),
-      "GridViewTest2": (context) => GridViewTest2(),
-      "GridViewTest3": (context) => GridViewTest3(),
-      "GridViewTest4": (context) => GridViewTest4(),
-
-  //Alert
-  "AlertDemoListsPage": (context) => AlertDemoListsPage(),
-
-      "AlertTestPage": (context) => AlertTestPage(),
-      "BottomSheetTest": (context) => BottomSheetTest(),
-      //toast
-      "ToastDemoListsPage": (context) => ToastDemoListsPage(),
-      "ToastTestPage": (context) => ToastTestPage(),
-
-  //表单
-  "FormDemoListsPage": (context) => FormDemoListsPage(),
-  "LoginTextFieldTestPage": (context) => LoginTextFieldTestPage(),
-  "InputTextFieldTestPage": (context) => InputTextFieldTestPage(),
-  "FormInputCellTestPage": (context) => FormInputCellTestPage(),
-  "FormSelectCellTestPage": (context) => FormSelectCellTestPage(),
-  "SetCellTestPage": (context) => SetCellTestPage(),
-
-
   //other
   "FormTest": (context) => FormTest(),
   "PhotoSelectTest": (context) => PhotoSelectTest(),
@@ -150,7 +160,10 @@ final routes = {
   "PassValuePage2": (context) => PassValuePage2(),
   "NavTestPage": (context) => NavTestPage(),
 
-
+  //ui
+  "UIDemoListsPage": (context) => UIDemoListsPage(),
+        "UIPage": (context) => UIPage(),
+        "UIPage2": (context) => UIPage2(),
 
 
 };

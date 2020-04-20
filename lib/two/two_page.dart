@@ -45,7 +45,7 @@ class TwoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-        baseAppBar(context, KString.twoTabTitle,leftItem: Container(),),
+        baseAppBar(context, KString.twoTabTitle,),
       body: BaseScrollView(),
 
     );

@@ -7,7 +7,7 @@ class ThreePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-      baseAppBar(context, KString.threeTabTitle,leftItem: Container(),),
+      baseAppBar(context, KString.threeTabTitle,),
       body: testBtn(context),
     );
   }

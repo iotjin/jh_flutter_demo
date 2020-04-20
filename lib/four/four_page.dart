@@ -17,7 +17,6 @@ class _FourPageState extends State<FourPage> {
       Scaffold(
           appBar:
               baseAppBar(context, KString.fourTabTitle,
-                  leftItem: Container(),
                   rightImgPath:"assets/images/set.png",
                   rightItemCallBack: (){
                     Navigator.pushNamed(context, "SetPage");

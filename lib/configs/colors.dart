@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 
+const Color kThemeColor = Color(0xFF3BB815);
+
 class KColor {
 
   static Color kWeiXinThemeColor = Color(0xFF3BB815); //微信主题色  //rgb(59,184,21)

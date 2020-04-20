@@ -23,6 +23,7 @@ backAppBar(BuildContext context, String title,{
   Function backCallBack
 }){
   return baseAppBar(context, title,
+      isBack: true,
       rightText: rightText,
       rightImgPath: rightImgPath,
       rightItemCallBack:rightItemCallBack,
@@ -35,14 +36,15 @@ backAppBar(BuildContext context, String title,{
 baseAppBar(BuildContext context, String title, {
   String rightText,
   String rightImgPath,
-  Widget leftItem,
+  Widget leftItem:null,
+  bool isBack:false,
   Color backgroundColor = _navbgColor,
   Function rightItemCallBack,
   Function leftItemCallBack,
 })
 {
 
- Color _color = backgroundColor==Colors.transparent? _titleColorBlack:_titleColorWhite;
+  Color _color = backgroundColor==Colors.transparent? _titleColorBlack:_titleColorWhite;
 
   Widget rightItem=Text("");
   if(rightText!=null){
@@ -76,7 +78,7 @@ baseAppBar(BuildContext context, String title, {
     centerTitle: true,
     backgroundColor: backgroundColor,
     elevation: 0,
-    leading:leftItem!=null ?leftItem:
+    leading:isBack == false ?leftItem:
     IconButton(
       icon: Icon(Icons.arrow_back_ios,color: _color),
       onPressed: () {

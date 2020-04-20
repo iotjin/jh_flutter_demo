@@ -70,6 +70,8 @@ dependencies:
   device_info: ^0.4.2+1
   #网页打开工具 https://pub.dev/packages/url_launcher#-readme-tab-
   url_launcher: ^5.4.2
+  # 图表 https://pub.flutter-io.cn/packages/charts_flutter#-installing-tab-
+  charts_flutter: ^0.9.0
 
 
 
