@@ -22,26 +22,22 @@ class _FourPageState extends State<FourPage> {
                     Navigator.pushNamed(context, "SetPage");
                   }
               ),
+          backgroundColor: Color(0xFFF8F8F8),
           body:
           Scrollbar(
               child: SingleChildScrollView(child:
 
-              Padding(
-                padding: EdgeInsets.fromLTRB(10, 10, 15, 10),
-                child:   Column(
-                  children: <Widget>[
+              Column(
+                children: <Widget>[
+                  SizedBox(height: 15,),
+                  JhSetCell(leftImgPath: "assets/images/ic_accountsafe.png", title: '账号安全'),
+                  JhSetCell(leftImgPath: "assets/images/ic_saoyisao.png", title: '扫一扫'),
+                  JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置'),
+                  JhSetCell(leftImgPath: "assets/images/ic_about.png", title: '检查更新',text: '有新版本',textStyle: TextStyle(fontSize: 14.0,color: Colors.red),),
 
-                    JhSetCell(leftImgPath: "assets/images/ic_accountsafe.png", title: '账号安全'),
-                    JhSetCell(leftImgPath: "assets/images/ic_saoyisao.png", title: '扫一扫'),
-                    JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置'),
-                    JhSetCell(leftImgPath: "assets/images/ic_about.png", title: '检查更新',text: '有新版本',textStyle: TextStyle(fontSize: 14.0,color: Colors.red),),
+                ],
+              ),
 
-
-
-
-                  ],
-                ),
-              )
               )
           )
 

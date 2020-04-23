@@ -12,6 +12,7 @@ import 'package:jh_flutter_demo/four/four_page.dart';
 import 'package:jh_flutter_demo/four/set_page.dart';
 import 'package:jh_flutter_demo/four/about_page.dart';
 import 'package:jh_flutter_demo/four/about_ios_page.dart';
+import 'package:jh_flutter_demo/four/mine_page.dart';
 
 import 'package:jh_flutter_demo/demoLists/demoLists_page.dart';
 
@@ -37,6 +38,7 @@ import 'package:jh_flutter_demo/demoLists/form/inputTextFieldTest_page.dart';
 import 'package:jh_flutter_demo/demoLists/form/formInputCellTest_page.dart';
 import 'package:jh_flutter_demo/demoLists/form/formSelectCellTest_page.dart';
 import 'package:jh_flutter_demo/demoLists/form/setCellTest_page.dart';
+import 'package:jh_flutter_demo/demoLists/form/formTest_page.dart';
 
 //gridView
 import 'package:jh_flutter_demo/demoLists/gridView/gridViewdemoLists_page.dart';
@@ -102,6 +104,7 @@ final routes = {
   "SetPage": (context) => SetPage(),
   "AboutPage": (context) => AboutPage(),
   "AboutIOSPage": (context) => AboutIOSPage(),
+  "MinePage": (context) => MinePage(),
 
   demoListsPage: (context) => DemoListsPage(),
 
@@ -128,6 +131,7 @@ final routes = {
       "FormInputCellTestPage": (context) => FormInputCellTestPage(),
       "FormSelectCellTestPage": (context) => FormSelectCellTestPage(),
       "SetCellTestPage": (context) => SetCellTestPage(),
+      "FormTestPage": (context) => FormTestPage(),
 
   //GridView
   "GridViewDemoListsPage": (context) => GridViewDemoListsPage(),

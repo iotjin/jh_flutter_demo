@@ -8,12 +8,15 @@
 import 'package:flutter/material.dart';
 import '../JhForm/jhTextField.dart';
 
+const Color _bgColor = Colors.white; //背景色 白色
 const double _titleSpace = 100.0; //左侧title默认宽
 const double _cellHeight = 45.0; //输入、选择样式一行的高度
 const Color _textColor = Colors.black;
 const TextStyle _titleStyle = TextStyle(fontSize: 15.0,color: _textColor);
 const TextStyle _textStyle = TextStyle(fontSize: 15.0,color: _textColor);
 const TextStyle _hintTextStyle = TextStyle(fontSize: 15.0,color: Color(0xFFBBBBBB)); //187
+const double _lineHeigth = 0.6; //底部线高
+const Color _lineColor = Color(0xFFE6E6E6); //线 230
 
 typedef _ClickCallBack = void Function();
 
@@ -35,6 +38,7 @@ class JhFormSelectCell extends StatefulWidget {
   final InputBorder border; //输入边框样式，默认无边框
   final bool hiddenLine; //隐藏底部横线
   final bool topAlign; //左侧标题顶部对齐，默认居中
+  final Color bgColor; //背景颜色，默认白色
 
   const JhFormSelectCell({
     Key key,
@@ -54,6 +58,7 @@ class JhFormSelectCell extends StatefulWidget {
     this.border = InputBorder.none, //去掉下划线
     this.hiddenLine = false,
     this.topAlign =false,
+    this.bgColor = _bgColor,
   }): super(key: key);
 
   @override
@@ -85,66 +90,65 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
 
     return
 
-      InkWell(
-        child:
-        DecoratedBox(
-          decoration: UnderlineTabIndicator(
-              borderSide: BorderSide(width: 0.8, color: widget.hiddenLine== true ?Colors.transparent:Theme.of(context).dividerColor),
-              insets: EdgeInsets.fromLTRB(_starW,0,0,0)
-          ),
+      Material(
+          color: widget.bgColor,
           child:
-          ConstrainedBox(
-              constraints: BoxConstraints(
-                  minWidth: double.infinity, //宽度尽可能大
-                  minHeight: _cellHeight //最小高度为50像素
-              ),
-              child:
-              Row(
-                  crossAxisAlignment:widget.topAlign==true ?CrossAxisAlignment.start:CrossAxisAlignment.center,
-                  children: <Widget>[
-                    widget.leftWidget!=null?widget.leftWidget:Container(),
-                    Container(width:_starW, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?_topSpace:0, 0, 0),
-                      child: Text(widget.showRedStar ? "*":" ", style: TextStyle(fontSize: 18.0,color: Colors.red)),
-                    ),
-                    Offstage(
-                      offstage: widget.title.isEmpty?true:false,
-                      child:
-                      Container(width: widget.space-_starW, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?_topSpace:0, 0, 0),
-                        child: Text(widget.title, style: widget.titleStyle),),
-                    ),
-                    Expanded(
+          InkWell(
+            child:
+            Container(
+                constraints: BoxConstraints(
+                    minWidth: double.infinity, //宽度尽可能大
+                    minHeight: _cellHeight //最小高度为50像素
+                ),
+                padding:  EdgeInsets.fromLTRB(5, 0, 10, 0),
+                decoration: UnderlineTabIndicator(
+//                  borderSide: BorderSide(width: _lineHeigth, color: widget.hiddenLine== true ?Colors.transparent:Theme.of(context).dividerColor),
+                    borderSide: BorderSide(width: _lineHeigth, color: widget.hiddenLine== true ?Colors.transparent:_lineColor),
+                    insets: EdgeInsets.fromLTRB(_starW,0,0,0)
+                ),
+                child:
+                Row(
+                    crossAxisAlignment:widget.topAlign==true ?CrossAxisAlignment.start:CrossAxisAlignment.center,
+                    children: <Widget>[
+                      widget.leftWidget!=null?widget.leftWidget:Container(),
+                      Container(width:_starW, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?_topSpace:0, 0, 0),
+                        child: Text(widget.showRedStar ? "*":" ", style: TextStyle(fontSize: 18.0,color: Colors.red)),
+                      ),
+                      Offstage(
+                        offstage: widget.title.isEmpty?true:false,
                         child:
-                        JhTextField(
-                          text: widget.text,
-                          hintText: widget.hintText,
-                          enabled:false,
-                          textStyle: widget.textStyle,
-                          hintTextStyle: widget.hintTextStyle,
-                          textAlign: widget.textAlign,
-                          border: widget.border,
-                        )
-                    ),
-                    widget.rightWidget!=null?widget.rightWidget:Container(),
-                    Offstage(
-                      offstage: _hiddenArrow,
-                      child: Icon(Icons.arrow_forward_ios,size: 18,color: Color(0xFFC8C8C8)),
-                    ),
-                  ]
-              )
-          ),
-        ),
-        onTap: (){
-          if(widget.clickCallBack!=null){
-            widget.clickCallBack();
-          }
-        },
+                        Container(width: widget.space-_starW, padding: EdgeInsets.fromLTRB(0, widget.topAlign==true?_topSpace:0, 0, 0),
+                          child: Text(widget.title, style: widget.titleStyle),),
+                      ),
+                      Expanded(
+                          child:
+                          JhTextField(
+                            text: widget.text,
+                            hintText: widget.hintText,
+                            enabled:false,
+                            textStyle: widget.textStyle,
+                            hintTextStyle: widget.hintTextStyle,
+                            textAlign: widget.textAlign,
+                            border: widget.border,
+                          )
+                      ),
+                      widget.rightWidget!=null?widget.rightWidget:Container(),
+                      Offstage(
+                        offstage: _hiddenArrow,
+                        child: Icon(Icons.arrow_forward_ios,size: 18,color: Color(0xFFC8C8C8)),
+                      ),
+                    ]
+                )
+            ),
+
+            onTap: (){
+              if(widget.clickCallBack!=null){
+                widget.clickCallBack();
+              }
+            },
+          )
+
       );
-
-
-
-
-
-
 
   }
 }

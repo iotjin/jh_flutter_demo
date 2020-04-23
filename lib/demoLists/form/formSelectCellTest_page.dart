@@ -20,7 +20,7 @@ class _FormSelectCellTestPageState extends State<FormSelectCellTestPage> {
             child: SingleChildScrollView(child:
 
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 10, 15, 10),
+              padding: EdgeInsets.only(top: 15),
               child:   Column(
                 children: <Widget>[
 

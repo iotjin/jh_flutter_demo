@@ -20,11 +20,9 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
             child: SingleChildScrollView(child:
 
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 10, 15, 10),
+              padding: EdgeInsets.only(top: 15),
               child:   Column(
                 children: <Widget>[
-
-
 
                   JhSetCell(title: '左标题',text: '右侧文字',clickCallBack: (){
                     print('点击cell');
@@ -45,9 +43,8 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
                   ),
                   SizedBox(height: 5),
                   JhSetCell(leftImgPath: "assets/images/shezhi.png",title: "左标题",text:'隐藏底部线', hiddenLine: true,),
+                  SizedBox(height: 5),
                   JhSetCell(leftImgPath: "assets/images/shezhi.png",title: "左标题",text:'隐藏底部线', hiddenLine: true,),
-
-
 
                 ],
               ),

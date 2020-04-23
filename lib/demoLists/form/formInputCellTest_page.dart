@@ -20,12 +20,11 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
         backAppBar(context, 'JhFormInputCell'),
         body:
 
-
         Scrollbar(
             child: SingleChildScrollView(child:
 
             Padding(
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              padding: EdgeInsets.only(top: 15),
               child:   Column(
                 children: <Widget>[
 
