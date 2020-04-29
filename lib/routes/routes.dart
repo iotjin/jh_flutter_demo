@@ -46,6 +46,7 @@ import '../demoLists/gridView/gridViewTest1.dart';
 import '../demoLists/gridView/gridViewTest2.dart';
 import '../demoLists/gridView/gridViewTest3.dart';
 import '../demoLists/gridView/gridViewTest4.dart';
+import '../demoLists/gridView/gridViewTest5.dart';
 
 //http
 import 'package:jh_flutter_demo/demoLists/http/httpdemoLists_page.dart';
@@ -70,6 +71,17 @@ import 'package:jh_flutter_demo/demoLists/other/photoSelectTest.dart';
 import '../demoLists/other/passValue_page.dart';
 import '../demoLists/other/passValue_page2.dart';
 import '../demoLists/other/navTest.dart';
+
+//search
+import 'package:jh_flutter_demo/demoLists/search/searchDemoList_page.dart';
+import 'package:jh_flutter_demo/demoLists/search/searchTest1_page.dart';
+import 'package:jh_flutter_demo/demoLists/search/searchTest2_page.dart';
+import 'package:jh_flutter_demo/demoLists/search/searchTest3_page.dart';
+
+//TopTabBar
+import 'package:jh_flutter_demo/demoLists/topTabBar/topTabBarDemoList_page.dart';
+import '../demoLists/topTabBar/topTabBarTest1_page.dart';
+import '../demoLists/topTabBar/topTabBarTest2_page.dart';
 
 import 'package:jh_flutter_demo/demoLists/ui/uidemoLists.dart';
 import 'package:jh_flutter_demo/demoLists/ui/ui_page.dart';
@@ -139,6 +151,7 @@ final routes = {
       "GridViewTest2": (context) => GridViewTest2(),
       "GridViewTest3": (context) => GridViewTest3(),
       "GridViewTest4": (context) => GridViewTest4(),
+      "GridViewTestPage5": (context) => GridViewTestPage5(),
 
   //http
   "HttpDemoListsPage": (context) => HttpDemoListsPage(),
@@ -163,6 +176,18 @@ final routes = {
   "PassValuePage": (context) => PassValuePage(),
   "PassValuePage2": (context) => PassValuePage2(),
   "NavTestPage": (context) => NavTestPage(),
+
+  //search
+  "SearchDemoListPage": (context) => SearchDemoListPage(),
+  "SearchTest1Page": (context) => SearchTest1Page(),
+  "SearchTest2Page": (context) => SearchTest2Page(),
+  "SearchTest3Page": (context) => SearchTest3Page(),
+
+   //TopTabBarDemoListPage
+  "TopTabBarDemoListPage": (context) => TopTabBarDemoListPage(),
+        "TopTabBarTest1Page": (context) => TopTabBarTest1Page(),
+        "TopTabBarTest2Page": (context) => TopTabBarTest2Page(),
+
 
   //ui
   "UIDemoListsPage": (context) => UIDemoListsPage(),

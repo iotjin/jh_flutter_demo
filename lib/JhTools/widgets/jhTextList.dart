@@ -6,6 +6,7 @@
  */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/baseAppBar.dart';
 
 const double _lfSpace =10.0;
 const Color _lineColor = Color(0xFFE6E6E6);//230
@@ -17,10 +18,12 @@ class JhTextList extends StatelessWidget{
        final List dataArr;
        final String title;
        final _CallBack callBack;
+       final bool isBack;
        JhTextList({
           this.title = "",
           this.dataArr,
           this.callBack,
+          this.isBack:true,
         });
 
        Widget _getWidget(context, index) {
@@ -61,11 +64,9 @@ class JhTextList extends StatelessWidget{
       @override
       Widget build(BuildContext context) {
         return Scaffold(
-          appBar:AppBar(
-              title:Text(title,style:TextStyle (color: Colors.white,fontSize:18.0))
-          ),
+          appBar:
+            baseAppBar(context, title,isBack: isBack),
           body:
-
           ListView.builder(
                 itemCount: dataArr.length,
                 itemBuilder: this._getWidget,

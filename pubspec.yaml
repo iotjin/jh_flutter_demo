@@ -94,6 +94,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/common/
     - assets/images/tab/
     - assets/images/service/
 

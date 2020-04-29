@@ -12,7 +12,7 @@ const Color _titleColorBlack = Colors.black;
 const double _titleFontSize = 18.0;
 const double _textFontSize = 16.0;
 const double _itemSpace = 15.0; //右侧item间距
-const double _imgWH = 22.0;
+const double _imgWH = 22.0;  //右侧图片wh
 
 /*带返回箭头导航条*/
 backAppBar(BuildContext context, String title,{
@@ -39,6 +39,8 @@ baseAppBar(BuildContext context, String title, {
   Widget leftItem:null,
   bool isBack:false,
   Color backgroundColor = _navbgColor,
+  double elevation :0,
+  PreferredSizeWidget bottom,
   Function rightItemCallBack,
   Function leftItemCallBack,
 })
@@ -77,10 +79,14 @@ baseAppBar(BuildContext context, String title, {
     title: Text(title, style: TextStyle(fontSize: _titleFontSize, color: _color)),
     centerTitle: true,
     backgroundColor: backgroundColor,
-    elevation: 0,
+    bottom: bottom,
+    elevation: elevation,
     leading:isBack == false ?leftItem:
     IconButton(
-      icon: Icon(Icons.arrow_back_ios,color: _color),
+//      icon: Icon(Icons.arrow_back_ios,color: _color),
+      icon: ImageIcon(AssetImage("assets/images/common/ic_nav_back_white.png"),color: _color,),
+      iconSize: 18,
+      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
       onPressed: () {
         if (leftItemCallBack == null) {
           _popThis(context);
