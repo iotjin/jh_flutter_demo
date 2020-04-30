@@ -31,6 +31,8 @@ class JhLoginTextField extends StatefulWidget {
   final _InputCallBack inputCallBack;
   final String pwdOpen; //自定义密码图片路径 睁眼
   final String pwdClose;//自定义密码图片路径 闭眼
+  final InputBorder border; //边框样式
+  final bool isDense; //是否紧凑显示，默认false
 
   const JhLoginTextField({
     Key key,
@@ -49,6 +51,8 @@ class JhLoginTextField extends StatefulWidget {
     this.inputCallBack,
     this.pwdOpen,
     this.pwdClose,
+    this.border,
+    this.isDense:false,
 
   }): super(key: key);
 
@@ -122,12 +126,13 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 //            [WhitelistingTextInputFormatter(RegExp('[0-9]'))] : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
             inputFormatters: widget.inputFormatters!=null ?widget.inputFormatters:[LengthLimitingTextInputFormatter(widget.maxLength)],
             decoration: InputDecoration(
+              prefixIcon: widget.leftWidget,
               labelText: widget.labelText!= null ?widget.labelText: null,
               hintText:  widget.hintText,
               hintStyle: _hintTextStyle,
-              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
-              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color:  Colors.grey,width: 0.5)),
-              prefixIcon: widget.leftWidget,
+              isDense: widget.isDense,
+              enabledBorder: widget.border!=null?widget.border: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.8)),
+              focusedBorder: widget.border!=null?widget.border: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
 //          suffixIcon:
             ),
             obscureText: _pwdShow,

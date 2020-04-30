@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/configs/colors.dart';
-import 'package:jh_flutter_demo/JhTools/JhForm/jhTextField.dart';
+import 'package:jh_flutter_demo/JhTools/JhForm/jhLoginTextField.dart';
 
 
 class SearchTest3Page extends StatelessWidget {
@@ -26,9 +26,11 @@ class SearchTest3Page extends StatelessWidget {
           alignment: Alignment.center,
           height: 38,
 //           padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-          child: JhTextField(
+          child: JhLoginTextField(
             leftWidget: Icon(Icons.search,size: 30,),
             hintText: '请输入搜索信息',
+            isShowDeleteBtn: true,
+            isDense: true,
           ),
         ),
         actions: <Widget>[
