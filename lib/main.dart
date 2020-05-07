@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhAlert.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
+import 'package:flustars/flustars.dart';
 import 'package:flui/src/widgets/toast.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -15,6 +15,9 @@ import 'package:oktoast/oktoast.dart';
 import 'home_page.dart';
 import 'baseTabBar.dart';
 import 'package:jh_flutter_demo/login/login_page.dart';
+import 'package:jh_flutter_demo/model/userModel.dart';
+import 'package:jh_flutter_demo/configs/projectConfig.dart';
+import 'package:jhtoast/jhtoast.dart';
 
 /**
     屏幕宽度高度：MediaQuery.of(context).size.width
@@ -40,11 +43,17 @@ import 'package:jh_flutter_demo/login/login_page.dart';
 
 //void main() => runApp(MyApp());
 
-void main() {
+
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpUtil.getInstance();
+
 //  debugProfileBuildsEnabled = true;
 //  debugPaintLayerBordersEnabled = true;
 //  debugProfilePaintsEnabled = true;
 //  debugRepaintRainbowEnabled = true;
+
   runApp(MyApp());
 
   if (Platform.isAndroid) {
@@ -62,12 +71,18 @@ void main() {
 }
 
 
-class MyApp extends StatelessWidget {
-  FLToastDefaults _toastDefaults = FLToastDefaults();
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+    FLToastDefaults _toastDefaults = FLToastDefaults();
+
   @override
   Widget build(BuildContext context) {
     return
-
 
 //      FLToastProvider(
 //          defaults: _toastDefaults,
@@ -143,9 +158,11 @@ class MyApp extends StatelessWidget {
   }
 
   Widget SwitchRootWidget(){
-    var user = null;
 
-    if (user != null) {
+    userModel model = SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
+
+    if (model != null) {
+     print('本地取出的 userName:'+ model.userName);
       return BaseTabBar();
     } else {
       return LoginPage();

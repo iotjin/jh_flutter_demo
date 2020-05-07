@@ -8,8 +8,11 @@ import 'package:jh_flutter_demo/login/codeLogin_page.dart';
 import 'package:jh_flutter_demo/one/one_page.dart';
 import 'package:jh_flutter_demo/two/two_page.dart';
 import 'package:jh_flutter_demo/three/three_page.dart';
+
+//four
 import 'package:jh_flutter_demo/four/four_page.dart';
 import 'package:jh_flutter_demo/four/set_page.dart';
+import 'package:jh_flutter_demo/four/info_page.dart';
 import 'package:jh_flutter_demo/four/about_page.dart';
 import 'package:jh_flutter_demo/four/about_ios_page.dart';
 import 'package:jh_flutter_demo/four/mine_page.dart';
@@ -112,8 +115,11 @@ final routes = {
   onePage: (context) => OnePage(),
   twoPage: (context) => TwoPage(),
   threePage: (context) => ThreePage(),
+
+  //four
   fourPage: (context) => FourPage(),
   "SetPage": (context) => SetPage(),
+  "InfoPage": (context) => InfoPage(),
   "AboutPage": (context) => AboutPage(),
   "AboutIOSPage": (context) => AboutIOSPage(),
   "MinePage": (context) => MinePage(),

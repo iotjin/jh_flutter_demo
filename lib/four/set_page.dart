@@ -3,11 +3,13 @@ import 'package:jh_flutter_demo/JhTools/widgets/jhTextList.dart';
 import 'package:jh_flutter_demo/JhTools/widgets/jhBottomSheet.dart';
 import 'package:jh_flutter_demo/login/login_page.dart';
 import 'package:jhtoast/jhtoast.dart';
+import 'package:flustars/flustars.dart';
+import 'package:jh_flutter_demo/configs/projectConfig.dart';
 
 
 class SetPage extends StatelessWidget {
 
-  final List titleData = ['我的',"账号安全","关于","关于iOS","退出登录"];
+  final List titleData = ['我的',"个人信息","账号安全","关于","关于iOS","退出登录"];
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,10 @@ class SetPage extends StatelessWidget {
 
           if(str == "我的"){
             Navigator.pushNamed(context, "MinePage");
+          }
+
+          if(str == "个人信息"){
+            Navigator.pushNamed(context, "InfoPage");
           }
 
           if(str == "关于"){
@@ -37,11 +43,13 @@ class SetPage extends StatelessWidget {
                 clickCallback: (index,str){
                   if(str=="退出登录"){
 
-
                     var hide =  JhToast.showLoadingText_iOS(context,
                       msg:"正在退出...",
                     );
                     Future.delayed(Duration(seconds: 1),(){
+
+                      //退出时清除用户信息
+                      SpUtil.remove(kUserDefault_UserInfo);
 
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (context) => LoginPage()

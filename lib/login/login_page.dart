@@ -9,6 +9,10 @@ import 'package:jhtoast/jhtoast.dart';
 import 'package:flui/src/widgets/avatar.dart';
 import 'package:jh_flutter_demo/JhTools/tools/jhColorTool.dart';
 import 'package:jh_flutter_demo/JhTools/JhForm/jhLoginTextField.dart';
+import 'package:flustars/flustars.dart';
+import 'package:dio/dio.dart';
+import 'package:jh_flutter_demo/model/userModel.dart';
+import 'package:jh_flutter_demo/configs/projectConfig.dart';
 
 
 /*
@@ -214,25 +218,63 @@ class _LoginPageState extends State<LoginPage> {
 
 //    Navigator.pushReplacementNamed(context, "BaseTabBar");
 
+//    print('name =$_name');
+//    print('pwd =$_pwd');
+//    var hide =  JhToast.showLoadingText_iOS(context,
+//      msg:"正在登录...",
+//    );
+//    Future.delayed(Duration(seconds: 1),(){
+//      Navigator.pushReplacement(context,
+//          MaterialPageRoute(builder: (context) => (BaseTabBar()
+//      )));
+//      hide();
+//    });
 
+
+
+
+
+
+    //请求网络登录
     print('name =$_name');
     print('pwd =$_pwd');
-
 
     var hide =  JhToast.showLoadingText_iOS(context,
       msg:"正在登录...",
     );
-    Future.delayed(Duration(seconds: 1),(){
 
-      Navigator.pushReplacement(context,
+    var url = "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/login";
+    var dio = new Dio();
+    var response = await dio.post(url, data:{"userName":_name,"pwd":_pwd});
+    var result = response.data.toString();
+    print("返回数据： "+result);
+    print(response.data["msg"]);
+
+    if(response.data["suc"] == true){
+
+      Map<String, dynamic> json = Map<String, dynamic>.from(response.data["data"]);
+      /*将Json转成实体类*/
+      userModel model = userModel.fromJson(json);
+//      print(model.phone);
+      SpUtil.putObject(kUserDefault_UserInfo, model);
+
+      hide();
+      JhToast.showText(context, msg: response.data["msg"]);
+
+     Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => (BaseTabBar()
       )));
 
+
+    }else{
+
       hide();
+      JhToast.showText(context, msg: response.data["msg"]);
+    }
 
-    });
 
-    
+
+
   }
 
 

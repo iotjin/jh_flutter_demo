@@ -10,6 +10,16 @@ class FourPage extends StatefulWidget {
 }
 
 class _FourPageState extends State<FourPage> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return
@@ -24,25 +34,40 @@ class _FourPageState extends State<FourPage> {
               ),
           backgroundColor: Color(0xFFF8F8F8),
           body:
-          Scrollbar(
-              child: SingleChildScrollView(child:
 
-              Column(
-                children: <Widget>[
-                  SizedBox(height: 15,),
-                  JhSetCell(leftImgPath: "assets/images/ic_accountsafe.png", title: '账号安全'),
-                  JhSetCell(leftImgPath: "assets/images/ic_saoyisao.png", title: '扫一扫'),
-                  JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置'),
-                  JhSetCell(leftImgPath: "assets/images/ic_about.png", title: '检查更新',text: '有新版本',textStyle: TextStyle(fontSize: 14.0,color: Colors.red),),
+          ListView(
+            children: <Widget>[
+              SizedBox(height: 15,),
+              JhSetCell(leftImgPath: "assets/images/ic_accountsafe.png", title: '账号安全'),
+              JhSetCell(leftImgPath: "assets/images/ic_saoyisao.png", title: '扫一扫'),
+              JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置'),
+              JhSetCell(leftImgPath: "assets/images/ic_about.png", title: '检查更新',text: '有新版本',textStyle: TextStyle(fontSize: 14.0,color: Colors.red),),
 
-                ],
-              ),
+            ],
+          ),
 
-              )
-          )
+
+//          Scrollbar(
+//              child: SingleChildScrollView(
+//                child:
+//              Column(
+//                children: <Widget>[
+//                  SizedBox(height: 15,),
+//                  JhSetCell(leftImgPath: "assets/images/ic_accountsafe.png", title: '账号安全'),
+//                  JhSetCell(leftImgPath: "assets/images/ic_saoyisao.png", title: '扫一扫'),
+//                  JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置'),
+//                  JhSetCell(leftImgPath: "assets/images/ic_about.png", title: '检查更新',text: '有新版本',textStyle: TextStyle(fontSize: 14.0,color: Colors.red),),
+//                ],
+//              ),
+//
+//              )
+//          )
 
 
       );
+
+
+
 
   }
 }

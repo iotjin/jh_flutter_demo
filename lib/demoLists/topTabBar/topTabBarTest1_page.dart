@@ -10,7 +10,6 @@ class TopTabBarTest1Page extends StatefulWidget {
 class _TopTabBarTest1PageState extends State<TopTabBarTest1Page> {
 
 
-
   List<JhTopTabBarModel> model = [
     JhTopTabBarModel(title: '标题一', widget:
     Container(
