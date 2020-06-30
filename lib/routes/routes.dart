@@ -32,6 +32,8 @@ import 'package:jh_flutter_demo/demoLists/alert/toast/ToastTest.dart';
 import 'package:jh_flutter_demo/demoLists/chart/chartDemoList_page.dart';
 import 'package:jh_flutter_demo/demoLists/chart/chart_page1.dart';
 import 'package:jh_flutter_demo/demoLists/chart/chart_page2.dart';
+import 'package:jh_flutter_demo/demoLists/chart/eChart_page1.dart';
+import 'package:jh_flutter_demo/demoLists/chart/mpChart_Line_page1.dart';
 
 
 //表单
@@ -74,6 +76,7 @@ import 'package:jh_flutter_demo/demoLists/other/photoSelectTest.dart';
 import '../demoLists/other/passValue_page.dart';
 import '../demoLists/other/passValue_page2.dart';
 import '../demoLists/other/navTest.dart';
+import '../demoLists/other/redDot_page.dart';
 
 //search
 import 'package:jh_flutter_demo/demoLists/search/searchDemoList_page.dart';
@@ -85,6 +88,7 @@ import 'package:jh_flutter_demo/demoLists/search/searchTest3_page.dart';
 import 'package:jh_flutter_demo/demoLists/topTabBar/topTabBarDemoList_page.dart';
 import '../demoLists/topTabBar/topTabBarTest1_page.dart';
 import '../demoLists/topTabBar/topTabBarTest2_page.dart';
+import '../demoLists/topTabBar/topTabBarTest3_page.dart';
 
 import 'package:jh_flutter_demo/demoLists/ui/uidemoLists.dart';
 import 'package:jh_flutter_demo/demoLists/ui/ui_page.dart';
@@ -139,6 +143,8 @@ final routes = {
   "ChartDemoListPage": (context) => ChartDemoListPage(),
   "ChartPage1": (context) => ChartPage1(),
   "ChartPage2": (context) => ChartPage2(),
+  "EChartPage1": (context) => EChartPage1(),
+  "MpChartLinePage1": (context) => MpChartLinePage1(),
 
 
 
@@ -182,6 +188,7 @@ final routes = {
   "PassValuePage": (context) => PassValuePage(),
   "PassValuePage2": (context) => PassValuePage2(),
   "NavTestPage": (context) => NavTestPage(),
+  "RedDotPage": (context) => RedDotPage(),
 
   //search
   "SearchDemoListPage": (context) => SearchDemoListPage(),
@@ -193,6 +200,7 @@ final routes = {
   "TopTabBarDemoListPage": (context) => TopTabBarDemoListPage(),
         "TopTabBarTest1Page": (context) => TopTabBarTest1Page(),
         "TopTabBarTest2Page": (context) => TopTabBarTest2Page(),
+        "TopTabBarTest3Page": (context) => TopTabBarTest3Page(),
 
 
   //ui

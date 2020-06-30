@@ -175,7 +175,8 @@ void pickAsset(context,setState,imgData,imgPicked) async {
     context: context,
 //    pickedAssetList: imgPicked,
     maxSelected: 10 -imgData.length,
-    pickType:PickType.onlyImage
+    pickType:PickType.onlyImage,
+    thumbSize: 200,
   );
 
   if (result != null && result.isNotEmpty) {

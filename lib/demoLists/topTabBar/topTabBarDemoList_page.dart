@@ -3,8 +3,8 @@ import 'package:jh_flutter_demo/JhTools/widgets/jhTextList.dart';
 
 class TopTabBarDemoListPage extends StatelessWidget {
 
-  final List titleData = ["TopTabBar1",'TopTabBar2'];
-  final List routeData = ["TopTabBarTest1Page",'TopTabBarTest2Page'];
+  final List titleData = ["TopTabBar1",'TopTabBar2','TopTabBar3'];
+  final List routeData = ["TopTabBarTest1Page",'TopTabBarTest2Page','TopTabBarTest3Page'];
   @override
   Widget build(BuildContext context) {
     return  JhTextList(

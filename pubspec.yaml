@@ -70,14 +70,20 @@ dependencies:
   device_info: ^0.4.2+1
   #网页打开工具 https://pub.dev/packages/url_launcher#-readme-tab-
   url_launcher: ^5.4.2
-  # 图表 https://pub.flutter-io.cn/packages/charts_flutter#-installing-tab-
-  charts_flutter: ^0.9.0
 #  # Dart 常用工具类库 https://github.com/Sky24n/common_utils
 #  common_utils: ^1.1.3
   # Flutter 常用工具类库 https://github.com/Sky24n/flustars
   flustars: ^0.3.1
-
-
+  # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter#-installing-tab-
+  charts_flutter: ^0.9.0
+  # EChart 图表（缩放手势冲突） https://pub.flutter-io.cn/packages/flutter_echarts
+  flutter_echarts: ^1.3.5
+##  # 图表 https://pub.flutter-io.cn/packages/mp_chart
+#  mp_chart: ^0.2.2 #latest version
+  # 小红点 https://pub:dev/packages/badges:
+  badges: ^1.1.1
+  # sq https://pub.dev/packages/sqflite
+  sqflite: ^1.3.1
 
 
 dev_dependencies:

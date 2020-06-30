@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/baseAppBar.dart';
+import 'package:badges/badges.dart';
 
 const Color _bgColor = Color(0xFFF2F2F2); //242
 const Color _indicatorColor = Color(0xFF3BB815);
@@ -17,10 +18,12 @@ const Color _centerLineColor = Color(0xFFC8C8C8); //200
 class JhTopTabBarModel {
   final String title; //标题
   final Widget widget; //对应的widget
+  final Badge badge; //设置badge，不用设置title
 
   const JhTopTabBarModel({
     this.title,
     this.widget,
+    this.badge
   });
 }
 
@@ -95,7 +98,6 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
     _tabController.addListener((){
 //      print(_tabController.index);
         if(widget.switchPageCallBack!=null){
-          
 //          _tabController.indexIsChanging     监听不到滑动
           if(_tabController.index.toDouble() == _tabController.animation.value){
             widget.switchPageCallBack(_tabController.index);
@@ -178,7 +180,9 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
                         labelStyle: widget.labelStyle,
                         unselectedLabelStyle: widget.unselectedLabelStyle,
                         indicator: widget.indicator,
-                        tabs: widget.tabModelArr.map((item) => Tab(text: item.title)).toList(),
+                        tabs: widget.tabModelArr.map((item) => Tab(
+                            text:item.title!=null ?item.title:null,icon: item.badge!=null?item.badge:null)
+                        ).toList(),
                       ),
                     ),
                   ),
@@ -186,7 +190,7 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
                   Align(alignment: Alignment.center, child:
                   Padding(padding: EdgeInsets.fromLTRB(0, (widget.height-20)/2, 0, (widget.height-20)/2),child:
                   Container(color: _centerLineColor,height: widget.height-20,
-                    width: widget.showCenterLine ==true ?2:0,),
+                    width: widget.showCenterLine ==true ?1:0,),
                   )
                   )
 
