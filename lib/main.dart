@@ -1,22 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/configs/colors.dart';
-import 'routes/routes.dart'as luyou;
+import 'package:jh_flutter_demo/project/configs/colors.dart';
+import 'package:jh_flutter_demo/project/routes/routes.dart'as luyou;
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:jh_flutter_demo/JhTools/widgets/jhAlert.dart';
+import 'package:jh_flutter_demo/jh_common/widgets/jh_alert.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flui/src/widgets/toast.dart';
 import 'package:oktoast/oktoast.dart';
 
 
-import 'home_page.dart';
-import 'baseTabBar.dart';
-import 'package:jh_flutter_demo/login/login_page.dart';
-import 'package:jh_flutter_demo/model/userModel.dart';
-import 'package:jh_flutter_demo/configs/projectConfig.dart';
+import 'project/home_page.dart';
+import 'project/base_tabbar.dart';
+import 'project/login/login_page.dart';
+import 'package:jh_flutter_demo/project/model/user_model.dart';
+import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jhtoast/jhtoast.dart';
 
 /**
