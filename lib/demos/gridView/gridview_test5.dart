@@ -123,7 +123,7 @@ Widget item(List data,int index,context){
       ),
       onTap: (){
 //      print(index);
-//        Navigator.pushNamed(context,  data[index]['pushName']);
+//        NavigatorUtils.pushNamed(context,  data[index]['pushName']);
       },
     );
 

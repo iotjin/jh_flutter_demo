@@ -88,13 +88,13 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
           ClickItem(
             title: 'Github',
             content: 'Go Star',
-            onTap: ()=> NavigatorUtils.jumpWebViewPage(context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo')
+            onTap: ()=> NavigatorRouterUtils.jumpWebViewPage(context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo')
 
           ),
           ClickItem(
             title: 'author',
             content: 'iotjin',
-            onTap: ()=> NavigatorUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')
+            onTap: ()=> NavigatorRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')
 
           ),
 

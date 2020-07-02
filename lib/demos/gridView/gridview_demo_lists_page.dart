@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class GridViewDemoListsPage extends StatelessWidget {
 
@@ -11,8 +12,8 @@ class GridViewDemoListsPage extends StatelessWidget {
         title: "GridViewDemoListsPage",dataArr: titleData,
         callBack: (index,str){
           print(index);
-          Navigator.pushNamed(context, routeData[index]);
-//          Navigator.pushNamed(context, "GirdViewTest1");
+          NavigatorUtils.pushNamed(context, routeData[index]);
+//          NavigatorUtils.pushNamed(context, "GirdViewTest1");
 
         },
     );

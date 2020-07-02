@@ -5,8 +5,9 @@ import 'package:flustars/flustars.dart';
 
 import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/project/login/login_page.dart';
+import 'package:jh_flutter_demo/project/login/pages/login_page.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 
 class SetPage extends StatelessWidget {
@@ -22,18 +23,18 @@ class SetPage extends StatelessWidget {
         callBack: (index,str){
 
           if(str == "我的"){
-            Navigator.pushNamed(context, "MinePage");
+            NavigatorUtils.pushNamed(context, "MinePage");
           }
 
           if(str == "个人信息"){
-            Navigator.pushNamed(context, "InfoPage");
+            NavigatorUtils.pushNamed(context, "InfoPage");
           }
 
           if(str == "关于"){
-            Navigator.pushNamed(context, "AboutPage");
+            NavigatorUtils.pushNamed(context, "AboutPage");
           }
           if(str == "关于iOS"){
-            Navigator.pushNamed(context, "AboutIOSPage");
+            NavigatorUtils.pushNamed(context, "AboutIOSPage");
           }
 
 

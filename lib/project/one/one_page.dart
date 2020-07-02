@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/project/configs/strings.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 import 'package:jh_flutter_demo/project/routes/routes.dart' as Luyou;
 
@@ -28,7 +29,7 @@ class OnePage extends StatelessWidget {
         RaisedButton(
           child: Text("跳转"),
           onPressed: () {
-            Navigator.pushNamed(context, Luyou.demoListsPage);
+            NavigatorUtils.pushNamed(context, Luyou.demoListsPage);
           },
         ),
 

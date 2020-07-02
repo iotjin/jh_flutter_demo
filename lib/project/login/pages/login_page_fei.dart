@@ -8,6 +8,7 @@ import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:flui/src/widgets/avatar.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class LoginPage_fei extends StatefulWidget {
   @override
@@ -126,7 +127,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                       InkWell(
                         child: Text("注册",style: TextStyle(fontSize: 18)),
                         onTap: (){
-                          Navigator.pushNamed(context, "RegisterPage");
+                          NavigatorUtils.pushNamed(context, "RegisterPage");
                         },
                       )
                   ),
@@ -247,7 +248,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       child: Text('忘记密码',),
-                      onTap: () => Navigator.pushNamed(context, "FindPwdPage")
+                      onTap: () => NavigatorUtils.pushNamed(context, "FindPwdPage")
                     ),
                   ),
 

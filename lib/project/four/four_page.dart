@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/project/configs/strings.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 
 class FourPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _FourPageState extends State<FourPage> {
               baseAppBar(context, KString.fourTabTitle,
                   rightImgPath:"assets/images/set.png",
                   rightItemCallBack: (){
-                    Navigator.pushNamed(context, "SetPage");
+                    NavigatorUtils.pushNamed(context, "SetPage");
                   }
               ),
           backgroundColor: Color(0xFFF8F8F8),

@@ -1,20 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/project/routes/routes.dart'as luyou;
 import 'dart:io';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_alert.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flui/src/widgets/toast.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:fluro/fluro.dart';
+
+import 'package:jh_flutter_demo/project/configs/colors.dart';
+import 'package:jh_flutter_demo/project/routes/routes_old.dart' as luyou;
+import 'package:jh_flutter_demo/project/routes/routes.dart';
+
+import 'package:jh_flutter_demo/project/routes/application.dart';
 
 
 import 'project/home_page.dart';
 import 'project/base_tabbar.dart';
-import 'project/login/login_page.dart';
+import 'project/login/pages/login_page.dart';
 import 'package:jh_flutter_demo/project/model/user_model.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -80,6 +86,15 @@ class _MyAppState extends State<MyApp> {
 
     FLToastDefaults _toastDefaults = FLToastDefaults();
 
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final Router router = Router();
+    Routes.configureRoutes(router);
+    Application.router = router;
+  }
+
   @override
   Widget build(BuildContext context) {
     return
@@ -106,7 +121,8 @@ class _MyAppState extends State<MyApp> {
               home:SwitchRootWidget(),
 
               // 注册路由
-              routes: luyou.routes,
+//              routes: luyou.routes,
+              onGenerateRoute: Application.router.generator,
               onUnknownRoute: (RouteSettings settings) =>
                   MaterialPageRoute(builder: (context) => luyou.UnknownPage()),
               //        locale: Locale('en','US'),

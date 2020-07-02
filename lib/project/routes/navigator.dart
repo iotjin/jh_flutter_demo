@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
 
 /// 路由跳转工具类
-class NavigatorUtils {
+class NavigatorRouterUtils {
 
   static push(BuildContext context, Widget scene) {
     Navigator.push(

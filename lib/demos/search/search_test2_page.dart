@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/project/configs/colors.dart';
 import 'package:jh_flutter_demo/jh_common/jh_form/jh_textfield.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 
 class SearchTest2Page extends StatelessWidget {
@@ -35,7 +36,7 @@ class SearchTest2Page extends StatelessWidget {
             ),
           ),
           onTap: (){
-            Navigator.pushNamed(context, 'SiteSearchPage');
+            NavigatorUtils.pushNamed(context, 'SiteSearchPage');
           },
         ),
         actions: <Widget>[

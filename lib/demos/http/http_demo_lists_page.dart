@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class HttpDemoListsPage extends StatelessWidget {
 
@@ -13,7 +14,7 @@ class HttpDemoListsPage extends StatelessWidget {
         title: "HttpDemoLists",
         dataArr: titleData,
         callBack: (index,str){
-          Navigator.pushNamed(context, routeData[index]);
+          NavigatorUtils.pushNamed(context, routeData[index]);
         },
       );
 

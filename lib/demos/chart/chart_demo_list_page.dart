@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class ChartDemoListPage extends StatelessWidget {
 
@@ -11,7 +12,7 @@ class ChartDemoListPage extends StatelessWidget {
       title: "Chart",dataArr: titleData,
       callBack: (index,str){
         print(index);
-        Navigator.pushNamed(context, routeData[index]);
+        NavigatorUtils.pushNamed(context, routeData[index]);
 
       },
     );

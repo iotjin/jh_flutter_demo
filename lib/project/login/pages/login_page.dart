@@ -13,6 +13,7 @@ import 'package:flustars/flustars.dart';
 import 'package:dio/dio.dart';
 import 'package:jh_flutter_demo/project/model/user_model.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 
 /*
@@ -134,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                       InkWell(
                         child: Text("注册",style: TextStyle(fontSize: 18)),
                         onTap: (){
-                          Navigator.pushNamed(context, "RegisterPage");
+                          NavigatorUtils.pushNamed(context, "RegisterPage");
                         },
                       )
                   ),
@@ -179,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 50.0,
                         child: GestureDetector(
                             child: Text('验证码登录',),
-                            onTap: () => Navigator.pushNamed(context, "CodeLoginPage")
+                            onTap: () => NavigatorUtils.pushNamed(context, "CodeLoginPage")
                         ),
                       ),
                       Container(
@@ -187,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
 //                        alignment: Alignment.centerRight,
                         child: GestureDetector(
                             child: Text('忘记密码',),
-                            onTap: () => Navigator.pushNamed(context, "FindPwdPage")
+                            onTap: () => NavigatorUtils.pushNamed(context, "FindPwdPage")
                         ),
                       ),
 
