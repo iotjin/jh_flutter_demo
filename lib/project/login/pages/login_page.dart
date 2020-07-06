@@ -1,19 +1,26 @@
-import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_button.dart';
-import 'package:jh_flutter_demo/project/base_tabbar.dart';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_form.dart';
+
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:flui/src/widgets/avatar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
 import 'package:flustars/flustars.dart';
 import 'package:dio/dio.dart';
+import 'package:package_info/package_info.dart';
+
+import 'package:jh_flutter_demo/jh_common/utils/jh_defaults_utils.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
+import 'package:jh_flutter_demo/jh_common/widgets/jh_button.dart';
+import 'package:jh_flutter_demo/jh_common/widgets/jh_form.dart';
+import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
+
+
+import 'package:jh_flutter_demo/project/base_tabbar.dart';
 import 'package:jh_flutter_demo/project/model/user_model.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
+
 
 
 /*
@@ -56,8 +63,6 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
 
     logoColor = JhColorUtils.randomColor();
-
-
     if (Platform.isIOS) {
 //      SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
 //        statusBarColor: Colors.red,
@@ -65,11 +70,17 @@ class _LoginPageState extends State<LoginPage> {
 //      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 //      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     }
-
-
     _nameController.addListener(_verify);
     _passwordController.addListener(_verify);
 
+    _getInfo();
+
+  }
+
+  void _getInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+//    print('版本号：${packageInfo.version}');
+    JhDefaultsUtils.saveString(kUserDefault_LastVersion, packageInfo.version);
   }
 
   void _verify() {
@@ -260,7 +271,8 @@ class _LoginPageState extends State<LoginPage> {
       SpUtil.putObject(kUserDefault_UserInfo, model);
 
       hide();
-      JhToast.showText(context, msg: response.data["msg"]);
+//      JhToast.showText(context, msg: response.data["msg"]);
+      JhToast.showSuccess(context, msg: response.data["msg"]);
 
      Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => (BaseTabBar()

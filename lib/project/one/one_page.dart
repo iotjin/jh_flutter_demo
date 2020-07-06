@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/configs/strings.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
+import 'package:jh_flutter_demo/base_appbar.dart';
+import 'package:jh_flutter_demo/project/configs/strings.dart';
+import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 import 'package:jh_flutter_demo/project/routes/routes.dart' as Luyou;
+import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
 
 class OnePage extends StatelessWidget {
   @override
@@ -27,7 +28,7 @@ class OnePage extends StatelessWidget {
       Column(children: <Widget>[
 
         RaisedButton(
-          child: Text("跳转"),
+          child: Text("跳转Demo"),
           onPressed: () {
             NavigatorUtils.pushNamed(context, Luyou.demoListsPage);
           },

@@ -36,7 +36,7 @@ dependencies:
   # 图片缓存 https://pub.dev/packages/cached_network_image
   cached_network_image: 2.0.0
   # 屏幕参数适配
-  flutter_screenutil: ^0.5.1
+  flutter_screenutil: ^2.1.0
   # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
   keyboard_actions: ^3.2.0
   # webview https://pub.flutter-io.cn/packages/webview_flutter#-installing-tab-
@@ -95,10 +95,11 @@ dependencies:
   barcode_scan: ^3.0.1
   # 状态管理 https://pub.dev/packages/provider
   provider: ^4.1.3
-  # 轮播 https://pub.flutter-io.cn/packages/carousel_slider
-  carousel_slider: ^2.2.1
   # 轮播 https://pub.dev/packages/flutter_swiper
   flutter_swiper: ^1.1.6
+  # 轮播 https://pub.flutter-io.cn/packages/carousel_slider
+  carousel_slider: ^2.2.1
+
 
 
 
@@ -121,6 +122,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/common/
+    - assets/images/newFeature/
     - assets/images/tab/
     - assets/images/service/
 

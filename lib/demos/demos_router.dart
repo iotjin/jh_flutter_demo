@@ -17,7 +17,6 @@ import 'chart/chart_page2.dart';
 import 'chart/eChart_page1.dart';
 import 'chart/mpChart_line_page1.dart';
 
-
 //表单
 import 'form/form_demo_lists_page.dart';
 import 'form/login_textfeld_test_page.dart';
@@ -66,6 +65,14 @@ import 'search/search_demo_list_page.dart';
 import 'search/search_test1_page.dart';
 import 'search/search_test2_page.dart';
 import 'search/search_test3_page.dart';
+
+//swiper
+import 'swiper/swiper_demo_list_page.dart';
+import 'swiper/swiper_test1_page.dart';
+import 'swiper/swiper_test2_page.dart';
+import 'swiper/swiper_test3_page.dart';
+import 'swiper/swiper_test4_page.dart';
+import 'package:jh_flutter_demo/project/new_feature/new_feature_page.dart';
 
 //TopTabBar
 import 'topTabBar/top_tabbar_demo_list_page.dart';
@@ -151,6 +158,15 @@ class DemosRouter implements IRouterProvider{
     router.define("SearchTest1Page", handler: Handler(handlerFunc: (_, __) => SearchTest1Page()));
     router.define("SearchTest2Page", handler: Handler(handlerFunc: (_, __) => SearchTest2Page()));
     router.define("SearchTest3Page", handler: Handler(handlerFunc: (_, __) => SearchTest3Page()));
+
+    //swiper
+    router.define("SwiperDemoListPage", handler: Handler(handlerFunc: (_, __) => SwiperDemoListPage()));
+    router.define("SwiperTest1Page", handler: Handler(handlerFunc: (_, __) => SwiperTest1Page()));
+    router.define("SwiperTest2Page", handler: Handler(handlerFunc: (_, __) => SwiperTest2Page()));
+    router.define("SwiperTest3Page", handler: Handler(handlerFunc: (_, __) => SwiperTest3Page()));
+    router.define("SwiperTest4Page", handler: Handler(handlerFunc: (_, __) => SwiperTest4Page()));
+    router.define("NewFeaturePage", handler: Handler(handlerFunc: (_, __) => NewFeaturePage()));
+
     //TopTabBarDemoListPage
     router.define("TopTabBarDemoListPage", handler: Handler(handlerFunc: (_, __) => TopTabBarDemoListPage()));
     router.define("TopTabBarTest1Page", handler: Handler(handlerFunc: (_, __) => TopTabBarTest1Page()));

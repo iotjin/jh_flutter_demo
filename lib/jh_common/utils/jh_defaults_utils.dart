@@ -7,22 +7,33 @@
 
 import 'package:flustars/flustars.dart';
 
-class JhDefaultsUtils{
-
-  static saveBool(String key,bool value){
-    SpUtil.putBool(key, value);
+class JhDefaultsUtils {
+  static Future<bool> saveString(String key, String value) {
+    return SpUtil.putString(key, value);
   }
-  static getBoolWithKey(String key){
+
+  static String getStringWithKey(String key) {
+    return SpUtil.getString(key);
+  }
+
+  static Future<bool> saveBool(String key, bool value) {
+    return SpUtil.putBool(key, value);
+  }
+
+  static bool getBoolWithKey(String key) {
     return SpUtil.getBool(key);
   }
 
-  static saveModel(String key,Object model){
-    SpUtil.putObject(key, model);
+  static Future<bool> saveModel(String key, Object model) {
+    return SpUtil.putObject(key, model);
   }
 
-  static getModelWithKey(String key){
+  static getModelWithKey(String key) {
     Map<String, dynamic> json = SpUtil.getObject(key);
     return json;
   }
 
+  static Future<bool> removeWithKey(String key) {
+    return SpUtil.remove(key);
+  }
 }

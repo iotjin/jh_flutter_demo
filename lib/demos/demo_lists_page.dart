@@ -19,7 +19,8 @@ class DemoListsPage extends StatelessWidget {
     'JhTopTabBar',
     '搜索框',
     '小红点',
-    '二维码'
+    '二维码',
+    '轮播',
   ];
   final List routeData = [
     "UIDemoListsPage",
@@ -36,7 +37,8 @@ class DemoListsPage extends StatelessWidget {
     "TopTabBarDemoListPage",
     "SearchDemoListPage",
     "RedDotPage",
-    'QRCodeTest'
+    'QRCodeTest',
+    'SwiperDemoListPage'
   ];
 
   @override

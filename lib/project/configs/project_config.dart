@@ -7,6 +7,9 @@
 
 import 'package:flutter/material.dart';
 
+export 'apis.dart';
+export 'colors.dart';
+export 'strings.dart';
 
 
 
@@ -15,3 +18,5 @@ import 'package:flutter/material.dart';
 
 /* 保存本地的用户model */
 const kUserDefault_UserInfo = 'UserInfo';
+/* 上次版本号 */
+const kUserDefault_LastVersion = 'kUserDefault_LastVersion';
