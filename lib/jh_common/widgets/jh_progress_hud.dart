@@ -10,6 +10,7 @@ import 'package:oktoast/oktoast.dart';
 
 const Color _bgColor = Colors.black87;
 const double _radius = 3.0;
+const int _closeTime = 1500;
 
 class JhProgressHUD{
 
@@ -64,7 +65,7 @@ void _showText(loadingText) {
         )
     ),
   );
-  showToastWidget(w);
+  showToastWidget(w,duration: Duration(milliseconds: _closeTime));
 }
 
 
@@ -132,7 +133,7 @@ void _showSuccess(loadingText) {
         )
     ),
   );
-  showToastWidget(w);
+  showToastWidget(w,duration: Duration(milliseconds: _closeTime));
 }
 
 
@@ -161,7 +162,7 @@ void _showError(loadingText) {
         )
     ),
   );
-  showToastWidget(w);
+  showToastWidget(w,duration: Duration(milliseconds: _closeTime));
 }
 
 void _showInfo(loadingText) {
@@ -189,6 +190,6 @@ void _showInfo(loadingText) {
         )
     ),
   );
-  showToastWidget(w);
+  showToastWidget(w,duration: Duration(milliseconds: _closeTime));
 }
 

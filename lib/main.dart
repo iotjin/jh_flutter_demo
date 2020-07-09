@@ -88,6 +88,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    LogUtils.init();
     final Router router = Router();
     Routes.configureRoutes(router);
     Application.router = router;

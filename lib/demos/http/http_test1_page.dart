@@ -35,7 +35,7 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
 }
 
 void postRequest() async {
-  var url = "https://www.fastmock.site/mock/664dbd2c65e775cd90117b19acaf488f/root/getSimpleArrDic";
+  var url = "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/getSimpleArrDic";
   var dio = new Dio();
   var response = await dio.post(url, data:{"id":12,"name":"wendu"});
   var result = response.data.toString();
@@ -45,7 +45,7 @@ void postRequest() async {
 }
 
 void postRequest2()async{
-  var url = "https://www.fastmock.site/mock/664dbd2c65e775cd90117b19acaf488f/root/getSimpleArrDic";
+  var url = "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/getSimpleArrDic";
   var response = await Dio().post(url);
   print("返回数据： "+response.data.toString());
   print(response.data["msg"]);

@@ -1,5 +1,10 @@
+/**
+ *  strings.dart
+ *
+ *  Created by iotjin on 2020/07/06.
+ *  description:  字符串配置
+ */
 
-/* 字符串配置 */
 class KString {
   //默认  屏幕像素  基于该像素进行适配
   static double deviceHeightPix = 1920;

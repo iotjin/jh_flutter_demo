@@ -9,6 +9,11 @@ class NavigatorUtils {
     return NavigatorFluroUtils.push(context, routeName);
   }
 
+  // 跳转 清空栈
+  static void pushReplacement(BuildContext context, String routeName) {
+    return NavigatorFluroUtils.push(context, routeName,replace: true,clearStack: true);
+  }
+
   // 跳转 - 带回调
   static void pushNamedResult(
       BuildContext context, String routeName, Function(Object) function) {

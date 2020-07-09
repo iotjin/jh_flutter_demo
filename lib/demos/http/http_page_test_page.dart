@@ -3,10 +3,12 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'http_page_test_model.dart';
 import 'http_page_test_item.dart';
 import 'package:dio/dio.dart';
+
 //import 'package:dio_http_cache/dio_http_cache.dart';
+import 'package:jh_flutter_demo/http/http_utils.dart';
 
 var dataArr;
-var pageIndex = 0;//页数
+var pageIndex = 0; //页数
 
 class HttpPageTestPage extends StatefulWidget {
   @override
@@ -14,53 +16,92 @@ class HttpPageTestPage extends StatefulWidget {
 }
 
 class _HttpPageTestPageState extends State<HttpPageTestPage> {
-
   EasyRefreshController _controller = EasyRefreshController();
 
   @override
   void initState() {
     super.initState();
   }
+
   var _count;
 
-  var url = "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/getPageArrDic";
-  var dio = new Dio();
-  void getNewData()async{
-    pageIndex =0;
+//  var url =
+//      "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/getPageArrDic";
+//  var dio = new Dio();
+//  void getNewData()async{
+//    pageIndex =0;
+//    print("pageIndex- ${pageIndex}");
+//    var response = await dio.post(url, data:{"page":pageIndex,});
+//    dataArr =response.data["data"];
+//    setState(() {
+//      _count =dataArr.length==null? 0:dataArr.length;
+//      print("最新条数"+_count.toString());
+//      _controller.resetLoadState();
+//    });
+//  }
+//  void getMoreData()async{
+//    pageIndex++;
+//    print("more pageIndex- ${pageIndex}");
+//    var response = await dio.post(url, data:{"page":pageIndex,});
+//    var moreData =response.data["data"];
+//    dataArr =dataArr+moreData;
+//    setState(() {
+//      _count =dataArr.length==null? 0:dataArr.length;
+//      print("加载更多条数"+_count.toString());
+////      _controller.finishLoad(noMore: _count >= 30);
+//      _controller.finishLoad();
+//    });
+//  }
+
+  void getNewData() {
+    pageIndex = 0;
     print("pageIndex- ${pageIndex}");
-    var response = await dio.post(url, data:{"page":pageIndex,});
-    dataArr =response.data["data"];
-    setState(() {
-      _count =dataArr.length==null? 0:dataArr.length;
-      print("最新条数"+_count.toString());
-      _controller.resetLoadState();
-    });
+    HttpUtils.getNewPageList({"page": pageIndex}, success: (result) {
+      dataArr = result['data'];
+      setState(() {
+        _count = dataArr.length == null ? 0 : dataArr.length;
+        print("最新条数" + _count.toString());
+        _controller.resetLoadState();
+      });
+    }, fail: (code) {});
   }
-  void getMoreData()async{
+
+  void getMoreData() {
     pageIndex++;
     print("more pageIndex- ${pageIndex}");
-    var response = await dio.post(url, data:{"page":pageIndex,});
-    var moreData =response.data["data"];
-    dataArr =dataArr+moreData;
-    setState(() {
-      _count =dataArr.length==null? 0:dataArr.length;
-      print("加载更多条数"+_count.toString());
+//    var response = await dio.post(url, data: {
+//      "page": pageIndex,
+//    });
+//    var moreData = response.data["data"];
+//    dataArr = dataArr + moreData;
+//    setState(() {
+//      _count = dataArr.length == null ? 0 : dataArr.length;
+//      print("加载更多条数" + _count.toString());
+////      _controller.finishLoad(noMore: _count >= 30);
+//      _controller.finishLoad();
+//    });
+
+    HttpUtils.getNewPageList({"page": pageIndex}, success: (result) {
+      var moreData = result['data'];
+      dataArr = dataArr + moreData;
+      setState(() {
+        _count = dataArr.length == null ? 0 : dataArr.length;
+        print("加载更多条数" + _count.toString());
 //      _controller.finishLoad(noMore: _count >= 30);
-      _controller.finishLoad();
-    });
+        _controller.finishLoad();
+      });
+    }, fail: (code) {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:AppBar(
-            title:Text('分页加载')
-        ),
-        body:EasyRefresh(
+        appBar: AppBar(title: Text('分页加载')),
+        body: EasyRefresh(
             controller: _controller,
 //            firstRefresh: false,
             firstRefresh: true,
-            onRefresh: () async{
+            onRefresh: () async {
               print("下拉刷新-----");
               getNewData();
             },
@@ -68,27 +109,22 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
               print("上拉加载-----");
               getMoreData();
             },
-            child: cell(_count)
-
-        )
-    );
+            child: cell(_count)));
   }
 }
 
-Widget cell (var dataCount){
-
-  if(dataCount ==null){
+Widget cell(var dataCount) {
+  if (dataCount == null) {
     return Container();
   }
-  if(dataCount==0 ){
+  if (dataCount == 0) {
     return Container(
       alignment: Alignment.topCenter,
       padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-      child:  Text("暂无数据",textAlign: TextAlign.center,style: TextStyle(fontSize: 18.0)),
+      child: Text("暂无数据",
+          textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
     );
-
-  }else {
-
+  } else {
     return ListView.separated(
       itemCount: dataCount,
       itemBuilder: (context, index) {
@@ -98,14 +134,12 @@ Widget cell (var dataCount){
         WorkOrderModel model = WorkOrderModel.fromJson(json);
         return HttPageTestItem(
           data: model,
-          onTap: (){
+          onTap: () {
             print("点击的index ${index}");
-            print("点击的地点"+model.place);
-
+            print("点击的地点" + model.place);
           },
         );
       },
-
       separatorBuilder: (context, index) {
         return Divider(
           height: .5,
@@ -118,4 +152,3 @@ Widget cell (var dataCount){
     );
   }
 }
-
