@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
-import 'tag_cloud_widget.dart';
+import '../../../jh_common/widgets/tag_cloud_widget.dart';
 
 var _data = [
   {"ID": "111", "name": "1.这是文字", "num": "11"},
@@ -19,14 +19,16 @@ class TagCloudPage extends StatefulWidget {
 }
 
 class _TagCloudPageState extends State<TagCloudPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'TagCloudWidget'),
-        backgroundColor: Color(0xFFF8F8F8),
-        body: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: TagCloudWidget(400, _data, rpm: 3)));
+      appBar: backAppBar(context, 'TagCloudWidget'),
+      backgroundColor: Color(0xFFF8F8F8),
+      body: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: LayoutBuilder(builder: (context, constraints) {
+            return TagCloudWidget(constraints.maxWidth - 40 * 2, _data, rpm: 4);
+          })),
+    );
   }
 }
