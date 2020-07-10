@@ -125,6 +125,7 @@ flutter:
     - assets/images/newFeature/
     - assets/images/tab/
     - assets/images/service/
+    - assets/images/demos/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

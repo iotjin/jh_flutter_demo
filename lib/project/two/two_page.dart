@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/project/configs/strings.dart';
 import 'package:jh_flutter_demo/project/configs/colors.dart';
@@ -62,9 +63,21 @@ class BaseScrollView extends StatelessWidget {
         Column(
           children: <Widget>[
             Container(height: 1500,width:double.infinity,color: Colors.yellow,child: Text("往下滑动"),),
-            Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),
-            Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),
+            RichText(
+              text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: <InlineSpan>[
+                    TextSpan(text: '登录即视为同意'),
+                    TextSpan(
+                      text: '《xxx服务协议》',
+                      style: TextStyle(color: Colors.red),
+                      recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
+                    ),
+                  ]),
+            ),
 
+            Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),
+            Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),
             FlatButton(
               child: Text("点击"),
               onPressed: (){

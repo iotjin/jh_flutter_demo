@@ -52,6 +52,11 @@ import 'listView/listview_test_simple_pull_down.dart';
 import 'listView/listview_test_pull_down_vc.dart';
 
 //other
+import 'other/animation/animation_demo_list_page.dart';
+import 'other/animation/3DBall_page.dart';
+import 'other/animation/3DBall_page2.dart';
+import 'other/animation/3DBall_page3.dart';
+import 'other/animation/tag_cloud_page.dart';
 import 'other/form_test.dart';
 import 'other/photo_select_test.dart';
 import 'other/pass_value_page.dart';
@@ -137,6 +142,11 @@ class DemosRouter implements IRouterProvider{
     router.define("ListViewTest_SimplePullDown", handler: Handler(handlerFunc: (_, __) => ListViewTest_SimplePullDown()));
     router.define("ListViewTest_PullDownVC", handler: Handler(handlerFunc: (_, __) => ListViewTest_PullDownVC()));
     //other
+    router.define("AnimationDemoListPage", handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));
+    router.define("DBallPage", handler: Handler(handlerFunc: (_, __) => DBallPage()));
+    router.define("DBallPage2", handler: Handler(handlerFunc: (_, __) => DBallPage2()));
+    router.define("DBallPage3", handler: Handler(handlerFunc: (_, __) => DBallPage3()));
+    router.define("TagCloudPage", handler: Handler(handlerFunc: (_, __) => TagCloudPage()));
     router.define("FormTest", handler: Handler(handlerFunc: (_, __) => FormTest()));
     router.define("PhotoSelectTest", handler: Handler(handlerFunc: (_, __) => PhotoSelectTest()));
     router.define("PassValuePage", handler: Handler(handlerFunc: (_, __) => PassValuePage()));
@@ -153,6 +163,7 @@ class DemosRouter implements IRouterProvider{
     router.define("NavTestPage", handler: Handler(handlerFunc: (_, __) => NavTestPage()));
     router.define("RedDotPage", handler: Handler(handlerFunc: (_, __) => RedDotPage()));
     router.define("QRCodeTest", handler: Handler(handlerFunc: (_, __) => QRCodeTest()));
+
     //search
     router.define("SearchDemoListPage", handler: Handler(handlerFunc: (_, __) => SearchDemoListPage()));
     router.define("SearchTest1Page", handler: Handler(handlerFunc: (_, __) => SearchTest1Page()));
