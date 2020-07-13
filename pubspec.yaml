@@ -53,7 +53,9 @@ dependencies:
   # 加载框 https://pub.flutter-io.cn/packages/oktoast#-readme-tab-
   oktoast: 2.3.1+1
 
-  # 下拉刷新 https://pub.flutter-io.cn/packages/flutter_easyrefresh#-readme-tab-
+  # 下拉刷新 https://pub.flutter-io.cn/packages/pull_to_refresh
+  pull_to_refresh: ^1.6.0
+  # 下拉刷新 https://pub.flutter-io.cn/packages/flutter_easyrefresh
   flutter_easyrefresh: 2.1.0
   # 底部弹出 日期选择器 单列多列  https://pub.dev/packages/flutter_picker
   flutter_picker: 1.1.0
@@ -99,6 +101,8 @@ dependencies:
   flutter_swiper: ^1.1.6
   # 轮播 https://pub.flutter-io.cn/packages/carousel_slider
   carousel_slider: ^2.2.1
+  # 列表悬浮头 https://pub.flutter-io.cn/packages/sticky_headers
+  sticky_headers: ^0.1.8+1
 
 
 

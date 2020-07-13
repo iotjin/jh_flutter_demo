@@ -50,12 +50,14 @@ import 'listView/listview_test_card.dart';
 import 'listView/listview_test_custom_vc.dart';
 import 'listView/listview_test_simple_pull_down.dart';
 import 'listView/listview_test_pull_down_vc.dart';
+import 'listView/listview_group_page.dart';
 
 //other
 import 'other/animation/animation_demo_list_page.dart';
 import 'other/animation/3DBall_page.dart';
 import 'other/animation/3DBall_page2.dart';
 import 'other/animation/3DBall_page3.dart';
+import 'other/animation/3DBall_page4.dart';
 import 'other/animation/tag_cloud_page.dart';
 import 'other/form_test.dart';
 import 'other/photo_select_test.dart';
@@ -78,6 +80,7 @@ import 'swiper/swiper_test2_page.dart';
 import 'swiper/swiper_test3_page.dart';
 import 'swiper/swiper_test4_page.dart';
 import 'package:jh_flutter_demo/project/new_feature/new_feature_page.dart';
+import '../project/new_feature/full_screen_swiper_widget.dart';
 
 //TopTabBar
 import 'topTabBar/top_tabbar_demo_list_page.dart';
@@ -141,11 +144,13 @@ class DemosRouter implements IRouterProvider{
     router.define("ListViewTest_CustomVC", handler: Handler(handlerFunc: (_, __) => ListViewTest_CustomVC()));
     router.define("ListViewTest_SimplePullDown", handler: Handler(handlerFunc: (_, __) => ListViewTest_SimplePullDown()));
     router.define("ListViewTest_PullDownVC", handler: Handler(handlerFunc: (_, __) => ListViewTest_PullDownVC()));
+    router.define("ListViewGroupPage", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage()));
     //other
     router.define("AnimationDemoListPage", handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));
     router.define("DBallPage", handler: Handler(handlerFunc: (_, __) => DBallPage()));
     router.define("DBallPage2", handler: Handler(handlerFunc: (_, __) => DBallPage2()));
     router.define("DBallPage3", handler: Handler(handlerFunc: (_, __) => DBallPage3()));
+    router.define("DBallPage4", handler: Handler(handlerFunc: (_, __) => DBallPage4()));
     router.define("TagCloudPage", handler: Handler(handlerFunc: (_, __) => TagCloudPage()));
     router.define("FormTest", handler: Handler(handlerFunc: (_, __) => FormTest()));
     router.define("PhotoSelectTest", handler: Handler(handlerFunc: (_, __) => PhotoSelectTest()));
@@ -177,6 +182,7 @@ class DemosRouter implements IRouterProvider{
     router.define("SwiperTest3Page", handler: Handler(handlerFunc: (_, __) => SwiperTest3Page()));
     router.define("SwiperTest4Page", handler: Handler(handlerFunc: (_, __) => SwiperTest4Page()));
     router.define("NewFeaturePage", handler: Handler(handlerFunc: (_, __) => NewFeaturePage()));
+    router.define("FullScreenSwiperWidget", handler: Handler(handlerFunc: (_, __) => FullScreenSwiperWidget()));
 
     //TopTabBarDemoListPage
     router.define("TopTabBarDemoListPage", handler: Handler(handlerFunc: (_, __) => TopTabBarDemoListPage()));

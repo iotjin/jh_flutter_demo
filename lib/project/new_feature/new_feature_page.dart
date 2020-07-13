@@ -48,8 +48,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
   }
 
   Widget _buildNewFeatureWidget() {
-    return Container(
-      child: Swiper(
+    return Swiper(
         scrollDirection: Axis.horizontal,
         itemCount: _imgWidgets.length,
         autoplay: false,
@@ -102,8 +101,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
                 activeColor: Colors.white)),
         // 页面控制器 左右翻页按钮
 //          control: new SwiperControl(color: Colors.pink),
-      ),
-    );
+      );
   }
 
   _jumpMain() {
