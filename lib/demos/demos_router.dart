@@ -51,6 +51,7 @@ import 'listView/listview_test_custom_vc.dart';
 import 'listView/listview_test_simple_pull_down.dart';
 import 'listView/listview_test_pull_down_vc.dart';
 import 'listView/listview_group_page.dart';
+import 'listView/listview_group_page2.dart';
 
 //other
 import 'other/animation/animation_demo_list_page.dart';
@@ -145,6 +146,7 @@ class DemosRouter implements IRouterProvider{
     router.define("ListViewTest_SimplePullDown", handler: Handler(handlerFunc: (_, __) => ListViewTest_SimplePullDown()));
     router.define("ListViewTest_PullDownVC", handler: Handler(handlerFunc: (_, __) => ListViewTest_PullDownVC()));
     router.define("ListViewGroupPage", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage()));
+    router.define("ListViewGroupPage2", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage2()));
     //other
     router.define("AnimationDemoListPage", handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));
     router.define("DBallPage", handler: Handler(handlerFunc: (_, __) => DBallPage()));

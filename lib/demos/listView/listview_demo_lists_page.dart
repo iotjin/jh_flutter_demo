@@ -14,6 +14,7 @@ class ListViewDemoListsPage extends StatelessWidget {
     "ListViewTest_SimplePullDown",
     "ListViewTest_PullDownVC",
     "ListViewGroupPage",
+    "ListViewGroupPage2",
   ];
   final List routeData = [
     "ListViewTest",
@@ -26,6 +27,7 @@ class ListViewDemoListsPage extends StatelessWidget {
     "ListViewTest_SimplePullDown",
     "ListViewTest_PullDownVC",
     "ListViewGroupPage",
+    "ListViewGroupPage2",
   ];
 
   @override
