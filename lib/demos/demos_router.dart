@@ -16,6 +16,7 @@ import 'chart/chart_page1.dart';
 import 'chart/chart_page2.dart';
 import 'chart/eChart_page1.dart';
 import 'chart/mpChart_line_page1.dart';
+import 'chart/mpChart_bar_page1.dart';
 
 //表单
 import 'form/form_demo_lists_page.dart';
@@ -115,6 +116,7 @@ class DemosRouter implements IRouterProvider{
     router.define("ChartPage2", handler: Handler(handlerFunc: (_, __) => ChartPage2()));
     router.define("EChartPage1", handler: Handler(handlerFunc: (_, __) => EChartPage1()));
     router.define("MpChartLinePage1", handler: Handler(handlerFunc: (_, __) => MpChartLinePage1()));
+    router.define("MpChartBarPage1", handler: Handler(handlerFunc: (_, __) => MpChartBarPage1()));
     //表单
     router.define("FormDemoListsPage", handler: Handler(handlerFunc: (_, __) => FormDemoListsPage()));
     router.define("LoginTextFieldTestPage", handler: Handler(handlerFunc: (_, __) => LoginTextFieldTestPage()));

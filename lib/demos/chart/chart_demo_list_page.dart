@@ -4,8 +4,8 @@ import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class ChartDemoListPage extends StatelessWidget {
 
-  final List titleData = ["ChartPage1","ChartPage2","EChartPage1","MpChartLinePage1",];
-  final List routeData = ["ChartPage1","ChartPage2","EChartPage1","MpChartLinePage1",];
+  final List titleData = ["ChartPage1","ChartPage2","EChartPage1","MpChartLinePage1","MpChartBarPage1",];
+  final List routeData = ["ChartPage1","ChartPage2","EChartPage1","MpChartLinePage1","MpChartBarPage1",];
   @override
   Widget build(BuildContext context) {
     return  JhTextList(

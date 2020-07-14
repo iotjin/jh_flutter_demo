@@ -12,10 +12,14 @@ class PassValuePage extends StatelessWidget {
           title: Text("传值"),
           elevation: 0.0,
         ),
-        body:
-        RaisedButton(
+        body: RaisedButton(
           child: Text("带参数跳转"),
           onPressed: () {
+
+//            var title = 'title222';
+//            Navigator.pushNamed(context, 'PassValuePage2',
+//                arguments: {'title': title});
+
 //            Navigator.pushNamed(context, "PassValuePage2",arguments:"123").then((value){
 //              print("回传的值===="+value.toString());
 //            });
@@ -26,17 +30,13 @@ class PassValuePage extends StatelessWidget {
 
 //            NavigatorUtils.pushNamed(context, '${"PassValuePage2"}?passvalue=123&isScan=true');
 
-            NavigatorUtils.pushNamedResult(context, '${"PassValuePage2"}?passvalue=123&isScan=true', (value){
-              print("回传的值===="+value.toString());
+            NavigatorUtils.pushNamedResult(
+                context, '${"PassValuePage2"}?passvalue=123&isScan=true',
+                (value) {
+              print("回传的值====" + value.toString());
               JhToast.showText(context, msg: "返回的参数: $value");
             });
-
           },
-        )
-
-    );
+        ));
   }
 }
-
-
-
