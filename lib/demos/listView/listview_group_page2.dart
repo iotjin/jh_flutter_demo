@@ -142,13 +142,67 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
   }
 
   //_topHeader
+//  Widget _topHeader() {
+//    return Container(
+//      height: 200,
+//      color: Colors.yellow,
+//      padding: EdgeInsets.all(15),
+//      child: Text("Header"),
+//    );
+//  }
+
   Widget _topHeader() {
     return Container(
-      height: 200,
-      color: Colors.yellow,
-      padding: EdgeInsets.all(15),
-      child: Text("Header"),
-    );
+        padding: EdgeInsets.all(15),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              height: 70,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8.0),
+                    topRight: Radius.circular(8.0)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      SizedBox(width: 8),
+                      Text('这是title', style: TextStyle(fontSize: 18)),
+                      SizedBox(width: 8)
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Image.asset(
+                      'assets/images/lufei.png',
+                      width: 60,
+                      height: 60,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.white,
+              height: 1,
+              child: Divider(thickness: 1,indent: 15,endIndent: 15,),
+            ),
+            Container(
+                height: 200,
+                padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(8.0),
+                      bottomRight: Radius.circular(8.0)),
+                ),
+                )
+          ],
+        ));
   }
 
   List<Widget> buildGroup(List group, var groupNum) {
@@ -157,7 +211,7 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
       var _bgW = _width * 0.5;
       var _num = item['num'];
       var libi = double.parse(_num) / double.parse(groupNum);
-      print(libi);
+//      print(libi);
       return Container(
           color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 15),
