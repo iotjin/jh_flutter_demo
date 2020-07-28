@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
@@ -64,7 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child:  Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
 
 //                SizedBox(height: 50),
@@ -97,7 +98,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 50),
                 JhButton(text: "注 册",
                     onPressed: _ClickOkBtn
-                )
+                ),
+                SizedBox(height: 20),
+                RichText(
+                  text: TextSpan(
+                      style: TextStyle(fontSize: 12,color: Colors.black),
+                      children: <InlineSpan>[
+                        TextSpan(text: '注册即视为同意'),
+                        TextSpan(
+                          text: '《xxx服务协议》',
+                          style: TextStyle(color: Colors.red),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () => print('Tap Here onTap'),
+                        ),
+                      ]),
+                ),
               ],
             ),
 

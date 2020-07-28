@@ -6,6 +6,7 @@ import 'package:jh_flutter_demo/project/routes/router_init.dart';
 import 'Alert/alert_demo_lists_page.dart';
 import 'alert/bottom_sheet_test.dart';
 import 'alert/alert_test.dart';
+import 'alert/jhDialog_test_page.dart';
 //toast
 import 'alert/toast/toast_demo_lists_page.dart';
 import 'alert/toast/toast_test.dart';
@@ -107,6 +108,8 @@ class DemosRouter implements IRouterProvider{
     router.define("AlertDemoListsPage", handler: Handler(handlerFunc: (_, __) => AlertDemoListsPage()));
     router.define("AlertTestPage", handler: Handler(handlerFunc: (_, __) => AlertTestPage()));
     router.define("BottomSheetTest", handler: Handler(handlerFunc: (_, __) => BottomSheetTest()));
+    router.define("JhDialogTestPage", handler: Handler(handlerFunc: (_, __) => JhDialogTestPage()));
+
     //toast
     router.define("ToastDemoListsPage", handler: Handler(handlerFunc: (_, __) => ToastDemoListsPage()));
     router.define("ToastTestPage", handler: Handler(handlerFunc: (_, __) => ToastTestPage()));

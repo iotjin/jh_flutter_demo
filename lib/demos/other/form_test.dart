@@ -31,7 +31,7 @@ class _FormTestState extends State<FormTest> {
     return
 
       GestureDetector(
-          behavior: HitTestBehavior.translucent,
+          behavior: HitTestBehavior.translucent,//事件穿透
           onTap: () {// 点击空白收起键盘
             FocusScope.of(context).requestFocus(FocusNode());
           },
