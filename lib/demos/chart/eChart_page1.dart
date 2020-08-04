@@ -15,7 +15,7 @@ class EChartPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'title'),
+      appBar: backAppBar(context, 'EChart1 - 平滑折线图 警戒线'),
       body:
       Container(
         color: Colors.cyan,
@@ -39,32 +39,41 @@ class EChartPage1 extends StatelessWidget {
                           yAxis: {
                               type: 'value'
                           },
-                          dataZoom: [
-                              {
-                              type: 'inside'
-                              }
-                          ],
-//    dataZoom: [
-//               preventDefaultMouseMove：false,
-//        {
-//
-//            id: 'dataZoomX',
-//            type: 'slider',
-//            xAxisIndex: [0],
-//            filterMode: 'filter'
-//        },
-//        {
-//            id: 'dataZoomY',
-//            type: 'slider',
-//            yAxisIndex: [0],
-//            filterMode: 'filter'
-//        }
-//    ],
+                          //                          dataZoom: [
+                          //                              {
+                          //                              type: 'inside'
+                          //                              }
+                          //                          ],
+                          //    dataZoom: [
+                          //               preventDefaultMouseMove：false,
+                          //        {
+                          //
+                          //            id: 'dataZoomX',
+                          //            type: 'slider',
+                          //            xAxisIndex: [0],
+                          //            filterMode: 'filter'
+                          //        },
+                          //        {
+                          //            id: 'dataZoomY',
+                          //            type: 'slider',
+                          //            yAxisIndex: [0],
+                          //            filterMode: 'filter'
+                          //        }
+                          //    ],
                           series: [{
                               data: [820, 932, 760, 934, 850, 1330, 1320],
                               type: 'line',
-                          //   symbol:'none', //去掉折线图中的节点
+                             symbol:'none', //去掉折线图中的节点
                              smooth: true,  //true 为平滑曲线，false为直线
+                             areaStyle: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#6884CD'
+                                }, {
+                                    offset: 1,
+                                    color: '#FFFFFF'
+                                }])
+                            },
                                markLine: {
                                       silent: true,
                                       data: [{

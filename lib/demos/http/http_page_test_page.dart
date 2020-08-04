@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_easyrefresh/delivery_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+
 import 'http_page_test_model.dart';
 import 'http_page_test_item.dart';
 import 'package:dio/dio.dart';
@@ -98,6 +101,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
     return Scaffold(
         appBar: AppBar(title: Text('分页加载')),
         body: EasyRefresh(
+            header: DeliveryHeader(),
             controller: _controller,
 //            firstRefresh: false,
             firstRefresh: true,

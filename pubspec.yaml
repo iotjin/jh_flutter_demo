@@ -79,12 +79,12 @@ dependencies:
 #  common_utils: ^1.1.3
   # Flutter 常用工具类库（本地化 屏幕适配） https://github.com/Sky24n/flustars
   flustars: ^0.3.2
-  # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter#-installing-tab-
-  charts_flutter: ^0.9.0
   # EChart 图表（缩放手势冲突） https://pub.flutter-io.cn/packages/flutter_echarts
   flutter_echarts: ^1.3.5
-  # 图表 https://pub.flutter-io.cn/packages/mp_chart
+  # 图表（没有提示栏) https://pub.flutter-io.cn/packages/mp_chart
   mp_chart: ^0.2.2 #latest version
+  # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter#-installing-tab-
+  charts_flutter: ^0.9.0
   # 小红点 https://pub:dev/packages/badges:
   badges: ^1.1.1
   # sq https://pub.dev/packages/sqflite

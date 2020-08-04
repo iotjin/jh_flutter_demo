@@ -4,12 +4,15 @@ import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:mp_chart/mp/chart/line_chart.dart';
 import 'package:mp_chart/mp/controller/line_chart_controller.dart';
 import 'package:mp_chart/mp/core/data/line_data.dart';
+import 'package:mp_chart/mp/core/data_interfaces/i_line_data_set.dart';
+import 'package:mp_chart/mp/core/data_provider/line_data_provider.dart';
 import 'package:mp_chart/mp/core/data_set/line_data_set.dart';
 import 'package:mp_chart/mp/core/description.dart';
 import 'package:mp_chart/mp/core/entry/entry.dart';
 import 'package:mp_chart/mp/core/enums/mode.dart';
 import 'package:mp_chart/mp/core/enums/limit_label_postion.dart';
 import 'package:mp_chart/mp/core/enums/x_axis_position.dart';
+import 'package:mp_chart/mp/core/fill_formatter/i_fill_formatter.dart';
 import 'package:mp_chart/mp/core/limit_line.dart';
 import 'package:mp_chart/mp/core/adapter_android_mp.dart';
 
@@ -151,7 +154,11 @@ class _MpChartLinePage1State extends State<MpChartLinePage1> {
     set1.setLineWidth(1.5);
     set1.setDrawValues(false);
     set1.setDrawCircles(false);
-    set1.setDrawFilled(false);
+    set1.setDrawFilled(true);
+    set1.setFillColor(Colors.orangeAccent);
+    set1.setFillAlpha(80);
+    set1.setDrawHorizontalHighlightIndicator(false);
+    set1.setFillFormatter(A());
 
 //    // create a data object with the data sets
 //    _controller.data = LineData.fromList(List()..add(set1));
@@ -192,5 +199,19 @@ class _MpChartLinePage1State extends State<MpChartLinePage1> {
       ..setValueTextSize(12);
 
     setState(() {});
+  }
+}
+
+class A implements IFillFormatter {
+  LineChartController _controller;
+
+  void setPainter(LineChartController controller) {
+    _controller = controller;
+  }
+
+  @override
+  double getFillLinePosition(
+      ILineDataSet dataSet, LineDataProvider dataProvider) {
+    return _controller?.painter?.axisLeft?.axisMinimum;
   }
 }

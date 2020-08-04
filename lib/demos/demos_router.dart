@@ -16,8 +16,12 @@ import 'chart/chart_demo_list_page.dart';
 import 'chart/chart_page1.dart';
 import 'chart/chart_page2.dart';
 import 'chart/eChart_page1.dart';
+import 'chart/eChart_page2.dart';
+import 'chart/eChart_page3.dart';
+import 'chart/eChart_page4.dart';
 import 'chart/mpChart_line_page1.dart';
 import 'chart/mpChart_bar_page1.dart';
+import 'chart/mpChart_combined_page.dart';
 
 //表单
 import 'form/form_demo_lists_page.dart';
@@ -54,6 +58,7 @@ import 'listView/listview_test_simple_pull_down.dart';
 import 'listView/listview_test_pull_down_vc.dart';
 import 'listView/listview_group_page.dart';
 import 'listView/listview_group_page2.dart';
+import 'listView/listview_group_page3.dart';
 
 //other
 import 'other/animation/animation_demo_list_page.dart';
@@ -118,8 +123,12 @@ class DemosRouter implements IRouterProvider{
     router.define("ChartPage1", handler: Handler(handlerFunc: (_, __) => ChartPage1()));
     router.define("ChartPage2", handler: Handler(handlerFunc: (_, __) => ChartPage2()));
     router.define("EChartPage1", handler: Handler(handlerFunc: (_, __) => EChartPage1()));
+    router.define("EChartPage2", handler: Handler(handlerFunc: (_, __) => EChartPage2()));
+    router.define("EChartPage3", handler: Handler(handlerFunc: (_, __) => EChartPage3()));
+    router.define("EChartPage4", handler: Handler(handlerFunc: (_, __) => EChartPage4()));
     router.define("MpChartLinePage1", handler: Handler(handlerFunc: (_, __) => MpChartLinePage1()));
     router.define("MpChartBarPage1", handler: Handler(handlerFunc: (_, __) => MpChartBarPage1()));
+    router.define("MpChartCombinedPage", handler: Handler(handlerFunc: (_, __) => MpChartCombinedPage()));
     //表单
     router.define("FormDemoListsPage", handler: Handler(handlerFunc: (_, __) => FormDemoListsPage()));
     router.define("LoginTextFieldTestPage", handler: Handler(handlerFunc: (_, __) => LoginTextFieldTestPage()));
@@ -152,6 +161,7 @@ class DemosRouter implements IRouterProvider{
     router.define("ListViewTest_PullDownVC", handler: Handler(handlerFunc: (_, __) => ListViewTest_PullDownVC()));
     router.define("ListViewGroupPage", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage()));
     router.define("ListViewGroupPage2", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage2()));
+    router.define("ListViewGroupPage3", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage3()));
     //other
     router.define("AnimationDemoListPage", handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));
     router.define("DBallPage", handler: Handler(handlerFunc: (_, __) => DBallPage()));

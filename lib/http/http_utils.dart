@@ -35,6 +35,15 @@ class HttpUtils {
     post(APIs.getPage, parameters, success: success, fail: fail);
   }
 
+  //分页加载分组数据
+  static void getNewPageGroupList<T>(
+      parameters, {
+        Success success,
+        Fail fail,
+      }) {
+    post(APIs.getGroupPage, parameters, success: success, fail: fail);
+  }
+
   //GET
   static void GetRequest<T>(
     APIType apiType,
