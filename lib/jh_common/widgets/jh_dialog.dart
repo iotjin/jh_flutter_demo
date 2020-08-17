@@ -226,25 +226,21 @@ class CustomDialog extends Dialog {
   @override
   Widget build(BuildContext context) {
     return Material(
-        //透明层
-        type: MaterialType.transparency,
-        child: Stack(
-          children: <Widget>[
-            InkWell(
-              onTap: () {
-                if (clickBgHidden == true) {
-                  Navigator.pop(context);
-                }
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              ),
-            ),
-            //内容
-            Center(child: child)
-//            child
-          ],
-        ));
+      type: MaterialType.transparency,
+      child: Stack(
+        children: <Widget>[
+          GestureDetector(
+            onTap: () {
+              if (clickBgHidden == true) {
+                Navigator.pop(context);
+              }
+            },
+          ),
+          //内容
+          Center(child: child)
+//          child
+        ],
+      ),
+    );
   }
 }

@@ -1,5 +1,5 @@
 /**
- *  jh_defaults_utils.dart
+ *  jh_storage_utils.dart
  *
  *  Created by iotjin on 2020/05/07.
  *  description:  数据存储 ,封装第三方
@@ -7,7 +7,7 @@
 
 import 'package:flustars/flustars.dart';
 
-class JhDefaultsUtils {
+class JhStorageUtils {
   static Future<bool> saveString(String key, String value) {
     return SpUtil.putString(key, value);
   }

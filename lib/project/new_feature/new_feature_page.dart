@@ -68,7 +68,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
               children: <Widget>[
                 _imgWidgets[index],
                 Positioned(
-                    bottom: ScreenUtils.bottomSafeHeight + 50,
+                    bottom: JhScreenUtils.bottomSafeHeight + 50,
                     child: GestureDetector(
                       child: Image.asset(
                         "assets/images/newFeature/start-now.jpg",

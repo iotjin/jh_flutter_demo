@@ -7,7 +7,7 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
-import 'package:jh_flutter_demo/jh_common/utils/theme_utils.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_theme_utils.dart';
 
 class UpdateDialog extends StatefulWidget {
   @override
@@ -41,7 +41,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
           body: Center(
             child: Container(
                 decoration: BoxDecoration(
-              color: ThemeUtils.getDialogBackgroundColor(context),
+              color: JhThemeUtils.getDialogBackgroundColor(context),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 width: 280.0,

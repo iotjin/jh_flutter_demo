@@ -20,21 +20,21 @@ const Color _bgColor = Colors.transparent;
 
 typedef CallBack = void Function(List imgData);
 
-class jhPhotoPicker extends StatefulWidget {
+class JhPhotoPicker extends StatefulWidget {
 
     final double lfPaddingSpace; //外部设置的左右间距
     final CallBack callBack;
 
-    jhPhotoPicker({
+    JhPhotoPicker({
       this.lfPaddingSpace,
       this.callBack,
     });
 
   @override
-  _jhPhotoPickerState createState() => _jhPhotoPickerState();
+  _JhPhotoPickerState createState() => _JhPhotoPickerState();
 }
 
-class _jhPhotoPickerState extends State<jhPhotoPicker> {
+class _JhPhotoPickerState extends State<JhPhotoPicker> {
 
       List imgData = List();  //图片list
       List<AssetEntity> imgPicked = [];

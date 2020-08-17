@@ -26,7 +26,7 @@ import 'project/model/user_model.dart';
 import 'project/configs/project_config.dart';
 
 import 'jh_common/utils/jh_screen_utils.dart';
-import 'jh_common/utils/jh_defaults_utils.dart';
+import 'jh_common/utils/jh_storage_utils.dart';
 import 'jh_common/widgets/jh_alert.dart';
 
 /**
@@ -98,9 +98,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtils.init();
+//    JhScreenUtils.init(context);
     return
-
 //      FLToastProvider(
 //          defaults: _toastDefaults,
         OKToast(
@@ -178,7 +177,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget SwitchRootWidget() {
-    var lastVersion = JhDefaultsUtils.getStringWithKey(kUserDefault_LastVersion);
+    var lastVersion =
+        JhStorageUtils.getStringWithKey(kUserDefault_LastVersion);
 //    print('lastVersion 版本号：$lastVersion');
     if (lastVersion == null || lastVersion == '') {
 //      print('首次安装');

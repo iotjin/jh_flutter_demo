@@ -8,7 +8,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/http/http_utils.dart';
 
-List groupData = [
+List groupData33 = [
   {
     "groupTitle": "groupTitle_1",
     "num": "15",
@@ -53,6 +53,7 @@ List groupData = [
 
 var dataArr;
 var pageIndex = 0; //页数
+var groupData = [];
 
 class ListViewGroupPage3 extends StatefulWidget {
   @override

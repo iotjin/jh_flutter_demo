@@ -1,10 +1,12 @@
-/** 
+/**
  *  base_tabbar.dart
  *
  *  Created by iotjin on 2020/03/08.
  *  description:  tabbar
  */
+
 import 'package:flutter/material.dart';
+
 import 'package:jh_flutter_demo/project/one/one_page.dart';
 import 'package:jh_flutter_demo/project/Two/two_page.dart';
 import 'package:jh_flutter_demo/project/Three/three_page.dart';
@@ -18,43 +20,32 @@ class BaseTabBar extends StatefulWidget {
 }
 
 class _BaseTabBarState extends State<BaseTabBar> {
-
-
-
-  int _currentIndex=0;
-  List <Widget>_pageList=[
-    OnePage(),
-    TwoPage(),
-    ThreePage(),
-    FourPage()
-  ];
+  int _currentIndex = 0;
+  List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), FourPage()];
   static double _iconWH = 24.0;
   static double _fontSize = 10.0;
   Color selColor = Color(0xFF3BB815);
 
-
-
   List<BottomNavigationBarItem> bottomTabs = [
-
     BottomNavigationBarItem(
       title: Text("微信"),
-      icon: JhLoadAssetImage('tab/nav_tab_1',width: _iconWH),
-      activeIcon: JhLoadAssetImage('tab/nav_tab_1_on',width: _iconWH),
+      icon: JhLoadAssetImage('tab/nav_tab_1', width: _iconWH),
+      activeIcon: JhLoadAssetImage('tab/nav_tab_1_on', width: _iconWH),
     ),
     BottomNavigationBarItem(
       title: Text("通讯录"),
-      icon: JhLoadAssetImage('tab/nav_tab_2',width: _iconWH),
-      activeIcon: JhLoadAssetImage('tab/nav_tab_2_on',width: _iconWH),
+      icon: JhLoadAssetImage('tab/nav_tab_2', width: _iconWH),
+      activeIcon: JhLoadAssetImage('tab/nav_tab_2_on', width: _iconWH),
     ),
     BottomNavigationBarItem(
       title: Text("朋友圈"),
-      icon: JhLoadAssetImage('tab/nav_tab_3',width: _iconWH),
-      activeIcon: JhLoadAssetImage('tab/nav_tab_3_on',width: _iconWH),
+      icon: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH),
+      activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH),
     ),
     BottomNavigationBarItem(
       title: Text("我的"),
-      icon: JhLoadAssetImage('tab/nav_tab_4',width: _iconWH),
-      activeIcon: JhLoadAssetImage('tab/nav_tab_4_on',width: _iconWH),
+      icon: JhLoadAssetImage('tab/nav_tab_4', width: _iconWH),
+      activeIcon: JhLoadAssetImage('tab/nav_tab_4_on', width: _iconWH),
     ),
   ];
 
@@ -62,11 +53,11 @@ class _BaseTabBarState extends State<BaseTabBar> {
   Widget build(BuildContext context) {
     return Scaffold(
 //      backgroundColor: Colors.white,
-        body: IndexedStack(
-          index: _currentIndex,
-          children: _pageList,
-        ),
-        bottomNavigationBar:
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pageList,
+      ),
+      bottomNavigationBar:
 
 //        Theme(
 //          data: ThemeData(
@@ -92,28 +83,28 @@ class _BaseTabBarState extends State<BaseTabBar> {
 //
 //        )
 
-
-      BottomNavigationBar(
+          BottomNavigationBar(
 //        unselectedItemColor:Colors.red,  //未选中颜色
 //        selectedItemColor:Colors.yellow,  //选中颜色
-        fixedColor: selColor,  //选中的颜色
-        unselectedFontSize:_fontSize,
-        selectedFontSize:_fontSize,
-        type:BottomNavigationBarType.fixed,   //配置底部BaseTabBar可以有多个按钮
+        fixedColor: selColor,
+        //选中的颜色
+        unselectedFontSize: _fontSize,
+        selectedFontSize: _fontSize,
+        type: BottomNavigationBarType.fixed,
+        //配置底部BaseTabBar可以有多个按钮
         items: bottomTabs,
-        currentIndex: this._currentIndex,   //配置对应的索引值选中
-        onTap: (int index){
-          setState(() {  //改变状态
-            this._currentIndex=index;
+        currentIndex: this._currentIndex,
+        //配置对应的索引值选中
+        onTap: (int index) {
+          setState(() {
+            //改变状态
+            this._currentIndex = index;
           });
         },
       ),
-
-
     );
   }
 }
-
 
 /*-----------------------------------------------------------------------------*/
 /*

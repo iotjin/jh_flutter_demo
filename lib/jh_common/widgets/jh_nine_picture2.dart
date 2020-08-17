@@ -12,12 +12,12 @@ import 'jh_photo_allscreen_show2.dart';
 const double _itemSpace = 5.0;
 const double _space = 5.0; //上下左右间距
 
-class jhNinePicture2 extends StatelessWidget {
+class JhNinePicture2 extends StatelessWidget {
 
   final List<String> imgData;
   final double lfPaddingSpace; //外部设置的左右间距
   final GestureTapCallback onLongPress;
-  jhNinePicture2({
+  JhNinePicture2({
     this.imgData,
     this.lfPaddingSpace,
     this.onLongPress,

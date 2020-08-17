@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
-class Device {
+class JhDevice {
   static bool get isDesktop => !isWeb && (isWindows || isLinux || isMacOS);
   static bool get isMobile => isAndroid || isIOS;
   static bool get isWeb => kIsWeb;

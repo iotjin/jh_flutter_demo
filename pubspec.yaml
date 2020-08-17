@@ -36,7 +36,7 @@ dependencies:
   # 图片缓存 https://pub.dev/packages/cached_network_image
   cached_network_image: 2.0.0
   # 屏幕参数适配
-  flutter_screenutil: ^2.1.0
+  flutter_screenutil: ^2.3.0
   # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
   keyboard_actions: ^3.2.0
   # webview https://pub.flutter-io.cn/packages/webview_flutter#-installing-tab-
@@ -129,6 +129,7 @@ flutter:
     - assets/images/
     - assets/images/common/
     - assets/images/newFeature/
+    - assets/images/popMenus/
     - assets/images/tab/
     - assets/images/service/
     - assets/images/demos/

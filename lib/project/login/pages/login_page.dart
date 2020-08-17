@@ -10,7 +10,7 @@ import 'package:flustars/flustars.dart';
 import 'package:dio/dio.dart';
 import 'package:package_info/package_info.dart';
 
-import 'package:jh_flutter_demo/jh_common/utils/jh_defaults_utils.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_storage_utils.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_button.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_form.dart';
@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
   void _getInfo() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 //    print('版本号：${packageInfo.version}');
-    JhDefaultsUtils.saveString(kUserDefault_LastVersion, packageInfo.version);
+    JhStorageUtils.saveString(kUserDefault_LastVersion, packageInfo.version);
   }
 
   void _verify() {

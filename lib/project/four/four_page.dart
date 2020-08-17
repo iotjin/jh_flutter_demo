@@ -5,6 +5,7 @@ import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/update_dialog.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_dialog.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_qr_code_utils.dart';
 
 class FourPage extends StatefulWidget {
   @override
@@ -31,8 +32,22 @@ class _FourPageState extends State<FourPage> {
           SizedBox(height: 15),
           JhSetCell(
               leftImgPath: "assets/images/ic_accountsafe.png", title: '账号安全'),
-          JhSetCell(leftImgPath: "assets/images/ic_saoyisao.png", title: '扫一扫'),
-          JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置'),
+          JhSetCell(
+            leftImgPath: "assets/images/ic_saoyisao.png",
+            title: '扫一扫',
+            clickCallBack: () {
+              JhQrCodeUtils.scan().then((value) => () {
+                    print(value);
+                  });
+            },
+          ),
+          JhSetCell(
+            leftImgPath: "assets/images/shezhi.png",
+            title: '设置',
+            clickCallBack: () {
+              NavigatorUtils.pushNamed(context, "SetPage");
+            },
+          ),
           JhSetCell(
             leftImgPath: "assets/images/ic_about.png",
             title: '检查更新',

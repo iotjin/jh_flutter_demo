@@ -66,7 +66,7 @@ class _GridViewTest2State extends State<GridViewTest2> {
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
                     child:
-                    jhNinePicture(
+                    JhNinePicture(
                       imgData: dataArr,
                       lfPaddingSpace: 110,
                       onLongPress: (){
@@ -79,7 +79,7 @@ class _GridViewTest2State extends State<GridViewTest2> {
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
                     child:
-                    jhNinePicture(
+                    JhNinePicture(
                       imgData: dataArr2,
                       lfPaddingSpace: 110,
                       onLongPress: (){

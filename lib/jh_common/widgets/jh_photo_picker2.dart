@@ -17,18 +17,18 @@ const double _space = 5.0; //上下左右间距
 const double _deleBtnWH = 20.0;
 const Color _bgColor = Colors.yellow;
 
-class jhPhotoPicker2 extends StatefulWidget {
+class JhPhotoPicker2 extends StatefulWidget {
 
   final double lfPaddingSpace; //外部设置的左右间距
-  jhPhotoPicker2({
+  JhPhotoPicker2({
     this.lfPaddingSpace,
   });
 
   @override
-  _jhPhotoPicker2State createState() => _jhPhotoPicker2State();
+  _JhPhotoPicker2State createState() => _JhPhotoPicker2State();
 }
 
-class _jhPhotoPicker2State extends State<jhPhotoPicker2> {
+class _JhPhotoPicker2State extends State<JhPhotoPicker2> {
 
   List imgData = List();  //图片list
   List<AssetEntity> imgPicked = [];

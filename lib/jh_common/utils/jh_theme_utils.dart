@@ -2,10 +2,10 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'device_utils.dart';
+import 'jh_device_utils.dart';
 import 'package:jh_flutter_demo/project/configs/colors.dart';
 
-class ThemeUtils {
+class JhThemeUtils {
 
   static bool isDark(BuildContext context) {
     return Theme.of(context).brightness == Brightness.dark;
@@ -42,7 +42,7 @@ class ThemeUtils {
   /// 设置NavigationBar样式
   static void setSystemNavigationBarStyle(BuildContext context, ThemeMode mode) {
     /// 仅针对安卓
-    if (Device.isAndroid) {
+    if (JhDevice.isAndroid) {
       bool _isDark = false;
       final ui.Brightness platformBrightness = MediaQuery.platformBrightnessOf(context);
       print(platformBrightness);

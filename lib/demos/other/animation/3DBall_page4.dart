@@ -381,119 +381,55 @@ class TagsPainter extends CustomPainter {
 //      RRect rrect = RRect.fromRectAndRadius(rect, Radius.circular(20));
 //      canvas.drawRRect(rrect, paintStyle);
 
-      //圆形加阴影 通过多画几圈假装阴影效果
+      //圆形加阴影
       Color circleColor = Colors.red;
       Offset offset = Offset(point.x + text.width / 2, point.y + 15);
-
       double tempRadius = 50.0;
-      var tempW = 10;
-      for (var i = 0; i < 10; i++) {
-        tempRadius = tempRadius -1.0;
-        tempW = tempW - 1;
-        double w= tempW/10.0;
-        var paint1 = Paint()
-          ..strokeWidth = w-0.05
-          ..color = circleColor.withOpacity(w)
-          ..style = PaintingStyle.stroke;
-        Rect rect1 = Rect.fromCircle(center: offset, radius: tempRadius);
-        RRect rrect1 = RRect.fromRectAndRadius(rect1, Radius.circular(tempRadius));
-        canvas.drawRRect(rrect1, paint1);
-
-        var paint2 = Paint()
-          ..strokeWidth = w-0.10
-          ..color = circleColor.withOpacity(w)
-          ..style = PaintingStyle.stroke;
-        Rect rect2 = Rect.fromCircle(center: offset, radius: tempRadius);
-        RRect rrect2 = RRect.fromRectAndRadius(rect2, Radius.circular(tempRadius));
-        canvas.drawRRect(rrect2, paint2);
-
-      }
+      Path _circlePath = Path();
+      _circlePath.reset();
+      _circlePath.addArc(Rect.fromCircle(center: offset, radius: tempRadius), 0, 2 * pi);
+      _circlePath.close();
+      var circleShader = RadialGradient(colors: [
+        Colors.white.withAlpha(0),
+        Colors.white.withAlpha(0),
+        circleColor.withAlpha(0),
+        circleColor.withAlpha(0),
+        circleColor.withOpacity(0.1),
+        circleColor.withOpacity(0.6),
+      ]).createShader(Rect.fromCircle(center:offset,radius:tempRadius));
+      canvas.drawPath(_circlePath, paintStyle..style = PaintingStyle.fill..shader = circleShader..strokeWidth = 15);
 
 
-
-//      //圆形加阴影
+      //圆形加阴影 通过多画几圈假装阴影效果
 //      Color circleColor = Colors.red;
 //      Offset offset = Offset(point.x + text.width / 2, point.y + 15);
-//      paintStyle.strokeWidth = 0.99;
-//      //用Rect构建一个边长50,中心点坐标为100,100的矩形
-//      Rect rect = Rect.fromCircle(center: offset, radius: 50);
-//      //根据上面的矩形,构建一个圆角矩形
-//      RRect rrect = RRect.fromRectAndRadius(rect, Radius.circular(50));
-//      canvas.drawRRect(rrect, paintStyle);
 //
-//      var paint2 = Paint()
-//        ..strokeWidth = 0.88
-//        ..color = circleColor.withOpacity(0.9)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect2 = Rect.fromCircle(center: offset, radius: 49);
-//      RRect rrect2 = RRect.fromRectAndRadius(rect2, Radius.circular(49));
-//      canvas.drawRRect(rrect2, paint2);
+//      double tempRadius = 50.0;
+//      var tempW = 10;
+//      for (var i = 0; i < 10; i++) {
+//        tempRadius = tempRadius -1.0;
+//        tempW = tempW - 1;
+//        double w= tempW/10.0;
+//        var paint1 = Paint()
+//          ..strokeWidth = w-0.05
+//          ..color = circleColor.withOpacity(w)
+//          ..style = PaintingStyle.stroke;
+//        Rect rect1 = Rect.fromCircle(center: offset, radius: tempRadius);
+//        RRect rrect1 = RRect.fromRectAndRadius(rect1, Radius.circular(tempRadius));
+//        canvas.drawRRect(rrect1, paint1);
 //
-//      var paint3 = Paint()
-//        ..strokeWidth = 0.77
-//        ..color = circleColor.withOpacity(0.8)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect3 = Rect.fromCircle(center: offset, radius: 48);
-//      RRect rrect3= RRect.fromRectAndRadius(rect3, Radius.circular(48));
-//      canvas.drawRRect(rrect3, paint3);
-//
-//
-//      var paint4 = Paint()
-//        ..strokeWidth = 0.66
-//        ..color = circleColor.withOpacity(0.7)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect4 = Rect.fromCircle(center: offset, radius: 47);
-//      RRect rrect4= RRect.fromRectAndRadius(rect4, Radius.circular(47));
-//      canvas.drawRRect(rrect4, paint4);
-//
-//      var paint5 = Paint()
-//        ..strokeWidth = 0.55
-//        ..color = circleColor.withOpacity(0.6)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect5 = Rect.fromCircle(center: offset, radius: 46);
-//      RRect rrect5 = RRect.fromRectAndRadius(rect5, Radius.circular(46));
-//      canvas.drawRRect(rrect5, paint5);
-//
-//      var paint6 = Paint()
-//        ..strokeWidth = 0.44
-//        ..color = circleColor.withOpacity(0.5)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect6 = Rect.fromCircle(center: offset, radius: 45);
-//      RRect rrect6 = RRect.fromRectAndRadius(rect6, Radius.circular(45));
-//      canvas.drawRRect(rrect6, paint6);
-//
-//      var paint7 = Paint()
-//        ..strokeWidth = 0.33
-//        ..color = circleColor.withOpacity(0.4)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect7 = Rect.fromCircle(center: offset, radius: 44);
-//      RRect rrect7= RRect.fromRectAndRadius(rect7, Radius.circular(44));
-//      canvas.drawRRect(rrect7, paint7);
-//
-//
-//      var paint8 = Paint()
-//        ..strokeWidth = 0.22
-//        ..color = circleColor.withOpacity(0.3)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect8 = Rect.fromCircle(center: offset, radius: 43);
-//      RRect rrect8= RRect.fromRectAndRadius(rect8, Radius.circular(43));
-//      canvas.drawRRect(rrect8, paint8);
-//
-//      var paint9 = Paint()
-//        ..strokeWidth = 0.11
-//        ..color = circleColor.withOpacity(0.2)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect9= Rect.fromCircle(center: offset, radius: 42);
-//      RRect rrect9 = RRect.fromRectAndRadius(rect9, Radius.circular(42));
-//      canvas.drawRRect(rrect9, paint9);
-//
-//      var paint10 = Paint()
-//        ..strokeWidth = 0.1
-//        ..color = circleColor.withOpacity(0.1)
-//        ..style = PaintingStyle.stroke;
-//      Rect rect10= Rect.fromCircle(center: offset, radius: 41);
-//      RRect rrect10 = RRect.fromRectAndRadius(rect10, Radius.circular(41));
-//      canvas.drawRRect(rrect10, paint10);
+//        var paint2 = Paint()
+//          ..strokeWidth = w-0.10
+//          ..color = circleColor.withOpacity(w)
+//          ..style = PaintingStyle.stroke;
+//        Rect rect2 = Rect.fromCircle(center: offset, radius: tempRadius);
+//        RRect rrect2 = RRect.fromRectAndRadius(rect2, Radius.circular(tempRadius));
+//        canvas.drawRRect(rrect2, paint2);
+//      }
+
+
+
+
 
 
 

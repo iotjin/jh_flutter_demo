@@ -16,7 +16,7 @@ class PhotoSelectTest extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
               color: Colors.yellow,
               child:
-              jhPhotoPicker(
+              JhPhotoPicker(
                 lfPaddingSpace: 110,
                 callBack: (var img){
                   print("img-------------");
