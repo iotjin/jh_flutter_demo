@@ -177,8 +177,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget SwitchRootWidget() {
-    var lastVersion =
-        JhStorageUtils.getStringWithKey(kUserDefault_LastVersion);
+    var lastVersion = JhStorageUtils.getStringWithKey(kUserDefault_LastVersion);
 //    print('lastVersion 版本号：$lastVersion');
     if (lastVersion == null || lastVersion == '') {
 //      print('首次安装');
@@ -190,9 +189,12 @@ class _MyAppState extends State<MyApp> {
         return NewFeaturePage();
       } else {
 //        print('正常启动');
-        userModel model =
-            SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
-        if (model != null) {
+//        userModel model =
+//            SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
+
+        var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
+        if (modelJson != null) {
+          userModel model = userModel.fromJson(modelJson);
           print('本地取出的 userName:' + model.userName);
           return BaseTabBar();
         } else {

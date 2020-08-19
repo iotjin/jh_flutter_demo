@@ -22,6 +22,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  # 加密 https://pub.flutter-io.cn/packages/encrypt
+  encrypt: ^4.0.2
   cupertino_icons: ^0.1.2
   # toast https://pub.flutter-io.cn/packages/jhtoast
   jhtoast: ^0.2.0
@@ -75,10 +77,8 @@ dependencies:
   device_info: ^0.4.2+1
   # 网页打开工具 https://pub.dev/packages/url_launcher#-readme-tab-
   url_launcher: ^5.4.2
-#  # Dart 常用工具类库 https://github.com/Sky24n/common_utils
-#  common_utils: ^1.1.3
-  # Flutter 常用工具类库（本地化 屏幕适配） https://github.com/Sky24n/flustars
-  flustars: ^0.3.2
+  # Flutter 常用工具类库（本地化 屏幕适配） https://pub.flutter-io.cn/packages/flustars
+  flustars: ^0.3.3
   # EChart 图表（缩放手势冲突） https://pub.flutter-io.cn/packages/flutter_echarts
   flutter_echarts: ^1.3.5
   # 图表（没有提示栏) https://pub.flutter-io.cn/packages/mp_chart
@@ -105,6 +105,8 @@ dependencies:
   sticky_headers: ^0.1.8+1
   # 进度条 https://pub.flutter-io.cn/packages/percent_indicator
   percent_indicator: ^2.1.5
+  #  # Dart 常用工具类库 https://github.com/Sky24n/common_utils
+  #  common_utils: ^1.1.3
 
 
 

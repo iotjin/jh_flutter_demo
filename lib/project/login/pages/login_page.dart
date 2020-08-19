@@ -263,13 +263,19 @@ class _LoginPageState extends State<LoginPage> {
 //      JhToast.showText(context, msg: response.data["msg"]);
 //    }
 
-    HttpUtils.PostRequest(APIType.Login,{"userName": _name, "pwd": _pwd}, success: (data) {
+    //登录请求
+    HttpUtils.PostRequest(APIType.Login, {"userName": _name, "pwd": _pwd},
+        success: (data) {
       if (data["suc"] == true) {
-        Map<String, dynamic> json = Map<String, dynamic>.from(data["data"]);
-        /*将Json转成实体类*/
-        userModel model = userModel.fromJson(json);
+//        Map<String, dynamic> json = Map<String, dynamic>.from(data["data"]);
+//        /*将Json转成实体类*/
+//        userModel model = userModel.fromJson(json);
 //      print(model.phone);
-        SpUtil.putObject(kUserDefault_UserInfo, model);
+//        SpUtil.putObject(kUserDefault_UserInfo, model);
+
+        //保存本地
+        JhStorageUtils.saveModel(kUserDefault_UserInfo, data["data"]);
+
         hide();
         JhToast.showSuccess(context, msg: data["msg"]);
         NavigatorUtils.pushReplacement(context, Routes.home);

@@ -6,12 +6,16 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
+
 import 'package:flustars/flustars.dart';
-import 'package:jh_flutter_demo/project/model/user_model.dart';
+
+import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_storage_utils.dart';
+import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import 'package:jh_flutter_demo/project/configs/colors.dart';
+import 'package:jh_flutter_demo/project/model/user_model.dart';
+
 
 
 class InfoPage extends StatefulWidget {
@@ -28,7 +32,11 @@ class _InfoPageState extends State<InfoPage> {
     // TODO: implement initState
     super.initState();
 
-    model = SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
+//    model = SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
+
+    var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
+    model = userModel.fromJson(modelJson);
+
   }
 
 

@@ -74,6 +74,7 @@ import 'other/pass_value_page2.dart';
 import 'other/nav_test.dart';
 import 'other/red_dot_page.dart';
 import 'other/qr_code_test.dart';
+import 'other/aes_test_page.dart';
 
 //search
 import 'search/search_demo_list_page.dart';
@@ -164,6 +165,7 @@ class DemosRouter implements IRouterProvider{
     router.define("ListViewGroupPage3", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage3()));
     //other
     router.define("AnimationDemoListPage", handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));
+    router.define("AESTestPage", handler: Handler(handlerFunc: (_, __) => AESTestPage()));
     router.define("DBallPage", handler: Handler(handlerFunc: (_, __) => DBallPage()));
     router.define("DBallPage2", handler: Handler(handlerFunc: (_, __) => DBallPage2()));
     router.define("DBallPage3", handler: Handler(handlerFunc: (_, __) => DBallPage3()));
