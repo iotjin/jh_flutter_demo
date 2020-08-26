@@ -14,7 +14,7 @@ class KString {
   /*one*/
   static String oneTabTitle = "微信";
   static String twoTabTitle = "通讯录";
-  static String threeTabTitle = "朋友圈";
+  static String threeTabTitle = "发现";
   static String fourTabTitle = "我的";
 
   static String testTitle = "DemoList";

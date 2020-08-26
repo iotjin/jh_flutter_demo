@@ -11,6 +11,7 @@ import 'package:jh_flutter_demo/project/four/info_page.dart';
 import 'package:jh_flutter_demo/project/four/about_page.dart';
 import 'package:jh_flutter_demo/project/four/about_ios_page.dart';
 import 'package:jh_flutter_demo/project/four/mine_page.dart';
+import 'package:jh_flutter_demo/project/four/mine_page2.dart';
 
 
 class MainRouter implements IRouterProvider{
@@ -32,6 +33,7 @@ class MainRouter implements IRouterProvider{
     router.define("AboutPage", handler: Handler(handlerFunc: (_, __) => AboutPage()));
     router.define("AboutIOSPage", handler: Handler(handlerFunc: (_, __) => AboutIOSPage()));
     router.define("MinePage", handler: Handler(handlerFunc: (_, __) => MinePage()));
+    router.define("MinePage2", handler: Handler(handlerFunc: (_, __) => MinePage2()));
   }
 }
 

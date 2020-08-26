@@ -26,7 +26,7 @@ dependencies:
   encrypt: ^4.0.2
   cupertino_icons: ^0.1.2
   # toast https://pub.flutter-io.cn/packages/jhtoast
-  jhtoast: ^0.2.0
+  jhtoast: ^0.5.0
 
 
   # 网络请求 https://pub.dev/packages/dio#-installing-tab-
@@ -135,6 +135,10 @@ flutter:
     - assets/images/tab/
     - assets/images/service/
     - assets/images/demos/
+    - assets/wechat/
+    - assets/wechat/contacts/
+    - assets/wechat/discover/
+    - assets/wechat/mine/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

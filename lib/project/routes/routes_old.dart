@@ -15,7 +15,7 @@ import 'package:jh_flutter_demo/project/four/set_page.dart';
 import 'package:jh_flutter_demo/project/four/info_page.dart';
 import 'package:jh_flutter_demo/project/four/about_page.dart';
 import 'package:jh_flutter_demo/project/four/about_ios_page.dart';
-import 'package:jh_flutter_demo/project/four/mine_page.dart';
+import 'package:jh_flutter_demo/project/four/mine_page2.dart';
 
 import 'package:jh_flutter_demo/demos/demo_lists_page.dart';
 
@@ -127,7 +127,7 @@ final routes = {
   "InfoPage": (context) => InfoPage(),
   "AboutPage": (context) => AboutPage(),
   "AboutIOSPage": (context) => AboutIOSPage(),
-  "MinePage": (context) => MinePage(),
+  "MinePage2": (context) => MinePage2(),
 
   demoListsPage: (context) => DemoListsPage(),
 

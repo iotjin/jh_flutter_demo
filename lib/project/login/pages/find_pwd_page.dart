@@ -158,7 +158,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
 
 
 
-    var hide =  JhToast.showLoadingText_iOS(context,
+    var hide =  JhToast.showIOSLoadingText(context,
       msg:"正在重置...",
     );
     Future.delayed(Duration(seconds: 1),(){

@@ -137,7 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
 
-    var hide =  JhToast.showLoadingText_iOS(context,
+    var hide =  JhToast.showIOSLoadingText(context,
       msg:"正在注册...",
     );
     Future.delayed(Duration(seconds: 1),(){

@@ -33,7 +33,7 @@
         <entry key="back_button_interceptor">
           <value>
             <list>
-              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/back_button_interceptor-4.2.4/lib" />
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/back_button_interceptor-4.3.0/lib" />
             </list>
           </value>
         </entry>
@@ -383,7 +383,7 @@
         <entry key="jhtoast">
           <value>
             <list>
-              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/jhtoast-0.2.0/lib" />
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/jhtoast-0.5.0/lib" />
             </list>
           </value>
         </entry>
@@ -849,7 +849,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/args-1.6.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/asn1lib-0.6.5/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/async-2.4.1/lib" />
-      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/back_button_interceptor-4.2.4/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/back_button_interceptor-4.3.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/badges-1.1.1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/barcode_scan-3.0.1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/boolean_selector-2.0.0/lib" />
@@ -895,7 +895,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/image_picker-0.6.7+2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/image_picker_platform_interface-1.1.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/intl-0.16.1/lib" />
-      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/jhtoast-0.2.0/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/jhtoast-0.5.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/js-0.6.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/keyboard_actions-3.2.1+1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/logging-0.11.4/lib" />

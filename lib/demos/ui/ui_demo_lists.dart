@@ -4,8 +4,8 @@ import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class UIDemoListsPage extends StatelessWidget {
 
-  final List titleData = ["UI","UI2"];
-  final List routeData = ["UIPage","UIPage2"];
+  final List titleData = ["UI","UI2","Scroll"];
+  final List routeData = ["UIPage","UIPage2","ScrollPage"];
 
 
   @override

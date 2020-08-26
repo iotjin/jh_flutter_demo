@@ -37,7 +37,7 @@ class ToastTestPage extends StatelessWidget {
         }
 
         if(index==5){
-          var hide =  JhToast.showLoadingText_horizontal(context,
+          var hide =  JhToast.showHorizontalLoadingText(context,
               msg:"正在加载中..."
           );
           Future.delayed(Duration(seconds: 2),(){
@@ -55,13 +55,13 @@ class ToastTestPage extends StatelessWidget {
 
         if(index==7){
           Widget img = Image.asset("assets/images/toast_success.png",package: "jhtoast");
-          JhToast.showImageText_horizontal(context,
+          JhToast.showHorizontalImageText(context,
               msg: "水平自定义图文",
               image: img);
         }
 
         if(index==8){
-          var hide =  JhToast.showLoadingText_iOS(context,
+          var hide =  JhToast.showIOSLoadingText(context,
             msg:"正在加载中...",
           );
           Future.delayed(Duration(seconds: 2),(){

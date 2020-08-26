@@ -281,7 +281,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
 
 
 
-    var hide =  JhToast.showLoadingText_iOS(context,
+    var hide =  JhToast.showIOSLoadingText(context,
       msg:"正在登录...",
     );
     Future.delayed(Duration(seconds: 0),(){

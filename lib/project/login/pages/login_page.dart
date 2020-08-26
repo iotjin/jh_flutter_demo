@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
 
 //    print('name =$_name');
 //    print('pwd =$_pwd');
-//    var hide =  JhToast.showLoadingText_iOS(context,
+//    var hide =  JhToast.showIOSLoadingText(context,
 //      msg:"正在登录...",
 //    );
 //    Future.delayed(Duration(seconds: 1),(){
@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
     print('name =$_name');
     print('pwd =$_pwd');
 
-    var hide = JhToast.showLoadingText_iOS(
+    var hide = JhToast.showIOSLoadingText(
       context,
       msg: "正在登录...",
     );

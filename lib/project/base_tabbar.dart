@@ -7,11 +7,13 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:badges/badges.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
 import 'package:jh_flutter_demo/project/one/one_page.dart';
 import 'package:jh_flutter_demo/project/Two/two_page.dart';
 import 'package:jh_flutter_demo/project/Three/three_page.dart';
 import 'four/four_page.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
+import 'four/pull_big_info.dart';
 
 class BaseTabBar extends StatefulWidget {
   BaseTabBar({Key key}) : super(key: key);
@@ -22,6 +24,7 @@ class BaseTabBar extends StatefulWidget {
 class _BaseTabBarState extends State<BaseTabBar> {
   int _currentIndex = 0;
   List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), FourPage()];
+//  List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), SVPersonalInfoPage()];
   static double _iconWH = 24.0;
   static double _fontSize = 10.0;
   Color selColor = Color(0xFF3BB815);
@@ -38,9 +41,17 @@ class _BaseTabBarState extends State<BaseTabBar> {
       activeIcon: JhLoadAssetImage('tab/nav_tab_2_on', width: _iconWH),
     ),
     BottomNavigationBarItem(
-      title: Text("朋友圈"),
-      icon: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH),
+      title: Text("发现"),
+//      icon: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH),
       activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH),
+      icon: Badge(
+          padding: EdgeInsets.all(4),
+          position: BadgePosition.topRight(top: -4, right: -4),
+          child: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH)),
+//      activeIcon: Badge(
+//          padding: EdgeInsets.all(4),
+//          position: BadgePosition.topRight(top: -4, right: -4),
+//          child: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH)),
     ),
     BottomNavigationBarItem(
       title: Text("我的"),

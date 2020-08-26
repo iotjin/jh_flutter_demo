@@ -59,6 +59,7 @@ import 'listView/listview_test_pull_down_vc.dart';
 import 'listView/listview_group_page.dart';
 import 'listView/listview_group_page2.dart';
 import 'listView/listview_group_page3.dart';
+import 'listView/listview_header_page.dart';
 
 //other
 import 'other/animation/animation_demo_list_page.dart';
@@ -100,6 +101,7 @@ import 'topTabBar/top_tabbar_test3_page.dart';
 import 'ui/ui_demo_lists.dart';
 import 'ui/ui_page.dart';
 import 'ui/ui_page2.dart';
+import 'ui/scroll_page.dart';
 
 class DemosRouter implements IRouterProvider{
 
@@ -163,6 +165,8 @@ class DemosRouter implements IRouterProvider{
     router.define("ListViewGroupPage", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage()));
     router.define("ListViewGroupPage2", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage2()));
     router.define("ListViewGroupPage3", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage3()));
+    router.define("ListViewHeaderPage", handler: Handler(handlerFunc: (_, __) => ListViewHeaderPage()));
+
     //other
     router.define("AnimationDemoListPage", handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));
     router.define("AESTestPage", handler: Handler(handlerFunc: (_, __) => AESTestPage()));
@@ -212,6 +216,7 @@ class DemosRouter implements IRouterProvider{
     router.define("UIDemoListsPage", handler: Handler(handlerFunc: (_, __) => UIDemoListsPage()));
     router.define("UIPage", handler: Handler(handlerFunc: (_, __) => UIPage()));
     router.define("UIPage2", handler: Handler(handlerFunc: (_, __) => UIPage2()));
+    router.define("ScrollPage", handler: Handler(handlerFunc: (_, __) => ScrollPage()));
 
 
   }

@@ -11,7 +11,7 @@ import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class SetPage extends StatelessWidget {
-  final List titleData = ['我的', "个人信息", "账号安全", "关于", "关于iOS", "退出登录"];
+  final List titleData = ['我的 - 带点击事件', '我的2', "个人信息", "账号安全", "关于", "关于iOS", "退出登录"];
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,12 @@ class SetPage extends StatelessWidget {
       title: "设置",
       dataArr: titleData,
       callBack: (index, str) {
-        if (str == "我的") {
+        if (str == "我的 - 带点击事件") {
           NavigatorUtils.pushNamed(context, "MinePage");
         }
-
+        if (str == "我的2") {
+          NavigatorUtils.pushNamed(context, "MinePage2");
+        }
         if (str == "个人信息") {
           NavigatorUtils.pushNamed(context, "InfoPage");
         }
@@ -38,7 +40,7 @@ class SetPage extends StatelessWidget {
           JhBottomSheet.showText(context, title: "请选择操作", redBtnTitle: "退出登录",
               clickCallback: (index, str) {
             if (str == "退出登录") {
-              var hide = JhToast.showLoadingText_iOS(
+              var hide = JhToast.showIOSLoadingText(
                 context,
                 msg: "正在退出...",
               );
