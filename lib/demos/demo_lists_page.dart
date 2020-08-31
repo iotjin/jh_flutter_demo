@@ -23,6 +23,7 @@ class DemoListsPage extends StatelessWidget {
     '轮播',
     'Animation',
     'AES',
+    '列表侧滑',
   ];
   final List routeData = [
     "UIDemoListsPage",
@@ -43,6 +44,7 @@ class DemoListsPage extends StatelessWidget {
     'SwiperDemoListPage',
     'AnimationDemoListPage',
     'AESTestPage',
+    'SideslipTestPage',
   ];
 
   @override
