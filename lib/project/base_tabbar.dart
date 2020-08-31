@@ -13,7 +13,7 @@ import 'package:jh_flutter_demo/project/one/one_page.dart';
 import 'package:jh_flutter_demo/project/Two/two_page.dart';
 import 'package:jh_flutter_demo/project/Three/three_page.dart';
 import 'four/four_page.dart';
-import 'four/pull_big_info.dart';
+import 'four/pages/pull_big_info.dart';
 
 class BaseTabBar extends StatefulWidget {
   BaseTabBar({Key key}) : super(key: key);

@@ -47,6 +47,7 @@ class TwoPage extends StatelessWidget {
       appBar: gradientAppBar(
         context,
         KString.twoTabTitle,
+        rightImgPath: 'assets/images/tianjiahaoyou.png',
       ),
       body: BaseScrollView(),
       backgroundColor: KColor.WeiXinBgColor,

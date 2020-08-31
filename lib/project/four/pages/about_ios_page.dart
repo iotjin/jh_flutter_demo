@@ -9,7 +9,7 @@ import 'package:device_info/device_info.dart';
 
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/click_item.dart';
-import '../routes/navigator.dart';
+import '../../routes/navigator.dart';
 
 
 

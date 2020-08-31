@@ -9,7 +9,7 @@ import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
 import 'package:device_info/device_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info/package_info.dart';
-import '../routes/navigator.dart';
+import '../../routes/navigator.dart';
 
 
 

@@ -7,9 +7,10 @@ import 'package:jh_flutter_demo/jh_common/widgets/update_dialog.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/model/user_model.dart';
 
-double _cellH = 55.0;
+
 double _leftSpace = 50.0;
-double _rowSpace = 6;
+double _cellH = wx_cellH;
+double _rowSpace = wx_rowSpace;
 
 double _scrollMaxOffSet = 1000;
 
@@ -132,11 +133,13 @@ class _FourPageState extends State<FourPage> {
         _header(model),
         SizedBox(height: _rowSpace),
         JhSetCell(
-          cellHeight: _cellH,
-          leftImgPath: "assets/wechat/mine/ic_wallet.png",
-          title: '支付',
-          hiddenLine: true,
-        ),
+            cellHeight: _cellH,
+            leftImgPath: "assets/wechat/mine/ic_wallet.png",
+            title: '支付',
+            hiddenLine: true,
+            clickCallBack: () {
+              NavigatorUtils.pushNamed(context, "WXPayPage");
+            }),
         SizedBox(height: _rowSpace),
         JhSetCell(
             cellHeight: _cellH,
@@ -226,6 +229,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('点击昵称==  ${model.userName}');
+                        NavigatorUtils.pushNamed(context, "WXPersonInfoPage");
                       },
                       child: Container(
                         width: double.maxFinite,
@@ -244,6 +248,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('跳转个人信息');
+                        NavigatorUtils.pushNamed(context, "WXPersonInfoPage");
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 5.0),

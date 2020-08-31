@@ -31,7 +31,7 @@ class JhSetCell extends StatefulWidget {
   final Widget rightWidget; //右侧widget ，默认隐藏
   final bool hiddenArrow; //隐藏箭头，默认不隐藏
   final _ClickCallBack clickCallBack;
-  final double space; //标题宽度
+  final double titleWidth; //标题宽度
   final TextStyle titleStyle;
   final TextStyle textStyle;
   final bool hiddenLine; //隐藏底部横线
@@ -49,7 +49,7 @@ class JhSetCell extends StatefulWidget {
       this.hiddenArrow: false,
       this.rightWidget,
       this.clickCallBack,
-      this.space = _titleSpace,
+      this.titleWidth = _titleSpace,
       this.titleStyle = _titleStyle,
       this.textStyle = _textStyle,
       this.hiddenLine = false,
@@ -109,7 +109,7 @@ class _JhSetCellState extends State<JhSetCell> {
                   Offstage(
                     offstage: widget.title.isEmpty ? true : false,
                     child: Container(
-                      width: widget.space,
+                      width: widget.titleWidth,
                       child: Text(widget.title, style: widget.titleStyle),
                     ),
                   ),

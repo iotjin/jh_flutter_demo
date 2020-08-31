@@ -30,6 +30,13 @@
             </list>
           </value>
         </entry>
+        <entry key="azlistview">
+          <value>
+            <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/azlistview-0.1.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="back_button_interceptor">
           <value>
             <list>
@@ -300,6 +307,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_screenutil-2.3.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="flutter_slidable">
+          <value>
+            <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_slidable-0.5.7/lib" />
             </list>
           </value>
         </entry>
@@ -849,6 +863,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/args-1.6.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/asn1lib-0.6.5/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/async-2.4.1/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/azlistview-0.1.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/back_button_interceptor-4.3.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/badges-1.1.1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/barcode_scan-3.0.1/lib" />
@@ -886,6 +901,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_plugin_android_lifecycle-1.0.8/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_progress_dialog-0.1.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_screenutil-2.3.1/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_slidable-0.5.7/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_swiper-1.1.6/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/fluttertoast-3.1.3/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/http-0.12.1/lib" />

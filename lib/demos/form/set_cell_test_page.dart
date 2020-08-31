@@ -28,7 +28,7 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
                     print('点击cell');
                   },),
                   JhSetCell(title: '左标题左标题',text: '右侧文字',),
-                  JhSetCell(title: '左标题左标题左标题',text: '右侧文字',space: 150,),
+                  JhSetCell(title: '左标题左标题左标题',text: '右侧文字',titleWidth: 150,),
 
                   JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置',text: '右侧文字'),
                   JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '关于',text: '有新版本',textStyle: TextStyle(fontSize: 15.0,color: Colors.red),),

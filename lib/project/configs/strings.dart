@@ -17,6 +17,10 @@ class KString {
   static String threeTabTitle = "发现";
   static String fourTabTitle = "我的";
 
+  static String wx_personInfo = "个人信息";
+  static String wx_pay = "支付";
+  static String wx_payManager = "支付管理";
+
   static String testTitle = "DemoList";
 
 

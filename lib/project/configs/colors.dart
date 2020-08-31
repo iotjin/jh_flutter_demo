@@ -12,6 +12,8 @@ const Color kThemeColor = Color(0xFF3BB815);
 class KColor {
   //微信主题色 rgb(59,184,21)
   static Color kWeiXinThemeColor = Color(0xFF3BB815);
+  //rgb(50, 179, 116)
+  static Color kWeiXinPayColor = Color(0xFF32B374);
 
   static Color kWeiXinTitleColor = Colors.white;
 

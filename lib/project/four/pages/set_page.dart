@@ -11,7 +11,7 @@ import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class SetPage extends StatelessWidget {
-  final List titleData = ['我的 - 带点击事件', '我的2', "个人信息", "账号安全", "关于", "关于iOS", "退出登录"];
+  final List titleData = ['我的 - 带点击事件', '我的2', "个人信息", "关于", "关于iOS", "退出登录"];
 
   @override
   Widget build(BuildContext context) {

@@ -11,11 +11,11 @@ import 'package:jh_flutter_demo/project/three/three_page.dart';
 
 //four
 import 'package:jh_flutter_demo/project/four/four_page.dart';
-import 'package:jh_flutter_demo/project/four/set_page.dart';
-import 'package:jh_flutter_demo/project/four/info_page.dart';
-import 'package:jh_flutter_demo/project/four/about_page.dart';
-import 'package:jh_flutter_demo/project/four/about_ios_page.dart';
-import 'package:jh_flutter_demo/project/four/mine_page2.dart';
+import 'package:jh_flutter_demo/project/four/pages/set_page.dart';
+import 'package:jh_flutter_demo/project/four/pages/info_page.dart';
+import 'package:jh_flutter_demo/project/four/pages/about_page.dart';
+import 'package:jh_flutter_demo/project/four/pages/about_ios_page.dart';
+import 'package:jh_flutter_demo/project/four/pages/mine_page2.dart';
 
 import 'package:jh_flutter_demo/demos/demo_lists_page.dart';
 
