@@ -25,7 +25,7 @@ class InfoPage extends StatefulWidget {
 
 class _InfoPageState extends State<InfoPage> {
 
-  userModel model;
+  UserModel model;
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _InfoPageState extends State<InfoPage> {
 //    model = SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
 
     var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
-    model = userModel.fromJson(modelJson);
+    model = UserModel.fromJson(modelJson);
 
   }
 

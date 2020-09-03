@@ -39,25 +39,29 @@ class JhSetCell extends StatefulWidget {
   final double lineRightEdge; //底部横线右侧距离 默认0
   final Color bgColor; //背景颜色，默认白色
   final double cellHeight; //底部横线右侧距离 默认_cellHeight
+  final double leftImgWH; //左侧图片宽高，默认_imgWH
+  final TextAlign textAlign; //默认靠右
 
-  const JhSetCell(
-      {Key key,
-      @required this.title: '',
-      this.leftImgPath,
-      this.leftWidget,
-      this.text: '',
-      this.hiddenArrow: false,
-      this.rightWidget,
-      this.clickCallBack,
-      this.titleWidth = _titleSpace,
-      this.titleStyle = _titleStyle,
-      this.textStyle = _textStyle,
-      this.hiddenLine = false,
-      this.lineLeftEdge = _lineLeftEdge,
-      this.lineRightEdge = _lineRightEdge,
-      this.bgColor = _bgColor,
-      this.cellHeight = _cellHeight})
-      : super(key: key);
+  const JhSetCell({
+    Key key,
+    @required this.title: '',
+    this.leftImgPath,
+    this.leftWidget,
+    this.text: '',
+    this.hiddenArrow: false,
+    this.rightWidget,
+    this.clickCallBack,
+    this.titleWidth = _titleSpace,
+    this.titleStyle = _titleStyle,
+    this.textStyle = _textStyle,
+    this.hiddenLine = false,
+    this.lineLeftEdge = _lineLeftEdge,
+    this.lineRightEdge = _lineRightEdge,
+    this.bgColor = _bgColor,
+    this.cellHeight = _cellHeight,
+    this.leftImgWH = _imgWH,
+    this.textAlign = TextAlign.right,
+  }) : super(key: key);
 
   @override
   _JhSetCellState createState() => _JhSetCellState();
@@ -99,13 +103,17 @@ class _JhSetCellState extends State<JhSetCell> {
                   widget.leftImgPath != null
                       ? Image.asset(
                           widget.leftImgPath,
-                          width: _imgWH,
-                          height: _imgWH,
+                          width: widget.leftImgWH,
+                          height: widget.leftImgWH,
                         )
                       : (widget.leftWidget != null
                           ? widget.leftWidget
                           : Container()),
-                  SizedBox(width: widget.leftImgPath != null ? 10 : 0),
+                  SizedBox(
+                      width: (widget.leftImgPath != null ||
+                              widget.leftWidget != null)
+                          ? 10
+                          : 0),
                   Offstage(
                     offstage: widget.title.isEmpty ? true : false,
                     child: Container(
@@ -119,7 +127,7 @@ class _JhSetCellState extends State<JhSetCell> {
                     hintText: '',
                     enabled: false,
                     textStyle: widget.textStyle,
-                    textAlign: TextAlign.right,
+                    textAlign: widget.textAlign,
                     border: InputBorder.none,
                   )),
                   widget.rightWidget != null ? widget.rightWidget : Container(),

@@ -1,12 +1,42 @@
+/**
+ *  navigator_utils.dart
+ *
+ *  Created by iotjin on 2020/08/14.
+ *  description: 路由跳转工具类
+ */
+
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
 import 'fluro_navigator.dart';
 
+enum JumpType {
+  native,
+  nativeModal,
+  left,
+  bottom,
+  fadeIn,
+}
+
 // 路由跳转工具类
 class NavigatorUtils {
   // 跳转
-  static void pushNamed(BuildContext context, String routeName) {
-    return NavigatorFluroUtils.push(context, routeName);
+  static void pushNamed(BuildContext context, String routeName,{transition: JumpType.native}) {
+    TransitionType type = TransitionType.native;
+
+    if(transition == JumpType.nativeModal ){
+      type = TransitionType.nativeModal;
+    }
+    if(transition == JumpType.left ){
+      type = TransitionType.inFromRight;
+    }
+    if(transition == JumpType.bottom ){
+      type = TransitionType.inFromBottom;
+    }
+    if(transition == JumpType.fadeIn ){
+      type = TransitionType.fadeIn;
+    }
+    return NavigatorFluroUtils.push(context, routeName, transition:type);
   }
 
   // 跳转 清空栈

@@ -77,6 +77,7 @@ import 'other/red_dot_page.dart';
 import 'other/qr_code_test.dart';
 import 'other/aes_test_page.dart';
 import 'other/sideslip_test_page.dart';
+import 'other/city_select_list_page.dart';
 
 //search
 import 'search/search_demo_list_page.dart';
@@ -180,9 +181,6 @@ class DemosRouter implements IRouterProvider{
     router.define("PhotoSelectTest", handler: Handler(handlerFunc: (_, __) => PhotoSelectTest()));
     router.define("PassValuePage", handler: Handler(handlerFunc: (_, __) => PassValuePage()));
 //    router.define("PassValuePage2", handler: Handler(handlerFunc: (_, __) => PassValuePage2()));
-    router.define("SideslipTestPage", handler: Handler(handlerFunc: (_, __) => SideslipTestPage()));
-
-
     router.define("PassValuePage2", handler: Handler(handlerFunc: (_, params) {
       print("---------params---------");
       print(params);
@@ -190,10 +188,11 @@ class DemosRouter implements IRouterProvider{
       final bool isScan = params['isScan']?.first == 'true';
       return PassValuePage2(passValue);
     }));
-
     router.define("NavTestPage", handler: Handler(handlerFunc: (_, __) => NavTestPage()));
     router.define("RedDotPage", handler: Handler(handlerFunc: (_, __) => RedDotPage()));
     router.define("QRCodeTest", handler: Handler(handlerFunc: (_, __) => QRCodeTest()));
+    router.define("SideslipTestPage", handler: Handler(handlerFunc: (_, __) => SideslipTestPage()));
+    router.define("CitySelectListPage", handler: Handler(handlerFunc: (_, __) => CitySelectListPage()));
 
     //search
     router.define("SearchDemoListPage", handler: Handler(handlerFunc: (_, __) => SearchDemoListPage()));

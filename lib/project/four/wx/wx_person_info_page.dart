@@ -12,14 +12,14 @@ import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_allscreen_show.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 
-class WXPersonInfoPage extends StatelessWidget {
+class WxPersonInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, KString.wx_personInfo,
           backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.WeiXinBgColor,
+      backgroundColor: KColor.kWeiXinBgColor,
     );
   }
 }

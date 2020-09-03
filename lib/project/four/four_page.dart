@@ -1,3 +1,10 @@
+/**
+ *  four_page.dart
+ *
+ *  Created by iotjin on 2019/08/14.
+ *  description: 我的
+ */
+
 import 'package:flutter/material.dart';
 
 import 'package:jh_flutter_demo/base_appbar.dart';
@@ -20,7 +27,7 @@ class FourPage extends StatefulWidget {
 }
 
 class _FourPageState extends State<FourPage> {
-  userModel _model;
+  UserModel _model;
 
   ScrollController _scrollController =
       new ScrollController(initialScrollOffset: 0.0);
@@ -31,7 +38,7 @@ class _FourPageState extends State<FourPage> {
     // TODO: implement initState
     super.initState();
     var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
-    _model = userModel.fromJson(modelJson);
+    _model = UserModel.fromJson(modelJson);
 //    print(_model.avatarUrl);
 
     _scrollController.addListener(() {
@@ -66,7 +73,7 @@ class _FourPageState extends State<FourPage> {
 //            rightImgPath: "assets/images/set.png", rightItemCallBack: () {
 //          NavigatorUtils.pushNamed(context, "SetPage");
 //        }),
-//        backgroundColor: KColor.WeiXinBgColor,
+//        backgroundColor: KColor.kWeiXinBgColor,
         body: _body(_model));
   }
 
@@ -74,7 +81,7 @@ class _FourPageState extends State<FourPage> {
     return Stack(
       children: <Widget>[
         Container(
-          color: KColor.WeiXinBgColor,
+          color: KColor.kWeiXinBgColor,
           child: MediaQuery.removePadding(
             context: context,
             removeTop: true,
@@ -138,7 +145,7 @@ class _FourPageState extends State<FourPage> {
             title: '支付',
             hiddenLine: true,
             clickCallBack: () {
-              NavigatorUtils.pushNamed(context, "WXPayPage");
+              NavigatorUtils.pushNamed(context, "WxPayPage");
             }),
         SizedBox(height: _rowSpace),
         JhSetCell(
@@ -229,7 +236,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('点击昵称==  ${model.userName}');
-                        NavigatorUtils.pushNamed(context, "WXPersonInfoPage");
+                        NavigatorUtils.pushNamed(context, "WxPersonInfoPage");
                       },
                       child: Container(
                         width: double.maxFinite,
@@ -248,7 +255,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('跳转个人信息');
-                        NavigatorUtils.pushNamed(context, "WXPersonInfoPage");
+                        NavigatorUtils.pushNamed(context, "WxPersonInfoPage");
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 5.0),

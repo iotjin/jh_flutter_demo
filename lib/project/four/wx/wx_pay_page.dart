@@ -110,17 +110,17 @@ List _dataArr3 = [
 
 double _money = 345345.13;
 
-class WXPayPage extends StatelessWidget {
+class WxPayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, KString.wx_pay,
           rightImgPath: 'assets/images/ic_more_black.png',
           backgroundColor: Colors.transparent, rightItemCallBack: () {
-        NavigatorUtils.pushNamed(context, "WXPayManagerPage");
+        NavigatorUtils.pushNamed(context, "WxPayManagerPage");
       }),
       body: _body(context),
-      backgroundColor: KColor.WeiXinBgColor,
+      backgroundColor: KColor.kWeiXinBgColor,
     );
   }
 }

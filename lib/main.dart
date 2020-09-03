@@ -194,7 +194,7 @@ class _MyAppState extends State<MyApp> {
 
         var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
         if (modelJson != null) {
-          userModel model = userModel.fromJson(modelJson);
+          UserModel model = UserModel.fromJson(modelJson);
           print('本地取出的 userName:' + model.userName);
           return BaseTabBar();
         } else {

@@ -6,11 +6,11 @@ import 'routes.dart';
 
 /// fluro的路由跳转工具类
 class NavigatorFluroUtils {
-  
+
   static void push(BuildContext context, String path,
-      {bool replace = false, bool clearStack = false}) {
+      {bool replace = false, bool clearStack = false, transition: TransitionType.native}) {
     unfocus();
-    Application.router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: TransitionType.native);
+    Application.router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: transition);
   }
 
   static void pushResult(BuildContext context, String path, Function(Object) function,
@@ -38,7 +38,7 @@ class NavigatorFluroUtils {
     unfocus();
     Navigator.pop<Object>(context, result);
   }
-  
+
   /// 跳到WebView页
   static void goWebViewPage(BuildContext context, String title, String url) {
     //fluro 不支持传中文,需转换

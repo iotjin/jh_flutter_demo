@@ -44,7 +44,7 @@ class ScrollPage extends StatelessWidget {
     return Scaffold(
         appBar: baseAppBar(context, 'ScrollPage'),
         body: BaseScrollView(),
-        backgroundColor: KColor.WeiXinBgColor);
+        backgroundColor: KColor.kWeiXinBgColor);
   }
 }
 

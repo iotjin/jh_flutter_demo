@@ -1,3 +1,10 @@
+/**
+ *  three_page.dart
+ *
+ *  Created by iotjin on 2019/08/14.
+ *  description: 发现
+ */
+
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
@@ -7,8 +14,6 @@ import 'package:jh_flutter_demo/project/configs/colors.dart';
 import 'package:jh_flutter_demo/project/configs/strings.dart';
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
-import 'package:jh_flutter_demo/demos/ui/ui_demo_lists.dart';
-
 class ThreePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,7 +21,7 @@ class ThreePage extends StatelessWidget {
       appBar: baseAppBar(context, KString.threeTabTitle,
           backgroundColor: Colors.transparent),
       body: _content,
-      backgroundColor: KColor.WeiXinBgColor,
+      backgroundColor: KColor.kWeiXinBgColor,
     );
   }
 }

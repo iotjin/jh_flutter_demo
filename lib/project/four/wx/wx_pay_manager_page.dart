@@ -15,12 +15,12 @@ import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_allscreen_show.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jhtoast/jhtoast.dart';
 
-class WXPayManagerPage extends StatefulWidget {
+class WxPayManagerPage extends StatefulWidget {
   @override
-  _WXPayManagerPageState createState() => _WXPayManagerPageState();
+  _WxPayManagerPageState createState() => _WxPayManagerPageState();
 }
 
-class _WXPayManagerPageState extends State<WXPayManagerPage> {
+class _WxPayManagerPageState extends State<WxPayManagerPage> {
   double _cellH = wx_cellH;
   double _rowSpace = wx_rowSpace;
   bool _switchSelected = false;
@@ -32,7 +32,7 @@ class _WXPayManagerPageState extends State<WXPayManagerPage> {
       appBar: backAppBar(context, KString.wx_payManager,
           backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.WeiXinBgColor,
+      backgroundColor: KColor.kWeiXinBgColor,
     );
   }
 
