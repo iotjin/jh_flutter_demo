@@ -6,7 +6,6 @@
  */
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-//import 'package:keyboard_actions/keyboard_actions_config.dart';
 
 const double _titleFontSize = 16.0; //左侧字体大小
 const double _infoFontSize = 15.0;  //右侧字体大小
@@ -26,6 +25,7 @@ typedef _InputCallBack = void Function(String value);
 typedef _ClickCallBack = void Function();
 
 
+//建议使用jh_form文件夹组件
 class jhForm{
 
   /** 一行输入样式 */

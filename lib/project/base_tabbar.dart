@@ -13,7 +13,6 @@ import 'package:jh_flutter_demo/project/one/one_page.dart';
 import 'package:jh_flutter_demo/project/Two/two_page.dart';
 import 'package:jh_flutter_demo/project/Three/three_page.dart';
 import 'four/four_page.dart';
-import 'four/pages/pull_big_info.dart';
 
 class BaseTabBar extends StatefulWidget {
   BaseTabBar({Key key}) : super(key: key);
@@ -24,7 +23,6 @@ class BaseTabBar extends StatefulWidget {
 class _BaseTabBarState extends State<BaseTabBar> {
   int _currentIndex = 0;
   List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), FourPage()];
-//  List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), SVPersonalInfoPage()];
   static double _iconWH = 24.0;
   static double _fontSize = 10.0;
   Color selColor = Color(0xFF3BB815);

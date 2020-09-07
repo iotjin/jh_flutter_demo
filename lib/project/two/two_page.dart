@@ -61,6 +61,7 @@ class _TwoPageState extends State<TwoPage> {
       _dataList.add(model);
     });
     _handleList(_dataList);
+    setState(() {});
   }
 
   void _handleList(List<ContactsModel> list) {
@@ -289,7 +290,7 @@ class _TwoPageState extends State<TwoPage> {
         ),
       ),
       clickCallBack: () {
-        //跳转个人信息页
+        //跳转个人信息页 跳转传递model
         String jsonStr = Uri.encodeComponent(jsonEncode(model));
         NavigatorUtils.pushNamed(
             context, '${"WxUserInfoPage"}?passValue=${jsonStr}');

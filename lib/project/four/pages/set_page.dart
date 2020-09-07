@@ -11,7 +11,19 @@ import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
 
 class SetPage extends StatelessWidget {
-  final List titleData = ['我的 - 带点击事件', '我的2', "个人信息", "关于", "关于iOS", "退出登录"];
+  final List titleData = [
+    '原我的界面',
+    "个人信息",
+    '图片下拉放大',
+    '图片下拉放大2',
+    '图片下拉放大3 - 图片固定顶部',
+    "个人主页 - SliverAppBar+tabbar",
+    "个人主页2",
+    "导航条渐变显隐",
+    "关于",
+    "关于iOS",
+    "退出登录"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +31,30 @@ class SetPage extends StatelessWidget {
       title: "设置",
       dataArr: titleData,
       callBack: (index, str) {
-        if (str == "我的 - 带点击事件") {
+        if (str == "原我的界面") {
           NavigatorUtils.pushNamed(context, "MinePage");
-        }
-        if (str == "我的2") {
-          NavigatorUtils.pushNamed(context, "MinePage2");
         }
         if (str == "个人信息") {
           NavigatorUtils.pushNamed(context, "InfoPage");
         }
-
+        if (str == "图片下拉放大") {
+          NavigatorUtils.pushNamed(context, "ImgPullDownBigPage");
+        }
+        if (str == "图片下拉放大2") {
+          NavigatorUtils.pushNamed(context, "ImgPullDownBigPage2");
+        }
+        if (str == "图片下拉放大3 - 图片固定顶部") {
+          NavigatorUtils.pushNamed(context, "ImgPullDownBigPage3");
+        }
+        if (str == "个人主页 - SliverAppBar+tabbar") {
+          NavigatorUtils.pushNamed(context, "PersonCenterPage");
+        }
+        if (str == "个人主页2") {
+          NavigatorUtils.pushNamed(context, "PersonCenterPage2");
+        }
+        if (str == "导航条渐变显隐") {
+          NavigatorUtils.pushNamed(context, "FadeAppBarPage");
+        }
         if (str == "关于") {
           NavigatorUtils.pushNamed(context, "AboutPage");
         }

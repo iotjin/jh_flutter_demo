@@ -15,7 +15,6 @@ class PassValuePage extends StatelessWidget {
         body: RaisedButton(
           child: Text("带参数跳转"),
           onPressed: () {
-
 //            var title = 'title222';
 //            Navigator.pushNamed(context, 'PassValuePage2',
 //                arguments: {'title': title});
@@ -29,6 +28,8 @@ class PassValuePage extends StatelessWidget {
 //            });
 
 //            NavigatorUtils.pushNamed(context, '${"PassValuePage2"}?passvalue=123&isScan=true');
+
+            //跳转传递model可看two_page跳转个人信息
 
             NavigatorUtils.pushNamedResult(
                 context, '${"PassValuePage2"}?passvalue=123&isScan=true',

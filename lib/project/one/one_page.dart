@@ -135,6 +135,9 @@ class OnePage extends StatelessWidget {
           print('选中index: ${index}');
           print('选中text: ${selText}');
 
+          if (selText == '添加朋友') {
+            NavigatorUtils.pushNamed(context, 'WxAddFriendPage');
+          }
           if (selText == '扫一扫') {
             // 延时执行
             Future.delayed(Duration(milliseconds: 400), () {

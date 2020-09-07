@@ -15,8 +15,13 @@ import 'package:jh_flutter_demo/project/four/pages/info_page.dart';
 import 'package:jh_flutter_demo/project/four/pages/about_page.dart';
 import 'package:jh_flutter_demo/project/four/pages/about_ios_page.dart';
 import 'package:jh_flutter_demo/project/four/pages/mine_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/mine_page2.dart';
 import 'package:jh_flutter_demo/project/two/wx/wx_info_set_page.dart';
+import 'package:jh_flutter_demo/project/four/pages/img_pull_down_big_page.dart';
+import 'package:jh_flutter_demo/project/four/pages/img_pull_down_big_page2.dart';
+import 'package:jh_flutter_demo/project/four/pages/img_pull_down_big_page3.dart';
+import 'package:jh_flutter_demo/project/four/pages/person_center_page.dart';
+import 'package:jh_flutter_demo/project/four/pages/person_center_page2.dart';
+import 'package:jh_flutter_demo/project/four/pages/fade_app_bar_page.dart';
 
 //wx
 //首页
@@ -59,8 +64,18 @@ class MainRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (_, __) => AboutIOSPage()));
     router.define("MinePage",
         handler: Handler(handlerFunc: (_, __) => MinePage()));
-    router.define("MinePage2",
-        handler: Handler(handlerFunc: (_, __) => MinePage2()));
+    router.define("ImgPullDownBigPage",
+        handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage()));
+    router.define("ImgPullDownBigPage2",
+        handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage2()));
+    router.define("ImgPullDownBigPage3",
+        handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage3()));
+    router.define("PersonCenterPage",
+        handler: Handler(handlerFunc: (_, __) => PersonCenterPage()));
+    router.define("PersonCenterPage2",
+        handler: Handler(handlerFunc: (_, __) => PersonCenterPage2()));
+    router.define("FadeAppBarPage",
+        handler: Handler(handlerFunc: (_, __) => FadeAppBarPage()));
 
     /********************************* 首页 ********************************/
 
@@ -69,8 +84,8 @@ class MainRouter implements IRouterProvider {
     router.define('WxSubscriptionNumberPage',
         handler: Handler(handlerFunc: (_, __) => WxSubscriptionNumberPage()));
     router.define('WxSubscriptionNumberListPage',
-        handler: Handler(handlerFunc: (_, __) => WxSubscriptionNumberListPage()));
-
+        handler:
+            Handler(handlerFunc: (_, __) => WxSubscriptionNumberListPage()));
 
     /********************************* 联系人 ********************************/
 
