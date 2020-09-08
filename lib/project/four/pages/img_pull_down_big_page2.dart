@@ -7,7 +7,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
 
 class ImgPullDownBigPage2 extends StatefulWidget {
@@ -26,8 +25,6 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
   double _navH = 0;
 
   AppBarWidget appBar;
-
-  bool _isShow = false;
 
   @override
   void initState() {
@@ -55,17 +52,9 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
           _imgChangeHeight = _navH;
         });
       }
-      //小于0 ，下拉放大
-      if (_y < 0) {
-        setState(() {
-          _isShow = false;
-        });
-      } else {
-        //大于0
-        setState(() {
-          _isShow = true;
-        });
-      }
+//      //小于0 ，下拉放大
+//      if (_y < 0) {
+//      } else {}
 
       //appbar 透明度
       double appBarOpacity = _y / _navH;
@@ -97,17 +86,20 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
   Widget _body() {
     return Stack(children: <Widget>[
       Container(
-        padding: EdgeInsets.fromLTRB(0, _isShow ? 0 : _imgNormalHeight, 0, 0),
         color: Colors.yellow,
         child: MediaQuery.removePadding(
           context: context,
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
-              itemCount: 100,
-              itemExtent: 50.0,
-              //强制高度为50.0
+              itemCount: 100 + 1,
               itemBuilder: (BuildContext context, int index) {
+                if (index == 0) {
+                  return Container(
+                    width: double.infinity,
+                    height: _imgNormalHeight,
+                  );
+                }
                 return ListTile(title: Text("$index"));
               }),
         ),
@@ -175,7 +167,7 @@ class AppBarState extends State<AppBarWidget> {
         child: AppBar(
           title: Text(
             '图片下拉放大2',
-            style: TextStyle(color: Colors.white,fontSize: 18),
+            style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           backgroundColor: Colors.deepOrange,
         ),
