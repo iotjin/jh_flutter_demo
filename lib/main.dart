@@ -7,7 +7,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jh_flutter_demo/project/new_feature/new_feature_page.dart';
 import 'package:package_info/package_info.dart';
 
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flui/src/widgets/toast.dart';
 import 'package:oktoast/oktoast.dart';
@@ -127,7 +126,6 @@ class _MyAppState extends State<MyApp> {
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
-          GlobalEasyRefreshLocalizations.delegate,
           const FallbackCupertinoLocalisationsDelegate()
         ],
         supportedLocales: [

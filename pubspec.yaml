@@ -22,61 +22,61 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  cupertino_icons: ^0.1.2
   # 加密 https://pub.flutter-io.cn/packages/encrypt
   encrypt: ^4.0.2
-  cupertino_icons: ^0.1.2
   # toast https://pub.flutter-io.cn/packages/jhtoast
   jhtoast: ^0.5.0
 
 
   # 网络请求 https://pub.dev/packages/dio#-installing-tab-
-  dio: ^3.0.9
-#  # 网络请求 https://pub.dev/packages/dio_http_cache#-installing-tab-
-#  dio_http_cache: ^0.2.5
+  dio: ^3.0.10
+  #  # 网络请求 https://pub.dev/packages/dio_http_cache#-installing-tab-
+  #  dio_http_cache: ^0.2.5
   # 监测网络状态 https://pub.dev/packages/connectivity
   connectivity: ^0.4.9
   # 图片缓存 https://pub.dev/packages/cached_network_image
-  cached_network_image: 2.0.0
-  # 屏幕参数适配
-  flutter_screenutil: ^2.3.0
-  # 处理键盘事件 https://github.com/diegoveloper/flutter_keyboard_actions
-  keyboard_actions: ^3.2.0
+  cached_network_image: ^2.3.1
+  # 屏幕参数适配 https://pub.dev/packages/flutter_screenutil
+  flutter_screenutil: ^2.3.1
+  # 处理键盘事件 https://pub.flutter-io.cn/packages/keyboard_actions
+  keyboard_actions: ^3.3.0+1
   # webview https://pub.flutter-io.cn/packages/webview_flutter#-installing-tab-
-  webview_flutter: ^0.3.19+9
+  webview_flutter: ^0.3.22+1
   # 路由管理 https://pub.flutter-io.cn/packages/fluro
-  fluro: ^1.6.1
+  fluro: ^1.6.3
 
   # 弹框 https://pub.dev/packages/fluttertoast#-installing-tab-
-  fluttertoast: ^3.1.3
+  fluttertoast: ^7.0.4
   # 组件库 https://www.flui.xin/guide.html
-  flui: 0.8.0
+  flui: 0.9.2
   # 加载框 https://pub.flutter-io.cn/packages/flutter_progress_dialog
   flutter_progress_dialog: ^0.1.0
   # 加载框 https://pub.flutter-io.cn/packages/oktoast#-readme-tab-
-  oktoast: 2.3.1+1
+  oktoast: 2.3.2
 
   # 下拉刷新 https://pub.flutter-io.cn/packages/pull_to_refresh
   pull_to_refresh: ^1.6.0
   # 下拉刷新 https://pub.flutter-io.cn/packages/flutter_easyrefresh
-  flutter_easyrefresh: 2.1.0
+  flutter_easyrefresh: 2.1.5
   # 底部弹出 日期选择器 单列多列  https://pub.dev/packages/flutter_picker
-  flutter_picker: 1.1.0
+  flutter_picker: 1.1.5
   # 时间格式转换 https://pub.dev/packages/date_format
   date_format: 1.0.8
   # 图片手势 https://pub.dev/packages/photo_view
-  photo_view: 0.9.2
+  photo_view: 0.10.2
   # 相册多图选择 https://pub.dev/packages/photo
   photo: 0.4.8
-  # 相机拍照，单图选择
-  image_picker: ^0.6.3+1
-#  multi_image_picker: ^4.6.1
+  # 相机拍照，单图选择 https://pub.flutter-io.cn/packages/image_picker
+  image_picker: ^0.6.7+7
+  #  multi_image_picker: ^4.6.1
 
   # 获取信息 https://pub.dev/packages/package_info
-  package_info: ^0.4.0+16
+  package_info: ^0.4.3
   # 获取设备信息 https://pub.flutter-io.cn/packages/device_info
-  device_info: ^0.4.2+1
+  device_info: ^0.4.2+7
   # 网页打开工具 https://pub.dev/packages/url_launcher#-readme-tab-
-  url_launcher: ^5.4.2
+  url_launcher: ^5.5.2
   # Flutter 常用工具类库（本地化 屏幕适配） https://pub.flutter-io.cn/packages/flustars
   flustars: ^0.3.3
   # EChart 图表（缩放手势冲突） https://pub.flutter-io.cn/packages/flutter_echarts
@@ -85,18 +85,18 @@ dependencies:
   mp_chart: ^0.2.2 #latest version
   # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter#-installing-tab-
   charts_flutter: ^0.9.0
-  # 小红点 https://pub:dev/packages/badges:
+  # 小红点 https://pub.flutter-io.cn/packages/badges
   badges: ^1.1.1
   # sq https://pub.dev/packages/sqflite
   sqflite: ^1.3.1
   # 本地化存储 https://pub.dev/packages/shared_preferences
-  shared_preferences: ^0.5.7+3
+  shared_preferences: ^0.5.10
   # 二维码生成 https://pub.dev/packages/qr_flutter
   qr_flutter: ^3.2.0
   # 二维码扫描 https://pub.dev/packages/barcode_scan
   barcode_scan: ^3.0.1
   # 状态管理 https://pub.dev/packages/provider
-  provider: ^4.1.3
+  provider: ^4.3.2+2
   # 轮播 https://pub.dev/packages/flutter_swiper
   flutter_swiper: ^1.1.6
   # 轮播 https://pub.flutter-io.cn/packages/carousel_slider
@@ -110,7 +110,7 @@ dependencies:
   # 城市选择列表 https://pub.flutter-io.cn/packages/azlistview
   azlistview: ^0.1.2
   # 汉字转拼音 https://pub.flutter-io.cn/packages/lpinyin
-  lpinyin: ^1.0.8
+  lpinyin: ^1.0.9
 
 
   #  # Dart 常用工具类库 https://github.com/Sky24n/common_utils

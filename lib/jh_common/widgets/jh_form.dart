@@ -97,7 +97,7 @@ class jhForm{
     return KeyboardActionsConfig(
       keyboardBarColor: Colors.grey[200],
       nextFocus: true,
-      actions: List.generate(list.length, (i) => KeyboardAction(
+      actions: List.generate(list.length, (i) => KeyboardActionsItem(
         focusNode: list[i],
         toolbarButtons: [
               (node) {

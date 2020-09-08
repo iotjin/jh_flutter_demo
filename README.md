@@ -46,6 +46,14 @@ pwd：123456
 
 ## 封装的组件和工具类都在jh_common文件夹
 
+<br>
+
+## 项目运行环境
+
+* Flutter version 1.20.3
+* Dart version 2.9.2
+
+
 
 <br>
 <br>

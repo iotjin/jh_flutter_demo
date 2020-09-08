@@ -91,7 +91,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                         );
                       },
                       itemCount: widget.imgDataArr.length,
-                      loadingChild: Container(),
+                      // loadingChild: Container(),
                       backgroundDecoration: null,
                       pageController: widget.controller,
                       enableRotation: true,

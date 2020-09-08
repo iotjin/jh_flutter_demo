@@ -8,6 +8,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
 import 'package:jh_flutter_demo/project/one/one_page.dart';
 import 'package:jh_flutter_demo/project/Two/two_page.dart';
@@ -57,6 +59,26 @@ class _BaseTabBarState extends State<BaseTabBar> {
       activeIcon: JhLoadAssetImage('tab/nav_tab_4_on', width: _iconWH),
     ),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
+      // 设置EasyRefresh的默认样式
+      EasyRefresh.defaultHeader = ClassicalHeader(
+        enableInfiniteRefresh: false,
+        refreshText: '下拉刷新',
+        refreshReadyText: '释放刷新',
+        refreshingText: '加载中...',
+        refreshedText: '加载完成',
+        refreshFailedText: '加载失败',
+        noMoreText: '没有更多',
+        showInfo: false,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
