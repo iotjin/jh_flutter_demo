@@ -352,6 +352,9 @@ class _TwoPageState extends State<TwoPage> {
     if (text == '新的朋友') {
       NavigatorUtils.pushNamed(context, 'WxNewFriendPage');
     }
+    if (text == '群聊') {
+      NavigatorUtils.pushNamed(context, 'WxGroupChatPage');
+    }
   }
 
   /********************************* 仿微信hint ********************************/
