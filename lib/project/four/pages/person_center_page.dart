@@ -54,6 +54,7 @@ class _PersonCenterPageState extends State<PersonCenterPage>
     return Scaffold(
       body: CustomScrollView(
         controller: _scrollController,
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         slivers: <Widget>[
           SliverAppBar(
             pinned: true,

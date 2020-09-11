@@ -50,7 +50,7 @@ class _TwoPageState extends State<TwoPage> {
 
   void _loadData() async {
     // 获取用户信息列表
-    final jsonStr = await rootBundle.loadString('lib/res/contacts.json');
+    final jsonStr = await rootBundle.loadString('lib/res/wx_contacts.json');
 
     Map dic = json.decode(jsonStr);
     List dataArr = dic['data'];

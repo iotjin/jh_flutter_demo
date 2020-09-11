@@ -92,6 +92,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100 + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {

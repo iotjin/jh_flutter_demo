@@ -28,6 +28,8 @@ import 'package:jh_flutter_demo/project/four/pages/fade_app_bar_page.dart';
 import 'one/wx/wx_qq_message_page.dart';
 import 'one/wx/wx_subscription_number_page.dart';
 import 'one/wx/wx_subscription_number_list_page.dart';
+import 'one/wx/wx_motion_page.dart';
+import 'one/wx/wx_motion_top_page.dart';
 
 //联系人
 import 'two/wx/wx_userInfo_page.dart';
@@ -87,6 +89,10 @@ class MainRouter implements IRouterProvider {
     router.define('WxSubscriptionNumberListPage',
         handler:
             Handler(handlerFunc: (_, __) => WxSubscriptionNumberListPage()));
+    router.define('WxMotionPage',
+        handler: Handler(handlerFunc: (_, __) => WxMotionPage()));
+    router.define('WxMotionTopPage',
+        handler: Handler(handlerFunc: (_, __) => WxMotionTopPage()));
 
     /********************************* 联系人 ********************************/
 

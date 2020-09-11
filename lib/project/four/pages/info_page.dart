@@ -95,7 +95,8 @@ class _InfoPageState extends State<InfoPage> {
   Widget _cell() {
     return ListView(
       controller: _scrollController,
-      physics: const AlwaysScrollableScrollPhysics(),
+      // physics: const AlwaysScrollableScrollPhysics(),
+      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       children: <Widget>[
         Container(
           height: 100,

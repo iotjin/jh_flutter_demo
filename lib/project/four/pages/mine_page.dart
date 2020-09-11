@@ -28,10 +28,11 @@ class _MinePageState extends State<MinePage> {
       }),
       backgroundColor: Color(0xFFF8F8F8),
       body: ListView(
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: <Widget>[
           SizedBox(height: 15),
           JhSetCell(
-              leftImgPath: "assets/images/ic_accountsafe.png", title: '账号安全'),
+              leftImgPath: "assets/images/ic_accountSafe.png", title: '账号安全'),
           JhSetCell(
             leftImgPath: "assets/images/ic_saoyisao.png",
             title: '扫一扫',
@@ -74,7 +75,7 @@ class _MinePageState extends State<MinePage> {
 //              Column(
 //                children: <Widget>[
 //                  SizedBox(height: 15,),
-//                  JhSetCell(leftImgPath: "assets/images/ic_accountsafe.png", title: '账号安全'),
+//                  JhSetCell(leftImgPath: "assets/images/ic_accountSafe.png", title: '账号安全'),
 //                  JhSetCell(leftImgPath: "assets/images/ic_saoyisao.png", title: '扫一扫'),
 //                  JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置'),
 //                  JhSetCell(leftImgPath: "assets/images/ic_about.png", title: '检查更新',text: '有新版本',textStyle: TextStyle(fontSize: 14.0,color: Colors.red),),

@@ -88,7 +88,7 @@ class _FourPageState extends State<FourPage> {
             child: _contentCell(model),
 //            child: ListView(
 //                controller: _scrollController,
-//                physics: const AlwaysScrollableScrollPhysics(),
+//                physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
 //                children: <Widget>[
 //                  _header(model),
 //                  SizedBox(height: _rowSpace),
@@ -135,7 +135,8 @@ class _FourPageState extends State<FourPage> {
   Widget _contentCell(model) {
     return ListView(
       controller: _scrollController,
-      physics: const AlwaysScrollableScrollPhysics(),
+      // physics: const AlwaysScrollableScrollPhysics(),
+      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       children: <Widget>[
         _header(model),
         SizedBox(height: _rowSpace),

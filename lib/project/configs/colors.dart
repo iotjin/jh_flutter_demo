@@ -16,6 +16,12 @@ class KColor {
   //rgb(50, 179, 116)
   static Color kWeiXinPayColor = Color(0xFF32B374);
 
+  //rgb(0, 174, 91)
+  static Color kWeiXinTextColor = Color(0xFF00AE5B);
+
+  //rgb(255, 139, 34)
+  static Color kWeiXinTextOrangeColor = Color(0xFFFF8B22);
+
   static Color kWeiXinTitleColor = Colors.white;
 
   //微信背景色 rgb(237,237,237)

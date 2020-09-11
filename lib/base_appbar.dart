@@ -111,9 +111,10 @@ baseAppBar(
   Function rightItemCallBack,
   Function leftItemCallBack,
 }) {
-  Color _color = backgroundColor == Colors.transparent
-      ? _titleColorBlack
-      : _titleColorWhite;
+  Color _color =
+      (backgroundColor == Colors.transparent || backgroundColor == Colors.white)
+          ? _titleColorBlack
+          : _titleColorWhite;
 
   Widget rightItem = Text("");
   if (rightText != null) {
@@ -137,6 +138,7 @@ baseAppBar(
         rightImgPath,
         width: _imgWH,
         height: _imgWH,
+        color: _color,
       ),
       onPressed: () {
         if (rightItemCallBack != null) {

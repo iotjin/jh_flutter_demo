@@ -27,12 +27,12 @@ List _dataArr = [
     "type": '0',
   },
   {
-    "title": "QQ邮箱提醒",
-    "subtitle": "您有一封新的邮件，请前往查收",
-    "img": "assets/wechat/home/Ic_email.png",
-    "time": "17:30",
+    "title": "微信运动",
+    "subtitle": "[应用消息]",
+    "img": "assets/wechat/home/wechat_motion.png",
+    "time": "22:23",
     "isNew": true,
-    "type": '3',
+    "type": '1',
   },
   {
     "title": "订阅号消息",
@@ -41,6 +41,14 @@ List _dataArr = [
     "time": "19:00",
     "isNew": true,
     "type": '1',
+  },
+  {
+    "title": "QQ邮箱提醒",
+    "subtitle": "您有一封新的邮件，请前往查收",
+    "img": "assets/wechat/home/Ic_email.png",
+    "time": "17:30",
+    "isNew": false,
+    "type": '3',
   },
   {
     "title": "张三",
@@ -77,7 +85,7 @@ List _dataArr = [
   {
     "title": "微信团队",
     "subtitle": "安全登录提醒",
-    "img": "assets/wechat/home/wechat_motion.png",
+    "img": "assets/wechat/home/ic_about.png",
     "time": "2020/8/8",
     "isNew": false,
     "type": '1',
@@ -329,6 +337,8 @@ class OnePage extends StatelessWidget {
       NavigatorUtils.pushNamed(context, 'WxQQMessagePage');
     } else if (item['title'] == '订阅号消息') {
       NavigatorUtils.pushNamed(context, 'WxSubscriptionNumberPage');
+    } else if (item['title'] == '微信运动') {
+      NavigatorUtils.pushNamed(context, 'WxMotionPage');
     } else {
       NavigatorUtils.pushNamed(context, 'DemoListsPage');
     }

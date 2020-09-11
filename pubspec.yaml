@@ -153,7 +153,8 @@ flutter:
 
     #假数据
     - lib/res/china.json
-    - lib/res/contacts.json
+    - lib/res/wx_contacts.json
+    - lib/res/wx_motion_top.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
