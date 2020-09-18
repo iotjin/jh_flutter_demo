@@ -13,6 +13,7 @@ import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/project/configs/colors.dart';
 import 'package:jh_flutter_demo/project/configs/strings.dart';
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
+import 'package:jhtoast/jhtoast.dart';
 
 class ThreePage extends StatelessWidget {
   @override
@@ -20,7 +21,7 @@ class ThreePage extends StatelessWidget {
     return Scaffold(
       appBar: baseAppBar(context, KString.threeTabTitle,
           backgroundColor: Colors.transparent),
-      body: _content,
+      body: _body(context),
       backgroundColor: KColor.kWeiXinBgColor,
     );
   }
@@ -30,82 +31,106 @@ double _cellH = 55.0;
 double _leftSpace = 50.0;
 double _rowSpace = 6;
 
-Widget _content = ListView(
-  children: <Widget>[
-    JhSetCell(
-      cellHeight: _cellH,
-      leftImgPath: "assets/wechat/discover/ic_social_circle.png",
-      title: '朋友圈',
-      hiddenLine: true,
+Widget _body(context) {
+  return ListView(
+    children: <Widget>[
+      JhSetCell(
+        cellHeight: _cellH,
+        leftImgPath: "assets/wechat/discover/ic_social_circle.png",
+        title: '朋友圈',
+        hiddenLine: true,
 //      rightWidget: Image.network('https://gitee.com/iotjh/Picture/raw/master/lufei.png',width: 50,height: 50,),
-      rightWidget: Container(
-          padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-          child: Badge(
-              padding: EdgeInsets.all(4),
-              position: BadgePosition.topRight(top: -4, right: -4),
-              child: Image.asset('assets/images/lufei.png',
-                  width: 30, height: 30, fit: BoxFit.fill))),
-    ),
-    SizedBox(height: _rowSpace),
-    JhSetCell(
-      cellHeight: _cellH,
-      leftImgPath: "assets/wechat/discover/ic_video_number.png",
-      title: '视频号',
-      hiddenLine: true,
-    ),
-    SizedBox(height: _rowSpace),
-    JhSetCell(
+        rightWidget: Container(
+            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            child: Badge(
+                padding: EdgeInsets.all(4),
+                position: BadgePosition.topRight(top: -4, right: -4),
+                child: Image.asset('assets/images/lufei.png',
+                    width: 30, height: 30, fit: BoxFit.fill))),
+        clickCallBack: () => _clickCell(context, '朋友圈'),
+      ),
+      SizedBox(height: _rowSpace),
+      JhSetCell(
+        cellHeight: _cellH,
+        leftImgPath: "assets/wechat/discover/ic_video_number.png",
+        title: '视频号',
+        hiddenLine: true,
+        clickCallBack: () => _clickCell(context, '视频号'),
+      ),
+      SizedBox(height: _rowSpace),
+      JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
         leftImgPath: "assets/wechat/discover/ic_quick_scan.png",
-        title: '扫一扫'),
-    JhSetCell(
-      cellHeight: _cellH,
-      leftImgPath: "assets/wechat/discover/ic_shake_phone.png",
-      title: '摇一摇',
-      hiddenLine: true,
-    ),
-    SizedBox(height: _rowSpace),
-    JhSetCell(
+        title: '扫一扫',
+        clickCallBack: () => _clickCell(context, '扫一扫'),
+      ),
+      JhSetCell(
+        cellHeight: _cellH,
+        leftImgPath: "assets/wechat/discover/ic_shake_phone.png",
+        title: '摇一摇',
+        hiddenLine: true,
+        clickCallBack: () => _clickCell(context, '摇一摇'),
+      ),
+      SizedBox(height: _rowSpace),
+      JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
         leftImgPath: "assets/wechat/discover/ic_feeds.png",
-        title: '看一看'),
-    JhSetCell(
-      cellHeight: _cellH,
-      leftImgPath: "assets/wechat/discover/ic_quick_search.png",
-      title: '搜一搜',
-      hiddenLine: true,
-    ),
-    SizedBox(height: _rowSpace),
-    JhSetCell(
-      cellHeight: _cellH,
-      leftImgPath: "assets/wechat/discover/ic_people_nearby.png",
-      title: '附近的人',
-      hiddenLine: true,
-    ),
-    SizedBox(height: _rowSpace),
-    JhSetCell(
+        title: '看一看',
+        clickCallBack: () => _clickCell(context, '看一看'),
+      ),
+      JhSetCell(
+        cellHeight: _cellH,
+        leftImgPath: "assets/wechat/discover/ic_quick_search.png",
+        title: '搜一搜',
+        hiddenLine: true,
+        clickCallBack: () => _clickCell(context, '搜一搜'),
+      ),
+      SizedBox(height: _rowSpace),
+      JhSetCell(
+        cellHeight: _cellH,
+        leftImgPath: "assets/wechat/discover/ic_people_nearby.png",
+        title: '附近的人',
+        hiddenLine: true,
+        clickCallBack: () => _clickCell(context, '附近的人'),
+      ),
+      SizedBox(height: _rowSpace),
+      JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
         leftImgPath: "assets/wechat/discover/ic_shopping.png",
-        title: '购物'),
-    JhSetCell(
-      cellHeight: _cellH,
-      leftImgPath: "assets/wechat/discover/ic_game_entry.png",
-      title: '游戏',
-      hiddenLine: true,
-    ),
-    SizedBox(height: _rowSpace),
-    JhSetCell(
-      cellHeight: _cellH,
-      leftImgPath: "assets/wechat/discover/ic_mini_program.png",
-      title: '小程序',
-      hiddenLine: true,
-    ),
-    SizedBox(height: 15),
-  ],
-);
+        title: '购物',
+        clickCallBack: () => _clickCell(context, '购物'),
+      ),
+      JhSetCell(
+        cellHeight: _cellH,
+        leftImgPath: "assets/wechat/discover/ic_game_entry.png",
+        title: '游戏',
+        hiddenLine: true,
+        clickCallBack: () => _clickCell(context, '游戏'),
+      ),
+      SizedBox(height: _rowSpace),
+      JhSetCell(
+        cellHeight: _cellH,
+        leftImgPath: "assets/wechat/discover/ic_mini_program.png",
+        title: '小程序',
+        hiddenLine: true,
+        clickCallBack: () => _clickCell(context, '小程序'),
+      ),
+      SizedBox(height: 15),
+    ],
+  );
+}
+
+//点击cell
+_clickCell(context, text) {
+  // JhToast.showText(context, msg: '点击 ${text}');
+
+  if (text == '朋友圈') {
+    NavigatorUtils.pushNamed(context, 'WxFriendsCirclePage');
+  }
+}
 
 Widget testBtn(context) {
   return Container(

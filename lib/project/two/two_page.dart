@@ -348,7 +348,7 @@ class _TwoPageState extends State<TwoPage> {
   }
 
   void _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 ${text}');
+    // JhToast.showText(context, msg: '点击 ${text}');
     if (text == '新的朋友') {
       NavigatorUtils.pushNamed(context, 'WxNewFriendPage');
     }

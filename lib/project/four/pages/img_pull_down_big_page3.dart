@@ -73,7 +73,7 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3>
       ),
       Positioned(
         top: 0,
-        width: JhScreenUtils.width,
+        width: JhScreenUtils.screenWidth,
         height: _topH + 200,
         child: Container(
 //            color: Colors.yellow,

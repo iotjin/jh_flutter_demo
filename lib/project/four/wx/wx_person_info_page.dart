@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_allscreen_show.dart';
+import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_browser.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 
 class WxPersonInfoPage extends StatelessWidget {
@@ -49,9 +49,11 @@ Widget _body(context) {
             'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
           ];
           Navigator.of(context).push(new FadeRoute(
-              page: JhPhotoAllScreenShow(
+              page: JhPhotoBrowser(
             imgDataArr: imgData,
             index: 0,
+            isHiddenClose: true,
+            isHiddenTitle: true,
             onLongPress: () {
               JhBottomSheet.showText(context,
                   dataArr: ['保存图片'], clickCallback: (index, str) {});

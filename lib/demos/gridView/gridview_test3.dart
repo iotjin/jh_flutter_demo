@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_nine_picture2.dart';
+import 'package:jh_flutter_demo/jh_common/widgets/jh_nine_picture.dart';
 
 List<String> dataArr;
 
@@ -67,22 +67,22 @@ class _GridViewTest3State extends State<GridViewTest3> {
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
                     child:
-                    JhNinePicture2(
+                    JhNinePicture(
                       imgData: dataArr,
-                      lfPaddingSpace: 110,
+                      lRSpace: 110,
                       onLongPress: (){
                         JhBottomSheet.showText(context, dataArr: ["保存图片"]);
                       },
                     )
                 ),
-                Text("九宫格"),
+                Text("九宫格，4图处理"),
                 Container(
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
                     child:
-                    JhNinePicture2(
+                    JhNinePicture(
                       imgData: dataArr2,
-                      lfPaddingSpace: 110,
+                      lRSpace: 110,
                       onLongPress: (){
                         JhBottomSheet.showText(context, dataArr: ["保存图片"]);
                       },

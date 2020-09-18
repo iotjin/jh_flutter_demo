@@ -1,16 +1,16 @@
-import 'package:flutter/cupertino.dart';
 /**
  *  wx_motion_page.dart
  *
  *  Created by iotjin on 2020/09/09.
- *  description: 微信运行
+ *  description: 微信运动
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:jhtoast/jhtoast.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jhtoast/jhtoast.dart';
 
 List _dataArr = [
   {

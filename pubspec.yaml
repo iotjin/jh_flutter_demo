@@ -35,7 +35,7 @@ dependencies:
   #  dio_http_cache: ^0.2.5
   # 监测网络状态 https://pub.dev/packages/connectivity
   connectivity: ^0.4.9
-  # 图片缓存 https://pub.dev/packages/cached_network_image
+  # 图片缓存 https://pub.flutter-io.cn/packages/cached_network_image
   cached_network_image: ^2.3.1
   # 屏幕参数适配 https://pub.dev/packages/flutter_screenutil
   flutter_screenutil: ^2.3.1
@@ -64,7 +64,7 @@ dependencies:
   # 时间格式转换 https://pub.dev/packages/date_format
   date_format: 1.0.8
   # 图片手势 https://pub.dev/packages/photo_view
-  photo_view: 0.10.2
+  photo_view: 0.6.0
   # 相册多图选择 https://pub.dev/packages/photo
   photo: 0.4.8
   # 相机拍照，单图选择 https://pub.flutter-io.cn/packages/image_picker
@@ -149,12 +149,14 @@ flutter:
     - assets/wechat/contacts/
     - assets/wechat/contacts/add/
     - assets/wechat/discover/
+    - assets/wechat/discover/friends/
     - assets/wechat/mine/
 
     #假数据
     - lib/res/china.json
     - lib/res/wx_contacts.json
     - lib/res/wx_motion_top.json
+    - lib/res/wx_friends_circle.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

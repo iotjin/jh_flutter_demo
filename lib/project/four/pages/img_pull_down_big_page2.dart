@@ -92,7 +92,8 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100 + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
@@ -107,7 +108,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
       ),
       Positioned(
         top: 0,
-        width: JhScreenUtils.width,
+        width: JhScreenUtils.screenWidth,
         height: _imgChangeHeight,
         child: Container(
             color: Colors.white,

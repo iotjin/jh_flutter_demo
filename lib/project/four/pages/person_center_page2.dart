@@ -73,7 +73,7 @@ class _PersonCenterPage2State extends State<PersonCenterPage2>
       ),
       Positioned(
         top: 0,
-        width: JhScreenUtils.width,
+        width: JhScreenUtils.screenWidth,
         height: _topH + 200,
         child: Container(
 //            color: Colors.yellow,

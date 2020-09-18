@@ -30,9 +30,9 @@ class JhScreenUtils {
     ScreenUtil().setSp(fontSize);
   }
 
-  static double get screenWidth => ScreenUtil.screenWidth;
-
-  static double get screenHeight => ScreenUtil.screenHeight;
+  // static double get screenWidth => ScreenUtil.screenWidth;
+  //
+  // static double get screenHeight => ScreenUtil.screenHeight;
 
   static double get screenWidthPx => ScreenUtil.screenWidthPx;
 
@@ -44,12 +44,12 @@ class JhScreenUtils {
 
   //系统方法获取
 
-  static double get width {
+  static double get screenWidth {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.size.width;
   }
 
-  static double get height {
+  static double get screenHeight {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.size.height;
   }

@@ -37,6 +37,9 @@ import 'two/wx/wx_new_friend_page.dart';
 import 'two/wx/wx_add_friend_page.dart';
 import 'two/wx/wx_group_chat_page.dart';
 
+//发现
+import 'three/wx/wx_friends_circle_page.dart';
+
 //我的
 import 'four/wx/wx_person_info_page.dart';
 import 'four/wx/wx_pay_page.dart';
@@ -118,6 +121,10 @@ class MainRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (_, __) => WxNewFriendPage()));
     router.define("WxGroupChatPage",
         handler: Handler(handlerFunc: (_, __) => WxGroupChatPage()));
+
+    /********************************* 发现 ********************************/
+    router.define("WxFriendsCirclePage",
+        handler: Handler(handlerFunc: (_, __) => WxFriendsCirclePage()));
 
     /********************************* 我的 ********************************/
     router.define("WxPersonInfoPage",

@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 /**
  *  wx_pay_manager_page.dart
  *
@@ -8,7 +6,8 @@ import 'package:flutter/gestures.dart';
  */
 
 import 'package:flutter/material.dart';
-
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_allscreen_show.dart';

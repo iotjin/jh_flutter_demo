@@ -7,12 +7,12 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:jhtoast/jhtoast.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/model/contacts_model.dart';
-import 'package:jhtoast/jhtoast.dart';
 
 class WxUserInfoPage extends StatelessWidget {
   final ContactsModel _passValue;

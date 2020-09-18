@@ -16,6 +16,7 @@ const double _textFontSize = 16.0;
 const double _itemSpace = 15.0; //右侧item内间距
 const double _imgWH = 22.0; //右侧图片wh
 const double _rightSpace = 5.0; //右侧item右间距
+const Brightness _brightness = Brightness.light;
 
 const Color appbarStartColor = Color(0xFF2683BE); //渐变开始色
 const Color appbarEndColor = Color(0xFF34CABE); //渐变结束色
@@ -25,29 +26,40 @@ backAppBar(BuildContext context, String title,
     {String rightText,
     String rightImgPath,
     Color backgroundColor = _navbgColor,
+    Brightness brightness = _brightness,
     Function rightItemCallBack,
     Function backCallBack}) {
-  return baseAppBar(context, title,
-      isBack: true,
-      rightText: rightText,
-      rightImgPath: rightImgPath,
-      rightItemCallBack: rightItemCallBack,
-      leftItemCallBack: backCallBack,
-      backgroundColor: backgroundColor);
+  return baseAppBar(
+    context,
+    title,
+    isBack: true,
+    rightText: rightText,
+    rightImgPath: rightImgPath,
+    rightItemCallBack: rightItemCallBack,
+    leftItemCallBack: backCallBack,
+    backgroundColor: backgroundColor,
+    brightness: brightness,
+  );
 }
 
 /*带返回箭头的渐变导航条*/
-backGradientAppBar(BuildContext context, String title,
-    {String rightText,
-    String rightImgPath,
-    Function rightItemCallBack,
-    Function backCallBack}) {
-  return gradientAppBar(context, title,
-      isBack: true,
-      rightText: rightText,
-      rightImgPath: rightImgPath,
-      rightItemCallBack: rightItemCallBack,
-      leftItemCallBack: backCallBack);
+backGradientAppBar(
+  BuildContext context,
+  String title, {
+  String rightText,
+  String rightImgPath,
+  Function rightItemCallBack,
+  Function backCallBack,
+}) {
+  return gradientAppBar(
+    context,
+    title,
+    isBack: true,
+    rightText: rightText,
+    rightImgPath: rightImgPath,
+    rightItemCallBack: rightItemCallBack,
+    leftItemCallBack: backCallBack,
+  );
 }
 
 /*
@@ -106,15 +118,17 @@ baseAppBar(
   Widget leftItem: null,
   bool isBack: false,
   Color backgroundColor = _navbgColor,
+  Brightness brightness = _brightness,
   double elevation: 0,
   PreferredSizeWidget bottom,
   Function rightItemCallBack,
   Function leftItemCallBack,
 }) {
-  Color _color =
-      (backgroundColor == Colors.transparent || backgroundColor == Colors.white)
-          ? _titleColorBlack
-          : _titleColorWhite;
+  Color _color = (backgroundColor == Colors.transparent ||
+          backgroundColor == Colors.white ||
+          backgroundColor == KColor.kWeiXinBgColor)
+      ? _titleColorBlack
+      : _titleColorWhite;
 
   Widget rightItem = Text("");
   if (rightText != null) {
@@ -152,6 +166,7 @@ baseAppBar(
         Text(title, style: TextStyle(fontSize: _titleFontSize, color: _color)),
     centerTitle: true,
     backgroundColor: backgroundColor,
+    brightness: brightness,
     bottom: bottom,
     elevation: elevation,
     leading: isBack == false

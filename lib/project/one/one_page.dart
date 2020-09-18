@@ -8,8 +8,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jhtoast/jhtoast.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_pop_menus.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_qr_code_utils.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
@@ -329,7 +329,7 @@ class OnePage extends StatelessWidget {
 
   //点击cell
   _clickCell(context, item) {
-    JhToast.showText(context, msg: '点击 ${item['title']}');
+    // JhToast.showText(context, msg: '点击 ${item['title']}');
 
     if (item['title'] == 'Demo 列表') {
       NavigatorUtils.pushNamed(context, 'DemoListsPage');

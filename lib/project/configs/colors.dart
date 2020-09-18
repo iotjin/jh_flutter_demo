@@ -30,6 +30,9 @@ class KColor {
   //深蓝色
   static Color kWeiXinTextBlueColor = Color(0xFF586D98);
 
+  //灰色文字
+  static Color kTextGrayColor = Color(0xFF999999);
+
 //  static Color ThemeColor =  Color.fromRGBO(59, 184, 21, 1);
 //  static const Color app_main = Color(0xFF4688FA);
 

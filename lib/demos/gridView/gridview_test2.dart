@@ -53,7 +53,7 @@ class _GridViewTest2State extends State<GridViewTest2> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar:AppBar(
-            title:Text('GridView实现朋友圈效果（九宫格）')
+            title:Text('GridView实现朋友圈（九宫格）')
         ),
         body:
         Container(
@@ -68,20 +68,21 @@ class _GridViewTest2State extends State<GridViewTest2> {
                     child:
                     JhNinePicture(
                       imgData: dataArr,
-                      lfPaddingSpace: 110,
+                      lRSpace: 110,
                       onLongPress: (){
                         JhBottomSheet.showText(context, dataArr: ["保存图片"]);
                       },
                     )
                 ),
-                Text("九宫格"),
+                Text("九宫格，4图未处理"),
                 Container(
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
                     child:
                     JhNinePicture(
                       imgData: dataArr2,
-                      lfPaddingSpace: 110,
+                      lRSpace: 110,
+                      isHandleFour:false,
                       onLongPress: (){
                         JhBottomSheet.showText(context, dataArr: ["保存图片"]);
                       },

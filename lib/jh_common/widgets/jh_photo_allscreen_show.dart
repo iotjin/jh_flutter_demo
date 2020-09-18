@@ -1,9 +1,10 @@
 /**
- *  jh_nine_picture.dart
+ *  jh_nine_picture2.dart
  *
  *  Created by iotjin on 2020/02/19.
- *  description:  图片全屏浏览
+ *  description:  图片全屏浏览 推荐使用 JhPhotoBrowser
  */
+
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';

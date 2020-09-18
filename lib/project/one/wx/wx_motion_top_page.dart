@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 /**
  *  wx_motion_top_page.dart
  *
@@ -7,12 +5,13 @@ import 'dart:convert';
  *  description: 微信运动排行榜
  */
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jhtoast/jhtoast.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jhtoast/jhtoast.dart';
 
 class WxMotionTopPage extends StatefulWidget {
   @override
@@ -133,7 +132,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
       ),
       Positioned(
         top: 0,
-        width: JhScreenUtils.width,
+        width: JhScreenUtils.screenWidth,
         height: _imgChangeHeight,
         child: Container(
           color: Colors.white,
@@ -153,6 +152,8 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
         right: 0,
         child: backAppBar(context, '排行榜',
             backgroundColor: Colors.white.withOpacity(_appbarOpacity),
+            brightness:
+                _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/images/ic_more_black.png',
             rightItemCallBack: () {
           _clickCell(context, '更多');
