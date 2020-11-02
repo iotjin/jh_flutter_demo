@@ -44,7 +44,7 @@ Widget _body(context) {
             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
             child: Badge(
                 padding: EdgeInsets.all(4),
-                position: BadgePosition.topRight(top: -4, right: -4),
+                position: BadgePosition.topEnd(top: -4, end: -4),
                 child: Image.asset('assets/images/lufei.png',
                     width: 30, height: 30, fit: BoxFit.fill))),
         clickCallBack: () => _clickCell(context, '朋友圈'),

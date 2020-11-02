@@ -20,14 +20,14 @@ class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
             widget: HomeContent(),
             badge: Badge(
               toAnimate: false,
-              position: BadgePosition.topRight(top: -5, right: -20),
+              position: BadgePosition.topEnd(top: -5, end: -20),
               child: Text("标题一"),
             )),
         JhTopTabBarModel(
             widget: HomeContent(),
             badge: Badge(
               toAnimate: false,
-              position: BadgePosition.topRight(top: -12, right: -20),
+              position: BadgePosition.topEnd(top: -12, end: -20),
               badgeContent: Text(_count.toString(),
                   style: TextStyle(color: Colors.white, fontSize: 10)),
               child: Text("标题二"),

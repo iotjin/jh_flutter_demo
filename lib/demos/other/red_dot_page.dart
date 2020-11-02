@@ -51,8 +51,8 @@ class _RedDotPageState extends State<RedDotPage> {
               ),
               Badge(
                 shape: BadgeShape.square,
-                borderRadius: 5,
-                position: BadgePosition.topRight(top: -12, right: -20),
+                borderRadius: BorderRadius.circular(5),
+                position: BadgePosition.topEnd(top: -12, end: -20),
                 padding: EdgeInsets.all(2),
                 badgeContent: Text('New',
                     style: TextStyle(
@@ -82,7 +82,7 @@ class _RedDotPageState extends State<RedDotPage> {
             title: Text('Messages'),
             icon: Badge(
               toAnimate: false,
-              position: BadgePosition.topRight(top: -20, right: -20),
+              position: BadgePosition.topEnd(top: -20, end: -20),
               badgeContent: Text(
                 _count.toString(),
                 style: TextStyle(color: Colors.white, fontSize: 12),
@@ -93,7 +93,7 @@ class _RedDotPageState extends State<RedDotPage> {
           title: Text('Settings'),
           icon: Badge(
             shape: BadgeShape.circle,
-            borderRadius: 100,
+            borderRadius: BorderRadius.circular(100),
             child: Icon(Icons.settings),
             badgeContent: Container(
               height: 5,
@@ -134,8 +134,8 @@ class _RedDotPageState extends State<RedDotPage> {
             Tab(
               icon: Badge(
                 shape: BadgeShape.square,
-                borderRadius: 5,
-                position: BadgePosition.topRight(top: -12, right: -20),
+                borderRadius: BorderRadius.circular(5),
+                position: BadgePosition.topEnd(top: -12, end: -20),
                 padding: EdgeInsets.all(2),
                 badgeContent: Text('NEW',
                     style: TextStyle(

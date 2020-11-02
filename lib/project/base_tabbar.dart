@@ -46,7 +46,7 @@ class _BaseTabBarState extends State<BaseTabBar> {
       activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH),
       icon: Badge(
           padding: EdgeInsets.all(4),
-          position: BadgePosition.topRight(top: -4, right: -4),
+          position: BadgePosition.topEnd(top: -4, end: -4),
           child: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH)),
 //      activeIcon: Badge(
 //          padding: EdgeInsets.all(4),

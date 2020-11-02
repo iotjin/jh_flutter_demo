@@ -123,7 +123,6 @@ class _AboutPageState extends State<AboutPage> {
           SizedBox(height: 50,),
           FlutterLogo(
             size: 100.0,
-            colors: _colors[Random.secure().nextInt(7)],
             textColor: _randomColor(),
             style: _styles[Random.secure().nextInt(3)],
             curve: _curves[Random.secure().nextInt(12)],

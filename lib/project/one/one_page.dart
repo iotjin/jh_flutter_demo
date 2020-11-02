@@ -292,7 +292,7 @@ class OnePage extends StatelessWidget {
                         ),
                       )),
                   padding: EdgeInsets.all(5),
-                  position: BadgePosition.topRight(top: 5, right: 5),
+                  position: BadgePosition.topEnd(top: 5, end: 5),
                 ),
                 Expanded(
                     child: Column(

@@ -44,7 +44,7 @@ dependencies:
   # webview https://pub.flutter-io.cn/packages/webview_flutter#-installing-tab-
   webview_flutter: ^0.3.22+1
   # 路由管理 https://pub.flutter-io.cn/packages/fluro
-  fluro: ^1.6.3
+  fluro: ^1.7.7
 
   # 弹框 https://pub.dev/packages/fluttertoast#-installing-tab-
   fluttertoast: ^7.0.4
@@ -86,7 +86,7 @@ dependencies:
   # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter#-installing-tab-
   charts_flutter: ^0.9.0
   # 小红点 https://pub.flutter-io.cn/packages/badges
-  badges: ^1.1.1
+  badges: ^1.1.4
   # sq https://pub.dev/packages/sqflite
   sqflite: ^1.3.1
   # 本地化存储 https://pub.dev/packages/shared_preferences

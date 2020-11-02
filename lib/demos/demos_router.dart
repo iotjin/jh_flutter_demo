@@ -110,7 +110,7 @@ class DemosRouter implements IRouterProvider{
   static String demoListsPage = 'DemoListsPage';
 
   @override
-  void initRouter(Router router) {
+  void initRouter(FluroRouter router) {
 
 
     router.define(demoListsPage, handler: Handler(handlerFunc: (_, __) => DemoListsPage()));

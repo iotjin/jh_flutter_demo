@@ -11,7 +11,7 @@ class LoginRouter implements IRouterProvider{
   static String loginPage = 'LoginPage';
 
   @override
-  void initRouter(Router router) {
+  void initRouter(FluroRouter router) {
     router.define(loginPage, handler: Handler(handlerFunc: (_, __) => LoginPage()));
     router.define("RegisterPage", handler: Handler(handlerFunc: (_, __) => RegisterPage()));
     router.define("FindPwdPage", handler: Handler(handlerFunc: (_, __) => FindPwdPage()));

@@ -51,8 +51,8 @@ pwd：123456
 
 ## 项目运行环境
 
-* Flutter version 1.20.3
-* Dart version 2.9.2
+* Flutter version 1.22.3
+* Dart version 2.10.3
 
 
 

@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     LogUtils.init();
-    final Router router = Router();
+    final FluroRouter router = FluroRouter();
     Routes.configureRoutes(router);
     Application.router = router;
     _getInfo(); //获取设备信息

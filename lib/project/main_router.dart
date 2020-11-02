@@ -52,7 +52,7 @@ class MainRouter implements IRouterProvider {
   static String fourPage = '/fourPage';
 
   @override
-  void initRouter(Router router) {
+  void initRouter(FluroRouter router) {
     router.define(onePage, handler: Handler(handlerFunc: (_, __) => OnePage()));
     router.define(twoPage, handler: Handler(handlerFunc: (_, __) => TwoPage()));
     router.define(threePage,
