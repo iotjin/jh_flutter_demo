@@ -26,7 +26,7 @@
         <entry key="azlistview">
           <value>
             <list>
-              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/azlistview-0.1.2/lib" />
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/azlistview-1.0.1/lib" />
             </list>
           </value>
         </entry>
@@ -681,6 +681,13 @@
             </list>
           </value>
         </entry>
+        <entry key="scrollable_positioned_list">
+          <value>
+            <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/scrollable_positioned_list-0.1.8/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="shared_preferences">
           <value>
             <list>
@@ -904,7 +911,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/args-1.6.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/asn1lib-0.8.1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/async-2.5.0-nullsafety.1/lib" />
-      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/azlistview-0.1.2/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/azlistview-1.0.1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/back_button_interceptor-4.4.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/badges-1.1.4/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/barcode_scan-3.0.1/lib" />
@@ -994,6 +1001,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/rational-0.3.8/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/rxdart-0.24.1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/screenshot-0.1.1/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/scrollable_positioned_list-0.1.8/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences-0.5.12+2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_linux-0.0.2+2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_macos-0.0.1+10/lib" />

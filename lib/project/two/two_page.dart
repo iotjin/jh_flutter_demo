@@ -37,15 +37,17 @@ class _TwoPageState extends State<TwoPage> {
   // 联系人总数
   String _contactsCount = '';
 
-  int _suspensionHeight = 40;
-  int _itemHeight = 50;
+  double _suspensionHeight = 40;
+  double _itemHeight = 50;
   String _suspensionTag = "";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _loadData();
+    Future.delayed(Duration(milliseconds: 500), () {
+      _loadData();
+    });
   }
 
   void _loadData() async {
@@ -88,14 +90,15 @@ class _TwoPageState extends State<TwoPage> {
       }
     });
 
-    _contactsCount = "${_dataList.length} 位朋友及联系人";
-  }
+    // show sus tag.
+    SuspensionUtil.setShowSuspensionStatus(_dataList);
 
-  void _onSusTagChanged(String tag) {
-//    print('tag: ${tag}');
-    setState(() {
-      _suspensionTag = tag;
-    });
+    // add header.
+    _dataList.insert(0, ContactsModel(name: 'header', tagIndex: '🔍'));
+
+    _contactsCount = "${_dataList.length} 位朋友及联系人";
+
+    setState(() {});
   }
 
   @override
@@ -115,54 +118,45 @@ class _TwoPageState extends State<TwoPage> {
   Widget _body() {
     return AzListView(
       data: _dataList,
-      itemBuilder: (context, model) => _buildListItem(model),
-      suspensionWidget: _buildSusWidget(_suspensionTag, isFloat: true),
-      isUseRealIndex: true,
-      itemHeight: _itemHeight,
-      suspensionHeight: _suspensionHeight,
-      onSusTagChanged: _onSusTagChanged,
-      header: AzListViewHeader(
-//          tag: "★",
-          tag: "🔍",
-          height: 55 * 4 + 60,
-          builder: (context) {
-            return _buildHeader();
-          }),
-      indexHintBuilder: (context, hint) {
-        return Container(
-          alignment: Alignment.center,
-          width: 80.0,
-          height: 80.0,
-          decoration:
-              BoxDecoration(color: Colors.black54, shape: BoxShape.circle),
-          child:
-              Text(hint, style: TextStyle(color: Colors.white, fontSize: 30.0)),
-        );
+      itemCount: _dataList.length,
+      itemBuilder: (BuildContext context, int index) {
+        if (index == 0) return _buildHeader();
+        ContactsModel model = _dataList[index];
+        return _buildListItem(model);
       },
-//      //默认
-//      indexBarBuilder: (BuildContext context, List<String> tags,
-//          IndexBarTouchCallback onTouch) {
-//        return Container(
-//          color: Colors.transparent,
-//          margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-//          child: IndexBar(
-//            color: Colors.transparent,
-//            touchDownColor: Colors.transparent,
-//            data: tags,
-//            itemHeight: 20,
-//            onTouch: (details) {
-//              onTouch(details);
-//            },
-//          ),
-//        );
-//      },
-
-      //仿微信hint效果
-      // 隐藏默认提供的
-      showIndexHint: false,
-      indexBarBuilder: (context, tagList, onTouch) {
-        return _buildCustomIndexBarByBuilder(context, tagList, onTouch);
+      physics: BouncingScrollPhysics(),
+      susItemHeight: _suspensionHeight,
+      susItemBuilder: (BuildContext context, int index) {
+        ContactsModel model = _dataList[index];
+        String tag = model.getSuspensionTag();
+        if ('🔍' == model.getSuspensionTag()) {
+          return Container();
+        }
+        return _buildSusWidget(tag, isFloat: true);
       },
+      indexBarData: SuspensionUtil.getTagIndexList(_dataList),
+      indexBarOptions: IndexBarOptions(
+        needRebuild: true,
+        ignoreDragCancel: true,
+        selectTextStyle: TextStyle(
+            fontSize: 12, color: Colors.white, fontWeight: FontWeight.w500),
+        selectItemDecoration:
+            BoxDecoration(shape: BoxShape.circle, color: Colors.green),
+        indexHintWidth: 120 / 2,
+        indexHintHeight: 100 / 2,
+        indexHintDecoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/wechat/contacts/ic_index_bar_bubble_gray.png'),
+            fit: BoxFit.contain,
+          ),
+        ),
+        indexHintAlignment: Alignment.centerRight,
+        indexHintTextStyle: TextStyle(
+            color: Colors.white70, fontSize: 30.0, fontWeight: FontWeight.w700),
+        indexHintChildAlignment: Alignment(-0.25, 0.0),
+        indexHintOffset: Offset(-10, 0),
+      ),
     );
   }
 
@@ -244,7 +238,8 @@ class _TwoPageState extends State<TwoPage> {
   // 吸顶组件
   Widget _buildSusWidget(String susTag, {bool isFloat = false}) {
     return Container(
-      height: _suspensionHeight.toDouble(),
+      height: _suspensionHeight,
+      width: JhScreen.width,
       padding: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         color: isFloat ? Colors.white : KColor.kWeiXinBgColor,
@@ -267,7 +262,7 @@ class _TwoPageState extends State<TwoPage> {
   //Cell
   Widget _buildListItem(ContactsModel model) {
     String susTag = model.getSuspensionTag();
-    double _cellH = 50.0;
+    double _cellH = _itemHeight;
     double _leftSpace = 65.0;
     double _imgWH = 40;
     Widget _cell = JhSetCell(
@@ -300,7 +295,7 @@ class _TwoPageState extends State<TwoPage> {
     return Column(
       children: <Widget>[
         Offstage(
-          offstage: model.isShowSuspension != true,
+          offstage: !model.isShowSuspension,
           child: _buildSusWidget(susTag),
         ),
         Slidable(
@@ -356,99 +351,6 @@ class _TwoPageState extends State<TwoPage> {
       NavigatorUtils.pushNamed(context, 'WxGroupChatPage');
     }
   }
-
-  /********************************* 仿微信hint ********************************/
-
-  /// 🔥🔥🔥 构建自定义IndexBar by builder  使用Builder的形式控件 更加强大 更高定制度
-  Widget _buildCustomIndexBarByBuilder(BuildContext context,
-      List<String> tagList, IndexBarTouchCallback onTouch) {
-    return MHIndexBar(
-      data: tagList,
-      tag: _suspensionTag,
-      onTouch: onTouch,
-      indexBarTagBuilder: (context, tag, indexModel) {
-        return _buildIndexBarTagWidget(context, tag, indexModel);
-      },
-      indexBarHintBuilder: (context, tag, indexModel) {
-        return _buildIndexBarHintWidget(context, tag, indexModel);
-      },
-    );
-  }
-
-  /// 构建tag
-  Widget _buildIndexBarTagWidget(
-      BuildContext context, String tag, IndexBarDetails indexModel) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: indexModel.tag == tag
-            ? KColor.kWeiXinThemeColor
-            : Colors.transparent,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        tag,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 10.0,
-          color: indexModel.tag == tag ? Colors.white : Colors.grey,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      width: 16.0,
-      height: 16.0,
-    );
-  }
-
-  /// 构建Hint
-  Widget _buildIndexBarHintWidget(
-      BuildContext context, String tag, IndexBarDetails indexModel) {
-    // 图片名
-    return Positioned(
-      left: -80,
-      top: -(64 - 16) * 0.5,
-      child: Offstage(
-        offstage: _fetchOffstage(tag, indexModel),
-        child: Container(
-          width: 64.0,
-          height: 64.0,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                  'assets/wechat/contacts/contact_index_bar_bubble_0.png'),
-              fit: BoxFit.contain,
-            ),
-          ),
-          alignment: Alignment(-0.25, 0.0),
-          child: _buildHintChildWidget(tag, indexModel),
-        ),
-      ),
-    );
-  }
-
-  /// 构建某个hint中子部件
-  Widget _buildHintChildWidget(String tag, IndexBarDetails indexModel) {
-    return Text(
-      tag,
-      style: TextStyle(
-        color: Colors.white70,
-        fontSize: 30.0,
-        fontWeight: FontWeight.w700,
-      ),
-    );
-  }
-
-  // 获取Offstage 是否隐居幕后
-  bool _fetchOffstage(String tag, IndexBarDetails indexModel) {
-    if (indexModel.tag == tag) {
-      final List<String> ignoreTags = [];
-      return ignoreTags.indexOf(tag) != -1 ? true : !indexModel.isTouchDown;
-    }
-    return true;
-  }
-
-/********************************* 仿微信hint ********************************/
-
 }
 
 //class BaseScrollView extends StatelessWidget {

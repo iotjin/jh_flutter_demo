@@ -108,7 +108,7 @@ dependencies:
   # 侧滑删除 https://pub.flutter-io.cn/packages/flutter_slidable
   flutter_slidable: ^0.5.7
   # 城市选择列表 https://pub.flutter-io.cn/packages/azlistview
-  azlistview: ^0.1.2
+  azlistview: ^1.0.1
   # 汉字转拼音 https://pub.flutter-io.cn/packages/lpinyin
   lpinyin: ^1.0.9
 

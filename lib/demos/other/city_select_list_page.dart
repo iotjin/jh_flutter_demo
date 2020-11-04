@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,15 +20,17 @@ class CitySelectListPage extends StatefulWidget {
 
 class _CitySelectListPageState extends State<CitySelectListPage> {
   List<ContactsModel> _cityList = List();
-  int _suspensionHeight = 40;
-  int _itemHeight = 50;
+  double _suspensionHeight = 40;
+  double _itemHeight = 50;
   String _suspensionTag = "";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _loadData();
+    Future.delayed(Duration(milliseconds: 500), () {
+      _loadData();
+    });
   }
 
   void _loadData() async {
@@ -58,12 +61,14 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
     }
     //根据A-Z排序
     SuspensionUtil.sortListBySuspensionTag(_cityList);
-  }
 
-  void _onSusTagChanged(String tag) {
-    setState(() {
-      _suspensionTag = tag;
-    });
+    // show sus tag.
+    SuspensionUtil.setShowSuspensionStatus(_cityList);
+
+    // add header.
+    _cityList.insert(0, ContactsModel(name: 'header', tagIndex: '★'));
+
+    setState(() {});
   }
 
   @override
@@ -73,7 +78,9 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
           rightItemCallBack: () {
         print('object: ');
       }),
-      body: _body(),
+      body: SafeArea(
+        child: _body(),
+      ),
       backgroundColor: KColor.kWeiXinBgColor,
     );
   }
@@ -97,33 +104,43 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
           height: .0,
         ),
         Expanded(
-            flex: 1,
-            child: AzListView(
-              data: _cityList,
-              itemBuilder: (context, model) => _buildListItem(model),
-              suspensionWidget: _buildSusWidget(_suspensionTag),
-              isUseRealIndex: true,
-              itemHeight: _itemHeight,
-              suspensionHeight: _suspensionHeight,
-              onSusTagChanged: _onSusTagChanged,
-              header: AzListViewHeader(
-                  tag: "★",
-                  height: 140,
-                  builder: (context) {
-                    return _buildHeader();
-                  }),
-              indexHintBuilder: (context, hint) {
-                return Container(
-                  alignment: Alignment.center,
-                  width: 80.0,
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                      color: Colors.black54, shape: BoxShape.circle),
-                  child: Text(hint,
-                      style: TextStyle(color: Colors.white, fontSize: 30.0)),
-                );
-              },
-            )),
+          flex: 1,
+          child: AzListView(
+            data: _cityList,
+            itemCount: _cityList.length,
+            itemBuilder: (BuildContext context, int index) {
+              if (index == 0) return _buildHeader();
+              ContactsModel model = _cityList[index];
+              return _buildListItem(model);
+            },
+            susItemHeight: _suspensionHeight,
+            susItemBuilder: (BuildContext context, int index) {
+              ContactsModel model = _cityList[index];
+              String tag = model.getSuspensionTag();
+              if ('★' == model.getSuspensionTag()) {
+                return Container();
+              }
+              return _buildSusWidget(tag);
+            },
+            indexBarData: SuspensionUtil.getTagIndexList(_cityList),
+            // indexBarOptions: IndexBarOptions(
+            //   needRebuild: true,
+            //   color: Colors.transparent,
+            //   downColor: Color(0xFFEEEEEE), //local images.
+            // ),
+            indexHintBuilder: (context, hint) {
+              return Container(
+                alignment: Alignment.center,
+                width: 80.0,
+                height: 80.0,
+                decoration: BoxDecoration(
+                    color: Colors.black54, shape: BoxShape.circle),
+                child: Text(hint,
+                    style: TextStyle(color: Colors.white, fontSize: 30.0)),
+              );
+            },
+          ),
+        ),
       ],
     );
   }
@@ -160,7 +177,8 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
 
   Widget _buildSusWidget(String susTag) {
     return Container(
-      height: _suspensionHeight.toDouble(),
+      height: _suspensionHeight,
+      width: JhScreen.width,
       padding: const EdgeInsets.only(left: 15.0),
       color: Color(0xfff3f4f5),
       alignment: Alignment.centerLeft,
@@ -180,11 +198,11 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
     return Column(
       children: <Widget>[
         Offstage(
-          offstage: model.isShowSuspension != true,
+          offstage: !model.isShowSuspension,
           child: _buildSusWidget(susTag),
         ),
         SizedBox(
-          height: _itemHeight.toDouble(),
+          height: _itemHeight,
           child: ListTile(
             title: Text(model.name),
             onTap: () {
