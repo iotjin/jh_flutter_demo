@@ -5,7 +5,7 @@
 | --- | --- |
 | flutter | 列出所有的命令 |
 | flutter help <command></command> | 查看具体命令的帮助信息 |
-| flutter doctor | 查看是否还需要安装其它依赖 |
+| flutter doctor | 查看是否还需要安装其它依赖（它将自动检查计算机内的flutter的工具链的状态，并给出建议和提示） |
 | flutter doctor -v | 查看详细信息 |
 | flutter channel | 查看 Flutter SDK 所有分支 |
 | flutter channel stable | 切换分支 |
@@ -15,6 +15,7 @@
 | flutter analyze | 分析项目代码 |
 | flutter build apk |  |
 | flutter build iOS |  |
+| flutter run  --release| 发布版本调试，发布版本测试需要连接真机方能调试。 |
 
 
 ```
