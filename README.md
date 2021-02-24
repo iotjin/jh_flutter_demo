@@ -1,6 +1,6 @@
 # jh_flutter_demo
 
-A new Flutter project.
+A new Flutter project - 实现一些常用效果、封装通用组件和工具类 <br> 
 <br>
 
 pwd：123456
