@@ -8,7 +8,7 @@ import 'http_page_test_item.dart';
 import 'package:dio/dio.dart';
 
 //import 'package:dio_http_cache/dio_http_cache.dart';
-import 'package:jh_flutter_demo/http/http_utils.dart';
+import 'package:jh_flutter_demo/data/data_utils.dart';
 
 var dataArr;
 var pageIndex = 0; //页数
@@ -59,7 +59,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
   void getNewData() {
     pageIndex = 0;
     print("pageIndex- ${pageIndex}");
-    HttpUtils.getNewPageList({"page": pageIndex}, success: (result) {
+    DataUtils.getPageList({"page": pageIndex, "limit": 10}, success: (result) {
       dataArr = result['data'];
       setState(() {
         _count = dataArr.length == null ? 0 : dataArr.length;
@@ -84,7 +84,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
 //      _controller.finishLoad();
 //    });
 
-    HttpUtils.getNewPageList({"page": pageIndex}, success: (result) {
+    DataUtils.getPageList({"page": pageIndex, "limit": 10}, success: (result) {
       var moreData = result['data'];
       dataArr = dataArr + moreData;
       setState(() {

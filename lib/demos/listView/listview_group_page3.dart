@@ -6,7 +6,7 @@ import 'package:sticky_headers/sticky_headers.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/http/http_utils.dart';
+import 'package:jh_flutter_demo/data/data_utils.dart';
 
 List groupData33 = [
   {
@@ -86,7 +86,9 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
   void getNewData() {
     pageIndex = 0;
     print("pageIndex- ${pageIndex}");
-    HttpUtils.getNewPageGroupList({"page": pageIndex}, success: (result) {
+    DataUtils.getPageGroupList({"page": pageIndex, "limit": 10},
+        success: (result) {
+      print(result);
       setState(() {
         groupData = result['data'];
         _controller.resetLoadState();
@@ -98,7 +100,8 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
     pageIndex++;
     print("more pageIndex- ${pageIndex}");
 
-    HttpUtils.getNewPageGroupList({"page": pageIndex}, success: (result) {
+    DataUtils.getPageGroupList({"page": pageIndex, "limit": 10},
+        success: (result) {
       var moreData = result['data'];
       setState(() {
         if (moreData.length > 0) {

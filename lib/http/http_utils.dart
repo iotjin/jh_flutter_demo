@@ -7,7 +7,7 @@
 
 import 'package:jh_flutter_demo/jh_common/widgets/jh_progress_hud.dart';
 
-import 'apis.dart';
+import '../data/apis.dart';
 import 'dio_utils.dart';
 import 'log_utils.dart';
 
@@ -15,54 +15,25 @@ typedef Success<T> = Function(T data);
 typedef Fail = Function(int code);
 
 class HttpUtils {
-  //登录
-  static void login<T>(
-    parameters, {
-    Success success,
-    Fail fail,
-  }) {
-//    DioUtils.request(Method.POST, APIs.login, parameters,
-//        success: success, fail: fail);
-    post(APIs.login, parameters, success: success, fail: fail);
-  }
-
-  //分页加载数据
-  static void getNewPageList<T>(
-    parameters, {
-    Success success,
-    Fail fail,
-  }) {
-    post(APIs.getPage, parameters, success: success, fail: fail);
-  }
-
-  //分页加载分组数据
-  static void getNewPageGroupList<T>(
-      parameters, {
-        Success success,
-        Fail fail,
-      }) {
-    post(APIs.getGroupPage, parameters, success: success, fail: fail);
-  }
-
-  //GET
-  static void GetRequest<T>(
-    APIType apiType,
-    parameters, {
-    Success success,
-    Fail fail,
-  }) {
-    post(APITypeValues[apiType], parameters, success: success, fail: fail);
-  }
-
-  //POST
-  static void PostRequest<T>(
-    APIType apiType,
-    parameters, {
-    Success success,
-    Fail fail,
-  }) {
-    post(APITypeValues[apiType], parameters, success: success, fail: fail);
-  }
+  // //GET
+  // static void GetRequest<T>(
+  //   APIType apiType,
+  //   parameters, {
+  //   Success success,
+  //   Fail fail,
+  // }) {
+  //   post(APITypeValues[apiType], parameters, success: success, fail: fail);
+  // }
+  //
+  // //POST
+  // static void PostRequest<T>(
+  //   APIType apiType,
+  //   parameters, {
+  //   Success success,
+  //   Fail fail,
+  // }) {
+  //   post(APITypeValues[apiType], parameters, success: success, fail: fail);
+  // }
 
   /********************************* 分割线 ********************************/
 
@@ -94,14 +65,6 @@ class HttpUtils {
     Success success,
     Fail fail,
   }) {
-    /// restful 请求处理
-    /// /base/search/hist/:user_id        user_id=27
-    /// 最终生成 url 为     /base/search/hist/27
-    parameters.forEach((key, value) {
-      if (url.indexOf(key) != -1) {
-        url = url.replaceAll(':$key', value.toString());
-      }
-    });
 //    //参数处理
 //    LogUtils.d("--------- parameters ---------");
 //    LogUtils.d("$parameters");

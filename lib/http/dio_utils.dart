@@ -10,7 +10,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:connectivity/connectivity.dart';
 
-import 'apis.dart';
+import '../data/apis.dart';
 import 'log_utils.dart';
 import 'error_handle.dart';
 
@@ -43,7 +43,7 @@ class DioUtils {
           return true;
         },
         baseUrl: APIs.apiPrefix,
-//        headers: httpHeaders,
+        headers: httpHeaders,
         connectTimeout: _connectTimeout,
         receiveTimeout: _receiveTimeout,
         sendTimeout: _sendTimeout,
@@ -74,8 +74,18 @@ class DioUtils {
         return;
       }
       Dio _dio = createInstance();
+      var data;
+      var queryParameters;
+      if (method == Method.GET) {
+        queryParameters = params;
+      }
+      if (method == Method.POST) {
+        data = params;
+      }
       Response response = await _dio.request(path,
-          data: params, options: Options(method: MethodValues[method]));
+          data: data,
+          queryParameters: queryParameters,
+          options: Options(method: MethodValues[method]));
       if (response != null) {
         if (success != null) {
           success(response.data);

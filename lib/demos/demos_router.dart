@@ -131,9 +131,9 @@ class DemosRouter implements IRouterProvider{
     router.define("EChartPage2", handler: Handler(handlerFunc: (_, __) => EChartPage2()));
     router.define("EChartPage3", handler: Handler(handlerFunc: (_, __) => EChartPage3()));
     router.define("EChartPage4", handler: Handler(handlerFunc: (_, __) => EChartPage4()));
-    router.define("MpChartLinePage1", handler: Handler(handlerFunc: (_, __) => MpChartLinePage1()));
-    router.define("MpChartBarPage1", handler: Handler(handlerFunc: (_, __) => MpChartBarPage1()));
-    router.define("MpChartCombinedPage", handler: Handler(handlerFunc: (_, __) => MpChartCombinedPage()));
+    // router.define("MpChartLinePage1", handler: Handler(handlerFunc: (_, __) => MpChartLinePage1()));
+    // router.define("MpChartBarPage1", handler: Handler(handlerFunc: (_, __) => MpChartBarPage1()));
+    // router.define("MpChartCombinedPage", handler: Handler(handlerFunc: (_, __) => MpChartCombinedPage()));
     //表单
     router.define("FormDemoListsPage", handler: Handler(handlerFunc: (_, __) => FormDemoListsPage()));
     router.define("LoginTextFieldTestPage", handler: Handler(handlerFunc: (_, __) => LoginTextFieldTestPage()));

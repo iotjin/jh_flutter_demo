@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jh_flutter_demo/http/apis.dart';
 
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:flui/src/widgets/avatar.dart';
 import 'package:flustars/flustars.dart';
 import 'package:dio/dio.dart';
 import 'package:package_info/package_info.dart';
@@ -21,7 +19,7 @@ import 'package:jh_flutter_demo/project/model/user_model.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/routes/routes.dart';
 import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
-import 'package:jh_flutter_demo/http/http_utils.dart';
+import 'package:jh_flutter_demo/data/data_utils.dart';
 
 /*
 *        keyboardType: TextInputType.numberWithOptions(decimal: true),//设置键盘为可录入小数的数字
@@ -140,16 +138,20 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 50),
 //                  Image.asset("assets/images/lufei.png",width: 100,),
 
-                FLAvatar(
-//                  color: Colors.blue,
-                  color: logoColor,
-                  width: 100,
+                Container(
                   height: 100,
-//                    radius: 0,
-                  text: 'Logo',
-                  textStyle: TextStyle(fontSize: 20, color: Colors.white),
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: logoColor,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Logo',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
                 ),
-
                 SizedBox(height: 30),
                 JhLoginTextField(
                     text: _name,
@@ -238,8 +240,7 @@ class _LoginPageState extends State<LoginPage> {
       msg: "正在登录...",
     );
 
-//    var url =
-//        "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/login";
+//    var url = APIs.login;
 //    var dio = new Dio();
 //    var response = await dio.post(url, data: {"userName": _name, "pwd": _pwd});
 //    var result = response.data.toString();
@@ -264,8 +265,7 @@ class _LoginPageState extends State<LoginPage> {
 //    }
 
     //登录请求
-    HttpUtils.PostRequest(APIType.Login, {"userName": _name, "pwd": _pwd},
-        success: (data) {
+    DataUtils.login({"userName": _name, "pwd": _pwd}, success: (data) {
       if (data["suc"] == true) {
 //        Map<String, dynamic> json = Map<String, dynamic>.from(data["data"]);
 //        /*将Json转成实体类*/

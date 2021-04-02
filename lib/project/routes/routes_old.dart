@@ -143,7 +143,7 @@ final routes = {
   "ChartPage1": (context) => ChartPage1(),
   "ChartPage2": (context) => ChartPage2(),
   "EChartPage1": (context) => EChartPage1(),
-  "MpChartLinePage1": (context) => MpChartLinePage1(),
+  // "MpChartLinePage1": (context) => MpChartLinePage1(),
 
 
 

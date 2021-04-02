@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+
 //import 'package:dio_http_cache/dio_http_cache.dart';
 import 'dart:io';
 import 'dart:convert';
+import '../../data/apis.dart';
 
 class HttpTest1Page extends StatefulWidget {
   @override
@@ -10,58 +12,61 @@ class HttpTest1Page extends StatefulWidget {
 }
 
 class _HttpTest1PageState extends State<HttpTest1Page> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-//    postRequest();
-    postRequest2();
-
-//    postRequest3();
-
+    getRequest();
+    // postRequest();
+    // postRequest2();
+    // postRequest3();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
-          title:Text("HttpTest1",style:TextStyle (color: Colors.white))
-      ),
+      appBar: AppBar(
+          title: Text("HttpTest1", style: TextStyle(color: Colors.white))),
       body: Container(),
     );
   }
 }
 
-void postRequest() async {
-  var url = "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/getSimpleArrDic";
+void getRequest() async {
+  var url = APIs.apiPrefix + APIs.getPage;
   var dio = new Dio();
-  var response = await dio.post(url, data:{"id":12,"name":"wendu"});
+  var response = await dio.get(url, queryParameters: {"page": 0, "limit": 10});
   var result = response.data.toString();
-   print("返回数据： "+result);
-   print(response.data["msg"]);
-
-}
-
-void postRequest2()async{
-  var url = "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/getSimpleArrDic";
-  var response = await Dio().post(url);
-  print("返回数据： "+response.data.toString());
+  print("返回数据： " + result);
   print(response.data["msg"]);
-
 }
 
-void postRequest3()async{
+void postRequest() async {
+  var url = APIs.apiPrefix + APIs.getSimpleArrDic;
+  var dio = new Dio();
+  var response = await dio.post(url, data: {"id": 12, "name": "wendu"});
+  var result = response.data.toString();
+  print("返回数据： " + result);
+  print(response.data["msg"]);
+}
 
+void postRequest2() async {
+  var url = APIs.apiPrefix + APIs.getSimpleArrDic;
+  var response = await Dio().post(url);
+  print("返回数据： " + response.data.toString());
+  print(response.data["msg"]);
+}
+
+void postRequest3() async {
   print("response----");
 //      var url = "https://itunes.apple.com/lookup?id=id414478124";
   var url = "https://itunes.apple.com/cn/lookup?id=414478124";
-  Options options = Options(headers: {HttpHeaders.acceptHeader:"Content-Type:application/x-www-form-urlencoded"});
+  Options options = Options(headers: {
+    HttpHeaders.acceptHeader: "Content-Type:application/x-www-form-urlencoded"
+  });
 
-  var response = await Dio().post(
-      url,
-      options: options);
+  var response = await Dio().post(url, options: options);
 
   print("results---");
 //  print(response.toString());
@@ -72,8 +77,4 @@ void postRequest3()async{
   print('results##### ${data['results']}');
 
   print('version#####, ${data['results'][0]['version']}');
-
-
-
-
 }

@@ -11,16 +11,12 @@ import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/click_item.dart';
 import '../../routes/navigator.dart';
 
-
-
-
 class AboutIOSPage extends StatefulWidget {
   @override
   _AboutIOSPageState createState() => _AboutIOSPageState();
 }
 
 class _AboutIOSPageState extends State<AboutIOSPage> {
-
   var _CurrentVersion;
   var _info = "";
   var _isNeedUpate = false;
@@ -33,8 +29,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
     _getAPPStoreVersion();
   }
 
-  void _getInfo() async{
-
+  void _getInfo() async {
 //    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 //    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
 //    print(iosInfo.toString());
@@ -61,11 +56,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
     setState(() {
       _CurrentVersion = packageInfo.version;
     });
-
   }
-
-
-
 
   @override
   void dispose() {
@@ -78,45 +69,47 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
       appBar: backAppBar(context, "关于我们"),
       body: Column(
         children: <Widget>[
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           FlutterLogo(
             size: 100.0,
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Text("Version：${_CurrentVersion}"),
-          SizedBox(height: 50,),
-          ClickItem(
-            title: 'Github',
-            content: 'Go Star',
-            onTap: ()=> NavigatorRouterUtils.jumpWebViewPage(context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo')
-
+          SizedBox(
+            height: 50,
           ),
           ClickItem(
-            title: 'author',
-            content: 'iotjin',
-            onTap: ()=> NavigatorRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')
-
-          ),
-
+              title: 'Github',
+              content: 'Go Star',
+              onTap: () => NavigatorRouterUtils.jumpWebViewPage(
+                  context,
+                  'jh_flutter_demo',
+                  'https://github.com/iotjin/jh_flutter_demo')),
+          ClickItem(
+              title: 'author',
+              content: 'iotjin',
+              onTap: () => NavigatorRouterUtils.jumpWebViewPage(
+                  context, '作者博客', 'https://blog.csdn.net/iotjin')),
           ClickItem(
               title: "版本更新",
               content: _info,
-              onTap: (){
-                if (_isNeedUpate ==true) {
+              onTap: () {
+                if (_isNeedUpate == true) {
                   _jumpAppStore();
                 }
-              }
-          )
+              })
         ],
       ),
     );
   }
 
-
-
-
-  void _jumpAppStore()async {
-    String url = 'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8'; // 这是微信的地址，到时候换成自己的应用的地址
+  void _jumpAppStore() async {
+    String url =
+        'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8'; // 这是微信的地址，到时候换成自己的应用的地址
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -124,15 +117,14 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
     }
   }
 
-  void _getAPPStoreVersion()async{
-
+  void _getAPPStoreVersion() async {
     print("response----");
     var url = "https://itunes.apple.com/cn/lookup?id=414478124";
-    Options options = Options(headers: {HttpHeaders.acceptHeader:"Content-Type:application/x-www-form-urlencoded"});
+    Options options = Options(headers: {
+      HttpHeaders.acceptHeader: "Content-Type:application/x-www-form-urlencoded"
+    });
 
-    var response = await Dio().post(
-        url,
-        options: options);
+    var response = await Dio().post(url, options: options);
 
     print("results---");
 //  print(response.toString());
@@ -153,15 +145,14 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
 
     print(_CurrentVersion.compareTo(_APPStoreVersion)); // 比较大小, 0:相同、1:大于、-1:小于
 
-    if(_CurrentVersion.compareTo(_APPStoreVersion)< 0){
+    if (_CurrentVersion.compareTo(_APPStoreVersion) < 0) {
       print("提示更新");
 
       setState(() {
         _info = "有新版本,去更新";
         _isNeedUpate = true;
       });
-
-    }else{
+    } else {
       print("不需要更新");
 
       setState(() {
@@ -169,16 +160,5 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
         _isNeedUpate = false;
       });
     }
-
-
   }
-
-
-
-
-
 }
-
-
-
-

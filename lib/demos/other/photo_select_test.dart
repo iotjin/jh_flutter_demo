@@ -13,14 +13,15 @@ class PhotoSelectTest extends StatelessWidget {
         body: Container(
             padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
             color: Colors.yellow,
-            child: JhPhotoPicker(
-              lfPaddingSpace: 110,
-              callBack: (var img) {
-                print("img-------------");
-                print(img.length);
-                print(img);
-                print("img-------------");
-              },
-            )));
+            // child: JhPhotoPicker(
+            //   lfPaddingSpace: 110,
+            //   callBack: (var img) {
+            //     print("img-------------");
+            //     print(img.length);
+            //     print(img);
+            //     print("img-------------");
+            //   },
+            // )
+        ));
   }
 }

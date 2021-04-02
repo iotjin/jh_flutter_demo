@@ -8,7 +8,6 @@ import 'package:jh_flutter_demo/project/new_feature/new_feature_page.dart';
 import 'package:package_info/package_info.dart';
 
 import 'package:flustars/flustars.dart';
-import 'package:flui/src/widgets/toast.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:fluro/fluro.dart';
 
@@ -80,7 +79,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  FLToastDefaults _toastDefaults = FLToastDefaults();
   var _currentVersion = '';
 
   @override
@@ -98,12 +96,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 //    JhScreenUtils.init(context);
-    return
-//      FLToastProvider(
-//          defaults: _toastDefaults,
-        OKToast(
+    return OKToast(
 //          dismissOtherOnShow: true,
-            child: Container(
+        child: Container(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

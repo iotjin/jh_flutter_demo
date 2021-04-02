@@ -7,43 +7,35 @@ class UIPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("UITest",style:TextStyle (color:  Colors.white)),
-        elevation: 0.0,
-      ),
-
-     body: BaseScrollView()
-    );
-
+        appBar: AppBar(
+          title: Text("UITest", style: TextStyle(color: Colors.white)),
+          elevation: 0.0,
+        ),
+        body: BaseScrollView());
   }
 }
 
-
 class BaseScrollView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return
-
-      Scrollbar(
-          child: SingleChildScrollView(child:
-          Column(
-            children: <Widget>[
-
-
-
-
+    return Scrollbar(
+        child: SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
           testBtn,
-          FlatButton( //即扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
+          FlatButton(
+            //即扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
             child: Text("扁平按钮"),
             onPressed: () {},
           ),
-          RaisedButton(//即"漂浮"按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
+          RaisedButton(
+            //即"漂浮"按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
             child: Text("漂浮按钮"),
             onPressed: () {},
           ),
 
-          OutlineButton( //OutlineButton默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
+          OutlineButton(
+            //OutlineButton默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
             child: Text("带边框的按钮"),
             onPressed: () {},
           ),
@@ -60,48 +52,64 @@ class BaseScrollView extends StatelessWidget {
           testText,
           testImage,
           testText,
-          testPositioned,  //绝对定位
-          testContainer ,//Container
+          testPositioned,
+          //绝对定位
+          testContainer,
+          //Container
           textListView,
           textListView0,
 
-          Container(height: 1500,width:double.infinity,color: Colors.yellow,child: Text("往下滑动"),),
-          Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),
-          Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),Text("data"),
-
-            ],
+          Container(
+            height: 1500,
+            width: double.infinity,
+            color: Colors.yellow,
+            child: Text("往下滑动"),
           ),
-
-          )
-      );
-
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+        ],
+      ),
+    ));
   }
 }
 
-
-
-
-
-
-
-
 List<String> bottomData = ["1111", "2222", "3333333333333333333", "4444"];
-
 
 Widget textListView = Container(
   child: ListView(
-    shrinkWrap: true,//是否根据子组件的总长度来设置ListView的长度，默认值为false
-    physics: const NeverScrollableScrollPhysics(),// 禁止滑动
+    shrinkWrap: true, //是否根据子组件的总长度来设置ListView的长度，默认值为false
+    physics: const NeverScrollableScrollPhysics(), // 禁止滑动
     children: <Widget>[
-      Text(bottomData[0], style: TextStyle( color: Colors.black, fontSize: 18.0,)),
-      Text(bottomData[1], style: TextStyle( color: Colors.black, fontSize: 18.0,)),
-      Text(bottomData[2], style: TextStyle( color: Colors.black, fontSize: 18.0,)),
+      Text(bottomData[0],
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18.0,
+          )),
+      Text(bottomData[1],
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18.0,
+          )),
+      Text(bottomData[2],
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18.0,
+          )),
     ],
   ),
 );
 
-
-Widget testBtn =Container(
+Widget testBtn = Container(
     color: Colors.yellow,
     width: 100,
     height: 40,
@@ -126,20 +134,15 @@ Widget testBtn =Container(
 //      onPressed: () {},
 //    ),
 
-
-    child:FlatButton(
+    child: FlatButton(
       color: Colors.blue,
       highlightColor: Colors.blue[700],
       colorBrightness: Brightness.dark,
       splashColor: Colors.grey,
       child: Text("Submit"),
-      shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       onPressed: () {},
-    )
-
-);
-
-
+    ));
 
 Widget testText = Container(
   color: Colors.yellow,
@@ -153,19 +156,15 @@ Widget testText = Container(
       color: Color(0xFF999999),
     ),
   ),
-
 );
-
-
 
 Widget testImage = Container(
   color: Colors.yellow,
 //  width: 400,
 //  height: 400,
   child: Image(
-
 //        image: AssetImage("assets/images/touxiang.jpeg"),
-    image: JhImageUtils.getAssetImage('tubiao'),
+    image: JhImageUtils.getAssetImage('picture/tubiao'),
     width: 50,
     height: 50,
 //      fit: BoxFit.cover,
@@ -178,10 +177,7 @@ Widget testImage = Container(
 ////    fit: BoxFit.fitHeight,
 ////    height: 100
 //    )
-
 );
-
-
 
 //Container 练习
 Widget testContainer = Container(
@@ -189,21 +185,20 @@ Widget testContainer = Container(
   height: 200,
 
 //  margin: EdgeInsets.all(10),
-  margin: EdgeInsets.only(left: 10,top: 10),
+  margin: EdgeInsets.only(left: 10, top: 10),
 // margin: EdgeInsets.fromLTRB(left, top, right, bottom),
 //  EdgeInsets.symmetric(horizontal: val1, vertical: val2): //用于设置水平/垂直方向上的值；
   constraints: BoxConstraints(
 //      minWidth: double.infinity, //宽度尽可能大
       minWidth: 300,
       minHeight: 50.0 //最小高度为50像素
-  ),
+      ),
 
-  alignment: Alignment.topRight, //子组件将以何种方式进行排列
+  alignment: Alignment.topRight,
+  //子组件将以何种方式进行排列
   color: Colors.yellow,
   child: Text("这是文字"),
 );
-
-
 
 //绝对定位
 Widget testPositioned = Container(
@@ -235,11 +230,10 @@ Widget testPositioned = Container(
   ),
 );
 
-
 Widget textSection = Container(
 //  padding: const EdgeInsets.all(32),
 
-  alignment:Alignment.topCenter,
+  alignment: Alignment.topCenter,
 //    Alignment.topCenter
 //  constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0), //卡片大小
 
@@ -256,7 +250,6 @@ Widget textSection = Container(
   ),
 );
 
-
 Widget textListView0 = Container(
   color: Colors.red,
   constraints: BoxConstraints(
@@ -265,10 +258,11 @@ Widget textListView0 = Container(
 //  margin: EdgeInsets.only(bottom: 20),
   child: ListView(
     shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),// 禁止滑动
+    physics: const NeverScrollableScrollPhysics(), // 禁止滑动
     padding: const EdgeInsets.all(20.0),
     children: <Widget>[
-      Text('1313133',
+      Text(
+        '1313133',
         style: TextStyle(
           color: Colors.blue,
           height: 20,

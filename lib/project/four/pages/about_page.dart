@@ -1,9 +1,9 @@
-
 import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_device_utils.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/click_item.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
 import 'package:device_info/device_info.dart';
@@ -11,23 +11,39 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info/package_info.dart';
 import '../../routes/navigator.dart';
 
-
-
 class AboutPage extends StatefulWidget {
   @override
   _AboutPageState createState() => _AboutPageState();
 }
 
 class _AboutPageState extends State<AboutPage> {
-
-
-
-  var _styles = [FlutterLogoStyle.stacked, FlutterLogoStyle.markOnly, FlutterLogoStyle.horizontal];
-  var _colors = [Colors.red, Colors.orange, Colors.yellow, Colors.blue, Colors.purple, Colors.pink, Colors.amber];
+  var _styles = [
+    FlutterLogoStyle.stacked,
+    FlutterLogoStyle.markOnly,
+    FlutterLogoStyle.horizontal
+  ];
+  var _colors = [
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.blue,
+    Colors.purple,
+    Colors.pink,
+    Colors.amber
+  ];
   var _curves = [
-    Curves.ease, Curves.easeIn, Curves.easeInOutCubic, Curves.easeInOut,
-    Curves.easeInQuad, Curves.easeInCirc, Curves.easeInBack, Curves.easeInOutExpo,
-    Curves.easeInToLinear, Curves.easeOutExpo, Curves.easeInOutSine, Curves.easeOutSine,
+    Curves.ease,
+    Curves.easeIn,
+    Curves.easeInOutCubic,
+    Curves.easeInOut,
+    Curves.easeInQuad,
+    Curves.easeInCirc,
+    Curves.easeInBack,
+    Curves.easeInOutExpo,
+    Curves.easeInToLinear,
+    Curves.easeOutExpo,
+    Curves.easeInOutSine,
+    Curves.easeOutSine,
   ];
 
   // 取随机颜色
@@ -53,27 +69,25 @@ class _AboutPageState extends State<AboutPage> {
         if (!mounted) {
           return;
         }
-        setState(() {
-
-        });
+        setState(() {});
       });
     });
 
     _getInfo(); //获取设备信息
-
   }
 
-  void _getInfo() async{
-
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    print(iosInfo.toString());
-    print('name ${iosInfo.name}');
-    print('Running on ${iosInfo.utsname.machine}');
-    print('Running on ${iosInfo.utsname.sysname}');
-    print('Running on ${iosInfo.utsname.nodename}');
-    print('Running on ${iosInfo.utsname.release}');
-    print('Running on ${iosInfo.utsname.version}');
+  void _getInfo() async {
+    if (JhDevice.isIOS) {
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      print(iosInfo.toString());
+      print('name ${iosInfo.name}');
+      print('Running on ${iosInfo.utsname.machine}');
+      print('Running on ${iosInfo.utsname.sysname}');
+      print('Running on ${iosInfo.utsname.nodename}');
+      print('Running on ${iosInfo.utsname.release}');
+      print('Running on ${iosInfo.utsname.version}');
+    }
 
     print('---------------------------------------');
 
@@ -94,11 +108,11 @@ class _AboutPageState extends State<AboutPage> {
     });
 
 //   print("$appName=$packageName=$version=$buildNumber");
-
   }
 
-  void _jumpAppStore()async {
-    String url = 'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8'; // 这是微信的地址，到时候换成自己的应用的地址
+  void _jumpAppStore() async {
+    String url =
+        'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8'; // 这是微信的地址，到时候换成自己的应用的地址
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -106,8 +120,7 @@ class _AboutPageState extends State<AboutPage> {
     }
   }
 
-
-    @override
+  @override
   void dispose() {
     _countdownTimer?.cancel();
     _countdownTimer = null;
@@ -120,31 +133,35 @@ class _AboutPageState extends State<AboutPage> {
       appBar: backAppBar(context, "关于我们"),
       body: Column(
         children: <Widget>[
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           FlutterLogo(
             size: 100.0,
             textColor: _randomColor(),
             style: _styles[Random.secure().nextInt(3)],
             curve: _curves[Random.secure().nextInt(12)],
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Text("Version：${_CurrentVersion}"),
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           ClickItem(
               title: 'Github',
               content: 'Go Star',
-          onTap: ()=> NavigatorRouterUtils.jumpWebViewPage(context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo')
-
-          ),
+              onTap: () => NavigatorRouterUtils.jumpWebViewPage(
+                  context,
+                  'jh_flutter_demo',
+                  'https://github.com/iotjin/jh_flutter_demo')),
           ClickItem(
               title: 'author',
               content: 'iotjin',
-              onTap: ()=> NavigatorRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')
-
-          ),
-
-          ClickItem(title: "检查更新",onTap: ()=>_jumpAppStore() )
-
+              onTap: () => NavigatorRouterUtils.jumpWebViewPage(
+                  context, '作者博客', 'https://blog.csdn.net/iotjin')),
+          ClickItem(title: "检查更新", onTap: () => _jumpAppStore())
         ],
       ),
     );

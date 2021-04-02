@@ -8,6 +8,8 @@ pwd：123456
 代码不定期更新
 <br>
 
+注：Flutter版本升到2.0.3之后，一些第三方有冲突（图片选择和图表），暂时先注释了代码，如需查看可按tag v1.0.0版本环境运行查看
+
 <br>
 
 ## 实现的一些效果
@@ -51,13 +53,23 @@ pwd：123456
 
 ## 项目运行环境
 
-* Flutter version 1.22.3
-* Dart version 2.10.3
+* Flutter version 2.0.3
+* Dart version 2.12.2
 
 ## 注意事项
 
 * debug模式下会有部分卡顿现象，这属于正常现象。良好的体验需要打release 包。 iOS可以执行命令flutter build ios 以创建release版本。 Android可以执行命令flutter build apk 以创建release版本。
 * iOS14真机运行闪退，可通过 flutter run --release 真机运行
+
+## <a id="更新记录"></a> 更新记录
+<details open id="重要更新">
+  <summary><strong>重要更新</strong></summary>
+   
+```
+* v2.0.0版本，更新三方库版本，环境：Flutter version 2.0.3，Dart version 2.12.2
+* v1.0.0版本，环境：Flutter version 1.22.3，Dart version 2.10.3
+```
+</details>
 
 <br>
 <br>
