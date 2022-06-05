@@ -1,28 +1,71 @@
 import 'package:flutter/material.dart';
-
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_encrypt_utils.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_storage_utils.dart';
+import 'package:jh_flutter_demo/jh_common/jh_form/jh_form_Input_cell.dart';
 
-class AESTestPage extends StatelessWidget {
+class AESTestPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    _test();
+  _AESTestPageState createState() => _AESTestPageState();
+}
 
-    return Scaffold(
-      appBar: backAppBar(context, 'AES'),
-      body: Container(),
-    );
+class _AESTestPageState extends State<AESTestPage> {
+  var _textStr = "123";
+  var _base64encodeStr = "";
+  var _base64decodeStr = "";
+  var _aesEncryptStr = "";
+  var _aesDecryptStr = "";
+  var _md5Str = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _test(_textStr);
+    storageTest();
   }
 
-  void _test() {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: backAppBar(context, 'base64、AES、MD5和本地加密存储'), body: _body());
+  }
 
-    print("------------------");
-    var text = '123';
+  Widget _body() {
+    return Scrollbar(
+        child: SingleChildScrollView(
+            child: Padding(
+      padding: EdgeInsets.only(top: 15),
+      child: Column(
+        children: <Widget>[
+          JhFormInputCell(
+            title: "明文",
+            hintText: "请输入要加密的文字",
+            text: _textStr,
+            enabled: false,
+          ),
+          JhFormInputCell(
+              title: "Base64编码", text: _base64encodeStr, enabled: false),
+          JhFormInputCell(
+              title: "Base64解码", text: _base64decodeStr, enabled: false),
+          JhFormInputCell(title: "AES加密", text: _aesEncryptStr, enabled: false),
+          JhFormInputCell(title: "AES解密", text: _aesDecryptStr, enabled: false),
+          JhFormInputCell(title: "MD5加密", text: _md5Str, enabled: false),
+          JhFormInputCell(text: "本地加密存储请看控制台输出", enabled: false),
+        ],
+      ),
+    )));
+  }
+
+  void _test(str) {
+    print("-------------------数据加解密-------------------");
+    var text = str;
     print('明文：${text}');
 
-    var base = JhEncryptUtils.encodeBase64(text);
-    print('base64: ${base}');
+    var base64encodeStr = JhEncryptUtils.encodeBase64(text);
+    print('base64: ${base64encodeStr}');
+    var base64decodeStr = JhEncryptUtils.decodeBase64(base64encodeStr);
+    print('base64: ${base64decodeStr}');
 
     var enStr = JhEncryptUtils.aesEncrypt(text);
     print('AES 加密：${enStr}');
@@ -31,17 +74,26 @@ class AESTestPage extends StatelessWidget {
 
     var md5 = JhEncryptUtils.encodeMd5(text);
     print('md5 ：${md5}');
-    print("------------------");
-    print('');
+
+    setState(() {
+      _textStr = str;
+      _base64encodeStr = base64encodeStr;
+      _base64decodeStr = base64decodeStr;
+      _aesEncryptStr = enStr;
+      _aesDecryptStr = deStr;
+      _md5Str = md5;
+    });
 
 //    print('明文：${text}');
 //    var enStr2 = JhEncryptUtils.aesEncode(text);
 //    print('加密：${enStr2}');
 //    var deStr2 = JhEncryptUtils.aesDecode(enStr);
 //    print('解密：${deStr2}');
+  }
 
-//  -----------------------------本地加密存储-------------------------------------
-    print('-------------------本地加密存储----------------------');
+  //  本地加密存储
+  void storageTest() {
+    print('-------------------本地加密存储-------------------');
     JhStorageUtils.saveString("testStr", "这是测试本地加密存储的字符串");
     var testStr = JhStorageUtils.getStringWithKey("testStr");
     print('testStr : ${testStr}');
@@ -63,10 +115,6 @@ class AESTestPage extends StatelessWidget {
     JhStorageUtils.saveModel("testDic", dic);
     var testDic = JhStorageUtils.getModelWithKey('testDic');
     print('testDic : ${testDic}');
-    print('-------------------本地加密存储----------------------');
-    print('');
-
-    //  -----------------------------本地加密存储-------------------------------------
 
     // 取不存在的key
     print('-------------------取不存在的key----------------------');

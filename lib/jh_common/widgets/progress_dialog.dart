@@ -1,20 +1,17 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// 加载中的弹框
 class ProgressDialog extends Dialog {
-
   const ProgressDialog({
-    Key key,
+    Key? key,
     this.hintText = '',
-  }):super(key: key);
+  }) : super(key: key);
 
   final String hintText;
 
   @override
   Widget build(BuildContext context) {
-    
     Widget progress = Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -27,10 +24,13 @@ class ProgressDialog extends Dialog {
           child: const CupertinoActivityIndicator(radius: 14.0),
         ),
         SizedBox(height: 8),
-        Text(hintText, style: const TextStyle(color: Colors.white),)
+        Text(
+          hintText,
+          style: const TextStyle(color: Colors.white),
+        )
       ],
     );
-    
+
     return Material(
       type: MaterialType.transparency,
       child: Center(

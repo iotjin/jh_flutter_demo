@@ -99,6 +99,12 @@ class OnePage extends StatelessWidget {
     GlobalKey anchorKey = GlobalKey();
 
     return Scaffold(
+      appBar: baseAppBar(context, KString.oneTabTitle,
+          rightImgPath: 'assets/images/ic_nav_add.png',
+          rightItemCallBack: () => _showPop(context)),
+      body: _body(context, _dataArr),
+      backgroundColor: KColor.kWeiXinBgColor,
+
 //        appBar: AppBar(
 //          title:
 //              Text(KString.oneTabTitle, style: TextStyle(color: Colors.white)),
@@ -129,46 +135,38 @@ class OnePage extends StatelessWidget {
 //            )
 //          ],
 //        ),
-
-      appBar: baseAppBar(context, KString.oneTabTitle,
-          rightImgPath: 'assets/images/ic_nav_add.png', rightItemCallBack: () {
-//          //不带分割线，不带背景
-//          JhPopMenus.show(context, clickCallback: (index, selText) {
-//            print('选中index: ${index}');
-//            print('选中text: ${selText}');
-//          });
-
-        // 带分割线不带背景
-        JhPopMenus.showLinePop(context, clickCallback: (index, selText) {
-          print('选中index: ${index}');
-          print('选中text: ${selText}');
-
-          if (selText == '添加朋友') {
-            NavigatorUtils.pushNamed(context, 'WxAddFriendPage');
-          }
-          if (selText == '扫一扫') {
-            // 延时执行
-            Future.delayed(Duration(milliseconds: 400), () {
-              JhQrCodeUtils.scan().then((value) => () {
-                    print(value);
-                  });
-            });
-          }
-        });
-
-//          // 带分割线带背景
-//          JhPopMenus.showLinePop(context, isShowBg: true,
-//              clickCallback: (index, selText) {
-//            print('选中index: ${index}');
-//            print('选中text: ${selText}');
-//          });
-      }),
-      body: _body(context, _dataArr),
-      backgroundColor: KColor.kWeiXinBgColor,
     );
   }
 
-  //body
+  // 右上角pop
+  void _showPop(context) {
+//    // 不带分割线，不带背景
+//    JhPopMenus.show(context, clickCallback: (index, selText) {
+//      print('选中index: ${index}');
+//      print('选中text: ${selText}');
+//    });
+//    // 带分割线带背景
+//    JhPopMenus.showLinePop(context, isShowBg: true,
+//        clickCallback: (index, selText) {
+//      print('选中index: ${index}');
+//      print('选中text: ${selText}');
+//    });
+
+    // 带分割线不带背景
+    JhPopMenus.showLinePop(context, clickCallback: (index, selText) {
+      print('选中index: ${index}');
+      print('选中text: ${selText}');
+
+      if (selText == '添加朋友') {
+        JhNavFluroUtils.pushNamed(context, 'WxAddFriendPage');
+      }
+      if (selText == '扫一扫') {
+        _scan(context);
+      }
+    });
+  }
+
+  // body
   Widget _body(context, dataArr) {
 //    return ListView.builder(
 //        itemCount: dataArr.length,
@@ -177,8 +175,10 @@ class OnePage extends StatelessWidget {
 //          return _cell(dataArr[index]);
 //        });
 
-    Widget noRead = SlideAction(
-      color: Colors.black87,
+    Widget noRead = CustomSlidableAction(
+      padding: EdgeInsets.all(0),
+//      foregroundColor:Colors.white,
+      backgroundColor: Colors.black87,
       child: Text(
         '标为未读',
         style: TextStyle(
@@ -187,13 +187,14 @@ class OnePage extends StatelessWidget {
           fontWeight: FontWeight.w400,
         ),
       ),
-      onTap: () {
+      onPressed: (context) {
         JhToast.showText(context, msg: '点击标为未读');
       },
     );
 
-    Widget noAttention = SlideAction(
-      color: Colors.black87,
+    Widget noAttention = CustomSlidableAction(
+      padding: EdgeInsets.all(0),
+      backgroundColor: Colors.black87,
       child: Text(
         '不再关注',
         style: TextStyle(
@@ -202,13 +203,13 @@ class OnePage extends StatelessWidget {
           fontWeight: FontWeight.w400,
         ),
       ),
-      onTap: () {
+      onPressed: (context) {
         JhToast.showText(context, msg: '点击不再关注');
       },
     );
 
-    Widget delete = SlideAction(
-      color: Colors.red,
+    Widget delete = CustomSlidableAction(
+      backgroundColor: Colors.red,
       child: Text(
         '删除',
         style: TextStyle(
@@ -217,12 +218,12 @@ class OnePage extends StatelessWidget {
           fontWeight: FontWeight.w400,
         ),
       ),
-      onTap: () {
+      onPressed: (context) {
         JhToast.showText(context, msg: '点击删除');
       },
     );
-
-    return ListView.separated(
+    return SlidableAutoCloseBehavior(
+        child: ListView.separated(
       //列表项构造器
       itemCount: dataArr.length,
       //分割器构造器
@@ -246,29 +247,32 @@ class OnePage extends StatelessWidget {
           tempArr.addAll([noAttention, delete]);
         }
 
+        var extentRatio = dataArr[index]['type'] == '0'
+            ? 0.00001
+            : (dataArr[index]['type'] == '1' ? 0.2 : 0.4);
+
         return Slidable(
           key: Key(dataArr[index]['type']),
-          actionPane: SlidableScrollActionPane(),
-          //滑出选项的面板 动画
-          actionExtentRatio: 0.2,
           child: _cell(context, dataArr[index]),
           //右侧按钮列表
-          secondaryActions: tempArr,
-          dismissal: SlidableDismissal(
-            closeOnCanceled: true,
+          endActionPane: ActionPane(
+//            motion: const ScrollMotion(),
+            motion: const DrawerMotion(),
+            extentRatio: extentRatio,
+            children: tempArr,
+            // 拖动删除
             dragDismissible: false,
-            child: SlidableDrawerDismissal(),
-            onWillDismiss: (actionType) {
-              return true;
-            },
-            onDismissed: (_) {},
+            dismissible: DismissiblePane(
+                closeOnCancel: true,
+//                dismissThreshold: 0.8,
+                onDismissed: () {}),
           ),
         );
       },
-    );
+    ));
   }
 
-  //cell
+  // cell
   Widget _cell(context, item) {
     return InkWell(
         onTap: () => _clickCell(context, item),
@@ -327,27 +331,39 @@ class OnePage extends StatelessWidget {
             )));
   }
 
-  //点击cell
+  // 点击cell
   _clickCell(context, item) {
     // JhToast.showText(context, msg: '点击 ${item['title']}');
-
     if (item['title'] == 'Demo 列表') {
-      NavigatorUtils.pushNamed(context, 'DemoListsPage');
+      JhNavFluroUtils.pushNamed(context, 'DemoListsPage');
     } else if (item['title'] == 'QQ邮箱提醒') {
-      NavigatorUtils.pushNamed(context, 'WxQQMessagePage');
+      JhNavFluroUtils.pushNamed(context, 'WxQQMessagePage');
     } else if (item['title'] == '订阅号消息') {
-      NavigatorUtils.pushNamed(context, 'WxSubscriptionNumberPage');
+      JhNavFluroUtils.pushNamed(context, 'WxSubscriptionNumberPage');
     } else if (item['title'] == '微信运动') {
-      NavigatorUtils.pushNamed(context, 'WxMotionPage');
+      JhNavFluroUtils.pushNamed(context, 'WxMotionPage');
     } else {
-      NavigatorUtils.pushNamed(context, 'DemoListsPage');
+      JhNavFluroUtils.pushNamed(context, 'DemoListsPage');
     }
   }
 
-  //点击侧滑按钮
+  // 点击侧滑按钮
   void _showSnackBar(context, text) {
     print(text);
     JhToast.showText(context, msg: text);
+  }
+
+  void _scan(context) {
+//    // 延时执行
+//    Future.delayed(Duration(milliseconds: 400), () {
+//      JhQrCodeUtils.scan().then((value) =>
+//          () {
+//        print(value);
+//      });
+//    });
+    JhQrCodeUtils.jumpScan(context).then((value) => () {
+          print(value);
+        });
   }
 }
 

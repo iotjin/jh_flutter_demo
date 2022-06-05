@@ -30,6 +30,7 @@ import 'one/wx/wx_subscription_number_page.dart';
 import 'one/wx/wx_subscription_number_list_page.dart';
 import 'one/wx/wx_motion_page.dart';
 import 'one/wx/wx_motion_top_page.dart';
+import '/jh_common/widgets/qr_code_scanner_page.dart';
 
 //联系人
 import 'two/wx/wx_userInfo_page.dart';
@@ -96,6 +97,8 @@ class MainRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (_, __) => WxMotionPage()));
     router.define('WxMotionTopPage',
         handler: Handler(handlerFunc: (_, __) => WxMotionTopPage()));
+    router.define('QrCodeScannerPage',
+        handler: Handler(handlerFunc: (_, __) => QrCodeScannerPage()));
 
     /********************************* 联系人 ********************************/
 
@@ -103,7 +106,7 @@ class MainRouter implements IRouterProvider {
     router.define("WxUserInfoPage", handler: Handler(handlerFunc: (_, params) {
 //      print("---------params---------");
 //      print(params);
-      String jsonStr = params['passValue']?.first;
+      String jsonStr = params['passValue']!.first;
       ContactsModel model = ContactsModel.fromJson(json.decode(jsonStr));
 //      print('model: ${ model.name }');
 //      print("---------params---------");
@@ -111,7 +114,7 @@ class MainRouter implements IRouterProvider {
     }));
     //资料设置
     router.define("WxInfoSetPage", handler: Handler(handlerFunc: (_, params) {
-      String jsonStr = params['passValue']?.first;
+      String jsonStr = params['passValue']!.first;
       ContactsModel model = ContactsModel.fromJson(json.decode(jsonStr));
       return WxInfoSetPage(model);
     }));

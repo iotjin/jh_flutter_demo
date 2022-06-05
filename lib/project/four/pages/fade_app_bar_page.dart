@@ -7,6 +7,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/base_appbar.dart';
 
 ///渐变 APP var
 class FadeAppBarPage extends StatefulWidget {
@@ -15,10 +16,10 @@ class FadeAppBarPage extends StatefulWidget {
 }
 
 class FadeAppBarState extends State<FadeAppBarPage> {
-  AppBarWidget appBar;
-  ScrollController scrollController;
-  PositionedBtnWidget roundLeftBtn;
-  PositionedBtnWidget rectLeftBtn;
+  AppBarWidget? appBar;
+  ScrollController? scrollController;
+  PositionedBtnWidget? roundLeftBtn;
+  PositionedBtnWidget? rectLeftBtn;
 
   @override
   void initState() {
@@ -80,15 +81,15 @@ class FadeAppBarState extends State<FadeAppBarPage> {
     //print('roundOpacity $roundOpacity rectOpacity $rectOpacity');
 
     ///更新透明度
-    if (appBar != null && appBar.updateAppBarOpacity != null) {
-      appBar.updateAppBarOpacity(appBarOpacity);
+    if (appBar != null && appBar!.updateAppBarOpacity != null) {
+      appBar!.updateAppBarOpacity!(appBarOpacity);
     }
 
-    if (roundLeftBtn != null && roundLeftBtn.updateOpacity != null) {
-      roundLeftBtn.updateOpacity(roundOpacity);
+    if (roundLeftBtn != null && roundLeftBtn!.updateOpacity != null) {
+      roundLeftBtn!.updateOpacity!(roundOpacity);
     }
-    if (rectLeftBtn != null && rectLeftBtn.updateOpacity != null) {
-      rectLeftBtn.updateOpacity(rectOpacity);
+    if (rectLeftBtn != null && rectLeftBtn!.updateOpacity != null) {
+      rectLeftBtn!.updateOpacity!(rectOpacity);
     }
   }
 
@@ -133,7 +134,7 @@ class FadeAppBarState extends State<FadeAppBarPage> {
                 ],
               ),
             ),
-            appBar,
+            appBar!,
 //            rectLeftBtn,
 //            roundLeftBtn,
           ],
@@ -150,17 +151,17 @@ class FadeAppBarState extends State<FadeAppBarPage> {
 ///按钮
 // ignore: must_be_immutable
 class PositionedBtnWidget extends StatefulWidget {
-  double btnTop;
-  double right;
-  double left;
-  String image;
-  double opacity;
+  double? btnTop;
+  double? right;
+  double? left;
+  String? image;
+  double? opacity;
 
   ///更新透明度
-  Function updateOpacity;
+  Function? updateOpacity;
 
   ///要触发的事件
-  Function actionFunction;
+  Function? actionFunction;
 
   PositionedBtnWidget(
       {this.btnTop,
@@ -177,11 +178,11 @@ class PositionedBtnWidget extends StatefulWidget {
 }
 
 class PositionedBtnState extends State<PositionedBtnWidget> {
-  double btnTop;
-  double right;
-  double left;
-  String image;
-  double btnOpacity;
+  double? btnTop;
+  double? right;
+  double? left;
+  String? image;
+  double? btnOpacity;
 
   @override
   void initState() {
@@ -212,12 +213,12 @@ class PositionedBtnState extends State<PositionedBtnWidget> {
       right: right,
       left: left,
       child: Opacity(
-        opacity: btnOpacity,
+        opacity: btnOpacity!,
         child: IconButton(
-          icon: Image.asset(image),
+          icon: Image.asset(image!),
           onPressed: () {
             if (widget != null && widget.actionFunction != null) {
-              widget.actionFunction();
+              widget.actionFunction!();
             }
           },
         ),
@@ -228,7 +229,7 @@ class PositionedBtnState extends State<PositionedBtnWidget> {
 
 ///app barb
 class AppBarWidget extends StatefulWidget {
-  Function updateAppBarOpacity;
+  Function? updateAppBarOpacity;
 
   @override
   State<StatefulWidget> createState() => AppBarState();
@@ -259,12 +260,12 @@ class AppBarState extends State<AppBarWidget> {
     return Opacity(
       opacity: opacity,
       child: Container(
-        height: appBarHeight,
-        child: AppBar(
-          title: Text('app bar'),
-          backgroundColor: Colors.deepOrange,
-        ),
-      ),
+          height: appBarHeight,
+          child: backAppBar(
+            context,
+            'app bar',
+            backgroundColor: Colors.deepOrange,
+          )),
     );
   }
 }

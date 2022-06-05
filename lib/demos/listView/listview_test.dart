@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:jh_flutter_demo/base_appbar.dart';
 
 var dataArr;
 var dataJson;
 
-List getData(){
-
-  dataArr = new List();
-  for(int i = 0; i < 5; i++){
+List getData() {
+  dataArr = [];
+  for (int i = 0; i < 5; i++) {
     var map = new Map();
     map["title"] = "title${i}";
     map["content"] = "content${i}-content${i}-content${i}-content${i}";
@@ -17,36 +17,31 @@ List getData(){
   }
 //  print(dataArr);
 
-
-  dataJson =  json.encode(dataArr);
-  print("转json 字符串:"+ dataJson);//转json 字符串
+  dataJson = json.encode(dataArr);
+  print("转json 字符串:" + dataJson); //转json 字符串
 
   var data = json.decode(dataJson);
   data.forEach((v) {
 //    print(v);
   });
 
-  dataArr =data;
+  dataArr = data;
 
   return dataArr;
 }
 
-
-class ListViewTest extends StatelessWidget{
+class ListViewTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
-          title:Text('ListViewTest_for循环造假数据')
-      ),
-      body:ContentBody(),
+      appBar: backAppBar(context, "ListViewTest_for循环造假数据"),
+      body: ContentBody(),
     );
   }
 }
 
 class ContentBody extends StatelessWidget {
-
-  ContentBody({ Key key }) : super(key: key){
+  ContentBody({Key? key}) : super(key: key) {
     getData();
 
     /*
@@ -56,16 +51,14 @@ class ContentBody extends StatelessWidget {
       json.decode(source) //json字符串转map
 
        */
-    Map data ={
-      "title":"title1",
+    Map data = {
+      "title": "title1",
     };
     print("map转json字符串：" + json.encode(data));
     String strData = '{"title":"title1"}';
-    Map newMap =  json.decode(strData);
+    Map newMap = json.decode(strData);
     print("json字符串转map：" + newMap["title"]);
-
   }
-
 
   Widget _getWidget(context, index) {
 //    print(dataArr[index]["title"]);
@@ -73,14 +66,10 @@ class ContentBody extends StatelessWidget {
         title: Text(dataArr[index]["title"]),
         leading: Image.network(dataArr[index]["imageUrl"]),
         subtitle: Text(dataArr[index]["content"]),
-
-        onTap:() {
-          print("点击的index"+index.toString());
-        }
-
-    );
+        onTap: () {
+          print("点击的index" + index.toString());
+        });
   }
-
 
 //  Widget _getWidget(context, index) {
 //    return Container(
@@ -91,20 +80,12 @@ class ContentBody extends StatelessWidget {
 //    );
 //  }
 
-
   @override
   Widget build(BuildContext context) {
-
-
-
 //    getData();
     return ListView.builder(
         itemCount: dataArr.length,
         itemExtent: 100.0, //强制高度为100.0
-        itemBuilder: this._getWidget
-    );
+        itemBuilder: this._getWidget);
   }
-
 }
-
-

@@ -1,13 +1,20 @@
 /*model*/
 
 class WorkOrderModel {
-  var   ID;
-  String place;
-  String state;
-  String phone;
-  String content;
-  String imageUrl;
-  WorkOrderModel({this.ID,this.place,this.state, this.phone, this.content, this.imageUrl});
+  var ID;
+  String? place;
+  String? state;
+  String? phone;
+  String? content;
+  String? imageUrl;
+
+  WorkOrderModel(
+      {this.ID,
+      this.place,
+      this.state,
+      this.phone,
+      this.content,
+      this.imageUrl});
 
   WorkOrderModel.fromJson(Map<String, dynamic> json) {
     ID = json['ID'];

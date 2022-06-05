@@ -1,7 +1,7 @@
 class GroupModel {
-  String groupTitle;
-  String num;
-  List<Data> data;
+  String? groupTitle;
+  String? num;
+  List<Data>? data;
 
   GroupModel({this.groupTitle, this.num, this.data});
 
@@ -9,9 +9,9 @@ class GroupModel {
     groupTitle = json['groupTitle'];
     num = json['num'];
     if (json['data'] != null) {
-      data = new List<Data>();
+      data = [];
       json['data'].forEach((v) {
-        data.add(new Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
@@ -21,17 +21,17 @@ class GroupModel {
     data['groupTitle'] = this.groupTitle;
     data['num'] = this.num;
     if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Data {
-  String title;
-  String phone;
-  String content;
-  String imageUrl;
+  String? title;
+  String? phone;
+  String? content;
+  String? imageUrl;
 
   Data({this.title, this.phone, this.content, this.imageUrl});
 
@@ -51,4 +51,3 @@ class Data {
     return data;
   }
 }
-

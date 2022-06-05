@@ -19,8 +19,8 @@ class DataUtils {
   //登录
   static void login<T>(
     parameters, {
-    Success success,
-    Fail fail,
+    Success? success,
+    Fail? fail,
   }) {
 //    DioUtils.request(Method.POST, APIs.login, parameters,
 //        success: success, fail: fail);
@@ -30,8 +30,8 @@ class DataUtils {
   //分页加载数据
   static void getPageList<T>(
     parameters, {
-    Success success,
-    Fail fail,
+    Success? success,
+    Fail? fail,
   }) {
     HttpUtils.get(APIs.getPage, parameters, success: success, fail: fail);
   }
@@ -39,8 +39,8 @@ class DataUtils {
   //分页加载分组数据
   static void getPageGroupList<T>(
     parameters, {
-    Success success,
-    Fail fail,
+    Success? success,
+    Fail? fail,
   }) {
     HttpUtils.get(APIs.getGroupPage, parameters, success: success, fail: fail);
   }

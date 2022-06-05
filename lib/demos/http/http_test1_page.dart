@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
 //import 'package:dio_http_cache/dio_http_cache.dart';
+import 'package:jh_flutter_demo/base_appbar.dart';
 import 'dart:io';
 import 'dart:convert';
 import '../../data/apis.dart';
@@ -12,6 +13,8 @@ class HttpTest1Page extends StatefulWidget {
 }
 
 class _HttpTest1PageState extends State<HttpTest1Page> {
+  var _text = "";
+
   @override
   void initState() {
     // TODO: implement initState
@@ -26,20 +29,25 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text("HttpTest1", style: TextStyle(color: Colors.white))),
-      body: Container(),
-    );
+        appBar: backAppBar(context, "HttpTest1"),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(15),
+          child: Text(_text),
+        ));
   }
-}
 
-void getRequest() async {
-  var url = APIs.apiPrefix + APIs.getPage;
-  var dio = new Dio();
-  var response = await dio.get(url, queryParameters: {"page": 0, "limit": 10});
-  var result = response.data.toString();
-  print("返回数据： " + result);
-  print(response.data["msg"]);
+  void getRequest() async {
+    var url = APIs.apiPrefix + APIs.getPage;
+    var dio = new Dio();
+    var response =
+        await dio.get(url, queryParameters: {"page": 0, "limit": 10});
+    var result = response.data.toString();
+    print("返回数据： " + result);
+    print(response.data["msg"]);
+    setState(() {
+      _text = result;
+    });
+  }
 }
 
 void postRequest() async {

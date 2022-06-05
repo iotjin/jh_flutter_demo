@@ -12,9 +12,9 @@ const double _itemSpace = 5.0;
 const double _space = 5.0; //上下左右间距
 
 class JhNinePicture extends StatelessWidget {
-  final List imgData;
+  final List? imgData;
   final double lRSpace; //外部设置的左右间距
-  final GestureTapCallback onLongPress;
+  final GestureTapCallback? onLongPress;
   bool isHandleFour;
 
   JhNinePicture({
@@ -30,11 +30,15 @@ class JhNinePicture extends StatelessWidget {
 
     var _ninePictureW = (kScreenWidth - _space * 2 - 2 * _itemSpace - lRSpace);
     var _itemWH = _ninePictureW / 3;
-    int _columnCount = imgData.length > 6 ? 3 : imgData.length <= 3 ? 1 : 2;
+    int _columnCount = imgData!.length > 6
+        ? 3
+        : imgData!.length <= 3
+            ? 1
+            : 2;
     // print("九宫格宽 ${_ninePictureW} ");
     // print("item宽  ${_itemWH} ");
 
-    bool _isHandleFour = isHandleFour && imgData.length == 4;
+    bool _isHandleFour = isHandleFour && imgData!.length == 4;
 
     var _bgWidth = _isHandleFour
         ? (_space * 2 + _itemSpace + _itemWH * 2)
@@ -46,7 +50,7 @@ class JhNinePicture extends StatelessWidget {
     var _crossAxisCount = _isHandleFour ? 2 : 3;
     var _childAspectRatio = 1.0;
 
-    if (imgData.length == 1) {
+    if (imgData!.length == 1) {
       _bgWidth = (kScreenWidth - lRSpace) * 0.55;
       _bgHeight = (kScreenWidth - lRSpace) * 0.75;
       _crossAxisCount = 1;
@@ -54,7 +58,7 @@ class JhNinePicture extends StatelessWidget {
     }
 
     return Offstage(
-      offstage: imgData.length == 0,
+      offstage: imgData!.length == 0,
       child: Container(
         // color: Colors.yellow,
         color: Colors.white,
@@ -72,7 +76,7 @@ class JhNinePicture extends StatelessWidget {
             //禁用滚动事件
             padding: EdgeInsets.all(_space),
             //GridView内边距
-            itemCount: imgData.length,
+            itemCount: imgData!.length,
             itemBuilder: (context, index) {
               return _itemCell(context, index);
             }),
@@ -81,7 +85,7 @@ class JhNinePicture extends StatelessWidget {
   }
 
   _itemCell(context, index) {
-    var _img = imgData[index];
+    var _img = imgData![index];
     Widget _picture = _img.startsWith('http')
         ? Image.network(_img, fit: BoxFit.cover)
         : Image.asset(_img, fit: BoxFit.cover);
@@ -113,9 +117,9 @@ class JhNinePicture extends StatelessWidget {
     //FadeRoute是自定义的切换过度动画（渐隐渐现） 如果不需要 可以使用默认的MaterialPageRoute
     Navigator.of(context).push(new FadeRoute(
       page: JhPhotoBrowser(
-        imgDataArr: imgData,
+        imgDataArr: imgData!,
         index: index,
-        onLongPress: onLongPress,
+        onLongPress: onLongPress!,
       ),
     ));
   }

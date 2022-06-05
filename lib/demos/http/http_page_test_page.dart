@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:flutter_easyrefresh/delivery_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
@@ -20,15 +20,34 @@ class HttpPageTestPage extends StatefulWidget {
 
 class _HttpPageTestPageState extends State<HttpPageTestPage> {
   EasyRefreshController _controller = EasyRefreshController();
+  var _count;
 
   @override
   void initState() {
     super.initState();
   }
 
-  var _count;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: backAppBar(context, "分页加载"),
+        body: EasyRefresh(
+            header: DeliveryHeader(),
+            controller: _controller,
+//            firstRefresh: false,
+            firstRefresh: true,
+            onRefresh: () async {
+              print("下拉刷新-----");
+              getNewData();
+            },
+            onLoad: () async {
+              print("上拉加载-----");
+              getMoreData();
+            },
+            child: _cell(_count)));
+  }
 
-//  var url =
+  //  var url =
 //      "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root/getPageArrDic";
 //  var dio = new Dio();
 //  void getNewData()async{
@@ -95,29 +114,9 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
       });
     }, fail: (code) {});
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text('分页加载')),
-        body: EasyRefresh(
-            header: DeliveryHeader(),
-            controller: _controller,
-//            firstRefresh: false,
-            firstRefresh: true,
-            onRefresh: () async {
-              print("下拉刷新-----");
-              getNewData();
-            },
-            onLoad: () async {
-              print("上拉加载-----");
-              getMoreData();
-            },
-            child: cell(_count)));
-  }
 }
 
-Widget cell(var dataCount) {
+Widget _cell(var dataCount) {
   if (dataCount == null) {
     return Container();
   }
@@ -140,7 +139,7 @@ Widget cell(var dataCount) {
           data: model,
           onTap: () {
             print("点击的index ${index}");
-            print("点击的地点" + model.place);
+            print("点击的地点" + model.place!);
           },
         );
       },

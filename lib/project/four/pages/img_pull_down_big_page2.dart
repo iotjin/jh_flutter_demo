@@ -7,6 +7,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
 
 class ImgPullDownBigPage2 extends StatefulWidget {
@@ -24,7 +25,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
   double _scrollMinOffSet = 0;
   double _navH = 0;
 
-  AppBarWidget appBar;
+  AppBarWidget? appBar;
 
   @override
   void initState() {
@@ -65,8 +66,8 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
       }
 
       ///更新透明度
-      if (appBar != null && appBar.updateAppBarOpacity != null) {
-        appBar.updateAppBarOpacity(appBarOpacity);
+      if (appBar != null && appBar!.updateAppBarOpacity != null) {
+        appBar!.updateAppBarOpacity!(appBarOpacity);
       }
     });
   }
@@ -128,14 +129,14 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
           ),
         ),
       ),
-      appBar,
+      appBar!,
     ]);
   }
 }
 
 // AppBarWidget
 class AppBarWidget extends StatefulWidget {
-  Function updateAppBarOpacity;
+  Function? updateAppBarOpacity;
 
   @override
   State<StatefulWidget> createState() => AppBarState();
@@ -166,13 +167,8 @@ class AppBarState extends State<AppBarWidget> {
       opacity: opacity,
       child: Container(
         height: appBarHeight,
-        child: AppBar(
-          title: Text(
-            '图片下拉放大2',
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
-          backgroundColor: Colors.deepOrange,
-        ),
+        child:
+            backAppBar(context, '图片下拉放大2', backgroundColor: Colors.deepOrange),
       ),
     );
   }

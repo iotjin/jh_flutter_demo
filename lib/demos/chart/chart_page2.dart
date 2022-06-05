@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-
-class ChartPage2 extends StatefulWidget{
+class ChartPage2 extends StatefulWidget {
   _ChartPage2State createState() => _ChartPage2State();
 }
 
 class _ChartPage2State extends State<ChartPage2> {
+  String? _year;
+  int? _sales;
 
-  String _year;
-  int _sales;
   //点击柱状图触发的函数
   _onSelectionChanged(charts.SelectionModel model) {
     final selectedDatum = model.selectedDatum;
@@ -24,15 +23,11 @@ class _ChartPage2State extends State<ChartPage2> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return new Scaffold(
-        appBar:
-        backAppBar(context, 'chart2'),
-        body:Container(
+        appBar: backAppBar(context, 'chart2'),
+        body: Container(
           child: Column(
             children: <Widget>[
               Row(
@@ -68,12 +63,10 @@ class _ChartPage2State extends State<ChartPage2> {
               ),
             ],
           ),
-        )
-    );
+        ));
   }
-
-
 }
+
 //一下为组合柱状图数据部分
 class OrdinalSales {
   final String year;
@@ -82,9 +75,7 @@ class OrdinalSales {
   OrdinalSales(this.year, this.sales);
 }
 
-
 class ChartFlutterBean {
-
   static List<charts.Series<OrdinalSales, String>> createSampleData() {
     final data = [
       new OrdinalSales('2014', 5),

@@ -49,59 +49,59 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
 
   Widget _buildNewFeatureWidget() {
     return Swiper(
-        scrollDirection: Axis.horizontal,
-        itemCount: _imgWidgets.length,
-        autoplay: false,
-        loop: false,
-        onIndexChanged: (index) {
+      scrollDirection: Axis.horizontal,
+      itemCount: _imgWidgets.length,
+      autoplay: false,
+      loop: false,
+      onIndexChanged: (index) {
 //          print('滚动到：$index');
-          setState(() {
-            _index = index;
-          });
-        },
-        itemBuilder: (BuildContext context, int index) {
-          if (index != _imgWidgets.length - 1) {
-            return _imgWidgets[index];
-          } else {
-            return Stack(
-              alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
-              children: <Widget>[
-                _imgWidgets[index],
-                Positioned(
-                    bottom: JhScreenUtils.bottomSafeHeight + 50,
-                    child: GestureDetector(
-                      child: Image.asset(
-                        "assets/images/newFeature/start-now.jpg",
-                        width: 180,
-                        height: 50,
-                      ),
-                      onTap: () {
-                        _jumpMain();
-                      },
-                    )),
-              ],
-            );
-          }
-        },
-        // 点击事件 onTap
-        onTap: (index) {
-          print('点击了第${index}');
-        },
-        // 分页指示器
-        pagination: SwiperPagination(
-            // 位置 Alignment.bottomCenter 底部中间
-            alignment: Alignment.bottomCenter,
-            // 距离调整
-            margin: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-            builder: DotSwiperPaginationBuilder(
-                space: 5,
-                size: _index == _imgWidgets.length - 1 ? 0 : 10,
-                activeSize: _index == _imgWidgets.length - 1 ? 0 : 12,
-                color: Colors.grey,
-                activeColor: Colors.white)),
-        // 页面控制器 左右翻页按钮
+        setState(() {
+          _index = index;
+        });
+      },
+      itemBuilder: (BuildContext context, int index) {
+        if (index != _imgWidgets.length - 1) {
+          return _imgWidgets[index];
+        } else {
+          return Stack(
+            alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
+            children: <Widget>[
+              _imgWidgets[index],
+              Positioned(
+                  bottom: JhScreenUtils.bottomSafeHeight + 50,
+                  child: GestureDetector(
+                    child: Image.asset(
+                      "assets/images/newFeature/start-now.jpg",
+                      width: 180,
+                      height: 50,
+                    ),
+                    onTap: () {
+                      _jumpMain();
+                    },
+                  )),
+            ],
+          );
+        }
+      },
+      // 点击事件 onTap
+      onTap: (index) {
+        print('点击了第${index}');
+      },
+      // 分页指示器
+      pagination: SwiperPagination(
+          // 位置 Alignment.bottomCenter 底部中间
+          alignment: Alignment.bottomCenter,
+          // 距离调整
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+          builder: DotSwiperPaginationBuilder(
+              space: 5,
+              size: _index == _imgWidgets.length - 1 ? 0 : 10,
+              activeSize: _index == _imgWidgets.length - 1 ? 0 : 12,
+              color: Colors.grey,
+              activeColor: Colors.white)),
+      // 页面控制器 左右翻页按钮
 //          control: new SwiperControl(color: Colors.pink),
-      );
+    );
   }
 
   _jumpMain() {

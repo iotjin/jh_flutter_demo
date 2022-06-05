@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
+import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_theme_utils.dart';
 
 class UpdateDialog extends StatefulWidget {
@@ -41,7 +41,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
           body: Center(
             child: Container(
                 decoration: BoxDecoration(
-              color: JhThemeUtils.getDialogBackgroundColor(context),
+                  color: JhThemeUtils.getDialogBackgroundColor(context),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 width: 280.0,
@@ -90,7 +90,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                   height: 36.0,
                                   child: FlatButton(
                                     onPressed: () {
-                                      NavigatorUtils.goBack(context);
+                                      JhNavFluroUtils.goBack(context);
                                     },
                                     textColor: primaryColor,
                                     color: Colors.transparent,
@@ -114,7 +114,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                     onPressed: () {
                                       if (defaultTargetPlatform ==
                                           TargetPlatform.iOS) {
-                                        NavigatorUtils.goBack(context);
+                                        JhNavFluroUtils.goBack(context);
 //                                        VersionUtils.jumpAppStore();
 
                                       } else {
@@ -152,9 +152,9 @@ class _UpdateDialogState extends State<UpdateDialog> {
       setInitDir(initStorageDir: true);
       await DirectoryUtil.getInstance();
       DirectoryUtil.createStorageDirSync(category: 'Download');
-      String path = DirectoryUtil.getStoragePath(
+      String? path = DirectoryUtil.getStoragePath(
           fileName: 'deer', category: 'Download', format: 'apk');
-      File file = File(path);
+      File file = File(path!);
 
       /// 链接可能会失效
       await Dio().download(
@@ -166,7 +166,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
             _value = count / total;
             setState(() {});
             if (count == total) {
-              NavigatorUtils.goBack(context);
+              JhNavFluroUtils.goBack(context);
 //              VersionUtils.install(path);
             }
           }

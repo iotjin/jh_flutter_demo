@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -7,10 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 *
 * */
 
-
-
 class JhImageUtils {
-
   /** 加载本地图片 */
   static ImageProvider getAssetImage(String name, {String format: 'png'}) {
     //    print("路径-- "+ getImgPath(name, format: format));
@@ -39,32 +37,31 @@ class JhImageUtils {
 * JhLoadAssetImage('account/${_bankLogoList[index]}',width: 24.0)
 * */
 class JhLoadAssetImage extends StatelessWidget {
-
-  const JhLoadAssetImage(this.image, {
-    Key key,
-    this.width,
-    this.height,
-    this.fit,
-    this.format: 'png',
-    this.color
-  }): super(key: key);
+  const JhLoadAssetImage(this.image,
+      {Key? key,
+      this.width,
+      this.height,
+      this.fit,
+      this.format: 'png',
+      this.color})
+      : super(key: key);
 
   final String image;
-  final double width;
-  final double height;
-  final BoxFit fit;
+  final double? width;
+  final double? height;
+  final BoxFit? fit;
   final String format;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
-
     return Image.asset(
       JhImageUtils.getImgPath(image, format: format),
       height: height,
       width: width,
       fit: fit,
       color: color,
+
       /// 忽略图片语义
       excludeFromSemantics: true,
     );

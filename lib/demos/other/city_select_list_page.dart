@@ -19,7 +19,7 @@ class CitySelectListPage extends StatefulWidget {
 }
 
 class _CitySelectListPageState extends State<CitySelectListPage> {
-  List<ContactsModel> _cityList = List();
+  List<ContactsModel> _cityList = [];
   double _suspensionHeight = 40;
   double _itemHeight = 50;
   String _suspensionTag = "";
@@ -50,7 +50,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   void _handleList(List<ContactsModel> list) {
 //    if (list == null || list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
-      String pinyin = PinyinHelper.getPinyinE(list[i].name);
+      String pinyin = PinyinHelper.getPinyinE(list[i].name!);
       String tag = pinyin.substring(0, 1).toUpperCase();
       list[i].namePinyin = pinyin;
       if (RegExp("[A-Z]").hasMatch(tag)) {
@@ -146,7 +146,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   }
 
   Widget _buildHeader() {
-    List<ContactsModel> hotCityList = List();
+    List<ContactsModel> hotCityList = [];
     hotCityList.addAll([
       ContactsModel(name: "北京市"),
       ContactsModel(name: "广州市"),
@@ -164,7 +164,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
         children: hotCityList.map((e) {
           return RaisedButton(
             color: Colors.white,
-            child: Text(e.name),
+            child: Text(e.name!),
             onPressed: () {
               print("OnItemClick: ${e.name}");
 //              Navigator.pop(context, e);
@@ -197,14 +197,14 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
     String susTag = model.getSuspensionTag();
     return Column(
       children: <Widget>[
-        Offstage(
-          offstage: !model.isShowSuspension,
-          child: _buildSusWidget(susTag),
-        ),
+//        Offstage(
+//          offstage: !model.isShowSuspension,
+//          child: _buildSusWidget(susTag),
+//        ),
         SizedBox(
           height: _itemHeight,
           child: ListTile(
-            title: Text(model.name),
+            title: Text(model.name!),
             onTap: () {
               print("OnItemClick: ${model.name}");
             },

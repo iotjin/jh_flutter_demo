@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'dart:math';
 import 'dart:ui' as ui;
 import 'dart:ui';
@@ -11,15 +10,15 @@ import 'package:jh_flutter_demo/base_appbar.dart';
 class Point {
   double x, y, z;
   Color color;
-  String name;
+  String? name;
 
-  List<ui.Paragraph> paragraphs;
+  List<ui.Paragraph>? paragraphs;
 
   Point(this.x, this.y, this.z, {this.color = Colors.red});
 
   getParagraph(int radius) {
     int index = (z + radius).round() ~/ 3;
-    return paragraphs[index];
+    return paragraphs![index];
   }
 }
 
@@ -79,11 +78,11 @@ class TagCloud extends StatefulWidget {
 
 class _TagCloudState extends State<TagCloud>
     with SingleTickerProviderStateMixin {
-  Animation<double> rotationAnimation;
-  AnimationController animationController;
-  List<Point> points;
+  Animation<double>? rotationAnimation;
+  AnimationController? animationController;
+  List<Point>? points;
   int pointsCount = 6; //标签数量
-  double radius, //球体半径
+  double? radius, //球体半径
       angleDelta,
       prevAngle = 0.0;
   Point rotateAxis = Point(0, 1, 0); //初始为Y轴
@@ -99,33 +98,33 @@ class _TagCloudState extends State<TagCloud>
       duration: Duration(seconds: 60 ~/ widget.rpm),
     );
     rotationAnimation =
-        Tween(begin: 0.0, end: pi * 2).animate(animationController)
+        Tween(begin: 0.0, end: pi * 2).animate(animationController!)
           ..addListener(() {
             setState(() {
-              var angle = rotationAnimation.value;
-              angleDelta = angle - prevAngle; //这段时间内旋转过的角度
+              var angle = rotationAnimation!.value;
+              angleDelta = angle - prevAngle!; //这段时间内旋转过的角度
               prevAngle = angle;
               //按angleDelta旋转标签到新的位置
-              _rotatePoints(points, rotateAxis, angleDelta);
+              _rotatePoints(points!, rotateAxis, angleDelta!);
             });
           });
-    animationController.repeat();
+    animationController!.repeat();
   }
 
   @override
   didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
     setState(() {
-      animationController.duration = Duration(seconds: 60 ~/ widget.rpm);
-      if (animationController.isAnimating) animationController.repeat();
+      animationController!.duration = Duration(seconds: 60 ~/ widget.rpm);
+      if (animationController!.isAnimating) animationController!.repeat();
     });
   }
 
   _stopAnimation() {
-    if (animationController.isAnimating)
-      animationController.stop();
+    if (animationController!.isAnimating)
+      animationController!.stop();
     else {
-      animationController.repeat();
+      animationController!.repeat();
     }
   }
 
@@ -191,7 +190,7 @@ class _TagCloudState extends State<TagCloud>
 
   _buildPainter(points) {
     return CustomPaint(
-      size: Size(radius * 2, radius * 2),
+      size: Size(radius! * 2, radius! * 2),
       painter: TagsPainter(points),
     );
   }
@@ -200,7 +199,7 @@ class _TagCloudState extends State<TagCloud>
     List<Widget> children = [];
     //球体，添加了边界阴影
     var sphere = Container(
-        height: radius * 2,
+        height: radius! * 2,
         decoration: BoxDecoration(
             color: Colors.blueAccent,
             shape: BoxShape.circle,
@@ -234,7 +233,7 @@ class _TagCloudState extends State<TagCloud>
 
   @override
   void dispose() {
-    animationController.dispose();
+    animationController!.dispose();
     super.dispose();
   }
 
@@ -387,7 +386,8 @@ class TagsPainter extends CustomPainter {
       double tempRadius = 50.0;
       Path _circlePath = Path();
       _circlePath.reset();
-      _circlePath.addArc(Rect.fromCircle(center: offset, radius: tempRadius), 0, 2 * pi);
+      _circlePath.addArc(
+          Rect.fromCircle(center: offset, radius: tempRadius), 0, 2 * pi);
       _circlePath.close();
       var circleShader = RadialGradient(colors: [
         Colors.white.withAlpha(0),
@@ -396,9 +396,13 @@ class TagsPainter extends CustomPainter {
         circleColor.withAlpha(0),
         circleColor.withOpacity(0.1),
         circleColor.withOpacity(0.6),
-      ]).createShader(Rect.fromCircle(center:offset,radius:tempRadius));
-      canvas.drawPath(_circlePath, paintStyle..style = PaintingStyle.fill..shader = circleShader..strokeWidth = 15);
-
+      ]).createShader(Rect.fromCircle(center: offset, radius: tempRadius));
+      canvas.drawPath(
+          _circlePath,
+          paintStyle
+            ..style = PaintingStyle.fill
+            ..shader = circleShader
+            ..strokeWidth = 15);
 
       //圆形加阴影 通过多画几圈假装阴影效果
 //      Color circleColor = Colors.red;
@@ -426,13 +430,6 @@ class TagsPainter extends CustomPainter {
 //        RRect rrect2 = RRect.fromRectAndRadius(rect2, Radius.circular(tempRadius));
 //        canvas.drawRRect(rrect2, paint2);
 //      }
-
-
-
-
-
-
-
     });
   }
 

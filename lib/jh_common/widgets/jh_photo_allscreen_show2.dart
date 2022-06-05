@@ -7,36 +7,37 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-const Color _selColor =Colors.white;
+const Color _selColor = Colors.white;
 const Color _otherColor = Colors.grey;
 
 // 底部显示小圆点
 class NinePictureAllScreenShow<T> extends PopupRoute<T> {
-  final String barrierLabel;
-  final List picList;
-  final int index;
-  int startX;
-  int endX;
+  final String? barrierLabel;
+  final List? picList;
+  final int? index;
+  final int? startX;
+  final int? endX;
 
-  NinePictureAllScreenShow(this.picList, this.index, {this.barrierLabel});
+  NinePictureAllScreenShow(this.picList, this.index,
+      {this.barrierLabel, this.startX, this.endX});
 
   @override
   Duration get transitionDuration => Duration(milliseconds: 2000);
 
   @override
-  Color get barrierColor => Colors.black;  //背景颜色
+  Color get barrierColor => Colors.black; //背景颜色
 
   @override
   bool get barrierDismissible => true;
 
-  AnimationController _animationController;
+  AnimationController? _animationController;
 
   @override
   AnimationController createAnimationController() {
     assert(_animationController == null);
     _animationController =
-        BottomSheet.createAnimationController(navigator.overlay);
-    return _animationController;
+        BottomSheet.createAnimationController(navigator!.overlay!);
+    return _animationController!;
   }
 
   @override
@@ -48,11 +49,11 @@ class NinePictureAllScreenShow<T> extends PopupRoute<T> {
       child: GestureDetector(
         child: AnimatedBuilder(
           animation: animation,
-          builder: (BuildContext context, Widget child) => GestureDetector(
+          builder: (BuildContext? context, Widget? child) => GestureDetector(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pop(context!);
             },
-            child: _PictureWidget(picList, index),
+            child: _PictureWidget(picList!, index!),
           ),
         ),
       ),
@@ -61,8 +62,8 @@ class NinePictureAllScreenShow<T> extends PopupRoute<T> {
 }
 
 class _PictureWidget extends StatefulWidget {
-  final List picList;
-  final int index;
+  final List? picList;
+  final int? index;
 
   _PictureWidget(this.picList, this.index);
 
@@ -81,7 +82,7 @@ class _PictureWidgetState extends State<_PictureWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    index = widget.index;
+    index = widget.index!;
   }
 
   @override
@@ -96,7 +97,7 @@ class _PictureWidgetState extends State<_PictureWidget> {
             GestureDetector(
               child: Center(
                 child: CachedNetworkImage(
-                  imageUrl: widget.picList[index],
+                  imageUrl: widget.picList![index],
                   fit: BoxFit.fill,
                 ),
               ),
@@ -112,19 +113,21 @@ class _PictureWidgetState extends State<_PictureWidget> {
               },
               onHorizontalDragCancel: () {},
             ),
-
             Align(
                 alignment: Alignment.bottomCenter,
-                child:
-                Container(
+                child: Container(
 //                color: Colors.red,
-                  width: widget.picList.length>=6 ? 200:widget.picList.length<3 ? 50:100,
+                  width: widget.picList!.length >= 6
+                      ? 200
+                      : widget.picList!.length < 3
+                          ? 50
+                          : 100,
                   height: 50,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: List.generate(
-                      widget.picList.length,
-                          (i) => GestureDetector(
+                      widget.picList!.length,
+                      (i) => GestureDetector(
                         child: CircleAvatar(
 //                      foregroundColor: Theme.of(context).primaryColor,
                           foregroundColor: _selColor,
@@ -140,9 +143,7 @@ class _PictureWidgetState extends State<_PictureWidget> {
                       ),
                     ).toList(),
                   ),
-                )
-            )
-
+                ))
           ],
         ),
         alignment: Alignment.center,
@@ -154,14 +155,13 @@ class _PictureWidgetState extends State<_PictureWidget> {
     if (delta > 50) {
       setState(() {
         index--;
-        index = index.clamp(0, widget.picList.length - 1);
+        index = index.clamp(0, widget.picList!.length - 1);
       });
     } else if (delta < 50) {
       setState(() {
         index++;
-        index = index.clamp(0, widget.picList.length - 1);
+        index = index.clamp(0, widget.picList!.length - 1);
       });
     }
   }
-
 }

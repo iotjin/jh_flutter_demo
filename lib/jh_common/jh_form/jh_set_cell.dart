@@ -25,12 +25,12 @@ typedef _ClickCallBack = void Function();
 
 class JhSetCell extends StatefulWidget {
   final String title;
-  final String leftImgPath; //左侧图片路径 ，默认隐藏 ,设置leftImgPath则 leftWidget失效
-  final Widget leftWidget; //左侧widget ，默认隐藏
+  final String? leftImgPath; //左侧图片路径 ，默认隐藏 ,设置leftImgPath则 leftWidget失效
+  final Widget? leftWidget; //左侧widget ，默认隐藏
   final String text;
-  final Widget rightWidget; //右侧widget ，默认隐藏
+  final Widget? rightWidget; //右侧widget ，默认隐藏
   final bool hiddenArrow; //隐藏箭头，默认不隐藏
-  final _ClickCallBack clickCallBack;
+  final _ClickCallBack? clickCallBack;
   final double titleWidth; //标题宽度
   final TextStyle titleStyle;
   final TextStyle textStyle;
@@ -43,7 +43,7 @@ class JhSetCell extends StatefulWidget {
   final TextAlign textAlign; //默认靠右
 
   const JhSetCell({
-    Key key,
+    Key? key,
     @required this.title: '',
     this.leftImgPath,
     this.leftWidget,
@@ -102,13 +102,11 @@ class _JhSetCellState extends State<JhSetCell> {
                 children: <Widget>[
                   widget.leftImgPath != null
                       ? Image.asset(
-                          widget.leftImgPath,
+                          widget.leftImgPath!,
                           width: widget.leftImgWH,
                           height: widget.leftImgWH,
                         )
-                      : (widget.leftWidget != null
-                          ? widget.leftWidget
-                          : Container()),
+                      : (widget.leftWidget ?? Container()),
                   SizedBox(
                       width: (widget.leftImgPath != null ||
                               widget.leftWidget != null)
@@ -130,7 +128,7 @@ class _JhSetCellState extends State<JhSetCell> {
                     textAlign: widget.textAlign,
                     border: InputBorder.none,
                   )),
-                  widget.rightWidget != null ? widget.rightWidget : Container(),
+                  widget.rightWidget ?? Container(),
                   Offstage(
                     offstage: _hiddenArrow,
                     child: Icon(Icons.arrow_forward_ios,
@@ -140,7 +138,7 @@ class _JhSetCellState extends State<JhSetCell> {
           ),
           onTap: () {
             if (widget.clickCallBack != null) {
-              widget.clickCallBack();
+              widget.clickCallBack!();
             }
           },
         ));

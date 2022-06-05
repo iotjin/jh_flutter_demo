@@ -17,7 +17,7 @@ import 'package:jh_flutter_demo/project/Three/three_page.dart';
 import 'four/four_page.dart';
 
 class BaseTabBar extends StatefulWidget {
-  BaseTabBar({Key key}) : super(key: key);
+  BaseTabBar({Key? key}) : super(key: key);
 
   _BaseTabBarState createState() => _BaseTabBarState();
 }
@@ -31,17 +31,17 @@ class _BaseTabBarState extends State<BaseTabBar> {
 
   List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
-      title: Text("微信"),
+      label: "微信",
       icon: JhLoadAssetImage('tab/nav_tab_1', width: _iconWH),
       activeIcon: JhLoadAssetImage('tab/nav_tab_1_on', width: _iconWH),
     ),
     BottomNavigationBarItem(
-      title: Text("通讯录"),
+      label: "通讯录",
       icon: JhLoadAssetImage('tab/nav_tab_2', width: _iconWH),
       activeIcon: JhLoadAssetImage('tab/nav_tab_2_on', width: _iconWH),
     ),
     BottomNavigationBarItem(
-      title: Text("发现"),
+      label: "发现",
 //      icon: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH),
       activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH),
       icon: Badge(
@@ -54,7 +54,7 @@ class _BaseTabBarState extends State<BaseTabBar> {
 //          child: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH)),
     ),
     BottomNavigationBarItem(
-      title: Text("我的"),
+      label: "我的",
       icon: JhLoadAssetImage('tab/nav_tab_4', width: _iconWH),
       activeIcon: JhLoadAssetImage('tab/nav_tab_4_on', width: _iconWH),
     ),
@@ -65,7 +65,7 @@ class _BaseTabBarState extends State<BaseTabBar> {
     // TODO: implement initState
     super.initState();
 
-    SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
+    SchedulerBinding.instance!.addPostFrameCallback((Duration timestamp) {
       // 设置EasyRefresh的默认样式
       EasyRefresh.defaultHeader = ClassicalHeader(
         enableInfiniteRefresh: false,

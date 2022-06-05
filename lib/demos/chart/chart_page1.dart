@@ -11,8 +11,7 @@ class _ChartPage1State extends State<ChartPage1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-      backAppBar(context, 'chart'),
+      appBar: backAppBar(context, 'chart'),
       body: Container(
         child: ListView(
           children: <Widget>[
@@ -79,11 +78,13 @@ class _ChartPage1State extends State<ChartPage1> {
 class Barsales {
   String day;
   int sale;
+
   Barsales(this.day, this.sale);
 }
 
 class Linesales {
   DateTime time;
   int sale;
+
   Linesales(this.time, this.sale);
 }

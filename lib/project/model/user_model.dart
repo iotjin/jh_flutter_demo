@@ -6,15 +6,15 @@
  */
 
 class UserModel {
-  String userID;
-  String userName;
-  String phone;
-  String pwd;
-  String token;
-  String avatarUrl;
-  String sex; //0男，1女
-  String region;
-  String nickName; //昵称
+  String? userID;
+  String? userName;
+  String? phone;
+  String? pwd;
+  String? token;
+  String? avatarUrl;
+  String? sex; //0男，1女
+  String? region;
+  String? nickName; //昵称
 
   UserModel({
     this.userID,

@@ -74,12 +74,12 @@ class _RedDotPageState extends State<RedDotPage> {
       elevation: 0,
       items: [
         BottomNavigationBarItem(
-            title: Text('Events'),
+            label: 'Events',
             icon: Badge(
               child: Icon(Icons.event),
             )),
         BottomNavigationBarItem(
-            title: Text('Messages'),
+            label: 'Messages',
             icon: Badge(
               toAnimate: false,
               position: BadgePosition.topEnd(top: -20, end: -20),
@@ -90,7 +90,7 @@ class _RedDotPageState extends State<RedDotPage> {
               child: Icon(Icons.message),
             )),
         BottomNavigationBarItem(
-          title: Text('Settings'),
+          label: 'Settings',
           icon: Badge(
             shape: BadgeShape.circle,
             borderRadius: BorderRadius.circular(100),

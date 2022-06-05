@@ -22,7 +22,4 @@ class KString {
   static String wx_payManager = "支付管理";
 
   static String testTitle = "DemoList";
-
-
-
 }

@@ -17,7 +17,7 @@ class PersonCenterPage extends StatefulWidget {
 
 class _PersonCenterPageState extends State<PersonCenterPage>
     with SingleTickerProviderStateMixin {
-  TabController tabController;
+  TabController? tabController;
   double _topH = 0;
   ScrollController _scrollController = ScrollController();
 
@@ -99,7 +99,7 @@ class _PersonCenterPageState extends State<PersonCenterPage>
 class StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar child;
 
-  StickyTabBarDelegate({@required this.child});
+  StickyTabBarDelegate({required this.child});
 
   @override
   Widget build(

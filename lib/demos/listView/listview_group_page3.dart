@@ -64,7 +64,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
     with SingleTickerProviderStateMixin {
   EasyRefreshController _controller = EasyRefreshController();
 
-  TabController _tabController;
+  TabController? _tabController;
   List tabs = ["近30日", "近7日", "今日"];
   var _rowHeight = 44.0;
 
@@ -72,15 +72,15 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: tabs.length);
-    _tabController.addListener(() {
-      print(_tabController.index);
+    _tabController!.addListener(() {
+      print(_tabController!.index);
     });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _tabController.dispose();
+    _tabController!.dispose();
   }
 
   void getNewData() {

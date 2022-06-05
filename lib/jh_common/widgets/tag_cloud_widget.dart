@@ -47,13 +47,13 @@ class TagCloudWidget extends StatefulWidget {
 
 class _TagCloudWidgetState extends State<TagCloudWidget>
     with SingleTickerProviderStateMixin {
-  Animation<double> rotationAnimation;
-  AnimationController animationController;
-  List<Point> points;
+  Animation<double>? rotationAnimation;
+  AnimationController? animationController;
+  List<Point>? points;
 
   int pointsCount = 0; //标签数量
 
-  double radius, //球体半径
+  double? radius, //球体半径
       angleDelta,
       prevAngle = 0.0;
   Point rotateAxis = Point(0, 1, 0); //初始为Y轴
@@ -61,7 +61,7 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
   @override
   void initState() {
     super.initState();
-    pointsCount = widget.dataArr.length ?? 0; //标签数量
+    pointsCount = widget.dataArr.length; //标签数量
     radius = widget.width / 2;
     points = _generateInitialPoints();
     animationController = new AnimationController(
@@ -70,33 +70,33 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
       duration: Duration(seconds: 60 ~/ widget.rpm),
     );
     rotationAnimation =
-        Tween(begin: 0.0, end: pi * 2).animate(animationController)
+        Tween(begin: 0.0, end: pi * 2).animate(animationController!)
           ..addListener(() {
             setState(() {
-              var angle = rotationAnimation.value;
-              angleDelta = angle - prevAngle; //这段时间内旋转过的角度
+              var angle = rotationAnimation!.value;
+              angleDelta = angle - prevAngle!; //这段时间内旋转过的角度
               prevAngle = angle;
               //按angleDelta旋转标签到新的位置
-              _rotatePoints(points, rotateAxis, angleDelta);
+              _rotatePoints(points!, rotateAxis, angleDelta!);
             });
           });
-    animationController.repeat();
+    animationController!.repeat();
   }
 
   @override
   didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
     setState(() {
-      animationController.duration = Duration(seconds: 60 ~/ widget.rpm);
-      if (animationController.isAnimating) animationController.repeat();
+      animationController!.duration = Duration(seconds: 60 ~/ widget.rpm);
+      if (animationController!.isAnimating) animationController!.repeat();
     });
   }
 
   _stopAnimation() {
-    if (animationController.isAnimating)
-      animationController.stop();
+    if (animationController!.isAnimating)
+      animationController!.stop();
     else {
-      animationController.repeat();
+      animationController!.repeat();
     }
   }
 
@@ -162,7 +162,7 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
 
   @override
   void dispose() {
-    animationController.dispose();
+    animationController!.dispose();
     super.dispose();
   }
 
@@ -187,7 +187,7 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
         children: <Widget>[
           //球体，添加了边界阴影
           Container(
-              height: radius * 2,
+              height: radius! * 2,
               decoration: BoxDecoration(
                   color: _bgColor,
                   shape: BoxShape.circle,
@@ -199,8 +199,8 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
                   ])),
           //每个点
           CustomPaint(
-            size: Size(radius * 2, radius * 2),
-            painter: TagsPainter(points, widget.dataArr),
+            size: Size(radius! * 2, radius! * 2),
+            painter: TagsPainter(points!, widget.dataArr),
           )
         ],
       ),

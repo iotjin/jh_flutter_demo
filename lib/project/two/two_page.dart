@@ -32,7 +32,7 @@ class TwoPage extends StatefulWidget {
 }
 
 class _TwoPageState extends State<TwoPage> {
-  List<ContactsModel> _dataList = List();
+  List<ContactsModel> _dataList = [];
 
   // 联系人总数
   String _contactsCount = '';
@@ -63,12 +63,18 @@ class _TwoPageState extends State<TwoPage> {
       _dataList.add(model);
     });
     _handleList(_dataList);
+
+//    print('_dataList=====');
+//    _dataList.forEach((item) {
+//      ContactsModel model = item;
+//      print(model.toJson());
+//    });
     setState(() {});
   }
 
   void _handleList(List<ContactsModel> list) {
     for (int i = 0, length = list.length; i < length; i++) {
-      String pinyin = PinyinHelper.getPinyinE(list[i].name);
+      String pinyin = PinyinHelper.getPinyinE(list[i].name!);
       String tag = pinyin.substring(0, 1).toUpperCase();
       list[i].namePinyin = pinyin;
       if (list[i].isStar == true) {
@@ -107,14 +113,14 @@ class _TwoPageState extends State<TwoPage> {
       appBar: gradientAppBar(context, KString.twoTabTitle,
           rightImgPath: 'assets/images/tianjiahaoyou.png',
           rightItemCallBack: () {
-        NavigatorUtils.pushNamed(context, 'WxAddFriendPage');
+        JhNavFluroUtils.pushNamed(context, 'WxAddFriendPage');
       }),
       body: _body(),
       backgroundColor: KColor.kWeiXinBgColor,
     );
   }
 
-  //body
+  // body
   Widget _body() {
     return AzListView(
       data: _dataList,
@@ -132,7 +138,7 @@ class _TwoPageState extends State<TwoPage> {
         if ('🔍' == model.getSuspensionTag()) {
           return Container();
         }
-        return _buildSusWidget(tag, isFloat: true);
+        return _buildSusWidget(tag, isFloat: false);
       },
       indexBarData: SuspensionUtil.getTagIndexList(_dataList),
       indexBarOptions: IndexBarOptions(
@@ -160,7 +166,7 @@ class _TwoPageState extends State<TwoPage> {
     );
   }
 
-  // 头部
+  // 头部：新的朋友、群聊、标签、公众号
   Widget _buildHeader() {
     List _topData = [
       {
@@ -259,7 +265,7 @@ class _TwoPageState extends State<TwoPage> {
     );
   }
 
-  //Cell
+  // Cell
   Widget _buildListItem(ContactsModel model) {
     String susTag = model.getSuspensionTag();
     double _cellH = _itemHeight;
@@ -270,56 +276,57 @@ class _TwoPageState extends State<TwoPage> {
       leftImgWH: _imgWH,
       cellHeight: _cellH,
       lineLeftEdge: _leftSpace,
-      title: model.name,
+      title: model.name!,
       hiddenArrow: true,
       leftWidget: Container(
         height: _imgWH,
         width: _imgWH,
         decoration: BoxDecoration(
-          color: JhColorUtils.hexColor(model.color),
+          color: JhColorUtils.hexColor(model.color!),
           borderRadius: BorderRadius.circular(3),
         ),
         child: Center(
-          child: Text(model.name.substring(0, 1),
+          child: Text(model.name!.substring(0, 1),
               style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
       ),
       clickCallBack: () {
         //跳转个人信息页 跳转传递model
         String jsonStr = Uri.encodeComponent(jsonEncode(model));
-        NavigatorUtils.pushNamed(
+        JhNavFluroUtils.pushNamed(
             context, '${"WxUserInfoPage"}?passValue=${jsonStr}');
       },
     );
 
     return Column(
       children: <Widget>[
-        Offstage(
-          offstage: !model.isShowSuspension,
-          child: _buildSusWidget(susTag),
-        ),
+//        Offstage(
+//          offstage: !model.isShowSuspension,
+//          child: _buildSusWidget(susTag),
+//        ),
         Slidable(
-          actionPane: SlidableScrollActionPane(),
-          //滑出选项的面板 动画
-          actionExtentRatio: 0.2,
           child: _cell,
           //右侧按钮列表
-          secondaryActions: <Widget>[
-            SlideAction(
-              color: Colors.black54,
-              child: Text(
-                '备注',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
+          endActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            extentRatio: 0.2,
+            children: [
+              CustomSlidableAction(
+                backgroundColor: Colors.black54,
+                child: Text(
+                  '备注',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
+                onPressed: (context) {
+                  JhToast.showText(context, msg: '点击备注');
+                },
               ),
-              onTap: () {
-                JhToast.showText(context, msg: '点击备注');
-              },
-            ),
-          ],
+            ],
+          ),
         ),
         Offstage(
           offstage: _dataList[_dataList.length - 1].id != model.id,
@@ -345,10 +352,10 @@ class _TwoPageState extends State<TwoPage> {
   void _clickCell(context, text) {
     // JhToast.showText(context, msg: '点击 ${text}');
     if (text == '新的朋友') {
-      NavigatorUtils.pushNamed(context, 'WxNewFriendPage');
+      JhNavFluroUtils.pushNamed(context, 'WxNewFriendPage');
     }
     if (text == '群聊') {
-      NavigatorUtils.pushNamed(context, 'WxGroupChatPage');
+      JhNavFluroUtils.pushNamed(context, 'WxGroupChatPage');
     }
   }
 }

@@ -18,11 +18,11 @@ import 'package:jh_flutter_demo/project/four/pages/about_ios_page.dart';
 
 import 'package:jh_flutter_demo/demos/demo_lists_page.dart';
 
-
 //alert
 import 'package:jh_flutter_demo/demos/Alert/alert_demo_lists_page.dart';
 import '../../demos/alert/bottom_sheet_test.dart';
 import '../../demos/alert/alert_test.dart';
+
 //toast
 import 'package:jh_flutter_demo/demos/alert/toast/toast_demo_lists_page.dart';
 import 'package:jh_flutter_demo/demos/alert/toast/toast_test.dart';
@@ -33,7 +33,6 @@ import 'package:jh_flutter_demo/demos/chart/chart_page1.dart';
 import 'package:jh_flutter_demo/demos/chart/chart_page2.dart';
 import 'package:jh_flutter_demo/demos/chart/eChart_page1.dart';
 import 'package:jh_flutter_demo/demos/chart/mpChart_line_page1.dart';
-
 
 //表单
 import 'package:jh_flutter_demo/demos/form/form_demo_lists_page.dart';
@@ -94,7 +93,6 @@ import 'package:jh_flutter_demo/demos/ui/ui_demo_lists.dart';
 import 'package:jh_flutter_demo/demos/ui/ui_page.dart';
 import 'package:jh_flutter_demo/demos/ui/ui_page2.dart';
 
-
 final String home = '/';
 
 final String loginPage = 'LoginPage';
@@ -105,16 +103,12 @@ final String fourPage = '/fourPage';
 
 final String demoListsPage = 'DemoListsPage';
 
-
-
-
 // 配置路由命名信息
 final routes = {
   loginPage: (context) => LoginPage(),
   "RegisterPage": (context) => RegisterPage(),
   "FindPwdPage": (context) => FindPwdPage(),
   "CodeLoginPage": (context) => CodeLoginPage(),
-
 
   onePage: (context) => OnePage(),
   twoPage: (context) => TwoPage(),
@@ -129,14 +123,13 @@ final routes = {
 
   demoListsPage: (context) => DemoListsPage(),
 
-
   //Alert
   "AlertDemoListsPage": (context) => AlertDemoListsPage(),
-      "AlertTestPage": (context) => AlertTestPage(),
-      "BottomSheetTest": (context) => BottomSheetTest(),
-      //toast
-      "ToastDemoListsPage": (context) => ToastDemoListsPage(),
-      "ToastTestPage": (context) => ToastTestPage(),
+  "AlertTestPage": (context) => AlertTestPage(),
+  "BottomSheetTest": (context) => BottomSheetTest(),
+  //toast
+  "ToastDemoListsPage": (context) => ToastDemoListsPage(),
+  "ToastTestPage": (context) => ToastTestPage(),
 
   //chart
   "ChartDemoListPage": (context) => ChartDemoListPage(),
@@ -145,41 +138,39 @@ final routes = {
   "EChartPage1": (context) => EChartPage1(),
   // "MpChartLinePage1": (context) => MpChartLinePage1(),
 
-
-
   //表单
   "FormDemoListsPage": (context) => FormDemoListsPage(),
-      "LoginTextFieldTestPage": (context) => LoginTextFieldTestPage(),
-      "InputTextFieldTestPage": (context) => InputTextFieldTestPage(),
-      "FormInputCellTestPage": (context) => FormInputCellTestPage(),
-      "FormSelectCellTestPage": (context) => FormSelectCellTestPage(),
-      "SetCellTestPage": (context) => SetCellTestPage(),
-      "FormTestPage": (context) => FormTestPage(),
+  "LoginTextFieldTestPage": (context) => LoginTextFieldTestPage(),
+  "InputTextFieldTestPage": (context) => InputTextFieldTestPage(),
+  "FormInputCellTestPage": (context) => FormInputCellTestPage(),
+  "FormSelectCellTestPage": (context) => FormSelectCellTestPage(),
+  "SetCellTestPage": (context) => SetCellTestPage(),
+  "FormTestPage": (context) => FormTestPage(),
 
   //GridView
   "GridViewDemoListsPage": (context) => GridViewDemoListsPage(),
-      "GridViewTest1": (context) => GridViewTest1(),
-      "GridViewTest2": (context) => GridViewTest2(),
-      "GridViewTest3": (context) => GridViewTest3(),
-      "GridViewTest4": (context) => GridViewTest4(),
-      "GridViewTestPage5": (context) => GridViewTestPage5(),
+  "GridViewTest1": (context) => GridViewTest1(),
+  "GridViewTest2": (context) => GridViewTest2(),
+  "GridViewTest3": (context) => GridViewTest3(),
+  "GridViewTest4": (context) => GridViewTest4(),
+  "GridViewTestPage5": (context) => GridViewTestPage5(),
 
   //http
   "HttpDemoListsPage": (context) => HttpDemoListsPage(),
-      "HttpTest1Page": (context) => HttpTest1Page(),
-      "HttpPageTestPage": (context) => HttpPageTestPage(),
+  "HttpTest1Page": (context) => HttpTest1Page(),
+  "HttpPageTestPage": (context) => HttpPageTestPage(),
 
   //ListView
   "ListViewDemoListsPage": (context) => ListViewDemoListsPage(),
-      "ListViewTest": (context) => ListViewTest(),
-      "ListViewTest2": (context) => ListViewTest2(),
-      "ListViewTest3": (context) => ListViewTest3(),
-      "ListViewTest4": (context) => ListViewTest4(),
-      "ListViewTest5": (context) => ListViewTest5(),
-      "ListViewTest_Card": (context) => ListViewTest_Card(),
-      "ListViewTest_CustomVC": (context) => ListViewTest_CustomVC(),
-      "ListViewTest_SimplePullDown": (context) => ListViewTest_SimplePullDown(),
-      "ListViewTest_PullDownVC": (context) => ListViewTest_PullDownVC(),
+  "ListViewTest": (context) => ListViewTest(),
+  "ListViewTest2": (context) => ListViewTest2(),
+  "ListViewTest3": (context) => ListViewTest3(),
+  "ListViewTest4": (context) => ListViewTest4(),
+  "ListViewTest5": (context) => ListViewTest5(),
+  "ListViewTest_Card": (context) => ListViewTest_Card(),
+  "ListViewTest_CustomVC": (context) => ListViewTest_CustomVC(),
+  "ListViewTest_SimplePullDown": (context) => ListViewTest_SimplePullDown(),
+  "ListViewTest_PullDownVC": (context) => ListViewTest_PullDownVC(),
 
   //other
   "FormTest": (context) => FormTest(),
@@ -196,19 +187,16 @@ final routes = {
   "SearchTest2Page": (context) => SearchTest2Page(),
   "SearchTest3Page": (context) => SearchTest3Page(),
 
-   //TopTabBarDemoListPage
+  //TopTabBarDemoListPage
   "TopTabBarDemoListPage": (context) => TopTabBarDemoListPage(),
-        "TopTabBarTest1Page": (context) => TopTabBarTest1Page(),
-        "TopTabBarTest2Page": (context) => TopTabBarTest2Page(),
-        "TopTabBarTest3Page": (context) => TopTabBarTest3Page(),
-
+  "TopTabBarTest1Page": (context) => TopTabBarTest1Page(),
+  "TopTabBarTest2Page": (context) => TopTabBarTest2Page(),
+  "TopTabBarTest3Page": (context) => TopTabBarTest3Page(),
 
   //ui
   "UIDemoListsPage": (context) => UIDemoListsPage(),
-        "UIPage": (context) => UIPage(),
-        "UIPage2": (context) => UIPage2(),
-
-
+  "UIPage": (context) => UIPage(),
+  "UIPage2": (context) => UIPage2(),
 };
 
 class UnknownPage extends StatelessWidget {

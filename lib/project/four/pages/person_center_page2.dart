@@ -62,7 +62,8 @@ class _PersonCenterPage2State extends State<PersonCenterPage2>
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100,
               itemExtent: 50.0,
               //强制高度为50.0

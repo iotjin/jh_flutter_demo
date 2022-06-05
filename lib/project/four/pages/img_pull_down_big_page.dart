@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 
-
 class ImgPullDownBigPage extends StatefulWidget {
   @override
   _ImgPullDownBigPageState createState() => _ImgPullDownBigPageState();
@@ -18,9 +17,9 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
   double imgHeight = 200;
   double imgExtraHeight = 0;
   double imgMaxHeight = 400;
-  double prev_dy;
-  AnimationController animationController;
-  Animation<double> anim;
+  double? prev_dy;
+  AnimationController? animationController;
+  Animation<double>? anim;
 
   @override
   void initState() {
@@ -30,7 +29,7 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
     prev_dy = 0;
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    anim = Tween(begin: 0.0, end: 0.0).animate(animationController);
+    anim = Tween(begin: 0.0, end: 0.0).animate(animationController!);
   }
 
   //更新图片高度
@@ -48,10 +47,10 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
 
   runAnimate() {
     setState(() {
-      anim = Tween(begin: imgExtraHeight, end: 0.0).animate(animationController)
+      anim = Tween(begin: imgExtraHeight, end: 0.0).animate(animationController!)
         ..addListener(() {
           setState(() {
-            imgExtraHeight = anim.value;
+            imgExtraHeight = anim!.value;
           });
         });
       prev_dy = 0;
@@ -78,7 +77,7 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
         },
         onPointerUp: (_) {
           runAnimate();
-          animationController.forward(from: 0);
+          animationController!.forward(from: 0);
         },
         child: CustomScrollView(
           physics: ClampingScrollPhysics(),
@@ -91,7 +90,7 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
               flexibleSpace: new FlexibleSpaceBar(
                   title: Text(
                     '图片下拉放大',
-                    style: TextStyle(color: Colors.white,fontSize: 18),
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   background: Image.network(
                     'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',

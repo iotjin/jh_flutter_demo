@@ -15,7 +15,7 @@ import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/model/contacts_model.dart';
 
 class WxUserInfoPage extends StatelessWidget {
-  final ContactsModel _passValue;
+  final ContactsModel? _passValue;
 
   WxUserInfoPage(this._passValue);
 
@@ -27,7 +27,7 @@ class WxUserInfoPage extends StatelessWidget {
           backgroundColor: Colors.transparent, rightItemCallBack: () {
         //跳转资料设置
         String jsonStr = Uri.encodeComponent(jsonEncode(_passValue));
-        NavigatorUtils.pushNamed(
+        JhNavFluroUtils.pushNamed(
             context, '${"WxInfoSetPage"}?passValue=${jsonStr}');
       }),
       body: _body(context),
@@ -35,12 +35,12 @@ class WxUserInfoPage extends StatelessWidget {
   }
 
   Widget _body(context) {
-    print('上个页面传递过来的model: ${_passValue.toJson()}');
+    print('上个页面传递过来的model: ${_passValue!.toJson()}');
 
     double _cellH = wx_cellH;
     double _rowSpace = wx_rowSpace;
 
-    Widget _sex = _passValue.sex == '0'
+    Widget _sex = _passValue!.sex == '0'
         ? Icon(Icons.person, color: Colors.blue)
         : Icon(Icons.pregnant_woman, color: Colors.redAccent);
     return ListView(
@@ -57,11 +57,11 @@ class WxUserInfoPage extends StatelessWidget {
                 width: 66,
                 margin: EdgeInsets.fromLTRB(20, 3, 15, 0),
                 decoration: BoxDecoration(
-                  color: JhColorUtils.hexColor(_passValue.color),
+                  color: JhColorUtils.hexColor(_passValue!.color!),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Center(
-                  child: Text(_passValue.name.substring(0, 1),
+                  child: Text(_passValue!.name!.substring(0, 1),
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               ),
@@ -73,7 +73,7 @@ class WxUserInfoPage extends StatelessWidget {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          Text(_passValue.name,
+                          Text(_passValue!.name!,
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold)),
                           SizedBox(width: 5),
@@ -83,19 +83,19 @@ class WxUserInfoPage extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 3),
-                      Text('昵称：${_passValue.namePinyin}',
+                      Text('昵称：${_passValue!.namePinyin}',
                           style: TextStyle(fontSize: 16, color: Colors.grey)),
                       SizedBox(height: 3),
-                      Text('手机号：${_passValue.phone}',
+                      Text('手机号：${_passValue!.phone}',
                           style: TextStyle(fontSize: 16, color: Colors.grey)),
                       SizedBox(height: 3),
-                      Text('地区：${_passValue.region}',
+                      Text('地区：${_passValue!.region}',
                           style: TextStyle(fontSize: 16, color: Colors.grey)),
                     ],
                   )),
               Expanded(
                 flex: 15,
-                child: _passValue.isStar
+                child: _passValue!.isStar!
                     ? Icon(Icons.star, color: Colors.yellow)
                     : Container(),
               ),
@@ -106,14 +106,14 @@ class WxUserInfoPage extends StatelessWidget {
         JhSetCell(
           cellHeight: _cellH,
           title: '备注和标签',
-          text: _passValue.label,
+          text: _passValue!.label!,
           textAlign: TextAlign.left,
           clickCallBack: () => _clickCell(context, '备注和标签'),
         ),
         JhSetCell(
           cellHeight: _cellH,
           title: '朋友权限',
-          text: _passValue.isStar ? '' : '不看他的朋友圈和视频动态',
+          text: _passValue!.isStar! ? '' : '不看他的朋友圈和视频动态',
           textAlign: TextAlign.left,
           hiddenLine: true,
           clickCallBack: () => _clickCell(context, '朋友权限'),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_qr_code_utils.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 
 class QRCodeTest extends StatefulWidget {
   @override
@@ -24,12 +23,7 @@ class _QRCodeTestState extends State<QRCodeTest> {
             RaisedButton(
               child: Text("二维码扫描"),
               onPressed: () {
-//          QRCodeUtils.scan().then((value) =>print(value);
-//          _scan();
-                JhQrCodeUtils.scan().then((value) => setState(() {
-                      print(value);
-                      _textStr = value;
-                    }));
+                _scan(context);
               },
             ),
             SizedBox(
@@ -75,10 +69,10 @@ class _QRCodeTestState extends State<QRCodeTest> {
     );
   }
 
-  void _scan() async {
-    var code = await JhQrCodeUtils.scan();
-    if (code != null) {
-      print(code);
-    }
+  void _scan(context) async {
+    JhQrCodeUtils.jumpScan(context).then((value) => setState(() {
+          print(value);
+          _textStr = value;
+        }));
   }
 }

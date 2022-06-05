@@ -2,59 +2,42 @@ import 'package:flutter/material.dart';
 
 import 'package:fluro/fluro.dart';
 import 'router_init.dart';
-import '404.dart';
+import 'not_found_page.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
 import 'package:jh_flutter_demo/project/base_tabbar.dart';
 import 'package:jh_flutter_demo/demos/demos_router.dart';
 import 'package:jh_flutter_demo/project/login/login_router.dart';
 import 'package:jh_flutter_demo/project/main_router.dart';
 
-
-
-
-
-
 final String home = '/';
-
 
 final String demoListsPage = 'DemoListsPage';
 
-
-
-class UnknownPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('跳转错误'),
-        centerTitle: true,
-      ),
-    );
-  }
-}
-
-
 class Routes {
-
   static String home = '/home';
-  static String webViewPage = '/webview';
+  static String webViewPage = '/webView';
 
   static final List<IRouterProvider> _listRouter = [];
 
-  static void configureRoutes(FluroRouter router) {
+  static final FluroRouter router = FluroRouter();
+
+  static void initRoutes() {
     /// 指定路由跳转错误返回页
     router.notFoundHandler = Handler(
-        handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-          debugPrint('未找到目标页');
-          return PageNotFound();
-        });
+        handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+      debugPrint('未找到目标页');
+      return NotFoundPage();
+    });
 
-    router.define(home, handler: Handler(
-        handlerFunc: (BuildContext context, Map<String, List<String>> params) => BaseTabBar()));
+    router.define(home,
+        handler: Handler(
+            handlerFunc:
+                (BuildContext? context, Map<String, List<String>> params) =>
+                    BaseTabBar()));
 
     router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
-      final String title = params['title']?.first;
-      final String url = params['url']?.first;
+      final String title = params['title']?.first ?? '';
+      final String url = params['url']?.first ?? '';
       return BaseWebView(title: title, url: url);
     }));
 
@@ -65,8 +48,10 @@ class Routes {
     _listRouter.add(MainRouter());
 
     /// 初始化路由
-    _listRouter.forEach((routerProvider) {
+    void initRouter(IRouterProvider routerProvider) {
       routerProvider.initRouter(router);
-    });
+    }
+
+    _listRouter.forEach(initRouter);
   }
 }

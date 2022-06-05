@@ -14,7 +14,7 @@ import 'package:jh_flutter_demo/project/configs/project_config.dart';
 var _dataArr;
 
 List _getData() {
-  _dataArr = new List();
+  _dataArr = [];
   for (int i = 0; i < 50; i++) {
     var map = new Map();
     map["title"] = "title${i}";
@@ -28,7 +28,7 @@ List _getData() {
 }
 
 class WxSubscriptionNumberListPage extends StatelessWidget {
-  WxSubscriptionNumberListPage({Key key}) : super(key: key) {
+  WxSubscriptionNumberListPage({Key? key}) : super(key: key) {
     _getData();
   }
 

@@ -2,12 +2,10 @@
  *  http_utils.dart
  *
  *  Created by iotjin on 2020/07/07.
- *  description:  项目接口请求 管理类
+ *  description:  网络请求工具类
  */
 
 import 'package:jh_flutter_demo/jh_common/widgets/jh_progress_hud.dart';
-
-import '../data/apis.dart';
 import 'dio_utils.dart';
 import 'log_utils.dart';
 
@@ -15,34 +13,12 @@ typedef Success<T> = Function(T data);
 typedef Fail = Function(int code);
 
 class HttpUtils {
-  // //GET
-  // static void GetRequest<T>(
-  //   APIType apiType,
-  //   parameters, {
-  //   Success success,
-  //   Fail fail,
-  // }) {
-  //   post(APITypeValues[apiType], parameters, success: success, fail: fail);
-  // }
-  //
-  // //POST
-  // static void PostRequest<T>(
-  //   APIType apiType,
-  //   parameters, {
-  //   Success success,
-  //   Fail fail,
-  // }) {
-  //   post(APITypeValues[apiType], parameters, success: success, fail: fail);
-  // }
-
-  /********************************* 分割线 ********************************/
-
   //get 请求
   static void get<T>(
     String url,
     parameters, {
-    Success success,
-    Fail fail,
+    Success? success,
+    Fail? fail,
   }) {
     _request(Method.GET, url, parameters, success: success, fail: fail);
   }
@@ -51,8 +27,8 @@ class HttpUtils {
   static void post<T>(
     String url,
     parameters, {
-    Success success,
-    Fail fail,
+    Success? success,
+    Fail? fail,
   }) {
     _request(Method.POST, url, parameters, success: success, fail: fail);
   }
@@ -62,8 +38,8 @@ class HttpUtils {
     Method method,
     String url,
     parameters, {
-    Success success,
-    Fail fail,
+    Success? success,
+    Fail? fail,
   }) {
 //    //参数处理
 //    LogUtils.d("--------- parameters ---------");

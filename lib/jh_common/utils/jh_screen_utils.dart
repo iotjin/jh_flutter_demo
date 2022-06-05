@@ -16,13 +16,14 @@ class JhScreenUtils {
     //假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
     //设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
     // ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
-    ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(750, 1334),
-        allowFontScaling: false,
-        orientation: Orientation.portrait);
+//    ScreenUtil.init(
+//        BoxConstraints(
+//            maxWidth: MediaQuery.of(context).size.width,
+//            maxHeight: MediaQuery.of(context).size.height),
+//        designSize: Size(750, 1334),
+//        allowFontScaling: false,
+//        orientation: Orientation.portrait);
+    ScreenUtil.init(context, designSize: Size(750, 1334));
   }
 
   static setWidth(double width) {

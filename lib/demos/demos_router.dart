@@ -7,6 +7,7 @@ import 'Alert/alert_demo_lists_page.dart';
 import 'alert/bottom_sheet_test.dart';
 import 'alert/alert_test.dart';
 import 'alert/jhDialog_test_page.dart';
+
 //toast
 import 'alert/toast/toast_demo_lists_page.dart';
 import 'alert/toast/toast_test.dart';
@@ -105,123 +106,194 @@ import 'ui/ui_page.dart';
 import 'ui/ui_page2.dart';
 import 'ui/scroll_page.dart';
 
-class DemosRouter implements IRouterProvider{
-
+class DemosRouter implements IRouterProvider {
   static String demoListsPage = 'DemoListsPage';
 
   @override
   void initRouter(FluroRouter router) {
-
-
-    router.define(demoListsPage, handler: Handler(handlerFunc: (_, __) => DemoListsPage()));
+    router.define(demoListsPage,
+        handler: Handler(handlerFunc: (_, __) => DemoListsPage()));
     //Alert
-    router.define("AlertDemoListsPage", handler: Handler(handlerFunc: (_, __) => AlertDemoListsPage()));
-    router.define("AlertTestPage", handler: Handler(handlerFunc: (_, __) => AlertTestPage()));
-    router.define("BottomSheetTest", handler: Handler(handlerFunc: (_, __) => BottomSheetTest()));
-    router.define("JhDialogTestPage", handler: Handler(handlerFunc: (_, __) => JhDialogTestPage()));
+    router.define("AlertDemoListsPage",
+        handler: Handler(handlerFunc: (_, __) => AlertDemoListsPage()));
+    router.define("AlertTestPage",
+        handler: Handler(handlerFunc: (_, __) => AlertTestPage()));
+    router.define("BottomSheetTest",
+        handler: Handler(handlerFunc: (_, __) => BottomSheetTest()));
+    router.define("JhDialogTestPage",
+        handler: Handler(handlerFunc: (_, __) => JhDialogTestPage()));
 
     //toast
-    router.define("ToastDemoListsPage", handler: Handler(handlerFunc: (_, __) => ToastDemoListsPage()));
-    router.define("ToastTestPage", handler: Handler(handlerFunc: (_, __) => ToastTestPage()));
+    router.define("ToastDemoListsPage",
+        handler: Handler(handlerFunc: (_, __) => ToastDemoListsPage()));
+    router.define("ToastTestPage",
+        handler: Handler(handlerFunc: (_, __) => ToastTestPage()));
     //chart
-    router.define("ChartDemoListPage", handler: Handler(handlerFunc: (_, __) => ChartDemoListPage()));
-    router.define("ChartPage1", handler: Handler(handlerFunc: (_, __) => ChartPage1()));
-    router.define("ChartPage2", handler: Handler(handlerFunc: (_, __) => ChartPage2()));
-    router.define("EChartPage1", handler: Handler(handlerFunc: (_, __) => EChartPage1()));
-    router.define("EChartPage2", handler: Handler(handlerFunc: (_, __) => EChartPage2()));
-    router.define("EChartPage3", handler: Handler(handlerFunc: (_, __) => EChartPage3()));
-    router.define("EChartPage4", handler: Handler(handlerFunc: (_, __) => EChartPage4()));
+    router.define("ChartDemoListPage",
+        handler: Handler(handlerFunc: (_, __) => ChartDemoListPage()));
+    router.define("ChartPage1",
+        handler: Handler(handlerFunc: (_, __) => ChartPage1()));
+    router.define("ChartPage2",
+        handler: Handler(handlerFunc: (_, __) => ChartPage2()));
+    router.define("EChartPage1",
+        handler: Handler(handlerFunc: (_, __) => EChartPage1()));
+    router.define("EChartPage2",
+        handler: Handler(handlerFunc: (_, __) => EChartPage2()));
+    router.define("EChartPage3",
+        handler: Handler(handlerFunc: (_, __) => EChartPage3()));
+    router.define("EChartPage4",
+        handler: Handler(handlerFunc: (_, __) => EChartPage4()));
     // router.define("MpChartLinePage1", handler: Handler(handlerFunc: (_, __) => MpChartLinePage1()));
     // router.define("MpChartBarPage1", handler: Handler(handlerFunc: (_, __) => MpChartBarPage1()));
     // router.define("MpChartCombinedPage", handler: Handler(handlerFunc: (_, __) => MpChartCombinedPage()));
     //表单
-    router.define("FormDemoListsPage", handler: Handler(handlerFunc: (_, __) => FormDemoListsPage()));
-    router.define("LoginTextFieldTestPage", handler: Handler(handlerFunc: (_, __) => LoginTextFieldTestPage()));
-    router.define("InputTextFieldTestPage", handler: Handler(handlerFunc: (_, __) => InputTextFieldTestPage()));
-    router.define("FormInputCellTestPage", handler: Handler(handlerFunc: (_, __) => FormInputCellTestPage()));
-    router.define("FormSelectCellTestPage", handler: Handler(handlerFunc: (_, __) => FormSelectCellTestPage()));
-    router.define("SetCellTestPage", handler: Handler(handlerFunc: (_, __) => SetCellTestPage()));
-    router.define("FormTestPage", handler: Handler(handlerFunc: (_, __) => FormTestPage()));
+    router.define("FormDemoListsPage",
+        handler: Handler(handlerFunc: (_, __) => FormDemoListsPage()));
+    router.define("LoginTextFieldTestPage",
+        handler: Handler(handlerFunc: (_, __) => LoginTextFieldTestPage()));
+    router.define("InputTextFieldTestPage",
+        handler: Handler(handlerFunc: (_, __) => InputTextFieldTestPage()));
+    router.define("FormInputCellTestPage",
+        handler: Handler(handlerFunc: (_, __) => FormInputCellTestPage()));
+    router.define("FormSelectCellTestPage",
+        handler: Handler(handlerFunc: (_, __) => FormSelectCellTestPage()));
+    router.define("SetCellTestPage",
+        handler: Handler(handlerFunc: (_, __) => SetCellTestPage()));
+    router.define("FormTestPage",
+        handler: Handler(handlerFunc: (_, __) => FormTestPage()));
     //GridView
-    router.define("GridViewDemoListsPage", handler: Handler(handlerFunc: (_, __) => GridViewDemoListsPage()));
-    router.define("GridViewTest1", handler: Handler(handlerFunc: (_, __) => GridViewTest1()));
-    router.define("GridViewTest2", handler: Handler(handlerFunc: (_, __) => GridViewTest2()));
-    router.define("GridViewTest3", handler: Handler(handlerFunc: (_, __) => GridViewTest3()));
-    router.define("GridViewTest4", handler: Handler(handlerFunc: (_, __) => GridViewTest4()));
-    router.define("GridViewTestPage5", handler: Handler(handlerFunc: (_, __) => GridViewTestPage5()));
+    router.define("GridViewDemoListsPage",
+        handler: Handler(handlerFunc: (_, __) => GridViewDemoListsPage()));
+    router.define("GridViewTest1",
+        handler: Handler(handlerFunc: (_, __) => GridViewTest1()));
+    router.define("GridViewTest2",
+        handler: Handler(handlerFunc: (_, __) => GridViewTest2()));
+    router.define("GridViewTest3",
+        handler: Handler(handlerFunc: (_, __) => GridViewTest3()));
+    router.define("GridViewTest4",
+        handler: Handler(handlerFunc: (_, __) => GridViewTest4()));
+    router.define("GridViewTestPage5",
+        handler: Handler(handlerFunc: (_, __) => GridViewTestPage5()));
     //http
-    router.define("HttpDemoListsPage", handler: Handler(handlerFunc: (_, __) => HttpDemoListsPage()));
-    router.define("HttpTest1Page", handler: Handler(handlerFunc: (_, __) => HttpTest1Page()));
-    router.define("HttpPageTestPage", handler: Handler(handlerFunc: (_, __) => HttpPageTestPage()));
+    router.define("HttpDemoListsPage",
+        handler: Handler(handlerFunc: (_, __) => HttpDemoListsPage()));
+    router.define("HttpTest1Page",
+        handler: Handler(handlerFunc: (_, __) => HttpTest1Page()));
+    router.define("HttpPageTestPage",
+        handler: Handler(handlerFunc: (_, __) => HttpPageTestPage()));
     //ListView
-    router.define("ListViewDemoListsPage", handler: Handler(handlerFunc: (_, __) => ListViewDemoListsPage()));
-    router.define("ListViewTest", handler: Handler(handlerFunc: (_, __) => ListViewTest()));
-    router.define("ListViewTest2", handler: Handler(handlerFunc: (_, __) => ListViewTest2()));
-    router.define("ListViewTest3", handler: Handler(handlerFunc: (_, __) => ListViewTest3()));
-    router.define("ListViewTest4", handler: Handler(handlerFunc: (_, __) => ListViewTest4()));
-    router.define("ListViewTest5", handler: Handler(handlerFunc: (_, __) => ListViewTest5()));
-    router.define("ListViewTest_Card", handler: Handler(handlerFunc: (_, __) => ListViewTest_Card()));
-    router.define("ListViewTest_CustomVC", handler: Handler(handlerFunc: (_, __) => ListViewTest_CustomVC()));
-    router.define("ListViewTest_SimplePullDown", handler: Handler(handlerFunc: (_, __) => ListViewTest_SimplePullDown()));
-    router.define("ListViewTest_PullDownVC", handler: Handler(handlerFunc: (_, __) => ListViewTest_PullDownVC()));
-    router.define("ListViewGroupPage", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage()));
-    router.define("ListViewGroupPage2", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage2()));
-    router.define("ListViewGroupPage3", handler: Handler(handlerFunc: (_, __) => ListViewGroupPage3()));
-    router.define("ListViewHeaderPage", handler: Handler(handlerFunc: (_, __) => ListViewHeaderPage()));
+    router.define("ListViewDemoListsPage",
+        handler: Handler(handlerFunc: (_, __) => ListViewDemoListsPage()));
+    router.define("ListViewTest",
+        handler: Handler(handlerFunc: (_, __) => ListViewTest()));
+    router.define("ListViewTest2",
+        handler: Handler(handlerFunc: (_, __) => ListViewTest2()));
+    router.define("ListViewTest3",
+        handler: Handler(handlerFunc: (_, __) => ListViewTest3()));
+    router.define("ListViewTest4",
+        handler: Handler(handlerFunc: (_, __) => ListViewTest4()));
+    router.define("ListViewTest5",
+        handler: Handler(handlerFunc: (_, __) => ListViewTest5()));
+    router.define("ListViewTest_Card",
+        handler: Handler(handlerFunc: (_, __) => ListViewTest_Card()));
+    router.define("ListViewTest_CustomVC",
+        handler: Handler(handlerFunc: (_, __) => ListViewTest_CustomVC()));
+    router.define("ListViewTest_SimplePullDown",
+        handler:
+            Handler(handlerFunc: (_, __) => ListViewTest_SimplePullDown()));
+    router.define("ListViewTest_PullDownVC",
+        handler: Handler(handlerFunc: (_, __) => ListViewTest_PullDownVC()));
+    router.define("ListViewGroupPage",
+        handler: Handler(handlerFunc: (_, __) => ListViewGroupPage()));
+    router.define("ListViewGroupPage2",
+        handler: Handler(handlerFunc: (_, __) => ListViewGroupPage2()));
+    router.define("ListViewGroupPage3",
+        handler: Handler(handlerFunc: (_, __) => ListViewGroupPage3()));
+    router.define("ListViewHeaderPage",
+        handler: Handler(handlerFunc: (_, __) => ListViewHeaderPage()));
 
     //other
-    router.define("AnimationDemoListPage", handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));
-    router.define("AESTestPage", handler: Handler(handlerFunc: (_, __) => AESTestPage()));
-    router.define("DBallPage", handler: Handler(handlerFunc: (_, __) => DBallPage()));
-    router.define("DBallPage2", handler: Handler(handlerFunc: (_, __) => DBallPage2()));
-    router.define("DBallPage3", handler: Handler(handlerFunc: (_, __) => DBallPage3()));
-    router.define("DBallPage4", handler: Handler(handlerFunc: (_, __) => DBallPage4()));
-    router.define("TagCloudPage", handler: Handler(handlerFunc: (_, __) => TagCloudPage()));
-    router.define("FormTest", handler: Handler(handlerFunc: (_, __) => FormTest()));
-    router.define("PhotoSelectTest", handler: Handler(handlerFunc: (_, __) => PhotoSelectTest()));
-    router.define("PassValuePage", handler: Handler(handlerFunc: (_, __) => PassValuePage()));
+    router.define("AnimationDemoListPage",
+        handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));
+    router.define("AESTestPage",
+        handler: Handler(handlerFunc: (_, __) => AESTestPage()));
+    router.define("DBallPage",
+        handler: Handler(handlerFunc: (_, __) => DBallPage()));
+    router.define("DBallPage2",
+        handler: Handler(handlerFunc: (_, __) => DBallPage2()));
+    router.define("DBallPage3",
+        handler: Handler(handlerFunc: (_, __) => DBallPage3()));
+    router.define("DBallPage4",
+        handler: Handler(handlerFunc: (_, __) => DBallPage4()));
+    router.define("TagCloudPage",
+        handler: Handler(handlerFunc: (_, __) => TagCloudPage()));
+    router.define("FormTest",
+        handler: Handler(handlerFunc: (_, __) => FormTest()));
+    router.define("PhotoSelectTest",
+        handler: Handler(handlerFunc: (_, __) => PhotoSelectTest()));
+    router.define("PassValuePage",
+        handler: Handler(handlerFunc: (_, __) => PassValuePage()));
 //    router.define("PassValuePage2", handler: Handler(handlerFunc: (_, __) => PassValuePage2()));
     router.define("PassValuePage2", handler: Handler(handlerFunc: (_, params) {
       print("---------params---------");
       print(params);
-      final String passValue = params['passvalue']?.first;
+      final String passValue = params['passvalue']!.first;
       final bool isScan = params['isScan']?.first == 'true';
       return PassValuePage2(passValue);
     }));
-    router.define("NavTestPage", handler: Handler(handlerFunc: (_, __) => NavTestPage()));
-    router.define("RedDotPage", handler: Handler(handlerFunc: (_, __) => RedDotPage()));
-    router.define("QRCodeTest", handler: Handler(handlerFunc: (_, __) => QRCodeTest()));
-    router.define("SideslipTestPage", handler: Handler(handlerFunc: (_, __) => SideslipTestPage()));
-    router.define("CitySelectListPage", handler: Handler(handlerFunc: (_, __) => CitySelectListPage()));
+    router.define("NavTestPage",
+        handler: Handler(handlerFunc: (_, __) => NavTestPage()));
+    router.define("RedDotPage",
+        handler: Handler(handlerFunc: (_, __) => RedDotPage()));
+    router.define("QRCodeTest",
+        handler: Handler(handlerFunc: (_, __) => QRCodeTest()));
+    router.define("SideslipTestPage",
+        handler: Handler(handlerFunc: (_, __) => SideslipTestPage()));
+    router.define("CitySelectListPage",
+        handler: Handler(handlerFunc: (_, __) => CitySelectListPage()));
 
     //search
-    router.define("SearchDemoListPage", handler: Handler(handlerFunc: (_, __) => SearchDemoListPage()));
-    router.define("SearchTest1Page", handler: Handler(handlerFunc: (_, __) => SearchTest1Page()));
-    router.define("SearchTest2Page", handler: Handler(handlerFunc: (_, __) => SearchTest2Page()));
-    router.define("SearchTest3Page", handler: Handler(handlerFunc: (_, __) => SearchTest3Page()));
+    router.define("SearchDemoListPage",
+        handler: Handler(handlerFunc: (_, __) => SearchDemoListPage()));
+    router.define("SearchTest1Page",
+        handler: Handler(handlerFunc: (_, __) => SearchTest1Page()));
+    router.define("SearchTest2Page",
+        handler: Handler(handlerFunc: (_, __) => SearchTest2Page()));
+    router.define("SearchTest3Page",
+        handler: Handler(handlerFunc: (_, __) => SearchTest3Page()));
 
     //swiper
-    router.define("SwiperDemoListPage", handler: Handler(handlerFunc: (_, __) => SwiperDemoListPage()));
-    router.define("SwiperTest1Page", handler: Handler(handlerFunc: (_, __) => SwiperTest1Page()));
-    router.define("SwiperTest2Page", handler: Handler(handlerFunc: (_, __) => SwiperTest2Page()));
-    router.define("SwiperTest3Page", handler: Handler(handlerFunc: (_, __) => SwiperTest3Page()));
-    router.define("SwiperTest4Page", handler: Handler(handlerFunc: (_, __) => SwiperTest4Page()));
-    router.define("NewFeaturePage", handler: Handler(handlerFunc: (_, __) => NewFeaturePage()));
-    router.define("FullScreenSwiperWidget", handler: Handler(handlerFunc: (_, __) => FullScreenSwiperWidget()));
+    router.define("SwiperDemoListPage",
+        handler: Handler(handlerFunc: (_, __) => SwiperDemoListPage()));
+    router.define("SwiperTest1Page",
+        handler: Handler(handlerFunc: (_, __) => SwiperTest1Page()));
+    router.define("SwiperTest2Page",
+        handler: Handler(handlerFunc: (_, __) => SwiperTest2Page()));
+    router.define("SwiperTest3Page",
+        handler: Handler(handlerFunc: (_, __) => SwiperTest3Page()));
+    router.define("SwiperTest4Page",
+        handler: Handler(handlerFunc: (_, __) => SwiperTest4Page()));
+    router.define("NewFeaturePage",
+        handler: Handler(handlerFunc: (_, __) => NewFeaturePage()));
+    router.define("FullScreenSwiperWidget",
+        handler: Handler(handlerFunc: (_, __) => FullScreenSwiperWidget()));
 
     //TopTabBarDemoListPage
-    router.define("TopTabBarDemoListPage", handler: Handler(handlerFunc: (_, __) => TopTabBarDemoListPage()));
-    router.define("TopTabBarTest1Page", handler: Handler(handlerFunc: (_, __) => TopTabBarTest1Page()));
-    router.define("TopTabBarTest2Page", handler: Handler(handlerFunc: (_, __) => TopTabBarTest2Page()));
-    router.define("TopTabBarTest3Page", handler: Handler(handlerFunc: (_, __) => TopTabBarTest3Page()));
+    router.define("TopTabBarDemoListPage",
+        handler: Handler(handlerFunc: (_, __) => TopTabBarDemoListPage()));
+    router.define("TopTabBarTest1Page",
+        handler: Handler(handlerFunc: (_, __) => TopTabBarTest1Page()));
+    router.define("TopTabBarTest2Page",
+        handler: Handler(handlerFunc: (_, __) => TopTabBarTest2Page()));
+    router.define("TopTabBarTest3Page",
+        handler: Handler(handlerFunc: (_, __) => TopTabBarTest3Page()));
     //ui
-    router.define("UIDemoListsPage", handler: Handler(handlerFunc: (_, __) => UIDemoListsPage()));
+    router.define("UIDemoListsPage",
+        handler: Handler(handlerFunc: (_, __) => UIDemoListsPage()));
     router.define("UIPage", handler: Handler(handlerFunc: (_, __) => UIPage()));
-    router.define("UIPage2", handler: Handler(handlerFunc: (_, __) => UIPage2()));
-    router.define("ScrollPage", handler: Handler(handlerFunc: (_, __) => ScrollPage()));
-
-
+    router.define("UIPage2",
+        handler: Handler(handlerFunc: (_, __) => UIPage2()));
+    router.define("ScrollPage",
+        handler: Handler(handlerFunc: (_, __) => ScrollPage()));
   }
-
 }
-

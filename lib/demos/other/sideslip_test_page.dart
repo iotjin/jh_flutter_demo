@@ -15,9 +15,6 @@ class SideslipTestPage extends StatelessWidget {
   Widget _body(context) {
     return ListView(children: <Widget>[
       Slidable(
-        actionPane: SlidableScrollActionPane(),
-        //滑出选项的面板 动画
-        actionExtentRatio: 0.25,
         child: Container(
           color: Colors.white,
           child: ListTile(
@@ -30,39 +27,47 @@ class SideslipTestPage extends StatelessWidget {
             subtitle: Text('SlidableDrawerDelegate'),
           ),
         ),
-        actions: <Widget>[
-          //左侧按钮列表
-          IconSlideAction(
-            caption: 'Archive',
-            color: Colors.blue,
-            icon: Icons.archive,
-            onTap: () => _showSnackBar(context, 'Archive'),
-          ),
-          IconSlideAction(
-            caption: 'Share',
-            color: Colors.indigo,
-            icon: Icons.share,
-            onTap: () => _showSnackBar(context, 'Share'),
-          ),
-        ],
-        secondaryActions: <Widget>[
-          //右侧按钮列表
-          IconSlideAction(
-            caption: 'More',
-            color: Colors.black45,
-            icon: Icons.more_horiz,
-            onTap: () => _showSnackBar(context, 'More'),
-          ),
-          IconSlideAction(
-            caption: 'Delete',
-            color: Colors.red,
-            icon: Icons.delete,
-            closeOnTap: false,
-            onTap: () {
-              _showSnackBar(context, 'Delete');
-            },
-          ),
-        ],
+        // 左侧按钮列表
+        startActionPane: ActionPane(
+          motion: const ScrollMotion(),
+          extentRatio: 0.4,
+          children: [
+            SlidableAction(
+              label: 'Archive',
+              backgroundColor: Colors.blue,
+              icon: Icons.archive,
+              onPressed: (context) => _showSnackBar(context, 'Archive'),
+            ),
+            SlidableAction(
+              label: 'Share',
+              backgroundColor: Colors.indigo,
+              icon: Icons.share,
+              onPressed: (context) => _showSnackBar(context, 'Share'),
+            ),
+          ],
+        ),
+        // 右侧按钮列表
+        endActionPane: ActionPane(
+          motion: const ScrollMotion(),
+          extentRatio: 0.4,
+          children: [
+            SlidableAction(
+              label: 'More',
+              backgroundColor: Colors.black45,
+              icon: Icons.more_horiz,
+              onPressed: (context) => _showSnackBar(context, 'More'),
+            ),
+            SlidableAction(
+              label: 'Delete',
+              backgroundColor: Colors.red,
+              icon: Icons.delete,
+              autoClose: false,
+              onPressed: (context) {
+                _showSnackBar(context, 'Delete');
+              },
+            ),
+          ],
+        ),
       )
     ]);
   }

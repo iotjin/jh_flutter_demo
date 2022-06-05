@@ -5,15 +5,18 @@
  *  description:  二维码工具类
  */
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:barcode_scan/barcode_scan.dart';
+import 'jh_device_utils.dart';
+import "/project/routes/jh_nav_fluro_utils.dart";
+import '/jh_common/widgets/jh_progress_hud.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import '../widgets/jh_progress_hud.dart';
+import 'package:barcode_scan2/barcode_scan2.dart';
 
 class JhQrCodeUtils {
-  // 调起二维码扫描页
+
+  //  barcode_scan 扫码
   static Future<String> scan() async {
     try {
       const ScanOptions options = ScanOptions(
@@ -32,23 +35,38 @@ class JhQrCodeUtils {
         }
       }
     }
-    return null;
+    return "";
   }
 
-  // 生成二维码（中间带图片）
+  // 跳转二维码扫码页扫码
+  static Future<String> jumpScan(BuildContext context) async {
+    if (JhDevice.isMobile) {
+      JhNavFluroUtils.unfocus();
+      // 延时保证键盘收起，否则进入扫码页会黑屏
+      Future<dynamic>.delayed(const Duration(milliseconds: 500), () {
+        JhNavFluroUtils.pushNamedResult(
+            context, 'QrCodeScannerPage', (Object code) => code.toString());
+      });
+    } else {
+      JhProgressHUD.showText('当前平台暂不支持');
+    }
+    return "";
+  }
+
+// 生成二维码（中间带图片）
   static Widget createQRCode(String data, double size,
-      {Color backgroundColor,
-      Color foregroundColor,
-      EdgeInsets padding,
-      ImageProvider image,
-      Size imageSize}) {
+      {Color? backgroundColor,
+        Color? foregroundColor,
+        EdgeInsets? padding,
+        ImageProvider? image,
+        Size? imageSize}) {
     return QrImage(
       data: data,
       size: size,
       backgroundColor:
-          backgroundColor == null ? Color(0x00FFFFFF) : backgroundColor,
+      backgroundColor == null ? Color(0x00FFFFFF) : backgroundColor,
       foregroundColor:
-          foregroundColor == null ? Color(0xFF000000) : foregroundColor,
+      foregroundColor == null ? Color(0xFF000000) : foregroundColor,
       padding: padding == null ? EdgeInsets.all(10.0) : padding,
       embeddedImage: image,
       embeddedImageStyle: QrEmbeddedImageStyle(size: imageSize),

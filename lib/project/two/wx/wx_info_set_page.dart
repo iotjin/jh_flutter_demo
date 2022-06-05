@@ -14,7 +14,7 @@ import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 
 class WxInfoSetPage extends StatefulWidget {
-  final ContactsModel _passValue;
+  final ContactsModel? _passValue;
 
   WxInfoSetPage(this._passValue);
 
@@ -31,7 +31,7 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
     // TODO: implement initState
     super.initState();
 
-    _switchSelected = widget._passValue.isStar;
+    _switchSelected = widget._passValue!.isStar!;
   }
 
   @override
@@ -51,7 +51,7 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
         JhSetCell(
           cellHeight: _cellH,
           title: '备注和标签',
-          text: widget._passValue.label,
+          text: widget._passValue!.label!,
           clickCallBack: () => _clickCell(context, '备注和标签'),
         ),
         JhSetCell(
@@ -64,10 +64,10 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
         JhSetCell(
           cellHeight: _cellH,
           titleWidth: 150,
-          title: widget._passValue.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友',
+          title: widget._passValue!.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友',
           hiddenLine: true,
           clickCallBack: () => _clickCell(
-              context, widget._passValue.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友'),
+              context, widget._passValue!.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(

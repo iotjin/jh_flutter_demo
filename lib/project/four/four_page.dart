@@ -14,7 +14,6 @@ import 'package:jh_flutter_demo/jh_common/widgets/update_dialog.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/model/user_model.dart';
 
-
 double _leftSpace = 50.0;
 double _cellH = wx_cellH;
 double _rowSpace = wx_rowSpace;
@@ -27,7 +26,7 @@ class FourPage extends StatefulWidget {
 }
 
 class _FourPageState extends State<FourPage> {
-  UserModel _model;
+  UserModel? _model;
 
   ScrollController _scrollController =
       new ScrollController(initialScrollOffset: 0.0);
@@ -37,7 +36,7 @@ class _FourPageState extends State<FourPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
+    var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo)!;
     _model = UserModel.fromJson(modelJson);
 //    print(_model.avatarUrl);
 
@@ -71,7 +70,7 @@ class _FourPageState extends State<FourPage> {
     return Scaffold(
 //        appBar: baseAppBar(context, '',
 //            rightImgPath: "assets/images/set.png", rightItemCallBack: () {
-//          NavigatorUtils.pushNamed(context, "SetPage");
+//          JhNavFluroUtils.pushNamed(context, "SetPage");
 //        }),
 //        backgroundColor: KColor.kWeiXinBgColor,
         body: _body(_model));
@@ -124,7 +123,7 @@ class _FourPageState extends State<FourPage> {
             ),
           ),
           onTap: () {
-            NavigatorUtils.pushNamed(context, "SetPage");
+            JhNavFluroUtils.pushNamed(context, "SetPage");
           },
         )
       ],
@@ -146,7 +145,7 @@ class _FourPageState extends State<FourPage> {
             title: '支付',
             hiddenLine: true,
             clickCallBack: () {
-              NavigatorUtils.pushNamed(context, "WxPayPage");
+              JhNavFluroUtils.pushNamed(context, "WxPayPage");
             }),
         SizedBox(height: _rowSpace),
         JhSetCell(
@@ -178,7 +177,7 @@ class _FourPageState extends State<FourPage> {
           title: '设置',
           hiddenLine: true,
           clickCallBack: () {
-            NavigatorUtils.pushNamed(context, "SetPage");
+            JhNavFluroUtils.pushNamed(context, "SetPage");
           },
         ),
         SizedBox(height: _rowSpace),
@@ -237,7 +236,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('点击昵称==  ${model.userName}');
-                        NavigatorUtils.pushNamed(context, "WxPersonInfoPage");
+                        JhNavFluroUtils.pushNamed(context, "WxPersonInfoPage");
                       },
                       child: Container(
                         width: double.maxFinite,
@@ -256,7 +255,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('跳转个人信息');
-                        NavigatorUtils.pushNamed(context, "WxPersonInfoPage");
+                        JhNavFluroUtils.pushNamed(context, "WxPersonInfoPage");
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 5.0),

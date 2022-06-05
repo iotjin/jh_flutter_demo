@@ -117,7 +117,7 @@ class WxPayPage extends StatelessWidget {
       appBar: backAppBar(context, KString.wx_pay,
           rightImgPath: 'assets/images/ic_more_black.png',
           backgroundColor: Colors.transparent, rightItemCallBack: () {
-        NavigatorUtils.pushNamed(context, "WxPayManagerPage");
+        JhNavFluroUtils.pushNamed(context, "WxPayManagerPage");
       }),
       body: _body(context),
       backgroundColor: KColor.kWeiXinBgColor,
@@ -264,7 +264,7 @@ Widget item(List data, int index, context) {
     ),
     onTap: () {
       print(index);
-//        NavigatorUtils.pushNamed(context,  data[index]['pushName']);
+//        JhNavFluroUtils.pushNamed(context,  data[index]['pushName']);
     },
   );
 }

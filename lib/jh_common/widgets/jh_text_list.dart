@@ -14,9 +14,9 @@ const Color _lineColor = Color(0xFFE6E6E6); //230
 typedef _CallBack = void Function(int selectIndex, String selectStr);
 
 class JhTextList extends StatelessWidget {
-  final List dataArr;
+  final List? dataArr;
   final String title;
-  final _CallBack callBack;
+  final _CallBack? callBack;
   final bool isBack;
 
   JhTextList({
@@ -36,7 +36,7 @@ class JhTextList extends StatelessWidget {
               children: <Widget>[
                 Positioned(
                   left: _lfSpace,
-                  child: Text(dataArr[index]),
+                  child: Text(dataArr![index]),
                 ),
                 Positioned(
                   right: _lfSpace,
@@ -56,7 +56,7 @@ class JhTextList extends StatelessWidget {
         onTap: () {
 //              print("点击的index---"+index.toString());
           if (callBack != null) {
-            callBack(index, dataArr[index]);
+            callBack!(index, dataArr![index]);
           }
         });
   }
@@ -67,7 +67,7 @@ class JhTextList extends StatelessWidget {
         appBar: baseAppBar(context, title, isBack: isBack),
         body: ListView.builder(
           physics: BouncingScrollPhysics(),
-          itemCount: dataArr.length,
+          itemCount: dataArr!.length,
           itemBuilder: this._getWidget,
         ));
   }

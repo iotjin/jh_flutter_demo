@@ -55,7 +55,7 @@ class ListViewGroupPage2 extends StatefulWidget {
 
 class _ListViewGroupPage2State extends State<ListViewGroupPage2>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   List tabs = ["近30日", "近7日", "今日"];
   var _rowHeight = 44.0;
 
@@ -63,15 +63,15 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
   void initState() {
     super.initState();
     _tabController = TabController(vsync: this, length: tabs.length);
-    _tabController.addListener(() {
-      print(_tabController.index);
+    _tabController!.addListener(() {
+      print(_tabController!.index);
     });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _tabController.dispose();
+    _tabController!.dispose();
   }
 
   Widget build(BuildContext context) {
@@ -189,18 +189,22 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
             Container(
               color: Colors.white,
               height: 1,
-              child: Divider(thickness: 1,indent: 15,endIndent: 15,),
+              child: Divider(
+                thickness: 1,
+                indent: 15,
+                endIndent: 15,
+              ),
             ),
             Container(
-                height: 200,
-                padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(8.0),
-                      bottomRight: Radius.circular(8.0)),
-                ),
-                )
+              height: 200,
+              padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(8.0),
+                    bottomRight: Radius.circular(8.0)),
+              ),
+            )
           ],
         ));
   }

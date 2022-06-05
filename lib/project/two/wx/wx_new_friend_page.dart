@@ -57,7 +57,7 @@ class WxNewFriendPage extends StatelessWidget {
       appBar: backAppBar(context, '新的朋友',
           backgroundColor: Colors.transparent,
           rightText: '添加朋友', rightItemCallBack: () {
-        NavigatorUtils.pushNamed(context, 'WxAddFriendPage');
+        JhNavFluroUtils.pushNamed(context, 'WxAddFriendPage');
       }),
       body: _body(context),
       backgroundColor: KColor.kWeiXinBgColor,

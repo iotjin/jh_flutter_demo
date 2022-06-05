@@ -15,7 +15,7 @@ export 'styles.dart';
 export 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
 export 'package:jh_flutter_demo/http/log_utils.dart';
 export 'package:jh_flutter_demo/base_appbar.dart';
-export 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
+export 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 
 const bool isDark = false;
 

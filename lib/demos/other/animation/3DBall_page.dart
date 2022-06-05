@@ -8,6 +8,7 @@ import 'package:jh_flutter_demo/base_appbar.dart';
 class Point {
   double x, y, z;
   Color color;
+
   Point(this.x, this.y, this.z, {this.color = Colors.white});
 }
 
@@ -25,7 +26,7 @@ class _DBallPageState extends State<DBallPage> {
       appBar: backAppBar(context, '3D球'),
       body: Center(
         child:
-        Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: LayoutBuilder(builder: (context, constraints) {
@@ -67,11 +68,11 @@ class TagCloud extends StatefulWidget {
 
 class _TagCloudState extends State<TagCloud>
     with SingleTickerProviderStateMixin {
-  Animation<double> rotationAnimation;
-  AnimationController animationController;
-  List<Point> points;
+  Animation<double>? rotationAnimation;
+  AnimationController? animationController;
+  List<Point>? points;
   int pointsCount = 20; //标签数量
-  double radius, //球体半径
+  double? radius, //球体半径
       angleDelta,
       prevAngle = 0.0;
   Point rotateAxis = Point(0, 1, 0); //初始为Y轴
@@ -87,33 +88,33 @@ class _TagCloudState extends State<TagCloud>
       duration: Duration(seconds: 60 ~/ widget.rpm),
     );
     rotationAnimation =
-    Tween(begin: 0.0, end: pi * 2).animate(animationController)
-      ..addListener(() {
-        setState(() {
-          var angle = rotationAnimation.value;
-          angleDelta = angle - prevAngle;//这段时间内旋转过的角度
-          prevAngle = angle;
-          //按angleDelta旋转标签到新的位置
-          _rotatePoints(points, rotateAxis, angleDelta);
-        });
-      });
-    animationController.repeat();
+        Tween(begin: 0.0, end: pi * 2).animate(animationController!)
+          ..addListener(() {
+            setState(() {
+              var angle = rotationAnimation!.value;
+              angleDelta = angle - prevAngle!; //这段时间内旋转过的角度
+              prevAngle = angle;
+              //按angleDelta旋转标签到新的位置
+              _rotatePoints(points!, rotateAxis, angleDelta!);
+            });
+          });
+    animationController!.repeat();
   }
 
   @override
   didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
     setState(() {
-      animationController.duration = Duration(seconds: 60 ~/ widget.rpm);
-      if (animationController.isAnimating) animationController.repeat();
+      animationController!.duration = Duration(seconds: 60 ~/ widget.rpm);
+      if (animationController!.isAnimating) animationController!.repeat();
     });
   }
 
   _stopAnimation() {
-    if (animationController.isAnimating)
-      animationController.stop();
+    if (animationController!.isAnimating)
+      animationController!.stop();
     else {
-      animationController.repeat();
+      animationController!.repeat();
     }
   }
 
@@ -134,8 +135,7 @@ class _TagCloudState extends State<TagCloud>
       double z =
           sqrt(1 - x * x - y * y) * (Random().nextBool() == true ? 1 : -1);
 
-      points.add(new Point(
-          x * radius, y * radius, z * radius,
+      points.add(new Point(x * radius, y * radius, z * radius,
           color: Color.fromRGBO(
             (x.abs() * 256).ceil(),
             (y.abs() * 256).ceil(),
@@ -180,7 +180,7 @@ class _TagCloudState extends State<TagCloud>
 
   _buildPainter(points) {
     return CustomPaint(
-      size: Size(radius * 2, radius * 2),
+      size: Size(radius! * 2, radius! * 2),
       painter: TagsPainter(points),
     );
   }
@@ -189,7 +189,7 @@ class _TagCloudState extends State<TagCloud>
     List<Widget> children = [];
     //球体，添加了边界阴影
     var sphere = Container(
-        height: radius * 2,
+        height: radius! * 2,
         decoration: BoxDecoration(
             color: Colors.blueAccent,
             shape: BoxShape.circle,
@@ -208,13 +208,11 @@ class _TagCloudState extends State<TagCloud>
         //滑动球体改变旋转轴
         //dx为滑动过的x轴距离，可有正负值
         //dy为滑动过的y轴距离，可有正负值
-        var dx = dragUpdateDetails.delta.dx,
-            dy = dragUpdateDetails.delta.dy;
+        var dx = dragUpdateDetails.delta.dx, dy = dragUpdateDetails.delta.dy;
         //正则化，使轴向量长度为1
         var sqrtxy = sqrt(dx * dx + dy * dy);
         //避免除0
-        if (sqrtxy > 4)
-          rotateAxis = Point(-dy / sqrtxy, dx / sqrtxy, 0);
+        if (sqrtxy > 4) rotateAxis = Point(-dy / sqrtxy, dx / sqrtxy, 0);
       },
       child: Stack(
         children: children,
@@ -224,7 +222,7 @@ class _TagCloudState extends State<TagCloud>
 
   @override
   void dispose() {
-    animationController.dispose();
+    animationController!.dispose();
     super.dispose();
   }
 

@@ -18,19 +18,19 @@ import 'package:jh_flutter_demo/project/base_tabbar.dart';
 import 'package:jh_flutter_demo/project/model/user_model.dart';
 import 'package:jh_flutter_demo/project/configs/project_config.dart';
 import 'package:jh_flutter_demo/project/routes/routes.dart';
-import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
+import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 import 'package:jh_flutter_demo/data/data_utils.dart';
 
 /*
 *        keyboardType: TextInputType.numberWithOptions(decimal: true),//设置键盘为可录入小数的数字
-         inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],//设置只能录入数字[0-9]
+         inputFormatters: [FilteringTextInputFormatter.allow.digitsOnly],//设置只能录入数字[0-9]
 
-         WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),//只允许输入字母
-         WhitelistingTextInputFormatter.digitsOnly],//只允许输入数字
-         WhitelistingTextInputFormatter(RegExp("[0-9.]")),//只允许输入小数
+         FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),//只允许输入字母
+         FilteringTextInputFormatter.allow.digitsOnly],//只允许输入数字
+         FilteringTextInputFormatter.allow(RegExp("[0-9.]")),//只允许输入小数
          BlacklistingTextInputFormatter(RegExp("[abFeG])), //黑名单
 
-         WhitelistingTextInputFormatter(RegExp("[a-zA-Z0-9]")) ,
+         FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")) ,
          LengthLimitingTextInputFormatter(20)
 
 
@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isClick = false;
 
-  Color logoColor;
+  Color? logoColor;
 
   @override
   void initState() {
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: InkWell(
                         child: Text("注册", style: TextStyle(fontSize: 18)),
                         onTap: () {
-                          NavigatorUtils.pushNamed(context, "RegisterPage");
+                          JhNavFluroUtils.pushNamed(context, "RegisterPage");
                         },
                       )),
                 ),
@@ -176,7 +176,11 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 50),
                 JhButton(
                   text: "登 录",
-                  onPressed: _isClick ? _ClickOkBtn : null,
+                  onPressed: () {
+                    if (_isClick) {
+                      _ClickOkBtn();
+                    }
+                  },
                 ),
                 SizedBox(height: 15),
 
@@ -189,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '验证码登录',
                           ),
-                          onTap: () => NavigatorUtils.pushNamed(
+                          onTap: () => JhNavFluroUtils.pushNamed(
                               context, "CodeLoginPage")),
                     ),
                     Container(
@@ -200,7 +204,7 @@ class _LoginPageState extends State<LoginPage> {
                             '忘记密码',
                           ),
                           onTap: () =>
-                              NavigatorUtils.pushNamed(context, "FindPwdPage")),
+                              JhNavFluroUtils.pushNamed(context, "FindPwdPage")),
                     ),
                   ],
                 )
@@ -278,7 +282,7 @@ class _LoginPageState extends State<LoginPage> {
 
         hide();
         JhToast.showSuccess(context, msg: data["msg"]);
-        NavigatorUtils.pushReplacement(context, Routes.home);
+        JhNavFluroUtils.pushReplacement(context, Routes.home);
       } else {
         hide();
         JhToast.showText(context, msg: data["msg"]);

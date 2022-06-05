@@ -86,7 +86,7 @@ class BaseScrollView extends StatelessWidget {
           Text("data"),
           Text("data"),
           Text("data"),
-          FlatButton(
+          TextButton(
             child: Text("点击"),
             onPressed: () {},
           ),

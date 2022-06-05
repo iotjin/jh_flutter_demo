@@ -7,7 +7,7 @@ import 'package:jh_flutter_demo/jh_common/widgets/jh_form.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
+import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 
 class LoginPage_fei extends StatefulWidget {
   @override
@@ -24,10 +24,10 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
   bool pwdShow = false; //密码是否显示明文
   bool _nameAutoFocus = true;
 
-  bool _isShowDelete; //右侧一键删除按钮
-  bool _isShowDelete2; //右侧一键删除按钮
+  bool? _isShowDelete; //右侧一键删除按钮
+  bool? _isShowDelete2; //右侧一键删除按钮
 
-  Color logoColor;
+  Color? logoColor;
 
   @override
   void initState() {
@@ -112,7 +112,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                       child: InkWell(
                         child: Text("注册", style: TextStyle(fontSize: 18)),
                         onTap: () {
-                          NavigatorUtils.pushNamed(context, "RegisterPage");
+                          JhNavFluroUtils.pushNamed(context, "RegisterPage");
                         },
                       )),
                 ),
@@ -148,7 +148,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          _isShowDelete
+                          _isShowDelete!
                               ? IconButton(
                                   icon: Icon(
                                     Icons.cancel,
@@ -194,7 +194,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          _isShowDelete2
+                          _isShowDelete2!
                               ? IconButton(
                                   icon: Icon(
                                     Icons.cancel,
@@ -230,7 +230,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                         '忘记密码',
                       ),
                       onTap: () =>
-                          NavigatorUtils.pushNamed(context, "FindPwdPage")),
+                          JhNavFluroUtils.pushNamed(context, "FindPwdPage")),
                 ),
               ],
             ),

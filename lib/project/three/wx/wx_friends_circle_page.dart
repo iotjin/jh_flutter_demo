@@ -335,7 +335,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
     model.isStar = false;
 
     String jsonStr = Uri.encodeComponent(jsonEncode(model));
-    NavigatorUtils.pushNamed(
+    JhNavFluroUtils.pushNamed(
         context, '${"WxUserInfoPage"}?passValue=${jsonStr}');
   }
 }

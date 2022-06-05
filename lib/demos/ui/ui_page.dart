@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/routes/routes.dart' as Luyou;
 import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
 
 class UIPage extends StatelessWidget {
@@ -23,29 +22,6 @@ class BaseScrollView extends StatelessWidget {
       child: Column(
         children: <Widget>[
           testBtn,
-          FlatButton(
-            //即扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
-            child: Text("扁平按钮"),
-            onPressed: () {},
-          ),
-          RaisedButton(
-            //即"漂浮"按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
-            child: Text("漂浮按钮"),
-            onPressed: () {},
-          ),
-
-          OutlineButton(
-            //OutlineButton默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
-            child: Text("带边框的按钮"),
-            onPressed: () {},
-          ),
-
-          RaisedButton.icon(
-            icon: Icon(Icons.send),
-            label: Text("带图标的按钮"),
-            onPressed: () {},
-          ),
-
           textSection,
           testImage,
           testContainer,
@@ -58,7 +34,6 @@ class BaseScrollView extends StatelessWidget {
           //Container
           textListView,
           textListView0,
-
           Container(
             height: 1500,
             width: double.infinity,
@@ -109,40 +84,97 @@ Widget textListView = Container(
   ),
 );
 
-Widget testBtn = Container(
-    color: Colors.yellow,
-    width: 100,
-    height: 40,
-
-//     child: FlatButton( //即扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
-//      child: Text("扁平按钮"),
-//      onPressed: () {},
-//    ),
-//  child: RaisedButton(//即"漂浮"按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
-//    child: Text("漂浮按钮"),
-//    onPressed: () {},
-//  ),
-
-//    child: OutlineButton( //OutlineButton默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
-//      child: Text("带边框的按钮"),
-//      onPressed: () {},
-//    )
-
-//    child: RaisedButton.icon(
-//      icon: Icon(Icons.send),
-//      label: Text("带图标的按钮"),
-//      onPressed: () {},
-//    ),
-
-    child: FlatButton(
-      color: Colors.blue,
-      highlightColor: Colors.blue[700],
-      colorBrightness: Brightness.dark,
-      splashColor: Colors.grey,
-      child: Text("Submit"),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      onPressed: () {},
-    ));
+Widget testBtn = Column(children: <Widget>[
+  Container(
+      color: Colors.yellow,
+      width: 100,
+      height: 40,
+      child: FlatButton(
+        color: Colors.blue,
+        highlightColor: Colors.blue[700],
+        colorBrightness: Brightness.dark,
+        splashColor: Colors.grey,
+        child: Text("Submit"),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        onPressed: () {},
+      )),
+  // 扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
+  TextButton(
+    child: Text(
+      "扁平按钮(TextButton)",
+      style: TextStyle(color: Colors.black),
+    ),
+    onPressed: () {},
+  ),
+  TextButton.icon(
+    icon: Icon(Icons.send),
+    label: Text("扁平按钮,带图标"),
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(Colors.blue),
+//      backgroundColor: MaterialStateProperty.resolveWith((states) {
+//        //设置按下时的背景颜色
+//        if (states.contains(MaterialState.pressed)) {
+//          return Colors.yellow;
+//        }
+//        //默认不使用背景颜色
+//        return null;
+//      }),
+      foregroundColor: MaterialStateProperty.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.pressed)) {
+            ////按下时的颜色
+            return Colors.red;
+          }
+          //默认状态使用灰色
+          return Colors.black;
+        },
+      ),
+      //设置水波纹颜色
+      overlayColor: MaterialStateProperty.all(Colors.purpleAccent),
+      //设置按钮大小
+      minimumSize: MaterialStateProperty.all(Size(150, 80)),
+      //设置边框
+      side: MaterialStateProperty.all(BorderSide(color: Colors.red, width: 1)),
+      //设置按钮形状
+//      shape: MaterialStateProperty.all(StadiumBorder(
+//        side: BorderSide(color: Colors.red, width: 1, style: BorderStyle.solid),
+//      )),
+      shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+      ),
+    ),
+    onPressed: () {},
+  ),
+  FlatButton(
+    child: Text("扁平按钮(FlatButton、Flutter1.22废弃)"),
+    onPressed: () {},
+  ),
+  // 带边框的按钮、Flutter1.22 之后新增
+  // 默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
+  OutlinedButton(
+    child: Text("带边框的按钮（OutlinedButton）"),
+    onPressed: () {},
+  ),
+  // 废弃
+  OutlineButton(
+    child: Text("带边框的按钮(OutlineButton、Flutter1.22废弃)"),
+    onPressed: () {},
+  ),
+  // "漂浮"按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
+  ElevatedButton(
+    child: Text("凸起的按钮(ElevatedButton)"),
+    onPressed: () {},
+  ),
+  IconButton(onPressed: () {}, icon: Icon(Icons.send)),
+  RaisedButton.icon(
+    icon: Icon(Icons.send),
+    label: Text("带图标的按钮(RaisedButton、Flutter1.22废弃)"),
+    onPressed: () {},
+  ),
+]);
 
 Widget testText = Container(
   color: Colors.yellow,

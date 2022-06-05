@@ -1,31 +1,28 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:jh_flutter_demo/project/new_feature/new_feature_page.dart';
+import 'package:fluro/fluro.dart';
+import 'project/routes/not_found_page.dart';
+import 'project/routes/routes.dart';
+import 'project/routes/routes_old.dart' as luyou;
+
+import 'package:oktoast/oktoast.dart';
+import 'package:flustars/flustars.dart';
 import 'package:package_info/package_info.dart';
 
-import 'package:flustars/flustars.dart';
-import 'package:oktoast/oktoast.dart';
-import 'package:fluro/fluro.dart';
-
-import 'package:jhtoast/jhtoast.dart';
-
-import 'project/configs/colors.dart';
-import 'project/routes/routes_old.dart' as luyou;
-import 'project/routes/routes.dart';
-import 'project/routes/application.dart';
 import 'project/home_page.dart';
 import 'project/base_tabbar.dart';
 import 'project/login/pages/login_page.dart';
+import 'project/new_feature/new_feature_page.dart';
 import 'project/model/user_model.dart';
+import 'project/configs/colors.dart';
 import 'project/configs/project_config.dart';
-
-import 'jh_common/utils/jh_screen_utils.dart';
-import 'jh_common/utils/jh_storage_utils.dart';
+import 'package:jhtoast/jhtoast.dart';
 import 'jh_common/widgets/jh_alert.dart';
+import 'jh_common/utils/jh_storage_utils.dart';
+import 'jh_common/utils/jh_screen_utils.dart';
 
 /**
     屏幕宽度高度：MediaQuery.of(context).size.width
@@ -87,79 +84,49 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     LogUtils.init();
-    final FluroRouter router = FluroRouter();
-    Routes.configureRoutes(router);
-    Application.router = router;
+    Routes.initRoutes();
     _getInfo(); //获取设备信息
   }
 
   @override
   Widget build(BuildContext context) {
-//    JhScreenUtils.init(context);
+    JhScreenUtils.init(context);
     return OKToast(
 //          dismissOtherOnShow: true,
-        child: Container(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
+        child: _buildMaterialApp());
+  }
+
+  Widget _buildMaterialApp() {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
 //                brightness: //深色还是浅色
 //                primarySwatch: Colors.blue //主题颜色样本
-          primaryColor: KColor.kWeiXinThemeColor, //主色，决定导航栏颜色
-          accentColor: KColor.kWeiXinTitleColor,
-          //次级色，决定大多数Widget的颜色，如进度条、开关等。
-          primaryIconTheme: IconThemeData(color: KColor.kWeiXinTitleColor),
-        ),
+        primaryColor: KColor.kWeiXinThemeColor, //主色，决定导航栏颜色
+        accentColor: KColor.kWeiXinTitleColor,
+        //次级色，决定大多数Widget的颜色，如进度条、开关等。
+        primaryIconTheme: IconThemeData(color: KColor.kWeiXinTitleColor),
+      ),
 //            home: IndexPage(),
 //            home: BaseTabBar(),
-        home: SwitchRootWidget(),
-        // 注册路由
-//              routes: luyou.routes,
-        onGenerateRoute: Application.router.generator,
-        onUnknownRoute: (RouteSettings settings) =>
-            MaterialPageRoute(builder: (context) => luyou.UnknownPage()),
-        //        locale: Locale('en','US'),
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          const FallbackCupertinoLocalisationsDelegate()
-        ],
-        supportedLocales: [
-          Locale('zh', 'CN'),
-//                Locale('en', 'US')
-        ],
-      ),
-    ));
-
-// -------------------------- 以下不使用oktoast------------------------------------
-//      Container(
-//      child: MaterialApp(
-//        debugShowCheckedModeBanner: false,
-//        theme: ThemeData(
-////          brightness: //深色还是浅色
-////            primarySwatch: Colors.blue //主题颜色样本
-//            primaryColor: KColor.kWeiXinThemeColor,  //主色，决定导航栏颜色
-//            accentColor:  KColor.kWeiXinTitleColor, //次级色，决定大多数Widget的颜色，如进度条、开关等。
-//            primaryIconTheme: IconThemeData(color: KColor.kWeiXinTitleColor),
-//
-//        ),
-//        home: IndexPage(),
-//        // 注册路由
-//        routes: luyou.routes,
-//        onUnknownRoute: (RouteSettings settings) =>
-//            MaterialPageRoute(builder: (context) => luyou.UnknownPage()),
-//        //        locale: Locale('en','US'),
-//        localizationsDelegates: [
-//          GlobalMaterialLocalizations.delegate,
-//          GlobalWidgetsLocalizations.delegate,
-//          GlobalEasyRefreshLocalizations.delegate
-//        ],
-//        supportedLocales: [
-////          Locale('en','US'),
-//          Locale('zh','CN'),
-//        ],
-//      ),
-//    );
-// -------------------------- 以下不使用oktoast------------------------------------
+      home: _switchRootWidget(),
+      // 注册路由
+//    routes: luyou.routes,
+      onGenerateRoute: Routes.router.generator,
+      onUnknownRoute: (RouteSettings settings) =>
+          MaterialPageRoute(builder: (context) => const NotFoundPage()),
+      //        locale: Locale('en','US'),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+//    GlobalEasyRefreshLocalizations.delegate,
+        const FallbackCupertinoLocalisationsDelegate()
+      ],
+      supportedLocales: [
+        Locale('zh', 'CN'),
+//        Locale('en', 'US'),
+      ],
+    );
   }
 
   void _getInfo() async {
@@ -169,7 +136,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  Widget SwitchRootWidget() {
+  Widget _switchRootWidget() {
     var lastVersion = JhStorageUtils.getStringWithKey(kUserDefault_LastVersion);
 //    print('lastVersion 版本号：$lastVersion');
     if (lastVersion == null || lastVersion == '') {
@@ -188,7 +155,7 @@ class _MyAppState extends State<MyApp> {
         var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
         if (modelJson != null) {
           UserModel model = UserModel.fromJson(modelJson);
-          print('本地取出的 userName:' + model.userName);
+          print('本地取出的 userName:' + model.userName!);
           return BaseTabBar();
         } else {
           return LoginPage();

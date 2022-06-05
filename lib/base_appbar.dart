@@ -23,12 +23,12 @@ const Color appbarEndColor = Color(0xFF34CABE); //渐变结束色
 
 /*带返回箭头导航条*/
 backAppBar(BuildContext context, String title,
-    {String rightText,
-    String rightImgPath,
+    {String? rightText,
+    String? rightImgPath,
     Color backgroundColor = _navbgColor,
     Brightness brightness = _brightness,
-    Function rightItemCallBack,
-    Function backCallBack}) {
+    Function? rightItemCallBack,
+    Function? backCallBack}) {
   return baseAppBar(
     context,
     title,
@@ -46,10 +46,10 @@ backAppBar(BuildContext context, String title,
 backGradientAppBar(
   BuildContext context,
   String title, {
-  String rightText,
-  String rightImgPath,
-  Function rightItemCallBack,
-  Function backCallBack,
+  String? rightText,
+  String? rightImgPath,
+  Function? rightItemCallBack,
+  Function? backCallBack,
 }) {
   return gradientAppBar(
     context,
@@ -68,14 +68,14 @@ backGradientAppBar(
 gradientAppBar(
   BuildContext context,
   String title, {
-  String rightText,
-  String rightImgPath,
-  Widget leftItem: null,
+  String? rightText,
+  String? rightImgPath,
+  Widget? leftItem,
   bool isBack: false,
   double elevation: 0,
-  PreferredSizeWidget bottom,
-  Function rightItemCallBack,
-  Function leftItemCallBack,
+  PreferredSizeWidget? bottom,
+  Function? rightItemCallBack,
+  Function? leftItemCallBack,
 }) {
   return PreferredSize(
     child: Container(
@@ -113,16 +113,16 @@ gradientAppBar(
 baseAppBar(
   BuildContext context,
   String title, {
-  String rightText,
-  String rightImgPath,
-  Widget leftItem: null,
+  String? rightText,
+  String? rightImgPath,
+  Widget? leftItem,
   bool isBack: false,
   Color backgroundColor = _navbgColor,
   Brightness brightness = _brightness,
   double elevation: 0,
-  PreferredSizeWidget bottom,
-  Function rightItemCallBack,
-  Function leftItemCallBack,
+  PreferredSizeWidget? bottom,
+  Function? rightItemCallBack,
+  Function? leftItemCallBack,
 }) {
   Color _color = (backgroundColor == Colors.transparent ||
           backgroundColor == Colors.white ||

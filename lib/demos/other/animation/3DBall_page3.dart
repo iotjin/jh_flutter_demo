@@ -10,15 +10,15 @@ import 'package:jh_flutter_demo/base_appbar.dart';
 class Point {
   double x, y, z;
   Color color;
-  String name;
+  String? name;
 
-  List<ui.Paragraph> paragraphs;
+  List<ui.Paragraph>? paragraphs;
 
   Point(this.x, this.y, this.z, {this.color = Colors.red});
 
   getParagraph(int radius) {
     int index = (z + radius).round() ~/ 3;
-    return paragraphs[index];
+    return paragraphs![index];
   }
 }
 
@@ -78,11 +78,11 @@ class TagCloud extends StatefulWidget {
 
 class _TagCloudState extends State<TagCloud>
     with SingleTickerProviderStateMixin {
-  Animation<double> rotationAnimation;
-  AnimationController animationController;
-  List<Point> points;
+  Animation<double>? rotationAnimation;
+  AnimationController? animationController;
+  List<Point>? points;
   int pointsCount = 20; //标签数量
-  double radius, //球体半径
+  double? radius, //球体半径
       angleDelta,
       prevAngle = 0.0;
   Point rotateAxis = Point(0, 1, 0); //初始为Y轴
@@ -98,33 +98,33 @@ class _TagCloudState extends State<TagCloud>
       duration: Duration(seconds: 60 ~/ widget.rpm),
     );
     rotationAnimation =
-        Tween(begin: 0.0, end: pi * 2).animate(animationController)
+        Tween(begin: 0.0, end: pi * 2).animate(animationController!)
           ..addListener(() {
             setState(() {
-              var angle = rotationAnimation.value;
-              angleDelta = angle - prevAngle; //这段时间内旋转过的角度
+              var angle = rotationAnimation!.value;
+              angleDelta = angle - prevAngle!; //这段时间内旋转过的角度
               prevAngle = angle;
               //按angleDelta旋转标签到新的位置
-              _rotatePoints(points, rotateAxis, angleDelta);
+              _rotatePoints(points!, rotateAxis, angleDelta!);
             });
           });
-    animationController.repeat();
+    animationController!.repeat();
   }
 
   @override
   didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
     setState(() {
-      animationController.duration = Duration(seconds: 60 ~/ widget.rpm);
-      if (animationController.isAnimating) animationController.repeat();
+      animationController!.duration = Duration(seconds: 60 ~/ widget.rpm);
+      if (animationController!.isAnimating) animationController!.repeat();
     });
   }
 
   _stopAnimation() {
-    if (animationController.isAnimating)
-      animationController.stop();
+    if (animationController!.isAnimating)
+      animationController!.stop();
     else {
-      animationController.repeat();
+      animationController!.repeat();
     }
   }
 
@@ -190,7 +190,7 @@ class _TagCloudState extends State<TagCloud>
 
   _buildPainter(points) {
     return CustomPaint(
-      size: Size(radius * 2, radius * 2),
+      size: Size(radius! * 2, radius! * 2),
       painter: TagsPainter(points),
     );
   }
@@ -199,7 +199,7 @@ class _TagCloudState extends State<TagCloud>
     List<Widget> children = [];
     //球体，添加了边界阴影
     var sphere = Container(
-        height: radius * 2,
+        height: radius! * 2,
         decoration: BoxDecoration(
             color: Colors.blueAccent,
             shape: BoxShape.circle,
@@ -233,7 +233,7 @@ class _TagCloudState extends State<TagCloud>
 
   @override
   void dispose() {
-    animationController.dispose();
+    animationController!.dispose();
     super.dispose();
   }
 
@@ -243,9 +243,7 @@ class _TagCloudState extends State<TagCloud>
   }
 }
 
-
 class TagsPainter extends CustomPainter {
-
   List<Point> points;
   double radius = 16;
   double prevX = 0;
@@ -349,13 +347,12 @@ class TagsPainter extends CustomPainter {
               style: TextStyle(fontSize: 12.0, color: Colors.white),
               children: <TextSpan>[
                 TextSpan(
-                  text: 'AA',
-                  style: TextStyle(fontSize: 12.0, color: Colors.yellow),
+                    text: 'AA',
+                    style: TextStyle(fontSize: 12.0, color: Colors.yellow),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         print('===测试暂时有误，待研究==');
-                      }
-                ),
+                      }),
               ]),
           textDirection: TextDirection.ltr)
         ..layout(maxWidth: 200, minWidth: 80)
@@ -367,22 +364,21 @@ class TagsPainter extends CustomPainter {
       //长方形
 //      canvas.drawRect(Rect.fromCenter(center:Offset(point.x+text.width/2, point.y+15),width: text.width,height: 50), paintStyle);
 
-
       //圆角矩形
       paintStyle.strokeWidth = 1.0;
       canvas.drawRRect(
           RRect.fromRectAndRadius(
-            Rect.fromCenter(center: Offset(point.x + text.width / 2, point.y + 15), width: text.width, height: 50),
-            Radius.circular(10)
-          ),
+              Rect.fromCenter(
+                  center: Offset(point.x + text.width / 2, point.y + 15),
+                  width: text.width,
+                  height: 50),
+              Radius.circular(10)),
           paintStyle);
-
     });
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
-
 }
 
 double _getOpacity(double z) {

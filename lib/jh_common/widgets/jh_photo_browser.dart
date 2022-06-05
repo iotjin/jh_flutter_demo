@@ -14,7 +14,7 @@ const Color _selColor = Colors.white;
 const Color _otherColor = Colors.grey;
 
 class FadeRoute extends PageRouteBuilder {
-  final Widget page;
+  final Widget? page;
 
   FadeRoute({this.page})
       : super(
@@ -23,7 +23,7 @@ class FadeRoute extends PageRouteBuilder {
             Animation<double> animation,
             Animation<double> secondaryAnimation,
           ) =>
-              page,
+              page!,
           transitionsBuilder: (
             BuildContext context,
             Animation<double> animation,
@@ -40,15 +40,15 @@ class FadeRoute extends PageRouteBuilder {
 class JhPhotoBrowser extends StatefulWidget {
   List imgDataArr = [];
   int index;
-  String heroTag;
-  PageController controller;
-  GestureTapCallback onLongPress;
+  String? heroTag;
+  PageController? controller;
+  GestureTapCallback? onLongPress;
   bool isHiddenClose;
   bool isHiddenTitle;
 
   JhPhotoBrowser({
-    Key key,
-    @required this.imgDataArr,
+    Key? key,
+    required this.imgDataArr,
     this.index = 0,
     this.onLongPress,
     this.controller,
@@ -95,20 +95,24 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
                   Navigator.of(context).pop();
                 },
                 onLongPress: () {
-                  widget.onLongPress();
+                  if (widget.onLongPress != null) {
+                    widget.onLongPress!();
+                  }
                 },
                 child: PhotoViewGallery.builder(
                   scrollPhysics: const BouncingScrollPhysics(),
                   builder: (BuildContext context, int index) {
                     var _imgURL = widget.imgDataArr[index];
-                    ImageProvider _picture = _imgURL.startsWith('http')
-                        ? NetworkImage(_imgURL)
-                        : AssetImage(_imgURL);
-
+                    ImageProvider _picture;
+                    if (_imgURL.startsWith('http')) {
+                      _picture = NetworkImage(_imgURL);
+                    } else {
+                      _picture = AssetImage(_imgURL);
+                    }
                     return PhotoViewGalleryPageOptions(
                       imageProvider: _picture,
                       heroAttributes: widget.heroTag != null
-                          ? PhotoViewHeroAttributes(tag: widget.heroTag)
+                          ? PhotoViewHeroAttributes(tag: widget.heroTag!)
                           : null,
                       initialScale: PhotoViewComputedScale.contained,
                       minScale: PhotoViewComputedScale.contained,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
+import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 
 class ListViewDemoListsPage extends StatelessWidget {
   final List titleData = [
@@ -41,12 +41,11 @@ class ListViewDemoListsPage extends StatelessWidget {
       dataArr: titleData,
       callBack: (index, str) {
         print(routeData[index]);
-        NavigatorUtils.pushNamed(context, routeData[index]);
+        JhNavFluroUtils.pushNamed(context, routeData[index]);
       },
     );
   }
 }
-
 
 /*
 
@@ -62,4 +61,3 @@ ListView({
 })
 
 * */
-

@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/jh_nine_picture.dart';
 
-List<String> dataArr;
+List<String>? dataArr;
+List<String>? dataArr2;
 
-List<String> dataArr2;
-
-List getData(){
-  dataArr = new List();
-  for(int i = 0; i < 9; i++){
+List getData() {
+  dataArr = [];
+  for (int i = 0; i < 9; i++) {
     var img;
-    if(i%2==0){
+    if (i % 2 == 0) {
       img = "https://gitee.com/iotjh/Picture/raw/master/lufei2.png";
-    }else{
-      img= "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+    } else {
+      img = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     }
-    dataArr.add(img);
+    dataArr!.add(img);
   }
-  return dataArr;
+  return dataArr!;
 }
 
-List getData2(){
-  dataArr2 = new List();
-  for(int i = 0; i < 4; i++){
+List getData2() {
+  dataArr2 = [];
+  for (int i = 0; i < 4; i++) {
     var img;
-    if(i%2==0){
+    if (i % 2 == 0) {
       img = "https://gitee.com/iotjh/Picture/raw/master/lufei2.png";
-    }else{
-      img= "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+    } else {
+      img = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     }
-    dataArr2.add(img);
+    dataArr2!.add(img);
   }
-  return dataArr2;
+  return dataArr2!;
 }
-
 
 class GridViewTest3 extends StatefulWidget {
   @override
@@ -41,7 +40,6 @@ class GridViewTest3 extends StatefulWidget {
 }
 
 class _GridViewTest3State extends State<GridViewTest3> {
-
   @override
   void initState() {
     super.initState();
@@ -52,57 +50,40 @@ class _GridViewTest3State extends State<GridViewTest3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:AppBar(
-            title:Text('GridView实现朋友圈效果（九宫格）')
-        ),
-        body:
-        Container(
+        appBar: backAppBar(context, "GridView实现朋友圈效果（九宫格）"),
+        body: Container(
             height: 1600,
-            child:
-            Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("九宫格"),
                 Container(
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
-                    child:
-                    JhNinePicture(
+                    child: JhNinePicture(
                       imgData: dataArr,
                       lRSpace: 110,
-                      onLongPress: (){
+                      onLongPress: () {
                         JhBottomSheet.showText(context, dataArr: ["保存图片"]);
                       },
-                    )
-                ),
+                    )),
                 Text("九宫格，4图处理"),
                 Container(
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
-                    child:
-                    JhNinePicture(
+                    child: JhNinePicture(
                       imgData: dataArr2,
                       lRSpace: 110,
-                      onLongPress: (){
+                      onLongPress: () {
                         JhBottomSheet.showText(context, dataArr: ["保存图片"]);
                       },
-                    )
-                ),
+                    )),
 
 //                Container(
 //                  padding: EdgeInsets.all(5),
 //                  child: JhNinePicture2(imgData: dataArr2,lfPaddingSpace: 10,),
 //                )
-
-
-
-
               ],
-            )
-
-
-        )
-    );
+            )));
   }
 }
-

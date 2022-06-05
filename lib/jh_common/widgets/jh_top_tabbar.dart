@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 
-
 const Color _bgColor = Color(0xFFF2F2F2); //242
 const Color _indicatorColor = Color(0xFF3BB815);
 const Color _labelColor = Color(0xFF3BB815);
@@ -17,111 +16,100 @@ const Color _unselectedLabelColor = Color(0xFF333333); //51
 const Color _centerLineColor = Color(0xFFC8C8C8); //200
 
 class JhTopTabBarModel {
-  final String title; //标题
-  final Widget widget; //对应的widget
-  final Badge badge; //设置badge，不用设置title
+  final String? title; //标题
+  final Widget? widget; //对应的widget
+  final Badge? badge; //设置badge，不用设置title
 
-  const JhTopTabBarModel({
-    this.title,
-    this.widget,
-    this.badge
-  });
+  const JhTopTabBarModel({this.title, this.widget, this.badge});
 }
 
-
 class JhTopTabBar extends StatefulWidget {
-
   final String title;
-  final List<JhTopTabBarModel>  tabModelArr; //tab对象数组
+  final List<JhTopTabBarModel> tabModelArr; //tab对象数组
   final Color bgColor; //TabBar背景颜色，
-  final TabController tabController; //TabController对象
+  final TabController? tabController; //TabController对象
   final Color indicatorColor; //指示器颜色
   final Color labelColor; //选中label颜色
   final Color unselectedLabelColor; //未选中label颜色
   final double indicatorWeight; // 指示器 高度 默认2
   final double height; //tab高度 默认35
-  final TextStyle labelStyle;
-  final TextStyle unselectedLabelStyle;
-  final Decoration indicator; //指示器样式
+  final TextStyle? labelStyle;
+  final TextStyle? unselectedLabelStyle;
+  final Decoration? indicator; //指示器样式
   final bool showCenterLine;
+
   //appbar参数
-  final String rightText;
-  final String rightImgPath;
-  final Widget leftItem;
+  final String? rightText;
+  final String? rightImgPath;
+  final Widget? leftItem;
   final bool isBack;
   final double elevation;
-  final Function rightItemCallBack;
-  final Function leftItemCallBack;
-  final Function switchPageCallBack; //页面切换的回调，返回index
+  final Function? rightItemCallBack;
+  final Function? leftItemCallBack;
+  final Function? switchPageCallBack; //页面切换的回调，返回index
 
   const JhTopTabBar({
-    Key key,
-    this.title,
-    this.tabModelArr,
-    this.bgColor : _bgColor,
+    Key? key,
+    this.title: "",
+    required this.tabModelArr,
+    this.bgColor: _bgColor,
     this.tabController,
-    this.indicatorColor:_indicatorColor,
-    this.labelColor :_labelColor ,
-    this.unselectedLabelColor :_unselectedLabelColor ,
-    this.indicatorWeight:2,
-    this.height :40.0,
+    this.indicatorColor: _indicatorColor,
+    this.labelColor: _labelColor,
+    this.unselectedLabelColor: _unselectedLabelColor,
+    this.indicatorWeight: 2,
+    this.height: 40.0,
     this.labelStyle,
     this.unselectedLabelStyle,
     this.indicator,
-    this.showCenterLine:false,
-
+    this.showCenterLine: false,
     this.rightText,
     this.rightImgPath,
-    this.leftItem : null,
-    this.isBack:true,
-    this.elevation : 3,
+    this.leftItem: null,
+    this.isBack: true,
+    this.elevation: 3,
     this.rightItemCallBack,
     this.leftItemCallBack,
     this.switchPageCallBack,
-
-  }): super(key: key);
+  }) : super(key: key);
 
   @override
   _JhTopTabBarState createState() => _JhTopTabBarState();
-
 }
 
-class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStateMixin{
-
-  TabController _tabController;
+class _JhTopTabBarState extends State<JhTopTabBar>
+    with SingleTickerProviderStateMixin {
+  TabController? _tabController;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    _tabController = TabController(length: widget.tabModelArr.length,vsync: this);
-    _tabController.addListener((){
+    _tabController =
+        TabController(length: widget.tabModelArr.length, vsync: this);
+    _tabController!.addListener(() {
 //      print(_tabController.index);
-        if(widget.switchPageCallBack!=null){
+      if (widget.switchPageCallBack != null) {
 //          _tabController.indexIsChanging     监听不到滑动
-          if(_tabController.index.toDouble() == _tabController.animation.value){
-            widget.switchPageCallBack(_tabController.index);
-          }
-
+        if (_tabController!.index.toDouble() ==
+            _tabController!.animation!.value) {
+          widget.switchPageCallBack!(_tabController!.index);
         }
+      }
     });
-
   }
 
-    @override
+  @override
   void dispose() {
     super.dispose();
-    _tabController.dispose();
+    _tabController!.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
-
-    return
-      Scaffold(
-        appBar:
+    return Scaffold(
+      appBar:
 
 //        AppBar(
 //          title: Text(widget.title, style: TextStyle(fontSize: 18.0, color: Colors.white)),
@@ -152,66 +140,62 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
 //          ),
 //        ),
 
-        baseAppBar(context, widget.title ,
-          rightText: widget.rightText,
-          rightImgPath: widget.rightImgPath,
-          leftItem: widget.leftItem,
-          isBack: widget.isBack,
-          elevation: widget.elevation,
-          rightItemCallBack: widget.rightItemCallBack,
-          leftItemCallBack: widget.leftItemCallBack,
-          bottom:
-          PreferredSize(
-              preferredSize: Size.fromHeight(widget.height),
-              child:
-              Stack(
-                children: <Widget>[
-                  Material(
-                    child:
-                    Container(
-                      height: widget.height,
-                      color: widget.bgColor,//这里设置tab的背景色
-                      child: TabBar(
-                        controller: _tabController,
-                        indicatorSize:TabBarIndicatorSize.label,
-                        indicatorColor:widget.indicatorColor,
-                        indicatorWeight : widget.indicatorWeight,
-                        labelColor:widget.labelColor,
-                        unselectedLabelColor:widget.unselectedLabelColor,
-                        labelStyle: widget.labelStyle,
-                        unselectedLabelStyle: widget.unselectedLabelStyle,
-                        indicator: widget.indicator,
-                        tabs: widget.tabModelArr.map((item) => Tab(
-                            text:item.title!=null ?item.title:null,icon: item.badge!=null?item.badge:null)
-                        ).toList(),
-                      ),
-                    ),
+          baseAppBar(
+        context,
+        widget.title,
+        rightText: widget.rightText,
+        rightImgPath: widget.rightImgPath,
+        leftItem: widget.leftItem,
+        isBack: widget.isBack,
+        elevation: widget.elevation,
+        rightItemCallBack: widget.rightItemCallBack,
+        leftItemCallBack: widget.leftItemCallBack,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(widget.height),
+          child: Stack(
+            children: <Widget>[
+              Material(
+                child: Container(
+                  height: widget.height,
+                  color: widget.bgColor, //这里设置tab的背景色
+                  child: TabBar(
+                    controller: _tabController,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorColor: widget.indicatorColor,
+                    indicatorWeight: widget.indicatorWeight,
+                    labelColor: widget.labelColor,
+                    unselectedLabelColor: widget.unselectedLabelColor,
+                    labelStyle: widget.labelStyle,
+                    unselectedLabelStyle: widget.unselectedLabelStyle,
+                    indicator: widget.indicator,
+                    tabs: widget.tabModelArr
+                        .map((item) => Tab(text: item.title, icon: item.badge))
+                        .toList(),
                   ),
-
-                  Align(alignment: Alignment.center, child:
-                  Padding(padding: EdgeInsets.fromLTRB(0, (widget.height-20)/2, 0, (widget.height-20)/2),child:
-                  Container(color: _centerLineColor,height: widget.height-20,
-                    width: widget.showCenterLine ==true ?1:0,),
-                  )
-                  )
-
-
-                ],
-
+                ),
+              ),
+              Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, (widget.height - 20) / 2, 0,
+                        (widget.height - 20) / 2),
+                    child: Container(
+                      color: _centerLineColor,
+                      height: widget.height - 20,
+                      width: widget.showCenterLine == true ? 1 : 0,
+                    ),
+                  ))
+            ],
           ),
         ),
-
-        ),
-        body: TabBarView(
-          controller: _tabController,
-          children: widget.tabModelArr.map((item) => item.widget).toList(),
-        ),
-      );
-
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: widget.tabModelArr.map((item) => item.widget!).toList(),
+      ),
+    );
   }
 }
-
-
 
 /**
     const TabBar({

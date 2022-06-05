@@ -21,7 +21,7 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
       Color.fromRGBO(52, 202, 190, 1); //默认appBar 渐变结束色
 
   GradientAppBar({
-    Key key,
+    Key? key,
     this.leading,
     this.automaticallyImplyLeading = true,
     this.title,
@@ -50,19 +50,19 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
             kToolbarHeight + (bottom?.preferredSize?.height ?? 0.0)),
         super(key: key);
 
-  final Widget leading;
+  final Widget? leading;
   final bool automaticallyImplyLeading;
-  final Widget title;
-  final List<Widget> actions;
-  final Widget flexibleSpace;
-  final PreferredSizeWidget bottom;
-  final double elevation;
-  final Color backgroundColor;
-  final Brightness brightness;
-  final IconThemeData iconTheme;
-  final TextTheme textTheme;
+  final Widget? title;
+  final List<Widget>? actions;
+  final Widget? flexibleSpace;
+  final PreferredSizeWidget? bottom;
+  final double? elevation;
+  final Color? backgroundColor;
+  final Brightness? brightness;
+  final IconThemeData? iconTheme;
+  final TextTheme? textTheme;
   final bool primary;
-  final bool centerTitle;
+  final bool? centerTitle;
   final double titleSpacing;
   final double toolbarOpacity;
   final double bottomOpacity;
@@ -74,14 +74,14 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   bool _getEffectiveCenterTitle(ThemeData themeData) {
-    if (centerTitle != null) return centerTitle;
+    if (centerTitle != null) return centerTitle!;
     assert(themeData.platform != null);
     switch (themeData.platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         return false;
       case TargetPlatform.iOS:
-        return actions == null || actions.length < 2;
+        return actions == null || actions!.length < 2;
         break;
       case TargetPlatform.linux:
         // TODO: Handle this case.
@@ -93,7 +93,7 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
         // TODO: Handle this case.
         break;
     }
-    return null;
+    return false;
   }
 
   @override
@@ -116,7 +116,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
     final ThemeData themeData = Theme.of(context);
     final AppBarTheme appBarTheme = AppBarTheme.of(context);
     final ScaffoldState scaffold = Scaffold.of(context);
-    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context);
+    final ModalRoute<dynamic> parentRoute = ModalRoute.of(context)!;
 
     final bool hasDrawer = scaffold?.hasDrawer ?? false;
     final bool hasEndDrawer = scaffold?.hasEndDrawer ?? false;
@@ -124,16 +124,25 @@ class _GradientAppBarState extends State<GradientAppBar> {
     final bool useCloseButton =
         parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
-    IconThemeData appBarIconTheme =
+    IconThemeData? appBarIconTheme =
         widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
-    TextStyle centerStyle = widget.textTheme?.title ??
-        appBarTheme.textTheme?.title ??
-        themeData.primaryTextTheme.title;
-    TextStyle sideStyle = widget.textTheme?.body1 ??
-        appBarTheme.textTheme?.body1 ??
-        themeData.primaryTextTheme.body1;
+    TextStyle? centerStyle = widget.textTheme?.subtitle1 ??
+        appBarTheme.textTheme?.subtitle1 ??
+        themeData.primaryTextTheme.subtitle1;
+    TextStyle? sideStyle = widget.textTheme?.subtitle1 ??
+        appBarTheme.textTheme?.bodyText1 ??
+        themeData.primaryTextTheme.bodyText1;
 
-    Widget leading = widget.leading;
+//    IconThemeData appBarIconTheme =
+//        widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
+//    TextStyle centerStyle = widget.textTheme?.title ??
+//        appBarTheme.textTheme?.title ??
+//        themeData.primaryTextTheme.title;
+//    TextStyle sideStyle = widget.textTheme?.body1 ??
+//        appBarTheme.textTheme?.body1 ??
+//        themeData.primaryTextTheme.body1;
+
+    Widget leading = widget.leading!;
     if (leading == null && widget.automaticallyImplyLeading) {
       if (hasDrawer) {
         leading = IconButton(
@@ -153,9 +162,9 @@ class _GradientAppBarState extends State<GradientAppBar> {
       );
     }
 
-    Widget title = widget.title;
+    Widget title = widget.title!;
     if (title != null) {
-      bool namesRoute;
+      bool? namesRoute;
       switch (defaultTargetPlatform) {
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
@@ -168,23 +177,23 @@ class _GradientAppBarState extends State<GradientAppBar> {
 //          break;
       }
       title = DefaultTextStyle(
-        style: centerStyle,
+        style: centerStyle!,
         softWrap: false,
         overflow: TextOverflow.ellipsis,
         child: Semantics(
-          namesRoute: namesRoute,
+          namesRoute: namesRoute!,
           child: title,
           header: true,
         ),
       );
     }
 
-    Widget actions;
-    if (widget.actions != null && widget.actions.isNotEmpty) {
+    Widget? actions;
+    if (widget.actions != null && widget.actions!.isNotEmpty) {
       actions = Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: widget.actions,
+        children: widget.actions!,
       );
     } else if (hasEndDrawer) {
       actions = IconButton(
@@ -197,7 +206,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
     final Widget toolbar = NavigationToolbar(
       leading: leading,
       middle: title,
-      trailing: actions,
+      trailing: actions!,
       centerMiddle: widget._getEffectiveCenterTitle(themeData),
       middleSpacing: widget.titleSpacing,
     );
@@ -208,7 +217,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
         child: IconTheme.merge(
           data: appBarIconTheme,
           child: DefaultTextStyle(
-            style: sideStyle,
+            style: sideStyle!,
             child: toolbar,
           ),
         ),
@@ -224,8 +233,8 @@ class _GradientAppBarState extends State<GradientAppBar> {
               child: appBar,
             ),
           ),
-          widget.bottomOpacity == 1.0
-              ? widget.bottom
+          widget.bottomOpacity! == 1.0
+              ? widget.bottom!
               : Opacity(
                   opacity:
                       const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
@@ -252,7 +261,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
       appBar = Stack(
         fit: StackFit.passthrough,
         children: <Widget>[
-          widget.flexibleSpace,
+          widget.flexibleSpace!,
           appBar,
         ],
       );

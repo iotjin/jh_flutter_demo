@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
 
 /// 路由跳转工具类
-class NavigatorRouterUtils {
-
+/// 更推荐使用'routers/jh_nav_fluro_utils'
+class JhNavRouterUtils {
   static push(BuildContext context, Widget scene) {
     Navigator.push(
       context,
@@ -19,8 +19,7 @@ class NavigatorRouterUtils {
         context,
         MaterialPageRoute(
           builder: (BuildContext context) => scene,
-        )
-    );
+        ));
   }
 
   /// 指定页面加入到路由中，然后将其他所有的页面全部pop
@@ -29,11 +28,12 @@ class NavigatorRouterUtils {
         context,
         MaterialPageRoute(
           builder: (BuildContext context) => scene,
-        ), (route) => route == null
-    );
+        ),
+        (route) => route == null);
   }
 
-  static pushResult(BuildContext context, Widget scene, Function(Object) function) {
+  static pushResult(
+      BuildContext context, Widget scene, Function(Object) function) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -62,7 +62,6 @@ class NavigatorRouterUtils {
 
   /// 跳到WebView页
   static jumpWebViewPage(BuildContext context, String title, String url) {
-
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -75,7 +74,5 @@ class NavigatorRouterUtils {
 //      return WebViewPage(title:'作者博客', url: 'https://blog.csdn.net/iotjin');
 //
 //    }));
-
   }
-
 }

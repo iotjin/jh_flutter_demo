@@ -11,7 +11,6 @@ class EChartPage3 extends StatefulWidget {
 }
 
 class _EChartPage3State extends State<EChartPage3> {
-
   var chartData;
 
   @override
@@ -19,25 +18,77 @@ class _EChartPage3State extends State<EChartPage3> {
     super.initState();
 
     var legendDataArr = ['最高温度', '最低温度', '环境温度'];
-    var xAxisDataArr = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+    var xAxisDataArr = [
+      '1月',
+      '2月',
+      '3月',
+      '4月',
+      '5月',
+      '6月',
+      '7月',
+      '8月',
+      '9月',
+      '10月',
+      '11月',
+      '12月'
+    ];
     var seriesDataArr = [
       {
         'name': '最高温度',
         'type': 'bar',
         'barGap': 0,
-        'data': [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 80.6, 90.2, 32.6, 20.0, 6.4, 3.3]
+        'data': [
+          2.0,
+          4.9,
+          7.0,
+          23.2,
+          25.6,
+          76.7,
+          80.6,
+          90.2,
+          32.6,
+          20.0,
+          6.4,
+          3.3
+        ]
       },
       {
         'name': '最低温度',
         'type': 'bar',
-        'data': [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 78.6, 60.2, 48.7, 18.8, 6.0, 2.3]
+        'data': [
+          2.6,
+          5.9,
+          9.0,
+          26.4,
+          28.7,
+          70.7,
+          78.6,
+          60.2,
+          48.7,
+          18.8,
+          6.0,
+          2.3
+        ]
       },
       {
         'name': '环境温度',
         'type': 'line',
         'yAxisIndex': 1,
-        'smooth': true,  //true 为平滑曲线，false为直线
-        'data': [2.0, 2.2, 3.3, 4.5, 6.3, 20.2, 30.3, 43.4, 33.0, 26.5, 12.0, 6.2]
+        'smooth': true, //true 为平滑曲线，false为直线
+        'data': [
+          2.0,
+          2.2,
+          3.3,
+          4.5,
+          6.3,
+          20.2,
+          30.3,
+          43.4,
+          33.0,
+          26.5,
+          12.0,
+          6.2
+        ]
       }
     ];
 
@@ -46,45 +97,44 @@ class _EChartPage3State extends State<EChartPage3> {
       'xData': xAxisDataArr,
       'seriesData': seriesDataArr
     };
-
   }
-
 
   @override
   Widget build(BuildContext context) {
-    var value = ModalRoute.of(context).settings.arguments;
+    var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
     return Scaffold(
-        appBar: backAppBar(context, 'EChart3 - 多图表 - 动态数据'), body: _Scrollbar());
+        appBar: backAppBar(context, 'EChart3 - 多图表 - 动态数据'),
+        body: _Scrollbar());
   }
 
   Widget _Scrollbar() {
     return Scrollbar(
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              _header('近一年温度'),
-              _initChart2(chartData),
+      child: Column(
+        children: <Widget>[
+          _header('近一年温度'),
+          _initChart2(chartData),
 //              _initChart(),
-              _header('未来趋势预测'),
-              Container(
-                color: Colors.white,
-                child: Center(
-                  child: Image.asset(
-                    'assets/images/ic_comingSoon.png',
-                    width: 250,
-                    height: 250,
-                  ),
-                ),
+          _header('未来趋势预测'),
+          Container(
+            color: Colors.white,
+            child: Center(
+              child: Image.asset(
+                'assets/images/ic_comingSoon.png',
+                width: 250,
+                height: 250,
               ),
-              Container(
-                height: 100,
-                width: double.infinity,
-                color: Colors.white,
-              ),
-            ],
+            ),
           ),
-        ));
+          Container(
+            height: 100,
+            width: double.infinity,
+            color: Colors.white,
+          ),
+        ],
+      ),
+    ));
   }
 
   Widget _header(String title) {
@@ -109,7 +159,6 @@ class _EChartPage3State extends State<EChartPage3> {
   }
 
   Widget _initChart2(chartData) {
-
     return Container(
 //      color: Colors.cyan,
       child: Echarts(
@@ -183,12 +232,7 @@ class _EChartPage3State extends State<EChartPage3> {
       height: 250,
     );
   }
-
-
-
 }
-
-
 
 /*
 
@@ -290,7 +334,6 @@ option = {
 };
 
 * */
-
 
 /*
 option = {

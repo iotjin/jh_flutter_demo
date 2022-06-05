@@ -26,11 +26,11 @@ class JhBottomSheet {
   //弹出底部文字
   static void showText(
     BuildContext context, {
-    String title,
-    List<String> dataArr,
-    String redBtnTitle,
+    String? title,
+    List<String>? dataArr,
+    String? redBtnTitle,
     bool isShowRadius = true,
-    _ClickCallBack clickCallback,
+    _ClickCallBack? clickCallback,
   }) {
     List<String> _dataArr = [];
 

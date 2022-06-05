@@ -84,7 +84,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
       appBar: backAppBar(context, '订阅号消息',
           rightImgPath: 'assets/images/ic_gengduo.png',
           backgroundColor: Colors.transparent, rightItemCallBack: () {
-        NavigatorUtils.pushNamed(context, "WxSubscriptionNumberListPage");
+        JhNavFluroUtils.pushNamed(context, "WxSubscriptionNumberListPage");
       }),
       body: _body(context, _dataArr),
       backgroundColor: KColor.kWeiXinBgColor,

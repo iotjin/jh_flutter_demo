@@ -11,11 +11,11 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.0.1+1
+version: 2.10.0
 
 environment:
-  sdk: ">=2.10.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=2.14.0 <3.0.0"
+  flutter: ">=2.5.0"
 
 dependencies:
   flutter:
@@ -23,97 +23,110 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  #图片 https://pub.flutter-io.cn/packages/cupertino_icons
-  cupertino_icons: ^1.0.2
-  # 加密 https://pub.flutter-io.cn/packages/encrypt
-  encrypt: ^5.0.0
-  # toast https://pub.flutter-io.cn/packages/jhtoast
-  jhtoast: ^0.5.0
+  # 三方库管理
+  # 网站1：https://pub.flutter-io.cn
+  # 网站2：https://pub.dev
+  # dart 2.12 之后需要处理空安全
+  # ^ 表示 大版本不变，小版本使用最新的版本
+  # 三方库冲突时使用 any ，执行 flutter pub get命令，然后在pubspec.lock替换版本号
+  # 三方库未适配空安全，点击main.dart -> Additional arguments 添加 --no-sound-null-safety
 
-
-  # 网络请求 https://pub.dev/packages/dio#-installing-tab-
-  dio: ^4.0.0
-  #  # 网络请求 https://pub.dev/packages/dio_http_cache#-installing-tab-
-  #  dio_http_cache: ^0.2.11
-  # 监测网络状态 https://pub.dev/packages/connectivity
-  connectivity: ^3.0.3
-  # 图片缓存 https://pub.flutter-io.cn/packages/cached_network_image
-  cached_network_image: ^3.0.0
-  # 屏幕参数适配 https://pub.dev/packages/flutter_screenutil
-  flutter_screenutil: ^4.0.4+1
-  # 处理键盘事件 https://pub.flutter-io.cn/packages/keyboard_actions
-  keyboard_actions: ^3.4.0
-  # webview https://pub.flutter-io.cn/packages/webview_flutter#-installing-tab-
-  webview_flutter: ^2.0.2
+  # 网络请求 https://pub.flutter-io.cn/packages/dio
+  dio: ^4.0.6
+  #  # 网络请求 https://pub.flutter-io.cn/packages/dio_http_cache
+  #  dio_http_cache: ^0.3.0
+  # 监测网络状态（停止更新） https://pub.flutter-io.cn/packages/connectivity
+  connectivity: ^3.0.6
   # 路由管理 https://pub.flutter-io.cn/packages/fluro
   fluro: ^2.0.3
+  # 状态管理 https://pub.flutter-io.cn/packages/provider
+  provider: ^6.0.3
+  # 屏幕参数适配 https://pub.flutter-io.cn/packages/flutter_screenutil
+  flutter_screenutil: ^5.5.3+2
+  # 常用工具类库（本地化 屏幕适配） https://pub.flutter-io.cn/packages/flustars
+  flustars: ^2.0.1
+  # 加密 https://pub.flutter-io.cn/packages/encrypt
+  encrypt: ^5.0.1
+  # 本地化存储 https://pub.flutter-io.cn/packages/shared_preferences
+  shared_preferences: ^2.0.15
+  # sq https://pub.flutter-io.cn/packages/sqflite
+  sqflite: ^2.0.2+1
+  # webview https://pub.flutter-io.cn/packages/webview_flutter
+  webview_flutter: ^2.8.0
+  # url打开工具 https://pub.flutter-io.cn/packages/url_launcher
+  url_launcher: ^6.1.2
+  # 处理键盘事件 https://pub.flutter-io.cn/packages/keyboard_actions
+  keyboard_actions: ^3.4.7
+  # 时间格式转换 https://pub.flutter-io.cn/packages/date_format
+  date_format: ^2.0.6
+  # 图片缓存 https://pub.flutter-io.cn/packages/cached_network_image
+  cached_network_image: ^3.2.0
+  # 图片手势 https://pub.flutter-io.cn/packages/photo_view
+  photo_view: ^0.14.0
+  # 图片选择 https://pub.flutter-io.cn/packages/image_picker
+  image_picker: ^0.8.5+3
+  # 获取安卓iOS设备信息 https://pub.flutter-io.cn/packages/device_info_plus
+  device_info_plus: ^3.2.3
+  # 获取版本信息（停止更新） https://pub.flutter-io.cn/packages/package_info
+  package_info: ^2.0.2
+  # 获取安卓iOS设备信息（停止更新） https://pub.flutter-io.cn/packages/device_info
+  device_info: ^2.0.3
+  # 图片库 https://pub.flutter-io.cn/packages/cupertino_icons
+  cupertino_icons: ^1.0.4
 
-  # 弹框 https://pub.dev/packages/fluttertoast#-installing-tab-
-  fluttertoast: ^8.0.3
-  # 加载框 https://pub.flutter-io.cn/packages/oktoast#-readme-tab-
-  oktoast: 3.0.0
+  # toast https://pub.flutter-io.cn/packages/jhtoast
+  jhtoast: ^0.5.0
+  # 弹框 https://pub.flutter-io.cn/packages/fluttertoast
+  fluttertoast: ^8.0.9
+  # 加载框 https://pub.flutter-io.cn/packages/oktoast
+  oktoast: ^3.1.4
+  # 底部弹出 日期选择器 单列多列  https://pub.flutter-io.cn/packages/flutter_picker
+  flutter_picker: ^2.0.3
 
   # 下拉刷新 https://pub.flutter-io.cn/packages/pull_to_refresh
-  pull_to_refresh: ^1.6.4
+  pull_to_refresh: ^2.0.0
   # 下拉刷新 https://pub.flutter-io.cn/packages/flutter_easyrefresh
-  flutter_easyrefresh: 2.1.8
-  # 底部弹出 日期选择器 单列多列  https://pub.flutter-io.cn/packages/flutter_picker
-  flutter_picker: 2.0.1
-  # 时间格式转换 https://pub.dev/packages/date_format
-  date_format: 2.0.2
-  # 图片手势 https://pub.dev/packages/photo_view
-  photo_view: 0.11.1
-  # 相机拍照，单图选择 https://pub.flutter-io.cn/packages/image_picker
-  image_picker: ^0.7.4
-
-  # 获取版本信息 https://pub.dev/packages/package_info
-  package_info: ^2.0.0
-  # 获取安卓iOS设备信息 https://pub.flutter-io.cn/packages/device_info
-  device_info: ^2.0.0
-  # 网页打开工具 https://pub.dev/packages/url_launcher#-readme-tab-
-  url_launcher: ^6.0.3
-  # Flutter 常用工具类库（本地化 屏幕适配） https://pub.flutter-io.cn/packages/flustars
-  flustars: ^2.0.1
-  # EChart 图表（缩放手势冲突） https://pub.flutter-io.cn/packages/flutter_echarts
-  flutter_echarts: ^2.0.0
-  # 小红点 https://pub.flutter-io.cn/packages/badges
-  badges: ^1.2.0
-  # sq https://pub.dev/packages/sqflite
-  sqflite: ^2.0.0+3
-  # 本地化存储 https://pub.dev/packages/shared_preferences
-  shared_preferences: ^2.0.5
-  # 二维码生成 https://pub.dev/packages/qr_flutter
-  qr_flutter: ^4.0.0
-  # 二维码扫描 https://pub.dev/packages/barcode_scan
-  barcode_scan: ^3.0.1
-  # 状态管理 https://pub.dev/packages/provider
-  provider: ^5.0.0
-  # 轮播 https://pub.dev/packages/flutter_swiper
-  flutter_swiper: ^1.1.6
-  # 轮播 https://pub.flutter-io.cn/packages/carousel_slider
-  carousel_slider: ^3.0.0
+  flutter_easyrefresh: ^2.2.1
   # 列表悬浮头 https://pub.flutter-io.cn/packages/sticky_headers
   sticky_headers: ^0.2.0
   # 进度条 https://pub.flutter-io.cn/packages/percent_indicator
-  percent_indicator: ^3.0.1
+  percent_indicator: ^3.4.0
   # 侧滑删除 https://pub.flutter-io.cn/packages/flutter_slidable
-  flutter_slidable: ^0.5.7
+  flutter_slidable: ^1.3.0
+  # 小红点 https://pub.flutter-io.cn/packages/badges
+  badges: ^2.0.2
+  # 图表（EChart Flutter版） https://pub.flutter-io.cn/packages/graphic
+  graphic: ^0.10.4
+  # EChart 图表（缩放手势冲突，不稳定） https://pub.flutter-io.cn/packages/flutter_echarts
+  flutter_echarts: ^2.3.0
+  # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter
+  charts_flutter: ^0.12.0
+  # 图表  https://pub.flutter-io.cn/packages/fl_chart
+  #  fl_chart: ^0.51.0
+  # 图表  https://pub.flutter-io.cn/packages/rxdart
+  #  rxdart: ^0.27.4
+  # 二维码生成 https://pub.flutter-io.cn/packages/qr_flutter
+  qr_flutter: ^4.0.0
+  # 二维码扫描(跳页面) https://pub.flutter-io.cn/packages/qr_code_scanner
+  qr_code_scanner: ^0.7.0
+  # 二维码扫描 https://pub.flutter-io.cn/packages/barcode_scan2
+  barcode_scan2: ^4.2.1
+  # 轮播 https://pub.flutter-io.cn/packages/flutter_swiper
+  flutter_swiper: ^1.1.6
+  # 轮播 https://pub.flutter-io.cn/packages/carousel_slider
+  carousel_slider: ^4.1.1
   # 城市选择列表 https://pub.flutter-io.cn/packages/azlistview
-  azlistview: ^1.1.1
+  azlistview: ^2.0.0
   # 汉字转拼音 https://pub.flutter-io.cn/packages/lpinyin
-  lpinyin: ^2.0.1
+  lpinyin: ^2.0.3
 
 
   # 与flutter2.0冲突
-  # 相册多图选择 https://pub.dev/packages/photo
+  # 相册多图选择 https://pub.flutter-io.cn/packages/photo
   #  photo: 0.4.8
+  #  multi_image_picker: ^4.6.1
   # 图表（没有提示栏) https://pub.flutter-io.cn/packages/mp_chart
   #  mp_chart: ^0.3.1 #latest version
-
-  # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter#-installing-tab-
-  charts_flutter: ^0.10.0
-  #  multi_image_picker: ^4.6.1
-
 
 
 

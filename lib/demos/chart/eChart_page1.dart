@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
 
-
 //                          dataZoom: [{
 //                                  start: 0,
 //                                  // end: 10,
@@ -16,11 +15,9 @@ class EChartPage1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, 'EChart1 - 平滑折线图 警戒线'),
-      body:
-      Container(
+      body: Container(
         color: Colors.cyan,
-        child:
-        Echarts(
+        child: Echarts(
           captureAllGestures: false,
           option: '''
                       {
@@ -89,9 +86,6 @@ class EChartPage1 extends StatelessWidget {
 //        width: 300,
         height: 250,
       ),
-
     );
   }
 }
-
-

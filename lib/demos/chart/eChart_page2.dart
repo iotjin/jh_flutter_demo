@@ -16,7 +16,10 @@ class _EChartPage2State extends State<EChartPage2> {
 
   @override
   Widget build(BuildContext context) {
-    var value = ModalRoute.of(context).settings.arguments;
+    var value = ModalRoute
+        .of(context)!
+        .settings
+        .arguments;
     value = value ?? '';
     return Scaffold(
         appBar: backAppBar(context, 'EChart2 - 多图表'), body: _Scrollbar());
@@ -168,7 +171,6 @@ class _EChartPage2State extends State<EChartPage2> {
     );
   }
 }
-
 
 /*
 option = {

@@ -9,7 +9,7 @@ import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
 import 'package:device_info/device_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info/package_info.dart';
-import '../../routes/navigator.dart';
+import '../../../jh_common/utils/jh_nav_router_utils.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -54,7 +54,7 @@ class _AboutPageState extends State<AboutPage> {
     return Color.fromARGB(255, red, greed, blue);
   }
 
-  Timer _countdownTimer;
+  Timer? _countdownTimer;
 
   var _CurrentVersion = "";
 
@@ -62,7 +62,7 @@ class _AboutPageState extends State<AboutPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
       // 2s定时器
       _countdownTimer = Timer.periodic(Duration(seconds: 2), (timer) {
         // https://www.jianshu.com/p/e4106b829bff
@@ -152,14 +152,14 @@ class _AboutPageState extends State<AboutPage> {
           ClickItem(
               title: 'Github',
               content: 'Go Star',
-              onTap: () => NavigatorRouterUtils.jumpWebViewPage(
+              onTap: () => JhNavRouterUtils.jumpWebViewPage(
                   context,
                   'jh_flutter_demo',
                   'https://github.com/iotjin/jh_flutter_demo')),
           ClickItem(
               title: 'author',
               content: 'iotjin',
-              onTap: () => NavigatorRouterUtils.jumpWebViewPage(
+              onTap: () => JhNavRouterUtils.jumpWebViewPage(
                   context, '作者博客', 'https://blog.csdn.net/iotjin')),
           ClickItem(title: "检查更新", onTap: () => _jumpAppStore())
         ],

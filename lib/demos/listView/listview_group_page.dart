@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:sticky_headers/sticky_headers.dart';
-
 import 'package:jh_flutter_demo/base_appbar.dart';
 
 List groupData = [
@@ -67,28 +65,24 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
-              content:  Column(
-                children: buildGroup(groupData[index]['data'])
-              ),
+              content: Column(children: buildGroup(groupData[index]['data'])),
             );
           }),
     );
   }
 
-  List<Widget> buildGroup(List group){
-    return group.map((item){
+  List<Widget> buildGroup(List group) {
+    return group.map((item) {
 //      print(item);
-      return
-          Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(item['title']),
-              Text(item['phone']),
-              Image.network(item['imageUrl'], fit: BoxFit.cover,
-                  width: 50, height: 50.0),
-            ],
-          );
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(item['title']),
+          Text(item['phone']),
+          Image.network(item['imageUrl'],
+              fit: BoxFit.cover, width: 50, height: 50.0),
+        ],
+      );
     }).toList();
   }
-
 }

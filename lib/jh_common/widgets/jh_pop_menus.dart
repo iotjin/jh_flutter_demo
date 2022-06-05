@@ -19,7 +19,7 @@ typedef _ClickCallBack = void Function(int selectIndex, String selectText);
 class JhPopMenus {
   //显示pop
   static void show(@required BuildContext context,
-      {_ClickCallBack clickCallback}) {
+      {_ClickCallBack? clickCallback}) {
     //Cell
     Widget _buildMenuCell(dataArr) {
       return ListView.builder(
@@ -80,7 +80,7 @@ class JhPopMenus {
 
   //显示带线带背景 pop
   static void showLinePop(@required BuildContext context,
-      {bool isShowBg = false, _ClickCallBack clickCallback}) {
+      {bool isShowBg = false, _ClickCallBack? clickCallback}) {
     //带线
     Widget _buildMenuLineCell(dataArr) {
       return ListView.separated(
@@ -168,11 +168,11 @@ class JhPopMenus {
 
 class _basePopMenus extends Dialog {
   _basePopMenus({
-    Key key,
+    Key? key,
     this.child,
   }) : super(key: key);
 
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +183,7 @@ class _basePopMenus extends Dialog {
         children: <Widget>[
           GestureDetector(onTap: () => Navigator.pop(context)),
           //内容
-          child
+          child ?? Container()
         ],
       ),
     );
@@ -207,12 +207,12 @@ class DialogRouter extends PageRouteBuilder {
 
 class CustomDialog extends Dialog {
   CustomDialog({
-    Key key,
+    Key? key,
     this.child,
     this.clickBgHidden: false, //点击背景隐藏，默认不隐藏
   }) : super(key: key);
 
-  final Widget child;
+  final Widget? child;
   final bool clickBgHidden;
 
   @override

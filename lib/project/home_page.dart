@@ -9,17 +9,12 @@ import 'four/four_page.dart';
 import 'configs/strings.dart';
 import '../jh_common/utils/jh_image_utils.dart';
 
-
-
-
 class IndexPage extends StatefulWidget {
-
   @override
   _IndexPageState createState() => _IndexPageState();
 }
 
 class _IndexPageState extends State<IndexPage> {
-
 //  List<BottomNavigationBarItem> _items = [
 //    BottomNavigationBarItem(
 //        icon: Icon(Icons.chat_bubble),
@@ -40,11 +35,11 @@ class _IndexPageState extends State<IndexPage> {
 //  ];
 
   static _tabIcon(String assets) {
-  return JhLoadAssetImage('tab/$assets',width: 25);
+    return JhLoadAssetImage('tab/$assets', width: 25);
   }
 
   static _tabSelectedIcon(String assets) {
-    return JhLoadAssetImage('tab/$assets',width: 25);
+    return JhLoadAssetImage('tab/$assets', width: 25);
   }
 
   static _tabTitleText(String txt) {
@@ -53,34 +48,24 @@ class _IndexPageState extends State<IndexPage> {
 
   List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
-        title:_tabTitleText(KString.oneTabTitle),
+        label: _tabTitleText(KString.oneTabTitle),
         icon: _tabIcon("nav_tab_1"),
-        activeIcon: _tabSelectedIcon("nav_tab_1_on")
-    ),
+        activeIcon: _tabSelectedIcon("nav_tab_1_on")),
     BottomNavigationBarItem(
-        title:_tabTitleText(KString.twoTabTitle),
+        label: _tabTitleText(KString.twoTabTitle),
         icon: _tabIcon("nav_tab_2"),
-        activeIcon: _tabSelectedIcon("nav_tab_2_on")
-    ),
+        activeIcon: _tabSelectedIcon("nav_tab_2_on")),
     BottomNavigationBarItem(
-        title:_tabTitleText(KString.threeTabTitle),
+        label: _tabTitleText(KString.threeTabTitle),
         icon: _tabIcon("nav_tab_3"),
-        activeIcon: _tabSelectedIcon("nav_tab_3_on")
-    ),
+        activeIcon: _tabSelectedIcon("nav_tab_3_on")),
     BottomNavigationBarItem(
-        title:_tabTitleText(KString.fourTabTitle),
+        label: _tabTitleText(KString.fourTabTitle),
         icon: _tabIcon("nav_tab_4"),
-        activeIcon: _tabSelectedIcon("nav_tab_4_on")
-    ),
+        activeIcon: _tabSelectedIcon("nav_tab_4_on")),
   ];
 
-
-  List<Widget> _pages = [
-    OnePage(),
-    TwoPage(),
-    ThreePage(),
-    FourPage()
-  ];
+  List<Widget> _pages = [OnePage(), TwoPage(), ThreePage(), FourPage()];
 
   int _currentIndex = 0;
 
@@ -93,12 +78,12 @@ class _IndexPageState extends State<IndexPage> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type:BottomNavigationBarType.fixed,
+        type: BottomNavigationBarType.fixed,
         items: bottomTabs,
-        unselectedFontSize:12,
-        selectedFontSize:12,
+        unselectedFontSize: 12,
+        selectedFontSize: 12,
         currentIndex: _currentIndex,
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             _currentIndex = index;
           });

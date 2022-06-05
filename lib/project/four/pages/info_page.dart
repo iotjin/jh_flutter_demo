@@ -7,8 +7,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flustars/flustars.dart';
-
+//import 'package:flustars/flustars.dart';
+import 'dart:convert' as convert;
 import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
 import 'package:jh_flutter_demo/jh_common/utils/jh_storage_utils.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
@@ -24,7 +24,7 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-  UserModel model;
+  UserModel? model;
 
   double _topH = 0;
   ScrollController _scrollController = ScrollController();
@@ -34,7 +34,8 @@ class _InfoPageState extends State<InfoPage> {
     // TODO: implement initState
     super.initState();
 //    model = SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
-    var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
+
+    var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo)!;
     model = UserModel.fromJson(modelJson);
     //监听滚动
     _addListener();
@@ -110,17 +111,17 @@ class _InfoPageState extends State<InfoPage> {
                   borderRadius: BorderRadius.circular(25),
 //                        color: Colors.pink,
                   image: DecorationImage(
-                    image: NetworkImage(model.avatarUrl),
+                    image: NetworkImage(model!.avatarUrl!),
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
               title: Text(
-                model.userName,
+                model!.userName!,
                 style: TextStyle(color: Colors.white),
               ),
               subtitle: Text(
-                model.phone,
+                model!.phone!,
                 style: TextStyle(color: Colors.white),
               ),
 //                    trailing: Icon(Icons.arrow_forward_ios,size: 18,color: Colors.white),
@@ -129,10 +130,10 @@ class _InfoPageState extends State<InfoPage> {
         ),
         JhSetCell(
           title: '用户名',
-          text: model.userName,
+          text: model!.userName!,
           hiddenArrow: true,
         ),
-        JhSetCell(title: '手机号', text: model.phone, hiddenArrow: true),
+        JhSetCell(title: '手机号', text: model!.phone!, hiddenArrow: true),
       ],
     );
   }

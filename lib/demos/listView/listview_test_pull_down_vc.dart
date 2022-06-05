@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/ball_pulse_header.dart';
-
+import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:flutter_easyrefresh/delivery_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
 import 'listview_test_custom_cell.dart';
 
 var dataArr;
@@ -14,7 +12,7 @@ var count = 10; //每页10条
 
 void getNewData() {
   pageIndex = 0;
-  dataArr = new List();
+  dataArr = [];
   for (int i = pageIndex * count; i < count; i++) {
     var map = new Map();
     map["title"] = "title${i}";
@@ -62,7 +60,7 @@ class _ListViewTest_PullDownVCState extends State<ListViewTest_PullDownVC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('ListViewTest_PullDownVC')),
+        appBar: backAppBar(context, "ListViewTest_PullDownVC"),
         body: EasyRefresh(
             header: BallPulseHeader(),
             controller: _controller,
@@ -102,7 +100,7 @@ Widget cell(int dataCount) {
 //        print(json);
       /*将Json转成实体类*/
       CustomViewModel model = CustomViewModel.fromJson(json);
-      print("title" + model.title);
+      print("title" + model.title!);
       return ListViewTest_CustomCell(data: model);
     },
     separatorBuilder: (context, index) {

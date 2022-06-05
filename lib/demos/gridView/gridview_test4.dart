@@ -1,26 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/project/routes/routes.dart';
 
 class GridViewTest4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("GirdView",style:TextStyle (color: Colors.white)),
-        elevation: 0.0,
-      ),
+      appBar: backAppBar(context, "GirdView"),
       body: bgView,
-
     );
   }
 }
 
-
 Widget bgView = Container(
 //  height: 100,
     color: Colors.yellow,
-
     child: SafeArea(
       child: Stack(
         children: <Widget>[
@@ -29,26 +24,19 @@ Widget bgView = Container(
             left: 10,
             right: 10,
             bottom: 10,
-            child:bottomView,
+            child: bottomView,
           ),
         ],
       ),
-    )
-
-);
-
+    ));
 
 Widget bottomView = Container(
-  alignment:Alignment.topLeft ,
-  color:Colors.blue,
+  alignment: Alignment.topLeft,
+  color: Colors.blue,
   child: Column(
-    children: <Widget>[
-      textListView
-    ],
+    children: <Widget>[textListView],
   ),
 );
-
-
 
 //Widget girdView(String item) {
 //  return Container(
@@ -63,7 +51,6 @@ Widget bottomView = Container(
 //  );
 //}
 
-
 List<String> getDataList() {
   List<String> list = [];
   for (int i = 0; i < 10; i++) {
@@ -75,7 +62,6 @@ List<String> getDataList() {
 List<Widget> getWidgetList() {
 //  return getDataList().map((index) => getItemContainer(index)).toList();
   return listData333.map((item) => getItemContainer(item)).toList();
-
 }
 
 Widget getItemContainer(itemData) {
@@ -87,7 +73,10 @@ Widget getItemContainer(itemData) {
   return Container(
     child: Column(
       children: <Widget>[
-        Image.network(itemData['imageUrl'],width: 100,),
+        Image.network(
+          itemData['imageUrl'],
+          width: 100,
+        ),
 //        Image(image: JhImageUtils.getAssetImage(listData333[index]['imageUrl'])),
         SizedBox(height: 10),
         Text(
@@ -119,8 +108,6 @@ Widget gridView = GridView.count(
   children: getWidgetList(),
 );
 
-
-
 Widget textListView = Container(
   child: ListView(
     shrinkWrap: true,
@@ -132,90 +119,103 @@ Widget textListView = Container(
 //      Text(bottomData[3], style: TextStyle( color: Colors.black, fontSize: 18.0,)),
 //    ],
     children: getTextWidgetList(),
-
   ),
 );
 
-List<Widget> getTextWidgetList () {
+List<Widget> getTextWidgetList() {
   return bottomData.map((item) => getTextCon(item)).toList();
 }
 
-Widget getTextCon(itemData){
-  return Text(itemData, style: TextStyle( color: Colors.black, fontSize: 18.0,));
+Widget getTextCon(itemData) {
+  return Text(itemData,
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 18.0,
+      ));
 }
 
-List<String> bottomData = ["1111", "2222", "3333333333333333333", "4444", "5555"];
+List<String> bottomData = [
+  "1111",
+  "2222",
+  "3333333333333333333",
+  "4444",
+  "5555"
+];
 
-List listData333=[
+List listData333 = [
   {
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/1.png",
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/1.png",
   },
   {
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/2.png",
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/2.png",
   },
   {
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/3.png",
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/3.png",
   },
   {
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/4.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/4.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+  },
+  {
+    "title": "Candy Shop",
+    "author": "Mohamed Chahin",
+    "imageUrl": "https://www.itying.com/images/flutter/5.png",
   }
-
-
-
-  ,{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  },{
-    "title":"Candy Shop",
-    "author":"Mohamed Chahin",
-    "imageUrl":"https://www.itying.com/images/flutter/5.png",
-  }
-
-
-
 ];

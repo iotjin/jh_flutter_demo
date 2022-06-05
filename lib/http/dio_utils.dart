@@ -26,13 +26,14 @@ class DioUtils {
   // default options
   static const String TOKEN = '';
 
-  static Dio _dio;
+  static Dio? _dio;
 
   // 创建 dio 实例对象
   static Dio createInstance() {
     if (_dio == null) {
       /// 全局属性：请求前缀、连接超时时间、响应超时时间
       var options = BaseOptions(
+
         /// 请求的Content-Type，默认值是"application/json; charset=utf-8".
         /// 如果您想以"application/x-www-form-urlencoded"格式编码请求数据,
         /// 可以设置此选项为 `Headers.formUrlEncodedContentType`,  这样[Dio]就会自动编码请求体.
@@ -50,7 +51,7 @@ class DioUtils {
       );
       _dio = new Dio(options);
     }
-    return _dio;
+    return _dio!;
   }
 
   // 清空 dio 对象
@@ -65,12 +66,12 @@ class DioUtils {
   // success：请求成功回调
   // error：请求失败回调
   static Future request<T>(Method method, String path, dynamic params,
-      {Success success, Fail fail}) async {
+      {Success? success, Fail? fail}) async {
     try {
       //没有网络
       var connectivityResult = await (new Connectivity().checkConnectivity());
       if (connectivityResult == ConnectivityResult.none) {
-        _onError(ExceptionHandle.net_error, '网络异常，请检查你的网络！', fail);
+        _onError(ExceptionHandle.net_error, '网络异常，请检查你的网络！', fail!);
         return;
       }
       Dio _dio = createInstance();
@@ -91,12 +92,12 @@ class DioUtils {
           success(response.data);
         }
       } else {
-        _onError(ExceptionHandle.unknown_error, '未知错误', fail);
+        _onError(ExceptionHandle.unknown_error, '未知错误', fail!);
       }
     } on DioError catch (e) {
 //      LogUtils.print_('请求出错：' + e.toString());
       final NetError netError = ExceptionHandle.handleException(e);
-      _onError(netError.code, netError.msg, fail);
+      _onError(netError.code, netError.msg, fail!);
     }
   }
 
@@ -158,6 +159,7 @@ Map<String, dynamic> parseData(String data) {
 }
 
 enum Method { GET, POST, DELETE, PUT, PATCH, HEAD }
+
 //使用：MethodValues[Method.POST]
 const MethodValues = {
   Method.GET: "get",

@@ -12,7 +12,7 @@ import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/project/configs/colors.dart';
 import 'package:jh_flutter_demo/project/configs/strings.dart';
-import 'package:jh_flutter_demo/project/routes/navigator_utils.dart';
+import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 import 'package:jhtoast/jhtoast.dart';
 
 class ThreePage extends StatelessWidget {
@@ -128,7 +128,7 @@ _clickCell(context, text) {
   // JhToast.showText(context, msg: '点击 ${text}');
 
   if (text == '朋友圈') {
-    NavigatorUtils.pushNamed(context, 'WxFriendsCirclePage');
+    JhNavFluroUtils.pushNamed(context, 'WxFriendsCirclePage');
   }
 }
 
@@ -146,10 +146,10 @@ Widget testBtn(context) {
         child: Text("点击跳转"),
         onPressed: () {
           print('onPressed');
-          NavigatorUtils.pushNamed(context, "UIDemoListsPage");
+          JhNavFluroUtils.pushNamed(context, "UIDemoListsPage");
 //          Navigator.push(context, MaterialPageRoute(builder: (context) => (UIDemoListsPage())));//普通路由
 //          Navigator.push(context, MaterialPageRoute(builder: (context) => (testPage(content: "这是route传递的参数",))));//普通路由
-//          NavigatorUtils.pushNamed(context,'/Test');//命名路由
+//          JhNavFluroUtils.pushNamed(context,'/Test');//命名路由
         },
       ));
 }

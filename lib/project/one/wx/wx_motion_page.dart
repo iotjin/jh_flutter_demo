@@ -230,6 +230,6 @@ class WxMotionPage extends StatelessWidget {
   }
 
   _jumpTop(context, item) {
-    NavigatorUtils.pushNamed(context, 'WxMotionTopPage');
+    JhNavFluroUtils.pushNamed(context, 'WxMotionTopPage');
   }
 }

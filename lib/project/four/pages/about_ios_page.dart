@@ -9,7 +9,7 @@ import 'package:device_info/device_info.dart';
 
 import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:jh_flutter_demo/jh_common/widgets/click_item.dart';
-import '../../routes/navigator.dart';
+import '../../../jh_common/utils/jh_nav_router_utils.dart';
 
 class AboutIOSPage extends StatefulWidget {
   @override
@@ -85,14 +85,14 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
           ClickItem(
               title: 'Github',
               content: 'Go Star',
-              onTap: () => NavigatorRouterUtils.jumpWebViewPage(
+              onTap: () => JhNavRouterUtils.jumpWebViewPage(
                   context,
                   'jh_flutter_demo',
                   'https://github.com/iotjin/jh_flutter_demo')),
           ClickItem(
               title: 'author',
               content: 'iotjin',
-              onTap: () => NavigatorRouterUtils.jumpWebViewPage(
+              onTap: () => JhNavRouterUtils.jumpWebViewPage(
                   context, '作者博客', 'https://blog.csdn.net/iotjin')),
           ClickItem(
               title: "版本更新",
