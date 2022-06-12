@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 
 class SwiperTest1Page extends StatefulWidget {
   @override
@@ -31,7 +29,7 @@ class _SwiperTest1PageState extends State<SwiperTest1Page> {
           },
           // 点击事件 onTap
           onTap: (index) {
-            print('点击了第${index}');
+            print('点击了第$index');
             Navigator.pop(context);
           },
           // 分页指示器

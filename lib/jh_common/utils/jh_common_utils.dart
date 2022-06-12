@@ -7,9 +7,8 @@
 
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
 class JhCommonUtils {
+  /// 获取随机数
   double getRandom(int min, int max) {
     if (max > min) {
       return min + Random.secure().nextInt(max - min) + 0.0;

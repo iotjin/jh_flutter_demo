@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 class SwiperTest4Page extends StatefulWidget {
   @override

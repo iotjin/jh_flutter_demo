@@ -7,9 +7,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/project/configs/project_config.dart';
 
 var _dataArr;
 
@@ -17,7 +16,7 @@ List _getData() {
   _dataArr = [];
   for (int i = 0; i < 50; i++) {
     var map = new Map();
-    map["title"] = "title${i}";
+    map["title"] = "title$i";
     map["subtitle"] =
         "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
     map["img"] = "assets/images/ic_demo1.png";
@@ -41,11 +40,11 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
         _clickCell(context, '更多');
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 
-  //body
+  // body
   Widget _body(context, dataArr) {
     Widget _searchBar = Container(
       decoration: new BoxDecoration(
@@ -65,9 +64,9 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
     );
 
     return ListView.separated(
-        //列表项构造器
+        // 列表项构造器
         itemCount: dataArr.length + 1,
-        //分割器构造器
+        // 分割器构造器
         separatorBuilder: (context, index) {
           return Divider(
             height: .5,
@@ -84,7 +83,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
         });
   }
 
-  //cell
+  // cell
   Widget _cell(context, item) {
     return InkWell(
         onTap: () => _clickCell(context, item['title']),
@@ -143,12 +142,12 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
             )));
   }
 
-  //点击cell
+  // 点击cell
   _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 ${text}');
+    JhToast.showText(context, msg: '点击 $text');
   }
 
-  //点击侧滑按钮
+  // 点击侧滑按钮
   void _showSnackBar(context, text) {
     print(text);
     JhToast.showText(context, msg: text);

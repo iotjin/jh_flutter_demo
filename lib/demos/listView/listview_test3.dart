@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 var dataArr;
 
@@ -8,12 +7,12 @@ List getData() {
   dataArr = [];
   for (int i = 0; i < 5; i++) {
     var map = new Map();
-    map["title"] = "title${i}";
-    map["place"] = "place${i}";
-    map["state"] = "流转中${i}";
+    map["title"] = "title$i";
+    map["place"] = "place$i";
+    map["state"] = "流转中$i";
     map["content"] =
         "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
-    map["phone"] = "${i}${i}${i}xxxxxxx";
+    map["phone"] = '$i$i$i' + 'xxxxxxx';
     map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     dataArr.add(map);
   }
@@ -25,7 +24,7 @@ class ListViewTest3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:backAppBar(context, "ListViewTest3_复杂样式"),
+      appBar: backAppBar(context, "ListViewTest3_复杂样式"),
       body: ContentBody(),
     );
   }

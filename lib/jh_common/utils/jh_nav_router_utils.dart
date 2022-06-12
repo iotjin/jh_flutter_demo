@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
+import '/jh_common/widgets/base_web_view.dart';
 
 /// 路由跳转工具类
-/// 更推荐使用'routers/jh_nav_fluro_utils'
+/// 更推荐使用jh_nav_utils
 class JhNavRouterUtils {
   static push(BuildContext context, Widget scene) {
     Navigator.push(

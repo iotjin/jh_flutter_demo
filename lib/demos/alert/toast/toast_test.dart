@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
 import 'package:jhtoast/jhtoast.dart';
+import '/jh_common/widgets/jh_text_list.dart';
 
 class ToastTestPage extends StatelessWidget {
   final List titleData = [

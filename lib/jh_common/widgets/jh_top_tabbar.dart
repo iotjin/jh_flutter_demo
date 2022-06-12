@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 const Color _bgColor = Color(0xFFF2F2F2); //242
 const Color _indicatorColor = Color(0xFF3BB815);
@@ -16,29 +16,29 @@ const Color _unselectedLabelColor = Color(0xFF333333); //51
 const Color _centerLineColor = Color(0xFFC8C8C8); //200
 
 class JhTopTabBarModel {
-  final String? title; //标题
-  final Widget? widget; //对应的widget
-  final Badge? badge; //设置badge，不用设置title
+  final String? title; // 标题
+  final Widget? widget; // 对应的widget
+  final Badge? badge; // 设置badge，不用设置title
 
   const JhTopTabBarModel({this.title, this.widget, this.badge});
 }
 
 class JhTopTabBar extends StatefulWidget {
   final String title;
-  final List<JhTopTabBarModel> tabModelArr; //tab对象数组
-  final Color bgColor; //TabBar背景颜色，
-  final TabController? tabController; //TabController对象
-  final Color indicatorColor; //指示器颜色
-  final Color labelColor; //选中label颜色
-  final Color unselectedLabelColor; //未选中label颜色
+  final List<JhTopTabBarModel> tabModelArr; // tab对象数组
+  final Color bgColor; // TabBar背景颜色，
+  final TabController? tabController; // TabController对象
+  final Color indicatorColor; // 指示器颜色
+  final Color labelColor; // 选中label颜色
+  final Color unselectedLabelColor; // 未选中label颜色
   final double indicatorWeight; // 指示器 高度 默认2
-  final double height; //tab高度 默认35
+  final double height; // tab高度 默认35
   final TextStyle? labelStyle;
   final TextStyle? unselectedLabelStyle;
-  final Decoration? indicator; //指示器样式
+  final Decoration? indicator; // 指示器样式
   final bool showCenterLine;
 
-  //appbar参数
+  // appbar参数
   final String? rightText;
   final String? rightImgPath;
   final Widget? leftItem;
@@ -46,7 +46,7 @@ class JhTopTabBar extends StatefulWidget {
   final double elevation;
   final Function? rightItemCallBack;
   final Function? leftItemCallBack;
-  final Function? switchPageCallBack; //页面切换的回调，返回index
+  final Function? switchPageCallBack; // 页面切换的回调，返回index
 
   const JhTopTabBar({
     Key? key,
@@ -65,7 +65,7 @@ class JhTopTabBar extends StatefulWidget {
     this.showCenterLine: false,
     this.rightText,
     this.rightImgPath,
-    this.leftItem: null,
+    this.leftItem,
     this.isBack: true,
     this.elevation: 3,
     this.rightItemCallBack,
@@ -123,7 +123,7 @@ class _JhTopTabBarState extends State<JhTopTabBar>
 //                child:
 //                Container(
 //                  height: widget.height,
-//                  color: widget.bgColor,//这里设置tab的背景色
+//                  color: widget.bgColor,// 这里设置tab的背景色
 //                  child: TabBar(
 //                    controller: _tabController,
 //                    indicatorSize:TabBarIndicatorSize.label,
@@ -157,7 +157,7 @@ class _JhTopTabBarState extends State<JhTopTabBar>
               Material(
                 child: Container(
                   height: widget.height,
-                  color: widget.bgColor, //这里设置tab的背景色
+                  color: widget.bgColor, // 这里设置tab的背景色
                   child: TabBar(
                     controller: _tabController,
                     indicatorSize: TabBarIndicatorSize.label,
@@ -200,19 +200,19 @@ class _JhTopTabBarState extends State<JhTopTabBar>
 /**
     const TabBar({
     Key key,
-    @required this.tabs,//显示的标签内容，一般使用Tab对象,也可以是其他的Widget
-    this.controller,//TabController对象
-    this.isScrollable = false,//是否可滚动
-    this.indicatorColor,//指示器颜色
-    this.indicatorWeight = 2.0,//指示器高度
-    this.indicatorPadding = EdgeInsets.zero,//底部指示器的Padding
-    this.indicator,//指示器decoration，例如边框等
-    this.indicatorSize,//指示器大小计算方式，TabBarIndicatorSize.label跟文字等宽,TabBarIndicatorSize.tab跟每个tab等宽
-    this.labelColor,//选中label颜色
-    this.labelStyle,//选中label的Style
-    this.labelPadding,//每个label的padding值
-    this.unselectedLabelColor,//未选中label颜色
-    this.unselectedLabelStyle,//未选中label的Style
+    @required this.tabs,// 显示的标签内容，一般使用Tab对象,也可以是其他的Widget
+    this.controller,// TabController对象
+    this.isScrollable = false,// 是否可滚动
+    this.indicatorColor,// 指示器颜色
+    this.indicatorWeight = 2.0,// 指示器高度
+    this.indicatorPadding = EdgeInsets.zero,// 底部指示器的Padding
+    this.indicator,// 指示器decoration，例如边框等
+    this.indicatorSize,// 指示器大小计算方式，TabBarIndicatorSize.label跟文字等宽,TabBarIndicatorSize.tab跟每个tab等宽
+    this.labelColor,// 选中label颜色
+    this.labelStyle,// 选中label的Style
+    this.labelPadding,// 每个label的padding值
+    this.unselectedLabelColor,// 未选中label颜色
+    this.unselectedLabelStyle,// 未选中label的Style
     }) : assert(tabs != null),
     assert(isScrollable != null),
     assert(indicator != null || (indicatorWeight != null && indicatorWeight > 0.0)),

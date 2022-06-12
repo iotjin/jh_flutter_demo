@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/configs/strings.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/update_dialog.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_dialog.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_qr_code_utils.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/jh_common/utils/jh_qr_code_utils.dart';
+import '/jh_common/widgets/update_dialog.dart';
+import '/jh_common/widgets/jh_dialog.dart';
+import '/project/configs/strings.dart';
+import '/project/routes/jh_nav_utils.dart';
+import '/base_appbar.dart';
 
 class MinePage extends StatefulWidget {
   @override
@@ -24,7 +24,7 @@ class _MinePageState extends State<MinePage> {
     return Scaffold(
       appBar: baseAppBar(context, KString.fourTabTitle,
           rightImgPath: "assets/images/set.png", rightItemCallBack: () {
-        JhNavFluroUtils.pushNamed(context, "SetPage");
+        JhNavUtils.pushNamed(context, "SetPage");
       }),
       backgroundColor: Color(0xFFF8F8F8),
       body: ListView(
@@ -46,7 +46,7 @@ class _MinePageState extends State<MinePage> {
             leftImgPath: "assets/images/shezhi.png",
             title: '设置',
             clickCallBack: () {
-              JhNavFluroUtils.pushNamed(context, "SetPage");
+              JhNavUtils.pushNamed(context, "SetPage");
             },
           ),
           JhSetCell(

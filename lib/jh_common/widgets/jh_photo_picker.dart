@@ -11,8 +11,8 @@
 // import 'package:photo_manager/photo_manager.dart';
 // import 'package:image_picker/image_picker.dart';
 // import 'jh_bottom_sheet.dart';
-// import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
-// import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_browser.dart';
+// import '/jh_common/utils/jh_image_utils.dart';
+// import '/jh_common/widgets/jh_photo_browser.dart';
 //
 // const double _itemSpace = 10.0;
 // const double _space = 5.0; //上下左右间距

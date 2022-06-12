@@ -5,11 +5,10 @@
  *  description: 渐变效果
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
-///渐变 APP var
+/// 渐变 APPBar
 class FadeAppBarPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => FadeAppBarState();
@@ -51,14 +50,14 @@ class FadeAppBarState extends State<FadeAppBarPage> {
   scrollViewDidScrolled(double offSet) {
     //print('scroll offset ' + offSet.toString());
 
-    ///appbar 透明度
+    // appbar 透明度
     double appBarOpacity = offSet / maxOffset;
     double halfPace = maxOffset / 2.0;
 
-    ///圆形按钮透明度
+    // 圆形按钮透明度
     double roundOpacity = (halfPace - offSet) / halfPace;
 
-    ///方形按钮透明度
+    // 方形按钮透明度
     double rectOpacity = (offSet - halfPace) / halfPace;
 
     if (appBarOpacity < 0) {
@@ -80,7 +79,7 @@ class FadeAppBarState extends State<FadeAppBarPage> {
     }
     //print('roundOpacity $roundOpacity rectOpacity $rectOpacity');
 
-    ///更新透明度
+    // 更新透明度
     if (appBar != null && appBar!.updateAppBarOpacity != null) {
       appBar!.updateAppBarOpacity!(appBarOpacity);
     }
@@ -101,16 +100,16 @@ class FadeAppBarState extends State<FadeAppBarPage> {
     return Scaffold(
         body: Stack(
           children: <Widget>[
-            ///监听滚动
+            // 监听滚动
             NotificationListener(
               onNotification: (notification) {
                 if (notification is ScrollUpdateNotification &&
                     notification.depth == 0) {
-                  ///滑动通知
+                  // 滑动通知
                   scrollViewDidScrolled(notification.metrics.pixels);
                 }
 
-                ///通知不再上传
+                // 通知不再上传
                 return true;
               },
               child: CustomScrollView(
@@ -148,7 +147,7 @@ class FadeAppBarState extends State<FadeAppBarPage> {
   }
 }
 
-///按钮
+// 按钮
 // ignore: must_be_immutable
 class PositionedBtnWidget extends StatefulWidget {
   double? btnTop;
@@ -157,10 +156,10 @@ class PositionedBtnWidget extends StatefulWidget {
   String? image;
   double? opacity;
 
-  ///更新透明度
+  // 更新透明度
   Function? updateOpacity;
 
-  ///要触发的事件
+  // 要触发的事件
   Function? actionFunction;
 
   PositionedBtnWidget(
@@ -188,19 +187,17 @@ class PositionedBtnState extends State<PositionedBtnWidget> {
   void initState() {
     super.initState();
 
-    if (widget != null) {
-      btnTop = widget.btnTop != null ? widget.btnTop : null;
-      right = widget.right != null ? widget.right : null;
-      left = widget.left != null ? widget.left : null;
-      image = widget.image != null ? widget.image : null;
-      btnOpacity = widget.opacity != null ? widget.opacity : null;
-    }
+    btnTop = widget.btnTop != null ? widget.btnTop : null;
+    right = widget.right != null ? widget.right : null;
+    left = widget.left != null ? widget.left : null;
+    image = widget.image != null ? widget.image : null;
+    btnOpacity = widget.opacity != null ? widget.opacity : null;
   }
 
   @override
   Widget build(BuildContext context) {
-    ///更新透明度
-    if (widget != null && widget.updateOpacity == null) {
+    // 更新透明度
+    if (widget.updateOpacity == null) {
       widget.updateOpacity = (double opacity) {
         setState(() {
           btnOpacity = opacity;
@@ -217,7 +214,7 @@ class PositionedBtnState extends State<PositionedBtnWidget> {
         child: IconButton(
           icon: Image.asset(image!),
           onPressed: () {
-            if (widget != null && widget.actionFunction != null) {
+            if (widget.actionFunction != null) {
               widget.actionFunction!();
             }
           },
@@ -227,7 +224,7 @@ class PositionedBtnState extends State<PositionedBtnWidget> {
   }
 }
 
-///app barb
+// APPBar
 class AppBarWidget extends StatefulWidget {
   Function? updateAppBarOpacity;
 
@@ -240,14 +237,12 @@ class AppBarState extends State<AppBarWidget> {
 
   @override
   void initState() {
-    if (widget != null) {
-      print('AppBarState init');
-      widget.updateAppBarOpacity = (double op) {
-        setState(() {
-          opacity = op;
-        });
-      };
-    }
+    print('AppBarState init');
+    widget.updateAppBarOpacity = (double op) {
+      setState(() {
+        opacity = op;
+      });
+    };
 
     super.initState();
   }

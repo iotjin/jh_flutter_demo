@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/utils/jh_screen_utils.dart';
 
 List _listData = [
   {"text": "发起群聊", "icon": "assets/images/popMenus/ic_chat.png"},
@@ -17,10 +16,9 @@ double _imgWH = 22.0;
 typedef _ClickCallBack = void Function(int selectIndex, String selectText);
 
 class JhPopMenus {
-  //显示pop
-  static void show(@required BuildContext context,
-      {_ClickCallBack? clickCallback}) {
-    //Cell
+  /// 显示pop
+  static void show(BuildContext context, {_ClickCallBack? clickCallback}) {
+    // Cell
     Widget _buildMenuCell(dataArr) {
       return ListView.builder(
           itemCount: dataArr.length,
@@ -75,13 +73,13 @@ class JhPopMenus {
     }
 
     Navigator.of(context)
-        .push(DialogRouter(_basePopMenus(child: _menusView(_listData))));
+        .push(DialogRouter(_BasePopMenus(child: _menusView(_listData))));
   }
 
-  //显示带线带背景 pop
-  static void showLinePop(@required BuildContext context,
+  /// 显示带线带背景 pop
+  static void showLinePop(BuildContext context,
       {bool isShowBg = false, _ClickCallBack? clickCallback}) {
-    //带线
+    // 带线
     Widget _buildMenuLineCell(dataArr) {
       return ListView.separated(
         itemCount: dataArr.length,
@@ -152,22 +150,22 @@ class JhPopMenus {
     }
 
     if (isShowBg == true) {
-      //带背景
+      // 带背景
       showDialog(
           context: context,
           barrierDismissible: false,
           builder: (context) {
-            return _basePopMenus(child: _menusView(_listData));
+            return _BasePopMenus(child: _menusView(_listData));
           });
     } else {
       Navigator.of(context)
-          .push(DialogRouter(_basePopMenus(child: _menusView(_listData))));
+          .push(DialogRouter(_BasePopMenus(child: _menusView(_listData))));
     }
   }
 }
 
-class _basePopMenus extends Dialog {
-  _basePopMenus({
+class _BasePopMenus extends Dialog {
+  _BasePopMenus({
     Key? key,
     this.child,
   }) : super(key: key);
@@ -182,7 +180,7 @@ class _basePopMenus extends Dialog {
         fit: StackFit.expand,
         children: <Widget>[
           GestureDetector(onTap: () => Navigator.pop(context)),
-          //内容
+          // 内容
           child ?? Container()
         ],
       ),
@@ -209,7 +207,7 @@ class CustomDialog extends Dialog {
   CustomDialog({
     Key? key,
     this.child,
-    this.clickBgHidden: false, //点击背景隐藏，默认不隐藏
+    this.clickBgHidden: false, // 点击背景隐藏，默认不隐藏
   }) : super(key: key);
 
   final Widget? child;
@@ -218,7 +216,7 @@ class CustomDialog extends Dialog {
   @override
   Widget build(BuildContext context) {
     return Material(
-        //透明层
+        // 透明层
         type: MaterialType.transparency,
         child: Stack(
           children: <Widget>[
@@ -233,9 +231,8 @@ class CustomDialog extends Dialog {
                 height: MediaQuery.of(context).size.height,
               ),
             ),
-            //内容
+            // 内容
             Center(child: child)
-//            child
           ],
         ));
   }

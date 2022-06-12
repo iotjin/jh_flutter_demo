@@ -1,9 +1,10 @@
 /**
- *  jh_login_textfield.dart
+ *  jh_login_text_field.dart
  *
  *  Created by iotjin on 2020/03/26.
  *  description:  登录输入框
  */
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,21 +18,21 @@ typedef _InputCallBack = void Function(String value);
 class JhLoginTextField extends StatefulWidget {
   final String text;
   final String hintText;
-  final String? labelText; //top提示文字
+  final String? labelText; // top提示文字
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final FocusNode? focusNode;
-  final bool isPwd; //是否是密码，默认不是
-  final Widget? leftWidget; //左侧widget ，默认隐藏
-  final Widget? rightWidget; //右侧widget ，默认隐藏
-  final int maxLength; //最大长度，默认20
-  final bool isShowDeleteBtn; //是否显示右侧删除按钮，默认不显示
+  final bool isPwd; // 是否是密码，默认不是
+  final Widget? leftWidget; // 左侧widget ，默认隐藏
+  final Widget? rightWidget; // 右侧widget ，默认隐藏
+  final int maxLength; // 最大长度，默认20
+  final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认不显示
   final List<TextInputFormatter>? inputFormatters;
   final _InputCallBack? inputCallBack;
-  final String? pwdOpen; //自定义密码图片路径 睁眼
-  final String? pwdClose; //自定义密码图片路径 闭眼
-  final InputBorder? border; //边框样式
-  final bool isDense; //是否紧凑显示，默认false
+  final String? pwdOpen; // 自定义密码图片路径 睁眼
+  final String? pwdClose; // 自定义密码图片路径 闭眼
+  final InputBorder? border; // 边框样式
+  final bool isDense; // 是否紧凑显示，默认false
 
   const JhLoginTextField({
     Key? key,
@@ -62,9 +63,9 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
   TextEditingController? _textController;
   FocusNode? _focusNode;
   bool? _isShowDelete;
-  bool? _isHideenPwdBtn; //是否隐藏 右侧密码明文切换按钮 ，密码样式才显示（isPwd =true），
-  bool? _pwdShow; //控制密码 明文切换
-  Widget? _pwdImg; //自定义密码图片
+  bool? _isHiddenPwdBtn; // 是否隐藏 右侧密码明文切换按钮 ，密码样式才显示（isPwd =true），
+  bool? _pwdShow; // 控制密码 明文切换
+  Widget? _pwdImg; // 自定义密码图片
 
   @override
   void initState() {
@@ -74,7 +75,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     _textController = widget.controller ?? TextEditingController();
     _textController!.text = widget.text;
     _focusNode = widget.focusNode ?? FocusNode();
-    _isHideenPwdBtn = !widget.isPwd;
+    _isHiddenPwdBtn = !widget.isPwd;
     _pwdShow = widget.isPwd;
 
     _isShowDelete = _focusNode!.hasFocus && _textController!.text.isNotEmpty;
@@ -167,7 +168,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
                   : Text(""),
             ),
             Offstage(
-                offstage: _isHideenPwdBtn!,
+                offstage: _isHiddenPwdBtn!,
                 child: IconButton(
 //                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
 //                  icon: Image.asset("assets/images/ic_pwd_close.png",width: 18.0,),
@@ -215,7 +216,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 //                    }
 //                ): Text(""),
 //                ),
-//                Offstage( offstage: _isHideenPwdBtn, child:
+//                Offstage( offstage: _isHiddenPwdBtn, child:
 //                IconButton(
 ////                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
 ////                  icon: Image.asset("assets/images/ic_pwd_close.png",width: 18.0,),

@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'listview_test_custom_cell.dart';
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'listview_test_custom_cell.dart';
+import '/base_appbar.dart';
 
 var dataArr;
 var dataJson;
@@ -11,12 +10,12 @@ List getData() {
   dataArr = [];
   for (int i = 0; i < 50; i++) {
     var map = new Map();
-    map["title"] = "title${i}";
-    map["place"] = "place${i}";
-    map["state"] = "流转中${i}";
+    map["title"] = "title$i";
+    map["place"] = "place$i";
+    map["state"] = "流转中$i";
     map["content"] =
         "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
-    map["phone"] = "${i}${i}${i}xxxxxxx";
+    map["phone"] = '$i$i$i' + 'xxxxxxx';
     map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     dataArr.add(map);
   }
@@ -35,7 +34,7 @@ class ListViewTest_CustomVC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:backAppBar(context, "ListViewTest_CustomVC"),
+      appBar: backAppBar(context, "ListViewTest_CustomVC"),
       body: ContentBody(),
     );
   }

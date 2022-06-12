@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_picker.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/jh_common/widgets/jh_photo_picker.dart';
+import '/base_appbar.dart';
 
 class PhotoSelectTest extends StatelessWidget {
   @override

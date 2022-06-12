@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/project/configs/colors.dart';
 
 class SearchTest3Page extends StatelessWidget {
   @override
@@ -8,15 +8,15 @@ class SearchTest3Page extends StatelessWidget {
     return Scaffold(
       appBar:
 
-//      cursorColor: Colors.white, //设置光标
+//      cursorColor: Colors.white, // 设置光标
           AppBar(
         backgroundColor: kThemeColor,
         titleSpacing: 15,
         automaticallyImplyLeading: false,
-        //隐藏返回箭头
+        // 隐藏返回箭头
         title: Container(
           decoration: new BoxDecoration(
-            border: Border.all(color: Colors.grey, width: 1.0), //灰色的一层边框
+            border: Border.all(color: Colors.grey, width: 1.0), // 灰色的一层边框
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(5.0)),
           ),

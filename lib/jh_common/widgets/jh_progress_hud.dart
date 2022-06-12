@@ -1,10 +1,10 @@
 /**
- *  JhToast2.dart
+ *  jh_progress_hud.dart
  *
  *  Created by iotjin on 2020/02/25.
  *  description:  oktoast封装
  */
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -14,31 +14,31 @@ const int _closeTime = 1500;
 
 class JhProgressHUD {
   static showText(
-    @required String loadingText,
+    String loadingText,
   ) {
     _showText(loadingText);
   }
 
   static showSuccess(
-    @required String loadingText,
+    String loadingText,
   ) {
     _showSuccess(loadingText);
   }
 
   static showError(
-    @required String loadingText,
+    String loadingText,
   ) {
     _showError(loadingText);
   }
 
   static showInfo(
-    @required String loadingText,
+    String loadingText,
   ) {
     _showInfo(loadingText);
   }
 
   static showLoadingText({
-    String loadingText = "加载中...",
+    loadingText = "加载中...",
   }) {
     _showLoading(loadingText);
   }

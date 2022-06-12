@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import 'package:flutter/material.dart';
+import '/base_appbar.dart';
 
 var dataArr;
 var dataJson;
@@ -9,16 +9,16 @@ List getData() {
   dataArr = [];
   for (int i = 0; i < 5; i++) {
     var map = new Map();
-    map["title"] = "title${i}";
-    map["content"] = "content${i}-content${i}-content${i}-content${i}";
-    map["phone"] = "${i}${i}${i}xxxxxxx";
+    map["title"] = "title$i";
+    map["content"] = "content$i-content$i-content$i-content$i";
+    map["phone"] = '$i$i$i' + 'xxxxxxx';
     map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     dataArr.add(map);
   }
 //  print(dataArr);
 
   dataJson = json.encode(dataArr);
-  print("转json 字符串:" + dataJson); //转json 字符串
+  print("转json 字符串:" + dataJson); // 转json 字符串
 
   var data = json.decode(dataJson);
   data.forEach((v) {
@@ -47,8 +47,8 @@ class ContentBody extends StatelessWidget {
     /*
 
       import 'dart:convert';
-      json.encode(value) //map转json字符串
-      json.decode(source) //json字符串转map
+      json.encode(value) // map转json字符串
+      json.decode(source) // json字符串转map
 
        */
     Map data = {
@@ -85,7 +85,7 @@ class ContentBody extends StatelessWidget {
 //    getData();
     return ListView.builder(
         itemCount: dataArr.length,
-        itemExtent: 100.0, //强制高度为100.0
+        itemExtent: 100.0, // 强制高度为100.0
         itemBuilder: this._getWidget);
   }
 }

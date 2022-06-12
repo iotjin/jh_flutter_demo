@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
 class JhKeyboardUtils {
-  //三方键盘配置
+  /// 三方键盘配置
   static KeyboardActionsConfig getKeyboardConfig(
       BuildContext context, List<FocusNode> list) {
     return KeyboardActionsConfig(

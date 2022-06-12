@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 class SwiperTest3Page extends StatefulWidget {
   @override
@@ -42,7 +41,7 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
             return Image.network(imgList[index], fit: BoxFit.fill);
           },
           onTap: (index) {
-            print('点击了第${index}');
+            print('点击了第$index');
           },
           itemCount: imgList.length,
           autoplay: true,
@@ -69,7 +68,7 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
             return Image.network(imgList2[index], fit: BoxFit.fitWidth);
           },
           onTap: (index) {
-            print('点击了第${index}');
+            print('点击了第$index');
           },
           itemCount: imgList2.length,
           autoplay: true,

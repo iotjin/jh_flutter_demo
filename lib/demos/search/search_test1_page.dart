@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_textfield.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
+import '/jh_common/jh_form/jh_text_field.dart';
+import '/project/configs/colors.dart';
+import '/project/routes/jh_nav_utils.dart';
 
 class SearchTest1Page extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class SearchTest1Page extends StatelessWidget {
     return Scaffold(
       appBar:
 
-//      cursorColor: Colors.white, //设置光标
+//      cursorColor: Colors.white, // 设置光标
           AppBar(
         backgroundColor: kThemeColor,
         automaticallyImplyLeading: false,
@@ -17,7 +17,7 @@ class SearchTest1Page extends StatelessWidget {
         title: GestureDetector(
           child: Container(
             decoration: new BoxDecoration(
-              border: Border.all(color: Colors.grey, width: 1.0), //灰色的一层边框
+              border: Border.all(color: Colors.grey, width: 1.0), // 灰色的一层边框
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
             ),
@@ -34,7 +34,7 @@ class SearchTest1Page extends StatelessWidget {
             ),
           ),
           onTap: () {
-            JhNavFluroUtils.pushNamed(context, 'SiteSearchPage');
+            JhNavUtils.pushNamed(context, 'SiteSearchPage');
           },
         ),
         actions: <Widget>[

@@ -1,6 +1,5 @@
 import 'dart:collection';
 import 'dart:math';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
@@ -216,7 +215,7 @@ class _XBallViewState extends State<XBallView>
   ///检查此关键字是否需要高亮
   bool _needHight(String keyword) {
     bool ret = false;
-    if (widget.highlight != null && widget.highlight.length > 0) {
+    if (widget.highlight.length > 0) {
       for (int i = 0; i < widget.highlight.length; i++) {
         if (keyword == widget.highlight[i]) {
           ret = true;

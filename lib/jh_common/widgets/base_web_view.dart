@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_device_utils.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import '/jh_common/utils/jh_device_utils.dart';
+import '/base_appbar.dart';
 
 class BaseWebView extends StatefulWidget {
   const BaseWebView({

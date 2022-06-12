@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_alert.dart';
+import '/jh_common/widgets/jh_alert.dart';
+import '/jh_common/widgets/jh_text_list.dart';
 
 class AlertTestPage extends StatelessWidget {
   final List titleData = [
@@ -21,7 +21,7 @@ class AlertTestPage extends StatelessWidget {
       dataArr: titleData,
       callBack: (index, str) {
         if (index == 0) {
-          JhAlert.showAlert(context, title: "提示", clickCallback: (index, Text) {
+          JhAlert.showAlert(context, title: "提示", clickCallback: (index, text) {
             if (index == 1) {
               print("点击右侧按钮");
             }
@@ -32,7 +32,7 @@ class AlertTestPage extends StatelessWidget {
               title: "提示",
               content: "这是内容这是内容这是内容",
               leftText: "左侧",
-              rightText: "右侧", clickCallback: (index, Text) {
+              rightText: "右侧", clickCallback: (index, text) {
             if (index == 0) {
               print("点击左侧按钮");
               Fluttertoast.showToast(msg: "点击左侧按钮");
@@ -96,7 +96,7 @@ class AlertTestPage extends StatelessWidget {
   }
 }
 
-// 登录进度提示框  loading 状态
+/// 登录进度提示框  loading 状态
 showLoading(BuildContext context, [String? text]) {
   text = text ?? "加载中...";
   return showDialog(

@@ -1,15 +1,13 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_device_utils.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/click_item.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
 import 'package:device_info/device_info.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info/package_info.dart';
-import '../../../jh_common/utils/jh_nav_router_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '/jh_common/utils/jh_device_utils.dart';
+import '/jh_common/utils/jh_nav_router_utils.dart';
+import '/jh_common/widgets/click_item.dart';
+import '/base_appbar.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -56,7 +54,7 @@ class _AboutPageState extends State<AboutPage> {
 
   Timer? _countdownTimer;
 
-  var _CurrentVersion = "";
+  var _currentVersion = "";
 
   @override
   void initState() {
@@ -73,7 +71,7 @@ class _AboutPageState extends State<AboutPage> {
       });
     });
 
-    _getInfo(); //获取设备信息
+    _getInfo(); // 获取设备信息
   }
 
   void _getInfo() async {
@@ -98,13 +96,13 @@ class _AboutPageState extends State<AboutPage> {
     String version = packageInfo.version;
     String buildNumber = packageInfo.buildNumber;
 
-    print('appName ${appName}');
-    print('packageName ${packageName}');
-    print('version ${version}');
-    print('buildNumber ${buildNumber}');
+    print('appName $appName');
+    print('packageName $packageName');
+    print('version $version');
+    print('buildNumber $buildNumber');
 
     setState(() {
-      _CurrentVersion = version;
+      _currentVersion = version;
     });
 
 //   print("$appName=$packageName=$version=$buildNumber");
@@ -145,7 +143,7 @@ class _AboutPageState extends State<AboutPage> {
           SizedBox(
             height: 20,
           ),
-          Text("Version：${_CurrentVersion}"),
+          Text("Version：$_currentVersion"),
           SizedBox(
             height: 50,
           ),

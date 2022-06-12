@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import '/base_appbar.dart';
 
 var dataArr;
-var pageIndex = 0; //页数
-var count = 10; //每页10条
+var pageIndex = 0; // 页数
+var count = 10; // 每页10条
 
 void getNewData() {
   pageIndex = 0;
@@ -50,7 +50,7 @@ class _ListViewTest_SimplePullDownState
           firstRefresh: true,
           child: ListView.builder(
               itemCount: _count,
-              itemExtent: 50.0, //强制高度为50.0
+              itemExtent: 50.0, // 强制高度为50.0
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(title: Text("$index"));
               }),

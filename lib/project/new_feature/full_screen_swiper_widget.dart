@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FullScreenSwiperWidget extends StatefulWidget {
@@ -51,22 +49,22 @@ class _FullScreenSwiperWidgetState extends State<FullScreenSwiperWidget> {
           reverse: false,
           controller: _controller,
 //          PageController(
-//            //默认在第几个
+//            // 默认在第几个
 //            initialPage: 0,
 //            // 占屏幕多少，1为占满整个屏幕
 //            viewportFraction: 1,
-//            //是否保存当前 Page 的状态，如果保存，下次回复保存的那个 page，initialPage被忽略，
-//            //如果为 false 。下次总是从 initialPage 开始。
+//            // 是否保存当前 Page 的状态，如果保存，下次回复保存的那个 page，initialPage被忽略，
+//            // 如果为 false 。下次总是从 initialPage 开始。
 //            keepPage: true,
 //          ),
           physics: BouncingScrollPhysics(),
           pageSnapping: true,
           onPageChanged: (index) {
-            //监听事件
+            // 监听事件
             print('index=====$index');
           },
         ),
-        //圆点指示器
+        // 圆点指示器
         new Positioned(
           bottom: 0.0,
           left: 0.0,

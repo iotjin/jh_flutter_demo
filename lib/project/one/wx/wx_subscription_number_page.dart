@@ -7,8 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
@@ -84,10 +83,10 @@ class WxSubscriptionNumberPage extends StatelessWidget {
       appBar: backAppBar(context, '订阅号消息',
           rightImgPath: 'assets/images/ic_gengduo.png',
           backgroundColor: Colors.transparent, rightItemCallBack: () {
-        JhNavFluroUtils.pushNamed(context, "WxSubscriptionNumberListPage");
+        JhNavUtils.pushNamed(context, "WxSubscriptionNumberListPage");
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 
@@ -110,7 +109,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
           ))),
           title: Text(
             item['title'],
-            style: TextStyle(color: KColor.kWeiXinTextBlueColor),
+            style: TextStyle(color: KColor.wxTextBlueColor),
           ),
           trailing: Text(
             item['time'],
@@ -140,7 +139,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
             contentPadding: EdgeInsets.all(18),
             title: Text(
               item['text2'],
-              style: TextStyle(color: KColor.kWeiXinTextBlueColor),
+              style: TextStyle(color: KColor.wxTextBlueColor),
             ),
             trailing: Image.asset(
               item['img2'],
@@ -165,7 +164,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
             contentPadding: EdgeInsets.all(18),
             title: Text(
               item['text2'],
-              style: TextStyle(color: KColor.kWeiXinTextBlueColor),
+              style: TextStyle(color: KColor.wxTextBlueColor),
             ),
             trailing: Image.asset(
               item['img2'],
@@ -177,12 +176,12 @@ class WxSubscriptionNumberPage extends StatelessWidget {
     return InkWell(
       child: Card(
           margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-          //设置圆角
+          // 设置圆角
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           // 抗锯齿
           clipBehavior: Clip.antiAlias,
-          //普通的边
+          // 普通的边
 //    shape: Border.all(color: Colors.yellow, width: 5.0),
           elevation: 3,
           // 阴影大小
@@ -194,8 +193,8 @@ class WxSubscriptionNumberPage extends StatelessWidget {
     );
   }
 
-  //点击cell
+  // 点击cell
   _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 ${text}');
+    JhToast.showText(context, msg: '点击 $text');
   }
 }

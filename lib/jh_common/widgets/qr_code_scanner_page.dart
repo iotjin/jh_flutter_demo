@@ -1,12 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
-//import 'package:flutter_deer/routers/fluro_navigator.dart';
-//import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import '/project/routes/jh_nav_utils.dart';
+import '/base_appbar.dart';
 
 class QrCodeScannerPage extends StatefulWidget {
   const QrCodeScannerPage({Key? key}) : super(key: key);
@@ -90,7 +86,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> {
     controller.scannedDataStream.listen((scanData) {
       /// 避免扫描结果多次回调
       controller.dispose();
-      JhNavFluroUtils.goBackWithParams(context, scanData.code ?? '');
+      JhNavUtils.goBackWithParams(context, scanData.code ?? '');
     });
   }
 

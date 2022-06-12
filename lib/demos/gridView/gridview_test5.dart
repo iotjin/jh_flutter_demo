@@ -1,6 +1,5 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 class GridViewTestPage5 extends StatefulWidget {
   @override
@@ -107,7 +106,7 @@ Widget item(List data, int index, context) {
     ),
     onTap: () {
 //      print(index);
-//        JhNavFluroUtils.pushNamed(context,  data[index]['pushName']);
+//        JhNavUtils.pushNamed(context,  data[index]['pushName']);
     },
   );
 }

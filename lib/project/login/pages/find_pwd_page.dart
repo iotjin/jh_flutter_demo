@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_button.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_form.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
-
-import 'package:jh_flutter_demo/project/configs/colors.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
+import '/jh_common/jh_form/jh_keyboard_utils.dart';
+import '/jh_common/widgets/jh_button.dart';
+import '/base_appbar.dart';
 
 class FindPwdPage extends StatefulWidget {
   @override
@@ -19,16 +17,12 @@ class _FindPwdPageState extends State<FindPwdPage> {
   final FocusNode _node1 = FocusNode();
   final FocusNode _node2 = FocusNode();
 
-  bool pwdShow = false; //密码是否显示明文
-  bool _nameAutoFocus = true;
+  bool pwdShow = false; // 密码是否显示明文
 
   @override
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
     _nameController.text = "";
-    if (_nameController.text != null) {
-      _nameAutoFocus = false;
-    }
     super.initState();
   }
 
@@ -37,7 +31,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
     return Scaffold(
         appBar: backAppBar(context, "重置密码"),
         body: KeyboardActions(
-          config: jhForm.getKeyboardConfig(context, [_node1, _node2]),
+          config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
           child: _mainBody(),
         ));
   }
@@ -94,7 +88,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   obscureText: !pwdShow,
                 ),
                 SizedBox(height: 50),
-                JhButton(text: "重 置", onPressed: _ClickOkBtn)
+                JhButton(text: "重 置", onPressed: _clickOkBtn)
               ],
             ),
           ),
@@ -103,7 +97,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
     );
   }
 
-  void _ClickOkBtn() async {
+  void _clickOkBtn() async {
 //    Navigator.of(context).pushAndRemoveUntil(
 //         MaterialPageRoute(builder: (context) => BaseTabBar()
 //        ), (route) => route == null);

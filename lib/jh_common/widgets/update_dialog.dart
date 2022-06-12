@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
-
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_theme_utils.dart';
+import '/jh_common/utils/jh_theme_utils.dart';
+import '/project/routes/jh_nav_utils.dart';
 
 class UpdateDialog extends StatefulWidget {
   @override
@@ -32,7 +29,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
     final Color primaryColor = Theme.of(context).primaryColor;
     return WillPopScope(
       onWillPop: () async {
-        /// 使用false禁止返回键返回，达到强制升级目的
+        // 使用false禁止返回键返回，达到强制升级目的
         return true;
       },
       child: Scaffold(
@@ -90,7 +87,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                   height: 36.0,
                                   child: FlatButton(
                                     onPressed: () {
-                                      JhNavFluroUtils.goBack(context);
+                                      JhNavUtils.goBack(context);
                                     },
                                     textColor: primaryColor,
                                     color: Colors.transparent,
@@ -114,7 +111,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                     onPressed: () {
                                       if (defaultTargetPlatform ==
                                           TargetPlatform.iOS) {
-                                        JhNavFluroUtils.goBack(context);
+                                        JhNavUtils.goBack(context);
 //                                        VersionUtils.jumpAppStore();
 
                                       } else {
@@ -146,7 +143,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
     );
   }
 
-  ///下载apk
+  /// 下载apk
   Future<void> _download() async {
     try {
       setInitDir(initStorageDir: true);
@@ -166,7 +163,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
             _value = count / total;
             setState(() {});
             if (count == total) {
-              JhNavFluroUtils.goBack(context);
+              JhNavUtils.goBack(context);
 //              VersionUtils.install(path);
             }
           }

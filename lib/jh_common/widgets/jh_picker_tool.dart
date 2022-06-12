@@ -4,14 +4,15 @@
  *  Created by iotjin on 2020/02/17.
  *  description:  底部选择器 包含日期，单列、多列文本
  */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import 'package:date_format/date_format.dart';
 
 const double _kPickerHeight = 216.0;
 const double _kItemHeight = 40.0;
-const Color _kBtnColor = Color(0xFF323232); //50
-const Color _kTitleColor = Color(0xFF787878); //120
+const Color _kBtnColor = Color(0xFF323232); // 50
+const Color _kTitleColor = Color(0xFF787878); // 120
 const double _kTextFontSize = 17.0;
 
 typedef _StringClickCallBack = void Function(int selectIndex, Object selectStr);
@@ -28,7 +29,7 @@ enum DateType {
 }
 
 class JhPickerTool {
-  /** 单列*/
+  /// 单列
   static void showStringPicker<T>(
     BuildContext context, {
     required List<T> data,
@@ -47,7 +48,7 @@ class JhPickerTool {
     }, selecteds: [normalIndex], title: title);
   }
 
-  /** 多列 */
+  /// 多列
   static void showArrayPicker<T>(
     BuildContext context, {
     required List<T> data,
@@ -90,7 +91,7 @@ class JhPickerTool {
         .showModal(context);
   }
 
-  /** 日期选择器*/
+  /// 日期选择器
   static void showDatePicker(
     BuildContext context, {
     DateType? dateType,

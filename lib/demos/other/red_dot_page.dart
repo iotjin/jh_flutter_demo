@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:badges/badges.dart';
+import '/base_appbar.dart';
 
 class RedDotPage extends StatefulWidget {
   @override

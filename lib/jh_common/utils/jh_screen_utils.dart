@@ -8,21 +8,11 @@
 import 'dart:ui' as ui show window;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class JhScreenUtils {
   static init(BuildContext context) {
-    //假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-    //设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
-    // ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
-//    ScreenUtil.init(
-//        BoxConstraints(
-//            maxWidth: MediaQuery.of(context).size.width,
-//            maxHeight: MediaQuery.of(context).size.height),
-//        designSize: Size(750, 1334),
-//        allowFontScaling: false,
-//        orientation: Orientation.portrait);
+    // 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
     ScreenUtil.init(context, designSize: Size(750, 1334));
   }
 
@@ -50,7 +40,7 @@ class JhScreenUtils {
   //
   // static double get bottomBarHeight => ScreenUtil.bottomBarHeight;
 
-  //系统方法获取
+  // 系统方法获取
 
   static double get screenWidth {
     MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
@@ -135,12 +125,12 @@ class JhScreen {
 
 /*
 
-ScreenUtil.pixelRatio       //设备的像素密度
-ScreenUtil.screenWidth      //设备宽度
-ScreenUtil.screenHeight     //设备高度
-ScreenUtil.bottomBarHeight  //底部安全区距离，适用于全面屏下面有按键的
-ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高  单位px
-ScreenUtil.textScaleFactory //系统字体缩放比例
+ScreenUtil.pixelRatio       // 设备的像素密度
+ScreenUtil.screenWidth      // 设备宽度
+ScreenUtil.screenHeight     // 设备高度
+ScreenUtil.bottomBarHeight  // 底部安全区距离，适用于全面屏下面有按键的
+ScreenUtil.statusBarHeight  // 状态栏高度 刘海屏会更高  单位px
+ScreenUtil.textScaleFactory // 系统字体缩放比例
 
 ScreenUtil.getInstance().scaleWidth  // 实际宽度的dp与设计稿px的比例
 ScreenUtil.getInstance().scaleHeight // 实际高度的dp与设计稿px的比例

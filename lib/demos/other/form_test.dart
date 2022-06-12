@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_picker_tool.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_form.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/jh_common/widgets/jh_form.dart';
+import '/jh_common/widgets/jh_picker_tool.dart';
+import '/base_appbar.dart';
 
 class FormTest extends StatefulWidget {
   @override
@@ -36,7 +36,7 @@ class _FormTestState extends State<FormTest> {
 //              resizeToAvoidBottomPadding: true, //输入框抵住键盘
             appBar: backAppBar(context, 'FormTest'),
             body: KeyboardActions(
-              config: jhForm
+              config: JhForm
                   .getKeyboardConfig(context, [_node1, _node2, _node3, _node4]),
               child: _mainBody(),
             )));
@@ -49,13 +49,13 @@ class _FormTestState extends State<FormTest> {
           child: Column(
             children: <Widget>[
               SizedBox(height: _space),
-              jhForm.inputText(
+              JhForm.inputText(
                   title: "联系人",
                   hintText: "这是提示文字",
                   focusNode: _node1,
                   space: 100),
               SizedBox(height: _space),
-              jhForm.inputText(
+              JhForm.inputText(
                   title: "联系电话",
                   inputInfo: _phone,
                   hintText: "请输入电话号码",
@@ -69,7 +69,7 @@ class _FormTestState extends State<FormTest> {
               SizedBox(
                 height: _space,
               ),
-              jhForm.textView(
+              JhForm.textView(
                   inputInfo: "这是默认值",
                   hintText: "这是提示文字",
                   focusNode: _node3,
@@ -80,7 +80,7 @@ class _FormTestState extends State<FormTest> {
               SizedBox(
                 height: _space,
               ),
-              jhForm.textView(
+              JhForm.textView(
                   focusNode: _node4,
                   inputCallBack: (value) {
                     print("textView2" + value);
@@ -88,7 +88,7 @@ class _FormTestState extends State<FormTest> {
               SizedBox(
                 height: _space,
               ),
-              jhForm.selectText(
+              JhForm.selectText(
                   title: "选择样式",
                   selectInfo: selectTextStr,
 //                  hintText: "请选择0",

@@ -1,18 +1,16 @@
 /**
- *  wx_pay_manager_page.dart
+ *  wxPay_manager_page.dart
  *
  *  Created by iotjin on 2020/08/28.
  *  description:  微信 支付管理
  */
 
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_allscreen_show.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/project/configs/project_config.dart';
 
 class WxPayManagerPage extends StatefulWidget {
   @override
@@ -20,18 +18,18 @@ class WxPayManagerPage extends StatefulWidget {
 }
 
 class _WxPayManagerPageState extends State<WxPayManagerPage> {
-  double _cellH = wx_cellH;
-  double _rowSpace = wx_rowSpace;
+  double _cellH = wxCellH;
+  double _rowSpace = wxRowSpace;
   bool _switchSelected = false;
   bool _switchSelected2 = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KString.wx_payManager,
+      appBar: backAppBar(context, KString.wxPayManager,
           backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 
@@ -161,6 +159,6 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
   }
 
   void _clickCell(context, title) {
-    JhToast.showText(context, msg: '点击 ${title}');
+    JhToast.showText(context, msg: '点击 $title');
   }
 }

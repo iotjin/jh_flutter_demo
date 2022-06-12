@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
+import '/jh_common/widgets/jh_text_list.dart';
+import '/project/routes/jh_nav_utils.dart';
 
 class TopTabBarDemoListPage extends StatelessWidget {
   final List titleData = ["TopTabBar1", 'TopTabBar2', 'TopTabBar3'];
@@ -16,7 +16,7 @@ class TopTabBarDemoListPage extends StatelessWidget {
       title: "顶部分页(新闻标题效果)",
       dataArr: titleData,
       callBack: (index, str) {
-        JhNavFluroUtils.pushNamed(context, routeData[index]);
+        JhNavUtils.pushNamed(context, routeData[index]);
       },
     );
   }

@@ -1,34 +1,25 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:flustars/flustars.dart';
-import 'package:dio/dio.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:package_info/package_info.dart';
-
-import 'package:jh_flutter_demo/jh_common/utils/jh_storage_utils.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_button.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_form.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
-
-import 'package:jh_flutter_demo/project/base_tabbar.dart';
-import 'package:jh_flutter_demo/project/model/user_model.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jh_flutter_demo/project/routes/routes.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
-import 'package:jh_flutter_demo/data/data_utils.dart';
+import '/jh_common/jh_form/jh_keyboard_utils.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/jh_common/utils/jh_color_utils.dart';
+import '/jh_common/utils/jh_storage_utils.dart';
+import '/jh_common/widgets/jh_button.dart';
+import '/project/configs/project_config.dart';
+import '/project/routes/routes.dart';
+import '/data/data_utils.dart';
 
 /*
-*        keyboardType: TextInputType.numberWithOptions(decimal: true),//设置键盘为可录入小数的数字
-         inputFormatters: [FilteringTextInputFormatter.allow.digitsOnly],//设置只能录入数字[0-9]
+*        keyboardType: TextInputType.numberWithOptions(decimal: true),// 设置键盘为可录入小数的数字
+         inputFormatters: [FilteringTextInputFormatter.allow.digitsOnly],// 设置只能录入数字[0-9]
 
-         FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),//只允许输入字母
-         FilteringTextInputFormatter.allow.digitsOnly],//只允许输入数字
-         FilteringTextInputFormatter.allow(RegExp("[0-9.]")),//只允许输入小数
-         BlacklistingTextInputFormatter(RegExp("[abFeG])), //黑名单
+         FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),// 只允许输入字母
+         FilteringTextInputFormatter.allow.digitsOnly],// 只允许输入数字
+         FilteringTextInputFormatter.allow(RegExp("[0-9.]")),// 只允许输入小数
+         BlacklistingTextInputFormatter(RegExp("[abFeG])), // 黑名单
 
          FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")) ,
          LengthLimitingTextInputFormatter(20)
@@ -90,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
       isClick = false;
     }
 
-    /// 状态不一样在刷新，避免重复不必要的setState
+    // 状态不一样在刷新，避免重复不必要的setState
     if (isClick != _isClick) {
       setState(() {
         _isClick = isClick;
@@ -111,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: KeyboardActions(
-      config: jhForm.getKeyboardConfig(context, [_node1, _node2]),
+      config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
       child: _mainBody(),
     ));
   }
@@ -130,14 +121,11 @@ class _LoginPageState extends State<LoginPage> {
                       child: InkWell(
                         child: Text("注册", style: TextStyle(fontSize: 18)),
                         onTap: () {
-                          JhNavFluroUtils.pushNamed(context, "RegisterPage");
+                          JhNavUtils.pushNamed(context, "RegisterPage");
                         },
                       )),
                 ),
-
                 SizedBox(height: 50),
-//                  Image.asset("assets/images/lufei.png",width: 100,),
-
                 Container(
                   height: 100,
                   width: 100,
@@ -162,7 +150,6 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _nameController,
                     inputCallBack: (value) => _name = value),
                 SizedBox(height: 10),
-
                 JhLoginTextField(
                     hintText: "请输入密码",
                     focusNode: _node2,
@@ -178,12 +165,11 @@ class _LoginPageState extends State<LoginPage> {
                   text: "登 录",
                   onPressed: () {
                     if (_isClick) {
-                      _ClickOkBtn();
+                      _clickOkBtn();
                     }
                   },
                 ),
                 SizedBox(height: 15),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -193,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '验证码登录',
                           ),
-                          onTap: () => JhNavFluroUtils.pushNamed(
+                          onTap: () => JhNavUtils.pushNamed(
                               context, "CodeLoginPage")),
                     ),
                     Container(
@@ -203,8 +189,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '忘记密码',
                           ),
-                          onTap: () =>
-                              JhNavFluroUtils.pushNamed(context, "FindPwdPage")),
+                          onTap: () => JhNavUtils.pushNamed(
+                              context, "FindPwdPage")),
                     ),
                   ],
                 )
@@ -216,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _ClickOkBtn() async {
+  void _clickOkBtn() async {
 //    Navigator.of(context).pushAndRemoveUntil(
 //         MaterialPageRoute(builder: (context) => BaseTabBar()
 //        ), (route) => route == null);
@@ -235,7 +221,7 @@ class _LoginPageState extends State<LoginPage> {
 //      hide();
 //    });
 
-    //请求网络登录
+    // 请求网络登录
     print('name =$_name');
     print('pwd =$_pwd');
 
@@ -268,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
 //      JhToast.showText(context, msg: response.data["msg"]);
 //    }
 
-    //登录请求
+    // 登录请求
     DataUtils.login({"userName": _name, "pwd": _pwd}, success: (data) {
       if (data["suc"] == true) {
 //        Map<String, dynamic> json = Map<String, dynamic>.from(data["data"]);
@@ -277,12 +263,12 @@ class _LoginPageState extends State<LoginPage> {
 //      print(model.phone);
 //        SpUtil.putObject(kUserDefault_UserInfo, model);
 
-        //保存本地
+        // 保存本地
         JhStorageUtils.saveModel(kUserDefault_UserInfo, data["data"]);
 
         hide();
         JhToast.showSuccess(context, msg: data["msg"]);
-        JhNavFluroUtils.pushReplacement(context, Routes.home);
+        JhNavUtils.pushReplacement(context, Routes.home);
       } else {
         hide();
         JhToast.showText(context, msg: data["msg"]);

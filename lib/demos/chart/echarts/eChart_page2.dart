@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
-import 'package:sticky_headers/sticky_headers/widget.dart';
+import '/base_appbar.dart';
 
 class EChartPage2 extends StatefulWidget {
   @override
@@ -22,10 +21,10 @@ class _EChartPage2State extends State<EChartPage2> {
         .arguments;
     value = value ?? '';
     return Scaffold(
-        appBar: backAppBar(context, 'EChart2 - 多图表'), body: _Scrollbar());
+        appBar: backAppBar(context, 'EChart2 - 多图表'), body: _scrollbar());
   }
 
-  Widget _Scrollbar() {
+  Widget _scrollbar() {
     return Scrollbar(
         child: SingleChildScrollView(
           child: Column(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/res/listData.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
+import '/res/listData.dart';
 
 class ListViewTest2 extends StatelessWidget {
   @override
@@ -31,7 +31,7 @@ class HomeContent extends StatelessWidget {
   }
 }
 
-Widget ContentBody = Container(
+Widget contentBody = Container(
     width: 200,
     height: 200,
     color: Colors.red,

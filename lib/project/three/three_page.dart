@@ -6,14 +6,10 @@
  */
 
 import 'package:flutter/material.dart';
-
 import 'package:badges/badges.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/project/configs/strings.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 import 'package:jhtoast/jhtoast.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/project/configs/project_config.dart';
 
 class ThreePage extends StatelessWidget {
   @override
@@ -22,7 +18,7 @@ class ThreePage extends StatelessWidget {
       appBar: baseAppBar(context, KString.threeTabTitle,
           backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 }
@@ -123,21 +119,21 @@ Widget _body(context) {
   );
 }
 
-//点击cell
+// 点击cell
 _clickCell(context, text) {
-  // JhToast.showText(context, msg: '点击 ${text}');
+  // JhToast.showText(context, msg: '点击 $text');
 
   if (text == '朋友圈') {
-    JhNavFluroUtils.pushNamed(context, 'WxFriendsCirclePage');
+    JhNavUtils.pushNamed(context, 'WxFriendsCirclePage');
   }
 }
 
 Widget testBtn(context) {
   return Container(
       alignment: Alignment.center,
-      //子组件将以何种方式进行排列
+      // 子组件将以何种方式进行排列
       margin: EdgeInsets.all(20),
-      //容器外补白
+      // 容器外补白
       color: Colors.yellow,
       width: 200,
       height: 200,
@@ -146,10 +142,10 @@ Widget testBtn(context) {
         child: Text("点击跳转"),
         onPressed: () {
           print('onPressed');
-          JhNavFluroUtils.pushNamed(context, "UIDemoListsPage");
-//          Navigator.push(context, MaterialPageRoute(builder: (context) => (UIDemoListsPage())));//普通路由
-//          Navigator.push(context, MaterialPageRoute(builder: (context) => (testPage(content: "这是route传递的参数",))));//普通路由
-//          JhNavFluroUtils.pushNamed(context,'/Test');//命名路由
+          JhNavUtils.pushNamed(context, "UIDemoListsPage");
+//          Navigator.push(context, MaterialPageRoute(builder: (context) => (UIDemoListsPage())));// 普通路由
+//          Navigator.push(context, MaterialPageRoute(builder: (context) => (testPage(content: "这是route传递的参数",))));// 普通路由
+//          JhNavUtils.pushNamed(context,'/Test');// 命名路由
         },
       ));
 }

@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/res/listData.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_top_tabbar.dart';
+import '/jh_common/widgets/jh_top_tabbar.dart';
+import '/res/listData.dart';
 
 class TopTabBarTest3Page extends StatefulWidget {
   @override
@@ -69,7 +69,7 @@ class HomeContent extends StatelessWidget {
   }
 }
 
-Widget ContentBody = Container(
+Widget contentBody = Container(
     width: 200,
     height: 200,
     color: Colors.red,

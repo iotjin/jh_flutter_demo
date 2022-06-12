@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
+import '/jh_common/utils/jh_image_utils.dart';
 
 class UIPage extends StatelessWidget {
   @override
@@ -29,9 +28,9 @@ class BaseScrollView extends StatelessWidget {
           testImage,
           testText,
           testPositioned,
-          //绝对定位
+          // 绝对定位
           testContainer,
-          //Container
+          // Container
           textListView,
           textListView0,
           Container(
@@ -62,7 +61,7 @@ List<String> bottomData = ["1111", "2222", "3333333333333333333", "4444"];
 
 Widget textListView = Container(
   child: ListView(
-    shrinkWrap: true, //是否根据子组件的总长度来设置ListView的长度，默认值为false
+    shrinkWrap: true, // 是否根据子组件的总长度来设置ListView的长度，默认值为false
     physics: const NeverScrollableScrollPhysics(), // 禁止滑动
     children: <Widget>[
       Text(bottomData[0],
@@ -113,30 +112,30 @@ Widget testBtn = Column(children: <Widget>[
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all(Colors.blue),
 //      backgroundColor: MaterialStateProperty.resolveWith((states) {
-//        //设置按下时的背景颜色
+//        // 设置按下时的背景颜色
 //        if (states.contains(MaterialState.pressed)) {
 //          return Colors.yellow;
 //        }
-//        //默认不使用背景颜色
+//        // 默认不使用背景颜色
 //        return null;
 //      }),
       foregroundColor: MaterialStateProperty.resolveWith(
         (states) {
           if (states.contains(MaterialState.pressed)) {
-            ////按下时的颜色
+            // 按下时的颜色
             return Colors.red;
           }
-          //默认状态使用灰色
+          // 默认状态使用灰色
           return Colors.black;
         },
       ),
-      //设置水波纹颜色
+      // 设置水波纹颜色
       overlayColor: MaterialStateProperty.all(Colors.purpleAccent),
-      //设置按钮大小
+      // 设置按钮大小
       minimumSize: MaterialStateProperty.all(Size(150, 80)),
-      //设置边框
+      // 设置边框
       side: MaterialStateProperty.all(BorderSide(color: Colors.red, width: 1)),
-      //设置按钮形状
+      // 设置按钮形状
 //      shape: MaterialStateProperty.all(StadiumBorder(
 //        side: BorderSide(color: Colors.red, width: 1, style: BorderStyle.solid),
 //      )),
@@ -211,7 +210,7 @@ Widget testImage = Container(
 //    )
 );
 
-//Container 练习
+// Container 练习
 Widget testContainer = Container(
   width: 200,
   height: 200,
@@ -219,20 +218,20 @@ Widget testContainer = Container(
 //  margin: EdgeInsets.all(10),
   margin: EdgeInsets.only(left: 10, top: 10),
 // margin: EdgeInsets.fromLTRB(left, top, right, bottom),
-//  EdgeInsets.symmetric(horizontal: val1, vertical: val2): //用于设置水平/垂直方向上的值；
+//  EdgeInsets.symmetric(horizontal: val1, vertical: val2): // 用于设置水平/垂直方向上的值；
   constraints: BoxConstraints(
-//      minWidth: double.infinity, //宽度尽可能大
+//      minWidth: double.infinity, // 宽度尽可能大
       minWidth: 300,
       minHeight: 50.0 //最小高度为50像素
       ),
 
   alignment: Alignment.topRight,
-  //子组件将以何种方式进行排列
+  // 子组件将以何种方式进行排列
   color: Colors.yellow,
   child: Text("这是文字"),
 );
 
-//绝对定位
+// 绝对定位
 Widget testPositioned = Container(
   height: 100,
   color: Colors.yellow,
@@ -267,7 +266,7 @@ Widget textSection = Container(
 
   alignment: Alignment.topCenter,
 //    Alignment.topCenter
-//  constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0), //卡片大小
+//  constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0), // 卡片大小
 
   child: Text(
 //    '这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字',

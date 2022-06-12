@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_nine_picture.dart';
+import '/jh_common/widgets/jh_bottom_sheet.dart';
+import '/jh_common/widgets/jh_nine_picture.dart';
+import '/base_appbar.dart';
 
 List<String>? dataArr;
 List<String>? dataArr2;

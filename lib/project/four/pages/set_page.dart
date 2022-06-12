@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:jhtoast/jhtoast.dart';
-import 'package:flustars/flustars.dart';
-
-import 'package:jh_flutter_demo/jh_common/utils/jh_storage_utils.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/project/login/pages/login_page.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
+import '/jh_common/utils/jh_storage_utils.dart';
+import '/jh_common/widgets/jh_text_list.dart';
+import '/jh_common/widgets/jh_bottom_sheet.dart';
+import '/project/configs/project_config.dart';
+import '/project/login/pages/login_page.dart';
 
 class SetPage extends StatelessWidget {
   final List titleData = [
@@ -32,34 +28,34 @@ class SetPage extends StatelessWidget {
       dataArr: titleData,
       callBack: (index, str) {
         if (str == "原我的界面") {
-          JhNavFluroUtils.pushNamed(context, "MinePage");
+          JhNavUtils.pushNamed(context, "MinePage");
         }
         if (str == "个人信息") {
-          JhNavFluroUtils.pushNamed(context, "InfoPage");
+          JhNavUtils.pushNamed(context, "InfoPage");
         }
         if (str == "图片下拉放大") {
-          JhNavFluroUtils.pushNamed(context, "ImgPullDownBigPage");
+          JhNavUtils.pushNamed(context, "ImgPullDownBigPage");
         }
         if (str == "图片下拉放大2") {
-          JhNavFluroUtils.pushNamed(context, "ImgPullDownBigPage2");
+          JhNavUtils.pushNamed(context, "ImgPullDownBigPage2");
         }
         if (str == "图片下拉放大3 - 图片固定顶部") {
-          JhNavFluroUtils.pushNamed(context, "ImgPullDownBigPage3");
+          JhNavUtils.pushNamed(context, "ImgPullDownBigPage3");
         }
         if (str == "个人主页 - SliverAppBar+tabbar") {
-          JhNavFluroUtils.pushNamed(context, "PersonCenterPage");
+          JhNavUtils.pushNamed(context, "PersonCenterPage");
         }
         if (str == "个人主页2") {
-          JhNavFluroUtils.pushNamed(context, "PersonCenterPage2");
+          JhNavUtils.pushNamed(context, "PersonCenterPage2");
         }
         if (str == "导航条渐变显隐") {
-          JhNavFluroUtils.pushNamed(context, "FadeAppBarPage");
+          JhNavUtils.pushNamed(context, "FadeAppBarPage");
         }
         if (str == "关于") {
-          JhNavFluroUtils.pushNamed(context, "AboutPage");
+          JhNavUtils.pushNamed(context, "AboutPage");
         }
         if (str == "关于iOS") {
-          JhNavFluroUtils.pushNamed(context, "AboutIOSPage");
+          JhNavUtils.pushNamed(context, "AboutIOSPage");
         }
 
         if (str == "退出登录") {
@@ -71,7 +67,7 @@ class SetPage extends StatelessWidget {
                 msg: "正在退出...",
               );
               Future.delayed(Duration(seconds: 1), () {
-                //退出时清除用户信息
+                // 退出时清除用户信息
                 JhStorageUtils.removeWithKey(kUserDefault_UserInfo);
 
                 Navigator.of(context).pushAndRemoveUntil(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/jh_common/widgets/jh_text_list.dart';
+import '/base_appbar.dart';
 
 class NavTestPage extends StatelessWidget {
   final List titleData = [
@@ -20,27 +20,27 @@ class NavTestPage extends StatelessWidget {
         callBack: (index, str) {
           if (index == 0) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav1()))); //普通路由
+                MaterialPageRoute(builder: (context) => (_nav1()))); // 普通路由
           }
           if (index == 1) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav2()))); //普通路由
+                MaterialPageRoute(builder: (context) => (_nav2()))); // 普通路由
           }
           if (index == 2) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav3()))); //普通路由
+                MaterialPageRoute(builder: (context) => (_nav3()))); // 普通路由
           }
           if (index == 3) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav4()))); //普通路由
+                MaterialPageRoute(builder: (context) => (_nav4()))); // 普通路由
           }
           if (index == 4) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav5()))); //普通路由
+                MaterialPageRoute(builder: (context) => (_nav5()))); // 普通路由
           }
           if (index == 5) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav6()))); //普通路由
+                MaterialPageRoute(builder: (context) => (_nav6()))); // 普通路由
           }
         });
   }

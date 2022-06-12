@@ -4,7 +4,11 @@
  *  Created by iotjin on 2020/02/07.
  *  description:  渐变色按钮
  */
+
 import 'package:flutter/material.dart';
+
+const Color startColor = Color(0xFF2683BE); // 默认appBar 渐变开始色
+const Color endColor = Color(0xFF34CABE); // 默认appBar 渐变结束色
 
 class JhGradientBtn extends StatelessWidget {
   final String text;
@@ -34,10 +38,8 @@ class JhGradientBtn extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-//              Color(0xFF32E585),  //32e585
-//              Color(0xFF1EBFA7),  //1ebfa7
-              Color.fromRGBO(56, 207, 195, 1), //渐变 开始色
-              Color.fromRGBO(47, 134, 185, 1) //结束色
+              startColor, // 渐变 开始色
+              endColor, // 结束色
             ],
           ),
         ),

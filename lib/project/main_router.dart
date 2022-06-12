@@ -1,30 +1,30 @@
 import 'dart:convert';
 import 'package:fluro/fluro.dart';
-import 'package:jh_flutter_demo/project/four/wx/wx_pay_manager_page.dart';
-import 'package:jh_flutter_demo/project/model/contacts_model.dart';
-import 'package:jh_flutter_demo/project/routes/router_init.dart';
 
-import 'package:jh_flutter_demo/project/one/one_page.dart';
-import 'package:jh_flutter_demo/project/two/two_page.dart';
-import 'package:jh_flutter_demo/project/three/three_page.dart';
+import '/project/model/contacts_model.dart';
+import '/project/routes/router_init.dart';
 
-//four
-import 'package:jh_flutter_demo/project/four/four_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/set_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/info_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/about_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/about_ios_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/mine_page.dart';
-import 'package:jh_flutter_demo/project/two/wx/wx_info_set_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/img_pull_down_big_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/img_pull_down_big_page2.dart';
-import 'package:jh_flutter_demo/project/four/pages/img_pull_down_big_page3.dart';
-import 'package:jh_flutter_demo/project/four/pages/person_center_page.dart';
-import 'package:jh_flutter_demo/project/four/pages/person_center_page2.dart';
-import 'package:jh_flutter_demo/project/four/pages/fade_app_bar_page.dart';
+import '/project/one/one_page.dart';
+import '/project/two/two_page.dart';
+import '/project/three/three_page.dart';
 
-//wx
-//首页
+// four
+import '/project/four/four_page.dart';
+import '/project/four/pages/set_page.dart';
+import '/project/four/pages/info_page.dart';
+import '/project/four/pages/about_page.dart';
+import '/project/four/pages/about_ios_page.dart';
+import '/project/four/pages/mine_page.dart';
+import '/project/two/wx/wx_info_set_page.dart';
+import '/project/four/pages/img_pull_down_big_page.dart';
+import '/project/four/pages/img_pull_down_big_page2.dart';
+import '/project/four/pages/img_pull_down_big_page3.dart';
+import '/project/four/pages/person_center_page.dart';
+import '/project/four/pages/person_center_page2.dart';
+import '/project/four/pages/fade_app_bar_page.dart';
+
+// wx
+// 首页
 import 'one/wx/wx_qq_message_page.dart';
 import 'one/wx/wx_subscription_number_page.dart';
 import 'one/wx/wx_subscription_number_list_page.dart';
@@ -32,16 +32,16 @@ import 'one/wx/wx_motion_page.dart';
 import 'one/wx/wx_motion_top_page.dart';
 import '/jh_common/widgets/qr_code_scanner_page.dart';
 
-//联系人
+// 联系人
 import 'two/wx/wx_userInfo_page.dart';
 import 'two/wx/wx_new_friend_page.dart';
 import 'two/wx/wx_add_friend_page.dart';
 import 'two/wx/wx_group_chat_page.dart';
 
-//发现
+// 发现
 import 'three/wx/wx_friends_circle_page.dart';
 
-//我的
+// 我的
 import 'four/wx/wx_person_info_page.dart';
 import 'four/wx/wx_pay_page.dart';
 import 'four/wx/wx_pay_manager_page.dart';
@@ -102,7 +102,7 @@ class MainRouter implements IRouterProvider {
 
     /********************************* 联系人 ********************************/
 
-    //个人信息页面
+    // 个人信息页面
     router.define("WxUserInfoPage", handler: Handler(handlerFunc: (_, params) {
 //      print("---------params---------");
 //      print(params);
@@ -112,7 +112,7 @@ class MainRouter implements IRouterProvider {
 //      print("---------params---------");
       return WxUserInfoPage(model);
     }));
-    //资料设置
+    // 资料设置
     router.define("WxInfoSetPage", handler: Handler(handlerFunc: (_, params) {
       String jsonStr = params['passValue']!.first;
       ContactsModel model = ContactsModel.fromJson(json.decode(jsonStr));

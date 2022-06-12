@@ -6,11 +6,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/jh_common/utils/jh_color_utils.dart';
+import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
@@ -65,7 +63,7 @@ class WxMotionPage extends StatelessWidget {
         _clickCell(context, '设置');
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
       bottomNavigationBar: _bottomView(context),
     );
   }
@@ -73,13 +71,13 @@ class WxMotionPage extends StatelessWidget {
   Widget _body(context, dataArr) {
     return ListView.builder(
         itemCount: _dataArr.length,
-        // itemExtent: 150.0, //强制高度为100.0
+        // itemExtent: 150.0, // 强制高度为100.0
         itemBuilder: (context, index) {
           return _cell(context, dataArr[index]);
         });
   }
 
-  //cell
+  // cell
   Widget _cell(context, item) {
     return Column(
       children: [
@@ -94,12 +92,12 @@ class WxMotionPage extends StatelessWidget {
           onTap: () => _jumpTop(context, item),
           child: Card(
               margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-              //设置圆角
+              // 设置圆角
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
               // 抗锯齿
               clipBehavior: Clip.antiAlias,
-              //普通的边
+              // 普通的边
               //shape: Border.all(color: Colors.yellow, width: 5.0),
               elevation: 3,
               // 阴影大小
@@ -202,9 +200,9 @@ class WxMotionPage extends StatelessWidget {
     );
   }
 
-  //点击cell
+  // 点击cell
   _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 ${text}');
+    JhToast.showText(context, msg: '点击 $text');
   }
 
   _bottomView(context) {
@@ -230,6 +228,6 @@ class WxMotionPage extends StatelessWidget {
   }
 
   _jumpTop(context, item) {
-    JhNavFluroUtils.pushNamed(context, 'WxMotionTopPage');
+    JhNavUtils.pushNamed(context, 'WxMotionTopPage');
   }
 }

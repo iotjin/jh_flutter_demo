@@ -6,17 +6,15 @@
  */
 
 import 'package:flutter/material.dart';
-
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_storage_utils.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/update_dialog.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jh_flutter_demo/project/model/user_model.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/jh_common/utils/jh_storage_utils.dart';
+import '/jh_common/widgets/update_dialog.dart';
+import '/project/configs/project_config.dart';
+import '/project/model/user_model.dart';
 
 double _leftSpace = 50.0;
-double _cellH = wx_cellH;
-double _rowSpace = wx_rowSpace;
+double _cellH = wxCellH;
+double _rowSpace = wxRowSpace;
 
 double _scrollMaxOffSet = 1000;
 
@@ -60,7 +58,7 @@ class _FourPageState extends State<FourPage> {
 
   @override
   void dispose() {
-    //为了避免内存泄露，_scrollController.dispose
+    // 为了避免内存泄露，_scrollController.dispose
     _scrollController.dispose();
     super.dispose();
   }
@@ -70,9 +68,9 @@ class _FourPageState extends State<FourPage> {
     return Scaffold(
 //        appBar: baseAppBar(context, '',
 //            rightImgPath: "assets/images/set.png", rightItemCallBack: () {
-//          JhNavFluroUtils.pushNamed(context, "SetPage");
+//          JhNavUtils.pushNamed(context, "SetPage");
 //        }),
-//        backgroundColor: KColor.kWeiXinBgColor,
+//        backgroundColor: KColor.wxBgColor,
         body: _body(_model));
   }
 
@@ -80,7 +78,7 @@ class _FourPageState extends State<FourPage> {
     return Stack(
       children: <Widget>[
         Container(
-          color: KColor.kWeiXinBgColor,
+          color: KColor.wxBgColor,
           child: MediaQuery.removePadding(
             context: context,
             removeTop: true,
@@ -107,7 +105,7 @@ class _FourPageState extends State<FourPage> {
           ),
         ),
 
-        //设置
+        // 设置
         InkWell(
           child: Container(
             margin:
@@ -123,14 +121,14 @@ class _FourPageState extends State<FourPage> {
             ),
           ),
           onTap: () {
-            JhNavFluroUtils.pushNamed(context, "SetPage");
+            JhNavUtils.pushNamed(context, "SetPage");
           },
         )
       ],
     );
   }
 
-  //cell
+  // cell
   Widget _contentCell(model) {
     return ListView(
       controller: _scrollController,
@@ -145,7 +143,7 @@ class _FourPageState extends State<FourPage> {
             title: '支付',
             hiddenLine: true,
             clickCallBack: () {
-              JhNavFluroUtils.pushNamed(context, "WxPayPage");
+              JhNavUtils.pushNamed(context, "WxPayPage");
             }),
         SizedBox(height: _rowSpace),
         JhSetCell(
@@ -177,7 +175,7 @@ class _FourPageState extends State<FourPage> {
           title: '设置',
           hiddenLine: true,
           clickCallBack: () {
-            JhNavFluroUtils.pushNamed(context, "SetPage");
+            JhNavUtils.pushNamed(context, "SetPage");
           },
         ),
         SizedBox(height: _rowSpace),
@@ -204,7 +202,7 @@ class _FourPageState extends State<FourPage> {
         builder: (_) => UpdateDialog());
   }
 
-  //头部
+  // 头部
   Widget _header(model) {
     return Container(
       padding: EdgeInsets.only(left: 15, bottom: 40.0, top: 72.0),
@@ -236,7 +234,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('点击昵称==  ${model.userName}');
-                        JhNavFluroUtils.pushNamed(context, "WxPersonInfoPage");
+                        JhNavUtils.pushNamed(context, "WxPersonInfoPage");
                       },
                       child: Container(
                         width: double.maxFinite,
@@ -255,7 +253,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('跳转个人信息');
-                        JhNavFluroUtils.pushNamed(context, "WxPersonInfoPage");
+                        JhNavUtils.pushNamed(context, "WxPersonInfoPage");
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 5.0),

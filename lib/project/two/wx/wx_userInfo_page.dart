@@ -8,11 +8,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jh_flutter_demo/project/model/contacts_model.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/jh_common/utils/jh_color_utils.dart';
+import '/project/configs/project_config.dart';
+import '/project/model/contacts_model.dart';
 
 class WxUserInfoPage extends StatelessWidget {
   final ContactsModel? _passValue;
@@ -25,10 +24,10 @@ class WxUserInfoPage extends StatelessWidget {
       appBar: backAppBar(context, '',
           rightImgPath: 'assets/images/ic_more_black.png',
           backgroundColor: Colors.transparent, rightItemCallBack: () {
-        //跳转资料设置
+        // 跳转资料设置
         String jsonStr = Uri.encodeComponent(jsonEncode(_passValue));
-        JhNavFluroUtils.pushNamed(
-            context, '${"WxInfoSetPage"}?passValue=${jsonStr}');
+        JhNavUtils.pushNamed(
+            context, '${"WxInfoSetPage"}?passValue=$jsonStr');
       }),
       body: _body(context),
     );
@@ -37,8 +36,8 @@ class WxUserInfoPage extends StatelessWidget {
   Widget _body(context) {
     print('上个页面传递过来的model: ${_passValue!.toJson()}');
 
-    double _cellH = wx_cellH;
-    double _rowSpace = wx_rowSpace;
+    double _cellH = wxCellH;
+    double _rowSpace = wxRowSpace;
 
     Widget _sex = _passValue!.sex == '0'
         ? Icon(Icons.person, color: Colors.blue)
@@ -140,13 +139,13 @@ class WxUserInfoPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset('assets/wechat/contacts/ic_xinxi.png',
-                      width: 20, color: KColor.kWeiXinTextBlueColor),
+                      width: 20, color: KColor.wxTextBlueColor),
                   SizedBox(width: 5),
                   Text('发消息',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KColor.kWeiXinTextBlueColor))
+                          color: KColor.wxTextBlueColor))
                 ],
               )),
         ),
@@ -160,13 +159,13 @@ class WxUserInfoPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset('assets/wechat/contacts/ic_shipintonghua.png',
-                      width: 20, color: KColor.kWeiXinTextBlueColor),
+                      width: 20, color: KColor.wxTextBlueColor),
                   SizedBox(width: 5),
                   Text('音视频通话',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KColor.kWeiXinTextBlueColor))
+                          color: KColor.wxTextBlueColor))
                 ],
               )),
         )
@@ -175,6 +174,6 @@ class WxUserInfoPage extends StatelessWidget {
   }
 
   void _clickCell(context, title) {
-    JhToast.showText(context, msg: '点击 ${title}');
+    JhToast.showText(context, msg: '点击 $title');
   }
 }

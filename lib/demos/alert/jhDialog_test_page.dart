@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:jhtoast/jhtoast.dart';
-
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_dialog.dart';
+import '/jh_common/widgets/jh_dialog.dart';
+import '/jh_common/widgets/jh_text_list.dart';
 
 class JhDialogTestPage extends StatelessWidget {
   final List titleData = [

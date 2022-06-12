@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
+import '/base_appbar.dart';
 
 //                          dataZoom: [{
 //                                  start: 0,

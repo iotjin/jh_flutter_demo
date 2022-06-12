@@ -11,19 +11,16 @@ typedef _ClickCallBack = void Function(int selectIndex, String selectText);
 
 const double _cellHeight = 50.0;
 const double _spaceHeight = 5.0;
-const Color _spaceColor = Color(0xFFE6E6E6); //230
-const Color _textColor = Color(0xFF323232); //50
+const Color _spaceColor = Color(0xFFE6E6E6); // 230
+const Color _textColor = Color(0xFF323232); // 50
 const double _textFontSize = 18.0;
-const Color _red_textColor = Color(0xFFE64242); //rgba(230,66,66,1)
-const Color _titleColor = Color(0xFF787878); //120
+const Color _red_textColor = Color(0xFFE64242); // rgba(230,66,66,1)
+const Color _titleColor = Color(0xFF787878); // 120
 const double _titleFontSize = 13.0;
 
 class JhBottomSheet {
-  /**
-      index 从上往下 1，2，3，取消是0
-   */
-
-  //弹出底部文字
+  /// 弹出底部文字
+  /// index 从上往下 1，2，3，取消是0
   static void showText(
     BuildContext context, {
     String? title,
@@ -57,7 +54,7 @@ class JhBottomSheet {
 
     showModalBottomSheet(
         context: context,
-        //设置圆角
+        // 设置圆角
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(_radius),

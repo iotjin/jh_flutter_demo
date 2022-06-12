@@ -6,15 +6,10 @@
  */
 
 import 'package:flutter/material.dart';
-
-//import 'package:flustars/flustars.dart';
-import 'dart:convert' as convert;
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_storage_utils.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/project/model/user_model.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/jh_common/utils/jh_storage_utils.dart';
+import '/project/configs/project_config.dart';
+import '/project/model/user_model.dart';
 
 double _scrollMaxOffSet = 1000;
 
@@ -37,7 +32,7 @@ class _InfoPageState extends State<InfoPage> {
 
     var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo)!;
     model = UserModel.fromJson(modelJson);
-    //监听滚动
+    // 监听滚动
     _addListener();
   }
 
@@ -62,7 +57,7 @@ class _InfoPageState extends State<InfoPage> {
 
   @override
   void dispose() {
-    //为了避免内存泄露，_scrollController.dispose
+    // 为了避免内存泄露，_scrollController.dispose
     _scrollController.dispose();
     super.dispose();
   }
@@ -71,7 +66,7 @@ class _InfoPageState extends State<InfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: baseAppBar(context, ''),
-      backgroundColor: Color(0xFFF8F8F8), //248
+      backgroundColor: Color(0xFFF8F8F8), // 248
       body: _body(),
     );
   }
@@ -81,7 +76,7 @@ class _InfoPageState extends State<InfoPage> {
       Positioned(
         top: 0,
         child: Container(
-          color: KColor.kWeiXinThemeColor,
+          color: KColor.wxThemeColor,
 //          color: Colors.white,
           constraints: BoxConstraints(
             minWidth: JhScreen.width,

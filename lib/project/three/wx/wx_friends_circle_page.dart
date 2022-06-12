@@ -9,12 +9,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_nine_picture.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jh_flutter_demo/project/model/contacts_model.dart';
+import '/jh_common/utils/jh_color_utils.dart';
+import '/jh_common/widgets/jh_bottom_sheet.dart';
+import '/jh_common/widgets/jh_nine_picture.dart';
+import '/project/configs/project_config.dart';
+import '/project/model/contacts_model.dart';
 
 class WxFriendsCirclePage extends StatefulWidget {
   @override
@@ -57,7 +56,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
     setState(() {});
   }
 
-  //滚动监听
+  // 滚动监听
   void _addListener() {
     _scrollController.addListener(() {
       double _y = _scrollController.offset;
@@ -74,21 +73,21 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
           _imgChangeHeight = _navH;
         });
       }
-      // //小于0 ，下拉放大
+      // // 小于0 ，下拉放大
       // if (_y < 0) {
       // } else {}
 
-      //appbar 透明度
+      // appbar 透明度
       double appBarOpacity = _y / _navH;
       if (appBarOpacity < 0) {
-        //透明
+        // 透明
         appBarOpacity = 0.0;
       } else if (appBarOpacity > 1) {
-        //不透明
+        // 不透明
         appBarOpacity = 1.0;
       }
 
-      //更新透明度
+      // 更新透明度
       setState(() {
         _appbarOpacity = appBarOpacity;
         // print('_appbarO: ${_appbarOpacity}');
@@ -98,7 +97,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
 
   @override
   void dispose() {
-    //为了避免内存泄露，_scrollController.dispose
+    // 为了避免内存泄露，_scrollController.dispose
     _scrollController.dispose();
     super.dispose();
   }
@@ -145,7 +144,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         left: 0,
         right: 0,
         child: backAppBar(context, '朋友圈',
-            backgroundColor: KColor.kWeiXinBgColor.withOpacity(_appbarOpacity),
+            backgroundColor: KColor.wxBgColor.withOpacity(_appbarOpacity),
             brightness:
                 _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/wechat/discover/ic_xiangji.png',
@@ -156,7 +155,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
     ]);
   }
 
-  //_header
+  // _header
   Widget _header(context) {
     return Stack(
       fit: StackFit.expand,
@@ -211,7 +210,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
     );
   }
 
-  //cell
+  // cell
   Widget _cell(context, item) {
     return InkWell(
         onTap: () => _clickCell(context, item['name']),
@@ -219,12 +218,12 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
           decoration: BoxDecoration(
               // border: Border.all(color: KColor.kLineColor, width: 1),
               border: Border(
-            bottom: BorderSide(width: 0.5, color: KColor.kLineColor), //下边框
+            bottom: BorderSide(width: 0.5, color: KColor.kLineColor), // 下边框
           )),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //头像
+              // 头像
               InkWell(
                 onTap: () => _jumpInfo(),
                 child: Container(
@@ -250,7 +249,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                       child: Text(
                         item['name'],
                         style: TextStyle(
-                            color: KColor.kWeiXinTextBlueColor, fontSize: 15),
+                            color: KColor.wxTextBlueColor, fontSize: 15),
                       ),
                     ),
                     Container(
@@ -280,7 +279,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                                 ),
                                 child: Image.asset(
                                   'assets/wechat/discover/ic_diandian.png',
-                                  color: KColor.kWeiXinTextBlueColor,
+                                  color: KColor.wxTextBlueColor,
                                 ),
                               ),
                               onTap: () => _clickCell(context, '评论'),
@@ -293,23 +292,23 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         ));
   }
 
-  //图片view
+  // 图片view
   Widget _imgs(context, item) {
     return Container(
         child: JhNinePicture(
       imgData: item['imgs'],
       lRSpace: (80.0 + 20.0),
       onLongPress: () {
-        print('objonLongPressect:');
+        print('onLongPress:');
 
         JhBottomSheet.showText(context, dataArr: ["保存图片"]);
       },
     ));
   }
 
-  //点击cell
+  // 点击cell
   _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 ${text}');
+    JhToast.showText(context, msg: '点击 $text');
   }
 
   _clickNav() {
@@ -320,7 +319,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   }
 
   _jumpInfo() {
-    //跳转个人信息页 跳转传递model
+    // 跳转个人信息页 跳转传递model
 
     ContactsModel model = ContactsModel();
     model.id = 123;
@@ -335,7 +334,6 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
     model.isStar = false;
 
     String jsonStr = Uri.encodeComponent(jsonEncode(model));
-    JhNavFluroUtils.pushNamed(
-        context, '${"WxUserInfoPage"}?passValue=${jsonStr}');
+    JhNavUtils.pushNamed(context, '${"WxUserInfoPage"}?passValue=$jsonStr');
   }
 }

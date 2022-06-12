@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/demos/demos_router.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/project/routes/jh_nav_utils.dart';
+import '/base_appbar.dart';
+import '/demos/demos_router.dart';
 
 class PassValuePage extends StatelessWidget {
   @override
@@ -24,11 +24,11 @@ class PassValuePage extends StatelessWidget {
 //              print("回传的值===="+value.toString());
 //            });
 
-//            JhNavFluroUtils.pushNamed(context, '${"PassValuePage2"}?passvalue=123&isScan=true');
+//            JhNavUtils.pushNamed(context, '${"PassValuePage2"}?passvalue=123&isScan=true');
 
             //跳转传递model可看two_page跳转个人信息
 
-            JhNavFluroUtils.pushNamedResult(
+            JhNavUtils.pushNamedResult(
                 context, '${"PassValuePage2"}?passvalue=123&isScan=true',
                     (value) {
                   print("回传的值====" + value.toString());

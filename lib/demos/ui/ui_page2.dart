@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import '/base_appbar.dart';
 
 class UIPage2 extends StatefulWidget {
   @override
@@ -33,13 +33,13 @@ class _UIPage2State extends State<UIPage2> {
                       value → bool - 切换按钮的值。
                     * */
               Switch(
-                //当前状态
+                // 当前状态
                 value: _switchSelected,
                 // 激活时原点颜色
                 activeColor: Colors.blue,
                 inactiveTrackColor: Colors.blue.shade50,
                 onChanged: (value) {
-                  //重新构建页面
+                  // 重新构建页面
                   setState(() {
                     _switchSelected = value;
                   });
@@ -92,7 +92,7 @@ class _UIPage2State extends State<UIPage2> {
                     * */
               Checkbox(
                 value: _checkboxSelected,
-                //选中时的颜色
+                // 选中时的颜色
                 activeColor: Colors.red,
                 onChanged: (bool? value) {
                   setState(() {

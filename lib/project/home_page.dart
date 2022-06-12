@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '/jh_common/utils/jh_image_utils.dart';
+import 'configs/strings.dart';
 import 'one/one_page.dart';
 import 'Two/two_page.dart';
 import 'Three/three_page.dart';
 import 'four/four_page.dart';
-import 'configs/strings.dart';
-import '../jh_common/utils/jh_image_utils.dart';
 
 class IndexPage extends StatefulWidget {
   @override

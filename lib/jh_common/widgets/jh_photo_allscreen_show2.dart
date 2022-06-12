@@ -4,13 +4,14 @@
  *  Created by iotjin on 2020/02/19.
  *  description:  图片全屏浏览2 推荐使用 JhPhotoBrowser
  */
+
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 const Color _selColor = Colors.white;
 const Color _otherColor = Colors.grey;
 
-// 底部显示小圆点
+/// 底部显示小圆点
 class NinePictureAllScreenShow<T> extends PopupRoute<T> {
   final String? barrierLabel;
   final List? picList;

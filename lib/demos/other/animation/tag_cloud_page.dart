@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import '../../../jh_common/widgets/tag_cloud_widget.dart';
+import '/base_appbar.dart';
+import '/jh_common/widgets/tag_cloud_widget.dart';
 
 var _data = [
   {"ID": "111", "name": "1.这是文字", "num": "11"},

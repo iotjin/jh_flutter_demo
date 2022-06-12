@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_button.dart';
-import 'package:jh_flutter_demo/project/base_tabbar.dart';
 import 'dart:io';
-import 'package:flutter/services.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_form.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
+import '/jh_common/jh_form/jh_keyboard_utils.dart';
+import '/jh_common/utils/jh_color_utils.dart';
+import '/jh_common/widgets/jh_button.dart';
+import '/project/routes/jh_nav_utils.dart';
+import '/project/base_tabbar.dart';
 
 class LoginPage_fei extends StatefulWidget {
   @override
@@ -21,11 +20,11 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
   final FocusNode _node1 = FocusNode();
   final FocusNode _node2 = FocusNode();
 
-  bool pwdShow = false; //密码是否显示明文
+  bool pwdShow = false; // 密码是否显示明文
   bool _nameAutoFocus = true;
 
-  bool? _isShowDelete; //右侧一键删除按钮
-  bool? _isShowDelete2; //右侧一键删除按钮
+  bool? _isShowDelete; // 右侧一键删除按钮
+  bool? _isShowDelete2; // 右侧一键删除按钮
 
   Color? logoColor;
 
@@ -40,7 +39,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
 
 //    _isShowDelete = !_nameController.text.isEmpty;
 //    _isShowDelete2 = !_pwdController.text.isEmpty;
-    /// 监听输入改变
+    // 监听输入改变
 //    _nameController.addListener(() {
 //      setState(() {
 //        _isShowDelete = !_nameController.text.isEmpty;
@@ -93,7 +92,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: KeyboardActions(
-      config: jhForm.getKeyboardConfig(context, [_node1, _node2]),
+      config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
       child: _mainBody(),
     ));
   }
@@ -112,7 +111,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                       child: InkWell(
                         child: Text("注册", style: TextStyle(fontSize: 18)),
                         onTap: () {
-                          JhNavFluroUtils.pushNamed(context, "RegisterPage");
+                          JhNavUtils.pushNamed(context, "RegisterPage");
                         },
                       )),
                 ),
@@ -230,7 +229,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                         '忘记密码',
                       ),
                       onTap: () =>
-                          JhNavFluroUtils.pushNamed(context, "FindPwdPage")),
+                          JhNavUtils.pushNamed(context, "FindPwdPage")),
                 ),
               ],
             ),

@@ -1,14 +1,10 @@
 import 'dart:convert';
-import 'dart:math';
-import 'package:azlistview/azlistview.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'package:azlistview/azlistview.dart';
 import 'package:lpinyin/lpinyin.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jh_flutter_demo/project/model/contacts_model.dart';
+import '/project/configs/project_config.dart';
+import '/project/model/contacts_model.dart';
 
 const Color bgColor = Colors.black87;
 const double radius = 3.0;
@@ -81,7 +77,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
       body: SafeArea(
         child: _body(),
       ),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 

@@ -4,14 +4,17 @@
  *  Created by iotjin on 2020/03/07.
  *  description:  iOS风格的弹框工具类
  */
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 
-//取消按钮的index 为 0 ,确认为 1
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// 取消按钮的index 为 0 ,确认为 1
 typedef _ClickCallBack = void Function(int selectIndex, String selectText);
 
 class JhAlert {
-  static void showAlert(@required BuildContext context,
+  /// Alert
+  /// 取消按钮的index 为 0 ,确认为 1
+  static void showAlert(BuildContext context,
       {String? title,
       String? content,
       String leftText = "取消",
@@ -37,7 +40,7 @@ class JhAlert {
 //              },
 //            ),
               FlatButton(
-                //取消
+                // 取消
                 child: Text(
                   leftText,
                   style: TextStyle(color: Colors.blueAccent),
@@ -50,7 +53,7 @@ class JhAlert {
                 },
               ),
               FlatButton(
-                //确认
+                // 确认
                 child: Text(
                   rightText,
                   style: TextStyle(color: Colors.blueAccent),
@@ -67,17 +70,15 @@ class JhAlert {
         });
   }
 
-  /**
-      index 从上往下 1，2，3，取消是0
-   */
-  static void showActionSheet(@required BuildContext context,
+  /// ActionSheet
+  /// index 从上往下 1，2，3，取消是0
+  static void showActionSheet(BuildContext context,
       {String? title,
       String? content,
       @required List<String>? otherBtnTitles,
       String? redBtnTitle,
       _ClickCallBack? clickCallback}) {
-
-    List<CupertinoActionSheetAction> otherBtns = [];
+    List<CupertinoActionSheetAction> otherButtons = [];
     for (int i = 1; i < otherBtnTitles!.length + 1; i++) {
       var w = CupertinoActionSheetAction(
         onPressed: () {
@@ -88,7 +89,7 @@ class JhAlert {
         },
         child: Text(otherBtnTitles[i - 1]),
       );
-      otherBtns.add(w);
+      otherButtons.add(w);
     }
 
     if (redBtnTitle != null) {
@@ -102,7 +103,7 @@ class JhAlert {
         child: Text(redBtnTitle),
         isDestructiveAction: true,
       );
-      otherBtns.insert(otherBtnTitles.length, w);
+      otherButtons.insert(otherBtnTitles.length, w);
     }
 
     if (title == null) {
@@ -110,9 +111,9 @@ class JhAlert {
         context: context,
         builder: (context) {
           return CupertinoActionSheet(
-            actions: otherBtns,
+            actions: otherButtons,
             cancelButton: CupertinoActionSheetAction(
-              //取消按钮
+              // 取消按钮
               onPressed: () {
                 Navigator.pop(context);
                 if (clickCallback != null) {
@@ -131,14 +132,13 @@ class JhAlert {
           builder: (context) {
             return CupertinoActionSheet(
               title: Offstage(
-                offstage: title == null ? true : false,
-                child: Text(title == null ? "" : title,
-                    style: TextStyle(fontSize: 20)),
+                offstage: false,
+                child: Text(title, style: TextStyle(fontSize: 20)),
               ),
               message: Text(content),
-              actions: otherBtns,
+              actions: otherButtons,
               cancelButton: CupertinoActionSheetAction(
-                //取消按钮
+                // 取消按钮
                 onPressed: () {
                   Navigator.pop(context);
                   if (clickCallback != null) {
@@ -156,12 +156,12 @@ class JhAlert {
           builder: (context) {
             return CupertinoActionSheet(
               title: Offstage(
-                offstage: title == null ? true : false,
-                child: Text(title == null ? "" : title),
+                offstage: false,
+                child: Text(title),
               ),
-              actions: otherBtns,
+              actions: otherButtons,
               cancelButton: CupertinoActionSheetAction(
-                //取消按钮
+                // 取消按钮
                 onPressed: () {
                   Navigator.pop(context);
                   if (clickCallback != null) {
@@ -178,16 +178,14 @@ class JhAlert {
   }
 }
 
-/**
-
+/*
     localizationsDelegates: [
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
     GlobalEasyRefreshLocalizations.delegate,
-    const FallbackCupertinoLocalisationsDelegate() //需要添加到mian里
-    ],
+    const FallbackCupertinoLocalisationsDelegate() // 需要添加到main里
 
- */
+* */
 
 class FallbackCupertinoLocalisationsDelegate
     extends LocalizationsDelegate<CupertinoLocalizations> {
@@ -209,9 +207,9 @@ class FallbackCupertinoLocalisationsDelegate
 //    context: context,
 //    builder: (context) {
 //      return CupertinoActionSheet(
-//              title:  Text('提示', style: TextStyle(fontSize: 22),), //标题
-//              message: Text('麻烦抽出几分钟对该软件进行评价，谢谢!'), //提示内容
-//              actions:<Widget>[ //操作按钮集合
+//              title:  Text('提示', style: TextStyle(fontSize: 22),), // 标题
+//              message: Text('麻烦抽出几分钟对该软件进行评价，谢谢!'), // 提示内容
+//              actions:<Widget>[ // 操作按钮集合
 //                CupertinoActionSheetAction(
 //                  onPressed: (){
 //                    Navigator.pop(context);
@@ -225,7 +223,7 @@ class FallbackCupertinoLocalisationsDelegate
 //                  child: Text('我要吐槽'),
 //                ),
 //              ],
-//        cancelButton: CupertinoActionSheetAction( //取消按钮
+//        cancelButton: CupertinoActionSheetAction( // 取消按钮
 //          onPressed: () {
 //            Navigator.pop(context);
 //          },

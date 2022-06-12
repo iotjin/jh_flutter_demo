@@ -6,22 +6,17 @@
  */
 
 import 'dart:convert';
-import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:azlistview/azlistview.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/project/two/wx/mh_index_bar.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:lpinyin/lpinyin.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/strings.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
-import 'package:jh_flutter_demo/project/model/contacts_model.dart';
+import '/jh_common/utils/jh_color_utils.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/project/configs/project_config.dart';
+import '/project/model/contacts_model.dart';
 
 const Color bgColor = Colors.black87;
 const double radius = 3.0;
@@ -85,10 +80,10 @@ class _TwoPageState extends State<TwoPage> {
         list[i].tagIndex = "#";
       }
     }
-    //根据A-Z排序
+    // 根据A-Z排序
     SuspensionUtil.sortListBySuspensionTag(_dataList);
 
-    //把星标移到最前
+    // 把星标移到最前
     _dataList.forEach((item) {
       if (item.isStar == true) {
         _dataList.remove(item);
@@ -113,10 +108,10 @@ class _TwoPageState extends State<TwoPage> {
       appBar: gradientAppBar(context, KString.twoTabTitle,
           rightImgPath: 'assets/images/tianjiahaoyou.png',
           rightItemCallBack: () {
-        JhNavFluroUtils.pushNamed(context, 'WxAddFriendPage');
+        JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }),
       body: _body(),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 
@@ -220,7 +215,7 @@ class _TwoPageState extends State<TwoPage> {
 
     Widget _searchBar = Container(
       decoration: new BoxDecoration(
-//        border: Border.all(color: Colors.grey, width: 0.3), //灰色的一层边框
+//        border: Border.all(color: Colors.grey, width: 0.3), // 灰色的一层边框
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
@@ -248,7 +243,7 @@ class _TwoPageState extends State<TwoPage> {
       width: JhScreen.width,
       padding: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
-        color: isFloat ? Colors.white : KColor.kWeiXinBgColor,
+        color: isFloat ? Colors.white : KColor.wxBgColor,
         border: isFloat
             ? Border(bottom: BorderSide(color: Color(0xFFE6E6E6), width: 0.5))
             : null,
@@ -259,7 +254,7 @@ class _TwoPageState extends State<TwoPage> {
         softWrap: false,
         style: TextStyle(
             fontSize: 18,
-            color: isFloat ? KColor.kWeiXinPayColor : Color(0xff777777),
+            color: isFloat ? KColor.wxPayColor : Color(0xff777777),
             fontWeight: FontWeight.bold),
       ),
     );
@@ -291,10 +286,10 @@ class _TwoPageState extends State<TwoPage> {
         ),
       ),
       clickCallBack: () {
-        //跳转个人信息页 跳转传递model
+        // 跳转个人信息页 跳转传递model
         String jsonStr = Uri.encodeComponent(jsonEncode(model));
-        JhNavFluroUtils.pushNamed(
-            context, '${"WxUserInfoPage"}?passValue=${jsonStr}');
+        JhNavUtils.pushNamed(
+            context, '${"WxUserInfoPage"}?passValue=$jsonStr');
       },
     );
 
@@ -306,7 +301,7 @@ class _TwoPageState extends State<TwoPage> {
 //        ),
         Slidable(
           child: _cell,
-          //右侧按钮列表
+          // 右侧按钮列表
           endActionPane: ActionPane(
             motion: const ScrollMotion(),
             extentRatio: 0.2,
@@ -350,12 +345,12 @@ class _TwoPageState extends State<TwoPage> {
   }
 
   void _clickCell(context, text) {
-    // JhToast.showText(context, msg: '点击 ${text}');
+    // JhToast.showText(context, msg: '点击 $text');
     if (text == '新的朋友') {
-      JhNavFluroUtils.pushNamed(context, 'WxNewFriendPage');
+      JhNavUtils.pushNamed(context, 'WxNewFriendPage');
     }
     if (text == '群聊') {
-      JhNavFluroUtils.pushNamed(context, 'WxGroupChatPage');
+      JhNavUtils.pushNamed(context, 'WxGroupChatPage');
     }
   }
 }

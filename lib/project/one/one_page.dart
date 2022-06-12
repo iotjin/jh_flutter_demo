@@ -5,17 +5,13 @@
  *  description: 首页
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
-import 'package:jhtoast/jhtoast.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_pop_menus.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_qr_code_utils.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/project/configs/strings.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import 'package:jhtoast/jhtoast.dart';
+import '/jh_common/utils/jh_qr_code_utils.dart';
+import '/jh_common/widgets/jh_pop_menus.dart';
+import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
@@ -95,7 +91,7 @@ List _dataArr = [
 class OnePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //1.首先先需要对控件进行渲染  初始化GlobalKey ：
+    // 1.首先先需要对控件进行渲染  初始化GlobalKey ：
     GlobalKey anchorKey = GlobalKey();
 
     return Scaffold(
@@ -103,14 +99,14 @@ class OnePage extends StatelessWidget {
           rightImgPath: 'assets/images/ic_nav_add.png',
           rightItemCallBack: () => _showPop(context)),
       body: _body(context, _dataArr),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
 
 //        appBar: AppBar(
 //          title:
 //              Text(KString.oneTabTitle, style: TextStyle(color: Colors.white)),
 //          elevation: 0.0,
 //          actions: <Widget>[
-//            //2.在需要测量的控件的下面添加key：
+//            // 2.在需要测量的控件的下面添加key：
 //            IconButton(
 //              key: anchorKey,
 //              icon: Image.asset(
@@ -119,14 +115,14 @@ class OnePage extends StatelessWidget {
 //                height: 26,
 //              ),
 //              onPressed: () {
-//                //3.获取控件的坐标：
-//                //控件的横坐标：offset.dx
-//                //控件的纵坐标：offset.dy
+//                // 3.获取控件的坐标：
+//                // 控件的横坐标：offset.dx
+//                // 控件的纵坐标：offset.dy
 //                RenderBox renderBox =
 //                    anchorKey.currentContext.findRenderObject();
 //                var offset = renderBox.localToGlobal(Offset.zero);
 //                print('控件的坐标：${offset}');
-//                //控件正下方的坐标：
+//                // 控件正下方的坐标：
 //                var offset2 =
 //                    renderBox.localToGlobal(Offset(0.0, renderBox.size.height));
 //                print('控件正下方的坐标：${offset2}');
@@ -154,11 +150,11 @@ class OnePage extends StatelessWidget {
 
     // 带分割线不带背景
     JhPopMenus.showLinePop(context, clickCallback: (index, selText) {
-      print('选中index: ${index}');
-      print('选中text: ${selText}');
+      print('选中index: $index');
+      print("选中text: $selText");
 
       if (selText == '添加朋友') {
-        JhNavFluroUtils.pushNamed(context, 'WxAddFriendPage');
+        JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }
       if (selText == '扫一扫') {
         _scan(context);
@@ -170,7 +166,7 @@ class OnePage extends StatelessWidget {
   Widget _body(context, dataArr) {
 //    return ListView.builder(
 //        itemCount: dataArr.length,
-//        itemExtent: 70.0, //强制高度为100.0
+//        itemExtent: 70.0, // 强制高度为100.0
 //        itemBuilder: (context, index) {
 //          return _cell(dataArr[index]);
 //        });
@@ -224,9 +220,9 @@ class OnePage extends StatelessWidget {
     );
     return SlidableAutoCloseBehavior(
         child: ListView.separated(
-      //列表项构造器
+      // 列表项构造器
       itemCount: dataArr.length,
-      //分割器构造器
+      // 分割器构造器
       separatorBuilder: (context, index) {
         return Divider(
           height: .5,
@@ -254,7 +250,7 @@ class OnePage extends StatelessWidget {
         return Slidable(
           key: Key(dataArr[index]['type']),
           child: _cell(context, dataArr[index]),
-          //右侧按钮列表
+          // 右侧按钮列表
           endActionPane: ActionPane(
 //            motion: const ScrollMotion(),
             motion: const DrawerMotion(),
@@ -333,17 +329,17 @@ class OnePage extends StatelessWidget {
 
   // 点击cell
   _clickCell(context, item) {
-    // JhToast.showText(context, msg: '点击 ${item['title']}');
+    // JhToast.showText(context, msg: '点击 $item['title']');
     if (item['title'] == 'Demo 列表') {
-      JhNavFluroUtils.pushNamed(context, 'DemoListsPage');
+      JhNavUtils.pushNamed(context, 'DemoListsPage');
     } else if (item['title'] == 'QQ邮箱提醒') {
-      JhNavFluroUtils.pushNamed(context, 'WxQQMessagePage');
+      JhNavUtils.pushNamed(context, 'WxQQMessagePage');
     } else if (item['title'] == '订阅号消息') {
-      JhNavFluroUtils.pushNamed(context, 'WxSubscriptionNumberPage');
+      JhNavUtils.pushNamed(context, 'WxSubscriptionNumberPage');
     } else if (item['title'] == '微信运动') {
-      JhNavFluroUtils.pushNamed(context, 'WxMotionPage');
+      JhNavUtils.pushNamed(context, 'WxMotionPage');
     } else {
-      JhNavFluroUtils.pushNamed(context, 'DemoListsPage');
+      JhNavUtils.pushNamed(context, 'DemoListsPage');
     }
   }
 

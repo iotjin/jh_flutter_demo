@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 class Point {
   double x, y, z;

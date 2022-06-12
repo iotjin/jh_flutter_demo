@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
-import 'package:jh_flutter_demo/project/login/pages/login_page.dart';
+import '/jh_common/utils/jh_screen_utils.dart';
+import '/project/login/pages/login_page.dart';
 
 class NewFeaturePage extends StatefulWidget {
   @override
@@ -24,7 +22,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
   ];
 
   List<Widget> _imgWidgets = [];
-  var _index = 0; //小圆点使用
+  var _index = 0; // 小圆点使用
 
   @override
   void initState() {
@@ -64,7 +62,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
           return _imgWidgets[index];
         } else {
           return Stack(
-            alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
+            alignment: Alignment.center, // 指定未定位或部分定位widget的对齐方式
             children: <Widget>[
               _imgWidgets[index],
               Positioned(
@@ -85,7 +83,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
       },
       // 点击事件 onTap
       onTap: (index) {
-        print('点击了第${index}');
+        print('点击了第$index');
       },
       // 分页指示器
       pagination: SwiperPagination(

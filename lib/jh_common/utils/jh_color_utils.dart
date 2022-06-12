@@ -5,15 +5,11 @@
  *  description:  颜色工具类
  */
 
-import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
 
-/*
-JhColorUtils.hexColor(0x3caafa)//透明度为1
-JhColorUtils.hexColor(0x3caafa,alpha: 0.5)//透明度为0.5
-* */
 class JhColorUtils {
-  /// 十六进制颜色，
+  /// 十六进制颜色设置
   /// hex, 十六进制值，例如：0xffffff,
   /// alpha, 透明度 [0.0,1.0]
   static Color hexIntColor(int hex, {double alpha = 1}) {
@@ -26,6 +22,7 @@ class JhColorUtils {
         (hex & 0x0000FF) >> 0, alpha);
   }
 
+  /// hex颜色设置
   static Color hexColor(String hexString) {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
@@ -33,7 +30,7 @@ class JhColorUtils {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
-  // 取随机颜色
+  /// 取随机颜色
   static Color randomColor() {
     var red = Random.secure().nextInt(255);
     var greed = Random.secure().nextInt(255);

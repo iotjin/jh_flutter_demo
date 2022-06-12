@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_top_tabbar.dart';
+import '/jh_common/widgets/jh_top_tabbar.dart';
 
 class TopTabBarTest1Page extends StatefulWidget {
   @override

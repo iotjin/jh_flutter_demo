@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_progress_hud.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
 import 'package:oktoast/oktoast.dart';
+import '/jh_common/widgets/jh_progress_hud.dart';
+import '/jh_common/widgets/jh_text_list.dart';
 
 class ToastDemoListsPage extends StatelessWidget {
   final List titleData = [
@@ -20,35 +19,33 @@ class ToastDemoListsPage extends StatelessWidget {
       title: "DemoLists",
       dataArr: titleData,
       callBack: (index, str) {
-//          print(index);
-
-//oktoast
+        // oktoast
         if (index == 0) {
-          /// error
+          // error
           showToast("hello world", radius: 2.0);
         }
         if (index == 1) {
-          /// error
+          // error
           _showCustomWidgetToast();
         }
         if (index == 2) {
-          /// error
+          // error
           JhProgressHUD.showLoadingText();
           Future.delayed(Duration(seconds: 5), () {
-            /// hide toast
+            // hide toast
             JhProgressHUD.hideHUD();
           });
         }
         if (index == 3) {
-          /// error
+          // error
           JhProgressHUD.showText("这是一条提示文字");
         }
         if (index == 4) {
-          /// error
+          // error
           JhProgressHUD.showSuccess("加载成功");
         }
         if (index == 5) {
-          /// error
+          // error
           JhProgressHUD.showError("加载失败");
         }
       },

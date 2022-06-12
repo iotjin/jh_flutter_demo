@@ -9,9 +9,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/jh_common/utils/jh_color_utils.dart';
+import '/project/configs/project_config.dart';
 
 class WxMotionTopPage extends StatefulWidget {
   @override
@@ -58,7 +57,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
     setState(() {});
   }
 
-  //滚动监听
+  // 滚动监听
   void _addListener() {
     _scrollController.addListener(() {
       double _y = _scrollController.offset;
@@ -75,11 +74,11 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
           _imgChangeHeight = _navH;
         });
       }
-//      //小于0 ，下拉放大
+//      // 小于0 ，下拉放大
 //      if (_y < 0) {
 //      } else {}
 
-      //appbar 透明度
+      // appbar 透明度
       double appBarOpacity = _y / _navH;
       if (appBarOpacity < 0) {
         appBarOpacity = 0.0;
@@ -87,7 +86,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
         appBarOpacity = 1.0;
       }
 
-      //更新透明度
+      // 更新透明度
       setState(() {
         _appbarOpacity = appBarOpacity;
         // print('_appbarO: ${_appbarOpacity}');
@@ -97,7 +96,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
 
   @override
   void dispose() {
-    //为了避免内存泄露，_scrollController.dispose
+    // 为了避免内存泄露，_scrollController.dispose
     _scrollController.dispose();
     super.dispose();
   }
@@ -162,7 +161,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
     ]);
   }
 
-  //cell
+  // cell
   Widget _cell(context, item) {
     return InkWell(
         onTap: () => _clickCell(context, item['name']),
@@ -208,7 +207,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
                             fontSize: 28,
                             color: item['steps'] > 10000
                                 ? Colors.orange
-                                : KColor.kWeiXinTextColor),
+                                : KColor.wxTextColor),
                       ),
                     ),
                   ),
@@ -228,7 +227,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
                             color: item['isStar'] ? Colors.red : Colors.grey,
                           ),
                           onTap: () {
-                            //点赞
+                            // 点赞
                             setState(() {
                               item['isStar'] = !item['isStar'];
                               if (item['isStar']) {
@@ -252,8 +251,8 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
         ));
   }
 
-  //点击cell
+  // 点击cell
   _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 ${text}');
+    JhToast.showText(context, msg: '点击 $text');
   }
 }

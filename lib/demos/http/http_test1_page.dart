@@ -1,11 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-
 //import 'package:dio_http_cache/dio_http_cache.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'dart:io';
-import 'dart:convert';
-import '../../data/apis.dart';
+import '/http/apis.dart';
+import '/base_appbar.dart';
 
 class HttpTest1Page extends StatefulWidget {
   @override

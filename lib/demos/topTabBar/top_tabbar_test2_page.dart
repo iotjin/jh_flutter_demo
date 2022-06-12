@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_top_tabbar.dart';
-import 'package:jh_flutter_demo/demos/listView/listview_test_simple_pull_down.dart';
-import 'package:jh_flutter_demo/demos/listView/listview_test_pull_down_vc.dart';
-import 'package:jh_flutter_demo/res/listData.dart';
+import '/jh_common/widgets/jh_top_tabbar.dart';
+import '/res/listData.dart';
 
 class TopTabBarTest2Page extends StatefulWidget {
   @override

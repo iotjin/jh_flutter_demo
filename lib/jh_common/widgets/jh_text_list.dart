@@ -4,12 +4,12 @@
  *  Created by iotjin on 2020/02/18.
  *  description:  带箭头文本列表
  */
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 const double _lfSpace = 10.0;
-const Color _lineColor = Color(0xFFE6E6E6); //230
+const Color _lineColor = Color(0xFFE6E6E6); // 230
 
 typedef _CallBack = void Function(int selectIndex, String selectStr);
 

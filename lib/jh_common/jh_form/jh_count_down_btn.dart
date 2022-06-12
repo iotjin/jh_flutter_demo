@@ -5,11 +5,11 @@
  *  description:  倒计时按钮
  */
 
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/material.dart';
 
-const int _normalTime = 10; //默认 倒计时时间
-const String _normalText = '获取验证码'; //默认 按钮文字
+const int _normalTime = 10; // 默认倒计时时间
+const String _normalText = '获取验证码'; // 默认按钮文字
 
 class JhCountDownBtn extends StatefulWidget {
   final Future<bool> Function()? getVCode;
@@ -65,13 +65,13 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
   Future _getVCode() async {
     if (widget.getVCode != null) {
       bool isSuccess = await widget.getVCode!();
-      if (isSuccess != null && isSuccess) {
+      if (isSuccess) {
         startCountdown();
       }
     }
   }
 
-  //开始倒计时
+  /// 开始倒计时
   void startCountdown() {
     setState(() {
       if (_countDownTimer != null) {
@@ -94,7 +94,7 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
     });
   }
 
-  //释放掉Timer
+  /// 释放掉Timer
   @override
   void dispose() {
     _countDownTimer?.cancel();

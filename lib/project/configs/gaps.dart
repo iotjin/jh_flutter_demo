@@ -5,9 +5,8 @@
  *  description:  间隔
  */
 
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'dimens.dart';
+import 'package:flutter/material.dart';
 
 class KGaps {
   /// 水平间隔

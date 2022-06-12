@@ -5,10 +5,9 @@
  *  description:
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/utils/jh_screen_utils.dart';
+import '/base_appbar.dart';
 
 class ImgPullDownBigPage2 extends StatefulWidget {
   @override
@@ -53,11 +52,11 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
           _imgChangeHeight = _navH;
         });
       }
-//      //小于0 ，下拉放大
+//      // 小于0 ，下拉放大
 //      if (_y < 0) {
 //      } else {}
 
-      //appbar 透明度
+      // appbar 透明度
       double appBarOpacity = _y / _navH;
       if (appBarOpacity < 0) {
         appBarOpacity = 0.0;
@@ -65,7 +64,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
         appBarOpacity = 1.0;
       }
 
-      ///更新透明度
+      // 更新透明度
       if (appBar != null && appBar!.updateAppBarOpacity != null) {
         appBar!.updateAppBarOpacity!(appBarOpacity);
       }
@@ -74,7 +73,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
 
   @override
   void dispose() {
-    //为了避免内存泄露，_scrollController.dispose
+    // 为了避免内存泄露，_scrollController.dispose
     _scrollController.dispose();
     super.dispose();
   }
@@ -147,14 +146,12 @@ class AppBarState extends State<AppBarWidget> {
 
   @override
   void initState() {
-    if (widget != null) {
-      print('AppBarState init');
-      widget.updateAppBarOpacity = (double op) {
-        setState(() {
-          opacity = op;
-        });
-      };
-    }
+    print('AppBarState init');
+    widget.updateAppBarOpacity = (double op) {
+      setState(() {
+        opacity = op;
+      });
+    };
 
     super.initState();
   }

@@ -1,13 +1,12 @@
 /**
- *  wx_pay_page.dart
+ *  wxPay_page.dart
  *
  *  Created by iotjin on 2020/08/27.
  *  description:  微信 支付界面
  */
 
 import 'package:flutter/material.dart';
-
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
@@ -114,13 +113,13 @@ class WxPayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KString.wx_pay,
+      appBar: backAppBar(context, KString.wxPay,
           rightImgPath: 'assets/images/ic_more_black.png',
           backgroundColor: Colors.transparent, rightItemCallBack: () {
-        JhNavFluroUtils.pushNamed(context, "WxPayManagerPage");
+        JhNavUtils.pushNamed(context, "WxPayManagerPage");
       }),
       body: _body(context),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 }
@@ -153,7 +152,7 @@ Widget _payCard() {
       // 阴影大小
       child: Container(
           height: 150,
-          color: KColor.kWeiXinPayColor,
+          color: KColor.wxPayColor,
           child: Row(
             children: <Widget>[
               Expanded(
@@ -184,7 +183,7 @@ Widget _payCard() {
                       Text('收付款',
                           style: TextStyle(color: Colors.white, fontSize: 16)),
                       SizedBox(height: 5),
-                      Text('¥${_money}',
+                      Text('¥$_money',
                           style: TextStyle(color: Colors.white, fontSize: 14)),
                     ],
                   ),
@@ -264,7 +263,7 @@ Widget item(List data, int index, context) {
     ),
     onTap: () {
       print(index);
-//        JhNavFluroUtils.pushNamed(context,  data[index]['pushName']);
+//        JhNavUtils.pushNamed(context,  data[index]['pushName']);
     },
   );
 }

@@ -5,9 +5,8 @@
  *  description:
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/utils/jh_screen_utils.dart';
 
 double _scrollMaxOffSet = 1000;
 
@@ -42,7 +41,7 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3>
 
   @override
   void dispose() {
-    //为了避免内存泄露，_scrollController.dispose
+    // 为了避免内存泄露，_scrollController.dispose
     _scrollController.dispose();
     super.dispose();
   }
@@ -66,7 +65,7 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3>
                   parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100,
               itemExtent: 50.0,
-              //强制高度为50.0
+              // 强制高度为50.0
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(title: Text("$index"));
               }),

@@ -6,26 +6,25 @@
  */
 
 import 'package:flutter/material.dart';
-
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_photo_browser.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/jh_common/widgets/jh_bottom_sheet.dart';
+import '/jh_common/widgets/jh_photo_browser.dart';
+import '/project/configs/project_config.dart';
 
 class WxPersonInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KString.wx_personInfo,
+      appBar: backAppBar(context, KString.wxPersonInfo,
           backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 }
 
-double _cellH = wx_cellH;
-double _rowSpace = wx_rowSpace;
+double _cellH = wxCellH;
+double _rowSpace = wxRowSpace;
 
 Widget _body(context) {
   return ListView(

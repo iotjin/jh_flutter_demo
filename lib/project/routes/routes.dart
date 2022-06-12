@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
 import 'package:fluro/fluro.dart';
 import 'router_init.dart';
 import 'not_found_page.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/base_web_view.dart';
-import 'package:jh_flutter_demo/project/base_tabbar.dart';
-import 'package:jh_flutter_demo/demos/demos_router.dart';
-import 'package:jh_flutter_demo/project/login/login_router.dart';
-import 'package:jh_flutter_demo/project/main_router.dart';
+import '/jh_common/widgets/base_web_view.dart';
+import '/project/base_tabbar.dart';
+import '/project/login/login_router.dart';
+import '/project/main_router.dart';
+import '/demos/demos_router.dart';
 
 final String home = '/';
 
@@ -42,6 +41,7 @@ class Routes {
     }));
 
     _listRouter.clear();
+
     // 各自路由由各自模块管理，统一在此添加初始化
     _listRouter.add(LoginRouter());
     _listRouter.add(DemosRouter());

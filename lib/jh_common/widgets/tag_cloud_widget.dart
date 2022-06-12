@@ -7,7 +7,6 @@
 
 import 'dart:math';
 import 'dart:ui';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +22,7 @@ const Color _shadowColor = Colors.yellow;
 const double _blurRadius = 10.0;
 const double _spreadRadius = 10.0;
 
-const double _RPM = 4; //旋转速度
+const double _RPM = 4; // 旋转速度
 
 const double _widgetWidth = 300;
 
@@ -35,7 +34,7 @@ class Point {
 }
 
 class TagCloudWidget extends StatefulWidget {
-  final double width, rpm; //rpm 每分钟圈数
+  final double width, rpm; // rpm 每分钟圈数
 
   final List dataArr;
 
@@ -51,22 +50,22 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
   AnimationController? animationController;
   List<Point>? points;
 
-  int pointsCount = 0; //标签数量
+  int pointsCount = 0; // 标签数量
 
-  double? radius, //球体半径
+  double? radius, // 球体半径
       angleDelta,
       prevAngle = 0.0;
-  Point rotateAxis = Point(0, 1, 0); //初始为Y轴
+  Point rotateAxis = Point(0, 1, 0); // 初始为Y轴
 
   @override
   void initState() {
     super.initState();
-    pointsCount = widget.dataArr.length; //标签数量
+    pointsCount = widget.dataArr.length; // 标签数量
     radius = widget.width / 2;
     points = _generateInitialPoints();
     animationController = new AnimationController(
       vsync: this,
-      //按rpm，转/每分来计算旋转速度
+      // 按rpm，转/每分来计算旋转速度
       duration: Duration(seconds: 60 ~/ widget.rpm),
     );
     rotationAnimation =
@@ -74,9 +73,9 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
           ..addListener(() {
             setState(() {
               var angle = rotationAnimation!.value;
-              angleDelta = angle - prevAngle!; //这段时间内旋转过的角度
+              angleDelta = angle - prevAngle!; // 这段时间内旋转过的角度
               prevAngle = angle;
-              //按angleDelta旋转标签到新的位置
+              // 按angleDelta旋转标签到新的位置
               _rotatePoints(points!, rotateAxis, angleDelta!);
             });
           });
@@ -101,8 +100,8 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
   }
 
   _generateInitialPoints() {
-    //生产初始点
-    var floatingOffset = 15; //漂浮距离，越大漂浮感越强
+    // 生产初始点
+    var floatingOffset = 15; // 漂浮距离，越大漂浮感越强
     var radius = widget.width / 2 + floatingOffset;
     List<Point> points = [];
     for (var i = 0; i < pointsCount; i++) {
@@ -130,10 +129,10 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
   }
 
   _rotatePoints(List<Point> points, Point axis, double angle) {
-    //罗德里格旋转矢量公式
-    //计算点 x,y,z 绕轴axis转动angle角度后的新坐标
+    // 罗德里格旋转矢量公式
+    // 计算点 x,y,z 绕轴axis转动angle角度后的新坐标
 
-    //预先缓存不变值，如sin，cos等，避免重复计算
+    // 预先缓存不变值，如sin，cos等，避免重复计算
     var a = axis.x,
         b = axis.y,
         c = axis.z,
@@ -174,18 +173,18 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
   _buildBody() {
     return GestureDetector(
       onPanUpdate: (dragUpdateDetails) {
-        //滑动球体改变旋转轴
-        //dx为滑动过的x轴距离，可有正负值
-        //dy为滑动过的y轴距离，可有正负值
+        // 滑动球体改变旋转轴
+        // dx为滑动过的x轴距离，可有正负值
+        // dy为滑动过的y轴距离，可有正负值
         var dx = dragUpdateDetails.delta.dx, dy = dragUpdateDetails.delta.dy;
-        //正则化，使轴向量长度为1
+        // 正则化，使轴向量长度为1
         var sqrtxy = sqrt(dx * dx + dy * dy);
-        //避免除0
+        // 避免除0
         if (sqrtxy > 4) rotateAxis = Point(-dy / sqrtxy, dx / sqrtxy, 0);
       },
       child: Stack(
         children: <Widget>[
-          //球体，添加了边界阴影
+          // 球体，添加了边界阴影
           Container(
               height: radius! * 2,
               decoration: BoxDecoration(
@@ -197,7 +196,7 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
                         blurRadius: _blurRadius,
                         spreadRadius: _spreadRadius),
                   ])),
-          //每个点
+          // 每个点
           CustomPaint(
             size: Size(radius! * 2, radius! * 2),
             painter: TagsPainter(points!, widget.dataArr),
@@ -251,10 +250,10 @@ class TagsPainter extends CustomPainter {
 
       //  正方形
 //      canvas.drawRect(Rect.fromCircle(center:Offset(point.x+text.width/2, point.y+20),radius:text.width/2), paintStyle);
-      //长方形
+      // 长方形
 //      canvas.drawRect(Rect.fromCenter(center:Offset(point.x+text.width/2, point.y+15),width: text.width,height: 50), paintStyle);
 
-      //圆角矩形
+      // 圆角矩形
       canvas.drawRRect(
           RRect.fromRectAndRadius(
               Rect.fromCenter(
@@ -272,13 +271,13 @@ class TagsPainter extends CustomPainter {
 
 double _getOpacity(double z) {
 //  根据z坐标设置透明度, 制造距离感
-  //在正面为1，背面最低0.1
+  // 在正面为1，背面最低0.1
   return z > 0 ? 1 : (1 + z) * 0.9 + 0.1;
 }
 
 double _getScale(double z) {
-  //使用z坐标设置标签大小，制造距离感
-  //从[-1,1]区间转移到[1/4,1]区间
-  //背面最小时为正面1/16大小
+  // 使用z坐标设置标签大小，制造距离感
+  // 从[-1,1]区间转移到[1/4,1]区间
+  // 背面最小时为正面1/16大小
   return z * 3 / 8 + 5 / 8;
 }

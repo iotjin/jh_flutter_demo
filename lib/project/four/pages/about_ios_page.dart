@@ -1,15 +1,12 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'dart:io';
-import 'dart:convert';
-
-import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info/package_info.dart';
-import 'package:device_info/device_info.dart';
-
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/click_item.dart';
-import '../../../jh_common/utils/jh_nav_router_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '/jh_common/utils/jh_nav_router_utils.dart';
+import '/jh_common/widgets/click_item.dart';
+import '/base_appbar.dart';
 
 class AboutIOSPage extends StatefulWidget {
   @override
@@ -17,15 +14,15 @@ class AboutIOSPage extends StatefulWidget {
 }
 
 class _AboutIOSPageState extends State<AboutIOSPage> {
-  var _CurrentVersion;
+  var _currentVersion;
   var _info = "";
-  var _isNeedUpate = false;
+  var _isNeedUpdate = false;
 
   @override
   void initState() {
     super.initState();
 
-    _getInfo(); //获取设备信息
+    _getInfo(); // 获取设备信息
     _getAPPStoreVersion();
   }
 
@@ -54,7 +51,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
 //    print('buildNumber ${buildNumber}');
 
     setState(() {
-      _CurrentVersion = packageInfo.version;
+      _currentVersion = packageInfo.version;
     });
   }
 
@@ -78,7 +75,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
           SizedBox(
             height: 20,
           ),
-          Text("Version：${_CurrentVersion}"),
+          Text("Version：$_currentVersion"),
           SizedBox(
             height: 50,
           ),
@@ -98,7 +95,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
               title: "版本更新",
               content: _info,
               onTap: () {
-                if (_isNeedUpate == true) {
+                if (_isNeedUpdate == true) {
                   _jumpAppStore();
                 }
               })
@@ -134,30 +131,30 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
 //    print('results#####--- ${data['results']}');
     print('version#####--- ${data['results'][0]['version']}');
 
-    var _APPStoreVersion = data['results'][0]['version'];
+    var _appStoreVersion = data['results'][0]['version'];
 
-    print('CurrentVersion:${_CurrentVersion}');
-    print('APPStoreVersion:${_APPStoreVersion}');
+    print('CurrentVersion:$_currentVersion');
+    print('APPStoreVersion:$_appStoreVersion');
     print('---------------------------------');
 
-//    _CurrentVersion ='7.0.10';
-//    print('CurrentVersion:${_CurrentVersion}');
+//    _currentVersion ='7.0.10';
+//    print('CurrentVersion:${_currentVersion}');
 
-    print(_CurrentVersion.compareTo(_APPStoreVersion)); // 比较大小, 0:相同、1:大于、-1:小于
+    print(_currentVersion.compareTo(_appStoreVersion)); // 比较大小, 0:相同、1:大于、-1:小于
 
-    if (_CurrentVersion.compareTo(_APPStoreVersion) < 0) {
+    if (_currentVersion.compareTo(_appStoreVersion) < 0) {
       print("提示更新");
 
       setState(() {
         _info = "有新版本,去更新";
-        _isNeedUpate = true;
+        _isNeedUpdate = true;
       });
     } else {
       print("不需要更新");
 
       setState(() {
         _info = "iOS已是最新版本";
-        _isNeedUpate = false;
+        _isNeedUpdate = false;
       });
     }
   }

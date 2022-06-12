@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
+import '/jh_common/widgets/jh_text_list.dart';
+import '/project/routes/jh_nav_utils.dart';
 
 class GridViewDemoListsPage extends StatelessWidget {
   final List titleData = [
@@ -25,8 +25,8 @@ class GridViewDemoListsPage extends StatelessWidget {
       dataArr: titleData,
       callBack: (index, str) {
         print(index);
-        JhNavFluroUtils.pushNamed(context, routeData[index]);
-//          JhNavFluroUtils.pushNamed(context, "GirdViewTest1");
+        JhNavUtils.pushNamed(context, routeData[index]);
+//          JhNavUtils.pushNamed(context, "GirdViewTest1");
       },
     );
   }

@@ -1,10 +1,10 @@
 import 'package:fluro/fluro.dart';
-import 'package:jh_flutter_demo/project/routes/router_init.dart';
+import '/project/routes/router_init.dart';
 
-import 'package:jh_flutter_demo/project/login/pages/login_page.dart';
-import 'package:jh_flutter_demo/project/login/pages/register_page.dart';
-import 'package:jh_flutter_demo/project/login/pages/find_pwd_page.dart';
-import 'package:jh_flutter_demo/project/login/pages/code_login_page.dart';
+import '/project/login/pages/login_page.dart';
+import '/project/login/pages/register_page.dart';
+import '/project/login/pages/find_pwd_page.dart';
+import '/project/login/pages/code_login_page.dart';
 
 class LoginRouter implements IRouterProvider {
   static String loginPage = 'LoginPage';

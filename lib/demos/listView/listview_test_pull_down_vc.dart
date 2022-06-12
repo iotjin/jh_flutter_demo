@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/ball_pulse_header.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:flutter_easyrefresh/delivery_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_easyrefresh/delivery_header.dart';
 import 'listview_test_custom_cell.dart';
+import '/base_appbar.dart';
 
 var dataArr;
-var pageIndex = 0; //页数
-var count = 10; //每页10条
+var pageIndex = 0; // 页数
+var count = 10; // 每页10条
 
 void getNewData() {
   pageIndex = 0;
@@ -20,7 +20,7 @@ void getNewData() {
     map["state"] = "流转中${i}";
     map["content"] =
         "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
-    map["phone"] = "${i}${i}${i}xxxxxxx";
+    map["phone"] = '$i$i$i' + 'xxxxxxx';
     map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     dataArr.add(map);
   }
@@ -35,7 +35,7 @@ void getMoreData() {
     map["state"] = "流转中${i}";
     map["content"] =
         "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
-    map["phone"] = "${i}${i}${i}xxxxxxx";
+    map["phone"] = '$i$i$i' + 'xxxxxxx';
     map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     dataArr.add(map);
   }

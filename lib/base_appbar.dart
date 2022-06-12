@@ -6,26 +6,26 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import 'project/configs/project_config.dart';
 
-const Color _navbgColor = Color(0xFF3BB815);
+const Color _navBgColor = Color(0xFF3BB815);
 const Color _titleColorWhite = Colors.white;
 const Color _titleColorBlack = Colors.black;
 const double _titleFontSize = 18.0;
 const double _textFontSize = 16.0;
-const double _itemSpace = 15.0; //右侧item内间距
-const double _imgWH = 22.0; //右侧图片wh
-const double _rightSpace = 5.0; //右侧item右间距
+const double _itemSpace = 15.0; // 右侧item内间距
+const double _imgWH = 22.0; // 右侧图片wh
+const double _rightSpace = 5.0; // 右侧item右间距
 const Brightness _brightness = Brightness.light;
 
-const Color appbarStartColor = Color(0xFF2683BE); //渐变开始色
-const Color appbarEndColor = Color(0xFF34CABE); //渐变结束色
+const Color appbarStartColor = Color(0xFF2683BE); // 渐变开始色
+const Color appbarEndColor = Color(0xFF34CABE); // 渐变结束色
 
-/*带返回箭头导航条*/
+// 带返回箭头导航条
 backAppBar(BuildContext context, String title,
     {String? rightText,
     String? rightImgPath,
-    Color backgroundColor = _navbgColor,
+    Color backgroundColor = _navBgColor,
     Brightness brightness = _brightness,
     Function? rightItemCallBack,
     Function? backCallBack}) {
@@ -42,7 +42,7 @@ backAppBar(BuildContext context, String title,
   );
 }
 
-/*带返回箭头的渐变导航条*/
+// 带返回箭头的渐变导航条
 backGradientAppBar(
   BuildContext context,
   String title, {
@@ -62,9 +62,7 @@ backGradientAppBar(
   );
 }
 
-/*
-* 渐变导航条
-* */
+// 渐变导航条
 gradientAppBar(
   BuildContext context,
   String title, {
@@ -104,12 +102,12 @@ gradientAppBar(
       ),
     ),
 //        preferredSize: Size(MediaQuery.of(context).size.width, 45),
-    preferredSize: Size.fromHeight(
-        kToolbarHeight + (bottom?.preferredSize?.height ?? 0.0)),
+    preferredSize:
+        Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0.0)),
   );
 }
 
-//baseAppBar
+// baseAppBar
 baseAppBar(
   BuildContext context,
   String title, {
@@ -117,7 +115,7 @@ baseAppBar(
   String? rightImgPath,
   Widget? leftItem,
   bool isBack: false,
-  Color backgroundColor = _navbgColor,
+  Color backgroundColor = _navBgColor,
   Brightness brightness = _brightness,
   double elevation: 0,
   PreferredSizeWidget? bottom,
@@ -126,7 +124,7 @@ baseAppBar(
 }) {
   Color _color = (backgroundColor == Colors.transparent ||
           backgroundColor == Colors.white ||
-          backgroundColor == KColor.kWeiXinBgColor)
+          backgroundColor == KColor.wxBgColor)
       ? _titleColorBlack
       : _titleColorWhite;
 

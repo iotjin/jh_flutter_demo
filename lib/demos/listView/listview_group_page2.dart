@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:sticky_headers/sticky_headers.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-
-import 'package:jh_flutter_demo/base_appbar.dart';
+import 'package:sticky_headers/sticky_headers.dart';
+import '/base_appbar.dart';
 
 List groupData = [
   {
@@ -214,8 +212,8 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
       var _width = MediaQuery.of(context).size.width;
       var _bgW = _width * 0.5;
       var _num = item['num'];
-      var libi = double.parse(_num) / double.parse(groupNum);
-//      print(libi);
+      var ratio = double.parse(_num) / double.parse(groupNum);
+//      print(ratio);
       return Container(
           color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 15),
@@ -227,12 +225,12 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
               LinearPercentIndicator(
                 width: _bgW,
                 lineHeight: 10.0,
-                percent: libi,
+                percent: ratio,
                 backgroundColor: Color(0xFFDCDCE6),
                 progressColor: Colors.red,
               ),
               SizedBox(width: 8),
-              Text('${_num}次', style: TextStyle(color: Colors.grey)),
+              Text('$_num次', style: TextStyle(color: Colors.grey)),
             ],
           ));
     }).toList();

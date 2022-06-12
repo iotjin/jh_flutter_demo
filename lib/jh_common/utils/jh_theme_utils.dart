@@ -1,9 +1,8 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'jh_device_utils.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
+import '/project/configs/colors.dart';
 
 class JhThemeUtils {
   static bool isDark(BuildContext context) {

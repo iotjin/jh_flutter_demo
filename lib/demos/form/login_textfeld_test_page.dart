@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
 import 'package:flutter/services.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_button.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_count_down_btn.dart';
+import '/jh_common/jh_form/jh_count_down_btn.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/jh_common/widgets/jh_button.dart';
+import '/base_appbar.dart';
 
 class LoginTextFieldTestPage extends StatefulWidget {
   @override
@@ -123,14 +123,14 @@ class _LoginTextFieldTestPageState extends State<LoginTextFieldTestPage> {
                     }),
               ),
               SizedBox(height: 10),
-              JhButton(text: "登 录", onPressed: () => _ClickOkBtn(context)),
+              JhButton(text: "登 录", onPressed: () => _clickOkBtn(context)),
               SizedBox(height: 50),
             ],
           ),
         ))));
   }
 
-  void _ClickOkBtn(context) {
+  void _clickOkBtn(context) {
     print('name =$_name');
     print('pwd =$_pwd');
   }

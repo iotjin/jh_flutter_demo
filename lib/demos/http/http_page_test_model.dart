@@ -1,5 +1,3 @@
-/*model*/
-
 class WorkOrderModel {
   var ID;
   String? place;

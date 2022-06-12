@@ -31,7 +31,7 @@ class ClickItem extends StatelessWidget {
           bottom: Divider.createBorderSide(context, width: 0.6),
         )),
         child: Row(
-          //为了数字类文字居中
+          // 为了数字类文字居中
           crossAxisAlignment: maxLines == 1
               ? CrossAxisAlignment.center
               : CrossAxisAlignment.start,

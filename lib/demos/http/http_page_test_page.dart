@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import 'package:dio/dio.dart';
+// import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter_easyrefresh/delivery_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
 import 'http_page_test_model.dart';
 import 'http_page_test_item.dart';
-import 'package:dio/dio.dart';
-
-//import 'package:dio_http_cache/dio_http_cache.dart';
-import 'package:jh_flutter_demo/data/data_utils.dart';
+import '/data/data_utils.dart';
+import '/base_appbar.dart';
 
 var dataArr;
-var pageIndex = 0; //页数
+var pageIndex = 0; // 页数
 
 class HttpPageTestPage extends StatefulWidget {
   @override
@@ -77,7 +75,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
 
   void getNewData() {
     pageIndex = 0;
-    print("pageIndex- ${pageIndex}");
+    print("pageIndex- $pageIndex");
     DataUtils.getPageList({"page": pageIndex, "limit": 10}, success: (result) {
       dataArr = result['data'];
       setState(() {
@@ -90,7 +88,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
 
   void getMoreData() {
     pageIndex++;
-    print("more pageIndex- ${pageIndex}");
+    print("more pageIndex- $pageIndex");
 //    var response = await dio.post(url, data: {
 //      "page": pageIndex,
 //    });
@@ -138,7 +136,7 @@ Widget _cell(var dataCount) {
         return HttPageTestItem(
           data: model,
           onTap: () {
-            print("点击的index ${index}");
+            print("点击的index $index");
             print("点击的地点" + model.place!);
           },
         );

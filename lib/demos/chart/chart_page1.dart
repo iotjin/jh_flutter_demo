@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import '/base_appbar.dart';
 
 class ChartPage1 extends StatefulWidget {
   @override
@@ -47,9 +47,9 @@ class _ChartPage1State extends State<ChartPage1> {
         id: "Lines",
       )
     ];
-    //是TimeSeriesChart，而不是LineChart,因为x轴是DataTime类
+    // 是TimeSeriesChart，而不是LineChart,因为x轴是DataTime类
     Widget line = charts.TimeSeriesChart(seriesLine);
-    //line = charts.LineChart(series);
+    // line = charts.LineChart(series);
     return line;
   }
 

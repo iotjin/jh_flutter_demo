@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 List groupData = [
   {

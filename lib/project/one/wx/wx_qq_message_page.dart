@@ -7,8 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
@@ -39,7 +38,7 @@ class WxQQMessagePage extends StatelessWidget {
       children: <Widget>[
         ListView.builder(
             itemCount: _dataArr.length,
-//            itemExtent: 150.0, //强制高度为100.0
+//            itemExtent: 150.0, // 强制高度为100.0
             itemBuilder: (context, index) {
               return _cell(context, dataArr[index]);
             }),
@@ -53,16 +52,16 @@ class WxQQMessagePage extends StatelessWidget {
     );
   }
 
-  //cell
+  // cell
   Widget _cell(context, item) {
     return Card(
         margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-        //设置圆角
+        // 设置圆角
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         // 抗锯齿
         clipBehavior: Clip.antiAlias,
-        //普通的边
+        // 普通的边
 //    shape: Border.all(color: Colors.yellow, width: 5.0),
         elevation: 3,
         // 阴影大小
@@ -78,9 +77,9 @@ class WxQQMessagePage extends StatelessWidget {
         ));
   }
 
-  //点击cell
+  // 点击cell
   _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 ${text}');
+    JhToast.showText(context, msg: '点击 $text');
   }
 
   _bottomView(context, dataArr) {

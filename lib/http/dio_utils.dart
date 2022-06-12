@@ -6,166 +6,194 @@
  */
 
 import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:connectivity/connectivity.dart';
-
-import '../data/apis.dart';
-import 'log_utils.dart';
+import 'package:dio/dio.dart';
+import 'apis.dart';
 import 'error_handle.dart';
+import 'log_utils.dart';
 
-const int _connectTimeout = 15000; //15s
-const int _receiveTimeout = 15000;
-const int _sendTimeout = 10000;
+/// 默认dio配置
+String _baseUrl = APIs.apiPrefix;
+int _connectTimeout = 15000; // 15s
+int _receiveTimeout = 15000;
+int _sendTimeout = 10000;
+List<Interceptor> _interceptors = [];
 
-typedef Success<T> = Function(T data);
-typedef Fail = Function(int code, String msg);
-//typedef SuccessListCallback<T> = Function(List<T> data);
+typedef NetSuccessCallback<T> = Function(T data);
+typedef NetSuccessListCallback<T> = Function(List<T> data);
+typedef NetErrorCallback = Function(int code, String msg);
 
-class DioUtils {
-  // default options
-  static const String TOKEN = '';
-
-  static Dio? _dio;
-
-  // 创建 dio 实例对象
-  static Dio createInstance() {
-    if (_dio == null) {
-      /// 全局属性：请求前缀、连接超时时间、响应超时时间
-      var options = BaseOptions(
-
-        /// 请求的Content-Type，默认值是"application/json; charset=utf-8".
-        /// 如果您想以"application/x-www-form-urlencoded"格式编码请求数据,
-        /// 可以设置此选项为 `Headers.formUrlEncodedContentType`,  这样[Dio]就会自动编码请求体.
-//        contentType: Headers.formUrlEncodedContentType, // 适用于post form表单提交
-        responseType: ResponseType.json,
-        validateStatus: (status) {
-          // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
-          return true;
-        },
-        baseUrl: APIs.apiPrefix,
-        headers: httpHeaders,
-        connectTimeout: _connectTimeout,
-        receiveTimeout: _receiveTimeout,
-        sendTimeout: _sendTimeout,
-      );
-      _dio = new Dio(options);
-    }
-    return _dio!;
-  }
-
-  // 清空 dio 对象
-  static clear() {
-    _dio = null;
-  }
-
-  // 请求，返回参数为 T
-  // method：请求方法，Method.POST等
-  // path：请求地址
-  // params：请求参数
-  // success：请求成功回调
-  // error：请求失败回调
-  static Future request<T>(Method method, String path, dynamic params,
-      {Success? success, Fail? fail}) async {
-    try {
-      //没有网络
-      var connectivityResult = await (new Connectivity().checkConnectivity());
-      if (connectivityResult == ConnectivityResult.none) {
-        _onError(ExceptionHandle.net_error, '网络异常，请检查你的网络！', fail!);
-        return;
-      }
-      Dio _dio = createInstance();
-      var data;
-      var queryParameters;
-      if (method == Method.GET) {
-        queryParameters = params;
-      }
-      if (method == Method.POST) {
-        data = params;
-      }
-      Response response = await _dio.request(path,
-          data: data,
-          queryParameters: queryParameters,
-          options: Options(method: MethodValues[method]));
-      if (response != null) {
-        if (success != null) {
-          success(response.data);
-        }
-      } else {
-        _onError(ExceptionHandle.unknown_error, '未知错误', fail!);
-      }
-    } on DioError catch (e) {
-//      LogUtils.print_('请求出错：' + e.toString());
-      final NetError netError = ExceptionHandle.handleException(e);
-      _onError(netError.code, netError.msg, fail!);
-    }
-  }
-
-//  //Post请求
-//  static Future post<T>(
-//    String url, {
-//    parameters,
-//    Function(T) success,
-//    Function(String error) fail,
-//  }) async {
-//    //请求参数
-//    parameters = parameters ?? {};
-//    //参数处理
-////    LogUtils.d("--------- parameters ---------");
-////    LogUtils.d("$parameters");
-//    try {
-//      Response response;
-//      Dio dio = createInstance();
-//      response = await dio.post(url, data: parameters);
-////      LogUtils.d("--------- response ---------");
-////      LogUtils.d('$response');
-////      LogUtils.print_(response.toString());
-//      var responseData = response.data;
-//      if (responseData['code'] == 200) {
-//        if (success != null) {
-//          success(responseData['data']);
-//        }
-//      } else {
-//        throw Exception('erroMsg:${responseData['msg']}');
-//      }
-//    } catch (e) {
-//      LogUtils.d('请求出错：' + e.toString());
-//      fail(e.toString());
-//    }
-//  }
-
+/// 初始化Dio配置
+void configDio({
+  int? connectTimeout,
+  int? receiveTimeout,
+  int? sendTimeout,
+  String? baseUrl,
+  List<Interceptor>? interceptors,
+}) {
+  _connectTimeout = connectTimeout ?? _connectTimeout;
+  _receiveTimeout = receiveTimeout ?? _receiveTimeout;
+  _sendTimeout = sendTimeout ?? _sendTimeout;
+  _baseUrl = baseUrl ?? _baseUrl;
+  _interceptors = interceptors ?? _interceptors;
 }
 
-/// 自定义Header
-Map<String, dynamic> httpHeaders = {
-  'Accept': 'application/json,*/*',
-  'Content-Type': 'application/json',
-  'token': DioUtils.TOKEN
-};
+class DioUtils {
+  factory DioUtils() => _singleton;
 
-void _onError(int code, String msg, Fail fail) {
+  DioUtils._() {
+    // 全局属性：请求前缀、连接超时时间、响应超时时间
+    final BaseOptions options = BaseOptions(
+      ///请求的Content-Type，默认值是"application/json; charset=utf-8".
+      ///如果您想以"application/x-www-form-urlencoded"格式编码请求数据,
+      ///可以设置此选项为 “Headers.formUrlEncodedContentType”,  这样[Dio]就会自动编码请求体.
+      ///contentType: Headers.formUrlEncodedContentType, // 适用于post form表单提交
+
+      responseType: ResponseType.json,
+      validateStatus: (status) {
+        // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
+        return true;
+      },
+      baseUrl: _baseUrl,
+      headers: _httpHeaders,
+      connectTimeout: _connectTimeout,
+      receiveTimeout: _receiveTimeout,
+      sendTimeout: _sendTimeout,
+    );
+
+    _dio = Dio(options);
+
+    /// Fiddler抓包代理配置
+//    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+//        (HttpClient client) {
+//      client.findProxy = (uri) {
+//        //proxy all request to localhost:8888
+//        return 'PROXY localhost:8888';
+//      };
+//      // 抓Https包设置
+//      client.badCertificateCallback =
+//          (X509Certificate cert, String host, int port) => true;
+//    };
+
+    /// 添加拦截器
+    void addInterceptor(Interceptor interceptor) {
+      _dio.interceptors.add(interceptor);
+    }
+
+    _interceptors.forEach(addInterceptor);
+  }
+
+  static final DioUtils _singleton = DioUtils._();
+
+  static DioUtils get instance => DioUtils();
+
+  static late Dio _dio;
+
+  Dio get dio => _dio;
+
+  Future request<T>(
+    Method method,
+    String url, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    NetSuccessCallback? onSuccess,
+    NetErrorCallback? onError,
+    CancelToken? cancelToken,
+    Options? options,
+  }) async {
+    try {
+      // 没有网络
+      var connectivityResult = await (new Connectivity().checkConnectivity());
+      if (connectivityResult == ConnectivityResult.none) {
+        _onError(ExceptionHandle.net_error, '网络异常，请检查你的网络！', onError);
+        return;
+      }
+      final Response response = await _dio.request<T>(
+        url,
+        data: data,
+        queryParameters: queryParameters,
+        options: _checkOptions(MethodValues[method], options),
+        cancelToken: cancelToken,
+      );
+      onSuccess?.call(response.data);
+    } on DioError catch (e) {
+      final NetError error = ExceptionHandle.handleException(e);
+      _onError(error.code, error.msg, onError);
+    }
+  }
+
+  void asyncRequest<T>(
+    Method method,
+    String url, {
+    NetSuccessCallback? onSuccess,
+    NetErrorCallback? onError,
+    Object? params,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+    Options? options,
+  }) {
+    Stream.fromFuture(request<T>(
+      method,
+      url,
+      data: params,
+      queryParameters: queryParameters,
+      options: options,
+      cancelToken: cancelToken,
+    )).asBroadcastStream().listen((result) {
+      if (result.code == 0) {
+        if (onSuccess != null) {
+          onSuccess(result.data);
+        }
+      } else {
+        _onError(result.code, result.message, onError);
+      }
+    }, onError: (dynamic e) {
+      _cancelLogPrint(e, url);
+      final NetError error = ExceptionHandle.handleException(e);
+      _onError(error.code, error.msg, onError);
+    });
+  }
+}
+
+Options _checkOptions(String? method, Options? options) {
+  options ??= Options();
+  options.method = method;
+  return options;
+}
+
+void _cancelLogPrint(dynamic e, String url) {
+  if (e is DioError && CancelToken.isCancel(e)) {
+    LogUtils.e('取消请求接口： $url');
+  }
+}
+
+void _onError(int? code, String msg, NetErrorCallback? onError) {
   if (code == null) {
     code = ExceptionHandle.unknown_error;
     msg = '未知异常';
   }
-  LogUtils.print_('接口请求异常： code: $code, msg: $msg');
-  if (fail != null) {
-    fail(code, msg);
-  }
+  LogUtils.e('接口请求异常： code: $code, mag: $msg');
+  onError?.call(code, msg);
 }
+
+/// 自定义Header
+Map<String, dynamic> _httpHeaders = {
+  'Accept': 'application/json,*/*',
+  'Content-Type': 'application/json',
+};
 
 Map<String, dynamic> parseData(String data) {
   return json.decode(data) as Map<String, dynamic>;
 }
 
-enum Method { GET, POST, DELETE, PUT, PATCH, HEAD }
+enum Method { get, post, put, patch, delete, head }
 
-//使用：MethodValues[Method.POST]
+/// 使用：MethodValues[Method.post]
 const MethodValues = {
-  Method.GET: "get",
-  Method.POST: "post",
-  Method.DELETE: "delete",
-  Method.PUT: "put",
-  Method.PATCH: "patch",
-  Method.HEAD: "head",
+  Method.get: 'get',
+  Method.post: 'post',
+  Method.delete: 'delete',
+  Method.put: 'put',
+  Method.patch: 'patch',
+  Method.head: 'head',
 };

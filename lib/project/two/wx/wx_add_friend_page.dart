@@ -7,9 +7,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
@@ -51,7 +50,7 @@ class WxAddFriendPage extends StatelessWidget {
     return Scaffold(
       appBar: backAppBar(context, '添加朋友', backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.kWeiXinBgColor,
+      backgroundColor: KColor.wxBgColor,
     );
   }
 
@@ -97,7 +96,7 @@ class WxAddFriendPage extends StatelessWidget {
     );
   }
 
-  //cell
+  // cell
   Widget _cell(context, item) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -114,7 +113,7 @@ class WxAddFriendPage extends StatelessWidget {
                 ))),
                 title: Text(
                   item['title'],
-                  style: TextStyle(color: KColor.kWeiXinTextBlueColor),
+                  style: TextStyle(color: KColor.wxTextBlueColor),
                 ),
                 subtitle: Text(
                   item['subtitle'],
@@ -125,8 +124,8 @@ class WxAddFriendPage extends StatelessWidget {
     );
   }
 
-  //点击cell
+  // 点击cell
   _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 ${text}');
+    JhToast.showText(context, msg: '点击 $text');
   }
 }

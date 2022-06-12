@@ -9,12 +9,12 @@ import 'package:azlistview/azlistview.dart';
 
 class ContactsModel extends ISuspensionBean {
   int? id;
-  String? name; //昵称
+  String? name; // 昵称
   String? tagIndex;
   String? namePinyin;
   String? phone;
   String? avatarUrl;
-  String? sex; //0男，1女
+  String? sex; // 0男，1女
   String? region;
   String? label;
   String? color;

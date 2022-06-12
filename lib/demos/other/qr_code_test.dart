@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_qr_code_utils.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import '/jh_common/utils/jh_qr_code_utils.dart';
+import '/base_appbar.dart';
 
 class QRCodeTest extends StatefulWidget {
   @override
@@ -40,7 +39,7 @@ class _QRCodeTestState extends State<QRCodeTest> {
             SizedBox(
               height: 50,
             ),
-            //生成二维码
+            // 生成二维码
             JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100,
                 foregroundColor: Colors.yellow),
             JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100,

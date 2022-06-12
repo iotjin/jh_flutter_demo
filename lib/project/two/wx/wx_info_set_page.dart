@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 /**
  *  wx_info_set_page.dart
  *
@@ -6,12 +5,12 @@ import 'package:flutter/cupertino.dart';
  *  description: 资料设置
  */
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/model/contacts_model.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_set_cell.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/jh_common/jh_form/jh_set_cell.dart';
+import '/project/configs/project_config.dart';
+import '/project/model/contacts_model.dart';
 
 class WxInfoSetPage extends StatefulWidget {
   final ContactsModel? _passValue;
@@ -43,8 +42,8 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
   }
 
   Widget _body(context) {
-    double _cellH = wx_cellH;
-    double _rowSpace = wx_rowSpace;
+    double _cellH = wxCellH;
+    double _rowSpace = wxRowSpace;
 
     return ListView(
       children: <Widget>[
@@ -128,6 +127,6 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
   }
 
   void _clickCell(context, title) {
-    JhToast.showText(context, msg: '点击 ${title}');
+    JhToast.showText(context, msg: '点击 $title');
   }
 }

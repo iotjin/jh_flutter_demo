@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 import 'jh_photo_browser.dart';
 
 const double _itemSpace = 5.0;
-const double _space = 5.0; //上下左右间距
+const double _space = 5.0; // 上下左右间距
 
 class JhNinePicture extends StatelessWidget {
   final List? imgData;
-  final double lRSpace; //外部设置的左右间距
+  final double lRSpace; // 外部设置的左右间距
   final GestureTapCallback? onLongPress;
   bool isHandleFour;
 
@@ -66,16 +66,16 @@ class JhNinePicture extends StatelessWidget {
         height: _bgHeight,
         child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //可以直接指定每行（列）显示多少个Item
-              crossAxisCount: _crossAxisCount, //一行的Widget数量
-              crossAxisSpacing: _itemSpace, //水平间距
-              mainAxisSpacing: _itemSpace, //垂直间距
-              childAspectRatio: _childAspectRatio, //子Widget宽高比例
+              // 可以直接指定每行（列）显示多少个Item
+              crossAxisCount: _crossAxisCount, // 一行的Widget数量
+              crossAxisSpacing: _itemSpace, // 水平间距
+              mainAxisSpacing: _itemSpace, // 垂直间距
+              childAspectRatio: _childAspectRatio, // 子Widget宽高比例
             ),
             physics: NeverScrollableScrollPhysics(),
-            //禁用滚动事件
+            // 禁用滚动事件
             padding: EdgeInsets.all(_space),
-            //GridView内边距
+            // GridView内边距
             itemCount: imgData!.length,
             itemBuilder: (context, index) {
               return _itemCell(context, index);
@@ -112,9 +112,9 @@ class JhNinePicture extends StatelessWidget {
     );
   }
 
-  //点击cell，展示全图
+  // 点击cell，展示全图
   _clickItemCell(context, index) {
-    //FadeRoute是自定义的切换过度动画（渐隐渐现） 如果不需要 可以使用默认的MaterialPageRoute
+    // FadeRoute是自定义的切换过度动画（渐隐渐现） 如果不需要 可以使用默认的MaterialPageRoute
     Navigator.of(context).push(new FadeRoute(
       page: JhPhotoBrowser(
         imgDataArr: imgData!,

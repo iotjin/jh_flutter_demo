@@ -4,23 +4,17 @@
  *  Created by iotjin on 2020/04/09.
  *  description:  验证码登录
  */
-import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/routes/routes.dart';
-import 'package:jh_flutter_demo/project/routes/routes_old.dart';
 
+import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_keyboard_utils.dart';
-
-//import 'package:jh_flutter_demo/jh_common/jh_form/jh_form_Input_cell.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_login_textfield.dart';
-import 'package:jh_flutter_demo/jh_common/jh_form/jh_count_down_btn.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_button.dart';
-
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/base_tabbar.dart';
-import 'package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart';
+import '/jh_common/jh_form/jh_keyboard_utils.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/jh_common/jh_form/jh_count_down_btn.dart';
+import '/jh_common/widgets/jh_button.dart';
+import '/project/routes/jh_nav_utils.dart';
+import '/project/routes/routes.dart';
+import '/base_appbar.dart';
 
 class CodeLoginPage extends StatefulWidget {
   @override
@@ -77,7 +71,7 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
                     }),
                 inputCallBack: (value) => _code = value),
             SizedBox(height: 50),
-            JhButton(text: "登 录", onPressed: _ClickOkBtn),
+            JhButton(text: "登 录", onPressed: _clickOkBtn),
             SizedBox(height: 15),
           ],
         ),
@@ -85,7 +79,7 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
     );
   }
 
-  void _ClickOkBtn() async {
+  void _clickOkBtn() async {
     print('_phone =$_phone');
     print('_code =$_code');
 
@@ -97,7 +91,7 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
 //      Navigator.pushReplacement(context,
 //          MaterialPageRoute(builder: (context) => (BaseTabBar()
 //          )));
-      JhNavFluroUtils.pushReplacement(context, Routes.home);
+      JhNavUtils.pushReplacement(context, Routes.home);
       hide();
     });
   }

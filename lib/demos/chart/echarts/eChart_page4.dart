@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_echarts/flutter_echarts.dart';
-
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 class EChartPage4 extends StatefulWidget {
   @override
@@ -213,10 +211,10 @@ class _EChartPage4State extends State<EChartPage4> {
     var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
     return Scaffold(
-        appBar: backAppBar(context, 'EChart4 - 渐变折线图'), body: _Scrollbar());
+        appBar: backAppBar(context, 'EChart4 - 渐变折线图'), body: _scrollbar());
   }
 
-  Widget _Scrollbar() {
+  Widget _scrollbar() {
     return Scrollbar(
         child: SingleChildScrollView(
       child: Column(

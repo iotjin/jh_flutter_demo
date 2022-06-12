@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
-import "package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart";
-import "package:jh_flutter_demo/project/routes/routes.dart" as Luyou;
-import "package:jh_flutter_demo/project/routes/jh_nav_fluro_utils.dart";
+import "/jh_common/widgets/jh_text_list.dart";
+import "/project/routes/jh_nav_utils.dart";
 
 class DemoListsPage extends StatelessWidget {
   final List titleData = [
@@ -58,8 +57,7 @@ class DemoListsPage extends StatelessWidget {
 //          print(index);
         print(str);
 //          print(routeData[index]);
-//        JhNavFluroUtils.pushNamed(context, routeData[index]);
-        JhNavFluroUtils.pushNamed(context, routeData[index]);
+        JhNavUtils.pushNamed(context, routeData[index]);
       },
     );
   }

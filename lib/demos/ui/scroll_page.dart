@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/project/configs/project_config.dart';
 
 const Color bgColor = Colors.black87;
 const double radius = 3.0;
@@ -44,7 +41,7 @@ class ScrollPage extends StatelessWidget {
     return Scaffold(
         appBar: baseAppBar(context, 'ScrollPage'),
         body: BaseScrollView(),
-        backgroundColor: KColor.kWeiXinBgColor);
+        backgroundColor: KColor.wxBgColor);
   }
 }
 

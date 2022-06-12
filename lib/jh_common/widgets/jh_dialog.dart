@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 
 class JhDialog {
-  //中间弹框
+  /// 中间弹框
   static void show(
     BuildContext context, {
     String title: "",
@@ -40,7 +40,7 @@ class JhDialog {
         });
   }
 
-  //自定义弹框
+  /// 自定义弹框
   static void showCustomDialog(
     BuildContext context, {
     String title: "",
@@ -66,7 +66,7 @@ class JhDialog {
         });
   }
 
-  //完全自定义弹框
+  /// 完全自定义弹框
   static void showAllCustomDialog(
     BuildContext context, {
     Widget? child,
@@ -217,7 +217,7 @@ class _CustomDialog extends Dialog {
   _CustomDialog({
     Key? key,
     this.child,
-    this.clickBgHidden: false, //点击背景隐藏，默认不隐藏
+    this.clickBgHidden: false, // 点击背景隐藏，默认不隐藏
   }) : super(key: key);
 
   final Widget? child;
@@ -236,9 +236,8 @@ class _CustomDialog extends Dialog {
               }
             },
           ),
-          //内容
+          // 内容
           Center(child: child)
-//          child
         ],
       ),
     );

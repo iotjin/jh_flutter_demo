@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 class ListViewHeaderPage extends StatelessWidget {
 // 列表项

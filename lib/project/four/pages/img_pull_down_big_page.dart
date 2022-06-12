@@ -17,7 +17,7 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
   double imgHeight = 200;
   double imgExtraHeight = 0;
   double imgMaxHeight = 400;
-  double? prev_dy;
+  double? prevDy;
   AnimationController? animationController;
   Animation<double>? anim;
 
@@ -26,41 +26,42 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
     // TODO: implement initState
     super.initState();
 
-    prev_dy = 0;
+    prevDy = 0;
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     anim = Tween(begin: 0.0, end: 0.0).animate(animationController!);
   }
 
-  //更新图片高度
+  // 更新图片高度
   updatePicHeight(changed) {
-    if (prev_dy == 0) {
-      prev_dy = changed;
+    if (prevDy == 0) {
+      prevDy = changed;
     }
-    imgExtraHeight += changed - prev_dy;
+    imgExtraHeight += changed - prevDy;
 
     setState(() {
-      prev_dy = changed;
+      prevDy = changed;
       imgExtraHeight = imgExtraHeight;
     });
   }
 
   runAnimate() {
     setState(() {
-      anim = Tween(begin: imgExtraHeight, end: 0.0).animate(animationController!)
-        ..addListener(() {
-          setState(() {
-            imgExtraHeight = anim!.value;
-          });
-        });
-      prev_dy = 0;
+      anim =
+          Tween(begin: imgExtraHeight, end: 0.0).animate(animationController!)
+            ..addListener(() {
+              setState(() {
+                imgExtraHeight = anim!.value;
+              });
+            });
+      prevDy = 0;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8F8F8), //248
+      backgroundColor: Color(0xFFF8F8F8), // 248
       body: _body(),
     );
   }
@@ -71,7 +72,7 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
           if (imgHeight + imgExtraHeight > imgMaxHeight) {
             return;
           }
-          print('object: ${result}');
+          print('object: $result');
 //          print('result.position.dy: ${ result.position.dy }');
           updatePicHeight(result.position.dy);
         },
@@ -127,10 +128,10 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
               fit: BoxFit.cover,
             )),
         child: Scaffold(
-            backgroundColor: Colors.transparent, //把scaffold的背景色改成透明
+            backgroundColor: Colors.transparent, // 把scaffold的背景色改成透明
             appBar: AppBar(
-              backgroundColor: Colors.transparent, //把appbar的背景色改成透明
-               elevation: 0,//appbar的阴影
+              backgroundColor: Colors.transparent, // 把appbar的背景色改成透明
+               elevation: 0,// appbar的阴影
               title: Text('widget.title'),
             ),
             body: Center(

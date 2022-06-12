@@ -1,12 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-
-import 'package:sticky_headers/sticky_headers.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/data/data_utils.dart';
+import 'package:sticky_headers/sticky_headers.dart';
+import '/data/data_utils.dart';
+import '/base_appbar.dart';
 
 List groupData33 = [
   {
@@ -52,7 +49,7 @@ List groupData33 = [
 ];
 
 var dataArr;
-var pageIndex = 0; //页数
+var pageIndex = 0; // 页数
 var groupData = [];
 
 class ListViewGroupPage3 extends StatefulWidget {
@@ -85,7 +82,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
 
   void getNewData() {
     pageIndex = 0;
-    print("pageIndex- ${pageIndex}");
+    print("pageIndex- $pageIndex");
     DataUtils.getPageGroupList({"page": pageIndex, "limit": 10},
         success: (result) {
       print(result);
@@ -98,7 +95,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
 
   void getMoreData() {
     pageIndex++;
-    print("more pageIndex- ${pageIndex}");
+    print("more pageIndex- $pageIndex");
 
     DataUtils.getPageGroupList({"page": pageIndex, "limit": 10},
         success: (result) {
@@ -127,7 +124,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
     );
   }
 
-//顶部
+// 顶部
   Widget _topTabBar() {
     return Container(
         height: _rowHeight,
@@ -142,7 +139,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
         ));
   }
 
-  //刷新
+  // 刷新
   Widget _refresh() {
     return EasyRefresh(
       header: ClassicalHeader(
@@ -213,7 +210,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
         });
   }
 
-  //_topHeader
+  // _topHeader
 //  Widget _topHeader() {
 //    return Container(
 //      height: 200,
@@ -297,9 +294,9 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
       var _width = MediaQuery.of(context).size.width;
       var _bgW = _width * 0.5;
       var _num = item['num'];
-      var libi =
+      var ratio =
           double.parse(_num.toString()) / double.parse(groupNum.toString());
-//      print(libi);
+//      print(ratio);
       return Container(
           color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 15),
@@ -311,12 +308,12 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
               LinearPercentIndicator(
                 width: _bgW,
                 lineHeight: 10.0,
-                percent: libi,
+                percent: ratio,
                 backgroundColor: Color(0xFFDCDCE6),
                 progressColor: color,
               ),
               SizedBox(width: 8),
-              Text('${_num}次', style: TextStyle(color: Colors.grey)),
+              Text('$_num次', style: TextStyle(color: Colors.grey)),
             ],
           ));
     }).toList();

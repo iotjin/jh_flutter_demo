@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_echarts/flutter_echarts.dart';
-
-import 'package:jh_flutter_demo/base_appbar.dart';
+import '/base_appbar.dart';
 
 class EChartPage3 extends StatefulWidget {
   @override
@@ -105,10 +103,10 @@ class _EChartPage3State extends State<EChartPage3> {
     value = value ?? '';
     return Scaffold(
         appBar: backAppBar(context, 'EChart3 - 多图表 - 动态数据'),
-        body: _Scrollbar());
+        body: _scrollbar());
   }
 
-  Widget _Scrollbar() {
+  Widget _scrollbar() {
     return Scrollbar(
         child: SingleChildScrollView(
       child: Column(

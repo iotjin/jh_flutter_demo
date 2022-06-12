@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/res/listData.dart';
+import '/base_appbar.dart';
+import '/res/listData.dart';
 
 class ListViewTest_Card extends StatelessWidget {
   @override

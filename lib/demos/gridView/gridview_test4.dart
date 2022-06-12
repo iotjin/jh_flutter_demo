@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/project/routes/routes.dart';
+import '/base_appbar.dart';
 
 class GridViewTest4 extends StatelessWidget {
   @override

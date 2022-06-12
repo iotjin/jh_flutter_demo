@@ -3,26 +3,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:fluro/fluro.dart';
-import 'project/routes/not_found_page.dart';
-import 'project/routes/routes.dart';
-import 'project/routes/routes_old.dart' as luyou;
-
-import 'package:oktoast/oktoast.dart';
 import 'package:flustars/flustars.dart';
 import 'package:package_info/package_info.dart';
+import 'package:oktoast/oktoast.dart';
 
-import 'project/home_page.dart';
-import 'project/base_tabbar.dart';
-import 'project/login/pages/login_page.dart';
-import 'project/new_feature/new_feature_page.dart';
-import 'project/model/user_model.dart';
-import 'project/configs/colors.dart';
-import 'project/configs/project_config.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'jh_common/widgets/jh_alert.dart';
 import 'jh_common/utils/jh_storage_utils.dart';
 import 'jh_common/utils/jh_screen_utils.dart';
+import 'project/routes/not_found_page.dart';
+import 'project/routes/routes.dart';
+import 'project/routes/routes_old.dart' as luyou;
+import 'project/base_tabbar.dart';
+import 'project/login/pages/login_page.dart';
+import 'project/new_feature/new_feature_page.dart';
+import 'project/configs/project_config.dart';
+import 'project/model/user_model.dart';
 
 /**
     屏幕宽度高度：MediaQuery.of(context).size.width
@@ -84,8 +80,9 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     LogUtils.init();
+    HttpUtils.initDio();
     Routes.initRoutes();
-    _getInfo(); //获取设备信息
+    _getInfo(); // 获取设备信息
   }
 
   @override
@@ -100,12 +97,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-//                brightness: //深色还是浅色
-//                primarySwatch: Colors.blue //主题颜色样本
-        primaryColor: KColor.kWeiXinThemeColor, //主色，决定导航栏颜色
-        accentColor: KColor.kWeiXinTitleColor,
-        //次级色，决定大多数Widget的颜色，如进度条、开关等。
-        primaryIconTheme: IconThemeData(color: KColor.kWeiXinTitleColor),
+//                brightness: // 深色还是浅色
+//                primarySwatch: Colors.blue // 主题颜色样本
+        primaryColor: KColor.wxThemeColor, // 主色，决定导航栏颜色
+        // 次级色，决定大多数Widget的颜色，如进度条、开关等。
+        primaryIconTheme: IconThemeData(color: KColor.wxTitleColor),
       ),
 //            home: IndexPage(),
 //            home: BaseTabBar(),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_text_list.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_bottom_sheet.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_picker_tool.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '/jh_common/widgets/jh_bottom_sheet.dart';
+import '/jh_common/widgets/jh_picker_tool.dart';
+import '/jh_common/widgets/jh_text_list.dart';
 
 class BottomSheetTest extends StatelessWidget {
   final List titleData = [

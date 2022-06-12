@@ -6,9 +6,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
+import '/jh_common/utils/jh_screen_utils.dart';
 
 const Color _selColor = Colors.white;
 const Color _otherColor = Colors.grey;

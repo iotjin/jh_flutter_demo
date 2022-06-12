@@ -6,45 +6,45 @@
  */
 
 import 'package:flutter/material.dart';
-import '../jh_form/jh_textfield.dart';
+import 'jh_text_field.dart';
 
-const Color _bgColor = Colors.white; //背景色 白色
-const double _imgWH = 22.0; //左侧图片宽高
-const double _titleSpace = 100.0; //左侧title默认宽
-const double _cellHeight = 50.0; //输入、选择样式一行的高度
+const Color _bgColor = Colors.white; // 背景色 白色
+const double _imgWH = 22.0; // 左侧图片宽高
+const double _titleSpace = 100.0; // 左侧title默认宽
+const double _cellHeight = 50.0; // 输入、选择样式一行的高度
 const TextStyle _titleStyle = TextStyle(fontSize: 16.0, color: Colors.black);
 const TextStyle _textStyle = TextStyle(fontSize: 14.0, color: Colors.black54);
-const double _leftEdge = 15.0; //内部Widget 左边距 15
-const double _rightEdge = 10.0; //内部Widget 左边距 10
-const double _lineLeftEdge = 15.0; //线 左间距 默认 15
-const double _lineRightEdge = 0; //线 右间距 默认  0
-const double _lineHeigth = 0.6; //底部线高
-const Color _lineColor = Color(0xFFE6E6E6); //线 230
+const double _leftEdge = 15.0; // 内部Widget 左边距 15
+const double _rightEdge = 10.0; // 内部Widget 左边距 10
+const double _lineLeftEdge = 15.0; // 线 左间距 默认 15
+const double _lineRightEdge = 0; // 线 右间距 默认  0
+const double _lineHeight = 0.6; // 底部线高
+const Color _lineColor = Color(0xFFE6E6E6); // 线 230
 
 typedef _ClickCallBack = void Function();
 
 class JhSetCell extends StatefulWidget {
   final String title;
-  final String? leftImgPath; //左侧图片路径 ，默认隐藏 ,设置leftImgPath则 leftWidget失效
-  final Widget? leftWidget; //左侧widget ，默认隐藏
+  final String? leftImgPath; // 左侧图片路径 ，默认隐藏 ,设置leftImgPath则 leftWidget失效
+  final Widget? leftWidget; // 左侧widget ，默认隐藏
   final String text;
-  final Widget? rightWidget; //右侧widget ，默认隐藏
-  final bool hiddenArrow; //隐藏箭头，默认不隐藏
+  final Widget? rightWidget; // 右侧widget ，默认隐藏
+  final bool hiddenArrow; // 隐藏箭头，默认不隐藏
   final _ClickCallBack? clickCallBack;
-  final double titleWidth; //标题宽度
+  final double titleWidth; // 标题宽度
   final TextStyle titleStyle;
   final TextStyle textStyle;
-  final bool hiddenLine; //隐藏底部横线
-  final double lineLeftEdge; //底部横线左侧距离 默认_leftEdge
-  final double lineRightEdge; //底部横线右侧距离 默认0
-  final Color bgColor; //背景颜色，默认白色
-  final double cellHeight; //底部横线右侧距离 默认_cellHeight
-  final double leftImgWH; //左侧图片宽高，默认_imgWH
-  final TextAlign textAlign; //默认靠右
+  final bool hiddenLine; // 隐藏底部横线
+  final double lineLeftEdge; // 底部横线左侧距离 默认_leftEdge
+  final double lineRightEdge; // 底部横线右侧距离 默认0
+  final Color bgColor; // 背景颜色，默认白色
+  final double cellHeight; // 底部横线右侧距离 默认_cellHeight
+  final double leftImgWH; // 左侧图片宽高，默认_imgWH
+  final TextAlign textAlign; // 默认靠右
 
   const JhSetCell({
     Key? key,
-    @required this.title: '',
+    this.title: '',
     this.leftImgPath,
     this.leftWidget,
     this.text: '',
@@ -85,13 +85,13 @@ class _JhSetCellState extends State<JhSetCell> {
         child: InkWell(
           child: Container(
             constraints: BoxConstraints(
-                minWidth: double.infinity, //宽度尽可能大
-                minHeight: widget.cellHeight //最小高度为50像素
+                minWidth: double.infinity, // 宽度尽可能大
+                minHeight: widget.cellHeight // 最小高度为50像素
                 ),
             padding: EdgeInsets.fromLTRB(_leftEdge, 0, _rightEdge, 0),
             decoration: UnderlineTabIndicator(
                 borderSide: BorderSide(
-                    width: _lineHeigth,
+                    width: _lineHeight,
                     color: widget.hiddenLine == true
                         ? Colors.transparent
                         : _lineColor),

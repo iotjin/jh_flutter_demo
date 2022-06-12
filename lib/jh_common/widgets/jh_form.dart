@@ -4,16 +4,17 @@
  *  Created by iotjin on 2020/02/21.
  *  description:  表单录入样式
  */
+
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
-const double _titleFontSize = 16.0; //左侧字体大小
-const double _infoFontSize = 15.0; //右侧字体大小
+const double _titleFontSize = 16.0; // 左侧字体大小
+const double _infoFontSize = 15.0; // 右侧字体大小
 const Color _textColor = Colors.black87;
-const Color _inputBoderColor = Colors.grey; //边框默认颜色
-const double _titleSpace = 80.0; //左侧title默认宽
-const double _cellHeight = 50.0; //输入、选择样式一行的高度
-const double _inputCellHeight = 40.0; //输入框、选择框高度
+const Color _inputBoderColor = Colors.grey; // 边框默认颜色
+const double _titleSpace = 80.0; // 左侧title默认宽
+const double _cellHeight = 50.0; // 输入、选择样式一行的高度
+const double _inputCellHeight = 40.0; // 输入框、选择框高度
 const Color _bgColor = Colors.transparent;
 const Color _inputColor = Colors.transparent;
 
@@ -23,9 +24,9 @@ const Color _inputColor = Colors.transparent;
 typedef _InputCallBack = void Function(String value);
 typedef _ClickCallBack = void Function();
 
-//建议使用jh_form文件夹组件
-class jhForm {
-  /** 一行输入样式 */
+/// 建议使用jh_form文件夹组件
+class JhForm {
+  /// 一行输入样式
   static Widget inputText({
     required String title,
     String inputInfo = "",
@@ -46,7 +47,7 @@ class jhForm {
     );
   }
 
-  /** 多行输入样式 */
+  /// 多行输入样式
   static Widget textView({
     String inputInfo = "",
     String hintText = '请输入',
@@ -63,7 +64,7 @@ class jhForm {
     );
   }
 
-  /** 选择样式 */
+  /// 选择样式
   static Widget selectText({
     required String title,
     String selectInfo = "",
@@ -80,7 +81,7 @@ class jhForm {
     );
   }
 
-  //三方键盘配置
+  /// 三方键盘配置
   static KeyboardActionsConfig getKeyboardConfig(
       BuildContext context, List<FocusNode> list) {
     return KeyboardActionsConfig(
@@ -168,7 +169,7 @@ class _CreateInputCellState extends State<CreateInputCell> {
               controller: inputController,
               focusNode: widget.focusNode,
               keyboardType: widget.keyboardType,
-              //键盘类型
+              // 键盘类型
               maxLines: 1,
               style: TextStyle(fontSize: _infoFontSize, color: _textColor),
               decoration: InputDecoration(
@@ -241,7 +242,7 @@ class _CreateTextViewCellState extends State<CreateTextViewCell> {
               controller: inputController,
               focusNode: widget.focusNode,
               keyboardType: TextInputType.text,
-              //键盘类型
+              // 键盘类型
               maxLines: 5,
               style: TextStyle(fontSize: _infoFontSize, color: _textColor),
               decoration: InputDecoration(

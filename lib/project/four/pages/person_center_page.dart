@@ -5,7 +5,6 @@
  *  description:
  */
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 double _scrollMaxOffSet = 1000;
@@ -44,7 +43,7 @@ class _PersonCenterPageState extends State<PersonCenterPage>
 
   @override
   void dispose() {
-    //为了避免内存泄露，_scrollController.dispose
+    // 为了避免内存泄露，_scrollController.dispose
     _scrollController.dispose();
     super.dispose();
   }

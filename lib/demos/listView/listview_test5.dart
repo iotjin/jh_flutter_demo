@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/base_appbar.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
+import '/jh_common/utils/jh_image_utils.dart';
+import '/base_appbar.dart';
 
 var dataArr;
 
@@ -91,7 +91,7 @@ class ContentBody extends StatelessWidget {
             children: <Widget>[
               ListView.builder(
                   itemCount: dataArr.length,
-                  itemExtent: 150.0, //强制高度为100.0
+                  itemExtent: 150.0, // 强制高度为100.0
                   itemBuilder: this._getWidget),
               Positioned(
                 left: 10,
@@ -114,7 +114,7 @@ class ContentBody extends StatelessWidget {
 //
 //              ListView.builder(
 //                  itemCount: dataArr.length,
-//                  itemExtent: 150.0, //强制高度为100.0
+//                  itemExtent: 150.0, // 强制高度为100.0
 //                  itemBuilder: this._getWidget
 //              )
 //
@@ -149,13 +149,13 @@ Widget bottomView = Container(
     mainAxisAlignment: MainAxisAlignment.end,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Text("热线: ${phone}",
+      Text("热线: $phone",
           style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
       SizedBox(height: 5),
-      Text("地址: ${address}",
+      Text("地址: $address",
           style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
       SizedBox(height: 5),
-      Text("描述: ${range}",
+      Text("描述: $range",
           style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
     ],
   ),
