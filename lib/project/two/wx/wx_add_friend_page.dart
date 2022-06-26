@@ -1,9 +1,7 @@
-/**
- *  wx_add_friend_page.dart
- *
- *  Created by iotjin on 2020/09/01.
- *  description: 添加朋友
- */
+///  wx_add_friend_page.dart
+///
+///  Created by iotjin on 2020/09/01.
+///  description: 添加朋友
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -50,7 +48,7 @@ class WxAddFriendPage extends StatelessWidget {
     return Scaffold(
       appBar: backAppBar(context, '添加朋友', backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 
@@ -113,7 +111,7 @@ class WxAddFriendPage extends StatelessWidget {
                 ))),
                 title: Text(
                   item['title'],
-                  style: TextStyle(color: KColor.wxTextBlueColor),
+                  style: TextStyle(color: KColors.wxTextBlueColor),
                 ),
                 subtitle: Text(
                   item['subtitle'],

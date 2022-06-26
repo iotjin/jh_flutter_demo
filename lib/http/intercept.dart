@@ -1,9 +1,7 @@
-/**
- *  intercept.dart
- *
- *  Created by iotjin on 2020/07/08.
- *  description:  拦截器
- */
+///  intercept.dart
+///
+///  Created by iotjin on 2020/07/08.
+///  description:  拦截器
 
 import 'dart:convert';
 import 'package:dio/dio.dart';

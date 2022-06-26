@@ -1,9 +1,7 @@
-/**
- *  jh_picker_tool.dart
- *
- *  Created by iotjin on 2020/02/17.
- *  description:  底部选择器 包含日期，单列、多列文本
- */
+///  jh_picker_tool.dart
+///
+///  Created by iotjin on 2020/02/17.
+///  description:  底部选择器 包含日期，单列、多列文本
 
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
@@ -40,12 +38,12 @@ class JhPickerTool {
   }) {
     openModalPicker(context,
         adapter: adapter ?? PickerDataAdapter(pickerdata: data, isArray: false),
-        clickCallBack: (Picker picker, List<int> selecteds) {
+        clickCallBack: (Picker picker, List<int> selects) {
       //          print(picker.adapter.text);
       if (clickCallBack != null) {
-        clickCallBack(selecteds[0], data[selecteds[0]]!);
+        clickCallBack(selects[0], data[selects[0]]!);
       }
-    }, selecteds: [normalIndex], title: title);
+    }, selects: [normalIndex], title: title);
   }
 
   /// 多列
@@ -59,16 +57,16 @@ class JhPickerTool {
   }) {
     openModalPicker(context,
         adapter: adapter ?? PickerDataAdapter(pickerdata: data, isArray: true),
-        clickCallBack: (Picker picker, List<int> selecteds) {
-      clickCallBack(selecteds, picker.getSelectedValues());
-    }, selecteds: normalIndex, title: title);
+        clickCallBack: (Picker picker, List<int> selects) {
+      clickCallBack(selects, picker.getSelectedValues());
+    }, selects: normalIndex, title: title);
   }
 
   static void openModalPicker(
     BuildContext context, {
     required PickerAdapter adapter,
     String? title,
-    List<int>? selecteds,
+    List<int>? selects,
     required PickerConfirmCallback clickCallBack,
   }) {
     new Picker(
@@ -76,7 +74,7 @@ class JhPickerTool {
             title: new Text(title ?? "请选择",
                 style:
                     TextStyle(color: _kTitleColor, fontSize: _kTextFontSize)),
-            selecteds: selecteds,
+            selecteds: selects,
             cancelText: '取消',
             confirmText: '确定',
             cancelTextStyle:
@@ -126,7 +124,7 @@ class JhPickerTool {
               minValue: minValue,
               value: value ?? DateTime.now(),
             ),
-        title: title, clickCallBack: (Picker picker, List<int> selecteds) {
+        title: title, clickCallBack: (Picker picker, List<int> selects) {
       var time = (picker.adapter as DateTimePickerAdapter).value;
       var timeStr;
       if (dateType == DateType.YM) {

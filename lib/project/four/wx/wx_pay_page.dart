@@ -1,9 +1,7 @@
-/**
- *  wxPay_page.dart
- *
- *  Created by iotjin on 2020/08/27.
- *  description:  微信 支付界面
- */
+///  wxPay_page.dart
+///
+///  Created by iotjin on 2020/08/27.
+///  description:  微信 支付界面
 
 import 'package:flutter/material.dart';
 import '/project/configs/project_config.dart';
@@ -113,13 +111,13 @@ class WxPayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KString.wxPay,
+      appBar: backAppBar(context, KStrings.wxPay,
           rightImgPath: 'assets/images/ic_more_black.png',
           backgroundColor: Colors.transparent, rightItemCallBack: () {
         JhNavUtils.pushNamed(context, "WxPayManagerPage");
       }),
       body: _body(context),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 }
@@ -152,7 +150,7 @@ Widget _payCard() {
       // 阴影大小
       child: Container(
           height: 150,
-          color: KColor.wxPayColor,
+          color: KColors.wxPayColor,
           child: Row(
             children: <Widget>[
               Expanded(

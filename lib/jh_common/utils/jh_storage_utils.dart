@@ -1,15 +1,13 @@
-/**
- *  jh_storage_utils.dart
- *
- *  Created by iotjin on 2020/05/07.
- *  description:  aes 数据存储 ,封装第三方
- */
+///  jh_storage_utils.dart
+///
+///  Created by iotjin on 2020/05/07.
+///  description:  AES 数据存储（封装第三方）
 
 import 'dart:convert' as convert;
 import 'package:flustars/flustars.dart';
 import '/jh_common/utils/jh_encrypt_utils.dart';
 
-/// aes 加密存储
+/// AES 加密存储
 class JhStorageUtils {
   /// 存 String
   static Future<bool>? saveString(String key, String value) {
@@ -87,7 +85,7 @@ class JhStorageUtils {
   }
 }
 
-/// 不使用aes加密
+/// 不使用AES加密
 class JhStorageNoAESUtils {
   /// 存 String
   static Future<bool>? saveString(String key, String value) {

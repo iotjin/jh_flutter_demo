@@ -10,7 +10,7 @@ class FormTestPage extends StatefulWidget {
 }
 
 class _FormTestPageState extends State<FormTestPage> {
-  bool _switchSelected = false;
+  // bool _switchSelected = false;
 
   @override
   Widget build(BuildContext context) {

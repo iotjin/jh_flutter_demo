@@ -1,50 +1,49 @@
-/**
- *  colors.dart
- *
- *  Created by iotjin on 2020/07/06.
- *  description:  颜色 配置
- */
+///  colors.dart
+///
+///  Created by iotjin on 2020/07/06.
+///  description:  颜色 配置
 
 import 'package:flutter/material.dart';
 
-const Color kThemeColor = Color(0xFF3BB815);
+class KColors {
+  // 主题色
+  static const Color kThemeColor = Color(0xFF3BB815);
 
-class KColor {
+  // 渐变色（appBar和按钮）
+  static const Color kGradientStartColor = Color(0xFF2683BE); // 渐变开始色
+  static const Color kGradientEndColor = Color(0xFF34CABE); // 渐变结束色
+
+  // 渐变色
+  // static const Color kGradientStartColor = Color(0xFF2171F5); // 渐变开始色
+  // static const Color kGradientEndColor = Color(0xF000A2FC); // 渐变结束色
+
   // 微信主题色 rgb(59,184,21)
-  static Color wxThemeColor = Color(0xFF3BB815);
+  static const Color wxThemeColor = Color(0xFF3BB815);
 
   // rgb(50, 179, 116)
-  static Color wxPayColor = Color(0xFF32B374);
+  static const Color wxPayColor = Color(0xFF32B374);
 
   // rgb(0, 174, 91)
-  static Color wxTextColor = Color(0xFF00AE5B);
+  static const Color wxTextColor = Color(0xFF00AE5B);
 
   // rgb(255, 139, 34)
-  static Color wxTextOrangeColor = Color(0xFFFF8B22);
+  static const Color wxTextOrangeColor = Color(0xFFFF8B22);
 
-  static Color wxTitleColor = Colors.white;
+  static const Color wxTitleColor = Colors.white;
 
   // 微信背景色 rgb(237,237,237)
-  static Color wxBgColor = Color(0xFFEDEDED);
+  static const Color wxBgColor = Color(0xFFEDEDED);
 
   // 深蓝色
-  static Color wxTextBlueColor = Color(0xFF586D98);
+  static const Color wxTextBlueColor = Color(0xFF586D98);
 
   // 灰色文字
-  static Color kTextGrayColor = Color(0xFF999999);
+  static const Color kTextGrayColor = Color(0xFF999999);
 
-//  static Color ThemeColor =  Color.fromRGBO(59, 184, 21, 1);
-//  static const Color app_main = Color(0xFF4688FA);
+  static const Color kLineColor = Color(0xFFE6E6E6); // 230
+  static const Color transparent = Colors.transparent;
 
-  static Color kLineColor = Color(0xFFE6E6E6); // 230
-  static Color transparent = Colors.transparent;
-
-  static Color appBarGradientStartColor = Color(0xFF2171F5); // 渐变 开始色
-  static Color appBarGradientEndColor = Color(0xF000A2FC); // 结束色
-
-  static const Color appbarStartColor = Color.fromRGBO(38, 131, 190, 1); //渐变开始色
-  static const Color appbarEndColor = Color.fromRGBO(52, 202, 190, 1); // 渐变结束色
-
+// static const Color app_main = Color(0xFF4688FA);
 }
 
 /*

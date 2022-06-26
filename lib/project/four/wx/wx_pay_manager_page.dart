@@ -1,9 +1,7 @@
-/**
- *  wxPay_manager_page.dart
- *
- *  Created by iotjin on 2020/08/28.
- *  description:  微信 支付管理
- */
+///  wxPay_manager_page.dart
+///
+///  Created by iotjin on 2020/08/28.
+///  description:  微信 支付管理
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -26,10 +24,10 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KString.wxPayManager,
+      appBar: backAppBar(context, KStrings.wxPayManager,
           backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 

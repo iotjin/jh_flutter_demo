@@ -1,9 +1,7 @@
-/**
- *  wx_motion_top_page.dart
- *
- *  Created by iotjin on 2020/09/09.
- *  description: 微信运动排行榜
- */
+///  wx_motion_top_page.dart
+///
+///  Created by iotjin on 2020/09/09.
+///  description: 微信运动排行榜
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -207,7 +205,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
                             fontSize: 28,
                             color: item['steps'] > 10000
                                 ? Colors.orange
-                                : KColor.wxTextColor),
+                                : KColors.wxTextColor),
                       ),
                     ),
                   ),
@@ -245,7 +243,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
               ),
               SizedBox(height: 10),
               Container(
-                  color: KColor.kLineColor, height: item['isOwn'] ? 10 : 1),
+                  color: KColors.kLineColor, height: item['isOwn'] ? 10 : 1),
             ],
           ),
         ));

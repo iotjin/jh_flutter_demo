@@ -1,9 +1,7 @@
-/**
- *  jh_progress_hud.dart
- *
- *  Created by iotjin on 2020/02/25.
- *  description:  oktoast封装
- */
+///  jh_progress_hud.dart
+///
+///  Created by iotjin on 2020/02/25.
+///  description:  oktoast封装
 
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';

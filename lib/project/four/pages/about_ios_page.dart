@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:package_info/package_info.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_nav_router_utils.dart';
 import '/jh_common/widgets/click_item.dart';
 import '/base_appbar.dart';
@@ -96,22 +96,12 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
               content: _info,
               onTap: () {
                 if (_isNeedUpdate == true) {
-                  _jumpAppStore();
+                  JhCommonUtils.jumpAppStore();
                 }
               })
         ],
       ),
     );
-  }
-
-  void _jumpAppStore() async {
-    String url =
-        'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8'; // 这是微信的地址，到时候换成自己的应用的地址
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   void _getAPPStoreVersion() async {

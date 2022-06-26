@@ -15,10 +15,7 @@ class _EChartPage2State extends State<EChartPage2> {
 
   @override
   Widget build(BuildContext context) {
-    var value = ModalRoute
-        .of(context)!
-        .settings
-        .arguments;
+    var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
     return Scaffold(
         appBar: backAppBar(context, 'EChart2 - 多图表'), body: _scrollbar());
@@ -27,38 +24,31 @@ class _EChartPage2State extends State<EChartPage2> {
   Widget _scrollbar() {
     return Scrollbar(
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 100,
-                width: double.infinity,
-                color: Colors.yellow,
-                child: Text("往下滑动"),
-              ),
-              _initChart2(),
-              Container(
-                height: 500,
-                width: double.infinity,
-                color: Colors.yellow,
-                child: Text("往下滑动"),
-              ),
-              _initChart(),
-              Text("data"),
-              Text("data"),
-              Text("data"),
-              Text("data"),
-              Text("data"),
-              Text("data"),
-            ],
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 100,
+            width: double.infinity,
+            color: Colors.yellow,
+            child: Text("往下滑动"),
           ),
-        ));
-  }
-
-  Widget _zhanwei() {
-    return Container(
-      color: Colors.yellow,
-      height: 300,
-    );
+          _initChart2(),
+          Container(
+            height: 500,
+            width: double.infinity,
+            color: Colors.yellow,
+            child: Text("往下滑动"),
+          ),
+          _initChart(),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+          Text("data"),
+        ],
+      ),
+    ));
   }
 
   Widget _initChart2() {

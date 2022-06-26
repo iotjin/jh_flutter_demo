@@ -1,39 +1,42 @@
-/**
- *  jh_gradient_btn.dart
- *
- *  Created by iotjin on 2020/02/07.
- *  description:  渐变色按钮
- */
+///  jh_gradient_btn.dart
+///
+///  Created by iotjin on 2020/02/07.
+///  description:  渐变色按钮
 
 import 'package:flutter/material.dart';
+import '/project/configs/colors.dart';
 
-const Color startColor = Color(0xFF2683BE); // 默认appBar 渐变开始色
-const Color endColor = Color(0xFF34CABE); // 默认appBar 渐变结束色
+const double _fontSize = 20.0; // 文字大小
+const double _borderRadius = 5.0; // 边框圆角
+const Color _textColor = Colors.white; // 默认按钮文字颜色
+const Color startColor = KColors.kGradientStartColor; // 默认渐变开始色
+const Color endColor = KColors.kGradientEndColor; // 默认渐变结束色
 
 class JhGradientBtn extends StatelessWidget {
+  const JhGradientBtn({
+    Key? key,
+    required this.text,
+    this.width: 150,
+    this.height: 50,
+    this.onTap,
+  }) : super(key: key);
+
   final String text;
   final double? width;
   final double? height;
   final GestureTapCallback? onTap;
 
-  JhGradientBtn({
-    required this.text,
-    this.width,
-    this.height,
-    this.onTap,
-  });
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        width: this.width == null ? 150 : this.width,
-        height: this.height == null ? 50 : this.height,
+        width: this.width,
+        height: this.height,
         child: Center(
             child: Text(this.text,
-                style: TextStyle(fontSize: 20, color: Colors.white))),
+                style: TextStyle(fontSize: _fontSize, color: _textColor))),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: BorderRadius.circular(_borderRadius),
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

@@ -1,9 +1,7 @@
-/**
- *  wx_info_set_page.dart
- *
- *  Created by iotjin on 2020/09/02.
- *  description: 资料设置
- */
+///  wx_info_set_page.dart
+///
+///  Created by iotjin on 2020/09/02.
+///  description: 资料设置
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

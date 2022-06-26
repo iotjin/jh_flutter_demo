@@ -1,15 +1,14 @@
-/**
- *  base_tabbar.dart
- *
- *  Created by iotjin on 2020/03/08.
- *  description:  tabbar
- */
+///  base_tabbar.dart
+///
+///  Created by iotjin on 2020/03/08.
+///  description:  tabbar基类
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import '/jh_common/utils/jh_image_utils.dart';
+import '/project/configs/colors.dart';
 import '/project/one/one_page.dart';
 import '/project/Two/two_page.dart';
 import '/project/Three/three_page.dart';
@@ -26,7 +25,7 @@ class _BaseTabBarState extends State<BaseTabBar> {
   List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), FourPage()];
   static double _iconWH = 24.0;
   static double _fontSize = 10.0;
-  Color selColor = Color(0xFF3BB815);
+  Color selColor = KColors.kThemeColor;
 
   List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(

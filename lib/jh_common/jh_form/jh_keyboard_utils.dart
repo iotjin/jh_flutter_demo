@@ -1,9 +1,7 @@
-/**
- *  jh_keyboard_utils.dart
- *
- *  Created by iotjin on 2020/04/10.
- *  description:  键盘配置
- */
+///  jh_keyboard_utils.dart
+///
+///  Created by iotjin on 2020/04/10.
+///  description:  键盘配置
 
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';

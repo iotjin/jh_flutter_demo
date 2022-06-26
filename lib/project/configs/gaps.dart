@@ -1,9 +1,7 @@
-/**
- *  gaps.dart
- *
- *  Created by iotjin on 2020/07/06.
- *  description:  间隔
- */
+///  gaps.dart
+///
+///  Created by iotjin on 2020/07/06.
+///  description:  间隔
 
 import 'dimens.dart';
 import 'package:flutter/material.dart';

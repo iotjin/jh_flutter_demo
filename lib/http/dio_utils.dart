@@ -1,9 +1,7 @@
-/**
- *  dio_utils.dart
- *
- *  Created by iotjin on 2020/07/06.
- *  description:  dio 工具类
- */
+///  dio_utils.dart
+///
+///  Created by iotjin on 2020/07/06.
+///  description:  dio 工具类
 
 import 'dart:convert';
 import 'package:connectivity/connectivity.dart';
@@ -117,41 +115,10 @@ class DioUtils {
       );
       onSuccess?.call(response.data);
     } on DioError catch (e) {
-      final NetError error = ExceptionHandle.handleException(e);
-      _onError(error.code, error.msg, onError);
-    }
-  }
-
-  void asyncRequest<T>(
-    Method method,
-    String url, {
-    NetSuccessCallback? onSuccess,
-    NetErrorCallback? onError,
-    Object? params,
-    Map<String, dynamic>? queryParameters,
-    CancelToken? cancelToken,
-    Options? options,
-  }) {
-    Stream.fromFuture(request<T>(
-      method,
-      url,
-      data: params,
-      queryParameters: queryParameters,
-      options: options,
-      cancelToken: cancelToken,
-    )).asBroadcastStream().listen((result) {
-      if (result.code == 0) {
-        if (onSuccess != null) {
-          onSuccess(result.data);
-        }
-      } else {
-        _onError(result.code, result.message, onError);
-      }
-    }, onError: (dynamic e) {
       _cancelLogPrint(e, url);
       final NetError error = ExceptionHandle.handleException(e);
       _onError(error.code, error.msg, onError);
-    });
+    }
   }
 }
 

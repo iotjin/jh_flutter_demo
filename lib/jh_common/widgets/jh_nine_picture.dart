@@ -1,9 +1,7 @@
-/**
- *  jh_nine_picture.dart
- *
- *  Created by iotjin on 2020/09/14.
- *  description: 九宫格图片展示 4图处理 加载本地和网络图片
- */
+///  jh_nine_picture.dart
+///
+///  Created by iotjin on 2020/09/14.
+///  description:  九宫格图片展示 4图处理 加载本地和网络图片
 
 import 'package:flutter/material.dart';
 import 'jh_photo_browser.dart';
@@ -12,17 +10,18 @@ const double _itemSpace = 5.0;
 const double _space = 5.0; // 上下左右间距
 
 class JhNinePicture extends StatelessWidget {
-  final List? imgData;
-  final double lRSpace; // 外部设置的左右间距
-  final GestureTapCallback? onLongPress;
-  bool isHandleFour;
-
-  JhNinePicture({
+  const JhNinePicture({
+    Key? key,
     this.imgData,
     this.lRSpace = 0.0,
     this.onLongPress,
     this.isHandleFour = true,
-  });
+  }) : super(key: key);
+
+  final List? imgData;
+  final double lRSpace; // 外部设置的左右间距
+  final GestureTapCallback? onLongPress;
+  final bool isHandleFour;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +34,8 @@ class JhNinePicture extends StatelessWidget {
         : imgData!.length <= 3
             ? 1
             : 2;
-    // print("九宫格宽 ${_ninePictureW} ");
-    // print("item宽  ${_itemWH} ");
+    // print("九宫格宽 $_ninePictureW ");
+    // print("item宽  $_itemWH ");
 
     bool _isHandleFour = isHandleFour && imgData!.length == 4;
 
@@ -112,7 +111,7 @@ class JhNinePicture extends StatelessWidget {
     );
   }
 
-  // 点击cell，展示全图
+  /// 点击cell，展示全图
   _clickItemCell(context, index) {
     // FadeRoute是自定义的切换过度动画（渐隐渐现） 如果不需要 可以使用默认的MaterialPageRoute
     Navigator.of(context).push(new FadeRoute(

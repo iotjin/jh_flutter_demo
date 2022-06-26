@@ -1,9 +1,7 @@
-/**
- *  wx_friends_circle_page.dart
- *
- *  Created by iotjin on 2020/09/14.
- *  description: 朋友圈
- */
+///  wx_friends_circle_page.dart
+///
+///  Created by iotjin on 2020/09/14.
+///  description: 朋友圈
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -144,7 +142,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         left: 0,
         right: 0,
         child: backAppBar(context, '朋友圈',
-            backgroundColor: KColor.wxBgColor.withOpacity(_appbarOpacity),
+            backgroundColor: KColors.wxBgColor.withOpacity(_appbarOpacity),
             brightness:
                 _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/wechat/discover/ic_xiangji.png',
@@ -216,9 +214,9 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         onTap: () => _clickCell(context, item['name']),
         child: Container(
           decoration: BoxDecoration(
-              // border: Border.all(color: KColor.kLineColor, width: 1),
+              // border: Border.all(color: KColors.kLineColor, width: 1),
               border: Border(
-            bottom: BorderSide(width: 0.5, color: KColor.kLineColor), // 下边框
+            bottom: BorderSide(width: 0.5, color: KColors.kLineColor), // 下边框
           )),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -249,7 +247,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                       child: Text(
                         item['name'],
                         style: TextStyle(
-                            color: KColor.wxTextBlueColor, fontSize: 15),
+                            color: KColors.wxTextBlueColor, fontSize: 15),
                       ),
                     ),
                     Container(
@@ -267,7 +265,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                             Text(
                               item['time'],
                               style: TextStyle(
-                                  color: KColor.kTextGrayColor, fontSize: 13),
+                                  color: KColors.kTextGrayColor, fontSize: 13),
                             ),
                             InkWell(
                               child: Container(
@@ -279,7 +277,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                                 ),
                                 child: Image.asset(
                                   'assets/wechat/discover/ic_diandian.png',
-                                  color: KColor.wxTextBlueColor,
+                                  color: KColors.wxTextBlueColor,
                                 ),
                               ),
                               onTap: () => _clickCell(context, '评论'),

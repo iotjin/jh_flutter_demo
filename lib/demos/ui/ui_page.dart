@@ -1,5 +1,33 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_image_utils.dart';
+
+/*
+1.22 版本前的按钮	       主题	          1.22 版本后的按钮	  主题
+FlatButton（扁平按钮）	   ButtonTheme	  TextButton	        TextButtonTheme
+OutlineButton（边框按钮）  ButtonTheme	  OutlinedButton	    OutlinedButtonTheme
+RaisedButton（背景色按钮） ButtonTheme	  ElevatedButton	    ElevatedButtonTheme
+
+const ButtonStyle({
+  this.textStyle, // 字体
+  this.backgroundColor, // 背景色
+  this.foregroundColor, // 前景色，文字颜色
+  this.overlayColor, // 高亮色(水波纹颜色)，按钮处于focused, hovered, or pressed时的颜色
+  this.shadowColor, // 阴影颜色
+  this.elevation, // 阴影值
+  this.padding, // padding
+  this.minimumSize, // 最小尺寸
+  this.side, // 边框
+  this.shape, // 形状
+  this.mouseCursor, // 鼠标指针的光标进入或悬停在此按钮的[InkWell]上时。
+  this.visualDensity, // 按钮布局的紧凑程度
+  this.tapTargetSize, // 响应触摸的区域
+  this.animationDuration, // [shape]和[elevation]的动画更改的持续时间。
+  this.enableFeedback, // 检测到的手势是否应提供声音和/或触觉反馈。例如，在Android上，点击会产生咔哒声，启用反馈后，长按会产生短暂的振动。通常，组件默认值为true。
+});
+
+* */
 
 class UIPage extends StatelessWidget {
   @override
@@ -85,19 +113,38 @@ Widget textListView = Container(
 
 Widget testBtn = Column(children: <Widget>[
   Container(
-      color: Colors.yellow,
-      width: 100,
-      height: 40,
-      child: FlatButton(
-        color: Colors.blue,
-        highlightColor: Colors.blue[700],
-        colorBrightness: Brightness.dark,
-        splashColor: Colors.grey,
-        child: Text("Submit"),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        onPressed: () {},
-      )),
+    color: Colors.yellow,
+    width: 100,
+    height: 40,
+    child: TextButton(
+      onPressed: () {},
+      child: Text("Submit", style: TextStyle(fontSize: 15.0)),
+      style: ButtonStyle(
+        // 背景色
+        backgroundColor: MaterialStateProperty.resolveWith((states) {
+          // 设置按下时的背景颜色
+          if (states.contains(MaterialState.pressed)) {
+            return Colors.yellow;
+          }
+          // 默认不使用背景颜色
+          return Colors.blue[700];
+        }),
+        // 文字颜色
+        foregroundColor: MaterialStateProperty.all(Colors.white),
+        // 高亮颜色
+        overlayColor: MaterialStateProperty.all(Colors.green),
+        shadowColor: MaterialStateProperty.all(Colors.orange),
+        // 边框
+        side: MaterialStateProperty.all(
+          BorderSide(color: Colors.red, width: 1),
+        ),
+        // 圆角
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        ),
+      ),
+    ),
+  ),
   // 扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
   TextButton(
     child: Text(
@@ -139,6 +186,7 @@ Widget testBtn = Column(children: <Widget>[
 //      shape: MaterialStateProperty.all(StadiumBorder(
 //        side: BorderSide(color: Colors.red, width: 1, style: BorderStyle.solid),
 //      )),
+      // 设置按钮圆角
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),

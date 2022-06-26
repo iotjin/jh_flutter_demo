@@ -1,17 +1,16 @@
-/**
- *  jh_top_tabbar.dart
- *
- *  Created by iotjin on 2020/04/24.
- *  description:  顶部分页效果的tabBar(类似新闻APP顶部切换效果)
- */
+///  jh_top_tabbar.dart
+///
+///  Created by iotjin on 2020/04/24.
+///  description:  顶部分页效果的tabBar(类似新闻APP顶部切换效果)
 
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import '/project/configs/colors.dart';
 import '/base_appbar.dart';
 
 const Color _bgColor = Color(0xFFF2F2F2); //242
-const Color _indicatorColor = Color(0xFF3BB815);
-const Color _labelColor = Color(0xFF3BB815);
+const Color _indicatorColor = KColors.kThemeColor;
+const Color _labelColor = KColors.kThemeColor;
 const Color _unselectedLabelColor = Color(0xFF333333); //51
 const Color _centerLineColor = Color(0xFFC8C8C8); //200
 
@@ -24,30 +23,6 @@ class JhTopTabBarModel {
 }
 
 class JhTopTabBar extends StatefulWidget {
-  final String title;
-  final List<JhTopTabBarModel> tabModelArr; // tab对象数组
-  final Color bgColor; // TabBar背景颜色，
-  final TabController? tabController; // TabController对象
-  final Color indicatorColor; // 指示器颜色
-  final Color labelColor; // 选中label颜色
-  final Color unselectedLabelColor; // 未选中label颜色
-  final double indicatorWeight; // 指示器 高度 默认2
-  final double height; // tab高度 默认35
-  final TextStyle? labelStyle;
-  final TextStyle? unselectedLabelStyle;
-  final Decoration? indicator; // 指示器样式
-  final bool showCenterLine;
-
-  // appbar参数
-  final String? rightText;
-  final String? rightImgPath;
-  final Widget? leftItem;
-  final bool isBack;
-  final double elevation;
-  final Function? rightItemCallBack;
-  final Function? leftItemCallBack;
-  final Function? switchPageCallBack; // 页面切换的回调，返回index
-
   const JhTopTabBar({
     Key? key,
     this.title: "",
@@ -72,6 +47,30 @@ class JhTopTabBar extends StatefulWidget {
     this.leftItemCallBack,
     this.switchPageCallBack,
   }) : super(key: key);
+
+  final String title;
+  final List<JhTopTabBarModel> tabModelArr; // tab对象数组
+  final Color bgColor; // TabBar背景颜色，
+  final TabController? tabController; // TabController对象
+  final Color indicatorColor; // 指示器颜色
+  final Color labelColor; // 选中label颜色
+  final Color unselectedLabelColor; // 未选中label颜色
+  final double indicatorWeight; // 指示器 高度 默认2
+  final double height; // tab高度 默认35
+  final TextStyle? labelStyle;
+  final TextStyle? unselectedLabelStyle;
+  final Decoration? indicator; // 指示器样式
+  final bool showCenterLine;
+
+  // appbar参数
+  final String? rightText;
+  final String? rightImgPath;
+  final Widget? leftItem;
+  final bool isBack;
+  final double elevation;
+  final Function? rightItemCallBack;
+  final Function? leftItemCallBack;
+  final Function? switchPageCallBack; // 页面切换的回调，返回index
 
   @override
   _JhTopTabBarState createState() => _JhTopTabBarState();

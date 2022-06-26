@@ -62,10 +62,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     focusNode: _node1,
                     maxLength: 11,
                     keyboardType: TextInputType.number,
+                    controller: _phoneController,
                     inputCallBack: (value) => _phone = value),
                 SizedBox(height: 10),
 
                 JhLoginTextField(
+                    text: _code,
                     hintText: "请输入验证码",
                     labelText: '验证码',
                     focusNode: _node2,
@@ -76,10 +78,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         getVCode: () async {
                           return true;
                         }),
+                    controller: _codeController,
                     inputCallBack: (value) => _code = value),
                 SizedBox(height: 10),
 
                 JhLoginTextField(
+                    text: _pwd,
                     hintText: "请输入密码",
                     labelText: '密码',
                     focusNode: _node3,
@@ -87,6 +91,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     isPwd: true,
                     pwdClose: 'assets/images/ic_pwd_close.png',
                     pwdOpen: 'assets/images/ic_pwd_open.png',
+                    controller: _pwdController,
                     inputCallBack: (value) => _pwd = value),
 
                 SizedBox(height: 15),

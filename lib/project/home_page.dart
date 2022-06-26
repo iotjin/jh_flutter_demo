@@ -15,19 +15,19 @@ class _IndexPageState extends State<IndexPage> {
 //  List<BottomNavigationBarItem> _items = [
 //    BottomNavigationBarItem(
 //        icon: Icon(Icons.chat_bubble),
-//        title: Text(KString.oneTabTitle)
+//        title: Text(KStrings.oneTabTitle)
 //    ),
 //    BottomNavigationBarItem(
 //        icon: Icon(Icons.group),
-//        title: Text(KString.twoTabTitle)
+//        title: Text(KStrings.twoTabTitle)
 //    ),
 //    BottomNavigationBarItem(
 //        icon: Icon(Icons.directions),
-//        title: Text(KString.threeTabTitle)
+//        title: Text(KStrings.threeTabTitle)
 //    ),
 //    BottomNavigationBarItem(
 //        icon: Icon(Icons.person_outline),
-//        title: Text(KString.fourTabTitle)
+//        title: Text(KStrings.fourTabTitle)
 //    )
 //  ];
 
@@ -45,19 +45,19 @@ class _IndexPageState extends State<IndexPage> {
 
   List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
-        label: _tabTitleText(KString.oneTabTitle),
+        label: _tabTitleText(KStrings.oneTabTitle),
         icon: _tabIcon("nav_tab_1"),
         activeIcon: _tabSelectedIcon("nav_tab_1_on")),
     BottomNavigationBarItem(
-        label: _tabTitleText(KString.twoTabTitle),
+        label: _tabTitleText(KStrings.twoTabTitle),
         icon: _tabIcon("nav_tab_2"),
         activeIcon: _tabSelectedIcon("nav_tab_2_on")),
     BottomNavigationBarItem(
-        label: _tabTitleText(KString.threeTabTitle),
+        label: _tabTitleText(KStrings.threeTabTitle),
         icon: _tabIcon("nav_tab_3"),
         activeIcon: _tabSelectedIcon("nav_tab_3_on")),
     BottomNavigationBarItem(
-        label: _tabTitleText(KString.fourTabTitle),
+        label: _tabTitleText(KStrings.fourTabTitle),
         icon: _tabIcon("nav_tab_4"),
         activeIcon: _tabSelectedIcon("nav_tab_4_on")),
   ];

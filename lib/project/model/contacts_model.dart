@@ -1,9 +1,7 @@
-/**
- *  contacts_model.dart
- *
- *  Created by iotjin on 2020/09/01.
- *  description:  联系人model, 通讯录使用
- */
+///  contacts_model.dart
+///
+///  Created by iotjin on 2020/09/01.
+///  description:  联系人model, 通讯录使用
 
 import 'package:azlistview/azlistview.dart';
 

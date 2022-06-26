@@ -84,13 +84,13 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
     pageIndex = 0;
     print("pageIndex- $pageIndex");
     DataUtils.getPageGroupList({"page": pageIndex, "limit": 10},
-        success: (result) {
-      print(result);
+        success: (res) {
+      print(res);
       setState(() {
-        groupData = result['data'];
+        groupData = res['data'];
         _controller.resetLoadState();
       });
-    }, fail: (code) {});
+    }, fail: (code, msg) {});
   }
 
   void getMoreData() {
@@ -98,8 +98,8 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
     print("more pageIndex- $pageIndex");
 
     DataUtils.getPageGroupList({"page": pageIndex, "limit": 10},
-        success: (result) {
-      var moreData = result['data'];
+        success: (res) {
+      var moreData = res['data'];
       setState(() {
         if (moreData.length > 0) {
           _controller.finishLoad();
@@ -108,7 +108,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
           _controller.finishLoad(noMore: true);
         }
       });
-    }, fail: (code) {});
+    }, fail: (code, msg) {});
   }
 
   Widget build(BuildContext context) {
@@ -144,12 +144,12 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
     return EasyRefresh(
       header: ClassicalHeader(
         showInfo: false,
-//        noMoreText: 'noMoreText',
-//        refreshedText: '加载完成',
-//        refreshFailedText: '加载失败',
-//        refreshingText: '加载中...',
-//        refreshReadyText: '释放刷新',
-//        refreshText: '下拉刷新',
+        noMoreText: 'noMoreText',
+        refreshedText: '加载完成',
+        refreshFailedText: '加载失败',
+        refreshingText: '加载中...',
+        refreshReadyText: '释放刷新',
+        refreshText: '下拉刷新',
       ),
       footer: ClassicalFooter(showInfo: false),
       controller: _controller,

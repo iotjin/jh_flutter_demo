@@ -1,9 +1,7 @@
-/**
- *  info_page.dart
- *
- *  Created by iotjin on 2020/05/07.
- *  description: 基本信息
- */
+///  info_page.dart
+///
+///  Created by iotjin on 2020/05/07.
+///  description: 基本信息
 
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
@@ -76,10 +74,10 @@ class _InfoPageState extends State<InfoPage> {
       Positioned(
         top: 0,
         child: Container(
-          color: KColor.wxThemeColor,
+          color: KColors.kThemeColor,
 //          color: Colors.white,
           constraints: BoxConstraints(
-            minWidth: JhScreen.width,
+            minWidth: JhScreenUtils.screenWidth,
             maxHeight: _topH,
           ),
         ),
@@ -96,7 +94,7 @@ class _InfoPageState extends State<InfoPage> {
       children: <Widget>[
         Container(
           height: 100,
-          color: kThemeColor,
+          color: KColors.kThemeColor,
           alignment: Alignment.center,
           child: ListTile(
               leading: Container(

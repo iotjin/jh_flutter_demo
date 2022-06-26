@@ -1,9 +1,7 @@
-/**
- *  img_pull_down_big_page.dart
- *
- *  Created by iotjin on 2020/09/04.
- *  description: 图片下拉放大   https://zhuanlan.zhihu.com/p/85549830
- */
+///  img_pull_down_big_page.dart
+///
+///  Created by iotjin on 2020/09/04.
+///  description: 图片下拉放大   https://zhuanlan.zhihu.com/p/85549830
 
 import 'package:flutter/material.dart';
 

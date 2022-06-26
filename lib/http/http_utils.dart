@@ -1,9 +1,7 @@
-/**
- *  http_utils.dart
- *
- *  Created by iotjin on 2020/07/07.
- *  description:  网络请求工具类（dio二次封装）
- */
+///  http_utils.dart
+///
+///  Created by iotjin on 2020/07/07.
+///  description:  网络请求工具类（dio二次封装）
 
 import 'package:dio/dio.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
@@ -13,7 +11,7 @@ import 'intercept.dart';
 import 'log_utils.dart';
 
 typedef Success<T> = Function(T data);
-typedef Fail = Function(int code);
+typedef Fail = Function(int code, String msg);
 
 // 日志开关
 const bool isOpenLog = true;
@@ -43,44 +41,44 @@ class HttpUtils {
   /// get 请求
   static void get<T>(
     String url,
-    parameters, {
+    params, {
     Success? success,
     Fail? fail,
   }) {
-    _request(Method.get, url, parameters, success: success, fail: fail);
+    _request(Method.get, url, params, success: success, fail: fail);
   }
 
   /// post 请求
   static void post<T>(
     String url,
-    parameters, {
+    params, {
     Success? success,
     Fail? fail,
   }) {
-    _request(Method.post, url, parameters, success: success, fail: fail);
+    _request(Method.post, url, params, success: success, fail: fail);
   }
 
   /// _request 请求
   static void _request<T>(
     Method method,
     String url,
-    parameters, {
+    params, {
     Success? success,
     Fail? fail,
   }) {
     // 参数处理（如果需要加密等统一参数）
     if (!LogUtils.inProduction && isOpenLog) {
-      print("---------- HttpUtils parameters ----------");
-      print(parameters);
+      print("---------- HttpUtils params ----------");
+      print(params);
     }
 
     var data;
     var queryParameters;
     if (method == Method.get) {
-      queryParameters = parameters;
+      queryParameters = params;
     }
     if (method == Method.post) {
-      data = parameters;
+      data = params;
     }
 
     DioUtils.instance.request(method, url,
@@ -90,18 +88,15 @@ class HttpUtils {
         print(result);
       }
       if (result['code'] == 200) {
-        if (success != null) {
-          success(result);
-        }
+        success?.call(result);
       } else {
         // 其他状态，弹出错误提示信息
         JhProgressHUD.showText(result['msg']);
+        fail?.call(result['code'], result['msg']);
       }
     }, onError: (code, msg) {
       JhProgressHUD.showError(msg);
-      if (fail != null) {
-        fail(code);
-      }
+      fail?.call(code, msg);
     });
   }
 }

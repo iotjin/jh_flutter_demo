@@ -1,9 +1,9 @@
-/**
- *  three_page.dart
- *
- *  Created by iotjin on 2019/08/14.
- *  description: 发现
- */
+///  three_page.dart
+///
+///  Created by iotjin on 2019/08/14.
+///  description: 发现
+
+// ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
@@ -15,10 +15,10 @@ class ThreePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(context, KString.threeTabTitle,
+      appBar: baseAppBar(context, KStrings.threeTabTitle,
           backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 }
@@ -137,7 +137,7 @@ Widget testBtn(context) {
       color: Colors.yellow,
       width: 200,
       height: 200,
-      child: RaisedButton(
+      child: ElevatedButton(
 //        color: Colors.red,
         child: Text("点击跳转"),
         onPressed: () {

@@ -1,4 +1,5 @@
 class WorkOrderModel {
+  // ignore: non_constant_identifier_names
   var ID;
   String? place;
   String? state;
@@ -7,6 +8,7 @@ class WorkOrderModel {
   String? imageUrl;
 
   WorkOrderModel(
+      // ignore: non_constant_identifier_names
       {this.ID,
       this.place,
       this.state,

@@ -1,9 +1,7 @@
-/**
- *  wx_new_friend_page.dart
- *
- *  Created by iotjin on 2020/09/01.
- *  description: 新的朋友
- */
+///  wx_new_friend_page.dart
+///
+///  Created by iotjin on 2020/09/01.
+///  description: 新的朋友
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -59,7 +57,7 @@ class WxNewFriendPage extends StatelessWidget {
         JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }),
       body: _body(context),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 
@@ -87,7 +85,7 @@ class WxNewFriendPage extends StatelessWidget {
           color: Colors.white,
 //        height: 60,
           child: Column(children: <Widget>[
-            Icon(Icons.phone_iphone, color: KColor.wxThemeColor),
+            Icon(Icons.phone_iphone, color: KColors.wxThemeColor),
             SizedBox(height: 10),
             Text(
               '添加手机联系人',
@@ -124,7 +122,7 @@ class WxNewFriendPage extends StatelessWidget {
         width: 70,
         height: 35,
         decoration: BoxDecoration(
-          color: KColor.wxThemeColor,
+          color: KColors.wxThemeColor,
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: Text(
@@ -160,7 +158,7 @@ class WxNewFriendPage extends StatelessWidget {
               ))),
               title: Text(
                 item['title'],
-                style: TextStyle(color: KColor.wxTextBlueColor),
+                style: TextStyle(color: KColors.wxTextBlueColor),
               ),
               subtitle: Text(
                 item['subtitle'],

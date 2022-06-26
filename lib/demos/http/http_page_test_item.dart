@@ -16,6 +16,8 @@ class HttPageTestItem extends StatelessWidget {
     bool isHidden = data!.phone!.isEmpty;
 
     Color textColor = Colors.black;
+    data!.state =
+        data!.state == '2' ? '已完成' : (data!.state == '1' ? '处理中' : '流转中');
     if (data!.state == "流转中") {
       textColor = Colors.red;
     } else if (data!.state == "处理中") {

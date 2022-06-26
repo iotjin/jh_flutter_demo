@@ -24,14 +24,14 @@ void getMoreData() {
   print(dataArr);
 }
 
-class ListViewTest_SimplePullDown extends StatefulWidget {
+class ListViewTestSimplePullDown extends StatefulWidget {
   @override
-  _ListViewTest_SimplePullDownState createState() =>
-      _ListViewTest_SimplePullDownState();
+  _ListViewTestSimplePullDownState createState() =>
+      _ListViewTestSimplePullDownState();
 }
 
-class _ListViewTest_SimplePullDownState
-    extends State<ListViewTest_SimplePullDown> {
+class _ListViewTestSimplePullDownState
+    extends State<ListViewTestSimplePullDown> {
   EasyRefreshController _controller = EasyRefreshController();
 
   @override
@@ -44,7 +44,7 @@ class _ListViewTest_SimplePullDownState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "ListViewTest_SimplePullDown"),
+        appBar: backAppBar(context, "ListViewTestSimplePullDown"),
         body: EasyRefresh(
           controller: _controller,
           firstRefresh: true,

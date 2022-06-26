@@ -19,7 +19,7 @@ class _QRCodeTestState extends State<QRCodeTest> {
           child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               child: Text("二维码扫描"),
               onPressed: () {
                 _scan(context);

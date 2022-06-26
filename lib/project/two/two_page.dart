@@ -1,9 +1,7 @@
-/**
- *  two_page.dart
- *
- *  Created by iotjin on 2019/08/14.
- *  description:  通讯录
- */
+///  two_page.dart
+///
+///  Created by iotjin on 2019/08/14.
+///  description:  通讯录
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -105,13 +103,13 @@ class _TwoPageState extends State<TwoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: gradientAppBar(context, KString.twoTabTitle,
+      appBar: gradientAppBar(context, KStrings.twoTabTitle,
           rightImgPath: 'assets/images/tianjiahaoyou.png',
           rightItemCallBack: () {
         JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }),
       body: _body(),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 
@@ -240,10 +238,10 @@ class _TwoPageState extends State<TwoPage> {
   Widget _buildSusWidget(String susTag, {bool isFloat = false}) {
     return Container(
       height: _suspensionHeight,
-      width: JhScreen.width,
+      width: JhScreenUtils.screenWidth,
       padding: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
-        color: isFloat ? Colors.white : KColor.wxBgColor,
+        color: isFloat ? Colors.white : KColors.wxBgColor,
         border: isFloat
             ? Border(bottom: BorderSide(color: Color(0xFFE6E6E6), width: 0.5))
             : null,
@@ -254,7 +252,7 @@ class _TwoPageState extends State<TwoPage> {
         softWrap: false,
         style: TextStyle(
             fontSize: 18,
-            color: isFloat ? KColor.wxPayColor : Color(0xff777777),
+            color: isFloat ? KColors.wxPayColor : Color(0xff777777),
             fontWeight: FontWeight.bold),
       ),
     );
@@ -332,7 +330,7 @@ class _TwoPageState extends State<TwoPage> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border(
-                  top: BorderSide(width: 0.5, color: KColor.kLineColor),
+                  top: BorderSide(width: 0.5, color: KColors.kLineColor),
                 )),
             child: Text(
               _contactsCount,
@@ -386,10 +384,6 @@ class _TwoPageState extends State<TwoPage> {
 //          Text("data"),
 //          Text("data"),
 //          Text("data"),
-//          FlatButton(
-//            child: Text("点击"),
-//            onPressed: () {},
-//          ),
 //        ],
 //      ),
 //    ));

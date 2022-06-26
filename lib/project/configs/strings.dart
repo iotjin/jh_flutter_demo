@@ -1,11 +1,9 @@
-/**
- *  strings.dart
- *
- *  Created by iotjin on 2020/07/06.
- *  description:  字符串配置
- */
+///  strings.dart
+///
+///  Created by iotjin on 2020/07/06.
+///  description:  字符串配置
 
-class KString {
+class KStrings {
   // 默认  屏幕像素  基于该像素进行适配
   static double deviceHeightPix = 1920;
   static double deviceWidthPix = 1080;

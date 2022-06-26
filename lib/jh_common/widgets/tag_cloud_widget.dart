@@ -1,9 +1,9 @@
-/**
- *  tag_cloud_widget.dart
- *
- *  Created by iotjin on 2020/07/10.
- *  description:  标签云
- */
+///  tag_cloud_widget.dart
+///
+///  Created by iotjin on 2020/07/10.
+///  description:  标签云
+
+// ignore_for_file: unused_element, unnecessary_import
 
 import 'dart:math';
 import 'dart:ui';

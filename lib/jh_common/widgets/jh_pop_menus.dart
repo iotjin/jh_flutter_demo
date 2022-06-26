@@ -1,3 +1,8 @@
+///  jh_pop_menus.dart
+///
+///  Created by iotjin on 2020/02/17.
+///  description:  仿微信右上角pop
+
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
 
@@ -8,10 +13,10 @@ List _listData = [
   {"text": "收付款", "icon": "assets/images/popMenus/ic_pay.png"},
 ];
 
-Color _bgColor = Color(0xFF2D2D2D);
-double _fontSize = 16.0;
-double _cellHeight = 50.0;
-double _imgWH = 22.0;
+const Color _bgColor = Color(0xFF2D2D2D);
+const double _fontSize = 16.0;
+const double _cellHeight = 50.0;
+const double _imgWH = 22.0;
 
 typedef _ClickCallBack = void Function(int selectIndex, String selectText);
 

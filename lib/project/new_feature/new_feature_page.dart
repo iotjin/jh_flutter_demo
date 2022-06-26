@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
 import '/project/login/pages/login_page.dart';
 

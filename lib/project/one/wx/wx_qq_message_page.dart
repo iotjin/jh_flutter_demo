@@ -1,9 +1,7 @@
-/**
- *  wx_qq_message_page.dart
- *
- *  Created by iotjin on 2020/09/03.
- *  description:
- */
+///  wx_qq_message_page.dart
+///
+///  Created by iotjin on 2020/09/03.
+///  description:
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -100,7 +98,7 @@ class WxQQMessagePage extends StatelessWidget {
               onTap: () => _clickCell(context, '写邮件'),
             ),
           ),
-          Container(height: 60, width: 0.5, color: KColor.kLineColor),
+          Container(height: 60, width: 0.5, color: KColors.kLineColor),
           Expanded(
             flex: 1,
             child: InkWell(

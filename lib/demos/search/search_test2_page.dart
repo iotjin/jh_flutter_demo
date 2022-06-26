@@ -11,7 +11,7 @@ class SearchTest2Page extends StatelessWidget {
 
 //      cursorColor: Colors.white, // 设置光标
           AppBar(
-        backgroundColor: kThemeColor,
+        backgroundColor: KColors.kThemeColor,
         titleSpacing: 0,
         title: GestureDetector(
           child: Container(
@@ -47,7 +47,7 @@ class SearchTest2Page extends StatelessWidget {
           ),
         ],
       ),
-      body: RaisedButton(
+      body: ElevatedButton(
         child: Text("返回"),
         onPressed: () {
           Navigator.pop(context);

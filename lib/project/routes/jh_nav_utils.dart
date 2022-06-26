@@ -1,9 +1,7 @@
-/**
- *  jh_nav_utils.dart
- *
- *  Created by iotjin on 2020/08/14.
- *  description: 路由跳转工具类（基于fluro路由封装）
- */
+///  jh_nav_utils.dart
+///
+///  Created by iotjin on 2020/08/14.
+///  description: 路由跳转工具类（基于fluro路由封装）
 
 import 'routes.dart';
 import 'package:fluro/fluro.dart';

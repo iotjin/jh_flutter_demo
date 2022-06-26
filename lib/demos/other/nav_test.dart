@@ -20,33 +20,33 @@ class NavTestPage extends StatelessWidget {
         callBack: (index, str) {
           if (index == 0) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav1()))); // 普通路由
+                MaterialPageRoute(builder: (context) => (_Nav1()))); // 普通路由
           }
           if (index == 1) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav2()))); // 普通路由
+                MaterialPageRoute(builder: (context) => (_Nav2()))); // 普通路由
           }
           if (index == 2) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav3()))); // 普通路由
+                MaterialPageRoute(builder: (context) => (_Nav3()))); // 普通路由
           }
           if (index == 3) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav4()))); // 普通路由
+                MaterialPageRoute(builder: (context) => (_Nav4()))); // 普通路由
           }
           if (index == 4) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav5()))); // 普通路由
+                MaterialPageRoute(builder: (context) => (_Nav5()))); // 普通路由
           }
           if (index == 5) {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => (_nav6()))); // 普通路由
+                MaterialPageRoute(builder: (context) => (_Nav6()))); // 普通路由
           }
         });
   }
 }
 
-class _nav1 extends StatelessWidget {
+class _Nav1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +54,7 @@ class _nav1 extends StatelessWidget {
         context,
         "微信1",
       ),
-      body: RaisedButton(
+      body: ElevatedButton(
         child: Text("返回"),
         onPressed: () {
           Navigator.pop(context);
@@ -64,7 +64,7 @@ class _nav1 extends StatelessWidget {
   }
 }
 
-class _nav2 extends StatelessWidget {
+class _Nav2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +75,7 @@ class _nav2 extends StatelessWidget {
       }, backCallBack: () {
         print("点击左侧");
       }),
-      body: RaisedButton(
+      body: ElevatedButton(
         child: Text("返回"),
         onPressed: () {
           Navigator.pop(context);
@@ -85,7 +85,7 @@ class _nav2 extends StatelessWidget {
   }
 }
 
-class _nav3 extends StatelessWidget {
+class _Nav3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +96,7 @@ class _nav3 extends StatelessWidget {
       }, backCallBack: () {
         print("点击左侧");
       }),
-      body: RaisedButton(
+      body: ElevatedButton(
         child: Text("返回"),
         onPressed: () {
           Navigator.pop(context);
@@ -106,7 +106,7 @@ class _nav3 extends StatelessWidget {
   }
 }
 
-class _nav4 extends StatelessWidget {
+class _Nav4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,7 +129,7 @@ class _nav4 extends StatelessWidget {
       }, leftItemCallBack: () {
         print("点击左侧");
       }),
-      body: RaisedButton(
+      body: ElevatedButton(
         child: Text("返回"),
         onPressed: () {
           Navigator.pop(context);
@@ -139,7 +139,7 @@ class _nav4 extends StatelessWidget {
   }
 }
 
-class _nav5 extends StatelessWidget {
+class _Nav5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,7 +148,7 @@ class _nav5 extends StatelessWidget {
           print("点击右侧");
         }, backgroundColor: Colors.transparent),
         body: Container(
-          child: RaisedButton(
+          child: ElevatedButton(
             child: Text("返回"),
             onPressed: () {
               Navigator.pop(context);
@@ -158,7 +158,7 @@ class _nav5 extends StatelessWidget {
   }
 }
 
-class _nav6 extends StatelessWidget {
+class _Nav6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,7 +171,7 @@ class _nav6 extends StatelessWidget {
           },
         ),
         body: Container(
-          child: RaisedButton(
+          child: ElevatedButton(
             child: Text("返回"),
             onPressed: () {
               Navigator.pop(context);

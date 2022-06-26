@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field, unnecessary_null_comparison, prefer_is_not_empty
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -8,12 +10,12 @@ import '/jh_common/widgets/jh_button.dart';
 import '/project/routes/jh_nav_utils.dart';
 import '/project/base_tabbar.dart';
 
-class LoginPage_fei extends StatefulWidget {
+class LoginPageFei extends StatefulWidget {
   @override
-  _LoginPage_feiState createState() => _LoginPage_feiState();
+  _LoginPageFeiState createState() => _LoginPageFeiState();
 }
 
-class _LoginPage_feiState extends State<LoginPage_fei> {
+class _LoginPageFeiState extends State<LoginPageFei> {
   TextEditingController _nameController = new TextEditingController();
   TextEditingController _pwdController = new TextEditingController();
 
@@ -154,7 +156,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                                     color: Color(0xFFC8C8C8),
                                     size: 20,
                                   ),
-                                  onPressed: () => _ClickDeleteBtn())
+                                  onPressed: () => _clickDeleteBtn())
                               : Text(""),
                         ],
                       ),
@@ -219,7 +221,7 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
                   obscureText: !pwdShow,
                 ),
                 SizedBox(height: 50),
-                JhButton(text: "登 录", onPressed: _ClickOkBtn),
+                JhButton(text: "登 录", onPressed: _clickOkBtn),
                 SizedBox(height: 10),
                 Container(
                   height: 40.0,
@@ -239,12 +241,12 @@ class _LoginPage_feiState extends State<LoginPage_fei> {
     );
   }
 
-  void _ClickDeleteBtn() {
+  void _clickDeleteBtn() {
     print("点击删除");
     _nameController.text = "";
   }
 
-  void _ClickOkBtn() async {
+  void _clickOkBtn() async {
 //    Navigator.of(context).pushAndRemoveUntil(
 //         MaterialPageRoute(builder: (context) => BaseTabBar()
 //        ), (route) => route == null);

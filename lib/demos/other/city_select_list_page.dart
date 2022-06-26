@@ -77,7 +77,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
       body: SafeArea(
         child: _body(),
       ),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 
@@ -158,9 +158,12 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
         runAlignment: WrapAlignment.center,
         spacing: 10.0,
         children: hotCityList.map((e) {
-          return RaisedButton(
-            color: Colors.white,
+          return TextButton(
             child: Text(e.name!),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+              foregroundColor: MaterialStateProperty.all(Colors.black),
+            ),
             onPressed: () {
               print("OnItemClick: ${e.name}");
 //              Navigator.pop(context, e);
@@ -174,7 +177,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   Widget _buildSusWidget(String susTag) {
     return Container(
       height: _suspensionHeight,
-      width: JhScreen.width,
+      width: JhScreenUtils.screenWidth,
       padding: const EdgeInsets.only(left: 15.0),
       color: Color(0xfff3f4f5),
       alignment: Alignment.centerLeft,

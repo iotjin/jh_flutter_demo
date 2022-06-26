@@ -1,9 +1,7 @@
-/**
- *  user_model.dart
- *
- *  Created by iotjin on 2020/05/07.
- *  description:  用户信息model
- */
+///  user_model.dart
+///
+///  Created by iotjin on 2020/05/07.
+///  description:  用户信息model
 
 class UserModel {
   String? userID;

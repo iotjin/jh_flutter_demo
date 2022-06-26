@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/ball_pulse_header.dart';
@@ -15,9 +17,9 @@ void getNewData() {
   dataArr = [];
   for (int i = pageIndex * count; i < count; i++) {
     var map = new Map();
-    map["title"] = "title${i}";
-    map["place"] = "place${i}";
-    map["state"] = "流转中${i}";
+    map["title"] = "title$i";
+    map["place"] = "place$i";
+    map["state"] = "流转中$i";
     map["content"] =
         "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
     map["phone"] = '$i$i$i' + 'xxxxxxx';
@@ -30,9 +32,9 @@ void getMoreData() {
   pageIndex++;
   for (int i = pageIndex * count; i < pageIndex * count + count; i++) {
     var map = new Map();
-    map["title"] = "title${i}";
-    map["place"] = "place${i}";
-    map["state"] = "流转中${i}";
+    map["title"] = "title$i";
+    map["place"] = "place$i";
+    map["state"] = "流转中$i";
     map["content"] =
         "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
     map["phone"] = '$i$i$i' + 'xxxxxxx';
@@ -41,13 +43,13 @@ void getMoreData() {
   }
 }
 
-class ListViewTest_PullDownVC extends StatefulWidget {
+class ListViewTestPullDownVC extends StatefulWidget {
   @override
-  _ListViewTest_PullDownVCState createState() =>
-      _ListViewTest_PullDownVCState();
+  _ListViewTestPullDownVCState createState() =>
+      _ListViewTestPullDownVCState();
 }
 
-class _ListViewTest_PullDownVCState extends State<ListViewTest_PullDownVC> {
+class _ListViewTestPullDownVCState extends State<ListViewTestPullDownVC> {
   EasyRefreshController _controller = EasyRefreshController();
 
   @override
@@ -60,7 +62,7 @@ class _ListViewTest_PullDownVCState extends State<ListViewTest_PullDownVC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "ListViewTest_PullDownVC"),
+        appBar: backAppBar(context, "ListViewTestPullDownVC"),
         body: EasyRefresh(
             header: BallPulseHeader(),
             controller: _controller,
@@ -95,13 +97,13 @@ Widget cell(int dataCount) {
   return ListView.separated(
     itemCount: dataCount,
     itemBuilder: (context, index) {
-      /*先将字符串转成json*/
+      // 先将字符串转成json
       Map<String, dynamic> json = Map<String, dynamic>.from(dataArr[index]);
 //        print(json);
-      /*将Json转成实体类*/
+      // 将Json转成实体类
       CustomViewModel model = CustomViewModel.fromJson(json);
       print("title" + model.title!);
-      return ListViewTest_CustomCell(data: model);
+      return ListViewTestCustomCell(data: model);
     },
     separatorBuilder: (context, index) {
       return Divider(

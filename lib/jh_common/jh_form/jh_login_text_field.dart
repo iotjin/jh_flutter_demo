@@ -1,9 +1,7 @@
-/**
- *  jh_login_text_field.dart
- *
- *  Created by iotjin on 2020/03/26.
- *  description:  登录输入框
- */
+///  jh_login_text_field.dart
+///
+///  Created by iotjin on 2020/03/26.
+///  description:  登录输入框
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,24 +14,6 @@ const TextStyle _hintTextStyle =
 typedef _InputCallBack = void Function(String value);
 
 class JhLoginTextField extends StatefulWidget {
-  final String text;
-  final String hintText;
-  final String? labelText; // top提示文字
-  final TextEditingController? controller;
-  final TextInputType keyboardType;
-  final FocusNode? focusNode;
-  final bool isPwd; // 是否是密码，默认不是
-  final Widget? leftWidget; // 左侧widget ，默认隐藏
-  final Widget? rightWidget; // 右侧widget ，默认隐藏
-  final int maxLength; // 最大长度，默认20
-  final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认不显示
-  final List<TextInputFormatter>? inputFormatters;
-  final _InputCallBack? inputCallBack;
-  final String? pwdOpen; // 自定义密码图片路径 睁眼
-  final String? pwdClose; // 自定义密码图片路径 闭眼
-  final InputBorder? border; // 边框样式
-  final bool isDense; // 是否紧凑显示，默认false
-
   const JhLoginTextField({
     Key? key,
     this.text: '',
@@ -54,6 +34,24 @@ class JhLoginTextField extends StatefulWidget {
     this.border,
     this.isDense: false,
   }) : super(key: key);
+
+  final String text;
+  final String hintText;
+  final String? labelText; // top提示文字
+  final TextEditingController? controller;
+  final TextInputType keyboardType;
+  final FocusNode? focusNode;
+  final bool isPwd; // 是否是密码，默认不是
+  final Widget? leftWidget; // 左侧widget ，默认隐藏
+  final Widget? rightWidget; // 右侧widget ，默认隐藏
+  final int maxLength; // 最大长度，默认20
+  final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认不显示
+  final List<TextInputFormatter>? inputFormatters;
+  final _InputCallBack? inputCallBack;
+  final String? pwdOpen; // 自定义密码图片路径 睁眼
+  final String? pwdClose; // 自定义密码图片路径 闭眼
+  final InputBorder? border; // 边框样式
+  final bool isDense; // 是否紧凑显示，默认false
 
   @override
   _JhLoginTextFieldState createState() => _JhLoginTextFieldState();

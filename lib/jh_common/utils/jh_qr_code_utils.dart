@@ -1,9 +1,7 @@
-/**
- *  jh_qr_code_utils.dart
- *
- *  Created by iotjin on 2020/07/01.
- *  description:  二维码工具类
- */
+///  jh_qr_code_utils.dart
+///
+///  Created by iotjin on 2020/07/01.
+///  description:  二维码工具类
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -39,7 +37,7 @@ class JhQrCodeUtils {
 
   /// 跳转二维码扫码页扫码
   static Future<String> jumpScan(BuildContext context) async {
-    if (JhDevice.isMobile) {
+    if (JhDeviceUtils.isMobile) {
       JhNavUtils.unFocus();
       // 延时保证键盘收起，否则进入扫码页会黑屏
       Future<dynamic>.delayed(const Duration(milliseconds: 500), () {

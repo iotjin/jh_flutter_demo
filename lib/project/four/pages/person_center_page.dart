@@ -1,9 +1,7 @@
-/**
- *  person_center_page.dart
- *
- *  Created by iotjin on 2020/09/04.
- *  description:
- */
+///  person_center_page.dart
+///
+///  Created by iotjin on 2020/09/04.
+///  description:
 
 import 'package:flutter/material.dart';
 

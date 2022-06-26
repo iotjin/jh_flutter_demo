@@ -1,9 +1,7 @@
-/**
- *  jh_photo_browser.dart
- *
- *  Created by iotjin on 2020/09/16.
- *  description: 图片全屏浏览器
- */
+///  jh_photo_browser.dart
+///
+///  Created by iotjin on 2020/09/16.
+///  description:  图片全屏浏览器
 
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
@@ -13,40 +11,8 @@ import '/jh_common/utils/jh_screen_utils.dart';
 const Color _selColor = Colors.white;
 const Color _otherColor = Colors.grey;
 
-class FadeRoute extends PageRouteBuilder {
-  final Widget? page;
-
-  FadeRoute({this.page})
-      : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page!,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-        );
-}
-
 class JhPhotoBrowser extends StatefulWidget {
-  List imgDataArr = [];
-  int index;
-  String? heroTag;
-  PageController? controller;
-  GestureTapCallback? onLongPress;
-  bool isHiddenClose;
-  bool isHiddenTitle;
-
-  JhPhotoBrowser({
+  const JhPhotoBrowser({
     Key? key,
     required this.imgDataArr,
     this.index = 0,
@@ -55,22 +21,31 @@ class JhPhotoBrowser extends StatefulWidget {
     this.heroTag,
     this.isHiddenClose = false,
     this.isHiddenTitle = false,
-  }) : super(key: key) {
-    controller = PageController(initialPage: index);
-  }
+  }) : super(key: key);
+
+  final List imgDataArr;
+  final int index;
+  final String? heroTag;
+  final PageController? controller;
+  final GestureTapCallback? onLongPress;
+  final bool isHiddenClose;
+  final bool isHiddenTitle;
 
   @override
   _JhPhotoBrowserState createState() => _JhPhotoBrowserState();
 }
 
 class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
-  int currentIndex = 0;
+  int _currentIndex = 0;
+  PageController? _controller;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    currentIndex = widget.index;
+    _currentIndex = widget.index;
+    _controller =
+        widget.controller ?? PageController(initialPage: _currentIndex);
   }
 
   @override
@@ -122,11 +97,11 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
                   itemCount: widget.imgDataArr.length,
                   // loadingChild: Container(),
                   backgroundDecoration: null,
-                  pageController: widget.controller,
+                  pageController: _controller,
                   enableRotation: false,
                   onPageChanged: (index) {
                     setState(() {
-                      currentIndex = index;
+                      _currentIndex = index;
                     });
                   },
                 ),
@@ -140,7 +115,7 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
           child: Offstage(
             offstage: widget.imgDataArr.length == 1 || widget.isHiddenTitle,
             child: Center(
-              child: Text("${currentIndex + 1}/${widget.imgDataArr.length}",
+              child: Text("${_currentIndex + 1}/${widget.imgDataArr.length}",
                   style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ),
@@ -180,7 +155,7 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
 //                      foregroundColor: Theme.of(context).primaryColor,
                           radius: 3.5,
                           backgroundColor:
-                              currentIndex == i ? _selColor : _otherColor,
+                              _currentIndex == i ? _selColor : _otherColor,
                         )),
                   ),
                 ).toList(),
@@ -191,4 +166,28 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
       ],
     );
   }
+}
+
+class FadeRoute extends PageRouteBuilder {
+  final Widget? page;
+
+  FadeRoute({this.page})
+      : super(
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) =>
+              page!,
+          transitionsBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
+          ) =>
+              FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        );
 }

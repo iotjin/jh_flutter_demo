@@ -41,7 +41,7 @@ class ScrollPage extends StatelessWidget {
     return Scaffold(
         appBar: baseAppBar(context, 'ScrollPage'),
         body: BaseScrollView(),
-        backgroundColor: KColor.wxBgColor);
+        backgroundColor: KColors.wxBgColor);
   }
 }
 
@@ -83,7 +83,7 @@ class BaseScrollView extends StatelessWidget {
           Text("data"),
           Text("data"),
           Text("data"),
-          TextButton(
+          ElevatedButton(
             child: Text("点击"),
             onPressed: () {},
           ),

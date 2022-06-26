@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.10.0
+version: 2.10.0+1
 
 environment:
   sdk: ">=2.14.0 <3.0.0"
@@ -50,7 +50,7 @@ dependencies:
   # 本地化存储 https://pub.flutter-io.cn/packages/shared_preferences
   shared_preferences: ^2.0.15
   # sq https://pub.flutter-io.cn/packages/sqflite
-  sqflite: ^2.0.2+1
+  sqflite: ^2.0.2
   # webview https://pub.flutter-io.cn/packages/webview_flutter
   webview_flutter: ^2.8.0
   # url打开工具 https://pub.flutter-io.cn/packages/url_launcher
@@ -75,7 +75,7 @@ dependencies:
   cupertino_icons: ^1.0.4
 
   # toast https://pub.flutter-io.cn/packages/jhtoast
-  jhtoast: ^0.5.0
+  jhtoast: ^1.1.0
   # 弹框 https://pub.flutter-io.cn/packages/fluttertoast
   fluttertoast: ^8.0.9
   # 加载框 https://pub.flutter-io.cn/packages/oktoast
@@ -96,7 +96,7 @@ dependencies:
   # 小红点 https://pub.flutter-io.cn/packages/badges
   badges: ^2.0.2
   # 图表（EChart Flutter版） https://pub.flutter-io.cn/packages/graphic
-  graphic: ^0.10.4
+  graphic: ^0.10.5
   # EChart 图表（缩放手势冲突，不稳定） https://pub.flutter-io.cn/packages/flutter_echarts
   flutter_echarts: ^2.3.0
   # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter
@@ -112,7 +112,10 @@ dependencies:
   # 二维码扫描 https://pub.flutter-io.cn/packages/barcode_scan2
   barcode_scan2: ^4.2.1
   # 轮播 https://pub.flutter-io.cn/packages/flutter_swiper
-  flutter_swiper: ^1.1.6
+  #  flutter_swiper: ^1.1.6
+  # 轮播 https://pub.flutter-io.cn/packages/flutter_swiper_null_safety
+  # 这个库，完全根据https://github.com/jzoom/flutter_swiper 使用方式，跟原作者一样 修改的空安全，兼容2.0。
+  flutter_swiper_null_safety: ^1.0.2
   # 轮播 https://pub.flutter-io.cn/packages/carousel_slider
   carousel_slider: ^4.1.1
   # 城市选择列表 https://pub.flutter-io.cn/packages/azlistview

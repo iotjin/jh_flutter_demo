@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unnecessary_import
+
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,7 @@ import 'project/new_feature/new_feature_page.dart';
 import 'project/configs/project_config.dart';
 import 'project/model/user_model.dart';
 
-/**
+/*
     屏幕宽度高度：MediaQuery.of(context).size.width
     屏幕宽度高度：MediaQuery.of(context).size.height
     屏幕状态栏高度：MediaQueryData.fromWindow(WidgetBinding.instance.window).padding.top。
@@ -37,7 +39,7 @@ import 'project/model/user_model.dart';
     // 底部功能栏, 类似于iPhone XR 底部安全区域
     bottomBarHeight = mq.padding.bottom;
 
- * */
+*/
 
 //void main() => runApp(MyApp());
 
@@ -99,9 +101,9 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
 //                brightness: // 深色还是浅色
 //                primarySwatch: Colors.blue // 主题颜色样本
-        primaryColor: KColor.wxThemeColor, // 主色，决定导航栏颜色
+        primaryColor: KColors.kThemeColor, // 主色，决定导航栏颜色
         // 次级色，决定大多数Widget的颜色，如进度条、开关等。
-        primaryIconTheme: IconThemeData(color: KColor.wxTitleColor),
+        primaryIconTheme: IconThemeData(color: KColors.wxTitleColor),
       ),
 //            home: IndexPage(),
 //            home: BaseTabBar(),
@@ -147,7 +149,6 @@ class _MyAppState extends State<MyApp> {
 //        print('正常启动');
 //        userModel model =
 //            SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
-
         var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
         if (modelJson != null) {
           UserModel model = UserModel.fromJson(modelJson);
@@ -159,6 +160,21 @@ class _MyAppState extends State<MyApp> {
       }
     }
   }
+}
+
+class FallbackCupertinoLocalisationsDelegate
+    extends LocalizationsDelegate<CupertinoLocalizations> {
+  const FallbackCupertinoLocalisationsDelegate();
+
+  @override
+  bool isSupported(Locale locale) => true;
+
+  @override
+  Future<CupertinoLocalizations> load(Locale locale) =>
+      DefaultCupertinoLocalizations.load(locale);
+
+  @override
+  bool shouldReload(FallbackCupertinoLocalisationsDelegate old) => false;
 }
 
 //void main() => runApp(MyApp());

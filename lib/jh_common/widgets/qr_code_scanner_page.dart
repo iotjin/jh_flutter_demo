@@ -1,3 +1,8 @@
+///  qr_code_scanner_page.dart
+///
+///  Created by iotjin on 2022/06/05.
+///  description:  二维码扫码页
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';

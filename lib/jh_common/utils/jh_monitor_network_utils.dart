@@ -1,3 +1,10 @@
+///  jh_monitor_network_utils.dart
+///
+///  Created by iotjin on 2020/07/02.
+///  description:  网络监测
+
+// ignore_for_file: body_might_complete_normally_nullable
+
 import 'package:connectivity/connectivity.dart';
 
 class JhMonitorNetworkUtils {

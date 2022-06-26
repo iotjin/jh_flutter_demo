@@ -17,8 +17,8 @@ class PassValuePage2 extends StatelessWidget {
     value = _passValue;
 
     return Scaffold(
-        appBar: backAppBar(context, '接收的值: ${value}'),
-        body: RaisedButton(
+        appBar: backAppBar(context, '接收的值: $value'),
+        body: ElevatedButton(
           child: Text("点击回传"),
           onPressed: () {
 //            Navigator.of(context).pop('456');

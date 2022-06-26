@@ -1,11 +1,17 @@
-/**
- *  jh_dialog.dart
- *
- *  Created by iotjin on 2020/07/28.
- *  description: 中间、全屏弹框
- */
+///  jh_dialog.dart
+///
+///  Created by iotjin on 2020/07/28.
+///  description:  中间、自定义、全屏弹框
 
 import 'package:flutter/material.dart';
+import '/project/configs/colors.dart';
+
+const String _cancelText = '取消';
+const String _confirmText = '确认';
+const double _titleFontSize = 18.0;
+const double _btnFontSize = 18.0;
+const Color _cancelTextColor = Color(0xFF999999);
+const Color _confirmTextColor = KColors.kThemeColor;
 
 class JhDialog {
   /// 中间弹框
@@ -13,8 +19,8 @@ class JhDialog {
     BuildContext context, {
     String title: "",
     String content: "",
-    String leftText: "取消",
-    String rightText: "确认",
+    String leftText: _cancelText,
+    String rightText: _confirmText,
     final VoidCallback? onCancel,
     final VoidCallback? onConfirm,
     bool hiddenCancel: false,
@@ -45,8 +51,8 @@ class JhDialog {
     BuildContext context, {
     String title: "",
     Widget? content,
-    String leftText: "取消",
-    String rightText: "确认",
+    String leftText: _cancelText,
+    String rightText: _confirmText,
     final VoidCallback? onCancel,
     final VoidCallback? onConfirm,
     bool hiddenCancel: false,
@@ -86,8 +92,8 @@ class _BaseDialog extends StatelessWidget {
     Key? key,
     this.title: "",
     this.widget,
-    this.leftText: "取消",
-    this.rightText: "确认",
+    this.leftText: _cancelText,
+    this.rightText: _confirmText,
     this.onCancel,
     this.onConfirm,
     this.hiddenCancel: false,
@@ -109,7 +115,8 @@ class _BaseDialog extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 8.0),
         child: Text(
           title,
-          style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+          style:
+              TextStyle(fontSize: _titleFontSize, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -120,7 +127,7 @@ class _BaseDialog extends StatelessWidget {
             ? Container()
             : _DialogButton(
                 text: leftText,
-                textColor: Color(0xFF999999),
+                textColor: _cancelTextColor,
                 onPressed: () {
                   Navigator.pop(context);
                   if (onCancel != null) {
@@ -135,7 +142,7 @@ class _BaseDialog extends StatelessWidget {
         ),
         _DialogButton(
           text: rightText,
-          textColor: Theme.of(context).primaryColor,
+          textColor: _confirmTextColor,
           onPressed: () {
             Navigator.pop(context);
             if (onConfirm != null) {
@@ -200,13 +207,12 @@ class _DialogButton extends StatelessWidget {
     return Expanded(
       child: SizedBox(
         height: 48.0,
-        child: FlatButton(
-          child: Text(
-            text,
-            style: TextStyle(fontSize: 18.0),
-          ),
-          textColor: textColor,
+        child: TextButton(
           onPressed: onPressed,
+          child: Text(text, style: TextStyle(fontSize: _btnFontSize)),
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(textColor),
+          ),
         ),
       ),
     );

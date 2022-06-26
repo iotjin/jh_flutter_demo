@@ -6,34 +6,33 @@
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
     <application
-        android:label="jh_flutter_demo"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:label="jh_flutter_demo">
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            android:windowSoftInputMode="adjustResize">
 
             <meta-data
-                    android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
-                    android:value="true" />
+                android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
+                android:value="true" />
             <!-- Specify that the launch screen should continue being displayed -->
             <!-- until Flutter renders its first frame. -->
             <meta-data
-                    android:name="io.flutter.embedding.android.SplashScreenDrawable"
-                    android:resource="@drawable/launch_background" />
+                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+                android:resource="@drawable/launch_background" />
             <!-- Theme to apply as soon as Flutter begins rendering frames -->
-<!--            <meta-data-->
-<!--                    android:name="io.flutter.embedding.android.NormalTheme"-->
-<!--                    android:resource="@android:style/Theme.Black.NoTitleBar" />-->
+            <!--            <meta-data-->
+            <!--                    android:name="io.flutter.embedding.android.NormalTheme"-->
+            <!--                    android:resource="@android:style/Theme.Black.NoTitleBar" />-->
 
 
         </activity>
@@ -43,4 +42,9 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <!--权限-->
+    <!--访问网络-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--拍照权限，允许访问摄像头进行拍照-->
+    <uses-permission android:name="android.permission.CAMERA" />
 </manifest>

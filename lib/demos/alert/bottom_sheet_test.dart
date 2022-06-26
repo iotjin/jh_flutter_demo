@@ -17,11 +17,11 @@ class BottomSheetTest extends StatelessWidget {
     "jhPickerTool-时间选择YMD_AP_HM"
   ];
 
-  var aa = ["11", "22", "33", "44"];
+  final aa = ["11", "22", "33", "44"];
 
-//       var aa =  [11,22,33,44];
-//       var bb =  [[1,2],[3,4],["5","6"]];
-  var bb = [
+  // final aa =  [11,22,33,44];
+  // final bb =  [[1,2],[3,4],["5","6"]];
+  final bb = [
     ["11", "22"],
     ["33", "44"],
     ["55", "66"]

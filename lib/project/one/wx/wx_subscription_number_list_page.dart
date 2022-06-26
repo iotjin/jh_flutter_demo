@@ -1,9 +1,7 @@
-/**
- *  wx_subscription_number_list_page.dart
- *
- *  Created by iotjin on 2020/09/03.
- *  description:
- */
+///  wx_subscription_number_list_page.dart
+///
+///  Created by iotjin on 2020/09/03.
+///  description:
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -40,7 +38,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
         _clickCell(context, '更多');
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 
@@ -72,7 +70,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
             height: .5,
             indent: 70,
             endIndent: 0,
-            color: KColor.kLineColor,
+            color: KColors.kLineColor,
           );
         },
         itemBuilder: (context, index) {
@@ -110,7 +108,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-//                Container(color: KColor.kLineColor, height: 0.8),
+//                Container(color: KColors.kLineColor, height: 0.8),
                     SizedBox(height: 6),
                     Row(
                       children: <Widget>[
@@ -147,9 +145,9 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
     JhToast.showText(context, msg: '点击 $text');
   }
 
-  // 点击侧滑按钮
-  void _showSnackBar(context, text) {
-    print(text);
-    JhToast.showText(context, msg: text);
-  }
+// // 点击侧滑按钮
+// void _showSnackBar(context, text) {
+//   print(text);
+//   JhToast.showText(context, msg: text);
+// }
 }

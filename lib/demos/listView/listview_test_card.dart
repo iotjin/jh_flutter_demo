@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '/base_appbar.dart';
 import '/res/listData.dart';
 
-class ListViewTest_Card extends StatelessWidget {
+class ListViewTestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "ListViewTest_Card"),
+      appBar: backAppBar(context, "ListViewTestCard"),
       body: ContentBody(),
     );
   }

@@ -1,5 +1,8 @@
+// ignore_for_file: unused_import, unnecessary_import
+
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+
 // import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter_easyrefresh/delivery_header.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -76,14 +79,14 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
   void getNewData() {
     pageIndex = 0;
     print("pageIndex- $pageIndex");
-    DataUtils.getPageList({"page": pageIndex, "limit": 10}, success: (result) {
-      dataArr = result['data'];
+    DataUtils.getPageList({"page": pageIndex, "limit": 10}, success: (res) {
+      dataArr = res['data'];
       setState(() {
         _count = dataArr.length == null ? 0 : dataArr.length;
         print("最新条数" + _count.toString());
         _controller.resetLoadState();
       });
-    }, fail: (code) {});
+    }, fail: (code, msg) {});
   }
 
   void getMoreData() {
@@ -101,8 +104,8 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
 //      _controller.finishLoad();
 //    });
 
-    DataUtils.getPageList({"page": pageIndex, "limit": 10}, success: (result) {
-      var moreData = result['data'];
+    DataUtils.getPageList({"page": pageIndex, "limit": 10}, success: (res) {
+      var moreData = res['data'];
       dataArr = dataArr + moreData;
       setState(() {
         _count = dataArr.length == null ? 0 : dataArr.length;
@@ -110,7 +113,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
 //      _controller.finishLoad(noMore: _count >= 30);
         _controller.finishLoad();
       });
-    }, fail: (code) {});
+    }, fail: (code, msg) {});
   }
 }
 

@@ -13,20 +13,18 @@ import '/project/routes/routes.dart';
 import '/data/data_utils.dart';
 
 /*
-*        keyboardType: TextInputType.numberWithOptions(decimal: true),// 设置键盘为可录入小数的数字
-         inputFormatters: [FilteringTextInputFormatter.allow.digitsOnly],// 设置只能录入数字[0-9]
+   keyboardType: TextInputType.numberWithOptions(decimal: true),// 设置键盘为可录入小数的数字
+   inputFormatters: [FilteringTextInputFormatter.allow.digitsOnly],// 设置只能录入数字[0-9]
 
-         FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),// 只允许输入字母
-         FilteringTextInputFormatter.allow.digitsOnly],// 只允许输入数字
-         FilteringTextInputFormatter.allow(RegExp("[0-9.]")),// 只允许输入小数
-         BlacklistingTextInputFormatter(RegExp("[abFeG])), // 黑名单
+   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),// 只允许输入字母
+   FilteringTextInputFormatter.allow.digitsOnly],// 只允许输入数字
+   FilteringTextInputFormatter.allow(RegExp("[0-9.]")),// 只允许输入小数
+   BlacklistingTextInputFormatter(RegExp("[abFeG])), // 黑名单
 
-         FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")) ,
-         LengthLimitingTextInputFormatter(20)
+   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")) ,
+   LengthLimitingTextInputFormatter(20)
+*/
 
-
-
-* */
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -151,6 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                     inputCallBack: (value) => _name = value),
                 SizedBox(height: 10),
                 JhLoginTextField(
+                    text: _pwd,
                     hintText: "请输入密码",
                     focusNode: _node2,
                     leftWidget: Icon(Icons.lock),
@@ -163,11 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 50),
                 JhButton(
                   text: "登 录",
-                  onPressed: () {
-                    if (_isClick) {
-                      _clickOkBtn();
-                    }
-                  },
+                  onPressed: _isClick ? _clickOkBtn : null,
                 ),
                 SizedBox(height: 15),
                 Row(
@@ -179,8 +174,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '验证码登录',
                           ),
-                          onTap: () => JhNavUtils.pushNamed(
-                              context, "CodeLoginPage")),
+                          onTap: () =>
+                              JhNavUtils.pushNamed(context, "CodeLoginPage")),
                     ),
                     Container(
                       height: 50.0,
@@ -189,8 +184,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '忘记密码',
                           ),
-                          onTap: () => JhNavUtils.pushNamed(
-                              context, "FindPwdPage")),
+                          onTap: () =>
+                              JhNavUtils.pushNamed(context, "FindPwdPage")),
                     ),
                   ],
                 )
@@ -203,77 +198,22 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _clickOkBtn() async {
-//    Navigator.of(context).pushAndRemoveUntil(
-//         MaterialPageRoute(builder: (context) => BaseTabBar()
-//        ), (route) => route == null);
-
-//    Navigator.pushReplacementNamed(context, "BaseTabBar");
-
-//    print('name =$_name');
-//    print('pwd =$_pwd');
-//    var hide =  JhToast.showIOSLoadingText(context,
-//      msg:"正在登录...",
-//    );
-//    Future.delayed(Duration(seconds: 1),(){
-//      Navigator.pushReplacement(context,
-//          MaterialPageRoute(builder: (context) => (BaseTabBar()
-//      )));
-//      hide();
-//    });
-
     // 请求网络登录
     print('name =$_name');
     print('pwd =$_pwd');
-
     var hide = JhToast.showIOSLoadingText(
       context,
       msg: "正在登录...",
     );
 
-//    var url = APIs.login;
-//    var dio = new Dio();
-//    var response = await dio.post(url, data: {"userName": _name, "pwd": _pwd});
-//    var result = response.data.toString();
-//    print("返回数据： " + result);
-//    print(response.data["msg"]);
-//
-//    if (response.data["suc"] == true) {
-//      Map<String, dynamic> json =
-//          Map<String, dynamic>.from(response.data["data"]);
-//      /*将Json转成实体类*/
-//      userModel model = userModel.fromJson(json);
-////      print(model.phone);
-//      SpUtil.putObject(kUserDefault_UserInfo, model);
-//      hide();
-////      JhToast.showText(context, msg: response.data["msg"]);
-//      JhToast.showSuccess(context, msg: response.data["msg"]);
-//      Navigator.pushReplacement(
-//          context, MaterialPageRoute(builder: (context) => (BaseTabBar())));
-//    } else {
-//      hide();
-//      JhToast.showText(context, msg: response.data["msg"]);
-//    }
-
     // 登录请求
-    DataUtils.login({"userName": _name, "pwd": _pwd}, success: (data) {
-      if (data["suc"] == true) {
-//        Map<String, dynamic> json = Map<String, dynamic>.from(data["data"]);
-//        /*将Json转成实体类*/
-//        userModel model = userModel.fromJson(json);
-//      print(model.phone);
-//        SpUtil.putObject(kUserDefault_UserInfo, model);
-
-        // 保存本地
-        JhStorageUtils.saveModel(kUserDefault_UserInfo, data["data"]);
-
-        hide();
-        JhToast.showSuccess(context, msg: data["msg"]);
-        JhNavUtils.pushReplacement(context, Routes.home);
-      } else {
-        hide();
-        JhToast.showText(context, msg: data["msg"]);
-      }
-    }, fail: (code) {
+    DataUtils.login({"userName": _name, "pwd": _pwd}, success: (res) {
+      hide();
+      // 保存本地
+      JhStorageUtils.saveModel(kUserDefault_UserInfo, res["data"]);
+      JhToast.showSuccess(context, msg: res["msg"]);
+      JhNavUtils.pushReplacement(context, Routes.home);
+    }, fail: (code, msg) {
       hide();
     });
   }

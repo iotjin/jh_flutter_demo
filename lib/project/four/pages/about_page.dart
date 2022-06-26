@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:device_info/device_info.dart';
 import 'package:package_info/package_info.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/utils/jh_nav_router_utils.dart';
 import '/jh_common/widgets/click_item.dart';
@@ -20,15 +20,17 @@ class _AboutPageState extends State<AboutPage> {
     FlutterLogoStyle.markOnly,
     FlutterLogoStyle.horizontal
   ];
-  var _colors = [
-    Colors.red,
-    Colors.orange,
-    Colors.yellow,
-    Colors.blue,
-    Colors.purple,
-    Colors.pink,
-    Colors.amber
-  ];
+
+  // var _colors = [
+  //   Colors.red,
+  //   Colors.orange,
+  //   Colors.yellow,
+  //   Colors.blue,
+  //   Colors.purple,
+  //   Colors.pink,
+  //   Colors.amber
+  // ];
+
   var _curves = [
     Curves.ease,
     Curves.easeIn,
@@ -75,7 +77,7 @@ class _AboutPageState extends State<AboutPage> {
   }
 
   void _getInfo() async {
-    if (JhDevice.isIOS) {
+    if (JhDeviceUtils.isIOS) {
       DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       print(iosInfo.toString());
@@ -106,16 +108,6 @@ class _AboutPageState extends State<AboutPage> {
     });
 
 //   print("$appName=$packageName=$version=$buildNumber");
-  }
-
-  void _jumpAppStore() async {
-    String url =
-        'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8'; // 这是微信的地址，到时候换成自己的应用的地址
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   @override
@@ -159,7 +151,7 @@ class _AboutPageState extends State<AboutPage> {
               content: 'iotjin',
               onTap: () => JhNavRouterUtils.jumpWebViewPage(
                   context, '作者博客', 'https://blog.csdn.net/iotjin')),
-          ClickItem(title: "检查更新", onTap: () => _jumpAppStore())
+          ClickItem(title: "检查更新", onTap: () => JhCommonUtils.jumpAppStore)
         ],
       ),
     );

@@ -1,9 +1,7 @@
-/**
- *  jh_encrypt_utils.dart
- *
- *  Created by iotjin on 2020/08/18.
- *  description: base64 , aes加解密(CBC/PKCS7)
- */
+///  jh_encrypt_utils.dart
+///
+///  Created by iotjin on 2020/08/18.
+///  description:  base64、MD5、AES加解密(CBC/PKCS7)
 
 import 'dart:convert';
 import 'package:encrypt/encrypt.dart';
@@ -25,7 +23,7 @@ class JhEncryptUtils {
     return String.fromCharCodes(base64Decode(data));
   }
 
-  /// md5 加密 32位小写
+  /// MD5 加密 32位小写
   static String encodeMd5(String plainText) {
     return EncryptUtil.encodeMd5(plainText);
   }
@@ -39,7 +37,7 @@ class JhEncryptUtils {
       final encrypted = encrypter.encrypt(plainText, iv: iv);
       return encrypted.base64;
     } catch (err) {
-      print("aes encode error:$err");
+      print("AES encode error:$err");
       return plainText;
     }
   }
@@ -53,12 +51,12 @@ class JhEncryptUtils {
       final decrypted = encrypter.decrypt64(encrypted, iv: iv);
       return decrypted;
     } catch (err) {
-      print("aes decode error:$err");
+      print("AES decode error:$err");
       return encrypted;
     }
   }
 
-//  /// aes加密
+//  /// AES加密
 //  static aesEncode(String plainText) {
 //    try {
 //      final key = Key.fromBase64(base64Encode(utf8.encode(_key)));
@@ -67,12 +65,12 @@ class JhEncryptUtils {
 //      final encrypted = encrypter.encrypt(plainText, iv: iv);
 //      return encrypted.base64;
 //    } catch (err) {
-//      print("aes encode error:$err");
+//      print("AES encode error:$err");
 //      return plainText;
 //    }
 //  }
 //
-//  /// aes解密
+//  /// AES解密
 //  static aesDecode(dynamic encrypted) {
 //    try {
 //      final key = Key.fromBase64(base64Encode(utf8.encode(_key)));
@@ -81,7 +79,7 @@ class JhEncryptUtils {
 //      final decrypted = encrypter.decrypt64(encrypted, iv: iv);
 //      return decrypted;
 //    } catch (err) {
-//      print("aes decode error:$err");
+//      print("AES decode error:$err");
 //      return encrypted;
 //    }
 //  }

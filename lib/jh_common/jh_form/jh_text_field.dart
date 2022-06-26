@@ -1,9 +1,7 @@
-/**
- *  jh_text_field.dart
- *
- *  Created by iotjin on 2020/02/18.
- *  description:  输入框（默认没有边框，宽充满屏幕，文字居左，默认显示1行，自动换行，最多5行，可设置键盘类型，右侧添加自定义widget，多行，最大长度，是否可编辑，文字样式）
- */
+///  jh_text_field.dart
+///
+///  Created by iotjin on 2020/02/18.
+///  description:  输入框（默认没有边框，宽充满屏幕，文字居左，默认显示1行，自动换行，最多5行，可设置键盘类型，右侧添加自定义widget，多行，最大长度，是否可编辑，文字样式）
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,23 +16,6 @@ const TextStyle _hintTextStyle =
 typedef _InputCallBack = void Function(String value);
 
 class JhTextField extends StatefulWidget {
-  final String text;
-  final String hintText;
-  final TextInputType keyboardType; // 键盘类型，默认文字
-  final FocusNode? focusNode;
-  final Widget? leftWidget; // 左侧widget ，默认隐藏
-  final Widget? rightWidget; // 右侧widget ，默认隐藏
-  final int? maxLines; // 最大行数，默认显示一行，自动换行，最多展示_maxLines 行
-  final int maxLength; // 最大长度，默认_maxLength
-  final bool showMaxLength; // 是否显示右侧最大长度文字，默认不显示
-  final bool enabled; // 是否可编辑，默认true
-  final List<TextInputFormatter>? inputFormatters;
-  final _InputCallBack? inputCallBack;
-  final TextStyle textStyle;
-  final TextStyle hintTextStyle;
-  final TextAlign textAlign; // 对齐方式，默认左对齐
-  final InputBorder border; // 边框样式，默认无边框
-
   const JhTextField({
     Key? key,
     this.text: '',
@@ -54,6 +35,23 @@ class JhTextField extends StatefulWidget {
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
   }) : super(key: key);
+
+  final String text;
+  final String hintText;
+  final TextInputType keyboardType; // 键盘类型，默认文字
+  final FocusNode? focusNode;
+  final Widget? leftWidget; // 左侧widget ，默认隐藏
+  final Widget? rightWidget; // 右侧widget ，默认隐藏
+  final int? maxLines; // 最大行数，默认显示一行，自动换行，最多展示_maxLines 行
+  final int maxLength; // 最大长度，默认_maxLength
+  final bool showMaxLength; // 是否显示右侧最大长度文字，默认不显示
+  final bool enabled; // 是否可编辑，默认true
+  final List<TextInputFormatter>? inputFormatters;
+  final _InputCallBack? inputCallBack;
+  final TextStyle textStyle;
+  final TextStyle hintTextStyle;
+  final TextAlign textAlign; // 对齐方式，默认左对齐
+  final InputBorder border; // 边框样式，默认无边框
 
   @override
   _JhTextFieldState createState() => _JhTextFieldState();

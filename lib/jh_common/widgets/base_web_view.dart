@@ -1,3 +1,8 @@
+///  base_web_view.dart
+///
+///  Created by iotjin on 2020/03/27.
+///  description:  WebView基类
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -27,7 +32,7 @@ class _BaseWebViewState extends State<BaseWebView> {
   void initState() {
     super.initState();
     // Enable hybrid composition.
-    if (JhDevice.isAndroid) {
+    if (JhDeviceUtils.isAndroid) {
       WebView.platform = SurfaceAndroidWebView();
     }
   }

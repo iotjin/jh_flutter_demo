@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
 import '/base_appbar.dart';
 import 'data.dart';
-import 'echarts_data.dart';
+// import 'echarts_data.dart';
 
 class GraphicBarPage extends StatefulWidget {
   const GraphicBarPage({Key? key}) : super(key: key);

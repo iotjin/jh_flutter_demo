@@ -1,9 +1,7 @@
-/**
- *  error_handle.dart
- *
- *  Created by iotjin on 2020/07/08.
- *  description:  异常处理
- */
+///  error_handle.dart
+///
+///  Created by iotjin on 2020/07/08.
+///  description:  异常处理
 
 import 'dart:io';
 import 'package:dio/dio.dart';

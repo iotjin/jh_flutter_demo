@@ -1,9 +1,7 @@
-/**
- *  dimens.dart
- *
- *  Created by iotjin on 2020/07/06.
- *  description:  字体 配置
- */
+///  dimens.dart
+///
+///  Created by iotjin on 2020/07/06.
+///  description:  字体 配置
 
 class KDimens {
   static const double font_sp10 = 10.0;

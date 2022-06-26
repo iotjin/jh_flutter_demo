@@ -1,9 +1,9 @@
-/**
- *  jh_image_utils.dart
- *
- *  Created by iotjin on 2020/03/18.
- *  description: 图片加载工具类
- */
+///  jh_image_utils.dart
+///
+///  Created by iotjin on 2020/03/18.
+///  description:  图片加载工具类
+
+// ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -61,8 +61,7 @@ class JhLoadAssetImage extends StatelessWidget {
       width: width,
       fit: fit,
       color: color,
-
-      /// 忽略图片语义
+      // 忽略图片语义
       excludeFromSemantics: true,
     );
   }

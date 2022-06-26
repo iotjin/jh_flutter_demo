@@ -1,9 +1,7 @@
-/**
- *  four_page.dart
- *
- *  Created by iotjin on 2019/08/14.
- *  description: 我的
- */
+///  four_page.dart
+///
+///  Created by iotjin on 2019/08/14.
+///  description: 我的
 
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
@@ -70,7 +68,7 @@ class _FourPageState extends State<FourPage> {
 //            rightImgPath: "assets/images/set.png", rightItemCallBack: () {
 //          JhNavUtils.pushNamed(context, "SetPage");
 //        }),
-//        backgroundColor: KColor.wxBgColor,
+//        backgroundColor: KColors.wxBgColor,
         body: _body(_model));
   }
 
@@ -78,7 +76,7 @@ class _FourPageState extends State<FourPage> {
     return Stack(
       children: <Widget>[
         Container(
-          color: KColor.wxBgColor,
+          color: KColors.wxBgColor,
           child: MediaQuery.removePadding(
             context: context,
             removeTop: true,
@@ -99,7 +97,7 @@ class _FourPageState extends State<FourPage> {
 //            color: Colors.yellow,
             color: Colors.white,
             constraints: BoxConstraints(
-              minWidth: JhScreen.width,
+              minWidth: JhScreenUtils.screenWidth,
               maxHeight: _topH,
             ),
           ),
@@ -109,7 +107,7 @@ class _FourPageState extends State<FourPage> {
         InkWell(
           child: Container(
             margin:
-                EdgeInsets.only(top: JhScreen.topSafeHeight + 20, right: 20),
+                EdgeInsets.only(top: JhScreenUtils.topSafeHeight + 20, right: 20),
             height: 25,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,

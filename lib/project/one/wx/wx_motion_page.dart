@@ -1,9 +1,7 @@
-/**
- *  wx_motion_page.dart
- *
- *  Created by iotjin on 2020/09/09.
- *  description: 微信运动
- */
+///  wx_motion_page.dart
+///
+///  Created by iotjin on 2020/09/09.
+///  description: 微信运动
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -63,7 +61,7 @@ class WxMotionPage extends StatelessWidget {
         _clickCell(context, '设置');
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
       bottomNavigationBar: _bottomView(context),
     );
   }
@@ -167,7 +165,7 @@ class WxMotionPage extends StatelessWidget {
                           ],
                         )),
                     Container(
-                      color: KColor.kLineColor,
+                      color: KColors.kLineColor,
                       margin: EdgeInsets.symmetric(horizontal: 15),
                       height: 1,
                     ),

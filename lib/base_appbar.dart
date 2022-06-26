@@ -1,14 +1,13 @@
-/**
- *  base_appbar.dart
- *
- *  Created by iotjin on 2020/03/10.
- *  description:  导航条
- */
+///  base_appbar.dart
+///
+///  Created by iotjin on 2020/03/10.
+///  description:  导航条基类
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'project/configs/project_config.dart';
 
-const Color _navBgColor = Color(0xFF3BB815);
+const Color _navBgColor = KColors.kThemeColor;
 const Color _titleColorWhite = Colors.white;
 const Color _titleColorBlack = Colors.black;
 const double _titleFontSize = 18.0;
@@ -18,10 +17,10 @@ const double _imgWH = 22.0; // 右侧图片wh
 const double _rightSpace = 5.0; // 右侧item右间距
 const Brightness _brightness = Brightness.light;
 
-const Color appbarStartColor = Color(0xFF2683BE); // 渐变开始色
-const Color appbarEndColor = Color(0xFF34CABE); // 渐变结束色
+const Color appbarStartColor = KColors.kGradientStartColor; // 默认appBar 渐变开始色
+const Color appbarEndColor = KColors.kGradientEndColor; // 默认appBar 渐变结束色
 
-// 带返回箭头导航条
+/// 带返回箭头导航条
 backAppBar(BuildContext context, String title,
     {String? rightText,
     String? rightImgPath,
@@ -42,7 +41,7 @@ backAppBar(BuildContext context, String title,
   );
 }
 
-// 带返回箭头的渐变导航条
+/// 带返回箭头的渐变导航条
 backGradientAppBar(
   BuildContext context,
   String title, {
@@ -62,7 +61,7 @@ backGradientAppBar(
   );
 }
 
-// 渐变导航条
+/// 渐变导航条
 gradientAppBar(
   BuildContext context,
   String title, {
@@ -107,7 +106,7 @@ gradientAppBar(
   );
 }
 
-// baseAppBar
+/// baseAppBar
 baseAppBar(
   BuildContext context,
   String title, {
@@ -124,7 +123,7 @@ baseAppBar(
 }) {
   Color _color = (backgroundColor == Colors.transparent ||
           backgroundColor == Colors.white ||
-          backgroundColor == KColor.wxBgColor)
+          backgroundColor == KColors.wxBgColor)
       ? _titleColorBlack
       : _titleColorWhite;
 
@@ -164,7 +163,7 @@ baseAppBar(
         Text(title, style: TextStyle(fontSize: _titleFontSize, color: _color)),
     centerTitle: true,
     backgroundColor: backgroundColor,
-    brightness: brightness,
+    systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: brightness),
     bottom: bottom,
     elevation: elevation,
     leading: isBack == false

@@ -1,9 +1,7 @@
-/**
- *  jh_form_Input_cell.dart
- *
- *  Created by iotjin on 2020/04/06.
- *  description:  输入行样式，左侧title,右侧输入框，可加自定义widget
- */
+///  jh_form_Input_cell.dart
+///
+///  Created by iotjin on 2020/04/06.
+///  description:  输入行样式，左侧title,右侧输入框，可加自定义widget
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,30 +22,6 @@ const Color _lineColor = Color(0xFFE6E6E6); // 线 230
 typedef _InputCallBack = void Function(String value);
 
 class JhFormInputCell extends StatefulWidget {
-  final String title;
-  final String text;
-  final String hintText;
-  final TextInputType keyboardType; // 键盘类型，默认文字
-  final FocusNode? focusNode;
-  final bool showRedStar; // 显示左侧小红星，默认不显示
-  final Widget? leftWidget; // 左侧widget ，默认隐藏
-  final Widget? rightWidget; // 右侧widget ，默认隐藏
-  final int? maxLines; // 最大行数，默认显示一行，自动换行，最多展示_maxLines 行
-  final int maxLength; // 最大长度，默认_maxLength
-  final bool showMaxLength; // 是否显示右侧最大长度文字，默认不显示
-  final bool enabled; // 是否可编辑，默认true
-  final List<TextInputFormatter>? inputFormatters;
-  final _InputCallBack? inputCallBack;
-  final double space; // 标题宽度
-  final TextStyle titleStyle;
-  final TextStyle textStyle;
-  final TextStyle hintTextStyle;
-  final TextAlign textAlign; // 输入文字对齐方式，默认左对齐
-  final InputBorder border; // 输入边框样式，默认无边框
-  final bool hiddenLine; // 隐藏底部横线
-  final bool topAlign; // 左侧标题顶部对齐，默认居中
-  final Color bgColor; // 背景颜色，默认白色
-
   const JhFormInputCell({
     Key? key,
     this.title: '',
@@ -74,6 +48,30 @@ class JhFormInputCell extends StatefulWidget {
     this.topAlign = false,
     this.bgColor = _bgColor,
   }) : super(key: key);
+
+  final String title;
+  final String text;
+  final String hintText;
+  final TextInputType keyboardType; // 键盘类型，默认文字
+  final FocusNode? focusNode;
+  final bool showRedStar; // 显示左侧小红星，默认不显示
+  final Widget? leftWidget; // 左侧widget ，默认隐藏
+  final Widget? rightWidget; // 右侧widget ，默认隐藏
+  final int? maxLines; // 最大行数，默认显示一行，自动换行，最多展示_maxLines 行
+  final int maxLength; // 最大长度，默认_maxLength
+  final bool showMaxLength; // 是否显示右侧最大长度文字，默认不显示
+  final bool enabled; // 是否可编辑，默认true
+  final List<TextInputFormatter>? inputFormatters;
+  final _InputCallBack? inputCallBack;
+  final double space; // 标题宽度
+  final TextStyle titleStyle;
+  final TextStyle textStyle;
+  final TextStyle hintTextStyle;
+  final TextAlign textAlign; // 输入文字对齐方式，默认左对齐
+  final InputBorder border; // 输入边框样式，默认无边框
+  final bool hiddenLine; // 隐藏底部横线
+  final bool topAlign; // 左侧标题顶部对齐，默认居中
+  final Color bgColor; // 背景颜色，默认白色
 
   @override
   _JhFormInputCellState createState() => _JhFormInputCellState();

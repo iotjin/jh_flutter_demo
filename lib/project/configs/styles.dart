@@ -1,3 +1,8 @@
+///  styles.dart
+///
+///  Created by iotjin on 2020/07/09.
+///  description:  TextStyles
+
 import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'dimens.dart';

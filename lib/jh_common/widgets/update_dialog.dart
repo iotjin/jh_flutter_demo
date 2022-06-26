@@ -1,8 +1,14 @@
+///  update_dialog.dart
+///
+///  Created by iotjin on 2020/07/28.
+///  description:  APP更新弹框
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_theme_utils.dart';
 import '/project/routes/jh_nav_utils.dart';
 
@@ -82,58 +88,101 @@ class _UpdateDialogState extends State<UpdateDialog> {
                           : Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Container(
-                                  width: 110.0,
-                                  height: 36.0,
-                                  child: FlatButton(
-                                    onPressed: () {
-                                      JhNavUtils.goBack(context);
-                                    },
-                                    textColor: primaryColor,
-                                    color: Colors.transparent,
-                                    disabledTextColor: Colors.white,
-                                    disabledColor: Color(0xFFcccccc),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      side: BorderSide(
-                                        color: primaryColor,
-                                        width: 0.8,
-                                      ),
+                                TextButton(
+                                  onPressed: () => JhNavUtils.goBack(context),
+                                  child: Text('残忍拒绝',
+                                      style: TextStyle(fontSize: 16.0)),
+                                  style: ButtonStyle(
+                                    // 设置按钮大小
+                                    minimumSize: MaterialStateProperty.all(
+                                        Size(110.0, 36.0)),
+                                    // 背景色
+                                    backgroundColor:
+                                        MaterialStateProperty.resolveWith(
+                                      (states) {
+                                        if (states
+                                            .contains(MaterialState.disabled)) {
+                                          // disabled状态颜色
+                                          return Color(0xFFcccccc);
+                                        }
+                                        // 默认状态颜色
+                                        return Colors.transparent;
+                                      },
                                     ),
-                                    child: const Text('残忍拒绝',
-                                        style: TextStyle(fontSize: 16.0)),
+                                    // 文字颜色
+                                    foregroundColor:
+                                        MaterialStateProperty.resolveWith(
+                                      (states) {
+                                        if (states
+                                            .contains(MaterialState.disabled)) {
+                                          // disabled状态颜色
+                                          return Colors.white;
+                                        }
+                                        // 默认状态颜色
+                                        return primaryColor;
+                                      },
+                                    ),
+                                    // 边框
+                                    side: MaterialStateProperty.all(
+                                      BorderSide(
+                                          color: primaryColor, width: 0.8),
+                                    ),
+                                    // 圆角
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18.0)),
+                                    ),
                                   ),
                                 ),
-                                Container(
-                                  width: 110.0,
-                                  height: 36.0,
-                                  child: FlatButton(
-                                    onPressed: () {
-                                      if (defaultTargetPlatform ==
-                                          TargetPlatform.iOS) {
-                                        JhNavUtils.goBack(context);
-//                                        VersionUtils.jumpAppStore();
-
-                                      } else {
+                                TextButton(
+                                  onPressed: () {
+                                    if (defaultTargetPlatform ==
+                                        TargetPlatform.iOS) {
+                                      JhNavUtils.goBack(context);
+                                      JhCommonUtils.jumpAppStore();
+                                    } else {
 //                                        setState(() {
 //                                          _isDownload = true;
 //                                        });
 //                                        _download();
-                                      }
-                                    },
-                                    textColor: Colors.white,
-                                    color: primaryColor,
-                                    disabledTextColor: Colors.white,
-                                    disabledColor: Color(0xFFcccccc),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
+                                    }
+                                  },
+                                  child: Text('立即更新',
+                                      style: TextStyle(fontSize: 16.0)),
+                                  style: ButtonStyle(
+                                    // 设置按钮大小
+                                    minimumSize: MaterialStateProperty.all(
+                                        Size(110.0, 36.0)),
+                                    // 背景色
+                                    backgroundColor:
+                                        MaterialStateProperty.resolveWith(
+                                      (states) {
+                                        if (states
+                                            .contains(MaterialState.disabled)) {
+                                          // disabled状态颜色
+                                          return Color(0xFFcccccc);
+                                        }
+                                        // 默认状态颜色
+                                        return primaryColor;
+                                      },
                                     ),
-                                    child: const Text(
-                                      '立即更新',
-                                      style: TextStyle(fontSize: 16.0),
+                                    // 文字颜色
+                                    foregroundColor:
+                                        MaterialStateProperty.all(Colors.white),
+                                    // 边框
+                                    side: MaterialStateProperty.all(
+                                      BorderSide(
+                                          color: primaryColor, width: 0.8),
+                                    ),
+                                    // 圆角
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18.0)),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                     )

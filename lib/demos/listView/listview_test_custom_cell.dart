@@ -37,10 +37,10 @@ class CustomViewModel {
   }
 }
 
-class ListViewTest_CustomCell extends StatelessWidget {
+class ListViewTestCustomCell extends StatelessWidget {
   final CustomViewModel? data;
 
-  const ListViewTest_CustomCell({Key? key, this.data}) : super(key: key);
+  const ListViewTestCustomCell({Key? key, this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

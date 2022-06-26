@@ -1,9 +1,7 @@
-/**
- *  jh_form.dart
- *
- *  Created by iotjin on 2020/02/21.
- *  description:  表单录入样式
- */
+///  jh_form.dart
+///
+///  Created by iotjin on 2020/02/21.
+///  description:  表单录入样式
 
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
@@ -11,7 +9,7 @@ import 'package:keyboard_actions/keyboard_actions.dart';
 const double _titleFontSize = 16.0; // 左侧字体大小
 const double _infoFontSize = 15.0; // 右侧字体大小
 const Color _textColor = Colors.black87;
-const Color _inputBoderColor = Colors.grey; // 边框默认颜色
+const Color _inputBorderColor = Colors.grey; // 边框默认颜色
 const double _titleSpace = 80.0; // 左侧title默认宽
 const double _cellHeight = 50.0; // 输入、选择样式一行的高度
 const double _inputCellHeight = 40.0; // 输入框、选择框高度
@@ -177,7 +175,7 @@ class _CreateInputCellState extends State<CreateInputCell> {
                 contentPadding: EdgeInsets.all(5),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _inputBoderColor),
+                  borderSide: BorderSide(color: _inputBorderColor),
                 ),
               ),
               onChanged: (value) {
@@ -250,7 +248,7 @@ class _CreateTextViewCellState extends State<CreateTextViewCell> {
                 contentPadding: EdgeInsets.all(5),
                 border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _inputBoderColor),
+                  borderSide: BorderSide(color: _inputBorderColor),
                 ),
               ),
               onChanged: (val) {
@@ -326,7 +324,7 @@ class _CreateSelectTextCellState extends State<CreateSelectTextCell> {
                   border: OutlineInputBorder(),
 //                              border: InputBorder.none,
                   disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: _inputBoderColor),
+                    borderSide: BorderSide(color: _inputBorderColor),
                   ),
                 ),
               ),

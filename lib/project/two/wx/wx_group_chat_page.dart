@@ -1,9 +1,7 @@
-/**
- *  wx_group_chat_page.dart
- *
- *  Created by iotjin on 2020/09/08.
- *  description: 群聊
- */
+///  wx_group_chat_page.dart
+///
+///  Created by iotjin on 2020/09/08.
+///  description: 群聊
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -50,7 +48,7 @@ class WxGroupChatPage extends StatelessWidget {
     return Scaffold(
       appBar: backAppBar(context, '群聊', backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 

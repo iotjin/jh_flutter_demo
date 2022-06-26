@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:fluro/fluro.dart';
 import 'demo_lists_page.dart';
 import '/project/routes/router_init.dart';
@@ -203,15 +205,14 @@ class DemosRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (_, __) => ListViewTest4()));
     router.define("ListViewTest5",
         handler: Handler(handlerFunc: (_, __) => ListViewTest5()));
-    router.define("ListViewTest_Card",
-        handler: Handler(handlerFunc: (_, __) => ListViewTest_Card()));
-    router.define("ListViewTest_CustomVC",
-        handler: Handler(handlerFunc: (_, __) => ListViewTest_CustomVC()));
-    router.define("ListViewTest_SimplePullDown",
-        handler:
-            Handler(handlerFunc: (_, __) => ListViewTest_SimplePullDown()));
-    router.define("ListViewTest_PullDownVC",
-        handler: Handler(handlerFunc: (_, __) => ListViewTest_PullDownVC()));
+    router.define("ListViewTestCard",
+        handler: Handler(handlerFunc: (_, __) => ListViewTestCard()));
+    router.define("ListViewTestCustomVC",
+        handler: Handler(handlerFunc: (_, __) => ListViewTestCustomVC()));
+    router.define("ListViewTestSimplePullDown",
+        handler: Handler(handlerFunc: (_, __) => ListViewTestSimplePullDown()));
+    router.define("ListViewTestPullDownVC",
+        handler: Handler(handlerFunc: (_, __) => ListViewTestPullDownVC()));
     router.define("ListViewGroupPage",
         handler: Handler(handlerFunc: (_, __) => ListViewGroupPage()));
     router.define("ListViewGroupPage2",
@@ -246,8 +247,8 @@ class DemosRouter implements IRouterProvider {
     router.define("PassValuePage2", handler: Handler(handlerFunc: (_, params) {
       print("---------params---------");
       print(params);
-      final String passValue = params['passvalue']!.first;
-      final bool isScan = params['isScan']?.first == 'true';
+      final String passValue = params['passValue']!.first;
+      // final bool isScan = params['isScan']?.first == 'true';
       return PassValuePage2(passValue);
     }));
     router.define("NavTestPage",

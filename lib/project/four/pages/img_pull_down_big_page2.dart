@@ -1,9 +1,9 @@
-/**
- *  img_pull_down_big_page2.dart
- *
- *  Created by iotjin on 2020/09/04.
- *  description:
- */
+///  img_pull_down_big_page2.dart
+///
+///  Created by iotjin on 2020/09/04.
+///  description:
+
+// ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
@@ -118,7 +118,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
             )),
       ),
       Positioned(
-        top: JhScreen.topSafeHeight + 18,
+        top: JhScreenUtils.topSafeHeight + 18,
         left: 18,
         child: InkWell(
           onTap: () => Navigator.pop(context),

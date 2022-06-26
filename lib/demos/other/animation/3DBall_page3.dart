@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unnecessary_import, unused_element
+
 import 'dart:async';
 import 'dart:math';
 import 'dart:ui' as ui;

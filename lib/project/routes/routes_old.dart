@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 
 import '/project/login/pages/login_page.dart';
@@ -167,10 +169,10 @@ final routes = {
   "ListViewTest3": (context) => ListViewTest3(),
   "ListViewTest4": (context) => ListViewTest4(),
   "ListViewTest5": (context) => ListViewTest5(),
-  "ListViewTest_Card": (context) => ListViewTest_Card(),
-  "ListViewTest_CustomVC": (context) => ListViewTest_CustomVC(),
-  "ListViewTest_SimplePullDown": (context) => ListViewTest_SimplePullDown(),
-  "ListViewTest_PullDownVC": (context) => ListViewTest_PullDownVC(),
+  "ListViewTestCard": (context) => ListViewTestCard(),
+  "ListViewTestCustomVC": (context) => ListViewTestCustomVC(),
+  "ListViewTestSimplePullDown": (context) => ListViewTestSimplePullDown(),
+  "ListViewTestPullDownVC": (context) => ListViewTestPullDownVC(),
 
   // other
   "FormTest": (context) => FormTest(),

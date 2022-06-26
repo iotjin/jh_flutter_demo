@@ -1,9 +1,7 @@
-/**
- *  wx_subscription_number_page.dart
- *
- *  Created by iotjin on 2020/09/03.
- *  description:
- */
+///  wx_subscription_number_page.dart
+///
+///  Created by iotjin on 2020/09/03.
+///  description:
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -86,7 +84,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
         JhNavUtils.pushNamed(context, "WxSubscriptionNumberListPage");
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 
@@ -109,7 +107,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
           ))),
           title: Text(
             item['title'],
-            style: TextStyle(color: KColor.wxTextBlueColor),
+            style: TextStyle(color: KColors.wxTextBlueColor),
           ),
           trailing: Text(
             item['time'],
@@ -139,7 +137,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
             contentPadding: EdgeInsets.all(18),
             title: Text(
               item['text2'],
-              style: TextStyle(color: KColor.wxTextBlueColor),
+              style: TextStyle(color: KColors.wxTextBlueColor),
             ),
             trailing: Image.asset(
               item['img2'],
@@ -164,7 +162,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
             contentPadding: EdgeInsets.all(18),
             title: Text(
               item['text2'],
-              style: TextStyle(color: KColor.wxTextBlueColor),
+              style: TextStyle(color: KColors.wxTextBlueColor),
             ),
             trailing: Image.asset(
               item['img2'],

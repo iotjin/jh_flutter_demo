@@ -1,3 +1,8 @@
+///  jh_storage_utils.dart
+///
+///  Created by iotjin on 2020/07/28.
+///  description:  主题
+
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,7 +46,7 @@ class JhThemeUtils {
   static void setSystemNavigationBarStyle(
       BuildContext context, ThemeMode mode) {
     /// 仅针对安卓
-    if (JhDevice.isAndroid) {
+    if (JhDeviceUtils.isAndroid) {
       bool _isDark = false;
       final ui.Brightness platformBrightness =
           MediaQuery.platformBrightnessOf(context);

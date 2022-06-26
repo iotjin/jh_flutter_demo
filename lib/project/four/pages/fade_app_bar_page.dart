@@ -1,9 +1,9 @@
-/**
- *  fade_app_bar_page.dart
- *
- *  Created by iotjin on 2020/09/07.
- *  description: 渐变效果
- */
+///  fade_app_bar_page.dart
+///
+///  Created by iotjin on 2020/09/07.
+///  description: 渐变效果
+
+// ignore_for_file: must_be_immutable, duplicate_ignore
 
 import 'package:flutter/material.dart';
 import '/base_appbar.dart';
@@ -148,7 +148,6 @@ class FadeAppBarState extends State<FadeAppBarPage> {
 }
 
 // 按钮
-// ignore: must_be_immutable
 class PositionedBtnWidget extends StatefulWidget {
   double? btnTop;
   double? right;

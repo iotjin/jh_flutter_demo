@@ -72,8 +72,7 @@ class SetPage extends StatelessWidget {
 
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => LoginPage()),
-                    (route) => route == null);
-
+                    (route) => false);
                 hide();
               });
             }

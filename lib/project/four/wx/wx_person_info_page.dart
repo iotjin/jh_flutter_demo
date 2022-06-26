@@ -1,9 +1,7 @@
-/**
- *  wx_person_info_page.dart
- *
- *  Created by iotjin on 2020/08/27.
- *  description:  微信 个人信息
- */
+///  wx_person_info_page.dart
+///
+///  Created by iotjin on 2020/08/27.
+///  description:  微信 个人信息
 
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
@@ -15,10 +13,10 @@ class WxPersonInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KString.wxPersonInfo,
+      appBar: backAppBar(context, KStrings.wxPersonInfo,
           backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
     );
   }
 }

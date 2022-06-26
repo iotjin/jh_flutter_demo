@@ -1,9 +1,7 @@
-/**
- *  jh_text_list.dart
- *
- *  Created by iotjin on 2020/02/18.
- *  description:  带箭头文本列表
- */
+///  jh_text_list.dart
+///
+///  Created by iotjin on 2020/02/18.
+///  description:  带箭头文本列表
 
 import 'package:flutter/material.dart';
 import '/base_appbar.dart';
@@ -14,17 +12,18 @@ const Color _lineColor = Color(0xFFE6E6E6); // 230
 typedef _CallBack = void Function(int selectIndex, String selectStr);
 
 class JhTextList extends StatelessWidget {
-  final List? dataArr;
-  final String title;
-  final _CallBack? callBack;
-  final bool isBack;
-
-  JhTextList({
+  const JhTextList({
+    Key? key,
     this.title = "",
     this.dataArr,
     this.callBack,
     this.isBack: true,
-  });
+  }) : super(key: key);
+
+  final List? dataArr;
+  final String title;
+  final _CallBack? callBack;
+  final bool isBack;
 
   Widget _getWidget(context, index) {
     return InkWell(

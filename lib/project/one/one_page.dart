@@ -1,9 +1,7 @@
-/**
- *  one_page.dart
- *
- *  Created by iotjin on 2019/08/14.
- *  description: 首页
- */
+///  one_page.dart
+///
+///  Created by iotjin on 2019/08/14.
+///  description: 首页
 
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
@@ -91,19 +89,19 @@ List _dataArr = [
 class OnePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // 1.首先先需要对控件进行渲染  初始化GlobalKey ：
-    GlobalKey anchorKey = GlobalKey();
+    // // 1.首先先需要对控件进行渲染  初始化GlobalKey ：
+    // GlobalKey anchorKey = GlobalKey();
 
     return Scaffold(
-      appBar: baseAppBar(context, KString.oneTabTitle,
+      appBar: baseAppBar(context, KStrings.oneTabTitle,
           rightImgPath: 'assets/images/ic_nav_add.png',
           rightItemCallBack: () => _showPop(context)),
       body: _body(context, _dataArr),
-      backgroundColor: KColor.wxBgColor,
+      backgroundColor: KColors.wxBgColor,
 
 //        appBar: AppBar(
 //          title:
-//              Text(KString.oneTabTitle, style: TextStyle(color: Colors.white)),
+//              Text(KStrings.oneTabTitle, style: TextStyle(color: Colors.white)),
 //          elevation: 0.0,
 //          actions: <Widget>[
 //            // 2.在需要测量的控件的下面添加key：
@@ -228,7 +226,7 @@ class OnePage extends StatelessWidget {
           height: .5,
           indent: 70,
           endIndent: 0,
-          color: KColor.kLineColor,
+          color: KColors.kLineColor,
         );
       },
       itemBuilder: (context, index) {
@@ -299,7 +297,7 @@ class OnePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-//                Container(color: KColor.kLineColor, height: 0.8),
+//                Container(color: KColors.kLineColor, height: 0.8),
                     SizedBox(height: 6),
                     Row(
                       children: <Widget>[
@@ -343,11 +341,11 @@ class OnePage extends StatelessWidget {
     }
   }
 
-  // 点击侧滑按钮
-  void _showSnackBar(context, text) {
-    print(text);
-    JhToast.showText(context, msg: text);
-  }
+  // // 点击侧滑按钮
+  // void _showSnackBar(context, text) {
+  //   print(text);
+  //   JhToast.showText(context, msg: text);
+  // }
 
   void _scan(context) {
 //    // 延时执行

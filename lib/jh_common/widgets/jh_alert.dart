@@ -1,12 +1,15 @@
-/**
- *  jh_alert.dart
- *
- *  Created by iotjin on 2020/03/07.
- *  description:  iOS风格的弹框工具类
- */
+///  jh_alert.dart
+///
+///  Created by iotjin on 2020/03/07.
+///  description:  iOS风格的弹框工具类
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+const String _cancelText = '取消';
+const String _confirmText = '确认';
+const Color _alertCancelTextColor = Colors.blueAccent;
+const Color _alertConfirmTextColor = Colors.blueAccent;
 
 // 取消按钮的index 为 0 ,确认为 1
 typedef _ClickCallBack = void Function(int selectIndex, String selectText);
@@ -17,8 +20,8 @@ class JhAlert {
   static void showAlert(BuildContext context,
       {String? title,
       String? content,
-      String leftText = "取消",
-      String rightText = "确认",
+      String leftText = _cancelText,
+      String rightText = _confirmText,
       _ClickCallBack? clickCallback}) {
     showCupertinoDialog(
         context: context,
@@ -30,40 +33,44 @@ class JhAlert {
             ),
             content: Offstage(
               offstage: content == null ? true : false,
-              child: Text(content == null ? "" : content),
+              child: Container(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(content == null ? "" : content)),
             ),
             actions: <Widget>[
 //            CupertinoButton(
-//              child: Text("取消",style: TextStyle(fontSize: 10),),
+//              child: Text(_cancelText,style: TextStyle(fontSize: 10),),
 //              onPressed: () {
-//                Navigator.pop(context);//Navigator.of(context).pop("点击了取消");
+//                Navigator.pop(context); // Navigator.of(context).pop("点击了取消");
 //              },
 //            ),
-              FlatButton(
+              TextButton(
                 // 取消
-                child: Text(
-                  leftText,
-                  style: TextStyle(color: Colors.blueAccent),
-                ),
                 onPressed: () {
                   Navigator.pop(context);
                   if (clickCallback != null) {
                     clickCallback(0, leftText);
                   }
                 },
-              ),
-              FlatButton(
-                // 确认
-                child: Text(
-                  rightText,
-                  style: TextStyle(color: Colors.blueAccent),
+                child: Text(leftText),
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all(_alertCancelTextColor),
                 ),
+              ),
+              TextButton(
+                // 确认
                 onPressed: () {
                   Navigator.pop(context);
                   if (clickCallback != null) {
-                    clickCallback(1, leftText);
+                    clickCallback(1, rightText);
                   }
                 },
+                child: Text(rightText),
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all(_alertConfirmTextColor),
+                ),
               ),
             ],
           );
@@ -117,10 +124,10 @@ class JhAlert {
               onPressed: () {
                 Navigator.pop(context);
                 if (clickCallback != null) {
-                  clickCallback(0, "取消");
+                  clickCallback(0, _cancelText);
                 }
               },
-              child: Text('取消'),
+              child: Text(_cancelText),
             ),
           );
         },
@@ -142,10 +149,10 @@ class JhAlert {
                 onPressed: () {
                   Navigator.pop(context);
                   if (clickCallback != null) {
-                    clickCallback(0, "取消");
+                    clickCallback(0, _cancelText);
                   }
                 },
-                child: Text('取消'),
+                child: Text(_cancelText),
               ),
             );
           },
@@ -165,10 +172,10 @@ class JhAlert {
                 onPressed: () {
                   Navigator.pop(context);
                   if (clickCallback != null) {
-                    clickCallback(0, "取消");
+                    clickCallback(0, _cancelText);
                   }
                 },
-                child: Text('取消'),
+                child: Text(_cancelText),
               ),
             );
           },
@@ -176,30 +183,6 @@ class JhAlert {
       }
     }
   }
-}
-
-/*
-    localizationsDelegates: [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalEasyRefreshLocalizations.delegate,
-    const FallbackCupertinoLocalisationsDelegate() // 需要添加到main里
-
-* */
-
-class FallbackCupertinoLocalisationsDelegate
-    extends LocalizationsDelegate<CupertinoLocalizations> {
-  const FallbackCupertinoLocalisationsDelegate();
-
-  @override
-  bool isSupported(Locale locale) => true;
-
-  @override
-  Future<CupertinoLocalizations> load(Locale locale) =>
-      DefaultCupertinoLocalizations.load(locale);
-
-  @override
-  bool shouldReload(FallbackCupertinoLocalisationsDelegate old) => false;
 }
 
 //void aa(BuildContext context){
@@ -227,7 +210,7 @@ class FallbackCupertinoLocalisationsDelegate
 //          onPressed: () {
 //            Navigator.pop(context);
 //          },
-//          child: Text('取消'),
+//          child: Text(_cancelText),
 //        ),
 //      );
 //    },

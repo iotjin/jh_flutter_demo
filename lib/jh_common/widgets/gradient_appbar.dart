@@ -1,18 +1,20 @@
-/**
- *  gradient_appbar.dart
- *
- *  Created by iotjin on 2020/08/25.
- *  description:  渐变导航条
- */
+///  gradient_appbar.dart
+///
+///  Created by iotjin on 2020/08/25.
+///  description:  渐变导航条
+
+// ignore_for_file: deprecated_member_use, unused_local_variable
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '/project/configs/colors.dart';
 
 const double _kLeadingWidth = kToolbarHeight;
-const Color appbarStartColor = Color(0xFF2683BE); // 默认appBar 渐变开始色
-const Color appbarEndColor = Color(0xFF34CABE); // 默认appBar 渐变结束色
+const Color appbarStartColor = KColors.kGradientStartColor; // 默认appBar 渐变开始色
+const Color appbarEndColor = KColors.kGradientEndColor; // 默认appBar 渐变结束色
 
+/// 建议使用base_appbar
 /// 带有渐变色的  APPBar
 class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
   GradientAppBar({

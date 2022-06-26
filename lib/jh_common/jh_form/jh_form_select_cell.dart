@@ -1,9 +1,7 @@
-/**
- *  jh_form_select_cell.dart
- *
- *  Created by iotjin on 2020/04/06.
- *  description:  选择行样式，左侧title,右侧箭头文字
- */
+///  jh_form_select_cell.dart
+///
+///  Created by iotjin on 2020/04/06.
+///  description:  选择行样式，左侧title,右侧箭头文字
 
 import 'package:flutter/material.dart';
 import 'jh_text_field.dart';
@@ -22,24 +20,6 @@ const Color _lineColor = Color(0xFFE6E6E6); // 线 230
 typedef _ClickCallBack = void Function();
 
 class JhFormSelectCell extends StatefulWidget {
-  final String title;
-  final String text;
-  final String hintText;
-  final bool showRedStar; // 显示左侧小红星，默认不显示
-  final bool hiddenArrow; // 隐藏箭头，默认不隐藏
-  final Widget? leftWidget; // 左侧widget ，默认隐藏
-  final Widget? rightWidget; // 右侧widget ，默认隐藏
-  final _ClickCallBack? clickCallBack;
-  final double space; // 标题宽度
-  final TextStyle titleStyle;
-  final TextStyle textStyle;
-  final TextStyle hintTextStyle;
-  final TextAlign textAlign; // 输入文字对齐方式，默认左对齐
-  final InputBorder border; // 输入边框样式，默认无边框
-  final bool hiddenLine; // 隐藏底部横线
-  final bool topAlign; // 左侧标题顶部对齐，默认居中
-  final Color bgColor; // 背景颜色，默认白色
-
   const JhFormSelectCell({
     Key? key,
     this.title: '',
@@ -60,6 +40,24 @@ class JhFormSelectCell extends StatefulWidget {
     this.topAlign = false,
     this.bgColor = _bgColor,
   }) : super(key: key);
+
+  final String title;
+  final String text;
+  final String hintText;
+  final bool showRedStar; // 显示左侧小红星，默认不显示
+  final bool hiddenArrow; // 隐藏箭头，默认不隐藏
+  final Widget? leftWidget; // 左侧widget ，默认隐藏
+  final Widget? rightWidget; // 右侧widget ，默认隐藏
+  final _ClickCallBack? clickCallBack;
+  final double space; // 标题宽度
+  final TextStyle titleStyle;
+  final TextStyle textStyle;
+  final TextStyle hintTextStyle;
+  final TextAlign textAlign; // 输入文字对齐方式，默认左对齐
+  final InputBorder border; // 输入边框样式，默认无边框
+  final bool hiddenLine; // 隐藏底部横线
+  final bool topAlign; // 左侧标题顶部对齐，默认居中
+  final Color bgColor; // 背景颜色，默认白色
 
   @override
   _JhFormSelectCellState createState() => _JhFormSelectCellState();

@@ -1,9 +1,7 @@
-/**
- *  jh_set_cell.dart
- *
- *  Created by iotjin on 2020/04/14.
- *  description:  设置页的cell ，左侧图片，title, 右侧text ,箭头 , Edge 左15，右10
- */
+///  jh_set_cell.dart
+///
+///  Created by iotjin on 2020/04/14.
+///  description:  设置页的cell ，左侧图片，title, 右侧text ,箭头 , Edge 左15，右10
 
 import 'package:flutter/material.dart';
 import 'jh_text_field.dart';
@@ -24,24 +22,6 @@ const Color _lineColor = Color(0xFFE6E6E6); // 线 230
 typedef _ClickCallBack = void Function();
 
 class JhSetCell extends StatefulWidget {
-  final String title;
-  final String? leftImgPath; // 左侧图片路径 ，默认隐藏 ,设置leftImgPath则 leftWidget失效
-  final Widget? leftWidget; // 左侧widget ，默认隐藏
-  final String text;
-  final Widget? rightWidget; // 右侧widget ，默认隐藏
-  final bool hiddenArrow; // 隐藏箭头，默认不隐藏
-  final _ClickCallBack? clickCallBack;
-  final double titleWidth; // 标题宽度
-  final TextStyle titleStyle;
-  final TextStyle textStyle;
-  final bool hiddenLine; // 隐藏底部横线
-  final double lineLeftEdge; // 底部横线左侧距离 默认_leftEdge
-  final double lineRightEdge; // 底部横线右侧距离 默认0
-  final Color bgColor; // 背景颜色，默认白色
-  final double cellHeight; // 底部横线右侧距离 默认_cellHeight
-  final double leftImgWH; // 左侧图片宽高，默认_imgWH
-  final TextAlign textAlign; // 默认靠右
-
   const JhSetCell({
     Key? key,
     this.title: '',
@@ -62,6 +42,24 @@ class JhSetCell extends StatefulWidget {
     this.leftImgWH = _imgWH,
     this.textAlign = TextAlign.right,
   }) : super(key: key);
+
+  final String title;
+  final String? leftImgPath; // 左侧图片路径 ，默认隐藏 ,设置leftImgPath则 leftWidget失效
+  final Widget? leftWidget; // 左侧widget ，默认隐藏
+  final String text;
+  final Widget? rightWidget; // 右侧widget ，默认隐藏
+  final bool hiddenArrow; // 隐藏箭头，默认不隐藏
+  final _ClickCallBack? clickCallBack;
+  final double titleWidth; // 标题宽度
+  final TextStyle titleStyle;
+  final TextStyle textStyle;
+  final bool hiddenLine; // 隐藏底部横线
+  final double lineLeftEdge; // 底部横线左侧距离 默认_leftEdge
+  final double lineRightEdge; // 底部横线右侧距离 默认0
+  final Color bgColor; // 背景颜色，默认白色
+  final double cellHeight; // 底部横线右侧距离 默认_cellHeight
+  final double leftImgWH; // 左侧图片宽高，默认_imgWH
+  final TextAlign textAlign; // 默认靠右
 
   @override
   _JhSetCellState createState() => _JhSetCellState();

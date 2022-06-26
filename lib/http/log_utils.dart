@@ -1,8 +1,12 @@
+///  intercept.dart
+///
+///  Created by iotjin on 2020/07/09.
+///  description:  输出Log日志工具类
+
 import 'dart:convert' as convert;
 import 'package:flutter/foundation.dart';
 import 'package:common_utils/common_utils.dart';
 
-/// 输出Log工具类
 class LogUtils {
   static const String tag = 'DEER-LOG';
 
@@ -13,7 +17,7 @@ class LogUtils {
 
   static void print_(String msg) {
     if (!inProduction) {
-      print(msg);
+      debugPrint(msg);
     }
   }
 

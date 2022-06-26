@@ -1,7 +1,11 @@
+///  jh_monitor_network_utils.dart
+///
+///  Created by iotjin on 2020/03/27.
+///  description:  路由跳转工具类（原生）
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/base_web_view.dart';
 
-/// 路由跳转工具类
 /// 更推荐使用jh_nav_utils
 class JhNavRouterUtils {
   static push(BuildContext context, Widget scene) {
@@ -29,7 +33,7 @@ class JhNavRouterUtils {
         MaterialPageRoute(
           builder: (BuildContext context) => scene,
         ),
-        (route) => route == null);
+        (route) => false);
   }
 
   static pushResult(

@@ -1,9 +1,7 @@
-/**
- *  wx_userInfo_page.dart
- *
- *  Created by iotjin on 2020/09/01.
- *  description: 用户信息
- */
+///  wx_userInfo_page.dart
+///
+///  Created by iotjin on 2020/09/01.
+///  description: 用户信息
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -101,7 +99,7 @@ class WxUserInfoPage extends StatelessWidget {
             ],
           ),
         ),
-        Container(color: KColor.kLineColor, height: 0.5),
+        Container(color: KColors.kLineColor, height: 0.5),
         JhSetCell(
           cellHeight: _cellH,
           title: '备注和标签',
@@ -139,17 +137,17 @@ class WxUserInfoPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset('assets/wechat/contacts/ic_xinxi.png',
-                      width: 20, color: KColor.wxTextBlueColor),
+                      width: 20, color: KColors.wxTextBlueColor),
                   SizedBox(width: 5),
                   Text('发消息',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KColor.wxTextBlueColor))
+                          color: KColors.wxTextBlueColor))
                 ],
               )),
         ),
-        Container(color: KColor.kLineColor, height: 0.5),
+        Container(color: KColors.kLineColor, height: 0.5),
         InkWell(
           onTap: () => _clickCell(context, '音视频通话'),
           child: Container(
@@ -159,13 +157,13 @@ class WxUserInfoPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset('assets/wechat/contacts/ic_shipintonghua.png',
-                      width: 20, color: KColor.wxTextBlueColor),
+                      width: 20, color: KColors.wxTextBlueColor),
                   SizedBox(width: 5),
                   Text('音视频通话',
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: KColor.wxTextBlueColor))
+                          color: KColors.wxTextBlueColor))
                 ],
               )),
         )

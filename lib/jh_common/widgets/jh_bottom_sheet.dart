@@ -1,9 +1,7 @@
-/**
- *  jh_bottom_sheet.dart
- *
- *  Created by iotjin on 2020/02/16.
- *  description:  微信样式 底部弹框
- */
+///  jh_bottom_sheet.dart
+///
+///  Created by iotjin on 2020/02/16.
+///  description:  微信样式 底部弹框
 
 import 'package:flutter/material.dart';
 
@@ -17,6 +15,7 @@ const double _textFontSize = 18.0;
 const Color _red_textColor = Color(0xFFE64242); // rgba(230,66,66,1)
 const Color _titleColor = Color(0xFF787878); // 120
 const double _titleFontSize = 13.0;
+const String _cancelText = '取消';
 
 class JhBottomSheet {
   /// 弹出底部文字
@@ -38,17 +37,17 @@ class JhBottomSheet {
       _dataArr.insert(_dataArr.length, redBtnTitle);
     }
     var titleHeight = _cellHeight;
-    var titltLineHeight = 0.5;
+    var titleLineHeight = 0.5;
     if (title == null) {
       titleHeight = 0.0;
-      titltLineHeight = 0.0;
+      titleLineHeight = 0.0;
     }
 
     var _bgHeight = _cellHeight * (_dataArr.length + 1) +
         (_dataArr.length - 1) * 1 +
         _spaceHeight +
         titleHeight +
-        titltLineHeight;
+        titleLineHeight;
 
     var _radius = isShowRadius ? 10.0 : 0.0;
 
@@ -82,7 +81,7 @@ class JhBottomSheet {
                   ),
                 ),
                 SizedBox(
-                  height: titltLineHeight,
+                  height: titleLineHeight,
                   child: Container(color: _spaceColor),
                 ),
                 ListView.separated(
@@ -128,13 +127,13 @@ class JhBottomSheet {
                       height: _cellHeight,
                       color: Colors.white,
                       child: Center(
-                          child: Text("取消",
+                          child: Text(_cancelText,
                               style: TextStyle(
                                   fontSize: _textFontSize, color: _textColor),
                               textAlign: TextAlign.center))),
                   onTap: () {
                     if (clickCallback != null) {
-                      clickCallback(0, "取消");
+                      clickCallback(0, _cancelText);
                     }
 
                     Navigator.of(context).pop();

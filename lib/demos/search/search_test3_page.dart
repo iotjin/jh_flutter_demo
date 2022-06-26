@@ -10,7 +10,7 @@ class SearchTest3Page extends StatelessWidget {
 
 //      cursorColor: Colors.white, // 设置光标
           AppBar(
-        backgroundColor: kThemeColor,
+        backgroundColor: KColors.kThemeColor,
         titleSpacing: 15,
         automaticallyImplyLeading: false,
         // 隐藏返回箭头
@@ -46,7 +46,7 @@ class SearchTest3Page extends StatelessWidget {
           )
         ],
       ),
-      body: RaisedButton(
+      body: ElevatedButton(
         child: Text("返回"),
         onPressed: () {
           Navigator.pop(context);

@@ -1,9 +1,7 @@
-/**
- *  jh_color_utils.dart
- *
- *  Created by iotjin on 2020/03/25.
- *  description:  颜色工具类
- */
+///  jh_color_utils.dart
+///
+///  Created by iotjin on 2020/03/25.
+///  description:  颜色工具类
 
 import 'dart:math';
 import 'package:flutter/material.dart';

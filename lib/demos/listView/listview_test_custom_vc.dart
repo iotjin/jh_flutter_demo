@@ -30,11 +30,11 @@ List getData() {
   return dataArr;
 }
 
-class ListViewTest_CustomVC extends StatelessWidget {
+class ListViewTestCustomVC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "ListViewTest_CustomVC"),
+      appBar: backAppBar(context, "ListViewTestCustomVC"),
       body: ContentBody(),
     );
   }
@@ -66,7 +66,7 @@ class ContentBody extends StatelessWidget {
           /*将Json转成实体类*/
           CustomViewModel model = CustomViewModel.fromJson(json);
           print("title" + model.title!);
-          return ListViewTest_CustomCell(data: model);
+          return ListViewTestCustomCell(data: model);
         },
         separatorBuilder: (context, index) {
           return Divider(
