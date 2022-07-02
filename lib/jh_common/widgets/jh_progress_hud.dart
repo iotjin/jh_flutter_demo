@@ -41,7 +41,7 @@ class JhProgressHUD {
     _showLoading(loadingText);
   }
 
-  static hideHUD() {
+  static hide() {
     dismissAllToast();
   }
 }

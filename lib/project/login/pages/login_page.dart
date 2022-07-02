@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/jh_common/widgets/jh_progress_hud.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:package_info/package_info.dart';
 import '/jh_common/jh_form/jh_keyboard_utils.dart';
 import '/jh_common/jh_form/jh_login_text_field.dart';
 import '/jh_common/utils/jh_color_utils.dart';
@@ -58,14 +58,6 @@ class _LoginPageState extends State<LoginPage> {
     }
     _nameController.addListener(_verify);
     _passwordController.addListener(_verify);
-
-    _getInfo();
-  }
-
-  void _getInfo() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-//    print('版本号：${packageInfo.version}');
-    JhStorageUtils.saveString(kUserDefault_LastVersion, packageInfo.version);
   }
 
   void _verify() {
@@ -198,23 +190,33 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _clickOkBtn() async {
-    // 请求网络登录
-    print('name =$_name');
-    print('pwd =$_pwd');
     var hide = JhToast.showIOSLoadingText(
       context,
       msg: "正在登录...",
     );
 
+    var params = {"userName": _name, "pwd": _pwd};
     // 登录请求
-    DataUtils.login({"userName": _name, "pwd": _pwd}, success: (res) {
+    DataUtils.login(params, success: (res) {
       hide();
       // 保存本地
-      JhStorageUtils.saveModel(kUserDefault_UserInfo, res["data"]);
+      JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res["data"]);
       JhToast.showSuccess(context, msg: res["msg"]);
       JhNavUtils.pushReplacement(context, Routes.home);
     }, fail: (code, msg) {
       hide();
     });
   }
+
+// void _clickOkBtn() async {
+//   var params = {"userName": _name, "pwd": _pwd};
+//   // 登录请求
+//   HttpUtils.post(APIs.login, params, loadingText: '正在登录...', success: (res) {
+//     JhProgressHUD.showSuccess(res["msg"]);
+//     // 保存本地
+//     JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res["data"]);
+//     JhToast.showSuccess(context, msg: res["msg"]);
+//     JhNavUtils.pushReplacement(context, Routes.home);
+//   }, fail: (code, msg) {});
+// }
 }

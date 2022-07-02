@@ -28,7 +28,7 @@ class _InfoPageState extends State<InfoPage> {
     super.initState();
 //    model = SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
 
-    var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo)!;
+    var modelJson = JhAESStorageUtils.getModel(kUserDefault_UserInfo)!;
     model = UserModel.fromJson(modelJson);
     // 监听滚动
     _addListener();

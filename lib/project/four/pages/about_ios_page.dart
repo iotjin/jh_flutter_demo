@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:package_info/package_info.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import '/jh_common/utils/jh_common_utils.dart';
+import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/utils/jh_nav_router_utils.dart';
 import '/jh_common/widgets/click_item.dart';
 import '/base_appbar.dart';
@@ -27,28 +29,28 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
   }
 
   void _getInfo() async {
-//    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-//    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-//    print(iosInfo.toString());
-//    print('name ${iosInfo.name}');
-//    print('Running on ${iosInfo.utsname.machine}');
-//    print('Running on ${iosInfo.utsname.sysname}');
-//    print('Running on ${iosInfo.utsname.nodename}');
-//    print('Running on ${iosInfo.utsname.release}');
-//    print('Running on ${iosInfo.utsname.version}');
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    print(iosInfo.toString());
+    print('name ${iosInfo.name}');
+    print('Running on ${iosInfo.utsname.machine}');
+    print('Running on ${iosInfo.utsname.sysname}');
+    print('Running on ${iosInfo.utsname.nodename}');
+    print('Running on ${iosInfo.utsname.release}');
+    print('Running on ${iosInfo.utsname.version}');
 
     print('---------------------------------------');
 
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    PackageInfo packageInfo = await JhDeviceUtils.getPackageInfo();
 
-//    String appName = packageInfo.appName;
-//    String packageName = packageInfo.packageName;
-//    String version = packageInfo.version;
-//    String buildNumber = packageInfo.buildNumber;
-//    print('appName ${appName}');
-//    print('packageName ${packageName}');
-//    print('version ${version}');
-//    print('buildNumber ${buildNumber}');
+    String appName = packageInfo.appName;
+    String packageName = packageInfo.packageName;
+    String version = packageInfo.version;
+    String buildNumber = packageInfo.buildNumber;
+    print('appName ${appName}');
+    print('packageName ${packageName}');
+    print('version ${version}');
+    print('buildNumber ${buildNumber}');
 
     setState(() {
       _currentVersion = packageInfo.version;

@@ -68,7 +68,7 @@ class SetPage extends StatelessWidget {
               );
               Future.delayed(Duration(seconds: 1), () {
                 // 退出时清除用户信息
-                JhStorageUtils.removeWithKey(kUserDefault_UserInfo);
+                JhAESStorageUtils.remove(kUserDefault_UserInfo);
 
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => LoginPage()),

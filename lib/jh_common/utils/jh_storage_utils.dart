@@ -3,12 +3,12 @@
 ///  Created by iotjin on 2020/05/07.
 ///  description:  AES 数据存储（封装第三方）
 
-import 'dart:convert' as convert;
+import 'dart:convert';
 import 'package:flustars/flustars.dart';
 import '/jh_common/utils/jh_encrypt_utils.dart';
 
 /// AES 加密存储
-class JhStorageUtils {
+class JhAESStorageUtils {
   /// 存 String
   static Future<bool>? saveString(String key, String value) {
     key = JhEncryptUtils.aesEncrypt(key);
@@ -17,13 +17,13 @@ class JhStorageUtils {
   }
 
   /// 取 String
-  static String? getStringWithKey(String key) {
+  static String? getString(String key) {
     key = JhEncryptUtils.aesEncrypt(key);
-    var enValue = SpUtil.getString(key);
-    if (enValue!.length > 0) {
+    var enValue = SpUtil.getString(key) ?? "";
+    if (enValue.length > 0) {
       return JhEncryptUtils.aesDecrypt(enValue);
     }
-    return enValue;
+    return null;
   }
 
   /// 存 bool
@@ -33,8 +33,8 @@ class JhStorageUtils {
   }
 
   /// 取 bool
-  static bool getBoolWithKey(String key) {
-    var value = getStringWithKey(key);
+  static bool? getBool(String key) {
+    var value = getString(key);
     return value == "TRUE" ? true : false;
   }
 
@@ -45,10 +45,10 @@ class JhStorageUtils {
   }
 
   /// 取 int
-  static int getIntWithKey(String key) {
-    var value = getStringWithKey(key);
-    value = value == '' ? '0' : value;
-    return int.parse(value!);
+  static int? getInt(String key) {
+    String? value = getString(key);
+    value = (value == '' || value == null) ? '0' : value;
+    return int.parse(value);
   }
 
   /// 存 double
@@ -58,42 +58,45 @@ class JhStorageUtils {
   }
 
   /// 取 double
-  static double getDoubleWithKey(String key) {
-    var value = getStringWithKey(key);
-    value = value == '' ? '0' : value;
-    return double.parse(value!);
+  static double? getDouble(String key) {
+    var value = getString(key);
+    value = (value == '' || value == null) ? '0.0' : value;
+    return double.parse(value);
   }
 
   /// 存 Model
   static Future<bool>? saveModel(String key, Object model) {
-    String jsonString = convert.jsonEncode(model);
+    String jsonString = json.encode(model);
     return saveString(key, jsonString);
   }
 
   /// 取 Model
-  static Map<String, dynamic>? getModelWithKey(String key) {
-    var jsonString = getStringWithKey(key);
-    return (jsonString == null || jsonString.isEmpty)
-        ? null
-        : convert.jsonDecode(jsonString) as Map<String, dynamic>;
+  static Map<String, dynamic>? getModel(String key) {
+    var jsonStr = getString(key);
+    return (jsonStr == null || jsonStr.isEmpty) ? null : json.decode(jsonStr);
   }
 
-  /// 移除
-  static Future<bool>? removeWithKey(String key) {
+  /// 移除单个
+  static Future<bool>? remove(String key) {
     key = JhEncryptUtils.aesEncrypt(key);
     return SpUtil.remove(key);
   }
+
+  /// 移除所有
+  static Future<bool>? clear() {
+    return SpUtil.clear();
+  }
 }
 
-/// 不使用AES加密
-class JhStorageNoAESUtils {
+/// 数据存储（不使用AES加密）
+class JhStorageUtils {
   /// 存 String
   static Future<bool>? saveString(String key, String value) {
     return SpUtil.putString(key, value);
   }
 
   /// 取 String
-  static String? getStringWithKey(String key) {
+  static String? getString(String key) {
     return SpUtil.getString(key);
   }
 
@@ -103,7 +106,7 @@ class JhStorageNoAESUtils {
   }
 
   /// 取 bool
-  static bool? getBoolWithKey(String key) {
+  static bool? getBool(String key) {
     return SpUtil.getBool(key);
   }
 
@@ -113,7 +116,7 @@ class JhStorageNoAESUtils {
   }
 
   /// 取 int
-  static int? getIntWithKey(String key) {
+  static int? getInt(String key) {
     return SpUtil.getInt(key);
   }
 
@@ -123,7 +126,7 @@ class JhStorageNoAESUtils {
   }
 
   /// 取 double
-  static double? getDoubleWithKey(String key) {
+  static double? getDouble(String key) {
     return SpUtil.getDouble(key);
   }
 
@@ -133,13 +136,18 @@ class JhStorageNoAESUtils {
   }
 
   /// 取 Model
-  static Map getModelWithKey(String key) {
+  static Map<String, dynamic>? getModel(String key) {
     Map<String, dynamic> json = SpUtil.getObject(key) as Map<String, dynamic>;
     return json;
   }
 
-  /// 移除
-  static Future<bool>? removeWithKey(String key) {
+  /// 移除单个
+  static Future<bool>? remove(String key) {
     return SpUtil.remove(key);
+  }
+
+  /// 移除所有
+  static Future<bool>? clear() {
+    return SpUtil.clear();
   }
 }

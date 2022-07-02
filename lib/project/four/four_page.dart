@@ -32,7 +32,7 @@ class _FourPageState extends State<FourPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo)!;
+    var modelJson = JhAESStorageUtils.getModel(kUserDefault_UserInfo)!;
     _model = UserModel.fromJson(modelJson);
 //    print(_model.avatarUrl);
 

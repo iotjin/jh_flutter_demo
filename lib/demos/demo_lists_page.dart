@@ -24,6 +24,7 @@ class DemoListsPage extends StatelessWidget {
     "Animation",
     "列表侧滑",
     "城市选择列表",
+    "设备信息"
   ];
   final List routeData = [
     "UIDemoListsPage",
@@ -46,6 +47,7 @@ class DemoListsPage extends StatelessWidget {
     "AnimationDemoListPage",
     "SideslipTestPage",
     "CitySelectListPage",
+    "DeviceInfoTest",
   ];
 
   @override

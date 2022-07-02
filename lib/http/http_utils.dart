@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import 'apis.dart';
 import 'dio_utils.dart';
+import 'error_handle.dart';
 import 'intercept.dart';
 import 'log_utils.dart';
 
@@ -41,21 +42,25 @@ class HttpUtils {
   /// get 请求
   static void get<T>(
     String url,
-    params, {
+    Map<String, dynamic>? params, {
+    String? loadingText,
     Success? success,
     Fail? fail,
   }) {
-    _request(Method.get, url, params, success: success, fail: fail);
+    _request(Method.get, url, params,
+        loadingText: loadingText, success: success, fail: fail);
   }
 
   /// post 请求
   static void post<T>(
     String url,
     params, {
+    String? loadingText,
     Success? success,
     Fail? fail,
   }) {
-    _request(Method.post, url, params, success: success, fail: fail);
+    _request(Method.post, url, params,
+        loadingText: loadingText, success: success, fail: fail);
   }
 
   /// _request 请求
@@ -63,6 +68,7 @@ class HttpUtils {
     Method method,
     String url,
     params, {
+    String? loadingText: '加载中...',
     Success? success,
     Fail? fail,
   }) {
@@ -81,13 +87,17 @@ class HttpUtils {
       data = params;
     }
 
+    if (loadingText != null) {
+      JhProgressHUD.showLoadingText(loadingText: loadingText);
+    }
     DioUtils.instance.request(method, url,
         data: data, queryParameters: queryParameters, onSuccess: (result) {
       if (!LogUtils.inProduction && isOpenLog) {
         print("---------- HttpUtils response ----------");
         print(result);
       }
-      if (result['code'] == 200) {
+      JhProgressHUD.hide();
+      if (result['code'] == ExceptionHandle.success) {
         success?.call(result);
       } else {
         // 其他状态，弹出错误提示信息
@@ -95,6 +105,7 @@ class HttpUtils {
         fail?.call(result['code'], result['msg']);
       }
     }, onError: (code, msg) {
+      JhProgressHUD.hide();
       JhProgressHUD.showError(msg);
       fail?.call(code, msg);
     });

@@ -84,6 +84,7 @@ import 'other/qr_code_test.dart';
 import 'other/aes_test_page.dart';
 import 'other/sideslip_test_page.dart';
 import 'other/city_select_list_page.dart';
+import 'other/device_info_test.dart';
 
 // search
 import 'search/search_demo_list_page.dart';
@@ -261,6 +262,8 @@ class DemosRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (_, __) => SideslipTestPage()));
     router.define("CitySelectListPage",
         handler: Handler(handlerFunc: (_, __) => CitySelectListPage()));
+    router.define("DeviceInfoTest",
+        handler: Handler(handlerFunc: (_, __) => DeviceInfoTest()));
 
     // search
     router.define("SearchDemoListPage",

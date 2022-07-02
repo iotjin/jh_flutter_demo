@@ -94,46 +94,46 @@ class _AESTestPageState extends State<AESTestPage> {
   //  本地加密存储
   void storageTest() {
     print('-------------------本地加密存储-------------------');
-    JhStorageUtils.saveString("testStr", "这是测试本地加密存储的字符串");
-    var testStr = JhStorageUtils.getStringWithKey("testStr");
+    JhAESStorageUtils.saveString("testStr", "这是测试本地加密存储的字符串");
+    var testStr = JhAESStorageUtils.getString("testStr");
     print('testStr : $testStr');
 
-    JhStorageUtils.saveBool('testBool', true);
-    var testBool = JhStorageUtils.getBoolWithKey('testBool');
+    JhAESStorageUtils.saveBool('testBool', true);
+    var testBool = JhAESStorageUtils.getBool('testBool');
     print('testBool : $testBool');
 
-    JhStorageUtils.saveInt('testInt', 1111);
-    var testInt = JhStorageUtils.getIntWithKey('testInt');
+    JhAESStorageUtils.saveInt('testInt', 1111);
+    var testInt = JhAESStorageUtils.getInt('testInt');
     print('testInt : $testInt');
 
-    JhStorageUtils.saveDouble('testDouble', 222.333354);
-    var testDouble = JhStorageUtils.getDoubleWithKey('testDouble');
+    JhAESStorageUtils.saveDouble('testDouble', 222.333354);
+    var testDouble = JhAESStorageUtils.getDouble('testDouble');
     print('testDouble : $testDouble');
 
     var dic = {"a": "aaa", 'b': "bbb", "c": "ccc"};
 //    print('原始dic: ${dic}');
-    JhStorageUtils.saveModel("testDic", dic);
-    var testDic = JhStorageUtils.getModelWithKey('testDic');
+    JhAESStorageUtils.saveModel("testDic", dic);
+    var testDic = JhAESStorageUtils.getModel('testDic');
     print('testDic : $testDic');
 
     // 取不存在的key
     print('-------------------取不存在的key----------------------');
 
-    var testStr2 = JhStorageUtils.getStringWithKey("testStr222");
+    var testStr2 = JhAESStorageUtils.getString("testStr222");
     var test = testStr2 == '' ? "1" : '2222';
     print(test);
     print('testStr2 : $testStr2');
 
-    var testBool2 = JhStorageUtils.getBoolWithKey('testBool222');
+    var testBool2 = JhAESStorageUtils.getBool('testBool222');
     print('testBool2 : $testBool2');
 
-    var testInt2 = JhStorageUtils.getIntWithKey('testInt222');
+    var testInt2 = JhAESStorageUtils.getInt('testInt222');
     print('testInt2: $testInt2');
 
-    var testDouble2 = JhStorageUtils.getDoubleWithKey('testDouble222');
+    var testDouble2 = JhAESStorageUtils.getDouble('testDouble222');
     print('testDouble2 : $testDouble2');
 
-    var testDic2 = JhStorageUtils.getModelWithKey('testDic222');
+    var testDic2 = JhAESStorageUtils.getModel('testDic222');
     print('testDic2 : $testDic2');
   }
 }

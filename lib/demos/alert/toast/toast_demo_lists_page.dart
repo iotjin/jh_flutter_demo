@@ -33,7 +33,7 @@ class ToastDemoListsPage extends StatelessWidget {
           JhProgressHUD.showLoadingText();
           Future.delayed(Duration(seconds: 5), () {
             // hide toast
-            JhProgressHUD.hideHUD();
+            JhProgressHUD.hide();
           });
         }
         if (index == 3) {

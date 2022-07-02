@@ -119,3 +119,22 @@ print( '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scale
 print('系统的字体缩放比例:${ScreenUtil.textScaleFactor}');
 
 */
+
+/*
+    屏幕宽度高度：MediaQuery.of(context).size.width
+    屏幕宽度高度：MediaQuery.of(context).size.height
+    屏幕状态栏高度：MediaQueryData.fromWindow(WidgetBinding.instance.window).padding.top。
+
+    MediaQueryData mq = MediaQuery.of(context);
+    // 屏幕密度
+    pixelRatio = mq.devicePixelRatio;
+    // 屏幕宽(注意是dp, 转换px 需要 screenWidth * pixelRatio)
+    screenWidth = mq.size.width;
+    // 屏幕高(注意是dp)
+    screenHeight = mq.size.height;
+    // 顶部状态栏, 随着刘海屏会增高
+    statusBarHeight = mq padding.top;
+    // 底部功能栏, 类似于iPhone XR 底部安全区域
+    bottomBarHeight = mq.padding.bottom;
+
+*/

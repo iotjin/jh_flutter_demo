@@ -66,14 +66,11 @@ dependencies:
   # 图片选择 https://pub.flutter-io.cn/packages/image_picker
   image_picker: ^0.8.5+3
   # 获取安卓iOS设备信息 https://pub.flutter-io.cn/packages/device_info_plus
-  device_info_plus: ^3.2.3
-  # 获取版本信息（停止更新） https://pub.flutter-io.cn/packages/package_info
-  package_info: ^2.0.2
-  # 获取安卓iOS设备信息（停止更新） https://pub.flutter-io.cn/packages/device_info
-  device_info: ^2.0.3
+  device_info_plus: ^4.0.0
+  # 获取版本信息 https://pub.flutter-io.cn/packages/package_info_plus
+  package_info_plus: ^1.4.2
   # 图片库 https://pub.flutter-io.cn/packages/cupertino_icons
   cupertino_icons: ^1.0.4
-
   # toast https://pub.flutter-io.cn/packages/jhtoast
   jhtoast: ^1.1.0
   # 弹框 https://pub.flutter-io.cn/packages/fluttertoast

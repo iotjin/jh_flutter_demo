@@ -94,7 +94,7 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
 //        SpUtil.putObject(kUserDefault_UserInfo, model);
 
       // 保存本地
-      JhStorageUtils.saveModel(kUserDefault_UserInfo, res["data"]);
+      JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res["data"]);
       JhToast.showSuccess(context, msg: res["msg"]);
       JhNavUtils.pushReplacement(context, Routes.home);
     }, fail: (code, msg) {

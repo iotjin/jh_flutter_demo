@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flustars/flustars.dart';
-import 'package:package_info/package_info.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'package:jhtoast/jhtoast.dart';
 import 'jh_common/widgets/jh_alert.dart';
+import 'jh_common/utils/jh_device_utils.dart';
 import 'jh_common/utils/jh_storage_utils.dart';
 import 'jh_common/utils/jh_screen_utils.dart';
 import 'project/routes/not_found_page.dart';
@@ -22,35 +23,19 @@ import 'project/new_feature/new_feature_page.dart';
 import 'project/configs/project_config.dart';
 import 'project/model/user_model.dart';
 
-/*
-    屏幕宽度高度：MediaQuery.of(context).size.width
-    屏幕宽度高度：MediaQuery.of(context).size.height
-    屏幕状态栏高度：MediaQueryData.fromWindow(WidgetBinding.instance.window).padding.top。
-
-    MediaQueryData mq = MediaQuery.of(context);
-    // 屏幕密度
-    pixelRatio = mq.devicePixelRatio;
-    // 屏幕宽(注意是dp, 转换px 需要 screenWidth * pixelRatio)
-    screenWidth = mq.size.width;
-    // 屏幕高(注意是dp)
-    screenHeight = mq.size.height;
-    // 顶部状态栏, 随着刘海屏会增高
-    statusBarHeight = mq padding.top;
-    // 底部功能栏, 类似于iPhone XR 底部安全区域
-    bottomBarHeight = mq.padding.bottom;
-
-*/
-
 //void main() => runApp(MyApp());
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SpUtil.getInstance();
-
 //  debugProfileBuildsEnabled = true;
 //  debugPaintLayerBordersEnabled = true;
 //  debugProfilePaintsEnabled = true;
 //  debugRepaintRainbowEnabled = true;
+
+  /// 确保初始化完成
+  WidgetsFlutterBinding.ensureInitialized();
+
+  /// sp初始化
+  await SpUtil.getInstance();
 
   runApp(MyApp());
 
@@ -63,7 +48,7 @@ void main() async {
   // 透明状态栏
   if (Platform.isAndroid) {
     SystemUiOverlayStyle systemUiOverlayStyle =
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
 }
@@ -84,7 +69,7 @@ class _MyAppState extends State<MyApp> {
     LogUtils.init();
     HttpUtils.initDio();
     Routes.initRoutes();
-    _getInfo(); // 获取设备信息
+    _getPackageInfo(); // 获取设备信息
   }
 
   @override
@@ -99,25 +84,21 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-//                brightness: // 深色还是浅色
-//                primarySwatch: Colors.blue // 主题颜色样本
-        primaryColor: KColors.kThemeColor, // 主色，决定导航栏颜色
-        // 次级色，决定大多数Widget的颜色，如进度条、开关等。
-        primaryIconTheme: IconThemeData(color: KColors.wxTitleColor),
+        // primarySwatch包含了primaryColor
+        primarySwatch: JhColorUtils.materialColor(KColors.kThemeColor),
+        // 主色
+        primaryColor: KColors.kThemeColor,
       ),
-//            home: IndexPage(),
-//            home: BaseTabBar(),
       home: _switchRootWidget(),
-      // 注册路由
-//    routes: luyou.routes,
+      // 路由
       onGenerateRoute: Routes.router.generator,
       onUnknownRoute: (RouteSettings settings) =>
           MaterialPageRoute(builder: (context) => const NotFoundPage()),
       //        locale: Locale('en','US'),
       localizationsDelegates: [
+        GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-//    GlobalEasyRefreshLocalizations.delegate,
         const FallbackCupertinoLocalisationsDelegate()
       ],
       supportedLocales: [
@@ -127,15 +108,17 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void _getInfo() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  void _getPackageInfo() async {
+    String version = await JhDeviceUtils.version();
+    JhAESStorageUtils.saveString(kUserDefault_LastVersion, version);
+    print('app version = ：$version');
     setState(() {
-      _currentVersion = packageInfo.version;
+      _currentVersion = version;
     });
   }
 
   Widget _switchRootWidget() {
-    var lastVersion = JhStorageUtils.getStringWithKey(kUserDefault_LastVersion);
+    var lastVersion = JhAESStorageUtils.getString(kUserDefault_LastVersion);
 //    print('lastVersion 版本号：$lastVersion');
     if (lastVersion == null || lastVersion == '') {
 //      print('首次安装');
@@ -149,7 +132,7 @@ class _MyAppState extends State<MyApp> {
 //        print('正常启动');
 //        userModel model =
 //            SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
-        var modelJson = JhStorageUtils.getModelWithKey(kUserDefault_UserInfo);
+        var modelJson = JhAESStorageUtils.getModel(kUserDefault_UserInfo);
         if (modelJson != null) {
           UserModel model = UserModel.fromJson(modelJson);
           print('本地取出的 userName:' + model.userName!);

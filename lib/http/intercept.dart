@@ -3,7 +3,6 @@
 ///  Created by iotjin on 2020/07/08.
 ///  description:  拦截器
 
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import 'apis.dart';
@@ -13,20 +12,24 @@ import 'log_utils.dart';
 
 // default token
 const String TOKEN = '';
-const String kRefreshTokenUrl = '';
+const String kRefreshTokenUrl = APIs.refreshToken;
 
 String getToken() {
-  var token = JhStorageUtils.getStringWithKey('RefreshToken') ?? TOKEN;
+  var token = JhStorageUtils.getString('accessToken') ?? TOKEN;
   return token;
 }
 
+void setToken(accessToken) {
+  JhStorageUtils.saveString('accessToken', accessToken);
+}
+
 String getRefreshToken() {
-  var refreshToken = JhStorageUtils.getStringWithKey('RefreshToken') ?? "";
+  var refreshToken = JhStorageUtils.getString('refreshToken') ?? "";
   return refreshToken;
 }
 
-void _setRefreshToken(newToken) {
-  JhStorageUtils.saveString('RefreshToken', newToken);
+void setRefreshToken(refreshToken) {
+  JhStorageUtils.saveString('refreshToken', refreshToken);
 }
 
 /// 统一添加身份验证请求头（根据项目自行处理）
@@ -36,7 +39,7 @@ class AuthInterceptor extends Interceptor {
     if (options.path != APIs.login) {
       final String accessToken = getToken();
       if (accessToken.isNotEmpty) {
-        options.headers['Authorization'] = 'token $accessToken';
+        options.headers['Authorization'] = 'Bearer $accessToken';
       }
     }
     super.onRequest(options, handler);
@@ -47,18 +50,21 @@ class AuthInterceptor extends Interceptor {
 class TokenInterceptor extends QueuedInterceptor {
   Dio? _tokenDio;
 
-  Future<String?> getToken() async {
-    final Map<String, String> params = <String, String>{};
-    params['refresh_token'] = getRefreshToken();
+  Future<Map<String, dynamic>?> refreshTokenRequest() async {
+    var params = {'accessToken': getToken(), 'refreshToken': getRefreshToken()};
     try {
       _tokenDio ??= Dio();
       _tokenDio!.options = DioUtils.instance.dio.options;
+      _tokenDio!.options.headers["Authorization"] = 'Bearer ' + getToken();
       final Response<dynamic> response =
           await _tokenDio!.post<dynamic>(kRefreshTokenUrl, data: params);
-      if (response.statusCode == ExceptionHandle.success) {
-        return (json.decode(response.data.toString())
-            as Map<String, dynamic>)['access_token'] as String;
+      var res = response.data as dynamic;
+      if (res['code'] == ExceptionHandle.success) {
+        return response.data;
       }
+      // if (response.statusCode == ExceptionHandle.success) {
+      //   return response.data;
+      // }
     } catch (e) {
       LogUtils.e('---------- 刷新Token失败！----------');
     }
@@ -71,11 +77,16 @@ class TokenInterceptor extends QueuedInterceptor {
     // 401代表token过期
     if (response.statusCode == ExceptionHandle.unauthorized) {
       LogUtils.d('---------- 自动刷新Token ----------');
-      final String? accessToken = await getToken(); // 获取新的accessToken
-      LogUtils.e('---------- NewToken: $accessToken ----------');
-      _setRefreshToken(accessToken);
 
-      if (accessToken != null) {
+      var res = await refreshTokenRequest(); // 获取新的accessToken
+      if (res != null) {
+        var accessToken = res['accessToken'];
+        LogUtils.e('---------- NewToken: $accessToken ----------');
+
+        // 保存token
+        setToken(accessToken);
+        setRefreshToken(res['refreshToken']);
+
         // 重新请求失败接口
         final RequestOptions request = response.requestOptions;
         request.headers['Authorization'] = 'Bearer $accessToken';

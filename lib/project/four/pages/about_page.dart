@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:device_info/device_info.dart';
-import 'package:package_info/package_info.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/utils/jh_nav_router_utils.dart';
@@ -91,7 +91,7 @@ class _AboutPageState extends State<AboutPage> {
 
     print('---------------------------------------');
 
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    PackageInfo packageInfo = await JhDeviceUtils.getPackageInfo();
 
     String appName = packageInfo.appName;
     String packageName = packageInfo.packageName;
