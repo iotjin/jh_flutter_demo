@@ -5,164 +5,216 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
-import 'package:date_format/date_format.dart';
 
+const String _titleNormalText = '请选择';
+const String _cancelText = '取消';
+const String _confirmText = '确定';
+const String _yearSuffix = '年';
+const String _monthSuffix = '月';
+const String _daySuffix = '日';
+const List<String> _strAMPM = ["上午", "下午"];
 const double _kPickerHeight = 216.0;
-const double _kItemHeight = 40.0;
-const Color _kBtnColor = Color(0xFF323232); // 50
+const double _kItemHeight = 50.0;
+const double _kHeaderLineHeight = 0.25;
+const double _kHeaderRadius = 10.0;
+const double _kTitleFontSize = 18.0;
+const double _kBtnFontSize = 17.0;
+const double _selectTextFontSize = 20.0;
+const Color _bgColor = Colors.white;
+const Color _headerColor = Colors.white;
+const Color _kHeaderLineColor = Colors.black;
 const Color _kTitleColor = Color(0xFF787878); // 120
-const double _kTextFontSize = 17.0;
+const Color _kBtnColor = Color(0xFF323232); // 50
+const Color _selectTextColor = Colors.black;
+final Color _selectItemBgColor = Colors.grey.withOpacity(0.15);
 
-typedef _StringClickCallBack = void Function(int selectIndex, Object selectStr);
-typedef _ArrayClickCallBack = void Function(
-    List<int> selecteds, List<dynamic> strData);
-typedef _DateClickCallBack = void Function(
-    dynamic selectDateStr, dynamic selectDate);
+/// 选择回调
+/// 单列选择器返回选中行对象和index
+/// 多列选择器返回选中行对象数组和index数组
+/// 时间选择器返回选中行时间（时间格式：2022-07-03 15:00:46）和index数组
+typedef _ClickCallBack = void Function(
+    dynamic selectValue, dynamic selectIndexArr);
 
-enum DateType {
+enum PickerDateType {
   YMD, // y, m, d
   YM, // y ,m
   YMD_HM, // y, m, d, hh, mm
   YMD_AP_HM, // y, m, d, ap, hh, mm
 }
 
+enum PickerType {
+  String,
+  Array,
+  Date,
+}
+
 class JhPickerTool {
   /// 单列
   static void showStringPicker<T>(
     BuildContext context, {
-    required List<T> data,
-    String title = "",
-    int normalIndex = 0,
-    PickerDataAdapter? adapter,
-    @required _StringClickCallBack? clickCallBack,
+    required List data,
+    String? title,
+    String? labelKey, // 对象数组的文字字段
+    int selectIndex = 0,
+    @required _ClickCallBack? clickCallBack,
   }) {
-    openModalPicker(context,
-        adapter: adapter ?? PickerDataAdapter(pickerdata: data, isArray: false),
-        clickCallBack: (Picker picker, List<int> selects) {
-      //          print(picker.adapter.text);
-      if (clickCallBack != null) {
-        clickCallBack(selects[0], data[selects[0]]!);
-      }
-    }, selects: [normalIndex], title: title);
+    if (data.length <= 0) {
+      return;
+    }
+    _showPicker(
+      context,
+      data: data,
+      title: title,
+      selecteds: [selectIndex],
+      pickerType: PickerType.String,
+      adapter: labelKey != null
+          ? PickerDataAdapter(pickerdata: data.map((e) => e[labelKey]).toList())
+          : PickerDataAdapter(pickerdata: data),
+      clickCallBack: clickCallBack,
+    );
   }
 
   /// 多列
   static void showArrayPicker<T>(
     BuildContext context, {
-    required List<T> data,
+    required List data,
     String? title,
-    List<int>? normalIndex,
-    PickerDataAdapter? adapter,
-    required _ArrayClickCallBack clickCallBack,
+    String? labelKey, // 对象数组的文字字段
+    List<int>? selectIndex,
+    required _ClickCallBack clickCallBack,
   }) {
-    openModalPicker(context,
-        adapter: adapter ?? PickerDataAdapter(pickerdata: data, isArray: true),
-        clickCallBack: (Picker picker, List<int> selects) {
-      clickCallBack(selects, picker.getSelectedValues());
-    }, selects: normalIndex, title: title);
-  }
-
-  static void openModalPicker(
-    BuildContext context, {
-    required PickerAdapter adapter,
-    String? title,
-    List<int>? selects,
-    required PickerConfirmCallback clickCallBack,
-  }) {
-    new Picker(
-            adapter: adapter,
-            title: new Text(title ?? "请选择",
-                style:
-                    TextStyle(color: _kTitleColor, fontSize: _kTextFontSize)),
-            selecteds: selects,
-            cancelText: '取消',
-            confirmText: '确定',
-            cancelTextStyle:
-                TextStyle(color: _kBtnColor, fontSize: _kTextFontSize),
-            confirmTextStyle:
-                TextStyle(color: _kBtnColor, fontSize: _kTextFontSize),
-            textAlign: TextAlign.right,
-            itemExtent: _kItemHeight,
-            height: _kPickerHeight,
-            selectedTextStyle: TextStyle(color: Colors.black),
-            onConfirm: clickCallBack)
-        .showModal(context);
+    if (data.length <= 0) {
+      return;
+    }
+    _showPicker(
+      context,
+      data: data,
+      title: title,
+      selecteds: selectIndex,
+      pickerType: PickerType.Array,
+      adapter: labelKey != null
+          ? PickerDataAdapter(
+              pickerdata: data.map((e) {
+                return e.map((e2) => e2[labelKey]).toList();
+              }).toList(),
+              isArray: true)
+          : PickerDataAdapter(pickerdata: data, isArray: true),
+      clickCallBack: clickCallBack,
+    );
   }
 
   /// 日期选择器
   static void showDatePicker(
     BuildContext context, {
-    DateType? dateType,
     String? title,
-    DateTime? maxValue,
-    DateTime? minValue,
-    DateTime? value,
-    DateTimePickerAdapter? adapter,
-    required _DateClickCallBack clickCallback,
+    PickerDateType? dateType,
+    DateTime? maxTime,
+    DateTime? minTime,
+    DateTime? selectTime,
+    int? yearBegin: 1900,
+    int? yearEnd: 2100,
+    int? minHour: 0,
+    int? maxHour: 23,
+    required _ClickCallBack clickCallBack,
   }) {
     int timeType;
-    if (dateType == DateType.YM) {
+    if (dateType == PickerDateType.YM) {
       timeType = PickerDateTimeType.kYM;
-    } else if (dateType == DateType.YMD_HM) {
+    } else if (dateType == PickerDateType.YMD_HM) {
       timeType = PickerDateTimeType.kYMDHM;
-    } else if (dateType == DateType.YMD_AP_HM) {
+    } else if (dateType == PickerDateType.YMD_AP_HM) {
       timeType = PickerDateTimeType.kYMD_AP_HM;
     } else {
       timeType = PickerDateTimeType.kYMD;
     }
 
-    openModalPicker(context,
-        adapter: adapter ??
-            DateTimePickerAdapter(
-              type: timeType,
-              isNumberMonth: true,
-              yearSuffix: "年",
-              monthSuffix: "月",
-              daySuffix: "日",
-              strAMPM: const ["上午", "下午"],
-              maxValue: maxValue,
-              minValue: minValue,
-              value: value ?? DateTime.now(),
-            ),
-        title: title, clickCallBack: (Picker picker, List<int> selects) {
-      var time = (picker.adapter as DateTimePickerAdapter).value;
-      var timeStr;
-      if (dateType == DateType.YM) {
-        timeStr = time!.year.toString() + "年" + time.month.toString() + "月";
-      } else if (dateType == DateType.YMD_HM) {
-        timeStr = time!.year.toString() +
-            "年" +
-            time.month.toString() +
-            "月" +
-            time.day.toString() +
-            "日" +
-            time.hour.toString() +
-            "时" +
-            time.minute.toString() +
-            "分";
-      } else if (dateType == DateType.YMD_AP_HM) {
-        var str = formatDate(time!, [am]) == "AM" ? "上午" : "下午";
-        timeStr = time.year.toString() +
-            "年" +
-            time.month.toString() +
-            "月" +
-            time.day.toString() +
-            "日" +
-            str +
-            time.hour.toString() +
-            "时" +
-            time.minute.toString() +
-            "分";
-      } else {
-        timeStr = time!.year.toString() +
-            "年" +
-            time.month.toString() +
-            "月" +
-            time.day.toString() +
-            "日";
-      }
-//          print(formatDate(DateTime(1989, 02, 21), [yyyy, '-', mm, '-', dd]));
-      clickCallback(timeStr, picker.adapter.text);
-    });
+    _showPicker(
+      context,
+      title: title,
+      pickerType: PickerType.Date,
+      adapter: DateTimePickerAdapter(
+        type: timeType,
+        isNumberMonth: true,
+        yearSuffix: _yearSuffix,
+        monthSuffix: _monthSuffix,
+        daySuffix: _daySuffix,
+        strAMPM: _strAMPM,
+        maxValue: maxTime,
+        minValue: minTime,
+        value: selectTime ?? DateTime.now(),
+        minHour: minHour,
+        maxHour: maxHour,
+        yearBegin: yearBegin,
+        yearEnd: yearEnd,
+      ),
+      clickCallBack: clickCallBack,
+    );
   }
+}
+
+/// 自定义picker
+_showPicker(
+  context, {
+  List? data,
+  String? title,
+  List<int>? selecteds,
+  PickerType? pickerType,
+  required PickerAdapter adapter,
+  _ClickCallBack? clickCallBack,
+}) {
+  var picker = Picker(
+      adapter: adapter,
+      selecteds: selecteds,
+      height: _kPickerHeight,
+      itemExtent: _kItemHeight,
+      title: Text(title ?? _titleNormalText,
+          style: TextStyle(color: _kTitleColor, fontSize: _kTitleFontSize)),
+      cancelText: _cancelText,
+      cancelTextStyle: TextStyle(color: _kBtnColor, fontSize: _kBtnFontSize),
+      confirmText: _confirmText,
+      confirmTextStyle: TextStyle(color: _kBtnColor, fontSize: _kBtnFontSize),
+      textAlign: TextAlign.center,
+      selectedTextStyle:
+          TextStyle(color: _selectTextColor, fontSize: _selectTextFontSize),
+      selectionOverlay:
+          Container(height: _kItemHeight, color: _selectItemBgColor),
+      backgroundColor: _bgColor,
+      headerDecoration: BoxDecoration(
+        border: Border(
+          bottom:
+              BorderSide(color: _kHeaderLineColor, width: _kHeaderLineHeight),
+        ),
+      ),
+      onConfirm: (Picker picker, List selectIndexArr) {
+        if (pickerType == PickerType.String) {
+          var selectIndex = selectIndexArr[0];
+          clickCallBack?.call(data![selectIndex], selectIndex);
+        }
+        if (pickerType == PickerType.Array) {
+          var selectItemArr = [];
+          for (int i = 0; i < selectIndexArr.length; i++) {
+            int j = selectIndexArr[i];
+            selectItemArr.add(data![i][j]);
+          }
+          clickCallBack?.call(selectItemArr, selectIndexArr);
+        }
+        if (pickerType == PickerType.Date) {
+          // var time = (picker.adapter as DateTimePickerAdapter).value;
+          clickCallBack?.call(
+              picker.adapter.text.split('.')[0], selectIndexArr);
+        }
+      });
+
+  picker.showModal(context, backgroundColor: Colors.transparent,
+      builder: (context, view) {
+    return Material(
+        color: _headerColor,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(_kHeaderRadius),
+            topRight: Radius.circular(_kHeaderRadius)),
+        child: Container(
+          padding: EdgeInsets.only(top: 5),
+          child: view,
+        ));
+  });
 }

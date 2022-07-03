@@ -111,7 +111,7 @@ class _MyAppState extends State<MyApp> {
   void _getPackageInfo() async {
     String version = await JhDeviceUtils.version();
     JhAESStorageUtils.saveString(kUserDefault_LastVersion, version);
-    print('app version = ：$version');
+    print('app version =  $version');
     setState(() {
       _currentVersion = version;
     });

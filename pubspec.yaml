@@ -78,7 +78,7 @@ dependencies:
   # 加载框 https://pub.flutter-io.cn/packages/oktoast
   oktoast: ^3.1.4
   # 底部弹出 日期选择器 单列多列  https://pub.flutter-io.cn/packages/flutter_picker
-  flutter_picker: ^2.0.3
+  flutter_picker: ^2.0.4
 
   # 下拉刷新 https://pub.flutter-io.cn/packages/pull_to_refresh
   pull_to_refresh: ^2.0.0
@@ -100,8 +100,6 @@ dependencies:
   charts_flutter: ^0.12.0
   # 图表  https://pub.flutter-io.cn/packages/fl_chart
   #  fl_chart: ^0.51.0
-  # 图表  https://pub.flutter-io.cn/packages/rxdart
-  #  rxdart: ^0.27.4
   # 二维码生成 https://pub.flutter-io.cn/packages/qr_flutter
   qr_flutter: ^4.0.0
   # 二维码扫描(跳页面) https://pub.flutter-io.cn/packages/qr_code_scanner
