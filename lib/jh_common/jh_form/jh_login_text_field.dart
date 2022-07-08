@@ -8,8 +8,7 @@ import 'package:flutter/services.dart';
 
 const Color _textColor = Colors.black;
 const TextStyle _textStyle = TextStyle(fontSize: 15.0, color: _textColor);
-const TextStyle _hintTextStyle =
-    TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB));
+const TextStyle _hintTextStyle = TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB));
 
 typedef _InputCallBack = void Function(String value);
 
@@ -79,14 +78,12 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     _isShowDelete = _focusNode!.hasFocus && _textController!.text.isNotEmpty;
     _textController!.addListener(() {
       setState(() {
-        _isShowDelete =
-            _textController!.text.isNotEmpty && _focusNode!.hasFocus;
+        _isShowDelete = _textController!.text.isNotEmpty && _focusNode!.hasFocus;
       });
     });
     _focusNode!.addListener(() {
       setState(() {
-        _isShowDelete =
-            _textController!.text.isNotEmpty && _focusNode!.hasFocus;
+        _isShowDelete = _textController!.text.isNotEmpty && _focusNode!.hasFocus;
       });
     });
   }
@@ -95,9 +92,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
   Widget build(BuildContext context) {
     if (widget.pwdOpen != null && widget.pwdClose != null) {
       if (widget.pwdOpen!.isNotEmpty && widget.pwdClose!.isNotEmpty) {
-        _pwdImg = _pwdShow!
-            ? ImageIcon(AssetImage(widget.pwdClose!))
-            : ImageIcon(AssetImage(widget.pwdOpen!));
+        _pwdImg = _pwdShow! ? ImageIcon(AssetImage(widget.pwdClose!)) : ImageIcon(AssetImage(widget.pwdOpen!));
       } else {
         _pwdImg = Icon(_pwdShow! ? Icons.visibility_off : Icons.visibility);
       }
@@ -129,13 +124,10 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
             isDense: widget.isDense,
             enabledBorder: widget.border != null
                 ? widget.border
-                : UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey, width: 0.8)),
+                : UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.8)),
             focusedBorder: widget.border != null
                 ? widget.border
-                : UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Theme.of(context).primaryColor, width: 0.8)),
+                : UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
 //          suffixIcon:
           ),
           obscureText: _pwdShow!,

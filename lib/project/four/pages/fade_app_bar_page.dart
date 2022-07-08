@@ -103,8 +103,7 @@ class FadeAppBarState extends State<FadeAppBarPage> {
             // 监听滚动
             NotificationListener(
               onNotification: (notification) {
-                if (notification is ScrollUpdateNotification &&
-                    notification.depth == 0) {
+                if (notification is ScrollUpdateNotification && notification.depth == 0) {
                   // 滑动通知
                   scrollViewDidScrolled(notification.metrics.pixels);
                 }
@@ -161,13 +160,7 @@ class PositionedBtnWidget extends StatefulWidget {
   // 要触发的事件
   Function? actionFunction;
 
-  PositionedBtnWidget(
-      {this.btnTop,
-      this.right,
-      this.left,
-      this.opacity,
-      this.image,
-      this.actionFunction});
+  PositionedBtnWidget({this.btnTop, this.right, this.left, this.opacity, this.image, this.actionFunction});
 
   @override
   State<StatefulWidget> createState() {

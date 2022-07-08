@@ -85,14 +85,11 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
               title: 'Github',
               content: 'Go Star',
               onTap: () => JhNavRouterUtils.jumpWebViewPage(
-                  context,
-                  'jh_flutter_demo',
-                  'https://github.com/iotjin/jh_flutter_demo')),
+                  context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo')),
           ClickItem(
               title: 'author',
               content: 'iotjin',
-              onTap: () => JhNavRouterUtils.jumpWebViewPage(
-                  context, '作者博客', 'https://blog.csdn.net/iotjin')),
+              onTap: () => JhNavRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')),
           ClickItem(
               title: "版本更新",
               content: _info,
@@ -109,9 +106,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
   void _getAPPStoreVersion() async {
     print("response----");
     var url = "https://itunes.apple.com/cn/lookup?id=414478124";
-    Options options = Options(headers: {
-      HttpHeaders.acceptHeader: "Content-Type:application/x-www-form-urlencoded"
-    });
+    Options options = Options(headers: {HttpHeaders.acceptHeader: "Content-Type:application/x-www-form-urlencoded"});
 
     var response = await Dio().post(url, options: options);
 

@@ -17,8 +17,7 @@ class _EChartPage2State extends State<EChartPage2> {
   Widget build(BuildContext context) {
     var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
-    return Scaffold(
-        appBar: backAppBar(context, 'EChart2 - 多图表'), body: _scrollbar());
+    return Scaffold(appBar: backAppBar(context, 'EChart2 - 多图表'), body: _scrollbar());
   }
 
   Widget _scrollbar() {

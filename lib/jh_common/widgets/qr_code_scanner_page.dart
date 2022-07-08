@@ -35,10 +35,8 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> {
 
   @override
   Widget build(BuildContext context) {
-    final scanArea = (MediaQuery.of(context).size.width < 400 ||
-            MediaQuery.of(context).size.height < 400)
-        ? 250.0
-        : 300.0;
+    final scanArea =
+        (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
     return Scaffold(
       body: Stack(
         children: <Widget>[

@@ -37,13 +37,7 @@ class JhImageUtils {
 /// 加载本地图片
 /// JhLoadAssetImage('account/${_bankLogoList[index]}',width: 24.0)
 class JhLoadAssetImage extends StatelessWidget {
-  const JhLoadAssetImage(this.image,
-      {Key? key,
-      this.width,
-      this.height,
-      this.fit,
-      this.format: 'png',
-      this.color})
+  const JhLoadAssetImage(this.image, {Key? key, this.width, this.height, this.fit, this.format: 'png', this.color})
       : super(key: key);
 
   final String image;

@@ -10,8 +10,7 @@ List getData() {
     map["title"] = "title$i";
     map["place"] = "place$i";
     map["state"] = "流转中$i";
-    map["content"] =
-        "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
+    map["content"] = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
     map["phone"] = '$i$i$i' + 'xxxxxxx';
     map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     dataArr.add(map);
@@ -72,31 +71,24 @@ class ContentBody extends StatelessWidget {
 //        mainAxisAlignment: MainAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(dataArr[index]["place"],
-                    style: TextStyle(
-                        fontSize: 18.0, backgroundColor: Colors.blue)),
+                Text(dataArr[index]["place"], style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
 //            Text(dataArr[index]["state"],style: TextStyle(fontSize: 18.0,backgroundColor: Colors.blue)),
                 Row(
                   children: <Widget>[
-                    Text(dataArr[index]["state"],
-                        style: TextStyle(
-                            fontSize: 18.0, backgroundColor: Colors.blue)),
+                    Text(dataArr[index]["state"], style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
                     Padding(
                       padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                     ),
-                    Image.network(dataArr[index]["imageUrl"],
-                        width: 30, height: 30),
+                    Image.network(dataArr[index]["imageUrl"], width: 30, height: 30),
                   ],
                 )
               ],
             ),
             SizedBox(height: spaceHeight),
-            Text(dataArr[index]["phone"],
-                textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0)),
+            Text(dataArr[index]["phone"], textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0)),
             SizedBox(height: spaceHeight),
             Text(dataArr[index]["content"],
-                textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
+                textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
           ],
         ));
   }

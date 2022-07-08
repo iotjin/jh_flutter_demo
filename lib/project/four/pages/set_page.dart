@@ -59,8 +59,7 @@ class SetPage extends StatelessWidget {
         }
 
         if (str == "退出登录") {
-          JhBottomSheet.showText(context, title: "请选择操作", redBtnTitle: "退出登录",
-              clickCallback: (index, str) {
+          JhBottomSheet.showText(context, title: "请选择操作", redBtnTitle: "退出登录", clickCallback: (index, str) {
             if (str == "退出登录") {
               var hide = JhToast.showIOSLoadingText(
                 context,
@@ -70,9 +69,8 @@ class SetPage extends StatelessWidget {
                 // 退出时清除用户信息
                 JhAESStorageUtils.remove(kUserDefault_UserInfo);
 
-                Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                    (route) => false);
+                Navigator.of(context)
+                    .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
                 hide();
               });
             }

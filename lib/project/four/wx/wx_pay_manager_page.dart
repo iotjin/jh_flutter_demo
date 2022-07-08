@@ -24,8 +24,7 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KStrings.wxPayManager,
-          backgroundColor: Colors.transparent),
+      appBar: backAppBar(context, KStrings.wxPayManager, backgroundColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.wxBgColor,
     );
@@ -101,8 +100,7 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
               TextSpan(
                 text: '服务协议',
                 style: TextStyle(color: Colors.blueAccent, fontSize: 15),
-                recognizer: new TapGestureRecognizer()
-                  ..onTap = () => _clickXieYi(context),
+                recognizer: new TapGestureRecognizer()..onTap = () => _clickXieYi(context),
               ),
             ]),
           ),

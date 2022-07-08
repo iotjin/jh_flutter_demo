@@ -137,8 +137,12 @@ class JhStorageUtils {
 
   /// 取 Model
   static Map<String, dynamic>? getModel(String key) {
-    Map<String, dynamic> json = SpUtil.getObject(key) as Map<String, dynamic>;
-    return json;
+    var jsonStr = SpUtil.getObject(key);
+    if (jsonStr == null || jsonStr.isEmpty) {
+      return null;
+    } else {
+      return jsonStr as Map<String, dynamic>;
+    }
   }
 
   /// 移除单个

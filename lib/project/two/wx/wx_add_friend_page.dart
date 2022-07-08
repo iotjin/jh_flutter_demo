@@ -37,8 +37,7 @@ List _dataArr = [
   {
     "title": "企业微信联系人",
     "subtitle": "通过手机号搜索企业微信用户",
-    "img":
-        "assets/wechat/contacts/add/add_friend_icon_search_wework_40x40_@2x.png",
+    "img": "assets/wechat/contacts/add/add_friend_icon_search_wework_40x40_@2x.png",
   },
 ];
 
@@ -78,13 +77,10 @@ class WxAddFriendPage extends StatelessWidget {
             children: <Widget>[
               Text('我的微信号：abc'),
               SizedBox(width: 10),
-              Image.asset(
-                  'assets/wechat/contacts/add/add_friend_myQR_20x20_@2x.png',
-                  width: 20)
+              Image.asset('assets/wechat/contacts/add/add_friend_myQR_20x20_@2x.png', width: 20)
             ]));
 
-    List<Widget> _topWidgetList =
-        _dataArr.map((item2) => _cell(context, item2)).toList();
+    List<Widget> _topWidgetList = _dataArr.map((item2) => _cell(context, item2)).toList();
 
     _topWidgetList.insert(0, _myCode);
     _topWidgetList.insert(0, _searchBar);

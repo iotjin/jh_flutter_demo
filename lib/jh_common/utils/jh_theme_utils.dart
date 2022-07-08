@@ -43,26 +43,20 @@ class JhThemeUtils {
   }
 
   /// 设置NavigationBar样式
-  static void setSystemNavigationBarStyle(
-      BuildContext context, ThemeMode mode) {
+  static void setSystemNavigationBarStyle(BuildContext context, ThemeMode mode) {
     /// 仅针对安卓
     if (JhDeviceUtils.isAndroid) {
       bool _isDark = false;
-      final ui.Brightness platformBrightness =
-          MediaQuery.platformBrightnessOf(context);
+      final ui.Brightness platformBrightness = MediaQuery.platformBrightnessOf(context);
       print(platformBrightness);
-      if (mode == ThemeMode.dark ||
-          (mode == ThemeMode.system &&
-              platformBrightness == ui.Brightness.dark)) {
+      if (mode == ThemeMode.dark || (mode == ThemeMode.system && platformBrightness == ui.Brightness.dark)) {
         _isDark = true;
       }
       print(_isDark);
       final SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        systemNavigationBarColor:
-            _isDark ? Colours.dark_bg_color : Colors.white,
-        systemNavigationBarIconBrightness:
-            _isDark ? Brightness.light : Brightness.dark,
+        systemNavigationBarColor: _isDark ? Colours.dark_bg_color : Colors.white,
+        systemNavigationBarIconBrightness: _isDark ? Brightness.light : Brightness.dark,
       );
       SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     }

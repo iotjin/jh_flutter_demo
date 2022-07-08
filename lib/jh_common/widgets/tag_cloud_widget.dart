@@ -44,8 +44,7 @@ class TagCloudWidget extends StatefulWidget {
   _TagCloudWidgetState createState() => _TagCloudWidgetState();
 }
 
-class _TagCloudWidgetState extends State<TagCloudWidget>
-    with SingleTickerProviderStateMixin {
+class _TagCloudWidgetState extends State<TagCloudWidget> with SingleTickerProviderStateMixin {
   Animation<double>? rotationAnimation;
   AnimationController? animationController;
   List<Point>? points;
@@ -68,17 +67,16 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
       // 按rpm，转/每分来计算旋转速度
       duration: Duration(seconds: 60 ~/ widget.rpm),
     );
-    rotationAnimation =
-        Tween(begin: 0.0, end: pi * 2).animate(animationController!)
-          ..addListener(() {
-            setState(() {
-              var angle = rotationAnimation!.value;
-              angleDelta = angle - prevAngle!; // 这段时间内旋转过的角度
-              prevAngle = angle;
-              // 按angleDelta旋转标签到新的位置
-              _rotatePoints(points!, rotateAxis, angleDelta!);
-            });
-          });
+    rotationAnimation = Tween(begin: 0.0, end: pi * 2).animate(animationController!)
+      ..addListener(() {
+        setState(() {
+          var angle = rotationAnimation!.value;
+          angleDelta = angle - prevAngle!; // 这段时间内旋转过的角度
+          prevAngle = angle;
+          // 按angleDelta旋转标签到新的位置
+          _rotatePoints(points!, rotateAxis, angleDelta!);
+        });
+      });
     animationController!.repeat();
   }
 
@@ -105,16 +103,12 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
     var radius = widget.width / 2 + floatingOffset;
     List<Point> points = [];
     for (var i = 0; i < pointsCount; i++) {
-      double x =
-          1 * Random().nextDouble() * (Random().nextBool() == true ? 1 : -1);
+      double x = 1 * Random().nextDouble() * (Random().nextBool() == true ? 1 : -1);
       double remains = sqrt(1 - x * x);
 
-      double y = remains *
-          Random().nextDouble() *
-          (Random().nextBool() == true ? 1 : -1);
+      double y = remains * Random().nextDouble() * (Random().nextBool() == true ? 1 : -1);
 
-      double z =
-          sqrt(1 - x * x - y * y) * (Random().nextBool() == true ? 1 : -1);
+      double z = sqrt(1 - x * x - y * y) * (Random().nextBool() == true ? 1 : -1);
 
       points.add(new Point(x * radius, y * radius, z * radius,
           color: Color.fromRGBO(
@@ -146,15 +140,9 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
         cosA = cos(angle);
     points.forEach((point) {
       var x = point.x, y = point.y, z = point.z;
-      point.x = (a2 + (1 - a2) * cosA) * x +
-          (ab * (1 - cosA) - c * sinA) * y +
-          (ac * (1 - cosA) + b * sinA) * z;
-      point.y = (ab * (1 - cosA) + c * sinA) * x +
-          (b2 + (1 - b2) * cosA) * y +
-          (bc * (1 - cosA) - a * sinA) * z;
-      point.z = (ac * (1 - cosA) - b * sinA) * x +
-          (bc * (1 - cosA) + a * sinA) * y +
-          (c2 + (1 - c2) * cosA) * z;
+      point.x = (a2 + (1 - a2) * cosA) * x + (ab * (1 - cosA) - c * sinA) * y + (ac * (1 - cosA) + b * sinA) * z;
+      point.y = (ab * (1 - cosA) + c * sinA) * x + (b2 + (1 - b2) * cosA) * y + (bc * (1 - cosA) - a * sinA) * z;
+      point.z = (ac * (1 - cosA) - b * sinA) * x + (bc * (1 - cosA) + a * sinA) * y + (c2 + (1 - c2) * cosA) * z;
     });
     return points;
   }
@@ -187,15 +175,9 @@ class _TagCloudWidgetState extends State<TagCloudWidget>
           // 球体，添加了边界阴影
           Container(
               height: radius! * 2,
-              decoration: BoxDecoration(
-                  color: _bgColor,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                        color: _shadowColor.withOpacity(0.9),
-                        blurRadius: _blurRadius,
-                        spreadRadius: _spreadRadius),
-                  ])),
+              decoration: BoxDecoration(color: _bgColor, shape: BoxShape.circle, boxShadow: [
+                BoxShadow(color: _shadowColor.withOpacity(0.9), blurRadius: _blurRadius, spreadRadius: _spreadRadius),
+              ])),
           // 每个点
           CustomPaint(
             size: Size(radius! * 2, radius! * 2),
@@ -235,8 +217,7 @@ class TagsPainter extends CustomPainter {
               children: <TextSpan>[
                 TextSpan(
                     text: data['num'],
-                    style:
-                        TextStyle(fontSize: _fontSize, color: _textColor_row2),
+                    style: TextStyle(fontSize: _fontSize, color: _textColor_row2),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         print('===测试暂时有误，待研究==');
@@ -256,10 +237,7 @@ class TagsPainter extends CustomPainter {
       // 圆角矩形
       canvas.drawRRect(
           RRect.fromRectAndRadius(
-              Rect.fromCenter(
-                  center: Offset(point.x + text.width / 2, point.y + 15),
-                  width: text.width,
-                  height: 50),
+              Rect.fromCenter(center: Offset(point.x + text.width / 2, point.y + 15), width: text.width, height: 50),
               Radius.circular(_boderRadius)),
           paintStyle);
     }

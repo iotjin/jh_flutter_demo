@@ -27,8 +27,7 @@ class _FullScreenSwiperWidgetState extends State<FullScreenSwiperWidget> {
 
     _imgList.forEach((value) {
 //      print(value);
-      _imgWidgets.add(Image.asset(value,
-          fit: BoxFit.fill, width: double.infinity, height: double.infinity));
+      _imgWidgets.add(Image.asset(value, fit: BoxFit.fill, width: double.infinity, height: double.infinity));
 //      _imgWidgets.add(Image.network(value,
 //          fit: BoxFit.fill, width: double.infinity, height: double.infinity));
     });
@@ -77,8 +76,7 @@ class _FullScreenSwiperWidgetState extends State<FullScreenSwiperWidget> {
                 controller: _controller,
                 itemCount: _imgWidgets.length,
                 onPageSelected: (int page) {
-                  _controller.animateToPage(page,
-                      duration: _kDuration, curve: _kCurve);
+                  _controller.animateToPage(page, duration: _kDuration, curve: _kCurve);
                 },
               ),
             ),

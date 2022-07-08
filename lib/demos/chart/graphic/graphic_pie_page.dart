@@ -14,8 +14,7 @@ class GraphicPiePage extends StatefulWidget {
 class _GraphicPiePageState extends State<GraphicPiePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: backAppBar(context, 'Graphic - 饼图'), body: _scrollbar());
+    return Scaffold(appBar: backAppBar(context, 'Graphic - 饼图'), body: _scrollbar());
   }
 }
 
@@ -121,16 +120,10 @@ Widget _initPieChart2() {
                 encoder: (tuple) => Label(
                       tuple['sold'].toString(),
                       // LabelStyle(style: Defaults.runeStyle),
-                      LabelStyle(
-                          style: TextStyle(fontSize: 18, color: Colors.black)),
+                      LabelStyle(style: TextStyle(fontSize: 18, color: Colors.black)),
                     )),
-            color: ColorAttr(variable: 'genre', values: [
-              Colors.red,
-              Colors.orange,
-              Colors.yellow,
-              Colors.green,
-              Colors.blue
-            ]),
+            color: ColorAttr(
+                variable: 'genre', values: [Colors.red, Colors.orange, Colors.yellow, Colors.green, Colors.blue]),
             modifiers: [StackModifier()],
           )
         ],

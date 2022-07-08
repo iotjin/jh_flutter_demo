@@ -84,9 +84,7 @@ Widget getItemContainer(itemData) {
         )
       ],
     ),
-    decoration: BoxDecoration(
-        border:
-        Border.all(color: Color.fromRGBO(233, 233, 233, 0.9), width: 1)),
+    decoration: BoxDecoration(border: Border.all(color: Color.fromRGBO(233, 233, 233, 0.9), width: 1)),
   );
 }
 
@@ -132,13 +130,7 @@ Widget getTextCon(itemData) {
       ));
 }
 
-List<String> bottomData = [
-  "1111",
-  "2222",
-  "3333333333333333333",
-  "4444",
-  "5555"
-];
+List<String> bottomData = ["1111", "2222", "3333333333333333333", "4444", "5555"];
 
 List listData333 = [
   {

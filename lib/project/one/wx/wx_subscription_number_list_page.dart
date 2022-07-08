@@ -15,8 +15,7 @@ List _getData() {
   for (int i = 0; i < 50; i++) {
     var map = new Map();
     map["title"] = "title$i";
-    map["subtitle"] =
-        "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
+    map["subtitle"] = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
     map["img"] = "assets/images/ic_demo1.png";
     map["time"] = "17:30";
     _dataArr.add(map);
@@ -33,8 +32,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, '订阅号',
-          rightImgPath: 'assets/images/ic_more_black.png',
-          backgroundColor: Colors.transparent, rightItemCallBack: () {
+          rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
         _clickCell(context, '更多');
       }),
       body: _body(context, _dataArr),
@@ -112,16 +110,12 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
                     SizedBox(height: 6),
                     Row(
                       children: <Widget>[
-                        Expanded(
-                            flex: 70,
-                            child: Text(item['title'],
-                                style: TextStyle(fontSize: 18))),
+                        Expanded(flex: 70, child: Text(item['title'], style: TextStyle(fontSize: 18))),
                         Expanded(
                             flex: 30,
                             child: Text(
                               item['time'],
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.grey),
+                              style: TextStyle(fontSize: 13, color: Colors.grey),
                               textAlign: TextAlign.right,
                             )),
                         SizedBox(width: 10),
@@ -131,8 +125,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(5),
                       child: Text(item['subtitle'],
-                          style: TextStyle(fontSize: 15, color: Colors.grey),
-                          overflow: TextOverflow.ellipsis),
+                          style: TextStyle(fontSize: 15, color: Colors.grey), overflow: TextOverflow.ellipsis),
                     )
                   ],
                 )),

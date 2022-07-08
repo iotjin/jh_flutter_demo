@@ -20,8 +20,7 @@ void getNewData() {
     map["title"] = "title$i";
     map["place"] = "place$i";
     map["state"] = "流转中$i";
-    map["content"] =
-        "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
+    map["content"] = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
     map["phone"] = '$i$i$i' + 'xxxxxxx';
     map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     dataArr.add(map);
@@ -35,8 +34,7 @@ void getMoreData() {
     map["title"] = "title$i";
     map["place"] = "place$i";
     map["state"] = "流转中$i";
-    map["content"] =
-        "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
+    map["content"] = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
     map["phone"] = '$i$i$i' + 'xxxxxxx';
     map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
     dataArr.add(map);
@@ -45,8 +43,7 @@ void getMoreData() {
 
 class ListViewTestPullDownVC extends StatefulWidget {
   @override
-  _ListViewTestPullDownVCState createState() =>
-      _ListViewTestPullDownVCState();
+  _ListViewTestPullDownVCState createState() => _ListViewTestPullDownVCState();
 }
 
 class _ListViewTestPullDownVCState extends State<ListViewTestPullDownVC> {

@@ -20,12 +20,10 @@ class WxUserInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, '',
-          rightImgPath: 'assets/images/ic_more_black.png',
-          backgroundColor: Colors.transparent, rightItemCallBack: () {
+          rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
         // 跳转资料设置
         String jsonStr = Uri.encodeComponent(jsonEncode(_passValue));
-        JhNavUtils.pushNamed(
-            context, '${"WxInfoSetPage"}?passValue=$jsonStr');
+        JhNavUtils.pushNamed(context, '${"WxInfoSetPage"}?passValue=$jsonStr');
       }),
       body: _body(context),
     );
@@ -58,8 +56,7 @@ class WxUserInfoPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Center(
-                  child: Text(_passValue!.name!.substring(0, 1),
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
+                  child: Text(_passValue!.name!.substring(0, 1), style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               ),
               Expanded(
@@ -70,9 +67,7 @@ class WxUserInfoPage extends StatelessWidget {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          Text(_passValue!.name!,
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(_passValue!.name!, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                           SizedBox(width: 5),
 //                      Icon(Icons.pregnant_woman, color: Colors.redAccent),
 ////                      Icon(Icons.person, color: Colors.blue),
@@ -80,21 +75,16 @@ class WxUserInfoPage extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 3),
-                      Text('昵称：${_passValue!.namePinyin}',
-                          style: TextStyle(fontSize: 16, color: Colors.grey)),
+                      Text('昵称：${_passValue!.namePinyin}', style: TextStyle(fontSize: 16, color: Colors.grey)),
                       SizedBox(height: 3),
-                      Text('手机号：${_passValue!.phone}',
-                          style: TextStyle(fontSize: 16, color: Colors.grey)),
+                      Text('手机号：${_passValue!.phone}', style: TextStyle(fontSize: 16, color: Colors.grey)),
                       SizedBox(height: 3),
-                      Text('地区：${_passValue!.region}',
-                          style: TextStyle(fontSize: 16, color: Colors.grey)),
+                      Text('地区：${_passValue!.region}', style: TextStyle(fontSize: 16, color: Colors.grey)),
                     ],
                   )),
               Expanded(
                 flex: 15,
-                child: _passValue!.isStar!
-                    ? Icon(Icons.star, color: Colors.yellow)
-                    : Container(),
+                child: _passValue!.isStar! ? Icon(Icons.star, color: Colors.yellow) : Container(),
               ),
             ],
           ),
@@ -136,14 +126,10 @@ class WxUserInfoPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset('assets/wechat/contacts/ic_xinxi.png',
-                      width: 20, color: KColors.wxTextBlueColor),
+                  Image.asset('assets/wechat/contacts/ic_xinxi.png', width: 20, color: KColors.wxTextBlueColor),
                   SizedBox(width: 5),
                   Text('发消息',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: KColors.wxTextBlueColor))
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: KColors.wxTextBlueColor))
                 ],
               )),
         ),
@@ -156,14 +142,10 @@ class WxUserInfoPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset('assets/wechat/contacts/ic_shipintonghua.png',
-                      width: 20, color: KColors.wxTextBlueColor),
+                  Image.asset('assets/wechat/contacts/ic_shipintonghua.png', width: 20, color: KColors.wxTextBlueColor),
                   SizedBox(width: 5),
                   Text('音视频通话',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: KColors.wxTextBlueColor))
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: KColors.wxTextBlueColor))
                 ],
               )),
         )

@@ -37,27 +37,17 @@ class JhDialogTestPage extends StatelessWidget {
           JhDialog.show(context, content: '确认要退出吗？');
         }
         if (index == 3) {
-          JhDialog.show(context,
-              title: "警告",
-              content: '您的账号在异地登录，请重新登录！',
-              rightText: '好的',
-              hiddenCancel: true);
+          JhDialog.show(context, title: "警告", content: '您的账号在异地登录，请重新登录！', rightText: '好的', hiddenCancel: true);
         }
         if (index == 4) {
-          JhDialog.show(context,
-              title: "提示",
-              content: '您需要同意相关协议才能使用！',
-              leftText: '不同意',
-              rightText: '同意');
+          JhDialog.show(context, title: "提示", content: '您需要同意相关协议才能使用！', leftText: '不同意', rightText: '同意');
         }
 
         if (index == 5) {
-          JhDialog.showCustomDialog(context,
-              content: Container(height: 200, color: Colors.red));
+          JhDialog.showCustomDialog(context, content: Container(height: 200, color: Colors.red));
         }
         if (index == 6) {
-          JhDialog.showCustomDialog(context,
-              title: '提示', content: Container(height: 200, color: Colors.red));
+          JhDialog.showCustomDialog(context, title: '提示', content: Container(height: 200, color: Colors.red));
         }
         if (index == 7) {
           JhDialog.showAllCustomDialog(

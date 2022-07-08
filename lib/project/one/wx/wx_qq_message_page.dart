@@ -23,8 +23,7 @@ class WxQQMessagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, 'QQ邮箱提醒',
-          rightImgPath: 'assets/images/ic_more_black.png',
-          backgroundColor: Colors.transparent, rightItemCallBack: () {
+          rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
         _clickCell(context, '更多');
       }),
       body: _body(context, _dataArr),
@@ -55,8 +54,7 @@ class WxQQMessagePage extends StatelessWidget {
     return Card(
         margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
         // 设置圆角
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         // 抗锯齿
         clipBehavior: Clip.antiAlias,
         // 普通的边

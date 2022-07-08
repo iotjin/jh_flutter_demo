@@ -47,8 +47,7 @@ class HttpUtils {
     Success? success,
     Fail? fail,
   }) {
-    _request(Method.get, url, params,
-        loadingText: loadingText, success: success, fail: fail);
+    _request(Method.get, url, params, loadingText: loadingText, success: success, fail: fail);
   }
 
   /// post 请求
@@ -59,8 +58,7 @@ class HttpUtils {
     Success? success,
     Fail? fail,
   }) {
-    _request(Method.post, url, params,
-        loadingText: loadingText, success: success, fail: fail);
+    _request(Method.post, url, params, loadingText: loadingText, success: success, fail: fail);
   }
 
   /// _request 请求
@@ -87,11 +85,10 @@ class HttpUtils {
       data = params;
     }
 
-    if (loadingText != null) {
+    if (loadingText != null && loadingText.isNotEmpty) {
       JhProgressHUD.showLoadingText(loadingText: loadingText);
     }
-    DioUtils.instance.request(method, url,
-        data: data, queryParameters: queryParameters, onSuccess: (result) {
+    DioUtils.instance.request(method, url, data: data, queryParameters: queryParameters, onSuccess: (result) {
       if (!LogUtils.inProduction && isOpenLog) {
         print("---------- HttpUtils response ----------");
         print(result);

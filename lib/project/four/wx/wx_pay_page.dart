@@ -112,8 +112,7 @@ class WxPayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, KStrings.wxPay,
-          rightImgPath: 'assets/images/ic_more_black.png',
-          backgroundColor: Colors.transparent, rightItemCallBack: () {
+          rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
         JhNavUtils.pushNamed(context, "WxPayManagerPage");
       }),
       body: _body(context),
@@ -159,11 +158,9 @@ Widget _payCard() {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 30),
-                      Image.asset('assets/wechat/mine/ic_shoufukuan.png',
-                          width: 40),
+                      Image.asset('assets/wechat/mine/ic_shoufukuan.png', width: 40),
                       SizedBox(height: 8),
-                      Text('收付款',
-                          style: TextStyle(color: Colors.white, fontSize: 16))
+                      Text('收付款', style: TextStyle(color: Colors.white, fontSize: 16))
                     ],
                   ),
                 ),
@@ -175,14 +172,11 @@ Widget _payCard() {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 30),
-                      Image.asset('assets/wechat/mine/ic_qianbao.png',
-                          width: 40),
+                      Image.asset('assets/wechat/mine/ic_qianbao.png', width: 40),
                       SizedBox(height: 8),
-                      Text('收付款',
-                          style: TextStyle(color: Colors.white, fontSize: 16)),
+                      Text('收付款', style: TextStyle(color: Colors.white, fontSize: 16)),
                       SizedBox(height: 5),
-                      Text('¥$_money',
-                          style: TextStyle(color: Colors.white, fontSize: 14)),
+                      Text('¥$_money', style: TextStyle(color: Colors.white, fontSize: 14)),
                     ],
                   ),
                 ),
@@ -237,8 +231,7 @@ Widget item(List data, int index, context) {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(1.0),
-        border:
-            Border.all(color: Colors.grey.withOpacity(0.3), width: 0.5), //边框
+        border: Border.all(color: Colors.grey.withOpacity(0.3), width: 0.5), //边框
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

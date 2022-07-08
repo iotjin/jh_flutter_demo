@@ -41,13 +41,10 @@ class _LoginTextFieldTestPageState extends State<LoginTextFieldTestPage> {
                 isPwd: true,
               ),
               JhLoginTextField(hintText: "默认只限制长度20", isShowDeleteBtn: true),
-              JhLoginTextField(
-                  hintText: "自定义inputFormatters 长度5，a-zA-Z0-9",
-                  isShowDeleteBtn: true,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
-                    LengthLimitingTextInputFormatter(5)
-                  ]),
+              JhLoginTextField(hintText: "自定义inputFormatters 长度5，a-zA-Z0-9", isShowDeleteBtn: true, inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+                LengthLimitingTextInputFormatter(5)
+              ]),
               JhLoginTextField(
                   hintText: "限制 长度5，0-9，phone键盘",
                   isShowDeleteBtn: true,
@@ -92,8 +89,7 @@ class _LoginTextFieldTestPageState extends State<LoginTextFieldTestPage> {
 
               JhLoginTextField(
                 hintText: "请输入手机号",
-                leftWidget:
-                    Container(width: 50, child: Center(child: Text("+86"))),
+                leftWidget: Container(width: 50, child: Center(child: Text("+86"))),
                 keyboardType: TextInputType.phone,
               ),
               JhLoginTextField(

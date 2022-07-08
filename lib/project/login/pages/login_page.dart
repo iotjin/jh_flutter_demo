@@ -166,8 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '验证码登录',
                           ),
-                          onTap: () =>
-                              JhNavUtils.pushNamed(context, "CodeLoginPage")),
+                          onTap: () => JhNavUtils.pushNamed(context, "CodeLoginPage")),
                     ),
                     Container(
                       height: 50.0,
@@ -176,8 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '忘记密码',
                           ),
-                          onTap: () =>
-                              JhNavUtils.pushNamed(context, "FindPwdPage")),
+                          onTap: () => JhNavUtils.pushNamed(context, "FindPwdPage")),
                     ),
                   ],
                 )

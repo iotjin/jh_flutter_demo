@@ -101,8 +101,7 @@ gradientAppBar(
       ),
     ),
 //        preferredSize: Size(MediaQuery.of(context).size.width, 45),
-    preferredSize:
-        Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0.0)),
+    preferredSize: Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0.0)),
   );
 }
 
@@ -121,11 +120,10 @@ baseAppBar(
   Function? rightItemCallBack,
   Function? leftItemCallBack,
 }) {
-  Color _color = (backgroundColor == Colors.transparent ||
-          backgroundColor == Colors.white ||
-          backgroundColor == KColors.wxBgColor)
-      ? _titleColorBlack
-      : _titleColorWhite;
+  Color _color =
+      (backgroundColor == Colors.transparent || backgroundColor == Colors.white || backgroundColor == KColors.wxBgColor)
+          ? _titleColorBlack
+          : _titleColorWhite;
 
   Widget rightItem = Text("");
   if (rightText != null) {
@@ -133,9 +131,7 @@ baseAppBar(
       child: Container(
           margin: EdgeInsets.all(_itemSpace),
           color: Colors.transparent,
-          child: Center(
-              child: Text(rightText,
-                  style: TextStyle(fontSize: _textFontSize, color: _color)))),
+          child: Center(child: Text(rightText, style: TextStyle(fontSize: _textFontSize, color: _color)))),
       onTap: () {
         if (rightItemCallBack != null) {
           rightItemCallBack();
@@ -159,8 +155,7 @@ baseAppBar(
     );
   }
   return AppBar(
-    title:
-        Text(title, style: TextStyle(fontSize: _titleFontSize, color: _color)),
+    title: Text(title, style: TextStyle(fontSize: _titleFontSize, color: _color)),
     centerTitle: true,
     backgroundColor: backgroundColor,
     systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: brightness),

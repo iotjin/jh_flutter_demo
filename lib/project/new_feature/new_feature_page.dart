@@ -31,8 +31,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
 
     _imgList.forEach((value) {
 //      print(value);
-      _imgWidgets.add(Image.asset(value,
-          fit: BoxFit.fill, width: double.infinity, height: double.infinity));
+      _imgWidgets.add(Image.asset(value, fit: BoxFit.fill, width: double.infinity, height: double.infinity));
 //      _imgWidgets.add(Image.network(value,
 //          fit: BoxFit.fill, width: double.infinity, height: double.infinity));
     });
@@ -104,7 +103,6 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
 
   _jumpMain() {
     print('跳转主界面');
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => (LoginPage())));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (LoginPage())));
   }
 }

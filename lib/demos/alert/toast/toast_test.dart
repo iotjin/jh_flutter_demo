@@ -3,17 +3,7 @@ import 'package:jhtoast/jhtoast.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
 class ToastTestPage extends StatelessWidget {
-  final List titleData = [
-    "文字",
-    "成功",
-    "失败",
-    "警告",
-    "加载中",
-    "水平加载中",
-    "自定义图文",
-    "水平自定义图文",
-    "iOS样式加载中"
-  ];
+  final List titleData = ["文字", "成功", "失败", "警告", "加载中", "水平加载中", "自定义图文", "水平自定义图文", "iOS样式加载中"];
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +34,7 @@ class ToastTestPage extends StatelessWidget {
         }
 
         if (index == 5) {
-          var hide =
-              JhToast.showHorizontalLoadingText(context, msg: "正在加载中...");
+          var hide = JhToast.showHorizontalLoadingText(context, msg: "正在加载中...");
           Future.delayed(Duration(seconds: 2), () {
             hide();
           });
@@ -59,8 +48,7 @@ class ToastTestPage extends StatelessWidget {
         }
 
         if (index == 7) {
-          Widget img = Image.asset("assets/images/toast_success.png",
-              package: "jhtoast");
+          Widget img = Image.asset("assets/images/toast_success.png", package: "jhtoast");
           JhToast.showHorizontalImageText(context, msg: "水平自定义图文", image: img);
         }
 

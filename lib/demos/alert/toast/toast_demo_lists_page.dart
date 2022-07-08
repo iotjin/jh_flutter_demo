@@ -102,9 +102,7 @@ void _showCustomWidgetToast() {
                   strokeWidth: 3.0,
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 )),
-            Text("loadingText234234234234",
-                style: TextStyle(color: Colors.yellow),
-                textAlign: TextAlign.center),
+            Text("loadingText234234234234", style: TextStyle(color: Colors.yellow), textAlign: TextAlign.center),
           ],
         )),
   );

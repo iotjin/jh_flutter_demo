@@ -39,8 +39,7 @@ class JhMonitorNetworkUtils {
     final Connectivity connectivity = Connectivity();
 
     // 遍历onConnectivityChanged 构成的 Stream<ConnectivityResult>
-    await for (ConnectivityResult result
-        in connectivity.onConnectivityChanged) {
+    await for (ConnectivityResult result in connectivity.onConnectivityChanged) {
       // 状态发生改变后将状态值添加到Stream数据流中
       yield result;
     }

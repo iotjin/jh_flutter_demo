@@ -70,8 +70,7 @@ class WxGroupChatPage extends StatelessWidget {
       ),
     );
 
-    List<Widget> _topWidgetList =
-        _dataArr.map((item2) => _cell(context, item2)).toList();
+    List<Widget> _topWidgetList = _dataArr.map((item2) => _cell(context, item2)).toList();
 
     _topWidgetList.insert(0, _searchBar);
 

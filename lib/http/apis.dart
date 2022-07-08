@@ -5,8 +5,7 @@
 
 class APIs {
   /// url 前缀
-  static const String apiPrefix =
-      "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root";
+  static const String apiPrefix = "https://www.fastmock.site/mock/1010b262a743f0b06c565c7a31ee9739/root";
 
   /// 登录接口
   static const String login = "/login";

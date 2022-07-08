@@ -9,31 +9,11 @@ var address = "这是地址";
 var range = "这是描述这是描述";
 
 var adminData = [
-  {
-    "title": "title11",
-    "icon": "service/icon_baoxiu",
-    "bgImg": "service/bg_service_baoxiu"
-  },
-  {
-    "title": "title22",
-    "icon": "service/icon_gongdan",
-    "bgImg": "service/bg_service_gongdan"
-  },
-  {
-    "title": "title33",
-    "icon": "service/icon_fuwufankui",
-    "bgImg": "service/bg_service_fuwufankui"
-  },
-  {
-    "title": "title33",
-    "icon": "service/icon_fuwufankui",
-    "bgImg": "service/bg_service_fuwufankui"
-  },
-  {
-    "title": "title33",
-    "icon": "service/icon_fuwufankui",
-    "bgImg": "service/bg_service_fuwufankui"
-  }
+  {"title": "title11", "icon": "service/icon_baoxiu", "bgImg": "service/bg_service_baoxiu"},
+  {"title": "title22", "icon": "service/icon_gongdan", "bgImg": "service/bg_service_gongdan"},
+  {"title": "title33", "icon": "service/icon_fuwufankui", "bgImg": "service/bg_service_fuwufankui"},
+  {"title": "title33", "icon": "service/icon_fuwufankui", "bgImg": "service/bg_service_fuwufankui"},
+  {"title": "title33", "icon": "service/icon_fuwufankui", "bgImg": "service/bg_service_fuwufankui"}
 ];
 
 class ListViewTest5 extends StatelessWidget {
@@ -70,11 +50,8 @@ class ContentBody extends StatelessWidget {
             child: Center(
               child: ListTile(
                   contentPadding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                  title: Text(dataArr[index]["title"],
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
-                  leading: Image(
-                      image:
-                          JhImageUtils.getAssetImage(dataArr[index]["icon"])),
+                  title: Text(dataArr[index]["title"], style: TextStyle(color: Colors.white, fontSize: 20)),
+                  leading: Image(image: JhImageUtils.getAssetImage(dataArr[index]["icon"])),
                   onTap: () {
                     print("点击的index" + index.toString());
                   }),
@@ -149,14 +126,11 @@ Widget bottomView = Container(
     mainAxisAlignment: MainAxisAlignment.end,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Text("热线: $phone",
-          style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
+      Text("热线: $phone", style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
       SizedBox(height: 5),
-      Text("地址: $address",
-          style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
+      Text("地址: $address", style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
       SizedBox(height: 5),
-      Text("描述: $range",
-          style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
+      Text("描述: $range", style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
     ],
   ),
 );

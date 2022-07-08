@@ -39,9 +39,7 @@ class ScrollPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: baseAppBar(context, 'ScrollPage'),
-        body: BaseScrollView(),
-        backgroundColor: KColors.wxBgColor);
+        appBar: baseAppBar(context, 'ScrollPage'), body: BaseScrollView(), backgroundColor: KColors.wxBgColor);
   }
 }
 
@@ -59,17 +57,14 @@ class BaseScrollView extends StatelessWidget {
             child: Text("往下滑动"),
           ),
           RichText(
-            text: TextSpan(
-                style: DefaultTextStyle.of(context).style,
-                children: <InlineSpan>[
-                  TextSpan(text: '登录即视为同意'),
-                  TextSpan(
-                    text: '《xxx服务协议》',
-                    style: TextStyle(color: Colors.red),
-                    recognizer: new TapGestureRecognizer()
-                      ..onTap = () => print('Tap Here onTap'),
-                  ),
-                ]),
+            text: TextSpan(style: DefaultTextStyle.of(context).style, children: <InlineSpan>[
+              TextSpan(text: '登录即视为同意'),
+              TextSpan(
+                text: '《xxx服务协议》',
+                style: TextStyle(color: Colors.red),
+                recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
+              ),
+            ]),
           ),
           Text("data"),
           Text("data"),

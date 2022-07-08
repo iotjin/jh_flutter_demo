@@ -46,8 +46,7 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
         deviceData = _readWebBrowserInfo(await deviceInfoPlugin.webBrowserInfo);
       } else {
         if (Platform.isAndroid) {
-          deviceData =
-              _readAndroidBuildData(await deviceInfoPlugin.androidInfo);
+          deviceData = _readAndroidBuildData(await deviceInfoPlugin.androidInfo);
         } else if (Platform.isIOS) {
           deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
         } else if (Platform.isLinux) {
@@ -55,14 +54,11 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
         } else if (Platform.isMacOS) {
           deviceData = _readMacOsDeviceInfo(await deviceInfoPlugin.macOsInfo);
         } else if (Platform.isWindows) {
-          deviceData =
-              _readWindowsDeviceInfo(await deviceInfoPlugin.windowsInfo);
+          deviceData = _readWindowsDeviceInfo(await deviceInfoPlugin.windowsInfo);
         }
       }
     } on PlatformException {
-      deviceData = <String, dynamic>{
-        'Error:': 'Failed to get platform version.'
-      };
+      deviceData = <String, dynamic>{'Error:': 'Failed to get platform version.'};
     }
 
     if (!mounted) return;

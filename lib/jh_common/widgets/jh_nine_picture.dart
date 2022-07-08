@@ -39,12 +39,9 @@ class JhNinePicture extends StatelessWidget {
 
     bool _isHandleFour = isHandleFour && imgData!.length == 4;
 
-    var _bgWidth = _isHandleFour
-        ? (_space * 2 + _itemSpace + _itemWH * 2)
-        : (kScreenWidth - lRSpace);
+    var _bgWidth = _isHandleFour ? (_space * 2 + _itemSpace + _itemWH * 2) : (kScreenWidth - lRSpace);
 
-    var _bgHeight =
-        _columnCount * _itemWH + _space * 2 + (_columnCount - 1) * _itemSpace;
+    var _bgHeight = _columnCount * _itemWH + _space * 2 + (_columnCount - 1) * _itemSpace;
 
     var _crossAxisCount = _isHandleFour ? 2 : 3;
     var _childAspectRatio = 1.0;
@@ -85,9 +82,8 @@ class JhNinePicture extends StatelessWidget {
 
   _itemCell(context, index) {
     var _img = imgData![index];
-    Widget _picture = _img.startsWith('http')
-        ? Image.network(_img, fit: BoxFit.cover)
-        : Image.asset(_img, fit: BoxFit.cover);
+    Widget _picture =
+        _img.startsWith('http') ? Image.network(_img, fit: BoxFit.cover) : Image.asset(_img, fit: BoxFit.cover);
 
     // CachedNetworkImage(
     //   imageUrl: imgData[index],

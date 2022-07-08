@@ -38,8 +38,7 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.gradientStart = appbarStartColor,
     this.gradientEnd = appbarEndColor,
   })  : assert(elevation == null || elevation >= 0.0),
-        preferredSize = Size.fromHeight(
-            kToolbarHeight + (bottom?.preferredSize.height ?? 0.0)),
+        preferredSize = Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0.0)),
         super(key: key);
 
   final Widget? leading;
@@ -111,17 +110,13 @@ class _GradientAppBarState extends State<GradientAppBar> {
     final bool hasDrawer = scaffold.hasDrawer;
     final bool hasEndDrawer = scaffold.hasEndDrawer;
     final bool canPop = parentRoute.canPop;
-    final bool useCloseButton =
-        parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
+    final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
-    IconThemeData? appBarIconTheme =
-        widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
-    TextStyle? centerStyle = widget.textTheme?.subtitle1 ??
-        appBarTheme.textTheme?.subtitle1 ??
-        themeData.primaryTextTheme.subtitle1;
-    TextStyle? sideStyle = widget.textTheme?.subtitle1 ??
-        appBarTheme.textTheme?.bodyText1 ??
-        themeData.primaryTextTheme.bodyText1;
+    IconThemeData? appBarIconTheme = widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
+    TextStyle? centerStyle =
+        widget.textTheme?.subtitle1 ?? appBarTheme.textTheme?.subtitle1 ?? themeData.primaryTextTheme.subtitle1;
+    TextStyle? sideStyle =
+        widget.textTheme?.subtitle1 ?? appBarTheme.textTheme?.bodyText1 ?? themeData.primaryTextTheme.bodyText1;
 
 //    IconThemeData appBarIconTheme =
 //        widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
@@ -141,8 +136,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
           tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
         );
       } else {
-        if (canPop)
-          leading = useCloseButton ? const CloseButton() : const BackButton();
+        if (canPop) leading = useCloseButton ? const CloseButton() : const BackButton();
       }
     }
     if (leading != null) {
@@ -232,9 +226,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
           widget.bottomOpacity == 1.0
               ? widget.bottom!
               : Opacity(
-                  opacity:
-                      const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn)
-                          .transform(widget.bottomOpacity),
+                  opacity: const Interval(0.25, 1.0, curve: Curves.fastOutSlowIn).transform(widget.bottomOpacity),
                   child: widget.bottom,
                 ),
         ],
@@ -265,18 +257,14 @@ class _GradientAppBarState extends State<GradientAppBar> {
 
     appBar = Container(
       decoration: BoxDecoration(
-        gradient:
-            LinearGradient(colors: [widget.gradientStart, widget.gradientEnd]),
+        gradient: LinearGradient(colors: [widget.gradientStart, widget.gradientEnd]),
       ),
       child: appBar,
     );
 
-    final Brightness brightness = widget.brightness ??
-        appBarTheme.brightness ??
-        themeData.primaryColorBrightness;
-    final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
-        ? SystemUiOverlayStyle.light
-        : SystemUiOverlayStyle.dark;
+    final Brightness brightness = widget.brightness ?? appBarTheme.brightness ?? themeData.primaryColorBrightness;
+    final SystemUiOverlayStyle overlayStyle =
+        brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark;
 
     return Material(
       color: Colors.transparent,

@@ -125,8 +125,7 @@ Widget _cell(var dataCount) {
     return Container(
       alignment: Alignment.topCenter,
       padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-      child: Text("暂无数据",
-          textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
+      child: Text("暂无数据", textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
     );
   } else {
     return ListView.separated(

@@ -13,8 +13,7 @@ class PersonCenterPage2 extends StatefulWidget {
   _PersonCenterPage2State createState() => _PersonCenterPage2State();
 }
 
-class _PersonCenterPage2State extends State<PersonCenterPage2>
-    with SingleTickerProviderStateMixin {
+class _PersonCenterPage2State extends State<PersonCenterPage2> with SingleTickerProviderStateMixin {
   double _topH = 0;
   ScrollController _scrollController = ScrollController();
 
@@ -59,8 +58,7 @@ class _PersonCenterPage2State extends State<PersonCenterPage2>
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100,
               itemExtent: 50.0,
               // 强制高度为50.0

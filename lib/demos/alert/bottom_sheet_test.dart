@@ -79,27 +79,23 @@ class BottomSheetTest extends StatelessWidget {
         dataArr: titleData,
         callBack: (index, str) {
           if (str == 'JhBottomSheet-不带标题') {
-            JhBottomSheet.showText(context, dataArr: ['hello', 'world', '123'],
-                clickCallback: (index, text) {
+            JhBottomSheet.showText(context, dataArr: ['hello', 'world', '123'], clickCallback: (index, text) {
               print(index);
               print(text);
               showText(text);
             });
           }
           if (str == 'JhBottomSheet-带标题') {
-            JhBottomSheet.showText(context,
-                dataArr: ['hello', 'world', '123'],
-                title: '请选择', clickCallback: (index, text) {
+            JhBottomSheet.showText(context, dataArr: ['hello', 'world', '123'], title: '请选择',
+                clickCallback: (index, text) {
               print(index);
               print(text);
               showText(text);
             });
           }
           if (str == 'JhBottomSheet-红色') {
-            JhBottomSheet.showText(context,
-                title: '请选择操作',
-                dataArr: ['保存本地'],
-                redBtnTitle: '删除', clickCallback: (index, text) {
+            JhBottomSheet.showText(context, title: '请选择操作', dataArr: ['保存本地'], redBtnTitle: '删除',
+                clickCallback: (index, text) {
               print(index);
               print(text);
               showText(text);
@@ -107,20 +103,16 @@ class BottomSheetTest extends StatelessWidget {
           }
 
           if (str == 'JhPickerTool-单列（字符串数组）') {
-            JhPickerTool.showStringPicker(context,
-                data: stringArr,
-                selectIndex: 1, clickCallBack: (selectValue, selectIndex) {
+            JhPickerTool.showStringPicker(context, data: stringArr, selectIndex: 1,
+                clickCallBack: (selectValue, selectIndex) {
               print(selectValue);
               print(selectIndex);
               showText(selectValue);
             });
           }
           if (str == 'JhPickerTool-单列（对象数组）') {
-            JhPickerTool.showStringPicker(context,
-                data: dictArr,
-                title: '请选择类型',
-                labelKey: 'label',
-                selectIndex: 2, clickCallBack: (selectValue, selectIndex) {
+            JhPickerTool.showStringPicker(context, data: dictArr, title: '请选择类型', labelKey: 'label', selectIndex: 2,
+                clickCallBack: (selectValue, selectIndex) {
               print(selectValue);
               print(selectValue['label']);
               print(selectIndex);
@@ -128,8 +120,7 @@ class BottomSheetTest extends StatelessWidget {
             });
           }
           if (str == 'JhPickerTool-两列（字符串数组）') {
-            JhPickerTool.showArrayPicker(context,
-                data: stringArr2, selectIndex: [0, 1],
+            JhPickerTool.showArrayPicker(context, data: stringArr2, selectIndex: [0, 1],
                 clickCallBack: (selectItemArr, selectIndexArr) {
               print(selectItemArr);
               print(selectIndexArr);
@@ -141,8 +132,7 @@ class BottomSheetTest extends StatelessWidget {
                 data: dictArr2,
                 title: '请选择类型',
                 labelKey: 'label',
-                selectIndex: [1, 1],
-                clickCallBack: (selectItemArr, selectIndexArr) {
+                selectIndex: [1, 1], clickCallBack: (selectItemArr, selectIndexArr) {
               print(selectItemArr);
               print(selectIndexArr);
               print(dictArr2[0][selectIndexArr[0]]);
@@ -152,8 +142,7 @@ class BottomSheetTest extends StatelessWidget {
           }
 
           if (str == 'JhPickerTool-三列（字符串数组）') {
-            JhPickerTool.showArrayPicker(context,
-                data: stringArr3, selectIndex: [0, 1, 0],
+            JhPickerTool.showArrayPicker(context, data: stringArr3, selectIndex: [0, 1, 0],
                 clickCallBack: (selectItemArr, selectIndexArr) {
               print(selectItemArr);
               print(selectIndexArr);
@@ -165,8 +154,7 @@ class BottomSheetTest extends StatelessWidget {
                 data: dictArr3,
                 title: '请选择类型',
                 labelKey: 'label',
-                selectIndex: [1, 2, 1],
-                clickCallBack: (selectItemArr, selectIndexArr) {
+                selectIndex: [1, 2, 1], clickCallBack: (selectItemArr, selectIndexArr) {
               print(selectItemArr);
               print(selectIndexArr);
               print(dictArr3[0][selectIndexArr[0]]);
@@ -176,8 +164,7 @@ class BottomSheetTest extends StatelessWidget {
             });
           }
           if (str == 'JhPickerTool-时间选择YMD（默认YMD）') {
-            JhPickerTool.showDatePicker(context,
-                clickCallBack: (selectValue, selectIndexArr) {
+            JhPickerTool.showDatePicker(context, clickCallBack: (selectValue, selectIndexArr) {
               print(selectValue);
               print(selectIndexArr);
               showText(selectValue);
@@ -192,8 +179,7 @@ class BottomSheetTest extends StatelessWidget {
             });
           }
           if (str == 'JhPickerTool-时间选择YMD_HM') {
-            JhPickerTool.showDatePicker(context,
-                dateType: PickerDateType.YMD_HM,
+            JhPickerTool.showDatePicker(context, dateType: PickerDateType.YMD_HM,
                 clickCallBack: (selectValue, selectIndexArr) {
               print(selectValue);
               print(selectIndexArr);
@@ -201,8 +187,7 @@ class BottomSheetTest extends StatelessWidget {
             });
           }
           if (str == 'JhPickerTool-时间选择YMD_AP_HM') {
-            JhPickerTool.showDatePicker(context,
-                dateType: PickerDateType.YMD_AP_HM,
+            JhPickerTool.showDatePicker(context, dateType: PickerDateType.YMD_AP_HM,
                 clickCallBack: (selectValue, selectIndexArr) {
               print(selectValue);
               print(selectIndexArr);

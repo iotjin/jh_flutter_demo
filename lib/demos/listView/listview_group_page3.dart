@@ -57,8 +57,7 @@ class ListViewGroupPage3 extends StatefulWidget {
   _ListViewGroupPage3State createState() => _ListViewGroupPage3State();
 }
 
-class _ListViewGroupPage3State extends State<ListViewGroupPage3>
-    with SingleTickerProviderStateMixin {
+class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTickerProviderStateMixin {
   EasyRefreshController _controller = EasyRefreshController();
 
   TabController? _tabController;
@@ -83,8 +82,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
   void getNewData() {
     pageIndex = 0;
     print("pageIndex- $pageIndex");
-    DataUtils.getPageGroupList({"page": pageIndex, "limit": 10},
-        success: (res) {
+    DataUtils.getPageGroupList({"page": pageIndex, "limit": 10}, success: (res) {
       print(res);
       setState(() {
         groupData = res['data'];
@@ -97,8 +95,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
     pageIndex++;
     print("more pageIndex- $pageIndex");
 
-    DataUtils.getPageGroupList({"page": pageIndex, "limit": 10},
-        success: (res) {
+    DataUtils.getPageGroupList({"page": pageIndex, "limit": 10}, success: (res) {
       var moreData = res['data'];
       setState(() {
         if (moreData.length > 0) {
@@ -116,8 +113,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
       appBar: baseAppBar(
         context,
         'ListViewGroupPage3',
-        bottom: PreferredSize(
-            preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
+        bottom: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
       ),
 //      body: _content(),
       body: _refresh(),
@@ -198,14 +194,11 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
                           groupData[index - 1]['groupTitle'],
                         ),
                         SizedBox(width: 8),
-                        Text('(${groupData[index - 1]['id']})',
-                            style: TextStyle(color: Colors.red, fontSize: 22))
+                        Text('(${groupData[index - 1]['id']})', style: TextStyle(color: Colors.red, fontSize: 22))
                       ],
                     ),
                   ),
-                  content: Column(
-                      children: buildGroup(groupData[index - 1]['data'],
-                          groupData[index - 1]['groupNum'])),
+                  content: Column(children: buildGroup(groupData[index - 1]['data'], groupData[index - 1]['groupNum'])),
                 );
         });
   }
@@ -230,9 +223,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
               height: 70,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.0),
-                    topRight: Radius.circular(8.0)),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -269,9 +260,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
               padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(8.0),
-                    bottomRight: Radius.circular(8.0)),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8.0), bottomRight: Radius.circular(8.0)),
               ),
             )
           ],
@@ -294,8 +283,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3>
       var _width = MediaQuery.of(context).size.width;
       var _bgW = _width * 0.5;
       var _num = item['num'];
-      var ratio =
-          double.parse(_num.toString()) / double.parse(groupNum.toString());
+      var ratio = double.parse(_num.toString()) / double.parse(groupNum.toString());
 //      print(ratio);
       return Container(
           color: Colors.white,

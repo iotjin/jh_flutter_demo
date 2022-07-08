@@ -56,9 +56,8 @@ class _UpdateDialogState extends State<UpdateDialog> {
                       height: 120.0,
                       width: 280.0,
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(8.0),
-                            topRight: Radius.circular(8.0)),
+                        borderRadius:
+                            const BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
                         image: DecorationImage(
                           image: AssetImage("assets/images/update_head.jpg"),
                           fit: BoxFit.cover,
@@ -66,23 +65,19 @@ class _UpdateDialogState extends State<UpdateDialog> {
                       ),
                     ),
                     const Padding(
-                      padding:
-                          EdgeInsets.only(left: 15.0, right: 15.0, top: 16.0),
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 16.0),
                       child: Text('新版本更新', style: TextStyle(fontSize: 16.0)),
                     ),
                     const Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 15.0, vertical: 10.0),
+                      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
                       child: Text('1.又双叒修复了一大堆bug。\n\n2.祭天了多名程序猿。'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          bottom: 15.0, left: 15.0, right: 15.0, top: 5.0),
+                      padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0, top: 5.0),
                       child: _isDownload
                           ? LinearProgressIndicator(
                               backgroundColor: Color(0xFFEEEEEE),
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(primaryColor),
+                              valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                               value: _value,
                             )
                           : Row(
@@ -90,18 +85,14 @@ class _UpdateDialogState extends State<UpdateDialog> {
                               children: <Widget>[
                                 TextButton(
                                   onPressed: () => JhNavUtils.goBack(context),
-                                  child: Text('残忍拒绝',
-                                      style: TextStyle(fontSize: 16.0)),
+                                  child: Text('残忍拒绝', style: TextStyle(fontSize: 16.0)),
                                   style: ButtonStyle(
                                     // 设置按钮大小
-                                    minimumSize: MaterialStateProperty.all(
-                                        Size(110.0, 36.0)),
+                                    minimumSize: MaterialStateProperty.all(Size(110.0, 36.0)),
                                     // 背景色
-                                    backgroundColor:
-                                        MaterialStateProperty.resolveWith(
+                                    backgroundColor: MaterialStateProperty.resolveWith(
                                       (states) {
-                                        if (states
-                                            .contains(MaterialState.disabled)) {
+                                        if (states.contains(MaterialState.disabled)) {
                                           // disabled状态颜色
                                           return Color(0xFFcccccc);
                                         }
@@ -110,11 +101,9 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                       },
                                     ),
                                     // 文字颜色
-                                    foregroundColor:
-                                        MaterialStateProperty.resolveWith(
+                                    foregroundColor: MaterialStateProperty.resolveWith(
                                       (states) {
-                                        if (states
-                                            .contains(MaterialState.disabled)) {
+                                        if (states.contains(MaterialState.disabled)) {
                                           // disabled状态颜色
                                           return Colors.white;
                                         }
@@ -124,21 +113,17 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                     ),
                                     // 边框
                                     side: MaterialStateProperty.all(
-                                      BorderSide(
-                                          color: primaryColor, width: 0.8),
+                                      BorderSide(color: primaryColor, width: 0.8),
                                     ),
                                     // 圆角
                                     shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.0)),
+                                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                                     ),
                                   ),
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    if (defaultTargetPlatform ==
-                                        TargetPlatform.iOS) {
+                                    if (defaultTargetPlatform == TargetPlatform.iOS) {
                                       JhNavUtils.goBack(context);
                                       JhCommonUtils.jumpAppStore();
                                     } else {
@@ -148,18 +133,14 @@ class _UpdateDialogState extends State<UpdateDialog> {
 //                                        _download();
                                     }
                                   },
-                                  child: Text('立即更新',
-                                      style: TextStyle(fontSize: 16.0)),
+                                  child: Text('立即更新', style: TextStyle(fontSize: 16.0)),
                                   style: ButtonStyle(
                                     // 设置按钮大小
-                                    minimumSize: MaterialStateProperty.all(
-                                        Size(110.0, 36.0)),
+                                    minimumSize: MaterialStateProperty.all(Size(110.0, 36.0)),
                                     // 背景色
-                                    backgroundColor:
-                                        MaterialStateProperty.resolveWith(
+                                    backgroundColor: MaterialStateProperty.resolveWith(
                                       (states) {
-                                        if (states
-                                            .contains(MaterialState.disabled)) {
+                                        if (states.contains(MaterialState.disabled)) {
                                           // disabled状态颜色
                                           return Color(0xFFcccccc);
                                         }
@@ -168,18 +149,14 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                       },
                                     ),
                                     // 文字颜色
-                                    foregroundColor:
-                                        MaterialStateProperty.all(Colors.white),
+                                    foregroundColor: MaterialStateProperty.all(Colors.white),
                                     // 边框
                                     side: MaterialStateProperty.all(
-                                      BorderSide(
-                                          color: primaryColor, width: 0.8),
+                                      BorderSide(color: primaryColor, width: 0.8),
                                     ),
                                     // 圆角
                                     shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.0)),
+                                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                                     ),
                                   ),
                                 ),
@@ -198,8 +175,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
       setInitDir(initStorageDir: true);
       await DirectoryUtil.getInstance();
       DirectoryUtil.createStorageDirSync(category: 'Download');
-      String? path = DirectoryUtil.getStoragePath(
-          fileName: 'deer', category: 'Download', format: 'apk');
+      String? path = DirectoryUtil.getStoragePath(fileName: 'deer', category: 'Download', format: 'apk');
       File file = File(path!);
 
       /// 链接可能会失效

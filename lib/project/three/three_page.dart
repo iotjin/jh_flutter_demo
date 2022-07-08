@@ -15,8 +15,7 @@ class ThreePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(context, KStrings.threeTabTitle,
-          backgroundColor: Colors.transparent),
+      appBar: baseAppBar(context, KStrings.threeTabTitle, backgroundColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.wxBgColor,
     );
@@ -41,8 +40,7 @@ Widget _body(context) {
             child: Badge(
                 padding: EdgeInsets.all(4),
                 position: BadgePosition.topEnd(top: -4, end: -4),
-                child: Image.asset('assets/images/lufei.png',
-                    width: 30, height: 30, fit: BoxFit.fill))),
+                child: Image.asset('assets/images/lufei.png', width: 30, height: 30, fit: BoxFit.fill))),
         clickCallBack: () => _clickCell(context, '朋友圈'),
       ),
       SizedBox(height: _rowSpace),

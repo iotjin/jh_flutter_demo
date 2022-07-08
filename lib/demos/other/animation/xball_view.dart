@@ -80,8 +80,7 @@ class XBallView extends StatefulWidget {
   }
 }
 
-class _XBallViewState extends State<XBallView>
-    with SingleTickerProviderStateMixin {
+class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMixin {
   //带光晕的球图片宽度
   double? sizeOfBallWithFlare;
 
@@ -305,8 +304,7 @@ class _XBallViewState extends State<XBallView>
 
         addToQueue(PositionWithTime(currentPostion, now));
 
-        Offset delta = Offset(currentPostion.dx - lastPosition!.dx,
-            currentPostion.dy - lastPosition!.dy);
+        Offset delta = Offset(currentPostion.dx - lastPosition!.dx, currentPostion.dy - lastPosition!.dy);
         double distance = sqrt(delta.dx * delta.dx + delta.dy * delta.dy);
         //若计算量级太小，框架内部会报精度溢出的错误
         if (distance > 2) {
@@ -345,9 +343,8 @@ class _XBallViewState extends State<XBallView>
         }
 
         //检测点击事件
-        double distanceSinceDown = sqrt(
-            pow(upPosition.dx - downPosition!.dx, 2) +
-                pow(upPosition.dy - downPosition!.dy, 2));
+        double distanceSinceDown =
+            sqrt(pow(upPosition.dx - downPosition!.dx, 2) + pow(upPosition.dy - downPosition!.dy, 2));
         //按下和抬起点的距离小于4，认为是点击事件
         if (distanceSinceDown < 4) {
           //寻找命中的point
@@ -364,8 +361,7 @@ class _XBallViewState extends State<XBallView>
                 lastHitTime = now;
 
                 //创建点选中动画序列
-                pointAnimationSequence = PointAnimationSequence(
-                    points[i], _needHight(points[i].name!));
+                pointAnimationSequence = PointAnimationSequence(points[i], _needHight(points[i].name!));
 
                 //跳转页面
                 Future.delayed(Duration(milliseconds: 500), () {
@@ -452,8 +448,7 @@ class MyPainter extends CustomPainter {
 
       ui.Paragraph p;
       //是被选中的点，需要展示放大缩小效果
-      if (pointAnimationSequence != null &&
-          pointAnimationSequence!.point == points[i]) {
+      if (pointAnimationSequence != null && pointAnimationSequence!.point == points[i]) {
         //动画未播放完毕
         if (pointAnimationSequence!.paragraphs!.isNotEmpty) {
           p = pointAnimationSequence!.paragraphs!.removeFirst();
@@ -495,21 +490,15 @@ void rotatePoint(
   double radian,
 ) {
   double x = cos(radian) * point.x +
-      (1 - cos(radian)) *
-          (axis.x * point.x + axis.y * point.y + axis.z * point.z) *
-          axis.x +
+      (1 - cos(radian)) * (axis.x * point.x + axis.y * point.y + axis.z * point.z) * axis.x +
       sin(radian) * (axis.y * point.z - axis.z * point.y);
 
   double y = cos(radian) * point.y +
-      (1 - cos(radian)) *
-          (axis.x * point.x + axis.y * point.y + axis.z * point.z) *
-          axis.y +
+      (1 - cos(radian)) * (axis.x * point.x + axis.y * point.y + axis.z * point.z) * axis.y +
       sin(radian) * (axis.z * point.x - axis.x * point.z);
 
   double z = cos(radian) * point.z +
-      (1 - cos(radian)) *
-          (axis.x * point.x + axis.y * point.y + axis.z * point.z) *
-          axis.z +
+      (1 - cos(radian)) * (axis.x * point.x + axis.y * point.y + axis.z * point.z) * axis.z +
       sin(radian) * (axis.x * point.y - axis.y * point.x);
 
   point.x = x;
@@ -557,14 +546,11 @@ ui.Paragraph buildText(
     text = "$firstLine\n$secondLine";
   }
 
-  ui.ParagraphBuilder paragraphBuilder =
-      ui.ParagraphBuilder(ui.ParagraphStyle());
+  ui.ParagraphBuilder paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle());
   paragraphBuilder.pushStyle(
     ui.TextStyle(
         fontSize: fontSize,
-        color: highLight
-            ? Colors.white.withOpacity(opacity)
-            : Color(0xFFC1E0FF).withOpacity(opacity),
+        color: highLight ? Colors.white.withOpacity(opacity) : Color(0xFFC1E0FF).withOpacity(opacity),
         height: 1.0,
         shadows: highLight
             ? [
@@ -627,13 +613,11 @@ class PointAnimationSequence {
     double opacity = getFontOpacity(point.z);
     //字号从fontSize变化到22
     for (double fs = fontSize; fs <= 22; fs += 1) {
-      paragraphs!.addLast(
-          buildText(point.name!, 2.0 * radius, fs, opacity, needHighLight));
+      paragraphs!.addLast(buildText(point.name!, 2.0 * radius, fs, opacity, needHighLight));
     }
     //字号从22变化到fontSize
     for (double fs = 22; fs >= fontSize; fs -= 1) {
-      paragraphs!.addLast(
-          buildText(point.name!, 2.0 * radius, fs, opacity, needHighLight));
+      paragraphs!.addLast(buildText(point.name!, 2.0 * radius, fs, opacity, needHighLight));
     }
   }
 }

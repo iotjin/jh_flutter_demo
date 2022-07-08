@@ -4,11 +4,7 @@ import '/project/routes/jh_nav_utils.dart';
 
 class TopTabBarDemoListPage extends StatelessWidget {
   final List titleData = ["TopTabBar1", 'TopTabBar2', 'TopTabBar3'];
-  final List routeData = [
-    "TopTabBarTest1Page",
-    'TopTabBarTest2Page',
-    'TopTabBarTest3Page'
-  ];
+  final List routeData = ["TopTabBarTest1Page", 'TopTabBarTest2Page', 'TopTabBarTest3Page'];
 
   @override
   Widget build(BuildContext context) {

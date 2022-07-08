@@ -43,11 +43,8 @@ class JhBottomSheet {
       titleLineHeight = 0.0;
     }
 
-    var _bgHeight = _cellHeight * (_dataArr.length + 1) +
-        (_dataArr.length - 1) * 1 +
-        _spaceHeight +
-        titleHeight +
-        titleLineHeight;
+    var _bgHeight =
+        _cellHeight * (_dataArr.length + 1) + (_dataArr.length - 1) * 1 + _spaceHeight + titleHeight + titleLineHeight;
 
     var _radius = isShowRadius ? 10.0 : 0.0;
 
@@ -74,8 +71,7 @@ class JhBottomSheet {
                   child: Center(
                     child: Text(
                       title ?? "",
-                      style: TextStyle(
-                          fontSize: _titleFontSize, color: _titleColor),
+                      style: TextStyle(fontSize: _titleFontSize, color: _titleColor),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -90,9 +86,7 @@ class JhBottomSheet {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     Color _btnTextColor =
-                        (redBtnTitle != null && index == _dataArr.length - 1)
-                            ? _red_textColor
-                            : _textColor;
+                        (redBtnTitle != null && index == _dataArr.length - 1) ? _red_textColor : _textColor;
 
                     return GestureDetector(
                       child: Container(
@@ -100,9 +94,7 @@ class JhBottomSheet {
                           color: Colors.white,
                           child: Center(
                               child: Text(_dataArr[index],
-                                  style: TextStyle(
-                                      fontSize: _textFontSize,
-                                      color: _btnTextColor),
+                                  style: TextStyle(fontSize: _textFontSize, color: _btnTextColor),
                                   textAlign: TextAlign.center))),
                       // onTap: () => Navigator.of(context).pop(index),
                       onTap: () {
@@ -120,16 +112,14 @@ class JhBottomSheet {
                     );
                   },
                 ),
-                SizedBox(
-                    height: _spaceHeight, child: Container(color: _spaceColor)),
+                SizedBox(height: _spaceHeight, child: Container(color: _spaceColor)),
                 GestureDetector(
                   child: Container(
                       height: _cellHeight,
                       color: Colors.white,
                       child: Center(
                           child: Text(_cancelText,
-                              style: TextStyle(
-                                  fontSize: _textFontSize, color: _textColor),
+                              style: TextStyle(fontSize: _textFontSize, color: _textColor),
                               textAlign: TextAlign.center))),
                   onTap: () {
                     if (clickCallback != null) {

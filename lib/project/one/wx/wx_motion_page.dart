@@ -56,8 +56,7 @@ class WxMotionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, '微信运动',
-          rightImgPath: 'assets/images/ic_set_black.png',
-          backgroundColor: Colors.transparent, rightItemCallBack: () {
+          rightImgPath: 'assets/images/ic_set_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
         _clickCell(context, '设置');
       }),
       body: _body(context, _dataArr),
@@ -91,8 +90,7 @@ class WxMotionPage extends StatelessWidget {
           child: Card(
               margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
               // 设置圆角
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
               // 抗锯齿
               clipBehavior: Clip.antiAlias,
               // 普通的边
@@ -124,17 +122,11 @@ class WxMotionPage extends StatelessWidget {
                                 children: [
                                   Text(
                                     item['ranking'],
-                                    style: TextStyle(
-                                        color: JhColorUtils.hexColor(
-                                            item['color']),
-                                        fontSize: 35),
+                                    style: TextStyle(color: JhColorUtils.hexColor(item['color']), fontSize: 35),
                                   ),
                                   Text(
                                     '名次',
-                                    style: TextStyle(
-                                        color: JhColorUtils.hexColor(
-                                            item['color']),
-                                        fontSize: 12),
+                                    style: TextStyle(color: JhColorUtils.hexColor(item['color']), fontSize: 12),
                                   ),
                                 ],
                               ),
@@ -147,17 +139,11 @@ class WxMotionPage extends StatelessWidget {
                                 children: [
                                   Text(
                                     item['steps'],
-                                    style: TextStyle(
-                                        color: JhColorUtils.hexColor(
-                                            item['color']),
-                                        fontSize: 35),
+                                    style: TextStyle(color: JhColorUtils.hexColor(item['color']), fontSize: 35),
                                   ),
                                   Text(
                                     '步数',
-                                    style: TextStyle(
-                                        color: JhColorUtils.hexColor(
-                                            item['color']),
-                                        fontSize: 12),
+                                    style: TextStyle(color: JhColorUtils.hexColor(item['color']), fontSize: 12),
                                   ),
                                 ],
                               ),
@@ -186,8 +172,7 @@ class WxMotionPage extends StatelessWidget {
                             fontSize: 15,
                           ),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios,
-                            color: Colors.black26),
+                        trailing: Icon(Icons.arrow_forward_ios, color: Colors.black26),
                       ),
                     ),
                   ],

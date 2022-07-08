@@ -13,8 +13,7 @@ class ImgPullDownBigPage3 extends StatefulWidget {
   _ImgPullDownBigPage3State createState() => _ImgPullDownBigPage3State();
 }
 
-class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3>
-    with SingleTickerProviderStateMixin {
+class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3> with SingleTickerProviderStateMixin {
   double _topH = 0;
   ScrollController _scrollController = ScrollController();
 
@@ -59,8 +58,7 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3>
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100,
               itemExtent: 50.0,
               // 强制高度为50.0

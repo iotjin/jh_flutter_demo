@@ -24,8 +24,7 @@ class BaseWebView extends StatefulWidget {
 }
 
 class _BaseWebViewState extends State<BaseWebView> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  final Completer<WebViewController> _controller = Completer<WebViewController>();
   int _progressValue = 0;
 
   @override

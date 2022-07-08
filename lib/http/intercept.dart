@@ -56,8 +56,7 @@ class TokenInterceptor extends QueuedInterceptor {
       _tokenDio ??= Dio();
       _tokenDio!.options = DioUtils.instance.dio.options;
       _tokenDio!.options.headers["Authorization"] = 'Bearer ' + getToken();
-      final Response<dynamic> response =
-          await _tokenDio!.post<dynamic>(kRefreshTokenUrl, data: params);
+      final Response<dynamic> response = await _tokenDio!.post<dynamic>(kRefreshTokenUrl, data: params);
       var res = response.data as dynamic;
       if (res['code'] == ExceptionHandle.success) {
         return response.data;
@@ -72,8 +71,7 @@ class TokenInterceptor extends QueuedInterceptor {
   }
 
   @override
-  Future<void> onResponse(
-      Response<dynamic> response, ResponseInterceptorHandler handler) async {
+  Future<void> onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) async {
     // 401代表token过期
     if (response.statusCode == ExceptionHandle.unauthorized) {
       LogUtils.d('---------- 自动刷新Token ----------');
@@ -130,8 +128,7 @@ class LoggingInterceptor extends Interceptor {
     if (options.queryParameters.isEmpty) {
       LogUtils.d('RequestUrl: ${options.baseUrl}${options.path}');
     } else {
-      LogUtils.d(
-          'RequestUrl: ${options.baseUrl}${options.path}?${Transformer.urlEncodeMap(options.queryParameters)}');
+      LogUtils.d('RequestUrl: ${options.baseUrl}${options.path}?${Transformer.urlEncodeMap(options.queryParameters)}');
     }
     LogUtils.d('RequestMethod: ${options.method}');
     LogUtils.d('RequestHeaders:${options.headers}');
@@ -141,8 +138,7 @@ class LoggingInterceptor extends Interceptor {
   }
 
   @override
-  void onResponse(
-      Response<dynamic> response, ResponseInterceptorHandler handler) {
+  void onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) {
     _endTime = DateTime.now();
     final int duration = _endTime.difference(_startTime).inMilliseconds;
     if (response.statusCode == ExceptionHandle.success) {

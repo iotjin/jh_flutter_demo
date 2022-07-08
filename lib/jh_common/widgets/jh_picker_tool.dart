@@ -32,8 +32,7 @@ final Color _selectItemBgColor = Colors.grey.withOpacity(0.15);
 /// 单列选择器返回选中行对象和index
 /// 多列选择器返回选中行对象数组和index数组
 /// 时间选择器返回选中行时间（时间格式：2022-07-03 15:00:46）和index数组
-typedef _ClickCallBack = void Function(
-    dynamic selectValue, dynamic selectIndexArr);
+typedef _ClickCallBack = void Function(dynamic selectValue, dynamic selectIndexArr);
 
 enum PickerDateType {
   YMD, // y, m, d
@@ -167,22 +166,18 @@ _showPicker(
       selecteds: selecteds,
       height: _kPickerHeight,
       itemExtent: _kItemHeight,
-      title: Text(title ?? _titleNormalText,
-          style: TextStyle(color: _kTitleColor, fontSize: _kTitleFontSize)),
+      title: Text(title ?? _titleNormalText, style: TextStyle(color: _kTitleColor, fontSize: _kTitleFontSize)),
       cancelText: _cancelText,
       cancelTextStyle: TextStyle(color: _kBtnColor, fontSize: _kBtnFontSize),
       confirmText: _confirmText,
       confirmTextStyle: TextStyle(color: _kBtnColor, fontSize: _kBtnFontSize),
       textAlign: TextAlign.center,
-      selectedTextStyle:
-          TextStyle(color: _selectTextColor, fontSize: _selectTextFontSize),
-      selectionOverlay:
-          Container(height: _kItemHeight, color: _selectItemBgColor),
+      selectedTextStyle: TextStyle(color: _selectTextColor, fontSize: _selectTextFontSize),
+      selectionOverlay: Container(height: _kItemHeight, color: _selectItemBgColor),
       backgroundColor: _bgColor,
       headerDecoration: BoxDecoration(
         border: Border(
-          bottom:
-              BorderSide(color: _kHeaderLineColor, width: _kHeaderLineHeight),
+          bottom: BorderSide(color: _kHeaderLineColor, width: _kHeaderLineHeight),
         ),
       ),
       onConfirm: (Picker picker, List selectIndexArr) {
@@ -200,18 +195,15 @@ _showPicker(
         }
         if (pickerType == PickerType.Date) {
           // var time = (picker.adapter as DateTimePickerAdapter).value;
-          clickCallBack?.call(
-              picker.adapter.text.split('.')[0], selectIndexArr);
+          clickCallBack?.call(picker.adapter.text.split('.')[0], selectIndexArr);
         }
       });
 
-  picker.showModal(context, backgroundColor: Colors.transparent,
-      builder: (context, view) {
+  picker.showModal(context, backgroundColor: Colors.transparent, builder: (context, view) {
     return Material(
         color: _headerColor,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(_kHeaderRadius),
-            topRight: Radius.circular(_kHeaderRadius)),
+        borderRadius:
+            BorderRadius.only(topLeft: Radius.circular(_kHeaderRadius), topRight: Radius.circular(_kHeaderRadius)),
         child: Container(
           padding: EdgeInsets.only(top: 5),
           child: view,

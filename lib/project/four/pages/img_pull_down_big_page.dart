@@ -10,8 +10,7 @@ class ImgPullDownBigPage extends StatefulWidget {
   _ImgPullDownBigPageState createState() => _ImgPullDownBigPageState();
 }
 
-class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
-    with TickerProviderStateMixin {
+class _ImgPullDownBigPageState extends State<ImgPullDownBigPage> with TickerProviderStateMixin {
   double imgHeight = 200;
   double imgExtraHeight = 0;
   double imgMaxHeight = 400;
@@ -25,8 +24,7 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
     super.initState();
 
     prevDy = 0;
-    animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     anim = Tween(begin: 0.0, end: 0.0).animate(animationController!);
   }
 
@@ -45,13 +43,12 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage>
 
   runAnimate() {
     setState(() {
-      anim =
-          Tween(begin: imgExtraHeight, end: 0.0).animate(animationController!)
-            ..addListener(() {
-              setState(() {
-                imgExtraHeight = anim!.value;
-              });
-            });
+      anim = Tween(begin: imgExtraHeight, end: 0.0).animate(animationController!)
+        ..addListener(() {
+          setState(() {
+            imgExtraHeight = anim!.value;
+          });
+        });
       prevDy = 0;
     });
   }

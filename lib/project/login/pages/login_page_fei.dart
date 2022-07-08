@@ -161,11 +161,9 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                         ],
                       ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor, width: 0.8)),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 0.5)),
+                    focusedBorder:
+                        UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+                    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -176,11 +174,9 @@ class _LoginPageFeiState extends State<LoginPageFei> {
 //                    labelText: "密码",
                     hintText: "请输入密码",
                     hintStyle: TextStyle(fontSize: 15),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor, width: 0.8)),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 0.5)),
+                    focusedBorder:
+                        UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+                    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
                     prefixIcon: Icon(Icons.lock),
 //                        suffixIcon: IconButton(
 //                          icon: Icon(
@@ -205,9 +201,7 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                                   onPressed: () => _pwdController.text = "")
                               : Text(""),
                           IconButton(
-                            icon: Icon(pwdShow
-                                ? Icons.visibility
-                                : Icons.visibility_off),
+                            icon: Icon(pwdShow ? Icons.visibility : Icons.visibility_off),
                             onPressed: () {
                               setState(() {
                                 pwdShow = !pwdShow;
@@ -230,8 +224,7 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                       child: Text(
                         '忘记密码',
                       ),
-                      onTap: () =>
-                          JhNavUtils.pushNamed(context, "FindPwdPage")),
+                      onTap: () => JhNavUtils.pushNamed(context, "FindPwdPage")),
                 ),
               ],
             ),
@@ -258,8 +251,7 @@ class _LoginPageFeiState extends State<LoginPageFei> {
       msg: "正在登录...",
     );
     Future.delayed(Duration(seconds: 0), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => (BaseTabBar())));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (BaseTabBar())));
 
       hide();
     });

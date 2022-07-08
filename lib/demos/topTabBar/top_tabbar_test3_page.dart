@@ -28,8 +28,7 @@ class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
             badge: Badge(
               toAnimate: false,
               position: BadgePosition.topEnd(top: -12, end: -20),
-              badgeContent: Text(_count.toString(),
-                  style: TextStyle(color: Colors.white, fontSize: 10)),
+              badgeContent: Text(_count.toString(), style: TextStyle(color: Colors.white, fontSize: 10)),
               child: Text("标题二"),
             )),
       ],
@@ -64,8 +63,7 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: listData.length, itemBuilder: this._getListData);
+    return ListView.builder(itemCount: listData.length, itemBuilder: this._getListData);
   }
 }
 

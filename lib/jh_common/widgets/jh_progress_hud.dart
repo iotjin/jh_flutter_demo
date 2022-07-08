@@ -50,8 +50,7 @@ void _showText(loadingText) {
   var w = Container(
     margin: const EdgeInsets.all(50.0),
     padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-    decoration: BoxDecoration(
-        color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
+    decoration: BoxDecoration(color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
     child: ClipRect(
         child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -71,8 +70,7 @@ void _showLoading(loadingText) {
   var w = Container(
     margin: const EdgeInsets.all(50.0),
     padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-    decoration: BoxDecoration(
-        color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
+    decoration: BoxDecoration(color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
     child: ClipRect(
         child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -111,8 +109,7 @@ void _showSuccess(loadingText) {
   var w = Container(
     margin: const EdgeInsets.all(50.0),
     padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-    decoration: BoxDecoration(
-        color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
+    decoration: BoxDecoration(color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
     child: ClipRect(
         child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -143,8 +140,7 @@ void _showError(loadingText) {
   var w = Container(
     margin: const EdgeInsets.all(50.0),
     padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-    decoration: BoxDecoration(
-        color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
+    decoration: BoxDecoration(color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
     child: ClipRect(
         child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -175,8 +171,7 @@ void _showInfo(loadingText) {
   var w = Container(
     margin: const EdgeInsets.all(50.0),
     padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-    decoration: BoxDecoration(
-        color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
+    decoration: BoxDecoration(color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
     child: ClipRect(
         child: Column(
       mainAxisSize: MainAxisSize.min,

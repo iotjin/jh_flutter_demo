@@ -15,11 +15,7 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  var _styles = [
-    FlutterLogoStyle.stacked,
-    FlutterLogoStyle.markOnly,
-    FlutterLogoStyle.horizontal
-  ];
+  var _styles = [FlutterLogoStyle.stacked, FlutterLogoStyle.markOnly, FlutterLogoStyle.horizontal];
 
   // var _colors = [
   //   Colors.red,
@@ -143,14 +139,11 @@ class _AboutPageState extends State<AboutPage> {
               title: 'Github',
               content: 'Go Star',
               onTap: () => JhNavRouterUtils.jumpWebViewPage(
-                  context,
-                  'jh_flutter_demo',
-                  'https://github.com/iotjin/jh_flutter_demo')),
+                  context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo')),
           ClickItem(
               title: 'author',
               content: 'iotjin',
-              onTap: () => JhNavRouterUtils.jumpWebViewPage(
-                  context, '作者博客', 'https://blog.csdn.net/iotjin')),
+              onTap: () => JhNavRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')),
           ClickItem(title: "检查更新", onTap: () => JhCommonUtils.jumpAppStore)
         ],
       ),

@@ -34,8 +34,7 @@ class JhDialog {
               widget: content == ""
                   ? null
                   : Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                       child: Text(content, style: TextStyle(fontSize: 16.0)),
                     ),
               leftText: leftText,
@@ -115,8 +114,7 @@ class _BaseDialog extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 8.0),
         child: Text(
           title,
-          style:
-              TextStyle(fontSize: _titleFontSize, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: _titleFontSize, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -169,8 +167,7 @@ class _BaseDialog extends StatelessWidget {
     );
 
     return AnimatedPadding(
-      padding: MediaQuery.of(context).viewInsets +
-          EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+      padding: MediaQuery.of(context).viewInsets + EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
       duration: Duration(milliseconds: 120),
       curve: Curves.easeInCubic,
       child: MediaQuery.removeViewInsets(

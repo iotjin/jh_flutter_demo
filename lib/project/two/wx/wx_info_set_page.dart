@@ -63,8 +63,7 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
           titleWidth: 150,
           title: widget._passValue!.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(
-              context, widget._passValue!.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友'),
+          clickCallBack: () => _clickCell(context, widget._passValue!.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
@@ -112,11 +111,7 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('删除',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red))
+                  Text('删除', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red))
                 ],
               )),
         )

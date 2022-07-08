@@ -47,8 +47,7 @@ void main() async {
 
   // 透明状态栏
   if (Platform.isAndroid) {
-    SystemUiOverlayStyle systemUiOverlayStyle =
-    SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
 }
@@ -92,8 +91,7 @@ class _MyAppState extends State<MyApp> {
       home: _switchRootWidget(),
       // 路由
       onGenerateRoute: Routes.router.generator,
-      onUnknownRoute: (RouteSettings settings) =>
-          MaterialPageRoute(builder: (context) => const NotFoundPage()),
+      onUnknownRoute: (RouteSettings settings) => MaterialPageRoute(builder: (context) => const NotFoundPage()),
       //        locale: Locale('en','US'),
       localizationsDelegates: [
         GlobalCupertinoLocalizations.delegate,
@@ -145,16 +143,14 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class FallbackCupertinoLocalisationsDelegate
-    extends LocalizationsDelegate<CupertinoLocalizations> {
+class FallbackCupertinoLocalisationsDelegate extends LocalizationsDelegate<CupertinoLocalizations> {
   const FallbackCupertinoLocalisationsDelegate();
 
   @override
   bool isSupported(Locale locale) => true;
 
   @override
-  Future<CupertinoLocalizations> load(Locale locale) =>
-      DefaultCupertinoLocalizations.load(locale);
+  Future<CupertinoLocalizations> load(Locale locale) => DefaultCupertinoLocalizations.load(locale);
 
   @override
   bool shouldReload(FallbackCupertinoLocalisationsDelegate old) => false;

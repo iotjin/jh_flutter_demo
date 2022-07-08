@@ -79,8 +79,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: backAppBar(context, '订阅号消息',
-          rightImgPath: 'assets/images/ic_gengduo.png',
-          backgroundColor: Colors.transparent, rightItemCallBack: () {
+          rightImgPath: 'assets/images/ic_gengduo.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
         JhNavUtils.pushNamed(context, "WxSubscriptionNumberListPage");
       }),
       body: _body(context, _dataArr),
@@ -125,10 +124,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
               bottom: 10,
               child: Text(
                 item['subtitle'],
-                style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
           ],
@@ -175,8 +171,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
       child: Card(
           margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
           // 设置圆角
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           // 抗锯齿
           clipBehavior: Clip.antiAlias,
           // 普通的边

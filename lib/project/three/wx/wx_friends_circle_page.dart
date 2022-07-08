@@ -43,8 +43,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
 
   void _loadData() async {
     // 获取微信运动排行榜数据
-    final jsonStr =
-        await rootBundle.loadString('lib/res/wx_friends_circle.json');
+    final jsonStr = await rootBundle.loadString('lib/res/wx_friends_circle.json');
 
     Map dic = json.decode(jsonStr);
     List dataArr = dic['data'];
@@ -116,8 +115,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: dataArr.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
@@ -143,10 +141,8 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         right: 0,
         child: backAppBar(context, '朋友圈',
             backgroundColor: KColors.wxBgColor.withOpacity(_appbarOpacity),
-            brightness:
-                _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
-            rightImgPath: 'assets/wechat/discover/ic_xiangji.png',
-            rightItemCallBack: () {
+            brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
+            rightImgPath: 'assets/wechat/discover/ic_xiangji.png', rightItemCallBack: () {
           _clickNav();
         }),
       ),
@@ -233,58 +229,53 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(
-                    child: Text(item['name'].substring(0, 1),
-                        style: TextStyle(color: Colors.white, fontSize: 20)),
+                    child: Text(item['name'].substring(0, 1), style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
               ),
               Expanded(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Container(
+                  margin: EdgeInsets.only(top: 13),
+                  child: Text(
+                    item['name'],
+                    style: TextStyle(color: KColors.wxTextBlueColor, fontSize: 15),
+                  ),
+                ),
+                Container(
+                    margin: EdgeInsets.fromLTRB(0, 5, 15, 5),
+                    child: Text(
+                      item['content'],
+                      style: TextStyle(fontSize: 13),
+                    )),
+                _imgs(context, item),
+                Container(
+                    margin: EdgeInsets.fromLTRB(0, 5, 15, 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 13),
-                      child: Text(
-                        item['name'],
-                        style: TextStyle(
-                            color: KColors.wxTextBlueColor, fontSize: 15),
-                      ),
-                    ),
-                    Container(
-                        margin: EdgeInsets.fromLTRB(0, 5, 15, 5),
-                        child: Text(
-                          item['content'],
-                          style: TextStyle(fontSize: 13),
-                        )),
-                    _imgs(context, item),
-                    Container(
-                        margin: EdgeInsets.fromLTRB(0, 5, 15, 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              item['time'],
-                              style: TextStyle(
-                                  color: KColors.kTextGrayColor, fontSize: 13),
+                        Text(
+                          item['time'],
+                          style: TextStyle(color: KColors.kTextGrayColor, fontSize: 13),
+                        ),
+                        InkWell(
+                          child: Container(
+                            width: 34,
+                            height: 22,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Color.fromRGBO(240, 240, 240, 1),
                             ),
-                            InkWell(
-                              child: Container(
-                                width: 34,
-                                height: 22,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Color.fromRGBO(240, 240, 240, 1),
-                                ),
-                                child: Image.asset(
-                                  'assets/wechat/discover/ic_diandian.png',
-                                  color: KColors.wxTextBlueColor,
-                                ),
-                              ),
-                              onTap: () => _clickCell(context, '评论'),
-                            )
-                          ],
-                        )),
-                  ])),
+                            child: Image.asset(
+                              'assets/wechat/discover/ic_diandian.png',
+                              color: KColors.wxTextBlueColor,
+                            ),
+                          ),
+                          onTap: () => _clickCell(context, '评论'),
+                        )
+                      ],
+                    )),
+              ])),
             ],
           ),
         ));
@@ -310,10 +301,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   }
 
   _clickNav() {
-    JhBottomSheet.showText(context,
-        title: "请选择操作",
-        dataArr: ['拍摄', '从手机相册选择'],
-        clickCallback: (index, text) {});
+    JhBottomSheet.showText(context, title: "请选择操作", dataArr: ['拍摄', '从手机相册选择'], clickCallback: (index, text) {});
   }
 
   _jumpInfo() {

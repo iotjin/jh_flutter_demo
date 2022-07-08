@@ -13,8 +13,7 @@ class WxPersonInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KStrings.wxPersonInfo,
-          backgroundColor: Colors.transparent),
+      appBar: backAppBar(context, KStrings.wxPersonInfo, backgroundColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.wxBgColor,
     );
@@ -37,14 +36,10 @@ Widget _body(context) {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               image: DecorationImage(
-                  fit: BoxFit.fitHeight,
-                  image: NetworkImage(
-                      'https://gitee.com/iotjh/Picture/raw/master/lufei.png'))),
+                  fit: BoxFit.fitHeight, image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'))),
         ),
         clickCallBack: () {
-          var imgData = [
-            'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-          ];
+          var imgData = ['https://gitee.com/iotjh/Picture/raw/master/lufei.png'];
           Navigator.of(context).push(new FadeRoute(
               page: JhPhotoBrowser(
             imgDataArr: imgData,
@@ -52,8 +47,7 @@ Widget _body(context) {
             isHiddenClose: true,
             isHiddenTitle: true,
             onLongPress: () {
-              JhBottomSheet.showText(context,
-                  dataArr: ['保存图片'], clickCallback: (index, str) {});
+              JhBottomSheet.showText(context, dataArr: ['保存图片'], clickCallback: (index, str) {});
             },
           )));
         },
@@ -77,8 +71,7 @@ Widget _body(context) {
         title: '我的二维码',
         rightWidget: Container(
             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-            child: Image.asset('assets/wechat/mine/ic_setting_myQR.png',
-                width: 20, height: 20, fit: BoxFit.fill)),
+            child: Image.asset('assets/wechat/mine/ic_setting_myQR.png', width: 20, height: 20, fit: BoxFit.fill)),
       ),
       JhSetCell(
         cellHeight: _cellH,

@@ -39,8 +39,7 @@ class JhTextList extends StatelessWidget {
                 ),
                 Positioned(
                   right: _lfSpace,
-                  child: Icon(Icons.arrow_forward_ios,
-                      size: 18, color: Color(0xFFC8C8C8)),
+                  child: Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8)),
                 ),
                 Positioned(
                     bottom: 0.0,

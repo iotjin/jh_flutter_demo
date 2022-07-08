@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+
 //import 'package:dio_http_cache/dio_http_cache.dart';
 import '/http/apis.dart';
 import '/base_appbar.dart';
@@ -38,8 +39,7 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
   void getRequest() async {
     var url = APIs.apiPrefix + APIs.getPage;
     var dio = new Dio();
-    var response =
-        await dio.get(url, queryParameters: {"page": 0, "limit": 10});
+    var response = await dio.get(url, queryParameters: {"page": 0, "limit": 10});
     var result = response.data.toString();
     print("返回数据： " + result);
     print(response.data["msg"]);
@@ -69,9 +69,7 @@ void postRequest3() async {
   print("response----");
 //      var url = "https://itunes.apple.com/lookup?id=id414478124";
   var url = "https://itunes.apple.com/cn/lookup?id=414478124";
-  Options options = Options(headers: {
-    HttpHeaders.acceptHeader: "Content-Type:application/x-www-form-urlencoded"
-  });
+  Options options = Options(headers: {HttpHeaders.acceptHeader: "Content-Type:application/x-www-form-urlencoded"});
 
   var response = await Dio().post(url, options: options);
 

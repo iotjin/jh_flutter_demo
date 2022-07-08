@@ -22,8 +22,7 @@ class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(context, KStrings.fourTabTitle,
-          rightImgPath: "assets/images/set.png", rightItemCallBack: () {
+      appBar: baseAppBar(context, KStrings.fourTabTitle, rightImgPath: "assets/images/set.png", rightItemCallBack: () {
         JhNavUtils.pushNamed(context, "SetPage");
       }),
       backgroundColor: Color(0xFFF8F8F8),
@@ -31,8 +30,7 @@ class _MinePageState extends State<MinePage> {
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: <Widget>[
           SizedBox(height: 15),
-          JhSetCell(
-              leftImgPath: "assets/images/ic_accountSafe.png", title: '账号安全'),
+          JhSetCell(leftImgPath: "assets/images/ic_accountSafe.png", title: '账号安全'),
           JhSetCell(
             leftImgPath: "assets/images/ic_saoyisao.png",
             title: '扫一扫',
@@ -87,9 +85,6 @@ class _MinePageState extends State<MinePage> {
   }
 
   void _showUpdateDialog() {
-    showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) => UpdateDialog());
+    showDialog<void>(context: context, barrierDismissible: false, builder: (_) => UpdateDialog());
   }
 }

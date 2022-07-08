@@ -44,8 +44,7 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
     // TODO: implement initState
     super.initState();
     _currentIndex = widget.index;
-    _controller =
-        widget.controller ?? PageController(initialPage: _currentIndex);
+    _controller = widget.controller ?? PageController(initialPage: _currentIndex);
   }
 
   @override
@@ -86,9 +85,7 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
                     }
                     return PhotoViewGalleryPageOptions(
                       imageProvider: _picture,
-                      heroAttributes: widget.heroTag != null
-                          ? PhotoViewHeroAttributes(tag: widget.heroTag!)
-                          : null,
+                      heroAttributes: widget.heroTag != null ? PhotoViewHeroAttributes(tag: widget.heroTag!) : null,
                       initialScale: PhotoViewComputedScale.contained,
                       minScale: PhotoViewComputedScale.contained,
                       maxScale: PhotoViewComputedScale.covered * 2,
@@ -154,8 +151,7 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
                         child: CircleAvatar(
 //                      foregroundColor: Theme.of(context).primaryColor,
                           radius: 3.5,
-                          backgroundColor:
-                              _currentIndex == i ? _selColor : _otherColor,
+                          backgroundColor: _currentIndex == i ? _selColor : _otherColor,
                         )),
                   ),
                 ).toList(),

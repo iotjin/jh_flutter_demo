@@ -26,13 +26,11 @@ class _DBallPageState extends State<DBallPage> {
     return Scaffold(
       appBar: backAppBar(context, '3D球'),
       body: Center(
-        child:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: LayoutBuilder(builder: (context, constraints) {
-              return TagCloud(constraints.maxWidth, constraints.maxHeight,
-                  rpm: this.rpm);
+              return TagCloud(constraints.maxWidth, constraints.maxHeight, rpm: this.rpm);
             }),
           ),
           Text(
@@ -67,8 +65,7 @@ class TagCloud extends StatefulWidget {
   _TagCloudState createState() => _TagCloudState();
 }
 
-class _TagCloudState extends State<TagCloud>
-    with SingleTickerProviderStateMixin {
+class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin {
   Animation<double>? rotationAnimation;
   AnimationController? animationController;
   List<Point>? points;
@@ -88,17 +85,16 @@ class _TagCloudState extends State<TagCloud>
       //按rpm，转/每分来计算旋转速度
       duration: Duration(seconds: 60 ~/ widget.rpm),
     );
-    rotationAnimation =
-        Tween(begin: 0.0, end: pi * 2).animate(animationController!)
-          ..addListener(() {
-            setState(() {
-              var angle = rotationAnimation!.value;
-              angleDelta = angle - prevAngle!; //这段时间内旋转过的角度
-              prevAngle = angle;
-              //按angleDelta旋转标签到新的位置
-              _rotatePoints(points!, rotateAxis, angleDelta!);
-            });
-          });
+    rotationAnimation = Tween(begin: 0.0, end: pi * 2).animate(animationController!)
+      ..addListener(() {
+        setState(() {
+          var angle = rotationAnimation!.value;
+          angleDelta = angle - prevAngle!; //这段时间内旋转过的角度
+          prevAngle = angle;
+          //按angleDelta旋转标签到新的位置
+          _rotatePoints(points!, rotateAxis, angleDelta!);
+        });
+      });
     animationController!.repeat();
   }
 
@@ -125,16 +121,12 @@ class _TagCloudState extends State<TagCloud>
     var radius = widget.width / 2 + floatingOffset;
     List<Point> points = [];
     for (var i = 0; i < pointsCount; i++) {
-      double x =
-          1 * Random().nextDouble() * (Random().nextBool() == true ? 1 : -1);
+      double x = 1 * Random().nextDouble() * (Random().nextBool() == true ? 1 : -1);
       double remains = sqrt(1 - x * x);
 
-      double y = remains *
-          Random().nextDouble() *
-          (Random().nextBool() == true ? 1 : -1);
+      double y = remains * Random().nextDouble() * (Random().nextBool() == true ? 1 : -1);
 
-      double z =
-          sqrt(1 - x * x - y * y) * (Random().nextBool() == true ? 1 : -1);
+      double z = sqrt(1 - x * x - y * y) * (Random().nextBool() == true ? 1 : -1);
 
       points.add(new Point(x * radius, y * radius, z * radius,
           color: Color.fromRGBO(
@@ -166,15 +158,9 @@ class _TagCloudState extends State<TagCloud>
         cosA = cos(angle);
     points.forEach((point) {
       var x = point.x, y = point.y, z = point.z;
-      point.x = (a2 + (1 - a2) * cosA) * x +
-          (ab * (1 - cosA) - c * sinA) * y +
-          (ac * (1 - cosA) + b * sinA) * z;
-      point.y = (ab * (1 - cosA) + c * sinA) * x +
-          (b2 + (1 - b2) * cosA) * y +
-          (bc * (1 - cosA) - a * sinA) * z;
-      point.z = (ac * (1 - cosA) - b * sinA) * x +
-          (bc * (1 - cosA) + a * sinA) * y +
-          (c2 + (1 - c2) * cosA) * z;
+      point.x = (a2 + (1 - a2) * cosA) * x + (ab * (1 - cosA) - c * sinA) * y + (ac * (1 - cosA) + b * sinA) * z;
+      point.y = (ab * (1 - cosA) + c * sinA) * x + (b2 + (1 - b2) * cosA) * y + (bc * (1 - cosA) - a * sinA) * z;
+      point.z = (ac * (1 - cosA) - b * sinA) * x + (bc * (1 - cosA) + a * sinA) * y + (c2 + (1 - c2) * cosA) * z;
     });
     return points;
   }
@@ -191,15 +177,9 @@ class _TagCloudState extends State<TagCloud>
     //球体，添加了边界阴影
     var sphere = Container(
         height: radius! * 2,
-        decoration: BoxDecoration(
-            color: Colors.blueAccent,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.white.withOpacity(0.9),
-                  blurRadius: 30.0,
-                  spreadRadius: 10.0),
-            ]));
+        decoration: BoxDecoration(color: Colors.blueAccent, shape: BoxShape.circle, boxShadow: [
+          BoxShadow(color: Colors.white.withOpacity(0.9), blurRadius: 30.0, spreadRadius: 10.0),
+        ]));
 
     children.add(sphere);
     children.add(_buildPainter(points));

@@ -44,11 +44,7 @@ List listData = [
 ];
 
 List listData222 = [
-  {
-    "title": "title11",
-    "icon": "service/icon_baoxiu",
-    "bgImg": "service/bg_service_baoxiu"
-  }
+  {"title": "title11", "icon": "service/icon_baoxiu", "bgImg": "service/bg_service_baoxiu"}
 ];
 
 List groupData = [

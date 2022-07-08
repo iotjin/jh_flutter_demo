@@ -34,10 +34,7 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
                 text: '右侧文字',
                 titleWidth: 150,
               ),
-              JhSetCell(
-                  leftImgPath: "assets/images/shezhi.png",
-                  title: '设置',
-                  text: '右侧文字'),
+              JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置', text: '右侧文字'),
               JhSetCell(
                 leftImgPath: "assets/images/shezhi.png",
                 title: '关于',

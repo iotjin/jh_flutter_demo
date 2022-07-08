@@ -30,11 +30,9 @@ class ContentBody extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: CircleAvatar(
-                    backgroundImage: NetworkImage(value["imageUrl"])),
+                leading: CircleAvatar(backgroundImage: NetworkImage(value["imageUrl"])),
                 title: Text(value["title"]),
-                subtitle: Text(value["content"],
-                    maxLines: 1, overflow: TextOverflow.ellipsis),
+                subtitle: Text(value["content"], maxLines: 1, overflow: TextOverflow.ellipsis),
               )
             ],
           ),

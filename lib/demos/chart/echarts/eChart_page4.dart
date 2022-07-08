@@ -199,19 +199,14 @@ class _EChartPage4State extends State<EChartPage4> {
       }
     ];
 
-    chartData = {
-      'legendData': legendDataArr,
-      'xData': xAxisDataArr,
-      'seriesData': seriesDataArr
-    };
+    chartData = {'legendData': legendDataArr, 'xData': xAxisDataArr, 'seriesData': seriesDataArr};
   }
 
   @override
   Widget build(BuildContext context) {
     var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
-    return Scaffold(
-        appBar: backAppBar(context, 'EChart4 - 渐变折线图'), body: _scrollbar());
+    return Scaffold(appBar: backAppBar(context, 'EChart4 - 渐变折线图'), body: _scrollbar());
   }
 
   Widget _scrollbar() {
@@ -250,10 +245,7 @@ class _EChartPage4State extends State<EChartPage4> {
         color: Color(0xFFF9F9F9),
       ),
       child: Row(
-        children: <Widget>[
-          SizedBox(width: 8),
-          Text(title, style: TextStyle(fontSize: 22))
-        ],
+        children: <Widget>[SizedBox(width: 8), Text(title, style: TextStyle(fontSize: 22))],
       ),
     );
   }

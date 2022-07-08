@@ -67,8 +67,7 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
                 ),
           // 圆角
           shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(widget.borderRadius!)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(widget.borderRadius!)),
           ),
         ),
       );

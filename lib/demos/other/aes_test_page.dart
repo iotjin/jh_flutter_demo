@@ -27,8 +27,7 @@ class _AESTestPageState extends State<AESTestPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: backAppBar(context, 'base64、AES、MD5和本地加密存储'), body: _body());
+    return Scaffold(appBar: backAppBar(context, 'base64、AES、MD5和本地加密存储'), body: _body());
   }
 
   Widget _body() {
@@ -44,10 +43,8 @@ class _AESTestPageState extends State<AESTestPage> {
             text: _textStr,
             enabled: false,
           ),
-          JhFormInputCell(
-              title: "Base64编码", text: _base64encodeStr, enabled: false),
-          JhFormInputCell(
-              title: "Base64解码", text: _base64decodeStr, enabled: false),
+          JhFormInputCell(title: "Base64编码", text: _base64encodeStr, enabled: false),
+          JhFormInputCell(title: "Base64解码", text: _base64decodeStr, enabled: false),
           JhFormInputCell(title: "AES加密", text: _aesEncryptStr, enabled: false),
           JhFormInputCell(title: "AES解密", text: _aesDecryptStr, enabled: false),
           JhFormInputCell(title: "MD5加密", text: _md5Str, enabled: false),

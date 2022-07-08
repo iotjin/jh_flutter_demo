@@ -59,13 +59,10 @@ class _FormTestPageState extends State<FormTestPage> {
                   FilteringTextInputFormatter.allow(RegExp("[0-9]")),
                   LengthLimitingTextInputFormatter(5)
                 ]),
-            JhFormInputCell(
-                title: "左标题",
-                hintText: "自定义inputFormatters 长度10，a-zA-Z0-9",
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
-                  LengthLimitingTextInputFormatter(10)
-                ]),
+            JhFormInputCell(title: "左标题", hintText: "自定义inputFormatters 长度10，a-zA-Z0-9", inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+              LengthLimitingTextInputFormatter(10)
+            ]),
             JhFormSelectCell(title: "左标题"),
             JhFormSelectCell(title: "左标题", text: "text赋初值"),
             JhFormSelectCell(

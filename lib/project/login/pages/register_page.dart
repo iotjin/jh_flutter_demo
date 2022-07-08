@@ -39,8 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
           '账号注册',
         ),
         body: KeyboardActions(
-          config: JhKeyboardUtils.getKeyboardConfig(
-              context, [_node1, _node2, _node3]),
+          config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2, _node3]),
           child: _mainBody(),
         ));
   }
@@ -99,17 +98,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 JhButton(text: "注 册", onPressed: _clickOkBtn),
                 SizedBox(height: 20),
                 RichText(
-                  text: TextSpan(
-                      style: TextStyle(fontSize: 12, color: Colors.black),
-                      children: <InlineSpan>[
-                        TextSpan(text: '注册即视为同意'),
-                        TextSpan(
-                          text: '《xxx服务协议》',
-                          style: TextStyle(color: Colors.red),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () => print('Tap Here onTap'),
-                        ),
-                      ]),
+                  text: TextSpan(style: TextStyle(fontSize: 12, color: Colors.black), children: <InlineSpan>[
+                    TextSpan(text: '注册即视为同意'),
+                    TextSpan(
+                      text: '《xxx服务协议》',
+                      style: TextStyle(color: Colors.red),
+                      recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
+                    ),
+                  ]),
                 ),
               ],
             ),

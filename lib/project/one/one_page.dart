@@ -94,8 +94,7 @@ class OnePage extends StatelessWidget {
 
     return Scaffold(
       appBar: baseAppBar(context, KStrings.oneTabTitle,
-          rightImgPath: 'assets/images/ic_nav_add.png',
-          rightItemCallBack: () => _showPop(context)),
+          rightImgPath: 'assets/images/ic_nav_add.png', rightItemCallBack: () => _showPop(context)),
       body: _body(context, _dataArr),
       backgroundColor: KColors.wxBgColor,
 
@@ -241,9 +240,7 @@ class OnePage extends StatelessWidget {
           tempArr.addAll([noAttention, delete]);
         }
 
-        var extentRatio = dataArr[index]['type'] == '0'
-            ? 0.00001
-            : (dataArr[index]['type'] == '1' ? 0.2 : 0.4);
+        var extentRatio = dataArr[index]['type'] == '0' ? 0.00001 : (dataArr[index]['type'] == '1' ? 0.2 : 0.4);
 
         return Slidable(
           key: Key(dataArr[index]['type']),
@@ -301,24 +298,19 @@ class OnePage extends StatelessWidget {
                     SizedBox(height: 6),
                     Row(
                       children: <Widget>[
-                        Expanded(
-                            flex: 70,
-                            child: Text(item['title'],
-                                style: TextStyle(fontSize: 18))),
+                        Expanded(flex: 70, child: Text(item['title'], style: TextStyle(fontSize: 18))),
                         Expanded(
                             flex: 30,
                             child: Text(
                               item['time'],
-                              style:
-                                  TextStyle(fontSize: 13, color: Colors.grey),
+                              style: TextStyle(fontSize: 13, color: Colors.grey),
                               textAlign: TextAlign.right,
                             )),
                         SizedBox(width: 10),
                       ],
                     ),
                     SizedBox(height: 4),
-                    Text(item['subtitle'],
-                        style: TextStyle(fontSize: 15, color: Colors.grey)),
+                    Text(item['subtitle'], style: TextStyle(fontSize: 15, color: Colors.grey)),
                   ],
                 )),
               ],

@@ -36,8 +36,7 @@ class JhNavRouterUtils {
         (route) => false);
   }
 
-  static pushResult(
-      BuildContext context, Widget scene, Function(Object) function) {
+  static pushResult(BuildContext context, Widget scene, Function(Object) function) {
     Navigator.push(
       context,
       MaterialPageRoute(

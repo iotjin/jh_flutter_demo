@@ -26,12 +26,10 @@ void getMoreData() {
 
 class ListViewTestSimplePullDown extends StatefulWidget {
   @override
-  _ListViewTestSimplePullDownState createState() =>
-      _ListViewTestSimplePullDownState();
+  _ListViewTestSimplePullDownState createState() => _ListViewTestSimplePullDownState();
 }
 
-class _ListViewTestSimplePullDownState
-    extends State<ListViewTestSimplePullDown> {
+class _ListViewTestSimplePullDownState extends State<ListViewTestSimplePullDown> {
   EasyRefreshController _controller = EasyRefreshController();
 
   @override

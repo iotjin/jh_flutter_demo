@@ -30,12 +30,10 @@ class PassValuePage extends StatelessWidget {
 
             //跳转传递model可看two_page跳转个人信息
 
-            JhNavUtils.pushNamedResult(
-                context, '${"PassValuePage2"}?passValue=123&isScan=true',
-                    (value) {
-                  print("回传的值====" + value.toString());
-                  JhToast.showText(context, msg: "返回的参数: $value");
-                });
+            JhNavUtils.pushNamedResult(context, '${"PassValuePage2"}?passValue=123&isScan=true', (value) {
+              print("回传的值====" + value.toString());
+              JhToast.showText(context, msg: "返回的参数: $value");
+            });
           },
         ));
   }

@@ -19,8 +19,7 @@ class _RedDotPageState extends State<RedDotPage> {
           bottomNavigationBar: _bottomNavigationBar(),
           appBar: baseAppBar(
             context, "小红点",
-            bottom: PreferredSize(
-                preferredSize: Size.fromHeight(_rowHeight), child: _tabBar()),
+            bottom: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _tabBar()),
 //            elevation: 3,
           ),
           body: Column(
@@ -53,11 +52,8 @@ class _RedDotPageState extends State<RedDotPage> {
                 borderRadius: BorderRadius.circular(5),
                 position: BadgePosition.topEnd(top: -12, end: -20),
                 padding: EdgeInsets.all(2),
-                badgeContent: Text('New',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold)),
+                badgeContent:
+                    Text('New', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                 child: Text(
                   'MUSIC',
                   style: TextStyle(color: Colors.grey[600]),
@@ -97,8 +93,7 @@ class _RedDotPageState extends State<RedDotPage> {
             badgeContent: Container(
               height: 5,
               width: 5,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
             ),
           ),
         ),
@@ -136,11 +131,8 @@ class _RedDotPageState extends State<RedDotPage> {
                 borderRadius: BorderRadius.circular(5),
                 position: BadgePosition.topEnd(top: -12, end: -20),
                 padding: EdgeInsets.all(2),
-                badgeContent: Text('NEW',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold)),
+                badgeContent:
+                    Text('NEW', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                 child: Text(
                   'MUSIC',
                   style: TextStyle(color: Colors.white),

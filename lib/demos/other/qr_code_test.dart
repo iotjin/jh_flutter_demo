@@ -40,23 +40,18 @@ class _QRCodeTestState extends State<QRCodeTest> {
               height: 50,
             ),
             // 生成二维码
-            JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100,
-                foregroundColor: Colors.yellow),
-            JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100,
-                backgroundColor: Colors.yellow),
+            JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100, foregroundColor: Colors.yellow),
+            JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100, backgroundColor: Colors.yellow),
             SizedBox(
               height: 10,
             ),
             JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码2222", 100,
-                image: NetworkImage(
-                    'https://gitee.com/iotjh/Picture/raw/master/lufei.png'),
-                imageSize: Size(20, 20)),
+                image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'), imageSize: Size(20, 20)),
             Center(
               child: QrImage(
                 data: '这是二维码的内容',
                 size: 200,
-                embeddedImage: NetworkImage(
-                    'https://gitee.com/iotjh/Picture/raw/master/lufei.png'),
+                embeddedImage: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'),
                 embeddedImageStyle: QrEmbeddedImageStyle(
                   size: Size(50, 50),
                 ),

@@ -36,8 +36,7 @@ class _FormTestState extends State<FormTest> {
 //              resizeToAvoidBottomPadding: true, //输入框抵住键盘
             appBar: backAppBar(context, 'FormTest'),
             body: KeyboardActions(
-              config: JhForm.getKeyboardConfig(
-                  context, [_node1, _node2, _node3, _node4]),
+              config: JhForm.getKeyboardConfig(context, [_node1, _node2, _node3, _node4]),
               child: _mainBody(),
             )));
   }
@@ -49,8 +48,7 @@ class _FormTestState extends State<FormTest> {
       child: Column(
         children: <Widget>[
           SizedBox(height: _space),
-          JhForm.inputText(
-              title: "联系人", hintText: "这是提示文字", focusNode: _node1, space: 100),
+          JhForm.inputText(title: "联系人", hintText: "这是提示文字", focusNode: _node1, space: 100),
           SizedBox(height: _space),
           JhForm.inputText(
               title: "联系电话",
@@ -90,8 +88,7 @@ class _FormTestState extends State<FormTest> {
               selectInfo: selectTextStr,
 //                  hintText: "请选择0",
               clickCallBack: () {
-                JhPickerTool.showStringPicker(context, data: ["1", "2", "3"],
-                    clickCallBack: (index, str) {
+                JhPickerTool.showStringPicker(context, data: ["1", "2", "3"], clickCallBack: (index, str) {
                   setState(() {
                     selectTextStr = str.toString();
                   });

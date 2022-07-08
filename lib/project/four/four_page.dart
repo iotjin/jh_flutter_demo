@@ -24,8 +24,7 @@ class FourPage extends StatefulWidget {
 class _FourPageState extends State<FourPage> {
   UserModel? _model;
 
-  ScrollController _scrollController =
-      new ScrollController(initialScrollOffset: 0.0);
+  ScrollController _scrollController = new ScrollController(initialScrollOffset: 0.0);
   double _topH = 0;
 
   @override
@@ -106,16 +105,11 @@ class _FourPageState extends State<FourPage> {
         // 设置
         InkWell(
           child: Container(
-            margin:
-                EdgeInsets.only(top: JhScreenUtils.topSafeHeight + 20, right: 20),
+            margin: EdgeInsets.only(top: JhScreenUtils.topSafeHeight + 20, right: 20),
             height: 25,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Image(
-                    height: 25,
-                    image: AssetImage('assets/images/ic_set_black.png'))
-              ],
+              children: <Widget>[Image(height: 25, image: AssetImage('assets/images/ic_set_black.png'))],
             ),
           ),
           onTap: () {
@@ -150,10 +144,7 @@ class _FourPageState extends State<FourPage> {
             leftImgPath: "assets/wechat/mine/ic_collections.png",
             title: '收藏'),
         JhSetCell(
-            cellHeight: _cellH,
-            lineLeftEdge: _leftSpace,
-            leftImgPath: "assets/wechat/mine/ic_album.png",
-            title: '相册'),
+            cellHeight: _cellH, lineLeftEdge: _leftSpace, leftImgPath: "assets/wechat/mine/ic_album.png", title: '相册'),
         JhSetCell(
             cellHeight: _cellH,
             lineLeftEdge: _leftSpace,
@@ -194,10 +185,7 @@ class _FourPageState extends State<FourPage> {
   }
 
   void _showUpdateDialog() {
-    showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) => UpdateDialog());
+    showDialog<void>(context: context, barrierDismissible: false, builder: (_) => UpdateDialog());
   }
 
   // 头部
@@ -216,9 +204,7 @@ class _FourPageState extends State<FourPage> {
                 width: 75,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                        fit: BoxFit.fitHeight,
-                        image: NetworkImage(model.avatarUrl))),
+                    image: DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(model.avatarUrl))),
               ),
               onTap: () {
                 print('点击头像==  ${model.avatarUrl}');
@@ -258,9 +244,7 @@ class _FourPageState extends State<FourPage> {
                         child: Row(
                           children: <Widget>[
                             Expanded(
-                              child: Text('微信号：abc',
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.grey)),
+                              child: Text('微信号：abc', style: TextStyle(fontSize: 17, color: Colors.grey)),
                             ),
                             Padding(
                               padding: EdgeInsets.only(right: 20.0),
@@ -275,8 +259,7 @@ class _FourPageState extends State<FourPage> {
 //                              width: 8.0,
 //                              height: 13.0,
 //                            )
-                            Icon(Icons.arrow_forward_ios,
-                                size: 18, color: Color(0xFFC8C8C8))
+                            Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8))
                           ],
                         ),
                       ),

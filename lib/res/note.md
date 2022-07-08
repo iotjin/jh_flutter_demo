@@ -1,4 +1,3 @@
-
 ## [Flutter 常用命令](https://www.cnblogs.com/cag2050/p/10542771.html)
 
 | Flutter 常用命令 | 说明 |
@@ -15,8 +14,7 @@
 | flutter analyze | 分析项目代码 |
 | flutter build apk |  |
 | flutter build iOS |  |
-| flutter run  --release| 发布版本调试，发布版本测试需要连接真机方能调试。 |
-
+| flutter run --release| 发布版本调试，发布版本测试需要连接真机方能调试。 |
 
 ```
 ListView({

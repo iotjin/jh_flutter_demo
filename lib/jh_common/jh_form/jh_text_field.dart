@@ -10,8 +10,7 @@ const int _maxLines = 5; // 最大行数
 const int _maxLength = 100; // 最大录入长度
 const Color _textColor = Colors.black;
 const TextStyle _textStyle = TextStyle(fontSize: 15.0, color: _textColor);
-const TextStyle _hintTextStyle =
-    TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB)); // 187
+const TextStyle _hintTextStyle = TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB)); // 187
 
 typedef _InputCallBack = void Function(String value);
 

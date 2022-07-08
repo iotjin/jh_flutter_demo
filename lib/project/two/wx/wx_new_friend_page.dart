@@ -51,9 +51,8 @@ class WxNewFriendPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '新的朋友',
-          backgroundColor: Colors.transparent,
-          rightText: '添加朋友', rightItemCallBack: () {
+      appBar:
+          backAppBar(context, '新的朋友', backgroundColor: Colors.transparent, rightText: '添加朋友', rightItemCallBack: () {
         JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }),
       body: _body(context),
@@ -102,8 +101,7 @@ class WxNewFriendPage extends StatelessWidget {
       child: Text('三天前', style: TextStyle(color: Colors.grey)),
     );
 
-    List<Widget> _topWidgetList =
-        _dataArr.map((item2) => _cell(context, item2)).toList();
+    List<Widget> _topWidgetList = _dataArr.map((item2) => _cell(context, item2)).toList();
 
     _topWidgetList.insert(0, _text);
     _topWidgetList.insert(0, _myCode);

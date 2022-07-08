@@ -76,8 +76,7 @@ class JhTopTabBar extends StatefulWidget {
   _JhTopTabBarState createState() => _JhTopTabBarState();
 }
 
-class _JhTopTabBarState extends State<JhTopTabBar>
-    with SingleTickerProviderStateMixin {
+class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStateMixin {
   TabController? _tabController;
 
   @override
@@ -85,14 +84,12 @@ class _JhTopTabBarState extends State<JhTopTabBar>
     // TODO: implement initState
     super.initState();
 
-    _tabController =
-        TabController(length: widget.tabModelArr.length, vsync: this);
+    _tabController = TabController(length: widget.tabModelArr.length, vsync: this);
     _tabController!.addListener(() {
 //      print(_tabController.index);
       if (widget.switchPageCallBack != null) {
 //          _tabController.indexIsChanging     监听不到滑动
-        if (_tabController!.index.toDouble() ==
-            _tabController!.animation!.value) {
+        if (_tabController!.index.toDouble() == _tabController!.animation!.value) {
           widget.switchPageCallBack!(_tabController!.index);
         }
       }
@@ -167,17 +164,14 @@ class _JhTopTabBarState extends State<JhTopTabBar>
                     labelStyle: widget.labelStyle,
                     unselectedLabelStyle: widget.unselectedLabelStyle,
                     indicator: widget.indicator,
-                    tabs: widget.tabModelArr
-                        .map((item) => Tab(text: item.title, icon: item.badge))
-                        .toList(),
+                    tabs: widget.tabModelArr.map((item) => Tab(text: item.title, icon: item.badge)).toList(),
                   ),
                 ),
               ),
               Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, (widget.height - 20) / 2, 0,
-                        (widget.height - 20) / 2),
+                    padding: EdgeInsets.fromLTRB(0, (widget.height - 20) / 2, 0, (widget.height - 20) / 2),
                     child: Container(
                       color: _centerLineColor,
                       height: widget.height - 20,

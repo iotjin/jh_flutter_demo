@@ -60,8 +60,7 @@ class JhButton extends StatelessWidget {
         ),
         // 圆角
         shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(_borderRadius)),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(_borderRadius)),
         ),
       ),
     );

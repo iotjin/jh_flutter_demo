@@ -14,8 +14,7 @@ class ImgPullDownBigPage2 extends StatefulWidget {
   _ImgPullDownBigPage2State createState() => _ImgPullDownBigPage2State();
 }
 
-class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
-    with SingleTickerProviderStateMixin {
+class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2> with SingleTickerProviderStateMixin {
   ScrollController _scrollController = ScrollController();
 
   double _imgNormalHeight = 200;
@@ -92,8 +91,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2>
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100 + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
@@ -164,8 +162,7 @@ class AppBarState extends State<AppBarWidget> {
       opacity: opacity,
       child: Container(
         height: appBarHeight,
-        child:
-            backAppBar(context, '图片下拉放大2', backgroundColor: Colors.deepOrange),
+        child: backAppBar(context, '图片下拉放大2', backgroundColor: Colors.deepOrange),
       ),
     );
   }

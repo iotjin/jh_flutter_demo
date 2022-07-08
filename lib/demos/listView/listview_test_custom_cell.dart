@@ -8,13 +8,7 @@ class CustomViewModel {
   String? content;
   String? imageUrl;
 
-  CustomViewModel(
-      {this.title,
-      this.place,
-      this.state,
-      this.phone,
-      this.content,
-      this.imageUrl});
+  CustomViewModel({this.title, this.place, this.state, this.phone, this.content, this.imageUrl});
 
   CustomViewModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -57,31 +51,24 @@ class ListViewTestCustomCell extends StatelessWidget {
 //        mainAxisAlignment: MainAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("${this.data!.place}",
-                    style: TextStyle(
-                        fontSize: 18.0, backgroundColor: Colors.blue)),
+                Text("${this.data!.place}", style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
 //            Text("${this.data.state}",style: TextStyle(fontSize: 18.0,backgroundColor: Colors.blue)),
                 Row(
                   children: <Widget>[
-                    Text("${this.data!.state}",
-                        style: TextStyle(
-                            fontSize: 18.0, backgroundColor: Colors.blue)),
+                    Text("${this.data!.state}", style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
                     Padding(
                       padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                     ),
-                    Image.network("${this.data!.imageUrl}",
-                        width: 30, height: 30),
+                    Image.network("${this.data!.imageUrl}", width: 30, height: 30),
                   ],
                 )
               ],
             ),
             SizedBox(height: spaceHeight),
-            Text("${this.data!.phone}",
-                textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0)),
+            Text("${this.data!.phone}", textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0)),
             SizedBox(height: spaceHeight),
             Text("${this.data!.content}",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
+                textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
           ],
         ));
   }

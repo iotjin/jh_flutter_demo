@@ -51,8 +51,7 @@ class ListViewGroupPage2 extends StatefulWidget {
   _ListViewGroupPage2State createState() => _ListViewGroupPage2State();
 }
 
-class _ListViewGroupPage2State extends State<ListViewGroupPage2>
-    with SingleTickerProviderStateMixin {
+class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   List tabs = ["近30日", "近7日", "今日"];
   var _rowHeight = 44.0;
@@ -77,8 +76,7 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
       appBar: baseAppBar(
         context,
         'ListViewGroupPage2',
-        bottom: PreferredSize(
-            preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
+        bottom: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
       ),
       body: _content(),
     );
@@ -127,14 +125,11 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
                           groupData[index - 1]['groupTitle'],
                         ),
                         SizedBox(width: 8),
-                        Text('(${groupData[index - 1]['num']})',
-                            style: TextStyle(color: Colors.red, fontSize: 22))
+                        Text('(${groupData[index - 1]['num']})', style: TextStyle(color: Colors.red, fontSize: 22))
                       ],
                     ),
                   ),
-                  content: Column(
-                      children: buildGroup(groupData[index - 1]['data'],
-                          groupData[index - 1]['num'])),
+                  content: Column(children: buildGroup(groupData[index - 1]['data'], groupData[index - 1]['num'])),
                 );
         });
   }
@@ -159,9 +154,7 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
               height: 70,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8.0),
-                    topRight: Radius.circular(8.0)),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,9 +191,7 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2>
               padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(8.0),
-                    bottomRight: Radius.circular(8.0)),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8.0), bottomRight: Radius.circular(8.0)),
               ),
             )
           ],

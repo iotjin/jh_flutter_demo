@@ -28,11 +28,8 @@ class AlertTestPage extends StatelessWidget {
           });
         }
         if (index == 1) {
-          JhAlert.showAlert(context,
-              title: "提示",
-              content: "这是内容这是内容这是内容",
-              leftText: "左侧",
-              rightText: "右侧", clickCallback: (index, text) {
+          JhAlert.showAlert(context, title: "提示", content: "这是内容这是内容这是内容", leftText: "左侧", rightText: "右侧",
+              clickCallback: (index, text) {
             if (index == 0) {
               print("点击左侧按钮");
               Fluttertoast.showToast(msg: "点击左侧按钮");
@@ -44,10 +41,8 @@ class AlertTestPage extends StatelessWidget {
           });
         }
         if (index == 2) {
-          JhAlert.showActionSheet(context,
-              title: "提示",
-              content: "这是提示内容这是提示内容这是提示内容这是提示内容",
-              otherBtnTitles: ["一", "二"], clickCallback: (index, text) {
+          JhAlert.showActionSheet(context, title: "提示", content: "这是提示内容这是提示内容这是提示内容这是提示内容", otherBtnTitles: ["一", "二"],
+              clickCallback: (index, text) {
             print(index);
             Fluttertoast.showToast(msg: text);
           });
@@ -64,28 +59,22 @@ class AlertTestPage extends StatelessWidget {
           });
         }
         if (index == 4) {
-          JhAlert.showActionSheet(context,
-              title: "这是提示",
-              otherBtnTitles: ["一"],
-              redBtnTitle: "删除", clickCallback: (index, text) {
+          JhAlert.showActionSheet(context, title: "这是提示", otherBtnTitles: ["一"], redBtnTitle: "删除",
+              clickCallback: (index, text) {
             print(index);
             print(text);
             Fluttertoast.showToast(msg: text);
           });
         }
         if (index == 5) {
-          JhAlert.showActionSheet(context,
-              otherBtnTitles: ["一"],
-              redBtnTitle: "删除", clickCallback: (index, text) {
+          JhAlert.showActionSheet(context, otherBtnTitles: ["一"], redBtnTitle: "删除", clickCallback: (index, text) {
             print(index);
             print(text);
             Fluttertoast.showToast(msg: text);
           });
         }
         if (index == 6) {
-          JhAlert.showActionSheet(context,
-              title: "请选择",
-              otherBtnTitles: ["一", "二"], clickCallback: (index, text) {
+          JhAlert.showActionSheet(context, title: "请选择", otherBtnTitles: ["一", "二"], clickCallback: (index, text) {
             print(index);
             print(text);
             Fluttertoast.showToast(msg: text);
@@ -106,17 +95,14 @@ showLoading(BuildContext context, [String? text]) {
       return Center(
         child: Container(
           constraints: BoxConstraints(minHeight: 120, minWidth: 180),
-          decoration: BoxDecoration(
-              color: Colors.black87,
-              borderRadius: BorderRadius.circular(3.0),
-              boxShadow: [
-                //阴影
-                BoxShadow(
-                  color: Colors.black12,
-                  //offset: Offset(2.0,2.0),
-                  blurRadius: 10.0,
-                )
-              ]),
+          decoration: BoxDecoration(color: Colors.black87, borderRadius: BorderRadius.circular(3.0), boxShadow: [
+            //阴影
+            BoxShadow(
+              color: Colors.black12,
+              //offset: Offset(2.0,2.0),
+              blurRadius: 10.0,
+            )
+          ]),
           padding: EdgeInsets.all(16),
           margin: EdgeInsets.all(16),
           child: Column(

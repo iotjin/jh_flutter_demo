@@ -113,8 +113,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
           removeTop: true,
           child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
+              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: dataArr.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
@@ -149,10 +148,8 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
         right: 0,
         child: backAppBar(context, '排行榜',
             backgroundColor: Colors.white.withOpacity(_appbarOpacity),
-            brightness:
-                _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
-            rightImgPath: 'assets/images/ic_more_black.png',
-            rightItemCallBack: () {
+            brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
+            rightImgPath: 'assets/images/ic_more_black.png', rightItemCallBack: () {
           _clickCell(context, '更多');
         }),
       ),
@@ -190,9 +187,8 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         child: Center(
-                          child: Text(item['name'].substring(0, 1),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20)),
+                          child:
+                              Text(item['name'].substring(0, 1), style: TextStyle(color: Colors.white, fontSize: 20)),
                         ),
                       ),
                       title: Text(
@@ -201,11 +197,8 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
                       ),
                       trailing: Text(
                         item['steps'].toString(),
-                        style: TextStyle(
-                            fontSize: 28,
-                            color: item['steps'] > 10000
-                                ? Colors.orange
-                                : KColors.wxTextColor),
+                        style:
+                            TextStyle(fontSize: 28, color: item['steps'] > 10000 ? Colors.orange : KColors.wxTextColor),
                       ),
                     ),
                   ),
@@ -242,8 +235,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
                 ],
               ),
               SizedBox(height: 10),
-              Container(
-                  color: KColors.kLineColor, height: item['isOwn'] ? 10 : 1),
+              Container(color: KColors.kLineColor, height: item['isOwn'] ? 10 : 1),
             ],
           ),
         ));

@@ -4,6 +4,7 @@
 ///  description:  输出Log日志工具类
 
 import 'dart:convert' as convert;
+import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:common_utils/common_utils.dart';
 
@@ -15,9 +16,15 @@ class LogUtils {
   /// App运行在Release环境时，inProduction为true；当App运行在Debug和Profile环境时，inProduction为false
   static const bool inProduction = kReleaseMode;
 
-  static void print_(String msg) {
+  static void print_(object) {
     if (!inProduction) {
-      debugPrint(msg);
+      print(object);
+    }
+  }
+
+  static void printAll(object) {
+    if (!inProduction) {
+      log(convert.jsonEncode(object));
     }
   }
 
@@ -50,11 +57,7 @@ class LogUtils {
   }
 
   // https://github.com/Milad-Akarie/pretty_dio_logger
-  static void _printMap(Map data,
-      {String tag = tag,
-      int tabs = 1,
-      bool isListItem = false,
-      bool isLast = false}) {
+  static void _printMap(Map data, {String tag = tag, int tabs = 1, bool isListItem = false, bool isLast = false}) {
     final bool isRoot = tabs == 1;
     final String initialIndent = _indent(tabs);
     tabs++;
@@ -67,8 +70,7 @@ class LogUtils {
       if (value is String) value = '\"$value\"';
       if (value is Map) {
         if (value.length == 0)
-          LogUtil.v('${_indent(tabs)} $key: $value${!isLast ? ',' : ''}',
-              tag: tag);
+          LogUtil.v('${_indent(tabs)} $key: $value${!isLast ? ',' : ''}', tag: tag);
         else {
           LogUtil.v('${_indent(tabs)} $key: {', tag: tag);
           _printMap(value, tabs: tabs);

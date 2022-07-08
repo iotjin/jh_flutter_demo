@@ -56,49 +56,30 @@ class MainRouter implements IRouterProvider {
   void initRouter(FluroRouter router) {
     router.define(onePage, handler: Handler(handlerFunc: (_, __) => OnePage()));
     router.define(twoPage, handler: Handler(handlerFunc: (_, __) => TwoPage()));
-    router.define(threePage,
-        handler: Handler(handlerFunc: (_, __) => ThreePage()));
-    router.define(fourPage,
-        handler: Handler(handlerFunc: (_, __) => FourPage()));
+    router.define(threePage, handler: Handler(handlerFunc: (_, __) => ThreePage()));
+    router.define(fourPage, handler: Handler(handlerFunc: (_, __) => FourPage()));
 
-    router.define("SetPage",
-        handler: Handler(handlerFunc: (_, __) => SetPage()));
-    router.define("InfoPage",
-        handler: Handler(handlerFunc: (_, __) => InfoPage()));
-    router.define("AboutPage",
-        handler: Handler(handlerFunc: (_, __) => AboutPage()));
-    router.define("AboutIOSPage",
-        handler: Handler(handlerFunc: (_, __) => AboutIOSPage()));
-    router.define("MinePage",
-        handler: Handler(handlerFunc: (_, __) => MinePage()));
-    router.define("ImgPullDownBigPage",
-        handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage()));
-    router.define("ImgPullDownBigPage2",
-        handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage2()));
-    router.define("ImgPullDownBigPage3",
-        handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage3()));
-    router.define("PersonCenterPage",
-        handler: Handler(handlerFunc: (_, __) => PersonCenterPage()));
-    router.define("PersonCenterPage2",
-        handler: Handler(handlerFunc: (_, __) => PersonCenterPage2()));
-    router.define("FadeAppBarPage",
-        handler: Handler(handlerFunc: (_, __) => FadeAppBarPage()));
+    router.define("SetPage", handler: Handler(handlerFunc: (_, __) => SetPage()));
+    router.define("InfoPage", handler: Handler(handlerFunc: (_, __) => InfoPage()));
+    router.define("AboutPage", handler: Handler(handlerFunc: (_, __) => AboutPage()));
+    router.define("AboutIOSPage", handler: Handler(handlerFunc: (_, __) => AboutIOSPage()));
+    router.define("MinePage", handler: Handler(handlerFunc: (_, __) => MinePage()));
+    router.define("ImgPullDownBigPage", handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage()));
+    router.define("ImgPullDownBigPage2", handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage2()));
+    router.define("ImgPullDownBigPage3", handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage3()));
+    router.define("PersonCenterPage", handler: Handler(handlerFunc: (_, __) => PersonCenterPage()));
+    router.define("PersonCenterPage2", handler: Handler(handlerFunc: (_, __) => PersonCenterPage2()));
+    router.define("FadeAppBarPage", handler: Handler(handlerFunc: (_, __) => FadeAppBarPage()));
 
     /********************************* 首页 ********************************/
 
-    router.define('WxQQMessagePage',
-        handler: Handler(handlerFunc: (_, __) => WxQQMessagePage()));
-    router.define('WxSubscriptionNumberPage',
-        handler: Handler(handlerFunc: (_, __) => WxSubscriptionNumberPage()));
+    router.define('WxQQMessagePage', handler: Handler(handlerFunc: (_, __) => WxQQMessagePage()));
+    router.define('WxSubscriptionNumberPage', handler: Handler(handlerFunc: (_, __) => WxSubscriptionNumberPage()));
     router.define('WxSubscriptionNumberListPage',
-        handler:
-            Handler(handlerFunc: (_, __) => WxSubscriptionNumberListPage()));
-    router.define('WxMotionPage',
-        handler: Handler(handlerFunc: (_, __) => WxMotionPage()));
-    router.define('WxMotionTopPage',
-        handler: Handler(handlerFunc: (_, __) => WxMotionTopPage()));
-    router.define('QrCodeScannerPage',
-        handler: Handler(handlerFunc: (_, __) => QrCodeScannerPage()));
+        handler: Handler(handlerFunc: (_, __) => WxSubscriptionNumberListPage()));
+    router.define('WxMotionPage', handler: Handler(handlerFunc: (_, __) => WxMotionPage()));
+    router.define('WxMotionTopPage', handler: Handler(handlerFunc: (_, __) => WxMotionTopPage()));
+    router.define('QrCodeScannerPage', handler: Handler(handlerFunc: (_, __) => QrCodeScannerPage()));
 
     /********************************* 联系人 ********************************/
 
@@ -118,23 +99,16 @@ class MainRouter implements IRouterProvider {
       ContactsModel model = ContactsModel.fromJson(json.decode(jsonStr));
       return WxInfoSetPage(model);
     }));
-    router.define("WxAddFriendPage",
-        handler: Handler(handlerFunc: (_, __) => WxAddFriendPage()));
-    router.define("WxNewFriendPage",
-        handler: Handler(handlerFunc: (_, __) => WxNewFriendPage()));
-    router.define("WxGroupChatPage",
-        handler: Handler(handlerFunc: (_, __) => WxGroupChatPage()));
+    router.define("WxAddFriendPage", handler: Handler(handlerFunc: (_, __) => WxAddFriendPage()));
+    router.define("WxNewFriendPage", handler: Handler(handlerFunc: (_, __) => WxNewFriendPage()));
+    router.define("WxGroupChatPage", handler: Handler(handlerFunc: (_, __) => WxGroupChatPage()));
 
     /********************************* 发现 ********************************/
-    router.define("WxFriendsCirclePage",
-        handler: Handler(handlerFunc: (_, __) => WxFriendsCirclePage()));
+    router.define("WxFriendsCirclePage", handler: Handler(handlerFunc: (_, __) => WxFriendsCirclePage()));
 
     /********************************* 我的 ********************************/
-    router.define("WxPersonInfoPage",
-        handler: Handler(handlerFunc: (_, __) => WxPersonInfoPage()));
-    router.define("WxPayPage",
-        handler: Handler(handlerFunc: (_, __) => WxPayPage()));
-    router.define("WxPayManagerPage",
-        handler: Handler(handlerFunc: (_, __) => WxPayManagerPage()));
+    router.define("WxPersonInfoPage", handler: Handler(handlerFunc: (_, __) => WxPersonInfoPage()));
+    router.define("WxPayPage", handler: Handler(handlerFunc: (_, __) => WxPayPage()));
+    router.define("WxPayManagerPage", handler: Handler(handlerFunc: (_, __) => WxPayManagerPage()));
   }
 }

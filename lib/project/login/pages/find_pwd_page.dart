@@ -54,11 +54,9 @@ class _FindPwdPageState extends State<FindPwdPage> {
                     labelText: "用户名",
                     hintText: "请输入用户名",
                     hintStyle: TextStyle(fontSize: 15),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).primaryColor, width: 0.8)),
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 0.5)),
+                    focusedBorder:
+                        UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+                    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -70,15 +68,10 @@ class _FindPwdPageState extends State<FindPwdPage> {
                       hintText: "请输入密码",
                       hintStyle: TextStyle(fontSize: 15),
                       focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Theme.of(context).primaryColor,
-                              width: 0.8)),
-                      enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Colors.grey, width: 0.5)),
+                          borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
                       suffixIcon: IconButton(
-                        icon: Icon(
-                            pwdShow ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(pwdShow ? Icons.visibility : Icons.visibility_off),
                         onPressed: () {
                           setState(() {
                             pwdShow = !pwdShow;

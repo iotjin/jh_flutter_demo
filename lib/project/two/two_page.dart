@@ -103,8 +103,7 @@ class _TwoPageState extends State<TwoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: gradientAppBar(context, KStrings.twoTabTitle,
-          rightImgPath: 'assets/images/tianjiahaoyou.png',
+      appBar: gradientAppBar(context, KStrings.twoTabTitle, rightImgPath: 'assets/images/tianjiahaoyou.png',
           rightItemCallBack: () {
         JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }),
@@ -137,22 +136,18 @@ class _TwoPageState extends State<TwoPage> {
       indexBarOptions: IndexBarOptions(
         needRebuild: true,
         ignoreDragCancel: true,
-        selectTextStyle: TextStyle(
-            fontSize: 12, color: Colors.white, fontWeight: FontWeight.w500),
-        selectItemDecoration:
-            BoxDecoration(shape: BoxShape.circle, color: Colors.green),
+        selectTextStyle: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w500),
+        selectItemDecoration: BoxDecoration(shape: BoxShape.circle, color: Colors.green),
         indexHintWidth: 120 / 2,
         indexHintHeight: 100 / 2,
         indexHintDecoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                'assets/wechat/contacts/ic_index_bar_bubble_gray.png'),
+            image: AssetImage('assets/wechat/contacts/ic_index_bar_bubble_gray.png'),
             fit: BoxFit.contain,
           ),
         ),
         indexHintAlignment: Alignment.centerRight,
-        indexHintTextStyle: TextStyle(
-            color: Colors.white70, fontSize: 30.0, fontWeight: FontWeight.w700),
+        indexHintTextStyle: TextStyle(color: Colors.white70, fontSize: 30.0, fontWeight: FontWeight.w700),
         indexHintChildAlignment: Alignment(-0.25, 0.0),
         indexHintOffset: Offset(-10, 0),
       ),
@@ -208,8 +203,7 @@ class _TwoPageState extends State<TwoPage> {
       );
     }
 
-    List<Widget> _topWidgetList =
-        _topData.map((item) => _topCell(context, item)).toList();
+    List<Widget> _topWidgetList = _topData.map((item) => _topCell(context, item)).toList();
 
     Widget _searchBar = Container(
       decoration: new BoxDecoration(
@@ -242,18 +236,14 @@ class _TwoPageState extends State<TwoPage> {
       padding: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         color: isFloat ? Colors.white : KColors.wxBgColor,
-        border: isFloat
-            ? Border(bottom: BorderSide(color: Color(0xFFE6E6E6), width: 0.5))
-            : null,
+        border: isFloat ? Border(bottom: BorderSide(color: Color(0xFFE6E6E6), width: 0.5)) : null,
       ),
       alignment: Alignment.centerLeft,
       child: Text(
         '${susTag == '★' ? '★ 星标朋友' : susTag}',
         softWrap: false,
         style: TextStyle(
-            fontSize: 18,
-            color: isFloat ? KColors.wxPayColor : Color(0xff777777),
-            fontWeight: FontWeight.bold),
+            fontSize: 18, color: isFloat ? KColors.wxPayColor : Color(0xff777777), fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -279,15 +269,13 @@ class _TwoPageState extends State<TwoPage> {
           borderRadius: BorderRadius.circular(3),
         ),
         child: Center(
-          child: Text(model.name!.substring(0, 1),
-              style: TextStyle(color: Colors.white, fontSize: 20)),
+          child: Text(model.name!.substring(0, 1), style: TextStyle(color: Colors.white, fontSize: 20)),
         ),
       ),
       clickCallBack: () {
         // 跳转个人信息页 跳转传递model
         String jsonStr = Uri.encodeComponent(jsonEncode(model));
-        JhNavUtils.pushNamed(
-            context, '${"WxUserInfoPage"}?passValue=$jsonStr');
+        JhNavUtils.pushNamed(context, '${"WxUserInfoPage"}?passValue=$jsonStr');
       },
     );
 

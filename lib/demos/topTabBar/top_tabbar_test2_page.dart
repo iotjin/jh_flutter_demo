@@ -44,8 +44,7 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: listData.length, itemBuilder: this._getListData);
+    return ListView.builder(itemCount: listData.length, itemBuilder: this._getListData);
   }
 }
 

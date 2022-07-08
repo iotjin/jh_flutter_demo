@@ -18,8 +18,7 @@ class GraphicLinePage extends StatefulWidget {
 class _GraphicLinePageState extends State<GraphicLinePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: backAppBar(context, 'Graphic - 折线图'), body: _scrollbar());
+    return Scaffold(appBar: backAppBar(context, 'Graphic - 折线图'), body: _scrollbar());
   }
 }
 
@@ -85,11 +84,7 @@ Widget _initLineChart1() {
         ],
         selections: {
           'touchMove': PointSelection(
-            on: {
-              GestureType.scaleUpdate,
-              GestureType.tapDown,
-              GestureType.longPressMoveUpdate
-            },
+            on: {GestureType.scaleUpdate, GestureType.tapDown, GestureType.longPressMoveUpdate},
             dim: Dim.x,
           )
         },
@@ -150,13 +145,11 @@ Widget _initLineChart2() {
           }, devices: {
             PointerDeviceKind.mouse
           }, variable: 'day', dim: Dim.x),
-          'tooltipTouch': PointSelection(on: {
-            GestureType.scaleUpdate,
-            GestureType.tapDown,
-            GestureType.longPressMoveUpdate
-          }, devices: {
-            PointerDeviceKind.touch
-          }, variable: 'day', dim: Dim.x),
+          'tooltipTouch': PointSelection(
+              on: {GestureType.scaleUpdate, GestureType.tapDown, GestureType.longPressMoveUpdate},
+              devices: {PointerDeviceKind.touch},
+              variable: 'day',
+              dim: Dim.x),
         },
         tooltip: TooltipGuide(
           followPointer: [true, true],
@@ -281,13 +274,10 @@ Widget _initLineChart3() {
         }, devices: {
           PointerDeviceKind.mouse
         }, dim: Dim.x),
-        'tooltipTouch': PointSelection(on: {
-          GestureType.scaleUpdate,
-          GestureType.tapDown,
-          GestureType.longPressMoveUpdate
-        }, devices: {
-          PointerDeviceKind.touch
-        }, dim: Dim.x),
+        'tooltipTouch': PointSelection(
+            on: {GestureType.scaleUpdate, GestureType.tapDown, GestureType.longPressMoveUpdate},
+            devices: {PointerDeviceKind.touch},
+            dim: Dim.x),
       },
       tooltip: TooltipGuide(
         followPointer: [true, true],
@@ -340,17 +330,11 @@ Widget _initLineChart4_1() {
           Defaults.horizontalAxis
             ..label = null
             ..line = null,
-          Defaults.verticalAxis
-            ..gridMapper =
-                (_, index, __) => index == 0 ? null : Defaults.strokeStyle,
+          Defaults.verticalAxis..gridMapper = (_, index, __) => index == 0 ? null : Defaults.strokeStyle,
         ],
         selections: {
           'touchMove': PointSelection(
-            on: {
-              GestureType.scaleUpdate,
-              GestureType.tapDown,
-              GestureType.longPressMoveUpdate
-            },
+            on: {GestureType.scaleUpdate, GestureType.tapDown, GestureType.longPressMoveUpdate},
             dim: Dim.x,
           )
         },
@@ -395,11 +379,7 @@ Widget _initLineChart4_2() {
       ],
       selections: {
         'touchMove': PointSelection(
-          on: {
-            GestureType.scaleUpdate,
-            GestureType.tapDown,
-            GestureType.longPressMoveUpdate
-          },
+          on: {GestureType.scaleUpdate, GestureType.tapDown, GestureType.longPressMoveUpdate},
           dim: Dim.x,
         )
       },

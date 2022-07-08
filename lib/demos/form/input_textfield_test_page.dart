@@ -28,20 +28,15 @@ class _InputTextFieldTestPageState extends State<InputTextFieldTestPage> {
                 enabled: false,
               ),
               SizedBox(height: 10),
-              JhTextField(
-                  hintText: "限制 长度5，0-9，phone键盘",
-                  keyboardType: TextInputType.phone,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                    LengthLimitingTextInputFormatter(5)
-                  ]),
+              JhTextField(hintText: "限制 长度5，0-9，phone键盘", keyboardType: TextInputType.phone, inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                LengthLimitingTextInputFormatter(5)
+              ]),
               SizedBox(height: 10),
-              JhTextField(
-                  hintText: "自定义inputFormatters 长度10，a-zA-Z0-9",
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
-                    LengthLimitingTextInputFormatter(10)
-                  ]),
+              JhTextField(hintText: "自定义inputFormatters 长度10，a-zA-Z0-9", inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+                LengthLimitingTextInputFormatter(10)
+              ]),
               SizedBox(height: 10),
               JhTextField(
                 hintText: '左侧自定义，maxLength=15',

@@ -12,8 +12,7 @@ const double _cellHeight = 45.0; // 输入、选择样式一行的高度
 const Color _textColor = Colors.black;
 const TextStyle _titleStyle = TextStyle(fontSize: 15.0, color: _textColor);
 const TextStyle _textStyle = TextStyle(fontSize: 15.0, color: _textColor);
-const TextStyle _hintTextStyle =
-    TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB)); // 187
+const TextStyle _hintTextStyle = TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB)); // 187
 const double _lineHeight = 0.6; // 底部线高
 const Color _lineColor = Color(0xFFE6E6E6); // 线 230
 
@@ -94,30 +93,22 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
               decoration: UnderlineTabIndicator(
 //                  borderSide: BorderSide(width: _lineHeight, color: widget.hiddenLine== true ?Colors.transparent:Theme.of(context).dividerColor),
                   borderSide: BorderSide(
-                      width: _lineHeight,
-                      color: widget.hiddenLine == true
-                          ? Colors.transparent
-                          : _lineColor),
+                      width: _lineHeight, color: widget.hiddenLine == true ? Colors.transparent : _lineColor),
                   insets: EdgeInsets.fromLTRB(_starW, 0, 0, 0)),
               child: Row(
-                  crossAxisAlignment: widget.topAlign == true
-                      ? CrossAxisAlignment.start
-                      : CrossAxisAlignment.center,
+                  crossAxisAlignment: widget.topAlign == true ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                   children: <Widget>[
                     widget.leftWidget ?? Container(),
                     Container(
                       width: _starW,
-                      padding: EdgeInsets.fromLTRB(
-                          0, widget.topAlign == true ? _topSpace : 0, 0, 0),
-                      child: Text(widget.showRedStar ? "*" : " ",
-                          style: TextStyle(fontSize: 18.0, color: Colors.red)),
+                      padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? _topSpace : 0, 0, 0),
+                      child: Text(widget.showRedStar ? "*" : " ", style: TextStyle(fontSize: 18.0, color: Colors.red)),
                     ),
                     Offstage(
                       offstage: widget.title.isEmpty ? true : false,
                       child: Container(
                         width: widget.space - _starW,
-                        padding: EdgeInsets.fromLTRB(
-                            0, widget.topAlign == true ? _topSpace : 0, 0, 0),
+                        padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? _topSpace : 0, 0, 0),
                         child: Text(widget.title, style: widget.titleStyle),
                       ),
                     ),
@@ -134,8 +125,7 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
                     widget.rightWidget ?? Container(),
                     Offstage(
                       offstage: _hiddenArrow,
-                      child: Icon(Icons.arrow_forward_ios,
-                          size: 18, color: Color(0xFFC8C8C8)),
+                      child: Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8)),
                     ),
                   ])),
           onTap: () {

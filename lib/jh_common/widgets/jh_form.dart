@@ -80,8 +80,7 @@ class JhForm {
   }
 
   /// 三方键盘配置
-  static KeyboardActionsConfig getKeyboardConfig(
-      BuildContext context, List<FocusNode> list) {
+  static KeyboardActionsConfig getKeyboardConfig(BuildContext context, List<FocusNode> list) {
     return KeyboardActionsConfig(
       keyboardBarColor: Colors.grey[200],
       nextFocus: true,
@@ -93,18 +92,16 @@ class JhForm {
                   (node) {
                     return GestureDetector(
                         onTap: () => node.unfocus(),
-                        child: Stack(
-                            alignment: Alignment.centerRight,
-                            children: <Widget>[
-                              Container(
-                                color: Colors.transparent,
-                                width: 100,
-                              ),
-                              Positioned(
-                                right: 15,
-                                child: Text("关闭"),
-                              ),
-                            ]));
+                        child: Stack(alignment: Alignment.centerRight, children: <Widget>[
+                          Container(
+                            color: Colors.transparent,
+                            width: 100,
+                          ),
+                          Positioned(
+                            right: 15,
+                            child: Text("关闭"),
+                          ),
+                        ]));
                   },
                 ],
               )),
@@ -156,8 +153,7 @@ class _CreateInputCellState extends State<CreateInputCell> {
         children: <Widget>[
           Container(
             width: widget.space,
-            child: Text(widget.title,
-                style: TextStyle(fontSize: _titleFontSize, color: _textColor)),
+            child: Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: _textColor)),
           ),
           Expanded(
               child: Container(
@@ -228,8 +224,7 @@ class _CreateTextViewCellState extends State<CreateTextViewCell> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(widget.showRedStar! ? "*" : "",
-              style: TextStyle(fontSize: 18.0, color: Colors.red)),
+          Text(widget.showRedStar! ? "*" : "", style: TextStyle(fontSize: 18.0, color: Colors.red)),
           SizedBox(
             width: widget.showRedStar! ? 5 : 0,
           ),
@@ -299,8 +294,7 @@ class _CreateSelectTextCellState extends State<CreateSelectTextCell> {
         children: <Widget>[
           Container(
             width: widget.space,
-            child: Text(widget.title!,
-                style: TextStyle(fontSize: _titleFontSize, color: _textColor)),
+            child: Text(widget.title!, style: TextStyle(fontSize: _titleFontSize, color: _textColor)),
           ),
           Expanded(
               child: GestureDetector(

@@ -22,10 +22,7 @@ class ListViewHeaderPage extends StatelessWidget {
             ),
           ),
           // 当列表项高度固定时，使用 SliverFixedExtendList 比 SliverList 具有更高的性能
-          SliverFixedExtentList(
-              delegate:
-                  SliverChildBuilderDelegate(_buildListItem, childCount: 30),
-              itemExtent: 48.0)
+          SliverFixedExtentList(delegate: SliverChildBuilderDelegate(_buildListItem, childCount: 30), itemExtent: 48.0)
         ],
       ),
     );

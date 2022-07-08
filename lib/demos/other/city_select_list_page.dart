@@ -70,8 +70,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: gradientAppBar(context, '城市选择列表', rightText: '选择',
-          rightItemCallBack: () {
+      appBar: gradientAppBar(context, '城市选择列表', rightText: '选择', rightItemCallBack: () {
         print('object: ');
       }),
       body: SafeArea(
@@ -129,10 +128,8 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
                 alignment: Alignment.center,
                 width: 80.0,
                 height: 80.0,
-                decoration: BoxDecoration(
-                    color: Colors.black54, shape: BoxShape.circle),
-                child: Text(hint,
-                    style: TextStyle(color: Colors.white, fontSize: 30.0)),
+                decoration: BoxDecoration(color: Colors.black54, shape: BoxShape.circle),
+                child: Text(hint, style: TextStyle(color: Colors.white, fontSize: 30.0)),
               );
             },
           ),

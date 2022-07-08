@@ -41,8 +41,7 @@ class JhQrCodeUtils {
       JhNavUtils.unFocus();
       // 延时保证键盘收起，否则进入扫码页会黑屏
       Future<dynamic>.delayed(const Duration(milliseconds: 500), () {
-        JhNavUtils.pushNamedResult(
-            context, 'QrCodeScannerPage', (Object code) => code.toString());
+        JhNavUtils.pushNamedResult(context, 'QrCodeScannerPage', (Object code) => code.toString());
       });
     } else {
       JhProgressHUD.showText('当前平台暂不支持');
@@ -52,18 +51,12 @@ class JhQrCodeUtils {
 
   /// 生成二维码（中间带图片）
   static Widget createQRCode(String data, double size,
-      {Color? backgroundColor,
-      Color? foregroundColor,
-      EdgeInsets? padding,
-      ImageProvider? image,
-      Size? imageSize}) {
+      {Color? backgroundColor, Color? foregroundColor, EdgeInsets? padding, ImageProvider? image, Size? imageSize}) {
     return QrImage(
       data: data,
       size: size,
-      backgroundColor:
-          backgroundColor == null ? Color(0x00FFFFFF) : backgroundColor,
-      foregroundColor:
-          foregroundColor == null ? Color(0xFF000000) : foregroundColor,
+      backgroundColor: backgroundColor == null ? Color(0x00FFFFFF) : backgroundColor,
+      foregroundColor: foregroundColor == null ? Color(0xFF000000) : foregroundColor,
       padding: padding == null ? EdgeInsets.all(10.0) : padding,
       embeddedImage: image,
       embeddedImageStyle: QrEmbeddedImageStyle(size: imageSize),

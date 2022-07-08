@@ -33,8 +33,7 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
                 title: "左标题",
                 hintText: "默认1行,最多5行,100字符,标题垂直居中",
               ),
-              JhFormInputCell(
-                  title: "左标题", text: "text赋初值,不可编辑", enabled: false),
+              JhFormInputCell(title: "左标题", text: "text赋初值,不可编辑", enabled: false),
               JhFormInputCell(
                 title: "左标题",
                 hintText: "标题加红星",
@@ -69,13 +68,10 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
                     FilteringTextInputFormatter.allow(RegExp("[0-9]")),
                     LengthLimitingTextInputFormatter(5)
                   ]),
-              JhFormInputCell(
-                  title: "左标题",
-                  hintText: "自定义inputFormatters 长度10，a-zA-Z0-9",
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
-                    LengthLimitingTextInputFormatter(10)
-                  ]),
+              JhFormInputCell(title: "左标题", hintText: "自定义inputFormatters 长度10，a-zA-Z0-9", inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+                LengthLimitingTextInputFormatter(10)
+              ]),
               JhFormInputCell(
                 hintText: '左侧自定义，maxLength=15',
                 leftWidget: Container(

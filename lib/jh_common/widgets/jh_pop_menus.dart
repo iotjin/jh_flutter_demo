@@ -43,12 +43,9 @@ class JhPopMenus {
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 25),
-                        Image.asset(dataArr[index]['icon'],
-                            width: _imgWH, height: _imgWH, color: Colors.white),
+                        Image.asset(dataArr[index]['icon'], width: _imgWH, height: _imgWH, color: Colors.white),
                         SizedBox(width: 15),
-                        Text(dataArr[index]['text'],
-                            style: TextStyle(
-                                color: Colors.white, fontSize: _fontSize)),
+                        Text(dataArr[index]['text'], style: TextStyle(color: Colors.white, fontSize: _fontSize)),
                       ],
                     )));
           });
@@ -63,27 +60,20 @@ class JhPopMenus {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Image.asset('assets/images/popMenus/ic_menu_up_arrow.png',
-                width: 28, height: 5),
+            Image.asset('assets/images/popMenus/ic_menu_up_arrow.png', width: 28, height: 5),
             ClipRRect(
                 borderRadius: BorderRadius.circular(5),
-                child: Container(
-                    color: _bgColor,
-                    width: 160,
-                    height: cellH,
-                    child: _buildMenuCell(dataArr)))
+                child: Container(color: _bgColor, width: 160, height: cellH, child: _buildMenuCell(dataArr)))
           ],
         ),
       );
     }
 
-    Navigator.of(context)
-        .push(DialogRouter(_BasePopMenus(child: _menusView(_listData))));
+    Navigator.of(context).push(DialogRouter(_BasePopMenus(child: _menusView(_listData))));
   }
 
   /// 显示带线带背景 pop
-  static void showLinePop(BuildContext context,
-      {bool isShowBg = false, _ClickCallBack? clickCallback}) {
+  static void showLinePop(BuildContext context, {bool isShowBg = false, _ClickCallBack? clickCallback}) {
     // 带线
     Widget _buildMenuLineCell(dataArr) {
       return ListView.separated(
@@ -105,12 +95,9 @@ class JhPopMenus {
                     child: Row(
                       children: <Widget>[
                         SizedBox(width: 25),
-                        Image.asset(dataArr[index]['icon'],
-                            width: _imgWH, height: _imgWH, color: Colors.white),
+                        Image.asset(dataArr[index]['icon'], width: _imgWH, height: _imgWH, color: Colors.white),
                         SizedBox(width: 12),
-                        Text(dataArr[index]['text'],
-                            style: TextStyle(
-                                color: Colors.white, fontSize: _fontSize))
+                        Text(dataArr[index]['text'], style: TextStyle(color: Colors.white, fontSize: _fontSize))
                       ],
                     ),
                   )));
@@ -140,15 +127,10 @@ class JhPopMenus {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Image.asset('assets/images/popMenus/ic_menu_up_arrow.png',
-                width: 28, height: 5),
+            Image.asset('assets/images/popMenus/ic_menu_up_arrow.png', width: 28, height: 5),
             ClipRRect(
                 borderRadius: BorderRadius.circular(5),
-                child: Container(
-                    color: _bgColor,
-                    width: 160,
-                    height: cellH,
-                    child: _buildMenuLineCell(dataArr)))
+                child: Container(color: _bgColor, width: 160, height: cellH, child: _buildMenuLineCell(dataArr)))
           ],
         ),
       );
@@ -163,8 +145,7 @@ class JhPopMenus {
             return _BasePopMenus(child: _menusView(_listData));
           });
     } else {
-      Navigator.of(context)
-          .push(DialogRouter(_BasePopMenus(child: _menusView(_listData))));
+      Navigator.of(context).push(DialogRouter(_BasePopMenus(child: _menusView(_listData))));
     }
   }
 }
@@ -203,8 +184,7 @@ class DialogRouter extends PageRouteBuilder {
           barrierColor: Colors.white10.withAlpha(1),
           transitionDuration: const Duration(milliseconds: 150),
           pageBuilder: (context, animation, secondaryAnimation) => page,
-          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-              child,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) => child,
         );
 }
 

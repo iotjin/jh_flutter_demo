@@ -15,9 +15,7 @@ class GraphicBarPage extends StatefulWidget {
 class _GraphicBarPageState extends State<GraphicBarPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: backAppBar(context, 'Graphic - 柱状图'),
-        body: _scrollbar());
+    return Scaffold(appBar: backAppBar(context, 'Graphic - 柱状图'), body: _scrollbar());
   }
 }
 
@@ -145,8 +143,7 @@ Widget _initBarChart3() {
         },
         elements: [
           IntervalElement(
-            label:
-                LabelAttr(encoder: (tuple) => Label(tuple['sold'].toString())),
+            label: LabelAttr(encoder: (tuple) => Label(tuple['sold'].toString())),
             elevation: ElevationAttr(value: 0, updaters: {
               'tap': {true: (_) => 5}
             }),
@@ -185,8 +182,7 @@ Widget _initBarChart4() {
         },
         elements: [
           IntervalElement(
-            label:
-                LabelAttr(encoder: (tuple) => Label(tuple['sold'].toString())),
+            label: LabelAttr(encoder: (tuple) => Label(tuple['sold'].toString())),
             elevation: ElevationAttr(value: 0, updaters: {
               'tap': {true: (_) => 5}
             }),
@@ -280,72 +276,62 @@ Widget _initBarChart5() {
         crosshair: CrosshairGuide(),
         annotations: [
           MarkAnnotation(
-            relativePath: Path()
-              ..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
+            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
             style: Paint()..color = Defaults.colors10[0],
             anchor: (size) => const Offset(25, 290),
           ),
           TagAnnotation(
             label: Label(
               'Email',
-              LabelStyle(
-                  style: Defaults.textStyle, align: Alignment.centerRight),
+              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
             ),
             anchor: (size) => const Offset(34, 290),
           ),
           MarkAnnotation(
-            relativePath: Path()
-              ..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
+            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
             style: Paint()..color = Defaults.colors10[1],
             anchor: (size) => Offset(25 + size.width / 5, 290),
           ),
           TagAnnotation(
             label: Label(
               'Affiliate',
-              LabelStyle(
-                  style: Defaults.textStyle, align: Alignment.centerRight),
+              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
             ),
             anchor: (size) => Offset(34 + size.width / 5, 290),
           ),
           MarkAnnotation(
-            relativePath: Path()
-              ..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
+            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
             style: Paint()..color = Defaults.colors10[2],
             anchor: (size) => Offset(25 + size.width / 5 * 2, 290),
           ),
           TagAnnotation(
             label: Label(
               'Video',
-              LabelStyle(
-                  style: Defaults.textStyle, align: Alignment.centerRight),
+              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
             ),
             anchor: (size) => Offset(34 + size.width / 5 * 2, 290),
           ),
           MarkAnnotation(
-            relativePath: Path()
-              ..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
+            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
             style: Paint()..color = Defaults.colors10[3],
             anchor: (size) => Offset(25 + size.width / 5 * 3, 290),
           ),
           TagAnnotation(
             label: Label(
               'Direct',
-              LabelStyle(
-                  style: Defaults.textStyle, align: Alignment.centerRight),
+              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
             ),
             anchor: (size) => Offset(34 + size.width / 5 * 3, 290),
           ),
           MarkAnnotation(
-            relativePath: Path()
-              ..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
+            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
             style: Paint()..color = Defaults.colors10[4],
             anchor: (size) => Offset(25 + size.width / 5 * 4, 290),
           ),
           TagAnnotation(
             label: Label(
               'Search',
-              LabelStyle(
-                  style: Defaults.textStyle, align: Alignment.centerRight),
+              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
             ),
             anchor: (size) => Offset(34 + size.width / 5 * 4, 290),
           ),
@@ -362,16 +348,15 @@ const _kMinBarSize = 4.0;
 @immutable
 class DodgeSizeModifier extends Modifier {
   @override
-  void modify(AesGroups groups, Map<String, ScaleConv<dynamic, num>> scales,
-      AlgForm form, CoordConv coord, Offset origin) {
+  void modify(
+      AesGroups groups, Map<String, ScaleConv<dynamic, num>> scales, AlgForm form, CoordConv coord, Offset origin) {
     final xField = form.first[0];
     final band = (scales[xField]! as DiscreteScaleConv).band;
 
     final ratio = 1 / groups.length;
     final numGroups = groups.length;
     final groupHorizontalPadding = _kBaseGroupPaddingHorizontal / numGroups;
-    final invertedGroupPaddingHorizontal =
-        coord.invertDistance(groupHorizontalPadding, Dim.x);
+    final invertedGroupPaddingHorizontal = coord.invertDistance(groupHorizontalPadding, Dim.x);
 
     final effectiveBand = band - 2 * invertedGroupPaddingHorizontal;
 

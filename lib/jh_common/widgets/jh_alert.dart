@@ -33,9 +33,7 @@ class JhAlert {
             ),
             content: Offstage(
               offstage: content == null ? true : false,
-              child: Container(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Text(content == null ? "" : content)),
+              child: Container(padding: const EdgeInsets.only(top: 10), child: Text(content == null ? "" : content)),
             ),
             actions: <Widget>[
 //            CupertinoButton(
@@ -54,8 +52,7 @@ class JhAlert {
                 },
                 child: Text(leftText),
                 style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all(_alertCancelTextColor),
+                  foregroundColor: MaterialStateProperty.all(_alertCancelTextColor),
                 ),
               ),
               TextButton(
@@ -68,8 +65,7 @@ class JhAlert {
                 },
                 child: Text(rightText),
                 style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all(_alertConfirmTextColor),
+                  foregroundColor: MaterialStateProperty.all(_alertConfirmTextColor),
                 ),
               ),
             ],

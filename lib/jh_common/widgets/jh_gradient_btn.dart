@@ -32,9 +32,7 @@ class JhGradientBtn extends StatelessWidget {
       child: Container(
         width: this.width,
         height: this.height,
-        child: Center(
-            child: Text(this.text,
-                style: TextStyle(fontSize: _fontSize, color: _textColor))),
+        child: Center(child: Text(this.text, style: TextStyle(fontSize: _fontSize, color: _textColor))),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(_borderRadius),
           gradient: LinearGradient(

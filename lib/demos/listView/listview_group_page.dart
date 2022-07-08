@@ -79,8 +79,7 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
         children: <Widget>[
           Text(item['title']),
           Text(item['phone']),
-          Image.network(item['imageUrl'],
-              fit: BoxFit.cover, width: 50, height: 50.0),
+          Image.network(item['imageUrl'], fit: BoxFit.cover, width: 50, height: 50.0),
         ],
       );
     }).toList();

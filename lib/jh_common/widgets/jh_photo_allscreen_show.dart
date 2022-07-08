@@ -12,12 +12,7 @@ const Color _otherColor = Colors.grey;
 
 class JhPhotoAllScreenShow extends StatefulWidget {
   const JhPhotoAllScreenShow(
-      {Key? key,
-      required this.imgDataArr,
-      this.index = 0,
-      this.onLongPress,
-      this.controller,
-      this.heroTag})
+      {Key? key, required this.imgDataArr, this.index = 0, this.onLongPress, this.controller, this.heroTag})
       : super(key: key);
 
   final List imgDataArr;
@@ -39,8 +34,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
     // TODO: implement initState
     super.initState();
     _currentIndex = widget.index;
-    _controller =
-        widget.controller ?? PageController(initialPage: _currentIndex);
+    _controller = widget.controller ?? PageController(initialPage: _currentIndex);
   }
 
   @override
@@ -61,9 +55,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                       builder: (BuildContext context, int index) {
                         return PhotoViewGalleryPageOptions(
                           imageProvider: NetworkImage(widget.imgDataArr[index]),
-                          heroAttributes: widget.heroTag != null
-                              ? PhotoViewHeroAttributes(tag: widget.heroTag!)
-                              : null,
+                          heroAttributes: widget.heroTag != null ? PhotoViewHeroAttributes(tag: widget.heroTag!) : null,
                         );
                       },
                       itemCount: widget.imgDataArr.length,
@@ -123,8 +115,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
                           child: CircleAvatar(
 //                      foregroundColor: Theme.of(context).primaryColor,
                             radius: 5.0,
-                            backgroundColor:
-                                _currentIndex == i ? _selColor : _otherColor,
+                            backgroundColor: _currentIndex == i ? _selColor : _otherColor,
                           ),
                         ),
                       ).toList(),
