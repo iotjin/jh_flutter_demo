@@ -105,9 +105,12 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
   }
 
   Widget _body(context, dataArr) {
+    var _navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
+    _navBgColor = _navBgColor.withOpacity(_appbarOpacity);
+
     return Stack(children: <Widget>[
       Container(
-        color: Colors.white,
+        color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
         child: MediaQuery.removePadding(
           context: context,
           removeTop: true,
@@ -131,7 +134,6 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
         width: JhScreenUtils.screenWidth,
         height: _imgChangeHeight,
         child: Container(
-          color: Colors.white,
           // child: Image.network(
           //   'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
           //   fit: BoxFit.cover,
@@ -147,7 +149,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
         left: 0,
         right: 0,
         child: backAppBar(context, '排行榜',
-            backgroundColor: Colors.white.withOpacity(_appbarOpacity),
+            backgroundColor: _navBgColor,
             brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/images/ic_more_black.png', rightItemCallBack: () {
           _clickCell(context, '更多');
@@ -235,7 +237,10 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
                 ],
               ),
               SizedBox(height: 10),
-              Container(color: KColors.kLineColor, height: item['isOwn'] ? 10 : 1),
+              Container(
+                color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
+                height: item['isOwn'] ? 10 : 1,
+              ),
             ],
           ),
         ));

@@ -107,7 +107,7 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
           onTap: () => _clickCell(context, '删除'),
           child: Container(
               height: _cellH,
-              color: Colors.white,
+              color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

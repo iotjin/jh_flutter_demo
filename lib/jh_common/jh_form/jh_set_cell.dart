@@ -4,20 +4,19 @@
 ///  description:  设置页的cell ，左侧图片，title, 右侧text ,箭头 , Edge 左15，右10
 
 import 'package:flutter/material.dart';
+import '/project/configs/colors.dart';
 import 'jh_text_field.dart';
 
-const Color _bgColor = Colors.white; // 背景色 白色
 const double _imgWH = 22.0; // 左侧图片宽高
 const double _titleSpace = 100.0; // 左侧title默认宽
 const double _cellHeight = 50.0; // 输入、选择样式一行的高度
-const TextStyle _titleStyle = TextStyle(fontSize: 16.0, color: Colors.black);
-const TextStyle _textStyle = TextStyle(fontSize: 14.0, color: Colors.black54);
 const double _leftEdge = 15.0; // 内部Widget 左边距 15
 const double _rightEdge = 10.0; // 内部Widget 左边距 10
 const double _lineLeftEdge = 15.0; // 线 左间距 默认 15
 const double _lineRightEdge = 0; // 线 右间距 默认  0
 const double _lineHeight = 0.6; // 底部线高
-const Color _lineColor = Color(0xFFE6E6E6); // 线 230
+const double _titleFontSize = 15.0;
+const double _textFontSize = 15.0;
 
 typedef _ClickCallBack = void Function();
 
@@ -32,12 +31,12 @@ class JhSetCell extends StatefulWidget {
     this.rightWidget,
     this.clickCallBack,
     this.titleWidth = _titleSpace,
-    this.titleStyle = _titleStyle,
-    this.textStyle = _textStyle,
+    this.titleStyle,
+    this.textStyle,
     this.hiddenLine = false,
     this.lineLeftEdge = _lineLeftEdge,
     this.lineRightEdge = _lineRightEdge,
-    this.bgColor = _bgColor,
+    this.bgColor,
     this.cellHeight = _cellHeight,
     this.leftImgWH = _imgWH,
     this.textAlign = TextAlign.right,
@@ -51,12 +50,12 @@ class JhSetCell extends StatefulWidget {
   final bool hiddenArrow; // 隐藏箭头，默认不隐藏
   final _ClickCallBack? clickCallBack;
   final double titleWidth; // 标题宽度
-  final TextStyle titleStyle;
-  final TextStyle textStyle;
+  final TextStyle? titleStyle;
+  final TextStyle? textStyle;
   final bool hiddenLine; // 隐藏底部横线
   final double lineLeftEdge; // 底部横线左侧距离 默认_leftEdge
   final double lineRightEdge; // 底部横线右侧距离 默认0
-  final Color bgColor; // 背景颜色，默认白色
+  final Color? bgColor; // 背景颜色，默认白色
   final double cellHeight; // 底部横线右侧距离 默认_cellHeight
   final double leftImgWH; // 左侧图片宽高，默认_imgWH
   final TextAlign textAlign; // 默认靠右
@@ -78,8 +77,22 @@ class _JhSetCellState extends State<JhSetCell> {
 
   @override
   Widget build(BuildContext context) {
+    // 默认颜色
+    var isDark = Theme.of(context).brightness == Brightness.dark;
+    var bgColor = isDark ? KColors.kCellBgDarkColor : KColors.kCellBgColor;
+    var titleColor = isDark ? KColors.kFormTitleDarkColor : KColors.kFormTitleColor;
+    var titleStyle = TextStyle(fontSize: _titleFontSize, color: titleColor);
+    var textColor = isDark ? KColors.kFormInfoDarkColor : KColors.kFormInfoColor;
+    var textStyle = TextStyle(fontSize: _textFontSize, color: textColor);
+    var _lineColor = isDark ? KColors.kFormLineDarkColor : KColors.kFormLineColor;
+
+    // 设置的颜色优先级高于暗黑模式
+    var _bgColor = widget.bgColor ?? bgColor;
+    var _titleStyle = widget.titleStyle ?? titleStyle;
+    var _textStyle = widget.textStyle ?? textStyle;
+
     return Material(
-        color: widget.bgColor,
+        color: _bgColor,
         child: InkWell(
           child: Container(
             constraints: BoxConstraints(
@@ -104,7 +117,7 @@ class _JhSetCellState extends State<JhSetCell> {
                 offstage: widget.title.isEmpty ? true : false,
                 child: Container(
                   width: widget.titleWidth,
-                  child: Text(widget.title, style: widget.titleStyle),
+                  child: Text(widget.title, style: _titleStyle),
                 ),
               ),
               Expanded(
@@ -112,7 +125,7 @@ class _JhSetCellState extends State<JhSetCell> {
                 text: widget.text,
                 hintText: '',
                 enabled: false,
-                textStyle: widget.textStyle,
+                textStyle: _textStyle,
                 textAlign: widget.textAlign,
                 border: InputBorder.none,
               )),

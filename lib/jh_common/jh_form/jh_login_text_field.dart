@@ -5,10 +5,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '/project/configs/colors.dart';
 
-const Color _textColor = Colors.black;
-const TextStyle _textStyle = TextStyle(fontSize: 15.0, color: _textColor);
-const TextStyle _hintTextStyle = TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB));
+const double _lineHeight = 0.8; // 底部线高
+const double _textFontSize = 15.0;
+const double _hintTextFontSize = 15.0;
 
 typedef _InputCallBack = void Function(String value);
 
@@ -102,6 +103,14 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 //      _pwdImg = _pwdShow?ImageIcon(AssetImage("assets/images/ic_pwd_close.png")):ImageIcon(AssetImage("assets/images/ic_pwd_open.png")) ;
     }
 
+    // 默认颜色
+    var isDark = Theme.of(context).brightness == Brightness.dark;
+    var textColor = isDark ? KColors.kFormInfoDarkColor : KColors.kFormInfoColor;
+    var _textStyle = TextStyle(fontSize: _textFontSize, color: textColor);
+    var hintColor = isDark ? KColors.kFormHintDarkColor : KColors.kFormHintColor;
+    var _hintTextStyle = TextStyle(fontSize: _hintTextFontSize, color: hintColor);
+    var _underlineColor = isDark ? KColors.kFocusedBorderDarkColor : Theme.of(context).primaryColor;
+
     return Stack(
       alignment: Alignment.centerRight,
       children: <Widget>[
@@ -124,10 +133,10 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
             isDense: widget.isDense,
             enabledBorder: widget.border != null
                 ? widget.border
-                : UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.8)),
+                : UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: _lineHeight)),
             focusedBorder: widget.border != null
                 ? widget.border
-                : UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+                : UnderlineInputBorder(borderSide: BorderSide(color: _underlineColor, width: _lineHeight)),
 //          suffixIcon:
           ),
           obscureText: _pwdShow!,

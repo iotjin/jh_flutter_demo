@@ -67,7 +67,6 @@ class _FourPageState extends State<FourPage> {
 //            rightImgPath: "assets/images/set.png", rightItemCallBack: () {
 //          JhNavUtils.pushNamed(context, "SetPage");
 //        }),
-//        backgroundColor: KColors.wxBgColor,
         body: _body(_model));
   }
 
@@ -75,7 +74,7 @@ class _FourPageState extends State<FourPage> {
     return Stack(
       children: <Widget>[
         Container(
-          color: KColors.wxBgColor,
+          color: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
           child: MediaQuery.removePadding(
             context: context,
             removeTop: true,
@@ -93,8 +92,7 @@ class _FourPageState extends State<FourPage> {
         Positioned(
           top: 0,
           child: Container(
-//            color: Colors.yellow,
-            color: Colors.white,
+            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
             constraints: BoxConstraints(
               minWidth: JhScreenUtils.screenWidth,
               maxHeight: _topH,
@@ -109,7 +107,13 @@ class _FourPageState extends State<FourPage> {
             height: 25,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[Image(height: 25, image: AssetImage('assets/images/ic_set_black.png'))],
+              children: <Widget>[
+                Image(
+                  height: 25,
+                  image: AssetImage('assets/images/ic_set_black.png'),
+                  color: KColors.dynamicColor(context, KColors.kIconColor),
+                ),
+              ],
             ),
           ),
           onTap: () {
@@ -192,10 +196,10 @@ class _FourPageState extends State<FourPage> {
   Widget _header(model) {
     return Container(
       padding: EdgeInsets.only(left: 15, bottom: 40.0, top: 72.0),
-      color: Colors.white,
+      color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15.0),
-        color: Colors.white,
+        // color: Colors.white,
         child: Row(
           children: <Widget>[
             InkWell(
@@ -252,6 +256,7 @@ class _FourPageState extends State<FourPage> {
                                 'assets/wechat/mine/ic_setting_myQR.png',
                                 width: 18.0,
                                 height: 18.0,
+                                color: KColors.dynamicColor(context, KColors.kIconColor),
                               ),
                             ),
 //                            Image.asset(

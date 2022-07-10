@@ -26,7 +26,7 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
     return Scaffold(
       appBar: backAppBar(context, KStrings.wxPayManager, backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 

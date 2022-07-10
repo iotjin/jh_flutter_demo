@@ -102,13 +102,20 @@ class _TwoPageState extends State<TwoPage> {
 
   @override
   Widget build(BuildContext context) {
+    var isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      appBar: gradientAppBar(context, KStrings.twoTabTitle, rightImgPath: 'assets/images/tianjiahaoyou.png',
-          rightItemCallBack: () {
-        JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-      }),
+      appBar: isDark
+          ? baseAppBar(context, KStrings.twoTabTitle,
+              backgroundColor: KColors.kNavBgDarkColor,
+              rightImgPath: 'assets/images/tianjiahaoyou.png', rightItemCallBack: () {
+              JhNavUtils.pushNamed(context, 'WxAddFriendPage');
+            })
+          : gradientAppBar(context, KStrings.twoTabTitle, rightImgPath: 'assets/images/tianjiahaoyou.png',
+              rightItemCallBack: () {
+              JhNavUtils.pushNamed(context, 'WxAddFriendPage');
+            }),
       body: _body(),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
   }
 
@@ -208,7 +215,7 @@ class _TwoPageState extends State<TwoPage> {
     Widget _searchBar = Container(
       decoration: new BoxDecoration(
 //        border: Border.all(color: Colors.grey, width: 0.3), // 灰色的一层边框
-        color: Colors.white,
+        color: KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor),
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       alignment: Alignment.center,
@@ -235,7 +242,7 @@ class _TwoPageState extends State<TwoPage> {
       width: JhScreenUtils.screenWidth,
       padding: EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
-        color: isFloat ? Colors.white : KColors.wxBgColor,
+        color: isFloat ? Colors.white : KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
         border: isFloat ? Border(bottom: BorderSide(color: Color(0xFFE6E6E6), width: 0.5)) : null,
       ),
       alignment: Alignment.centerLeft,

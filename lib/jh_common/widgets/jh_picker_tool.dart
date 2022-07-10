@@ -5,6 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
+import '/project/configs/colors.dart';
 
 const String _titleNormalText = '请选择';
 const String _cancelText = '取消';
@@ -20,13 +21,6 @@ const double _kHeaderRadius = 10.0;
 const double _kTitleFontSize = 18.0;
 const double _kBtnFontSize = 17.0;
 const double _selectTextFontSize = 20.0;
-const Color _bgColor = Colors.white;
-const Color _headerColor = Colors.white;
-const Color _kHeaderLineColor = Colors.black;
-const Color _kTitleColor = Color(0xFF787878); // 120
-const Color _kBtnColor = Color(0xFF323232); // 50
-const Color _selectTextColor = Colors.black;
-final Color _selectItemBgColor = Colors.grey.withOpacity(0.15);
 
 /// 选择回调
 /// 单列选择器返回选中行对象和index
@@ -161,16 +155,26 @@ _showPicker(
   required PickerAdapter adapter,
   _ClickCallBack? clickCallBack,
 }) {
+  // 默认颜色
+  var isDark = Theme.of(context).brightness == Brightness.dark;
+  var _bgColor = isDark ? KColors.kPickerBgDarkColor : KColors.kPickerBgColor;
+  var _headerColor = isDark ? KColors.kPickerHeaderDarkColor : KColors.kPickerHeaderColor;
+  var _kHeaderLineColor = isDark ? KColors.kPickerHeaderLineDarkColor : KColors.kPickerHeaderLineColor;
+  var _titleColor = isDark ? KColors.kPickerTitleDarkColor : KColors.kPickerTitleColor;
+  var _btnColor = isDark ? KColors.kPickerBtnDarkColor : KColors.kPickerBtnColor;
+  var _selectTextColor = isDark ? KColors.kPickerTextDarkColor : KColors.kPickerTextColor;
+  var _selectItemBgColor = Colors.grey.withOpacity(0.15);
+
   var picker = Picker(
       adapter: adapter,
       selecteds: selecteds,
       height: _kPickerHeight,
       itemExtent: _kItemHeight,
-      title: Text(title ?? _titleNormalText, style: TextStyle(color: _kTitleColor, fontSize: _kTitleFontSize)),
+      title: Text(title ?? _titleNormalText, style: TextStyle(color: _titleColor, fontSize: _kTitleFontSize)),
       cancelText: _cancelText,
-      cancelTextStyle: TextStyle(color: _kBtnColor, fontSize: _kBtnFontSize),
+      cancelTextStyle: TextStyle(color: _btnColor, fontSize: _kBtnFontSize),
       confirmText: _confirmText,
-      confirmTextStyle: TextStyle(color: _kBtnColor, fontSize: _kBtnFontSize),
+      confirmTextStyle: TextStyle(color: _btnColor, fontSize: _kBtnFontSize),
       textAlign: TextAlign.center,
       selectedTextStyle: TextStyle(color: _selectTextColor, fontSize: _selectTextFontSize),
       selectionOverlay: Container(height: _kItemHeight, color: _selectItemBgColor),

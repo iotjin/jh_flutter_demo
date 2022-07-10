@@ -107,9 +107,12 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   }
 
   Widget _body(context, dataArr) {
+    var _navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
+    _navBgColor = _navBgColor.withOpacity(_appbarOpacity);
+
     return Stack(children: <Widget>[
       Container(
-        color: Colors.white,
+        color: KColors.dynamicColor(context, KColors.kBgColor, KColors.kBgDarkColor),
         child: MediaQuery.removePadding(
           context: context,
           removeTop: true,
@@ -140,7 +143,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         left: 0,
         right: 0,
         child: backAppBar(context, '朋友圈',
-            backgroundColor: KColors.wxBgColor.withOpacity(_appbarOpacity),
+            backgroundColor: _navBgColor,
             brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/wechat/discover/ic_xiangji.png', rightItemCallBack: () {
           _clickNav();
@@ -156,7 +159,6 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
       children: [
         Container(
           margin: EdgeInsets.only(bottom: 20),
-          color: Colors.white,
           // child: Image.network(
           //   'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
           //   fit: BoxFit.cover,
@@ -212,7 +214,10 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
           decoration: BoxDecoration(
               // border: Border.all(color: KColors.kLineColor, width: 1),
               border: Border(
-            bottom: BorderSide(width: 0.5, color: KColors.kLineColor), // 下边框
+            bottom: BorderSide(
+              width: 0.5,
+              color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
+            ), // 下边框
           )),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,7 +261,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                       children: [
                         Text(
                           item['time'],
-                          style: TextStyle(color: KColors.kTextGrayColor, fontSize: 13),
+                          style: TextStyle(color: KColors.kLightGreyTextColor, fontSize: 13),
                         ),
                         InkWell(
                           child: Container(
@@ -264,7 +269,8 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                             height: 22,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                              color: KColors.dynamicColor(
+                                  context, Color.fromRGBO(240, 240, 240, 1), KColors.kCellBgDarkColor),
                             ),
                             child: Image.asset(
                               'assets/wechat/discover/ic_diandian.png',

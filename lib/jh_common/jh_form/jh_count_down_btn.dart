@@ -5,24 +5,24 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '/project/configs/colors.dart';
+import '/project/provider/theme_provider.dart';
 
-const int _normalTime = 10; // 默认倒计时时间
 const String _normalText = '获取验证码'; // 默认按钮文字
+const int _normalTime = 10; // 默认倒计时时间
 const double _fontSize = 13.0; // 文字大小
 const double _borderWidth = 0.8; // 边框宽度
 const double _borderRadius = 1.0; // 边框圆角
-const Color _bgColor = Colors.transparent; // 默认按钮背景色
-const Color _textColor = KColors.kThemeColor; // 默认按钮文字
 
 class JhCountDownBtn extends StatefulWidget {
   const JhCountDownBtn({
     Key? key,
     this.getVCode,
-    this.textColor: _textColor,
-    this.bgColor: _bgColor,
+    this.textColor,
+    this.bgColor,
     this.fontSize: _fontSize,
-    this.borderColor: _textColor,
+    this.borderColor,
     this.borderRadius: _borderRadius,
     this.showBorder: false,
   }) : super(key: key);
@@ -44,8 +44,18 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
   String _btnStr = _normalText;
   int _countDownNum = _normalTime;
 
+  // 默认颜色
+  var bgColor = Colors.transparent;
+  var textColor = KColors.kThemeColor;
+
   @override
   Widget build(BuildContext context) {
+    // TODO: 通过ThemeProvider进行主题管理
+    final provider = Provider.of<ThemeProvider>(context);
+    var _bgColor = widget.bgColor ?? widget.bgColor;
+    var _textColor = widget.bgColor ?? (provider.isDark() ? KColors.kThemeColor : provider.getThemeColor());
+    var _borderColor = widget.borderColor ?? (provider.isDark() ? KColors.kThemeColor : provider.getThemeColor());
+
     if (widget.getVCode == null) {
       return Container();
     } else
@@ -56,14 +66,14 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
           // 设置按钮大小
           minimumSize: MaterialStateProperty.all(Size(120, 30)),
           // 背景色
-          backgroundColor: MaterialStateProperty.all(widget.bgColor),
+          backgroundColor: MaterialStateProperty.all(_bgColor),
           // 文字颜色
-          foregroundColor: MaterialStateProperty.all(widget.textColor),
+          foregroundColor: MaterialStateProperty.all(_textColor),
           // 边框
           side: widget.showBorder == false
               ? null
               : MaterialStateProperty.all(
-                  BorderSide(color: widget.borderColor!, width: _borderWidth),
+                  BorderSide(color: _borderColor, width: _borderWidth),
                 ),
           // 圆角
           shape: MaterialStateProperty.all(

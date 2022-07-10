@@ -20,6 +20,7 @@ pwd：123456
 * API接口管理和数据管理
 * 路由模块化管理
 * 屏幕适配
+* 暗黑模式(DarkMode)适配
 * 组件
   * baseNav、baseAppBar、BaseTabBar、BaseWebView
   * 弹框(中间、底部、toast、dialog、自定义弹框)
@@ -39,6 +40,7 @@ pwd：123456
   * 加载图片资源、颜色设置
   * 二维码扫描与生成
   * 导航路由跳转
+  * 时间格式转换
   * 随机数
 * UI相关
   * ListView相关(分页上下拉刷新、分组上下拉刷新、分组吸顶)
@@ -80,6 +82,7 @@ pwd：123456
   <summary><strong>重要更新</strong></summary>
    
 ```
+* v2.10.1 - 暗黑模式(DarkMode)适配
 * v2.10.0 - 更新三方库和flutter版本（Flutter 2.10.0，Dart 2.16.0）
 * v2.0.0  - 更新 Flutter SDK（ 2.0.3 ）和依赖库
 * v1.0.0  - 环境：Flutter version 1.22.3，Dart version 2.10.3

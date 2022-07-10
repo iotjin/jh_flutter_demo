@@ -25,7 +25,7 @@ class _MinePageState extends State<MinePage> {
       appBar: baseAppBar(context, KStrings.fourTabTitle, rightImgPath: "assets/images/set.png", rightItemCallBack: () {
         JhNavUtils.pushNamed(context, "SetPage");
       }),
-      backgroundColor: Color(0xFFF8F8F8),
+      // backgroundColor: Color(0xFFF8F8F8),
       body: ListView(
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: <Widget>[

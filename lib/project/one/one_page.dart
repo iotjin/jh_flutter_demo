@@ -96,7 +96,7 @@ class OnePage extends StatelessWidget {
       appBar: baseAppBar(context, KStrings.oneTabTitle,
           rightImgPath: 'assets/images/ic_nav_add.png', rightItemCallBack: () => _showPop(context)),
       body: _body(context, _dataArr),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
 
 //        appBar: AppBar(
 //          title:
@@ -225,7 +225,7 @@ class OnePage extends StatelessWidget {
           height: .5,
           indent: 70,
           endIndent: 0,
-          color: KColors.kLineColor,
+          color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
         );
       },
       itemBuilder: (context, index) {
@@ -268,7 +268,7 @@ class OnePage extends StatelessWidget {
     return InkWell(
         onTap: () => _clickCell(context, item),
         child: Container(
-            color: Colors.white,
+            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
             height: 70,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

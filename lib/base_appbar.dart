@@ -5,17 +5,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'project/configs/project_config.dart';
+import 'project/provider/theme_provider.dart';
 
-const Color _navBgColor = KColors.kThemeColor;
-const Color _titleColorWhite = Colors.white;
-const Color _titleColorBlack = Colors.black;
 const double _titleFontSize = 18.0;
 const double _textFontSize = 16.0;
 const double _itemSpace = 15.0; // 右侧item内间距
 const double _imgWH = 22.0; // 右侧图片wh
 const double _rightSpace = 5.0; // 右侧item右间距
 const Brightness _brightness = Brightness.light;
+// 默认颜色
+// const Color _bgColor = KColors.kNavThemeBgColor; // 通过ThemeProvider获取
+const Color _bgDarkColor = KColors.kNavBgDarkColor;
+const Color _titleColor = KColors.kNavTitleColor;
 
 const Color appbarStartColor = KColors.kGradientStartColor; // 默认appBar 渐变开始色
 const Color appbarEndColor = KColors.kGradientEndColor; // 默认appBar 渐变结束色
@@ -24,7 +27,7 @@ const Color appbarEndColor = KColors.kGradientEndColor; // 默认appBar 渐变�
 backAppBar(BuildContext context, String title,
     {String? rightText,
     String? rightImgPath,
-    Color backgroundColor = _navBgColor,
+    Color? backgroundColor,
     Brightness brightness = _brightness,
     Function? rightItemCallBack,
     Function? backCallBack}) {
@@ -113,17 +116,28 @@ baseAppBar(
   String? rightImgPath,
   Widget? leftItem,
   bool isBack: false,
-  Color backgroundColor = _navBgColor,
+  Color? backgroundColor,
   Brightness brightness = _brightness,
   double elevation: 0,
   PreferredSizeWidget? bottom,
   Function? rightItemCallBack,
   Function? leftItemCallBack,
 }) {
-  Color _color =
-      (backgroundColor == Colors.transparent || backgroundColor == Colors.white || backgroundColor == KColors.wxBgColor)
-          ? _titleColorBlack
-          : _titleColorWhite;
+  Color _color = (backgroundColor == Colors.transparent ||
+          backgroundColor == Colors.white ||
+          backgroundColor == KColors.kNavWhiteBgColor)
+      ? Colors.black
+      : _titleColor;
+  // 默认颜色
+  // var bgColor = backgroundColor ?? _bgColor;
+
+  // TODO: 通过ThemeProvider进行主题管理
+  final provider = Provider.of<ThemeProvider>(context);
+  // 设置的颜色优先级高于暗黑模式
+  var bgColor = backgroundColor ?? (provider.isDark() ? _bgDarkColor : provider.getThemeColor());
+  if (provider.isDark()) {
+    _color = _titleColor;
+  }
 
   Widget rightItem = Text("");
   if (rightText != null) {
@@ -157,7 +171,7 @@ baseAppBar(
   return AppBar(
     title: Text(title, style: TextStyle(fontSize: _titleFontSize, color: _color)),
     centerTitle: true,
-    backgroundColor: backgroundColor,
+    backgroundColor: bgColor,
     systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: brightness),
     bottom: bottom,
     elevation: elevation,

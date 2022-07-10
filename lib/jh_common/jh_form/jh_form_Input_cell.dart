@@ -5,18 +5,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '/project/configs/colors.dart';
 import 'jh_text_field.dart';
 
-const Color _bgColor = Colors.white; // 背景色 白色
 const double _titleSpace = 100.0; // 左侧title默认宽
 const double _cellHeight = 45.0; // 输入、选择样式一行的高度
 const int _maxLength = 100; // 最大录入长度
-const Color _textColor = Colors.black;
-const TextStyle _titleStyle = TextStyle(fontSize: 15.0, color: _textColor);
-const TextStyle _textStyle = TextStyle(fontSize: 15.0, color: _textColor);
-const TextStyle _hintTextStyle = TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB)); // 187
-const double _lineHeight = 0.6; // 底部线高
-const Color _lineColor = Color(0xFFE6E6E6); // 线 230
+const double _lineHeight = 0.6;
+const double _titleFontSize = 15.0;
+const double _textFontSize = 15.0;
+const double _hintTextFontSize = 15.0;
 
 typedef _InputCallBack = void Function(String value);
 
@@ -38,14 +36,14 @@ class JhFormInputCell extends StatefulWidget {
     this.inputFormatters,
     this.inputCallBack,
     this.space = _titleSpace,
-    this.titleStyle = _titleStyle,
-    this.textStyle = _textStyle,
-    this.hintTextStyle = _hintTextStyle,
+    this.titleStyle,
+    this.textStyle,
+    this.hintTextStyle,
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
     this.hiddenLine = false,
     this.topAlign = false,
-    this.bgColor = _bgColor,
+    this.bgColor,
   }) : super(key: key);
 
   final String title;
@@ -63,14 +61,14 @@ class JhFormInputCell extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final _InputCallBack? inputCallBack;
   final double space; // 标题宽度
-  final TextStyle titleStyle;
-  final TextStyle textStyle;
-  final TextStyle hintTextStyle;
+  final TextStyle? titleStyle;
+  final TextStyle? textStyle;
+  final TextStyle? hintTextStyle;
   final TextAlign textAlign; // 输入文字对齐方式，默认左对齐
   final InputBorder border; // 输入边框样式，默认无边框
   final bool hiddenLine; // 隐藏底部横线
   final bool topAlign; // 左侧标题顶部对齐，默认居中
-  final Color bgColor; // 背景颜色，默认白色
+  final Color? bgColor; // 背景颜色，默认白色
 
   @override
   _JhFormInputCellState createState() => _JhFormInputCellState();
@@ -82,8 +80,25 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
     double _starW = widget.showRedStar == false && widget.title.isEmpty ? 0 : 8;
     double _topSpace = 0; // title 顶对齐 间距
 
+    // 默认颜色
+    var isDark = Theme.of(context).brightness == Brightness.dark;
+    var bgColor = isDark ? KColors.kBgDarkColor : KColors.kBgColor;
+    var titleColor = isDark ? KColors.kFormTitleDarkColor : KColors.kFormTitleColor;
+    var titleStyle = TextStyle(fontSize: _titleFontSize, color: titleColor);
+    var textColor = isDark ? KColors.kFormInfoDarkColor : KColors.kFormInfoColor;
+    var textStyle = TextStyle(fontSize: _textFontSize, color: textColor);
+    var hintColor = isDark ? KColors.kFormHintDarkColor : KColors.kFormHintColor;
+    var hintTextStyle = TextStyle(fontSize: _hintTextFontSize, color: hintColor);
+    var _lineColor = isDark ? KColors.kFormLineDarkColor : KColors.kFormLineColor;
+
+    // 设置的颜色优先级高于暗黑模式
+    var _bgColor = widget.bgColor ?? bgColor;
+    var _titleStyle = widget.titleStyle ?? titleStyle;
+    var _textStyle = widget.textStyle ?? textStyle;
+    var _hintTextStyle = widget.hintTextStyle ?? hintTextStyle;
+
     return Material(
-        color: widget.bgColor,
+        color: _bgColor,
         child: Container(
             constraints: BoxConstraints(
                 minWidth: double.infinity, // 宽度尽可能大
@@ -111,7 +126,7 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                     child: Container(
                         width: widget.space - _starW,
                         padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? _topSpace : 0, 0, 0),
-                        child: Text(widget.title, style: widget.titleStyle)),
+                        child: Text(widget.title, style: _titleStyle)),
                   ),
                   Expanded(
                       child: JhTextField(
@@ -125,8 +140,8 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                     enabled: widget.enabled,
                     inputFormatters: widget.inputFormatters,
                     inputCallBack: widget.inputCallBack,
-                    textStyle: widget.textStyle,
-                    hintTextStyle: widget.hintTextStyle,
+                    textStyle: _textStyle,
+                    hintTextStyle: _hintTextStyle,
                     textAlign: widget.textAlign,
                     border: widget.border,
                   )),

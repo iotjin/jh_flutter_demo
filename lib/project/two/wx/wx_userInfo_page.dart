@@ -42,7 +42,7 @@ class WxUserInfoPage extends StatelessWidget {
       children: <Widget>[
         Container(
           padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
-          color: Colors.white,
+          color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -89,7 +89,7 @@ class WxUserInfoPage extends StatelessWidget {
             ],
           ),
         ),
-        Container(color: KColors.kLineColor, height: 0.5),
+        Container(color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor), height: 0.5),
         JhSetCell(
           cellHeight: _cellH,
           title: '备注和标签',
@@ -122,7 +122,7 @@ class WxUserInfoPage extends StatelessWidget {
           onTap: () => _clickCell(context, '发消息'),
           child: Container(
               height: _cellH,
-              color: Colors.white,
+              color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -133,12 +133,12 @@ class WxUserInfoPage extends StatelessWidget {
                 ],
               )),
         ),
-        Container(color: KColors.kLineColor, height: 0.5),
+        Container(color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor), height: 0.5),
         InkWell(
           onTap: () => _clickCell(context, '音视频通话'),
           child: Container(
               height: _cellH,
-              color: Colors.white,
+              color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

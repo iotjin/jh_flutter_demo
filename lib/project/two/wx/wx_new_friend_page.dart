@@ -56,14 +56,14 @@ class WxNewFriendPage extends StatelessWidget {
         JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }),
       body: _body(context),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
   Widget _body(context) {
     Widget _searchBar = Container(
       decoration: new BoxDecoration(
-        color: Colors.white,
+        color: KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor),
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       alignment: Alignment.center,
@@ -81,7 +81,7 @@ class WxNewFriendPage extends StatelessWidget {
     Widget _myCode = InkWell(
       child: Container(
           padding: EdgeInsets.all(10),
-          color: Colors.white,
+          color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
 //        height: 60,
           child: Column(children: <Widget>[
             Icon(Icons.phone_iphone, color: KColors.wxThemeColor),
@@ -146,7 +146,7 @@ class WxNewFriendPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-            color: Colors.white,
+            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
             child: ListTile(
               onTap: () => _clickCell(context, item['title']),
               leading: Container(
@@ -163,7 +163,13 @@ class WxNewFriendPage extends StatelessWidget {
               ),
               trailing: item['isAdd'] ? _text : _btn,
             )),
-        SizedBox(width: 70, height: 1, child: Container(color: Colors.white))
+        SizedBox(
+          width: 70,
+          height: 1,
+          child: Container(
+            color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
+          ),
+        )
       ],
     );
   }

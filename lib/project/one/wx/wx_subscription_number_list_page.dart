@@ -36,7 +36,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
         _clickCell(context, '更多');
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
@@ -44,7 +44,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
   Widget _body(context, dataArr) {
     Widget _searchBar = Container(
       decoration: new BoxDecoration(
-        color: Colors.white,
+        color: KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor),
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       alignment: Alignment.center,
@@ -68,7 +68,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
             height: .5,
             indent: 70,
             endIndent: 0,
-            color: KColors.kLineColor,
+            color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
           );
         },
         itemBuilder: (context, index) {
@@ -84,7 +84,7 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
     return InkWell(
         onTap: () => _clickCell(context, item['title']),
         child: Container(
-            color: Colors.white,
+            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
             height: 70,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,

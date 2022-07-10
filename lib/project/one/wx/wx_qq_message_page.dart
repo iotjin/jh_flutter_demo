@@ -62,7 +62,7 @@ class WxQQMessagePage extends StatelessWidget {
         elevation: 3,
         // 阴影大小
         child: Container(
-          color: Colors.white,
+          color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
           child: ListTile(
             title: Text(item['title']),
             subtitle: Text(
@@ -81,7 +81,7 @@ class WxQQMessagePage extends StatelessWidget {
   _bottomView(context, dataArr) {
     return Container(
       height: JhScreenUtils.bottomSafeHeight + 60,
-      color: Colors.white,
+      color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
       child: SafeArea(
           child: Row(
         children: <Widget>[
@@ -90,7 +90,7 @@ class WxQQMessagePage extends StatelessWidget {
             child: InkWell(
               child: Container(
                 height: 60,
-                color: Colors.white,
+                color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
                 child: Center(child: Text('写邮件')),
               ),
               onTap: () => _clickCell(context, '写邮件'),
@@ -102,7 +102,7 @@ class WxQQMessagePage extends StatelessWidget {
             child: InkWell(
               child: Container(
                 height: 60,
-                color: Colors.white,
+                color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
                 child: Center(child: Text('QQ邮箱（${dataArr.length}）')),
               ),
               onTap: () => _clickCell(context, 'QQ邮箱'),

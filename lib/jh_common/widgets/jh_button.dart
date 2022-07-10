@@ -4,15 +4,13 @@
 ///  description:  登录/提交 按钮
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '/project/configs/colors.dart';
+import '/project/provider/theme_provider.dart';
 
 const double _fontSize = 18.0; // 文字大小
 const double _borderWidth = 0.0; // 边框宽度
 const double _borderRadius = 0.0; // 边框圆角
-const Color _bgColor = KColors.kThemeColor; // 默认按钮背景色
-const Color _disabledBgColor = Color(0xa03BB815); // disabled按钮背景色
-const Color _textColor = Colors.white; // 默认按钮文字颜色
-const Color _disabledTextColor = Colors.white54; // disabled按钮文字颜色
 
 class JhButton extends StatelessWidget {
   const JhButton({
@@ -26,6 +24,16 @@ class JhButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var bgColor = KColors.kThemeColor; // 默认按钮背景色
+    var disabledBgColor = KColors.kThemeColor.withOpacity(0.6); // disabled按钮背景色
+    var _textColor = Colors.white; // 默认按钮文字颜色
+    var _disabledTextColor = _textColor.withOpacity(0.6); // disabled按钮文字颜色
+
+    // TODO: 通过ThemeProvider进行主题管理
+    final provider = Provider.of<ThemeProvider>(context);
+    var _bgColor = provider.isDark() ? bgColor : provider.getThemeColor();
+    var _disabledBgColor = provider.isDark() ? disabledBgColor : provider.getThemeColor().withOpacity(0.6);
+
     return TextButton(
       onPressed: onPressed,
       child: Text(text, style: TextStyle(fontSize: _fontSize)),

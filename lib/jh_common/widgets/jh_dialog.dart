@@ -4,7 +4,9 @@
 ///  description:  中间、自定义、全屏弹框
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '/project/configs/colors.dart';
+import '/project/provider/theme_provider.dart';
 
 const String _cancelText = '取消';
 const String _confirmText = '确认';
@@ -108,6 +110,10 @@ class _BaseDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: 通过ThemeProvider进行主题管理
+    final provider = Provider.of<ThemeProvider>(context);
+    var confirmTextColor = provider.isDark() ? _confirmTextColor : provider.getThemeColor();
+
     Widget dialogTitle = Offstage(
       offstage: title == '',
       child: Padding(
@@ -140,7 +146,7 @@ class _BaseDialog extends StatelessWidget {
         ),
         _DialogButton(
           text: rightText,
-          textColor: _confirmTextColor,
+          textColor: confirmTextColor,
           onPressed: () {
             Navigator.pop(context);
             if (onConfirm != null) {

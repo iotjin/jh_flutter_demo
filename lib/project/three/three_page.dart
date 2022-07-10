@@ -17,7 +17,7 @@ class ThreePage extends StatelessWidget {
     return Scaffold(
       appBar: baseAppBar(context, KStrings.threeTabTitle, backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 }

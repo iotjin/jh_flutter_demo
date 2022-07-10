@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:provider/provider.dart';
 import '/jh_common/utils/jh_image_utils.dart';
 import '/project/configs/colors.dart';
+import '/project/provider/theme_provider.dart';
 import '/project/one/one_page.dart';
 import '/project/Two/two_page.dart';
 import '/project/Three/three_page.dart';
@@ -25,38 +27,47 @@ class _BaseTabBarState extends State<BaseTabBar> {
   List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), FourPage()];
   static double _iconWH = 24.0;
   static double _fontSize = 10.0;
-  Color selColor = KColors.kThemeColor;
 
-  List<BottomNavigationBarItem> bottomTabs = [
-    BottomNavigationBarItem(
-      label: "微信",
-      icon: JhLoadAssetImage('tab/nav_tab_1', width: _iconWH),
-      activeIcon: JhLoadAssetImage('tab/nav_tab_1_on', width: _iconWH),
-    ),
-    BottomNavigationBarItem(
-      label: "通讯录",
-      icon: JhLoadAssetImage('tab/nav_tab_2', width: _iconWH),
-      activeIcon: JhLoadAssetImage('tab/nav_tab_2_on', width: _iconWH),
-    ),
-    BottomNavigationBarItem(
-      label: "发现",
+  // 默认颜色
+  Color bgColor = KColors.kTabBarBgColor;
+  Color bgDarkColor = KColors.kTabBarBgDarkColor;
+  Color normalTextColor = KColors.kTabBarNormalTextColor;
+  Color normalTextDarkColor = KColors.kTabBarNormalTextDarkColor;
+  Color selectTextColor = KColors.kTabBarSelectTextColor;
+  Color selectTextDarkColor = KColors.kTabBarSelectTextDarkColor;
+
+  List<BottomNavigationBarItem> getBottomTabs(iconColor) {
+    return [
+      BottomNavigationBarItem(
+        label: "微信",
+        icon: JhLoadAssetImage('tab/nav_tab_1', width: _iconWH),
+        activeIcon: JhLoadAssetImage('tab/nav_tab_1_on', width: _iconWH, color: iconColor),
+      ),
+      BottomNavigationBarItem(
+        label: "通讯录",
+        icon: JhLoadAssetImage('tab/nav_tab_2', width: _iconWH),
+        activeIcon: JhLoadAssetImage('tab/nav_tab_2_on', width: _iconWH, color: iconColor),
+      ),
+      BottomNavigationBarItem(
+        label: "发现",
 //      icon: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH),
-      activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH),
-      icon: Badge(
-          padding: EdgeInsets.all(4),
-          position: BadgePosition.topEnd(top: -4, end: -4),
-          child: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH)),
+        activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH, color: iconColor),
+        icon: Badge(
+            padding: EdgeInsets.all(4),
+            position: BadgePosition.topEnd(top: -4, end: -4),
+            child: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH)),
 //      activeIcon: Badge(
 //          padding: EdgeInsets.all(4),
 //          position: BadgePosition.topRight(top: -4, right: -4),
 //          child: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH)),
-    ),
-    BottomNavigationBarItem(
-      label: "我的",
-      icon: JhLoadAssetImage('tab/nav_tab_4', width: _iconWH),
-      activeIcon: JhLoadAssetImage('tab/nav_tab_4_on', width: _iconWH),
-    ),
-  ];
+      ),
+      BottomNavigationBarItem(
+        label: "我的",
+        icon: JhLoadAssetImage('tab/nav_tab_4', width: _iconWH),
+        activeIcon: JhLoadAssetImage('tab/nav_tab_4_on', width: _iconWH, color: iconColor),
+      ),
+    ];
+  }
 
   @override
   void initState() {
@@ -80,50 +91,32 @@ class _BaseTabBarState extends State<BaseTabBar> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: 通过ThemeProvider进行主题管理
+    final provider = Provider.of<ThemeProvider>(context);
+    var _bgColor = provider.isDark() ? bgDarkColor : bgColor;
+    var _textSelectColor = provider.isDark() ? selectTextDarkColor : provider.getThemeColor();
+    var _iconSelectColor = provider.isDark() ? KColors.kThemeColor : provider.getThemeColor();
+
     return Scaffold(
-//      backgroundColor: Colors.white,
       body: IndexedStack(
         index: _currentIndex,
         children: _pageList,
       ),
-      bottomNavigationBar:
-
-//        Theme(
-//          data: ThemeData(
-//            highlightColor: Color.fromRGBO(0, 0, 0, 0),
-//            splashColor: Color.fromRGBO(0, 0, 0, 0),
-//          ),
-//          child:
-//          BottomNavigationBar(
-////        unselectedItemColor:Colors.red,  // 未选中颜色
-////        selectedItemColor:Colors.yellow,  // 选中颜色
-//            fixedColor: selColor,  // 选中的颜色
-//            unselectedFontSize:_fontSize,
-//            selectedFontSize:_fontSize,
-//            type:BottomNavigationBarType.fixed,   // 配置底部BaseTabBar可以有多个按钮
-//            items: bottomTabs,
-//            currentIndex: this._currentIndex,   // 配置对应的索引值选中
-//            onTap: (int index){
-//              setState(() {  // 改变状态
-//                this._currentIndex=index;
-//              });
-//            },
-//          ),
-//
-//        )
-
-          BottomNavigationBar(
-//        unselectedItemColor:Colors.red,  // 未选中颜色
-//        selectedItemColor:Colors.yellow,  // 选中颜色
-        fixedColor: selColor,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: _bgColor,
+        // 未选中颜色
+        // unselectedItemColor: Colors.red,
+        // 选中颜色,与fixedColor不能同时设置
+        // selectedItemColor: selectColor,
         // 选中的颜色
+        fixedColor: _textSelectColor,
         unselectedFontSize: _fontSize,
         selectedFontSize: _fontSize,
-        type: BottomNavigationBarType.fixed,
         // 配置底部BaseTabBar可以有多个按钮
-        items: bottomTabs,
-        currentIndex: this._currentIndex,
+        type: BottomNavigationBarType.fixed,
+        items: getBottomTabs(_iconSelectColor),
         // 配置对应的索引值选中
+        currentIndex: this._currentIndex,
         onTap: (int index) {
           setState(() {
             // 改变状态
@@ -137,6 +130,14 @@ class _BaseTabBarState extends State<BaseTabBar> {
 
 /*-----------------------------------------------------------------------------*/
 /*
+
+ Theme(
+   data: ThemeData(
+     highlightColor: Color.fromRGBO(0, 0, 0, 0),
+     splashColor: Color.fromRGBO(0, 0, 0, 0),
+   ),
+ )
+
 BottomNavigationBar({
     Key key,
     @required this.items,  // 必须有的item

@@ -47,14 +47,14 @@ class WxAddFriendPage extends StatelessWidget {
     return Scaffold(
       appBar: backAppBar(context, '添加朋友', backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
   Widget _body(context) {
     Widget _searchBar = Container(
       decoration: new BoxDecoration(
-        color: Colors.white,
+        color: KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor),
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       alignment: Alignment.center,
@@ -97,7 +97,7 @@ class WxAddFriendPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Container(
-            color: Colors.white,
+            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
             child: ListTile(
                 onTap: () => _clickCell(context, item['title']),
                 leading: Container(
@@ -113,7 +113,13 @@ class WxAddFriendPage extends StatelessWidget {
                   item['subtitle'],
                 ),
                 trailing: Icon(Icons.arrow_forward_ios))),
-        SizedBox(width: 70, height: 1, child: Container(color: Colors.white))
+        SizedBox(
+          width: 70,
+          height: 1,
+          child: Container(
+            color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
+          ),
+        )
       ],
     );
   }

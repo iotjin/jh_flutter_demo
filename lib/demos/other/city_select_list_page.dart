@@ -76,7 +76,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
       body: SafeArea(
         child: _body(),
       ),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 

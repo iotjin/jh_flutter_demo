@@ -6,21 +6,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flustars/flustars.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_color_utils.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:provider/provider.dart';
 
 import 'package:jhtoast/jhtoast.dart';
-import 'jh_common/widgets/jh_alert.dart';
+import 'jh_common/utils/jh_color_utils.dart';
 import 'jh_common/utils/jh_device_utils.dart';
 import 'jh_common/utils/jh_storage_utils.dart';
 import 'jh_common/utils/jh_screen_utils.dart';
+import 'project/configs/project_config.dart';
+import 'project/provider/theme_provider.dart';
 import 'project/routes/not_found_page.dart';
 import 'project/routes/routes.dart';
 import 'project/routes/routes_old.dart' as luyou;
 import 'project/base_tabbar.dart';
 import 'project/login/pages/login_page.dart';
 import 'project/new_feature/new_feature_page.dart';
-import 'project/configs/project_config.dart';
 import 'project/model/user_model.dart';
 
 //void main() => runApp(MyApp());
@@ -74,20 +75,37 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     JhScreenUtils.init(context);
+
+    final Widget app = MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ],
+        child: Consumer<ThemeProvider>(
+          builder: (_, ThemeProvider provider, __) {
+            return _buildMaterialApp(provider);
+          },
+        ));
+
     return OKToast(
 //          dismissOtherOnShow: true,
-        child: _buildMaterialApp());
+      child: app,
+    );
   }
 
-  Widget _buildMaterialApp() {
+  Widget _buildMaterialApp(ThemeProvider provider) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        // primarySwatch包含了primaryColor
-        primarySwatch: JhColorUtils.materialColor(KColors.kThemeColor),
-        // 主色
-        primaryColor: KColors.kThemeColor,
-      ),
+      // 多主题切换
+      theme: provider.getThemeData(),
+      darkTheme: provider.getThemeData(isDarkMode: true),
+      themeMode: provider.getThemeMode(),
+      // 单一主题
+      // theme: ThemeData(
+      //   // primarySwatch包含了primaryColor
+      //   primarySwatch: JhColorUtils.materialColor(KColors.kThemeColor),
+      //   // 主色
+      //   primaryColor: KColors.kThemeColor,
+      // ),
       home: _switchRootWidget(),
       // 路由
       onGenerateRoute: Routes.router.generator,

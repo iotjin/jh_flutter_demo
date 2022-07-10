@@ -6,8 +6,12 @@
 import 'package:flutter/material.dart';
 
 class KColors {
-  // 主题色
+  // 主题色（导航条背景、提交按钮背景、弹框确认文字、表单图标录入光标）
+  // 暗黑模式高亮显示颜色按kThemeColor设置，如tabbar选中文字图标、提交按钮背景色、指示器选中下划线、光标等
   static const Color kThemeColor = Color(0xFF3BB815);
+  static const Color kThemeDarkColor = Color(0xFF0A0A0A); // (10, 10, 10)
+  static const Color kThemeBlueColor = Color(0xFF4688FA);
+  static const Color kThemePurpleColor = Colors.purple;
 
   // 渐变色（appBar和按钮）
   static const Color kGradientStartColor = Color(0xFF2683BE); // 渐变开始色
@@ -17,8 +21,118 @@ class KColors {
   // static const Color kGradientStartColor = Color(0xFF2171F5); // 渐变开始色
   // static const Color kGradientEndColor = Color(0xF000A2FC); // 渐变结束色
 
+  // 导航条背景色（主题色背景白色文字，透明背景为黑色文字，暗黑模式是白色文字）
+  static const Color kNavThemeBgColor = kThemeColor;
+
+  // 导航条背景色（白色背景色黑色文字，透明背景为黑色文字，暗黑模式是白色文字）
+  static const Color kNavWhiteBgColor = Color(0xFFEDEDED); //(237, 237, 237)
+  static const Color kNavBgDarkColor = kThemeDarkColor; // (10, 10, 10)
+  static const Color kNavTitleColor = Colors.white;
+
+  // tabbar背景颜色
+  static const Color kTabBarBgColor = Colors.white;
+  static const Color kTabBarBgDarkColor = Color(0xFF1D1D1D); // (29, 29, 29)
+
+  // tabbar默认文字颜色
+  static const Color kTabBarNormalTextColor = kBlackTextColor;
+  static const Color kTabBarNormalTextDarkColor = kBlackTextDarkColor;
+
+  // tabbar选中文字颜色
+  static const Color kTabBarSelectTextColor = kThemeColor;
+  static const Color kTabBarSelectTextDarkColor = kThemeColor;
+
+  // 背景色
+  static const Color kBgColor = Color(0xFFF8F8F8); // (248, 248, 248)
+  static const Color kBgDarkColor = Color(0xFF111111); // (17, 17, 17)
+
+  // cell背景
+  static const Color kCellBgColor = Colors.white;
+  static const Color kCellBgDarkColor = Color(0xFF191919); // (25, 25, 25)
+
+  static const Color kMaterialBgColor = Color(0xFFFFFFFF); // (255, 255, 255)
+  static const Color kMaterialBgDarkColor = Color(0xFF303233); // (48, 50, 51)
+
+  // btn背景颜色
+  // static const Color kBtnBgColor = kThemeColor;
+  // static const Color kBtnBgDarkColor = Color(0xFF2B2B2B); // (43, 43, 43)
+
+  // 黑色文字
+  static const Color kBlackTextColor = Color(0xFF333333); // (51, 51, 51)
+  static const Color kBlackTextDarkColor = Color(0xFFC6C6C6); // (198, 198, 198)
+
+  // 灰色文字
+  static const Color kGreyTextColor = Color(0xFF777777); // (119, 119, 119)
+  static const Color kGreyTextDarkColor = Color(0xFF787878); // (120, 120, 120)
+
+  // 浅灰色文字
+  static const Color kLightGreyTextColor = Color(0xFF999999); // (153, 153, 153)
+  static const Color kLightGreyTextDarkColor = Color(0xFF666666); // (102, 102, 102)
+
+  // 表单title文字
+  static const Color kFormTitleColor = kBlackTextColor;
+  static const Color kFormTitleDarkColor = kBlackTextDarkColor;
+
+  // 表单info文字
+  static const Color kFormInfoColor = kBlackTextColor;
+  static const Color kFormInfoDarkColor = kBlackTextDarkColor;
+
+  // 表单hint文字
+  static const Color kFormHintColor = Color(0xFFBBBBBB); // (187, 187, 187)
+  static const Color kFormHintDarkColor = Color(0xFF575757); // (87, 87, 87)
+
+  // 表单分割线
+  static const Color kFormLineColor = kLineColor;
+  static const Color kFormLineDarkColor = kLineDarkColor;
+
+  // 表单暗黑模式Focused状态下划线颜色
+  static const Color kFocusedBorderDarkColor = kLineColor;
+
+  // error颜色
+  static const Color kErrorTextColor = Color(0xFFFF4759); // (255, 71, 89)
+  static const Color kErrorTextDarkColor = Color(0xFFE03E4E); // (224, 62, 78)
+
+  // 分割线
+  static const Color kLineColor = Color(0xFFE6E6E6); // (230, 230, 230)
+  static const Color kLineDarkColor = Color(0xFF232323); // (35, 35, 35)
+
+  // 搜索框颜色
+  static const Color kSearchBarBgColor = kCellBgColor;
+  static const Color kSearchBarBgDarkColor = kCellBgDarkColor;
+
+  // textView背景颜色
+  static const Color kTextViewBgColor = Color(0xFFFAFAFA); // (250, 250, 250)
+  static const Color kTextViewBgDarkColor = Color(0xFF323232); // (50, 50, 50)
+
+  // toast背景颜色
+  static const Color kToastBgColor = Colors.black87;
+  static const Color kToastBgDarkColor = Color(0xFF2F2F2F); // (47, 47, 47)
+
+  // alert背景颜色
+  static const Color kAlertBgColor = Colors.white;
+  static const Color kAlertBgDarkColor = Color(0xFF2C2C2C); // (44, 44, 44)
+
+  // picker、bottomSheet颜色
+  static const Color kPickerBgColor = Colors.white;
+  static const Color kPickerBgDarkColor = Color(0xFF1E1E1E); // (30, 30, 30)
+  static const Color kPickerTitleColor = Color(0xFF787878); // (120, 120, 120)
+  static const Color kPickerTitleDarkColor = Color(0xFF878787); // (135, 135, 135)
+  static const Color kPickerTextColor = kBlackTextColor;
+  static const Color kPickerTextDarkColor = kBlackTextDarkColor;
+  static const Color kPickerRedTextDarkColor = Color(0xFFE64242); // (230, 66, 66)
+  static const Color kPickerHeaderColor = kPickerBgColor;
+  static const Color kPickerHeaderDarkColor = kPickerBgDarkColor;
+  static const Color kPickerHeaderLineColor = Colors.black;
+  static const Color kPickerHeaderLineDarkColor = kLineDarkColor;
+  static const Color kPickerBtnColor = kBlackTextColor;
+  static const Color kPickerBtnDarkColor = kBlackTextDarkColor;
+
+  // icon颜色
+  static const Color kIconColor = Color(0xFFC8C8C8); // (200, 200, 200)
+  static const Color kIconDarkColor = Color(0xFF646464); // (100, 100, 100)
+
   // 微信主题色 rgb(59,184,21)
   static const Color wxThemeColor = Color(0xFF3BB815);
+  static const Color wxThemeDarkColor = Color(0xFF00BE66);
 
   // rgb(50, 179, 116)
   static const Color wxPayColor = Color(0xFF32B374);
@@ -37,45 +151,14 @@ class KColors {
   // 深蓝色
   static const Color wxTextBlueColor = Color(0xFF586D98);
 
-  // 灰色文字
-  static const Color kTextGrayColor = Color(0xFF999999);
-
-  static const Color kLineColor = Color(0xFFE6E6E6); // 230
   static const Color transparent = Colors.transparent;
 
-// static const Color app_main = Color(0xFF4688FA);
-}
-
-/*
-
-ColorsUtil.hexColor(0x3caafa)//透明度为1
-ColorsUtil.hexColor(0x3caafa,alpha: 0.5)//透明度为0.5
-* */
-class ColorsUtil {
-  /// 十六进制颜色，
-  /// hex, 十六进制值，例如：0xffffff,
-  /// alpha, 透明度 [0.0,1.0]
-  static Color hexColor(int hex, {double alpha = 1}) {
-    if (alpha < 0) {
-      alpha = 0;
-    } else if (alpha > 1) {
-      alpha = 1;
-    }
-    return Color.fromRGBO((hex & 0xFF0000) >> 16, (hex & 0x00FF00) >> 8, (hex & 0x0000FF) >> 0, alpha);
+  /// 设置动态颜色
+  static Color dynamicColor(BuildContext context, Color lightColor, [Color? darkColor]) {
+    var isDark = Theme.of(context).brightness == Brightness.dark;
+    return isDark ? darkColor ?? lightColor : lightColor;
   }
 }
-
-/*
-
-如Web开发中的色值通常是一个字符串如"#dc380d"，它是一个RGB值，我们可以通过下面这些方法将其转为Color类：
-
-Color(0xffdc380d); //如果颜色固定可以直接使用整数值
-//颜色是一个字符串变量
-var c = "dc380d";
-Color(int.parse(c,radix:16)|0xFF000000) //通过位运算符将Alpha设置为FF
-Color(int.parse(c,radix:16)).withAlpha(255)  //通过方法将Alpha设置为FF
-
-* */
 
 class Colours {
   static const Color app_main = Color(0xFF4688FA);

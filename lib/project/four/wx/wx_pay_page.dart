@@ -116,7 +116,7 @@ class WxPayPage extends StatelessWidget {
         JhNavUtils.pushNamed(context, "WxPayManagerPage");
       }),
       body: _body(context),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 }
@@ -229,7 +229,6 @@ Widget item(List data, int index, context) {
   return InkWell(
     child: Container(
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(1.0),
         border: Border.all(color: Colors.grey.withOpacity(0.3), width: 0.5), //边框
       ),

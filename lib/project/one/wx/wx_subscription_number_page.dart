@@ -83,7 +83,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
         JhNavUtils.pushNamed(context, "WxSubscriptionNumberListPage");
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
@@ -179,7 +179,7 @@ class WxSubscriptionNumberPage extends StatelessWidget {
           elevation: 3,
           // 阴影大小
           child: Container(
-            color: Colors.white,
+            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
             child: index % 2 == 0 ? _widget1 : _widget2,
           )),
       onTap: () => _clickCell(context, item['title']),

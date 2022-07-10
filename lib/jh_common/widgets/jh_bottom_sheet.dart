@@ -4,17 +4,15 @@
 ///  description:  微信样式 底部弹框
 
 import 'package:flutter/material.dart';
+import '/project/configs/colors.dart';
 
 typedef _ClickCallBack = void Function(int selectIndex, String selectText);
 
 const double _cellHeight = 50.0;
 const double _spaceHeight = 5.0;
-const Color _spaceColor = Color(0xFFE6E6E6); // 230
-const Color _textColor = Color(0xFF323232); // 50
-const double _textFontSize = 18.0;
-const Color _red_textColor = Color(0xFFE64242); // rgba(230,66,66,1)
-const Color _titleColor = Color(0xFF787878); // 120
 const double _titleFontSize = 13.0;
+const double _textFontSize = 18.0;
+
 const String _cancelText = '取消';
 
 class JhBottomSheet {
@@ -37,7 +35,7 @@ class JhBottomSheet {
       _dataArr.insert(_dataArr.length, redBtnTitle);
     }
     var titleHeight = _cellHeight;
-    var titleLineHeight = 0.5;
+    var titleLineHeight = 0.6;
     if (title == null) {
       titleHeight = 0.0;
       titleLineHeight = 0.0;
@@ -45,8 +43,15 @@ class JhBottomSheet {
 
     var _bgHeight =
         _cellHeight * (_dataArr.length + 1) + (_dataArr.length - 1) * 1 + _spaceHeight + titleHeight + titleLineHeight;
-
     var _radius = isShowRadius ? 10.0 : 0.0;
+
+    // 默认颜色
+    var _redTextColor = KColors.kPickerRedTextDarkColor;
+    var isDark = Theme.of(context).brightness == Brightness.dark;
+    var _bgColor = isDark ? KColors.kPickerBgDarkColor : KColors.kPickerBgColor;
+    var _titleColor = isDark ? KColors.kPickerTitleDarkColor : KColors.kPickerTitleColor;
+    var _textColor = isDark ? KColors.kPickerTextDarkColor : KColors.kPickerTextColor;
+    var _lineColor = isDark ? KColors.kLineDarkColor : KColors.kLineColor;
 
     showModalBottomSheet(
         context: context,
@@ -62,11 +67,12 @@ class JhBottomSheet {
         builder: (BuildContext context) {
           return SafeArea(
               child: Container(
-            color: Colors.white,
+            color: _bgColor,
             height: _bgHeight,
             child: Column(
               children: <Widget>[
                 Container(
+                  color: _bgColor,
                   height: titleHeight,
                   child: Center(
                     child: Text(
@@ -78,7 +84,7 @@ class JhBottomSheet {
                 ),
                 SizedBox(
                   height: titleLineHeight,
-                  child: Container(color: _spaceColor),
+                  child: Container(color: _lineColor),
                 ),
                 ListView.separated(
                   itemCount: _dataArr.length,
@@ -86,16 +92,20 @@ class JhBottomSheet {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     Color _btnTextColor =
-                        (redBtnTitle != null && index == _dataArr.length - 1) ? _red_textColor : _textColor;
+                        (redBtnTitle != null && index == _dataArr.length - 1) ? _redTextColor : _textColor;
 
                     return GestureDetector(
                       child: Container(
-                          height: _cellHeight,
-                          color: Colors.white,
-                          child: Center(
-                              child: Text(_dataArr[index],
-                                  style: TextStyle(fontSize: _textFontSize, color: _btnTextColor),
-                                  textAlign: TextAlign.center))),
+                        height: _cellHeight,
+                        color: _bgColor,
+                        child: Center(
+                          child: Text(
+                            _dataArr[index],
+                            style: TextStyle(fontSize: _textFontSize, color: _btnTextColor),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
                       // onTap: () => Navigator.of(context).pop(index),
                       onTap: () {
                         Navigator.of(context).pop(index);
@@ -108,15 +118,15 @@ class JhBottomSheet {
                   separatorBuilder: (context, index) {
                     return Divider(
                       height: 1,
-                      color: _spaceColor,
+                      color: _lineColor,
                     );
                   },
                 ),
-                SizedBox(height: _spaceHeight, child: Container(color: _spaceColor)),
+                SizedBox(height: _spaceHeight, child: Container(color: _lineColor)),
                 GestureDetector(
                   child: Container(
                       height: _cellHeight,
-                      color: Colors.white,
+                      color: _bgColor,
                       child: Center(
                           child: Text(_cancelText,
                               style: TextStyle(fontSize: _textFontSize, color: _textColor),
@@ -125,7 +135,6 @@ class JhBottomSheet {
                     if (clickCallback != null) {
                       clickCallback(0, _cancelText);
                     }
-
                     Navigator.of(context).pop();
                   },
                 )

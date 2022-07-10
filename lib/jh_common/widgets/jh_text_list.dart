@@ -4,10 +4,16 @@
 ///  description:  带箭头文本列表
 
 import 'package:flutter/material.dart';
+import '/project/configs/colors.dart';
 import '/base_appbar.dart';
 
 const double _lfSpace = 10.0;
-const Color _lineColor = Color(0xFFE6E6E6); // 230
+const double _cellHeight = 50.0;
+const double _lineHeight = 1.0;
+const Color _lineColor = KColors.kLineColor;
+const Color _lineDarkColor = KColors.kLineDarkColor;
+const Color _cellBgColor = KColors.kCellBgColor;
+const Color _cellBgDarkColor = KColors.kCellBgDarkColor;
 
 typedef _CallBack = void Function(int selectIndex, String selectStr);
 
@@ -26,16 +32,19 @@ class JhTextList extends StatelessWidget {
   final bool isBack;
 
   Widget _getWidget(context, index) {
+    var lineColor = Theme.of(context).brightness == Brightness.dark ? _lineDarkColor : _lineColor;
+    var cellBgColor = Theme.of(context).brightness == Brightness.dark ? _cellBgDarkColor : _cellBgColor;
+
     return InkWell(
         child: Container(
-            height: 50,
-            color: Colors.transparent,
+            height: _cellHeight,
+            color: cellBgColor,
             child: Stack(
               alignment: Alignment.center,
               children: <Widget>[
                 Positioned(
                   left: _lfSpace,
-                  child: Text(dataArr![index]),
+                  child: Text(dataArr?[index]),
                 ),
                 Positioned(
                   right: _lfSpace,
@@ -46,15 +55,15 @@ class JhTextList extends StatelessWidget {
                     left: _lfSpace,
                     right: 0,
                     child: Container(
-                      color: _lineColor,
-                      height: 1,
+                      color: lineColor,
+                      height: _lineHeight,
                     )),
               ],
             )),
         onTap: () {
 //              print("点击的index---"+index.toString());
           if (callBack != null) {
-            callBack!(index, dataArr![index]);
+            callBack!(index, dataArr?[index]);
           }
         });
   }
@@ -65,7 +74,7 @@ class JhTextList extends StatelessWidget {
         appBar: baseAppBar(context, title, isBack: isBack),
         body: ListView.builder(
           physics: BouncingScrollPhysics(),
-          itemCount: dataArr!.length,
+          itemCount: dataArr?.length,
           itemBuilder: this._getWidget,
         ));
   }

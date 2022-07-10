@@ -64,7 +64,6 @@ class _InfoPageState extends State<InfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: baseAppBar(context, ''),
-      backgroundColor: Color(0xFFF8F8F8), // 248
       body: _body(),
     );
   }

@@ -5,14 +5,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:provider/provider.dart';
 import '/project/configs/colors.dart';
+import '/project/provider/theme_provider.dart';
 import '/base_appbar.dart';
 
-const Color _bgColor = Color(0xFFF2F2F2); //242
-const Color _indicatorColor = KColors.kThemeColor;
-const Color _labelColor = KColors.kThemeColor;
-const Color _unselectedLabelColor = Color(0xFF333333); //51
-const Color _centerLineColor = Color(0xFFC8C8C8); //200
+// const Color _bgColor = Color(0xFFF2F2F2); //242
+// const Color _indicatorColor = KColors.kThemeColor;
+// const Color _labelColor = KColors.kThemeColor;
+// const Color _unselectedLabelColor = Color(0xFF333333); //51
+// const Color _centerLineColor = Color(0xFFC8C8C8); //200
 
 class JhTopTabBarModel {
   final String? title; // 标题
@@ -27,11 +29,11 @@ class JhTopTabBar extends StatefulWidget {
     Key? key,
     this.title: "",
     required this.tabModelArr,
-    this.bgColor: _bgColor,
+    this.bgColor,
     this.tabController,
-    this.indicatorColor: _indicatorColor,
-    this.labelColor: _labelColor,
-    this.unselectedLabelColor: _unselectedLabelColor,
+    this.indicatorColor,
+    this.labelColor,
+    this.unselectedLabelColor,
     this.indicatorWeight: 2,
     this.height: 40.0,
     this.labelStyle,
@@ -50,11 +52,11 @@ class JhTopTabBar extends StatefulWidget {
 
   final String title;
   final List<JhTopTabBarModel> tabModelArr; // tab对象数组
-  final Color bgColor; // TabBar背景颜色，
+  final Color? bgColor; // TabBar背景颜色，
   final TabController? tabController; // TabController对象
-  final Color indicatorColor; // 指示器颜色
-  final Color labelColor; // 选中label颜色
-  final Color unselectedLabelColor; // 未选中label颜色
+  final Color? indicatorColor; // 指示器颜色
+  final Color? labelColor; // 选中label颜色
+  final Color? unselectedLabelColor; // 未选中label颜色
   final double indicatorWeight; // 指示器 高度 默认2
   final double height; // tab高度 默认35
   final TextStyle? labelStyle;
@@ -104,8 +106,73 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    // 默认颜色
+    var bgColor = Color(0xFFF2F2F2); //242
+    var indicatorColor = KColors.kThemeColor;
+    var labelColor = KColors.kThemeColor;
+    var unselectedLabelColor = KColors.kBlackTextColor;
+    var _centerLineColor = Color(0xFFC8C8C8); // 200
+
+    // TODO: 通过ThemeProvider进行主题管理
+    final provider = Provider.of<ThemeProvider>(context);
+    var _bgColor = provider.isDark() ? KColors.kTabBarBgDarkColor : bgColor;
+    var _indicatorColor = provider.isDark() ? indicatorColor : provider.getThemeColor();
+    var _labelColor = provider.isDark() ? labelColor : provider.getThemeColor();
+    var _unselectedLabelColor = provider.isDark() ? KColors.kBlackTextDarkColor : unselectedLabelColor;
+
+    // 设置的颜色优先级高于暗黑模式
+    _bgColor = widget.bgColor ?? _bgColor;
+    _indicatorColor = widget.indicatorColor ?? _indicatorColor;
+    _labelColor = widget.labelColor ?? _labelColor;
+    _unselectedLabelColor = widget.unselectedLabelColor ?? _unselectedLabelColor;
+
     return Scaffold(
-      appBar:
+      appBar: baseAppBar(
+        context,
+        widget.title,
+        rightText: widget.rightText,
+        rightImgPath: widget.rightImgPath,
+        leftItem: widget.leftItem,
+        isBack: widget.isBack,
+        elevation: widget.elevation,
+        rightItemCallBack: widget.rightItemCallBack,
+        leftItemCallBack: widget.leftItemCallBack,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(widget.height),
+          child: Stack(
+            children: <Widget>[
+              Material(
+                child: Container(
+                  height: widget.height,
+                  color: _bgColor, // 这里设置tab的背景色
+                  child: TabBar(
+                    controller: _tabController,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorColor: _indicatorColor,
+                    indicatorWeight: widget.indicatorWeight,
+                    labelColor: _labelColor,
+                    unselectedLabelColor: _unselectedLabelColor,
+                    labelStyle: widget.labelStyle,
+                    unselectedLabelStyle: widget.unselectedLabelStyle,
+                    indicator: widget.indicator,
+                    tabs: widget.tabModelArr.map((item) => Tab(text: item.title, icon: item.badge)).toList(),
+                  ),
+                ),
+              ),
+              Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0, (widget.height - 20) / 2, 0, (widget.height - 20) / 2),
+                    child: Container(
+                      color: _centerLineColor,
+                      height: widget.height - 20,
+                      width: widget.showCenterLine == true ? 1 : 0,
+                    ),
+                  ))
+            ],
+          ),
+        ),
+      ),
 
 //        AppBar(
 //          title: Text(widget.title, style: TextStyle(fontSize: 18.0, color: Colors.white)),
@@ -135,53 +202,6 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
 //              )
 //          ),
 //        ),
-
-          baseAppBar(
-        context,
-        widget.title,
-        rightText: widget.rightText,
-        rightImgPath: widget.rightImgPath,
-        leftItem: widget.leftItem,
-        isBack: widget.isBack,
-        elevation: widget.elevation,
-        rightItemCallBack: widget.rightItemCallBack,
-        leftItemCallBack: widget.leftItemCallBack,
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(widget.height),
-          child: Stack(
-            children: <Widget>[
-              Material(
-                child: Container(
-                  height: widget.height,
-                  color: widget.bgColor, // 这里设置tab的背景色
-                  child: TabBar(
-                    controller: _tabController,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    indicatorColor: widget.indicatorColor,
-                    indicatorWeight: widget.indicatorWeight,
-                    labelColor: widget.labelColor,
-                    unselectedLabelColor: widget.unselectedLabelColor,
-                    labelStyle: widget.labelStyle,
-                    unselectedLabelStyle: widget.unselectedLabelStyle,
-                    indicator: widget.indicator,
-                    tabs: widget.tabModelArr.map((item) => Tab(text: item.title, icon: item.badge)).toList(),
-                  ),
-                ),
-              ),
-              Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, (widget.height - 20) / 2, 0, (widget.height - 20) / 2),
-                    child: Container(
-                      color: _centerLineColor,
-                      height: widget.height - 20,
-                      width: widget.showCenterLine == true ? 1 : 0,
-                    ),
-                  ))
-            ],
-          ),
-        ),
-      ),
       body: TabBarView(
         controller: _tabController,
         children: widget.tabModelArr.map((item) => item.widget!).toList(),

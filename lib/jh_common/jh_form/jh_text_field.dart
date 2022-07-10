@@ -8,9 +8,6 @@ import 'package:flutter/services.dart';
 
 const int _maxLines = 5; // 最大行数
 const int _maxLength = 100; // 最大录入长度
-const Color _textColor = Colors.black;
-const TextStyle _textStyle = TextStyle(fontSize: 15.0, color: _textColor);
-const TextStyle _hintTextStyle = TextStyle(fontSize: 15.0, color: Color(0xFFBBBBBB)); // 187
 
 typedef _InputCallBack = void Function(String value);
 
@@ -29,8 +26,8 @@ class JhTextField extends StatefulWidget {
     this.enabled: true,
     this.inputFormatters,
     this.inputCallBack,
-    this.textStyle = _textStyle,
-    this.hintTextStyle = _hintTextStyle,
+    this.textStyle,
+    this.hintTextStyle,
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
   }) : super(key: key);
@@ -47,8 +44,8 @@ class JhTextField extends StatefulWidget {
   final bool enabled; // 是否可编辑，默认true
   final List<TextInputFormatter>? inputFormatters;
   final _InputCallBack? inputCallBack;
-  final TextStyle textStyle;
-  final TextStyle hintTextStyle;
+  final TextStyle? textStyle;
+  final TextStyle? hintTextStyle;
   final TextAlign textAlign; // 对齐方式，默认左对齐
   final InputBorder border; // 边框样式，默认无边框
 

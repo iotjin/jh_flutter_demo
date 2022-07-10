@@ -60,7 +60,7 @@ class WxMotionPage extends StatelessWidget {
         _clickCell(context, '设置');
       }),
       body: _body(context, _dataArr),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
       bottomNavigationBar: _bottomView(context),
     );
   }
@@ -100,7 +100,7 @@ class WxMotionPage extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 200,
-                color: Colors.white,
+                color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
                 // child: ListTile(
                 //   title: Text(item['title']),
                 //   subtitle: Text(
@@ -151,7 +151,7 @@ class WxMotionPage extends StatelessWidget {
                           ],
                         )),
                     Container(
-                      color: KColors.kLineColor,
+                      color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
                       margin: EdgeInsets.symmetric(horizontal: 15),
                       height: 1,
                     ),
@@ -191,7 +191,7 @@ class WxMotionPage extends StatelessWidget {
   _bottomView(context) {
     return Container(
       height: JhScreenUtils.bottomSafeHeight + 60,
-      color: Colors.white,
+      color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
       child: SafeArea(
           child: Row(
         children: <Widget>[
@@ -199,7 +199,7 @@ class WxMotionPage extends StatelessWidget {
             child: InkWell(
               child: Container(
                 height: 60,
-                color: Colors.white,
+                color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
                 child: Center(child: Text('步数排行榜')),
               ),
               onTap: () => _clickCell(context, '步数排行榜'),

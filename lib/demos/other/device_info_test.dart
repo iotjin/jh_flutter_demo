@@ -32,10 +32,10 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
     String packageName = packageInfo.packageName;
     String version = packageInfo.version;
     String buildNumber = packageInfo.buildNumber;
-    print('appName ${appName}');
-    print('packageName ${packageName}');
-    print('version ${version}');
-    print('buildNumber ${buildNumber}');
+    print('appName $appName');
+    print('packageName $packageName');
+    print('version $version');
+    print('buildNumber $buildNumber');
   }
 
   Future<void> initPlatformState() async {

@@ -48,14 +48,14 @@ class WxGroupChatPage extends StatelessWidget {
     return Scaffold(
       appBar: backAppBar(context, '群聊', backgroundColor: Colors.transparent),
       body: _body(context),
-      backgroundColor: KColors.wxBgColor,
+      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
   Widget _body(context) {
     Widget _searchBar = Container(
       decoration: new BoxDecoration(
-        color: Colors.white,
+        color: KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor),
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
       ),
       alignment: Alignment.center,
