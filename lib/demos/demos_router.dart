@@ -37,6 +37,7 @@ import 'form/form_Input_cell_test_page.dart';
 import 'form/form_select_cell_test_page.dart';
 import 'form/set_cell_test_page.dart';
 import 'form/form_test_page.dart';
+import 'form/form_validate_page.dart';
 
 // gridView
 import 'gridView/gridview_demo_lists_page.dart';
@@ -149,6 +150,8 @@ class DemosRouter implements IRouterProvider {
     router.define("FormSelectCellTestPage", handler: Handler(handlerFunc: (_, __) => FormSelectCellTestPage()));
     router.define("SetCellTestPage", handler: Handler(handlerFunc: (_, __) => SetCellTestPage()));
     router.define("FormTestPage", handler: Handler(handlerFunc: (_, __) => FormTestPage()));
+    router.define("FormValidatePage", handler: Handler(handlerFunc: (_, __) => FormValidatePage()));
+
     // GridView
     router.define("GridViewDemoListsPage", handler: Handler(handlerFunc: (_, __) => GridViewDemoListsPage()));
     router.define("GridViewTest1", handler: Handler(handlerFunc: (_, __) => GridViewTest1()));

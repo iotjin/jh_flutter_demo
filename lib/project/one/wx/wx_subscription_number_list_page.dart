@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/jh_common/jh_form/jh_searchbar.dart';
 import '/project/configs/project_config.dart';
 
 var _dataArr;
@@ -42,21 +42,9 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
 
   // body
   Widget _body(context, dataArr) {
-    Widget _searchBar = Container(
-      decoration: new BoxDecoration(
-        color: KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor),
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-      ),
-      alignment: Alignment.center,
-      margin: EdgeInsets.all(10),
-      height: 38,
-      child: JhLoginTextField(
-        leftWidget: Icon(Icons.search, size: 25),
-        hintText: '微信号/手机号',
-        isShowDeleteBtn: true,
-        isDense: true,
-        border: InputBorder.none,
-      ),
+    Widget _searchBar = JhSearchBar(
+      hintText: '微信号/手机号',
+      bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
 
     return ListView.separated(

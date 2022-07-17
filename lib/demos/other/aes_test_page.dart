@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_encrypt_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/jh_common/jh_form/jh_form_Input_cell.dart';
+import '/jh_common/widgets/jh_button.dart';
 import '/base_appbar.dart';
 
 class AESTestPage extends StatefulWidget {
@@ -41,7 +42,9 @@ class _AESTestPageState extends State<AESTestPage> {
             title: "明文",
             hintText: "请输入要加密的文字",
             text: _textStr,
-            enabled: false,
+            inputCallBack: (value) {
+              setState(() => _textStr = value);
+            },
           ),
           JhFormInputCell(title: "Base64编码", text: _base64encodeStr, enabled: false),
           JhFormInputCell(title: "Base64解码", text: _base64decodeStr, enabled: false),
@@ -49,6 +52,13 @@ class _AESTestPageState extends State<AESTestPage> {
           JhFormInputCell(title: "AES解密", text: _aesDecryptStr, enabled: false),
           JhFormInputCell(title: "MD5加密", text: _md5Str, enabled: false),
           JhFormInputCell(text: "本地加密存储请看控制台输出", enabled: false),
+          SizedBox(height: 50),
+          JhButton(
+            text: '更新',
+            onPressed: () {
+              _test(_textStr);
+            },
+          )
         ],
       ),
     )));

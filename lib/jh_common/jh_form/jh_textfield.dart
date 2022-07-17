@@ -1,13 +1,17 @@
-///  jh_text_field.dart
+///  jh_textfield.dart
 ///
 ///  Created by iotjin on 2020/02/18.
 ///  description:  输入框（默认没有边框，宽充满屏幕，文字居左，默认显示1行，自动换行，最多5行，可设置键盘类型，右侧添加自定义widget，多行，最大长度，是否可编辑，文字样式）
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import '/project/configs/colors.dart';
+import '/project/provider/theme_provider.dart';
 
 const int _maxLines = 5; // 最大行数
 const int _maxLength = 100; // 最大录入长度
+const double _labelTextFontSize = 15.0;
 
 typedef _InputCallBack = void Function(String value);
 
@@ -17,6 +21,8 @@ class JhTextField extends StatefulWidget {
     this.text: '',
     this.keyboardType: TextInputType.text,
     this.hintText: '请输入',
+    this.labelText: '',
+    this.errorText: '',
     this.focusNode,
     this.leftWidget,
     this.rightWidget,
@@ -28,12 +34,16 @@ class JhTextField extends StatefulWidget {
     this.inputCallBack,
     this.textStyle,
     this.hintTextStyle,
+    this.labelTextStyle,
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
+    this.controller,
   }) : super(key: key);
 
   final String text;
   final String hintText;
+  final String labelText; // top提示文字
+  final String errorText; // 错误提示文字
   final TextInputType keyboardType; // 键盘类型，默认文字
   final FocusNode? focusNode;
   final Widget? leftWidget; // 左侧widget ，默认隐藏
@@ -46,8 +56,10 @@ class JhTextField extends StatefulWidget {
   final _InputCallBack? inputCallBack;
   final TextStyle? textStyle;
   final TextStyle? hintTextStyle;
+  final TextStyle? labelTextStyle; // 默认为hintTextStyle，高亮为主题色
   final TextAlign textAlign; // 对齐方式，默认左对齐
   final InputBorder border; // 边框样式，默认无边框
+  final TextEditingController? controller;
 
   @override
   _JhTextFieldState createState() => _JhTextFieldState();
@@ -56,26 +68,65 @@ class JhTextField extends StatefulWidget {
 class _JhTextFieldState extends State<JhTextField> {
   TextEditingController? _textController;
   FocusNode? _focusNode;
+  bool _isFocused = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    _textController = TextEditingController();
+    _textController = widget.controller ?? TextEditingController();
     _textController!.text = widget.text;
     _focusNode = widget.focusNode != null ? widget.focusNode : FocusNode();
+
+    _focusNode!.addListener(() {
+      setState(() {
+        _isFocused = _focusNode!.hasFocus;
+      });
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant JhTextField oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+
+    // 更新text值到_textController
+    _textController!.text = widget.text;
+    // 光标保持在文本最后
+    _textController!.selection = TextSelection.fromPosition(
+      TextPosition(offset: _textController!.text.length),
+    );
+
+    // 同上
+    // _textController!.value = _textController!.value.copyWith(
+    //   text: widget.text,
+    //   selection: TextSelection(
+    //     baseOffset: _textController!.text.length,
+    //     extentOffset: _textController!.text.length,
+    //   ),
+    //   composing: TextRange.empty,
+    // );
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
+
+    _focusNode!.unfocus();
+    _textController!.dispose();
     super.dispose();
 //    print("JhTextField dispose");
   }
 
   @override
   Widget build(BuildContext context) {
+    // TODO: 通过ThemeProvider进行主题管理
+    final provider = Provider.of<ThemeProvider>(context);
+    var _themeColor = provider.isDark() ? KColors.kThemeColor : provider.getThemeColor();
+    var labelTextStyle = TextStyle(fontSize: _labelTextFontSize, color: _themeColor);
+    var _labelTextStyle = widget.labelTextStyle ?? labelTextStyle;
+
     return TextField(
       enabled: widget.enabled,
       focusNode: _focusNode,
@@ -94,6 +145,9 @@ class _JhTextFieldState extends State<JhTextField> {
           suffixIcon: widget.rightWidget,
           hintText: widget.hintText,
           hintStyle: widget.hintTextStyle,
+          labelText: widget.labelText.isEmpty ? null : widget.labelText,
+          labelStyle: _isFocused ? _labelTextStyle : widget.hintTextStyle,
+          errorText: widget.errorText.isEmpty ? null : widget.errorText,
           isDense: true,
           contentPadding: widget.border != InputBorder.none
               ? EdgeInsets.symmetric(horizontal: 5, vertical: 8)

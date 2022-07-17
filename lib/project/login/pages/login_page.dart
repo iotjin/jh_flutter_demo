@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import '/jh_common/jh_form/jh_keyboard_utils.dart';
-import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/jh_common/jh_form/jh_login_textfield.dart';
 import '/jh_common/utils/jh_color_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/jh_common/widgets/jh_button.dart';
@@ -91,9 +91,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: KeyboardActions(
-      config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
-      child: _mainBody(),
-    ));
+          config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
+          child: _mainBody(),
+        ));
   }
 
   Widget _mainBody() {
@@ -131,25 +131,27 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 30),
                 JhLoginTextField(
-                    text: _name,
-                    hintText: "请输入用户名",
-                    focusNode: _node1,
-                    leftWidget: Icon(Icons.person),
-                    isShowDeleteBtn: true,
-                    controller: _nameController,
-                    inputCallBack: (value) => _name = value),
+                  text: _name,
+                  hintText: "请输入用户名",
+                  focusNode: _node1,
+                  leftWidget: Icon(Icons.person),
+                  isShowDeleteBtn: true,
+                  controller: _nameController,
+                  inputCallBack: (value) => _name = value,
+                ),
                 SizedBox(height: 10),
                 JhLoginTextField(
-                    text: _pwd,
-                    hintText: "请输入密码",
-                    focusNode: _node2,
-                    leftWidget: Icon(Icons.lock),
-                    isShowDeleteBtn: true,
-                    isPwd: true,
-                    controller: _passwordController,
-                    pwdClose: 'assets/images/ic_pwd_close.png',
-                    pwdOpen: 'assets/images/ic_pwd_open.png',
-                    inputCallBack: (value) => _pwd = value),
+                  text: _pwd,
+                  hintText: "请输入密码",
+                  focusNode: _node2,
+                  leftWidget: Icon(Icons.lock),
+                  isShowDeleteBtn: true,
+                  isPwd: true,
+                  controller: _passwordController,
+                  pwdClose: 'assets/images/ic_pwd_close.png',
+                  pwdOpen: 'assets/images/ic_pwd_open.png',
+                  inputCallBack: (value) => _pwd = value,
+                ),
                 SizedBox(height: 50),
                 JhButton(
                   text: "登 录",

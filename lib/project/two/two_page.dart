@@ -11,7 +11,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:lpinyin/lpinyin.dart';
 import '/jh_common/utils/jh_color_utils.dart';
-import '/jh_common/jh_form/jh_login_text_field.dart';
+import '/jh_common/jh_form/jh_searchbar.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
 import '/project/configs/project_config.dart';
 import '/project/model/contacts_model.dart';
@@ -102,18 +102,20 @@ class _TwoPageState extends State<TwoPage> {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = Theme.of(context).brightness == Brightness.dark;
+    var isDark = Theme
+        .of(context)
+        .brightness == Brightness.dark;
     return Scaffold(
       appBar: isDark
           ? baseAppBar(context, KStrings.twoTabTitle,
-              backgroundColor: KColors.kNavBgDarkColor,
-              rightImgPath: 'assets/images/tianjiahaoyou.png', rightItemCallBack: () {
-              JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-            })
+          backgroundColor: KColors.kNavBgDarkColor,
+          rightImgPath: 'assets/images/tianjiahaoyou.png', rightItemCallBack: () {
+            JhNavUtils.pushNamed(context, 'WxAddFriendPage');
+          })
           : gradientAppBar(context, KStrings.twoTabTitle, rightImgPath: 'assets/images/tianjiahaoyou.png',
-              rightItemCallBack: () {
-              JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-            }),
+          rightItemCallBack: () {
+            JhNavUtils.pushNamed(context, 'WxAddFriendPage');
+          }),
       body: _body(),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
@@ -212,22 +214,9 @@ class _TwoPageState extends State<TwoPage> {
 
     List<Widget> _topWidgetList = _topData.map((item) => _topCell(context, item)).toList();
 
-    Widget _searchBar = Container(
-      decoration: new BoxDecoration(
-//        border: Border.all(color: Colors.grey, width: 0.3), // 灰色的一层边框
-        color: KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor),
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-      ),
-      alignment: Alignment.center,
-      margin: EdgeInsets.all(10),
-      height: 38,
-      child: JhLoginTextField(
-        leftWidget: Icon(Icons.search, size: 25),
-        hintText: '搜索',
-        isShowDeleteBtn: true,
-        isDense: true,
-        border: InputBorder.none,
-      ),
+    Widget _searchBar = JhSearchBar(
+      hintText: '搜索',
+      bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
 
     _topWidgetList.insert(0, _searchBar);

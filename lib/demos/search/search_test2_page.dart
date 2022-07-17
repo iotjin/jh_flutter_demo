@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/jh_common/jh_form/jh_text_field.dart';
+import '/jh_common/jh_form/jh_textfield.dart';
 import '/project/configs/colors.dart';
 import '/project/routes/jh_nav_utils.dart';
 
@@ -13,29 +13,7 @@ class SearchTest2Page extends StatelessWidget {
           AppBar(
         backgroundColor: KColors.kThemeColor,
         titleSpacing: 0,
-        title: GestureDetector(
-          child: Container(
-            decoration: new BoxDecoration(
-              border: Border.all(color: Colors.grey, width: 1.0), // 灰色的一层边框
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            ),
-            alignment: Alignment.center,
-            height: 38,
-//           padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-            child: JhTextField(
-              enabled: false,
-              leftWidget: Icon(
-                Icons.search,
-                size: 30,
-              ),
-              hintText: '请输入搜索信息',
-            ),
-          ),
-          onTap: () {
-            JhNavUtils.pushNamed(context, 'SiteSearchPage');
-          },
-        ),
+        title: _searchBar(context),
         actions: <Widget>[
           IconButton(
               icon:
@@ -53,6 +31,32 @@ class SearchTest2Page extends StatelessWidget {
           Navigator.pop(context);
         },
       ),
+    );
+  }
+
+  _searchBar(context) {
+    return GestureDetector(
+      child: Container(
+        decoration: new BoxDecoration(
+          border: Border.all(color: Colors.grey, width: 1.0), // 灰色的一层边框
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        ),
+        alignment: Alignment.center,
+        height: 38,
+//           padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+        child: JhTextField(
+          enabled: false,
+          leftWidget: Icon(
+            Icons.search,
+            size: 30,
+          ),
+          hintText: '请输入搜索信息',
+        ),
+      ),
+      onTap: () {
+        JhNavUtils.pushNamed(context, 'SiteSearchPage');
+      },
     );
   }
 }

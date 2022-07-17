@@ -10,7 +10,7 @@ import '/project/provider/theme_provider.dart';
 
 const double _fontSize = 18.0; // 文字大小
 const double _borderWidth = 0.0; // 边框宽度
-const double _borderRadius = 0.0; // 边框圆角
+const double _borderRadius = 5.0; // 边框圆角
 
 class JhButton extends StatelessWidget {
   const JhButton({

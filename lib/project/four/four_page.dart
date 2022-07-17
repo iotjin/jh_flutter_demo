@@ -256,7 +256,7 @@ class _FourPageState extends State<FourPage> {
                                 'assets/wechat/mine/ic_setting_myQR.png',
                                 width: 18.0,
                                 height: 18.0,
-                                color: KColors.dynamicColor(context, KColors.kIconColor),
+                                color: KColors.dynamicColor(context, KColors.kIconColor, KColors.kIconDarkColor),
                               ),
                             ),
 //                            Image.asset(

@@ -49,9 +49,15 @@ class JhNavUtils {
     return _NavFluroUtils.push(context, routeName, replace: true, clearStack: true);
   }
 
-  /// 跳转 - 带回调
-  static void pushNamedResult(BuildContext context, String routeName, Function(Object) function) {
-    _NavFluroUtils.pushResult(context, routeName, (result) {
+  /// 跳转 - 带回调参数
+  static void pushNamedResult(BuildContext context, String routeName, Object? arguments, Function(Object) function) {
+    var path = routeName;
+    // 对象或对象数组传值可以通过arguments字段进行传值，然后在router.define那里处理、设置页面接收
+    if (arguments != null) {
+      String jsonStr = Uri.encodeComponent(jsonEncode(arguments));
+      path = '${routeName}?jumpParams=${jsonStr}';
+    }
+    _NavFluroUtils.pushResult(context, path, (result) {
       function(result);
     });
   }
@@ -128,6 +134,8 @@ class _NavFluroUtils {
 
 /*
 
+// 跳转传值
+
 var jumpParams = {'a': 123};
 var jumpParams2 = [{'a': 123},{'b': 456}];
 JhNavUtils.pushNamed(context, 'TestPage', arguments: jumpParams2);
@@ -139,5 +147,18 @@ router.define("TestPage", handler: Handler(handlerFunc: (_, params) {
 
 const TestPage(this.jumpParams, {Key? key}) : super(key: key);
 final dynamic jumpParams;
+
+
+// 跳转传值带回调刷新
+
+var params = dataArr[index];
+JhNavUtils.pushNamedResult(context, 'TestPage', params, (data) {
+  var returnData = data as Map;
+  if (returnData['isRefresh'] == true) {
+    requestData();
+  }
+});
+
+JhNavUtils.goBackWithParams(context, {'isRefresh': true});
 
 */

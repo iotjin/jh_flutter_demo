@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '/jh_common/jh_form/jh_text_field.dart';
+import '/jh_common/jh_form/jh_textfield.dart';
 import '/base_appbar.dart';
 
 class InputTextFieldTestPage extends StatefulWidget {

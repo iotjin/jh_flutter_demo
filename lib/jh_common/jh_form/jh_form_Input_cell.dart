@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/project/configs/colors.dart';
-import 'jh_text_field.dart';
+import 'jh_textfield.dart';
 
 const double _titleSpace = 100.0; // 左侧title默认宽
 const double _cellHeight = 45.0; // 输入、选择样式一行的高度
@@ -23,6 +23,8 @@ class JhFormInputCell extends StatefulWidget {
     Key? key,
     this.title: '',
     this.text: '',
+    this.labelText: '',
+    this.errorText: '',
     this.keyboardType: TextInputType.text,
     this.hintText: '请输入',
     this.focusNode,
@@ -39,6 +41,7 @@ class JhFormInputCell extends StatefulWidget {
     this.titleStyle,
     this.textStyle,
     this.hintTextStyle,
+    this.labelTextStyle,
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
     this.hiddenLine = false,
@@ -49,6 +52,8 @@ class JhFormInputCell extends StatefulWidget {
   final String title;
   final String text;
   final String hintText;
+  final String labelText; // top提示文字
+  final String errorText; // 错误提示文字
   final TextInputType keyboardType; // 键盘类型，默认文字
   final FocusNode? focusNode;
   final bool showRedStar; // 显示左侧小红星，默认不显示
@@ -64,6 +69,7 @@ class JhFormInputCell extends StatefulWidget {
   final TextStyle? titleStyle;
   final TextStyle? textStyle;
   final TextStyle? hintTextStyle;
+  final TextStyle? labelTextStyle; // 默认为hintTextStyle，高亮为主题色
   final TextAlign textAlign; // 输入文字对齐方式，默认左对齐
   final InputBorder border; // 输入边框样式，默认无边框
   final bool hiddenLine; // 隐藏底部横线
@@ -97,12 +103,12 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
     var _textStyle = widget.textStyle ?? textStyle;
     var _hintTextStyle = widget.hintTextStyle ?? hintTextStyle;
 
-    return Material(
+    return Container(
         color: _bgColor,
         child: Container(
             constraints: BoxConstraints(
                 minWidth: double.infinity, // 宽度尽可能大
-                minHeight: _cellHeight // 最小高度为50像素
+                minHeight: _cellHeight // 最小高度
                 ),
             padding: EdgeInsets.fromLTRB(5, 0, 10, 0),
 //        decoration: BoxDecoration(
@@ -133,6 +139,8 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                     text: widget.text,
                     keyboardType: widget.keyboardType,
                     hintText: widget.hintText,
+                    labelText: widget.labelText,
+                    errorText: widget.errorText,
                     focusNode: widget.focusNode,
                     maxLines: widget.maxLines,
                     maxLength: widget.maxLength,
@@ -142,6 +150,7 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                     inputCallBack: widget.inputCallBack,
                     textStyle: _textStyle,
                     hintTextStyle: _hintTextStyle,
+                    labelTextStyle: widget.labelTextStyle,
                     textAlign: widget.textAlign,
                     border: widget.border,
                   )),

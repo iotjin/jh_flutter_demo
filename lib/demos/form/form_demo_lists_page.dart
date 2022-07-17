@@ -9,7 +9,8 @@ class FormDemoListsPage extends StatelessWidget {
     "JhFormInputCell",
     "JhFormSelectCell",
     "JhSetCell",
-    'FormTestPage'
+    'FormTestPage',
+    'FormValidatePage'
   ];
   final List routeData = [
     "LoginTextFieldTestPage",
@@ -17,7 +18,8 @@ class FormDemoListsPage extends StatelessWidget {
     "FormInputCellTestPage",
     "FormSelectCellTestPage",
     "SetCellTestPage",
-    'FormTestPage'
+    'FormTestPage',
+    'FormValidatePage'
   ];
 
   @override

@@ -40,9 +40,7 @@ class JhNinePicture extends StatelessWidget {
     bool _isHandleFour = isHandleFour && imgData!.length == 4;
 
     var _bgWidth = _isHandleFour ? (_space * 2 + _itemSpace + _itemWH * 2) : (kScreenWidth - lRSpace);
-
     var _bgHeight = _columnCount * _itemWH + _space * 2 + (_columnCount - 1) * _itemSpace;
-
     var _crossAxisCount = _isHandleFour ? 2 : 3;
     var _childAspectRatio = 1.0;
 
@@ -56,8 +54,6 @@ class JhNinePicture extends StatelessWidget {
     return Offstage(
       offstage: imgData!.length == 0,
       child: Container(
-        // color: Colors.yellow,
-        color: Colors.white,
         width: _bgWidth,
         height: _bgHeight,
         child: GridView.builder(
@@ -68,10 +64,10 @@ class JhNinePicture extends StatelessWidget {
               mainAxisSpacing: _itemSpace, // 垂直间距
               childAspectRatio: _childAspectRatio, // 子Widget宽高比例
             ),
-            physics: NeverScrollableScrollPhysics(),
             // 禁用滚动事件
-            padding: EdgeInsets.all(_space),
+            physics: NeverScrollableScrollPhysics(),
             // GridView内边距
+            padding: EdgeInsets.all(_space),
             itemCount: imgData!.length,
             itemBuilder: (context, index) {
               return _itemCell(context, index);

@@ -41,7 +41,7 @@ class JhQrCodeUtils {
       JhNavUtils.unFocus();
       // 延时保证键盘收起，否则进入扫码页会黑屏
       Future<dynamic>.delayed(const Duration(milliseconds: 500), () {
-        JhNavUtils.pushNamedResult(context, 'QrCodeScannerPage', (Object code) => code.toString());
+        JhNavUtils.pushNamedResult(context, 'QrCodeScannerPage',null, (Object code) => code.toString());
       });
     } else {
       JhProgressHUD.showText('当前平台暂不支持');

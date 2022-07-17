@@ -72,7 +72,7 @@ dependencies:
   # 图片库 https://pub.flutter-io.cn/packages/cupertino_icons
   cupertino_icons: ^1.0.4
   # toast https://pub.flutter-io.cn/packages/jhtoast
-  jhtoast: ^1.1.0
+  jhtoast: 1.1.0
   # 弹框 https://pub.flutter-io.cn/packages/fluttertoast
   fluttertoast: ^8.0.9
   # 加载框 https://pub.flutter-io.cn/packages/oktoast

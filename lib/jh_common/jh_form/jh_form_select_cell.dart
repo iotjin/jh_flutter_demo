@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import '/project/configs/colors.dart';
-import 'jh_text_field.dart';
+import 'jh_textfield.dart';
 
 const double _titleSpace = 100.0; // 左侧title默认宽
 const double _cellHeight = 45.0; // 输入、选择样式一行的高度

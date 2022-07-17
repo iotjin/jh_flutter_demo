@@ -127,8 +127,8 @@ class KColors {
   static const Color kPickerBtnDarkColor = kBlackTextDarkColor;
 
   // icon颜色
-  static const Color kIconColor = Color(0xFFC8C8C8); // (200, 200, 200)
-  static const Color kIconDarkColor = Color(0xFF646464); // (100, 100, 100)
+  static const Color kIconColor = Color(0xFF646464); // (100, 100, 100)
+  static const Color kIconDarkColor = Color(0xFFC8C8C8); // (200, 200, 200)
 
   // 微信主题色 rgb(59,184,21)
   static const Color wxThemeColor = Color(0xFF3BB815);

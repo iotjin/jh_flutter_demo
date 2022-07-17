@@ -62,3 +62,7 @@ class JhThemeUtils {
     }
   }
 }
+
+extension ThemeExtension on BuildContext {
+  bool get isDark => JhThemeUtils.isDark(this);
+}
