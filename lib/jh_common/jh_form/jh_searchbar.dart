@@ -24,7 +24,7 @@ class JhSearchBar extends StatelessWidget {
     this.inputCallBack,
   }) : super(key: key);
 
-  final String text;
+  final String? text;
   final String hintText;
   final Color? bgColor;
   final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认显示

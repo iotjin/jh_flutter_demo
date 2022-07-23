@@ -22,6 +22,8 @@ class JhFormSelectCell extends StatefulWidget {
     this.title: '',
     this.text: '',
     this.hintText: '请选择',
+    this.labelText: '',
+    this.errorText: '',
     this.showRedStar: false,
     this.hiddenArrow: false,
     this.leftWidget,
@@ -31,6 +33,7 @@ class JhFormSelectCell extends StatefulWidget {
     this.titleStyle,
     this.textStyle,
     this.hintTextStyle,
+    this.labelTextStyle,
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
     this.hiddenLine = false,
@@ -39,8 +42,10 @@ class JhFormSelectCell extends StatefulWidget {
   }) : super(key: key);
 
   final String title;
-  final String text;
+  final String? text;
   final String hintText;
+  final String labelText; // top提示文字
+  final String errorText; // 错误提示文字
   final bool showRedStar; // 显示左侧小红星，默认不显示
   final bool hiddenArrow; // 隐藏箭头，默认不隐藏
   final Widget? leftWidget; // 左侧widget ，默认隐藏
@@ -50,6 +55,7 @@ class JhFormSelectCell extends StatefulWidget {
   final TextStyle? titleStyle;
   final TextStyle? textStyle;
   final TextStyle? hintTextStyle;
+  final TextStyle? labelTextStyle; // 默认为hintTextStyle，高亮为主题色
   final TextAlign textAlign; // 输入文字对齐方式，默认左对齐
   final InputBorder border; // 输入边框样式，默认无边框
   final bool hiddenLine; // 隐藏底部横线
@@ -131,9 +137,12 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
                         child: JhTextField(
                       text: widget.text,
                       hintText: widget.hintText,
+                      labelText: widget.labelText,
+                      errorText: widget.errorText,
                       enabled: false,
                       textStyle: _textStyle,
                       hintTextStyle: _hintTextStyle,
+                      labelTextStyle: widget.labelTextStyle,
                       textAlign: widget.textAlign,
                       border: widget.border,
                     )),

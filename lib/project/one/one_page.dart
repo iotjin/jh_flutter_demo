@@ -340,16 +340,10 @@ class OnePage extends StatelessWidget {
   // }
 
   void _scan(context) {
-//    // 延时执行
-//    Future.delayed(Duration(milliseconds: 400), () {
-//      JhQrCodeUtils.scan().then((value) =>
-//          () {
-//        print(value);
-//      });
-//    });
-    JhQrCodeUtils.jumpScan(context).then((value) => () {
-          print(value);
-        });
+    JhQrCodeUtils.jumpScan(context, isShowGridLine: true, isShowScanLine: false, callBack: (data) {
+      print('扫码结果：$data');
+      JhToast.showText(context, msg: '扫码结果：$data');
+    });
   }
 }
 

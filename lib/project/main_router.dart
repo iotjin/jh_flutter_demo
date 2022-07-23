@@ -3,6 +3,8 @@ import 'package:fluro/fluro.dart';
 
 import '/project/model/contacts_model.dart';
 import '/project/routes/router_init.dart';
+import '/jh_common/widgets/qr_code_grid_scanner_page.dart';
+import '/jh_common/widgets/qr_code_scanner_page.dart';
 
 import '/project/one/one_page.dart';
 import '/project/two/two_page.dart';
@@ -30,7 +32,6 @@ import 'one/wx/wx_subscription_number_page.dart';
 import 'one/wx/wx_subscription_number_list_page.dart';
 import 'one/wx/wx_motion_page.dart';
 import 'one/wx/wx_motion_top_page.dart';
-import '/jh_common/widgets/qr_code_scanner_page.dart';
 
 // 联系人
 import 'two/wx/wx_userInfo_page.dart';
@@ -58,6 +59,12 @@ class MainRouter implements IRouterProvider {
     router.define(twoPage, handler: Handler(handlerFunc: (_, __) => TwoPage()));
     router.define(threePage, handler: Handler(handlerFunc: (_, __) => ThreePage()));
     router.define(fourPage, handler: Handler(handlerFunc: (_, __) => FourPage()));
+    // 二维码扫描
+    router.define('QrCodeGridScannerPage', handler: Handler(handlerFunc: (_, __) => QrCodeGridScannerPage()));
+    router.define("QrCodeScannerPage", handler: Handler(handlerFunc: (_, params) {
+      var jumpParams = params['jumpParams']!.first;
+      return QrCodeScannerPage(isShowScanLine: jsonDecode(jumpParams));
+    }));
 
     router.define("SetPage", handler: Handler(handlerFunc: (_, __) => SetPage()));
     router.define("InfoPage", handler: Handler(handlerFunc: (_, __) => InfoPage()));
@@ -79,7 +86,6 @@ class MainRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (_, __) => WxSubscriptionNumberListPage()));
     router.define('WxMotionPage', handler: Handler(handlerFunc: (_, __) => WxMotionPage()));
     router.define('WxMotionTopPage', handler: Handler(handlerFunc: (_, __) => WxMotionTopPage()));
-    router.define('QrCodeScannerPage', handler: Handler(handlerFunc: (_, __) => QrCodeScannerPage()));
 
     /********************************* 联系人 ********************************/
 

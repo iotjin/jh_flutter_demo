@@ -50,7 +50,7 @@ class JhFormInputCell extends StatefulWidget {
   }) : super(key: key);
 
   final String title;
-  final String text;
+  final String? text;
   final String hintText;
   final String labelText; // top提示文字
   final String errorText; // 错误提示文字

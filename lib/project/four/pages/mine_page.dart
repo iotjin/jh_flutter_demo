@@ -35,9 +35,9 @@ class _MinePageState extends State<MinePage> {
             leftImgPath: "assets/images/ic_saoyisao.png",
             title: '扫一扫',
             clickCallBack: () {
-              JhQrCodeUtils.jumpScan(context).then((value) => () {
-                    print(value);
-                  });
+              JhQrCodeUtils.jumpScan(context, isShowGridLine: true, callBack: (data) {
+                print('扫码结果：$data');
+              });
             },
           ),
           JhSetCell(

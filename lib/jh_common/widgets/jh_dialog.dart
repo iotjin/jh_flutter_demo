@@ -20,56 +20,72 @@ class JhDialog {
   static void show(
     BuildContext context, {
     String title: "",
+    bool isBoldTitle: true,
     String content: "",
     String leftText: _cancelText,
     String rightText: _confirmText,
     final VoidCallback? onCancel,
     final VoidCallback? onConfirm,
     bool hiddenCancel: false,
+    bool clickBtnPop: true, // 点击确认按钮是否弹框消失
   }) {
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) {
           return _BaseDialog(
-              title: title,
-              widget: content == ""
-                  ? null
-                  : Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                      child: Text(content, style: TextStyle(fontSize: 16.0)),
-                    ),
-              leftText: leftText,
-              rightText: rightText,
-              onCancel: onCancel,
-              onConfirm: onConfirm,
-              hiddenCancel: hiddenCancel);
+            title: title,
+            isBoldTitle: isBoldTitle,
+            widget: content == ""
+                ? null
+                : Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    child: Text(content, style: TextStyle(fontSize: 16.0)),
+                  ),
+            leftText: leftText,
+            rightText: rightText,
+            onCancel: onCancel,
+            onConfirm: onConfirm,
+            hiddenCancel: hiddenCancel,
+            clickBtnPop: clickBtnPop,
+          );
         });
+  }
+
+  /// 当clickBtnPop=false时，手动隐藏弹框
+  static void hide(context) {
+    FocusManager.instance.primaryFocus?.unfocus();
+    Navigator.pop(context);
   }
 
   /// 自定义弹框
   static void showCustomDialog(
     BuildContext context, {
     String title: "",
+    bool isBoldTitle: true,
     Widget? content,
     String leftText: _cancelText,
     String rightText: _confirmText,
     final VoidCallback? onCancel,
     final VoidCallback? onConfirm,
     bool hiddenCancel: false,
+    bool clickBtnPop: true, // 点击确认按钮是否弹框消失
   }) {
     showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) {
           return _BaseDialog(
-              title: title,
-              widget: content,
-              leftText: leftText,
-              rightText: rightText,
-              onCancel: onCancel,
-              onConfirm: onConfirm,
-              hiddenCancel: hiddenCancel);
+            title: title,
+            isBoldTitle: isBoldTitle,
+            widget: content,
+            leftText: leftText,
+            rightText: rightText,
+            onCancel: onCancel,
+            onConfirm: onConfirm,
+            hiddenCancel: hiddenCancel,
+            clickBtnPop: clickBtnPop,
+          );
         });
   }
 
@@ -80,11 +96,12 @@ class JhDialog {
     bool clickBgHidden: false,
   }) {
     showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return _CustomDialog(child: child!, clickBgHidden: clickBgHidden);
-        });
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return _CustomDialog(child: child!, clickBgHidden: clickBgHidden);
+      },
+    );
   }
 }
 
@@ -92,21 +109,25 @@ class _BaseDialog extends StatelessWidget {
   _BaseDialog({
     Key? key,
     this.title: "",
+    this.isBoldTitle: true,
     this.widget,
     this.leftText: _cancelText,
     this.rightText: _confirmText,
     this.onCancel,
     this.onConfirm,
     this.hiddenCancel: false,
+    this.clickBtnPop: true,
   }) : super(key: key);
 
   final String title;
+  final bool isBoldTitle;
   final Widget? widget;
   final String leftText;
   final String rightText;
   final VoidCallback? onCancel;
   final VoidCallback? onConfirm;
   final bool hiddenCancel;
+  final bool clickBtnPop;
 
   @override
   Widget build(BuildContext context) {
@@ -117,10 +138,11 @@ class _BaseDialog extends StatelessWidget {
     Widget dialogTitle = Offstage(
       offstage: title == '',
       child: Padding(
-        padding: EdgeInsets.only(bottom: 8.0),
+        padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 8.0),
         child: Text(
           title,
-          style: TextStyle(fontSize: _titleFontSize, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: _titleFontSize, fontWeight: isBoldTitle ? FontWeight.bold : FontWeight.normal),
         ),
       ),
     );
@@ -134,9 +156,7 @@ class _BaseDialog extends StatelessWidget {
                 textColor: _cancelTextColor,
                 onPressed: () {
                   Navigator.pop(context);
-                  if (onCancel != null) {
-                    onCancel!();
-                  }
+                  onCancel?.call();
                 },
               ),
         SizedBox(
@@ -148,10 +168,10 @@ class _BaseDialog extends StatelessWidget {
           text: rightText,
           textColor: confirmTextColor,
           onPressed: () {
-            Navigator.pop(context);
-            if (onConfirm != null) {
-              onConfirm!();
+            if (clickBtnPop == true) {
+              Navigator.pop(context);
             }
+            onConfirm?.call();
           },
         ),
       ],

@@ -19,34 +19,35 @@ class _FormSelectCellTestPageState extends State<FormSelectCellTestPage> {
           child: Column(
             children: <Widget>[
               JhFormSelectCell(clickCallBack: () {
-                print("点击cell");
+                print('点击cell');
               }),
-              JhFormSelectCell(title: "左标题"),
-              JhFormSelectCell(title: "左标题", text: "text赋初值"),
+              JhFormSelectCell(labelText: '请选择', text: 'text赋初值'),
+              JhFormSelectCell(title: '左标题'),
+              JhFormSelectCell(title: '左标题', text: 'text赋初值'),
               JhFormSelectCell(
-                title: "左标题",
-                hintText: "标题加红星",
+                title: '左标题',
+                hintText: '标题加红星',
                 showRedStar: true,
               ),
               JhFormSelectCell(
-                title: "左标题",
-                hintText: "红色标题",
+                title: '左标题',
+                hintText: '红色标题',
                 titleStyle: TextStyle(
                   fontSize: 15.0,
                   color: Colors.red,
                 ),
               ),
               JhFormSelectCell(
-                title: "左标题",
-                text: "红色文字",
+                title: '左标题',
+                text: '红色文字',
                 textStyle: TextStyle(
                   fontSize: 15.0,
                   color: Colors.red,
                 ),
               ),
               JhFormSelectCell(
-                title: "左标题",
-                text: "text靠右",
+                title: '左标题',
+                text: 'text靠右',
                 textAlign: TextAlign.right,
               ),
               JhFormSelectCell(
@@ -58,7 +59,7 @@ class _FormSelectCellTestPageState extends State<FormSelectCellTestPage> {
                 ),
               ),
               JhFormSelectCell(
-                title: "左标题",
+                title: '左标题',
                 hintText: '右侧自定义',
                 rightWidget: Container(
                   color: Colors.yellow,
@@ -67,7 +68,7 @@ class _FormSelectCellTestPageState extends State<FormSelectCellTestPage> {
                 ),
               ),
               JhFormSelectCell(
-                title: "左标题",
+                title: '左标题',
                 hintText: '隐藏箭头',
                 rightWidget: Container(
                   color: Colors.yellow,
@@ -78,8 +79,8 @@ class _FormSelectCellTestPageState extends State<FormSelectCellTestPage> {
               ),
               SizedBox(height: 10),
               JhFormSelectCell(
-                title: "左标题",
-                hintText: "设置边框,隐藏底部线",
+                title: '左标题',
+                hintText: '设置边框,隐藏底部线',
                 hiddenLine: true,
                 border: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
@@ -91,8 +92,8 @@ class _FormSelectCellTestPageState extends State<FormSelectCellTestPage> {
               ),
               SizedBox(height: 10),
               JhFormSelectCell(
-                title: "左标题",
-                hintText: "设置边框，显示红星，title顶部对齐",
+                title: '左标题',
+                hintText: '设置边框，显示红星，title顶部对齐',
                 hiddenLine: true,
                 showRedStar: true,
                 topAlign: true,

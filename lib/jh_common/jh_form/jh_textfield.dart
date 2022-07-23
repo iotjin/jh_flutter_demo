@@ -40,7 +40,7 @@ class JhTextField extends StatefulWidget {
     this.controller,
   }) : super(key: key);
 
-  final String text;
+  final String? text;
   final String hintText;
   final String labelText; // top提示文字
   final String errorText; // 错误提示文字
@@ -76,7 +76,7 @@ class _JhTextFieldState extends State<JhTextField> {
     super.initState();
 
     _textController = widget.controller ?? TextEditingController();
-    _textController!.text = widget.text;
+    _textController!.text = widget.text ?? '';
     _focusNode = widget.focusNode != null ? widget.focusNode : FocusNode();
 
     _focusNode!.addListener(() {
@@ -92,7 +92,7 @@ class _JhTextFieldState extends State<JhTextField> {
     super.didUpdateWidget(oldWidget);
 
     // 更新text值到_textController
-    _textController!.text = widget.text;
+    _textController!.text = widget.text ?? '';
     // 光标保持在文本最后
     _textController!.selection = TextSelection.fromPosition(
       TextPosition(offset: _textController!.text.length),

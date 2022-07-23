@@ -38,7 +38,7 @@ class JhLoginTextField extends StatefulWidget {
     this.isDense: false,
   }) : super(key: key);
 
-  final String text;
+  final String? text;
   final String hintText;
   final String? labelText; // top提示文字
   final TextEditingController? controller;
@@ -75,7 +75,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     super.initState();
 
     _textController = widget.controller ?? TextEditingController();
-    _textController!.text = widget.text;
+    _textController!.text = widget.text ?? '';
     _focusNode = widget.focusNode ?? FocusNode();
     _isHiddenPwdBtn = !widget.isPwd;
     _pwdShow = widget.isPwd;
@@ -100,7 +100,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     super.didUpdateWidget(oldWidget);
 
     // 更新text值到_textController
-    _textController!.text = widget.text;
+    _textController!.text = widget.text ?? '';
     // 光标保持在文本最后
     _textController!.selection = TextSelection.fromPosition(
       TextPosition(offset: _textController!.text.length),

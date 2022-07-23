@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jhtoast/jhtoast.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '/jh_common/utils/jh_qr_code_utils.dart';
 import '/base_appbar.dart';
@@ -19,32 +20,38 @@ class _QRCodeTestState extends State<QRCodeTest> {
           child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            Text("二维码扫描 - qr_code_scanner"),
             ElevatedButton(
               child: Text("二维码扫描"),
-              onPressed: () {
-                _scan(context);
-              },
+              onPressed: () => _scan1(context),
             ),
-            SizedBox(
-              height: 50,
+            ElevatedButton(
+              child: Text("二维码扫描-显示扫描线动画"),
+              onPressed: () => _scan2(context),
             ),
+            ElevatedButton(
+              child: Text("二维码扫描-显示网格线动画"),
+              onPressed: () => _scan3(context),
+            ),
+            Text("二维码扫描 - barcode_scan"),
+            ElevatedButton(
+              child: Text("二维码扫描"),
+              onPressed: () => _scan4(context),
+            ),
+            SizedBox(height: 20),
             Text('扫描到的信息：'),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 20),
             Text(
               _textStr,
               style: TextStyle(color: Colors.red),
             ),
-            SizedBox(
-              height: 50,
-            ),
+            SizedBox(height: 20),
+            Text('生成二维码'),
+            SizedBox(height: 10),
             // 生成二维码
             JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100, foregroundColor: Colors.yellow),
             JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100, backgroundColor: Colors.yellow),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码2222", 100,
                 image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'), imageSize: Size(20, 20)),
             Center(
@@ -63,10 +70,43 @@ class _QRCodeTestState extends State<QRCodeTest> {
     );
   }
 
-  void _scan(context) async {
-    JhQrCodeUtils.jumpScan(context).then((value) => setState(() {
-          print(value);
-          _textStr = value;
-        }));
+  void _scan1(context) {
+    JhQrCodeUtils.jumpScan(context, callBack: (data) {
+      print('扫码结果：$data');
+      JhToast.showText(context, msg: '扫码结果：$data');
+      setState(() {
+        _textStr = data;
+      });
+    });
+  }
+
+  void _scan2(context) {
+    JhQrCodeUtils.jumpScan(context, isShowScanLine: true, callBack: (data) {
+      print('扫码结果：$data');
+      JhToast.showText(context, msg: '扫码结果：$data');
+      setState(() {
+        _textStr = data;
+      });
+    });
+  }
+
+  void _scan3(context) {
+    JhQrCodeUtils.jumpScan(context, isShowGridLine: true, callBack: (data) {
+      print('扫码结果：$data');
+      JhToast.showText(context, msg: '扫码结果：$data');
+      setState(() {
+        _textStr = data;
+      });
+    });
+  }
+
+  void _scan4(context) {
+    JhQrCodeUtils.scan(callBack: (data) {
+      print('扫码结果：$data');
+      JhToast.showText(context, msg: '扫码结果：$data');
+      setState(() {
+        _textStr = data;
+      });
+    });
   }
 }

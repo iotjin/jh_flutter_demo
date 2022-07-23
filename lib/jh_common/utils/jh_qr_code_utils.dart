@@ -13,40 +13,27 @@ import "/project/routes/jh_nav_utils.dart";
 import 'jh_device_utils.dart';
 
 class JhQrCodeUtils {
-  ///  barcode_scan 扫码
-  static Future<String> scan() async {
-    try {
-      const ScanOptions options = ScanOptions(
-        strings: {
-          'cancel': '取消',
-          'flash_on': '开启闪光灯',
-          'flash_off': '关闭闪光灯',
-        },
-      );
-      final ScanResult result = await BarcodeScanner.scan(options: options);
-      return result.rawContent;
-    } catch (e) {
-      if (e is PlatformException) {
-        if (e.code == BarcodeScanner.cameraAccessDenied) {
-          JhProgressHUD.showText('没有相机权限！');
-        }
-      }
-    }
-    return "";
-  }
-
   /// 跳转二维码扫码页扫码
-  static Future<String> jumpScan(BuildContext context) async {
+  /// 需配置路由
+  /// 添加 --enable-software-rendering debug模式闪退
+  static Future jumpScan(
+    BuildContext context, {
+    isShowScanLine: false, // 是否显示扫描线动画
+    isShowGridLine: false, // 是否显示网格线动画，优先级高于扫描线
+    Function(String data)? callBack,
+  }) async {
     if (JhDeviceUtils.isMobile) {
       JhNavUtils.unFocus();
       // 延时保证键盘收起，否则进入扫码页会黑屏
       Future<dynamic>.delayed(const Duration(milliseconds: 500), () {
-        JhNavUtils.pushNamedResult(context, 'QrCodeScannerPage',null, (Object code) => code.toString());
+        JhNavUtils.pushNamedResult(context, isShowGridLine ? 'QrCodeGridScannerPage' : 'QrCodeScannerPage',
+            isShowGridLine ? null : isShowScanLine, (Object code) {
+          callBack?.call(code.toString());
+        });
       });
     } else {
       JhProgressHUD.showText('当前平台暂不支持');
     }
-    return "";
   }
 
   /// 生成二维码（中间带图片）
@@ -62,4 +49,66 @@ class JhQrCodeUtils {
       embeddedImageStyle: QrEmbeddedImageStyle(size: imageSize),
     );
   }
+
+  ///  barcode_scan 扫码
+  static Future scan({
+    Function(String data)? callBack,
+  }) async {
+    Future.delayed(Duration(milliseconds: 500), () {
+      try {
+        const ScanOptions options = ScanOptions(
+          strings: {
+            'cancel': '取消',
+            'flash_on': '开启闪光灯',
+            'flash_off': '关闭闪光灯',
+          },
+        );
+        BarcodeScanner.scan(options: options).then((ScanResult result) {
+          if (result.rawContent.length > 0) {
+            callBack?.call(result.rawContent);
+          }
+        });
+      } catch (e) {
+        if (e is PlatformException) {
+          if (e.code == BarcodeScanner.cameraAccessDenied) {
+            JhProgressHUD.showText('没有相机权限！');
+          }
+        }
+      }
+    });
+  }
+
+  ///  barcode_scan 扫码
+// static Future<String> scan() async {
+//   try {
+//     const ScanOptions options = ScanOptions(
+//       strings: {
+//         'cancel': '取消',
+//         'flash_on': '开启闪光灯',
+//         'flash_off': '关闭闪光灯',
+//       },
+//     );
+//     final ScanResult result = await BarcodeScanner.scan(options: options);
+//     print('========== 23432423423434234234 ==========');
+//     print('object: ${result.toString()}');
+//     print('object: ${result.rawContent}');
+//
+//     return result.rawContent;
+//   } catch (e) {
+//     if (e is PlatformException) {
+//       if (e.code == BarcodeScanner.cameraAccessDenied) {
+//         JhProgressHUD.showText('没有相机权限！');
+//       }
+//     }
+//   }
+//   return "";
+// }
+/*
+   Future.delayed(Duration(milliseconds: 400), () {
+        JhQrCodeUtils.scan().then((data) {
+          print('扫码结果：$data');
+         });
+    });
+*/
+
 }

@@ -45,7 +45,7 @@ class JhSetCell extends StatefulWidget {
   final String title;
   final String? leftImgPath; // 左侧图片路径 ，默认隐藏 ,设置leftImgPath则 leftWidget失效
   final Widget? leftWidget; // 左侧widget ，默认隐藏
-  final String text;
+  final String? text;
   final Widget? rightWidget; // 右侧widget ，默认隐藏
   final bool hiddenArrow; // 隐藏箭头，默认不隐藏
   final _ClickCallBack? clickCallBack;
