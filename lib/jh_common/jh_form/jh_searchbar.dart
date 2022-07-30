@@ -10,6 +10,7 @@ import 'jh_login_textfield.dart';
 const String _hintText = '请输入';
 const double _borderRadius = 5.0;
 const double _borderWidth = 0.3;
+const double _searchViewHeight = 58.0;
 
 typedef _InputCallBack = void Function(String value);
 
@@ -18,6 +19,7 @@ class JhSearchBar extends StatelessWidget {
     Key? key,
     this.text = '',
     this.hintText = _hintText,
+    this.maxLength: 15,
     this.bgColor,
     this.isShowDeleteBtn: true,
     this.isShowBorder: false,
@@ -26,6 +28,7 @@ class JhSearchBar extends StatelessWidget {
 
   final String? text;
   final String hintText;
+  final int maxLength; // 最大长度，默认15
   final Color? bgColor;
   final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认显示
   final bool isShowBorder; // 是否显示边框，默认不显示
@@ -48,8 +51,9 @@ class JhSearchBar extends StatelessWidget {
         ),
         alignment: Alignment.center,
         margin: EdgeInsets.all(10),
-        height: 38,
+        height: _searchViewHeight - 20,
         child: JhLoginTextField(
+          maxLength: this.maxLength,
           leftWidget: Icon(Icons.search, size: 25),
           text: this.text,
           hintText: this.hintText,

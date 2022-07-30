@@ -9,6 +9,8 @@ import 'alert/alert_demo_lists_page.dart';
 import 'alert/bottom_sheet_test.dart';
 import 'alert/alert_test.dart';
 import 'alert/jhDialog_test_page.dart';
+import 'alert/cascade_picker_test.dart';
+import 'alert/cascade_tree_picker_test.dart';
 
 // toast
 import 'alert/toast/toast_demo_lists_page.dart';
@@ -124,6 +126,8 @@ class DemosRouter implements IRouterProvider {
     router.define("AlertTestPage", handler: Handler(handlerFunc: (_, __) => AlertTestPage()));
     router.define("BottomSheetTest", handler: Handler(handlerFunc: (_, __) => BottomSheetTest()));
     router.define("JhDialogTestPage", handler: Handler(handlerFunc: (_, __) => JhDialogTestPage()));
+    router.define("CascadePickerTest", handler: Handler(handlerFunc: (_, __) => CascadePickerTest()));
+    router.define("CascadeTreePickerTest", handler: Handler(handlerFunc: (_, __) => CascadeTreePickerTest()));
 
     // toast
     router.define("ToastDemoListsPage", handler: Handler(handlerFunc: (_, __) => ToastDemoListsPage()));

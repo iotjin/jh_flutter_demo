@@ -121,7 +121,7 @@ class KColors {
   static const Color kPickerRedTextDarkColor = Color(0xFFE64242); // (230, 66, 66)
   static const Color kPickerHeaderColor = kPickerBgColor;
   static const Color kPickerHeaderDarkColor = kPickerBgDarkColor;
-  static const Color kPickerHeaderLineColor = Colors.black;
+  static const Color kPickerHeaderLineColor = kLineColor;
   static const Color kPickerHeaderLineDarkColor = kLineDarkColor;
   static const Color kPickerBtnColor = kBlackTextColor;
   static const Color kPickerBtnDarkColor = kBlackTextDarkColor;

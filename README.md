@@ -25,6 +25,7 @@ pwd：123456
   * baseNav、baseAppBar、BaseTabBar、BaseWebView
   * 弹框(中间、底部、toast、dialog、自定义弹框)
   * 时间、日期、单列、多列、底部选择器
+  * 级联选择器（多维数组或树形结构、支持搜索）
   * JhForm 表单录入(单行多行输入样式、选择样式、设置样式、登录样式)
   * JhTopTabBar(导航条分页切换)
   * 渐变色导航条
