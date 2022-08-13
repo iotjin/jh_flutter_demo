@@ -36,4 +36,12 @@ class JhKeyboardUtils {
               )),
     );
   }
+
+  static void unFocus() {
+    // 关闭键盘方法：FocusScope.of(context).requestFocus(FocusNode());
+    // 使用下面的方式，会触发不必要的build。
+    // FocusScope.of(context).unfocus();
+    // https://github.com/flutter/flutter/issues/47128#issuecomment-627551073
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
 }

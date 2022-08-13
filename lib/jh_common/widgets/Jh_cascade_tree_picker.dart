@@ -11,6 +11,7 @@ import '/project/provider/theme_provider.dart';
 import '/project/routes/jh_nav_utils.dart';
 
 const String _labelKey = 'label';
+const String _valueKey = 'value';
 const String _childrenKey = 'children';
 const String _titleText = '请选择';
 const String _tabText = '请选择';
@@ -33,6 +34,7 @@ class JhCascadeTreePicker {
     BuildContext context, {
     required List data, // tree数组
     String labelKey: _labelKey, // tree数据的文字字段
+    String valueKey: _valueKey, // tree数据的数值字段
     String childrenKey: _childrenKey, // tree数据的children字段
     String title: _titleText,
     String tabText: _tabText,
@@ -65,6 +67,7 @@ class JhCascadeTreePicker {
           child: JhCascadePickerView(
             data: data,
             labelKey: labelKey,
+            valueKey: valueKey,
             childrenKey: childrenKey,
             title: title,
             tabText: tabText,
@@ -84,6 +87,7 @@ class JhCascadePickerView extends StatefulWidget {
     Key? key,
     required this.data,
     this.labelKey: _labelKey,
+    this.valueKey: _valueKey,
     this.childrenKey: _childrenKey,
     this.title: _titleText,
     this.tabText: _tabText,
@@ -95,6 +99,7 @@ class JhCascadePickerView extends StatefulWidget {
 
   final List? data; // tree数组
   final String labelKey; // tree数据的文字字段
+  final String valueKey; // tree数据的数值字段
   final String childrenKey; // tree数据的children字段
   final String title;
   final String tabText;
@@ -127,7 +132,6 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   List _searchData = [];
   bool _isShowSearchResult = false;
   String _searchKeyword = '';
-  List _searchTreeTempData = [];
 
   @override
   void initState() {
@@ -387,8 +391,9 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
             // if (_index <= tempIndexArr.length) {
             //   tempIndexArr = tempIndexArr.sublist(0, _index);
             // }
+
             // 根据末级节点查出包含父节点的数据
-            List res = _findParentNodeDataByName(widget.data!, _mList[index][widget.labelKey]);
+            List res = _findParentNodeDataByValue(widget.data!, _mList[index][widget.valueKey]);
             // 选择回调
             widget.clickCallBack?.call(res.last, res);
             JhNavUtils.goBack(context);
@@ -406,7 +411,6 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   /// 根据搜索文字过滤数据
   _getSearchData(keyword) {
     var data = _getTreeDataByKeyword(keyword, widget.data!);
-    _searchTreeTempData = data;
     var newData = _convertTreeToListData(data, data, []);
     return newData;
   }
@@ -439,18 +443,26 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
         _convertTreeToListData(item[widget.childrenKey], treeArr2, resultArr);
       } else {
         // 找到末级节点，根据末级节点找到所有父节点进行拼接
-        var res = _findParentNodeDataByName(treeArr2, item[widget.labelKey], onlyName: true);
+        var res = _findParentNodeDataByValue(treeArr2, item[widget.valueKey]);
         if (res != null && res.length > 0) {
-          resultArr.add(res.join(widget.splitString));
+          List tempArr = [];
+          for (var j = 0; j < res.length; j++) {
+            tempArr.add(res[j][widget.labelKey]);
+          }
+          var dict = {
+            'selectArr': res,
+            'text': tempArr.join(widget.splitString),
+          };
+          resultArr.add(dict);
         }
       }
     }
     return resultArr;
   }
 
-  /// 根据末级节点的名字查找所有父节点的数据
+  /// 根据末级节点的value查找所有父节点的数据
   /// onlyName = false ,返回name数组 , 否则返回name和value对象数组
-  _findParentNodeDataByName(List treeArr, name, {List result = const [], onlyName = false}) {
+  _findParentNodeDataByValue(List treeArr, value, {List result = const [], onlyName = false}) {
     var newArr = List.from(result);
     for (int i = 0; i < treeArr.length; i++) {
       var item = treeArr[i];
@@ -461,11 +473,11 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
         tempDict.remove(widget.childrenKey);
         newArr.add(tempDict);
       }
-      if (item[widget.labelKey] == name) {
+      if (item[widget.valueKey] == value) {
         return newArr;
       }
       if (_isNotEmptyChildren(item)) {
-        var res = _findParentNodeDataByName(item[widget.childrenKey], name, result: newArr, onlyName: onlyName);
+        var res = _findParentNodeDataByValue(item[widget.childrenKey], value, result: newArr, onlyName: onlyName);
         // 如果不是空则表示找到了，直接return，结束递归
         if (res != null && res.length > 0) {
           return res;
@@ -533,17 +545,16 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
         child: Row(
           children: <Widget>[
             Flexible(
-              child: Text(_searchData[index], style: TextStyle(fontSize: _searchResultTextFontSize, color: _textColor)),
+              child: Text(_searchData[index]['text'],
+                  style: TextStyle(fontSize: _searchResultTextFontSize, color: _textColor)),
             ),
           ],
         ),
       ),
       onTap: () {
         setState(() {
-          var selectText = _searchData[index];
-          List tempArr = selectText.split(widget.splitString);
-          var lastNodeName = tempArr.last;
-          List res = _findParentNodeDataByName(_searchTreeTempData, lastNodeName);
+          var selectItem = _searchData[index];
+          List res = selectItem['selectArr'];
           // 选择回调
           widget.clickCallBack?.call(res.last, res);
           JhNavUtils.goBack(context);

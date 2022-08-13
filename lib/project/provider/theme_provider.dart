@@ -5,8 +5,8 @@
 
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '/jh_common/utils/jh_color_utils.dart';
+import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/project/configs/colors.dart';
 
@@ -82,7 +82,7 @@ class MyThemes {
       scaffoldBackgroundColor: isDarkMode ? KColors.kBgDarkColor : KColors.kBgColor,
       // 导航条在base_appbar页面配置（没使用base_appbar的按下面配置的）
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: isDarkMode ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+        systemOverlayStyle: JhStatusBarUtils.getStatusBarStyle(isDark: isDarkMode),
         color: isDarkMode ? KColors.kNavBgDarkColor : themeColor,
         iconTheme: IconThemeData(color: Colors.white),
       ),

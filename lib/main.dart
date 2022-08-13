@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'jh_common/utils/jh_color_utils.dart';
 import 'jh_common/utils/jh_device_utils.dart';
+import 'jh_common/utils/jh_status_bar_utils.dart';
 import 'jh_common/utils/jh_storage_utils.dart';
 import 'jh_common/utils/jh_screen_utils.dart';
 import 'project/configs/project_config.dart';
@@ -38,7 +39,9 @@ void main() async {
   /// sp初始化
   await SpUtil.getInstance();
 
-  runApp(MyApp());
+  bool isNewFeaturePage = await _isNewFeaturePage();
+
+  runApp(MyApp(isHome: !isNewFeaturePage));
 
   if (Platform.isAndroid) {
     print("Android");
@@ -46,21 +49,44 @@ void main() async {
     print("iOS");
   }
 
-  // 透明状态栏
-  if (Platform.isAndroid) {
-    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  // 设置安卓透明状态栏
+  JhStatusBarUtils.setAndroidTransparentBar();
+}
+
+/// 是否新版本
+Future<bool> _isNewFeaturePage() async {
+  String version = await JhDeviceUtils.version();
+  var lastVersion = JhAESStorageUtils.getString(kUserDefault_LastVersion);
+  if (lastVersion == null || lastVersion == '') {
+    // print('首次安装');
+    JhAESStorageUtils.saveString(kUserDefault_LastVersion, version);
+    return true;
+  } else {
+    // print(lastVersion.compareTo(version)); // 字符串 比较大小, 0:相同、1:大于、-1:小于
+    if (lastVersion.compareTo(version) < 0) {
+      // print('新版本安装');
+      JhAESStorageUtils.saveString(kUserDefault_LastVersion, version);
+      return true;
+    } else {
+      // print('正常启动');
+      return false;
+    }
   }
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({
+    Key? key,
+    this.isHome: false,
+  }) : super(key: key);
+
+  final bool isHome;
+
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  var _currentVersion = '';
-
   @override
   void initState() {
     // TODO: implement initState
@@ -69,7 +95,6 @@ class _MyAppState extends State<MyApp> {
     LogUtils.init();
     HttpUtils.initDio();
     Routes.initRoutes();
-    _getPackageInfo(); // 获取设备信息
   }
 
   @override
@@ -82,7 +107,19 @@ class _MyAppState extends State<MyApp> {
         ],
         child: Consumer<ThemeProvider>(
           builder: (_, ThemeProvider provider, __) {
-            return _buildMaterialApp(provider);
+            if (Platform.isAndroid) {
+              /// 设置安卓底部虚拟按键颜色
+              return AnnotatedRegion(
+                value: SystemUiOverlayStyle(
+                  statusBarColor: Colors.transparent,
+                  systemNavigationBarColor: provider.isDark() ? Colors.black : Colors.white,
+                  systemNavigationBarIconBrightness: provider.isDark() ? Brightness.light : Brightness.dark,
+                ),
+                child: _buildMaterialApp(provider),
+              );
+            } else {
+              return _buildMaterialApp(provider);
+            }
           },
         ));
 
@@ -124,38 +161,17 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  void _getPackageInfo() async {
-    String version = await JhDeviceUtils.version();
-    JhAESStorageUtils.saveString(kUserDefault_LastVersion, version);
-    print('app version =  $version');
-    setState(() {
-      _currentVersion = version;
-    });
-  }
-
   Widget _switchRootWidget() {
-    var lastVersion = JhAESStorageUtils.getString(kUserDefault_LastVersion);
-//    print('lastVersion 版本号：$lastVersion');
-    if (lastVersion == null || lastVersion == '') {
-//      print('首次安装');
+    if (widget.isHome == false) {
       return NewFeaturePage();
     } else {
-//      print(oldVersion.compareTo(_currentVersion)); // 字符串 比较大小, 0:相同、1:大于、-1:小于
-      if (lastVersion.compareTo(_currentVersion) < 0) {
-//        print('新版本安装');
-        return NewFeaturePage();
+      var modelJson = JhAESStorageUtils.getModel(kUserDefault_UserInfo);
+      if (modelJson != null) {
+        UserModel model = UserModel.fromJson(modelJson);
+        print('本地取出的 userName:' + model.userName!);
+        return BaseTabBar();
       } else {
-//        print('正常启动');
-//        userModel model =
-//            SpUtil.getObj(kUserDefault_UserInfo, (v) => userModel.fromJson(v));
-        var modelJson = JhAESStorageUtils.getModel(kUserDefault_UserInfo);
-        if (modelJson != null) {
-          UserModel model = UserModel.fromJson(modelJson);
-          print('本地取出的 userName:' + model.userName!);
-          return BaseTabBar();
-        } else {
-          return LoginPage();
-        }
+        return LoginPage();
       }
     }
   }

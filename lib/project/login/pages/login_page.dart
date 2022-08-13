@@ -5,6 +5,7 @@ import 'package:keyboard_actions/keyboard_actions.dart';
 import '/jh_common/jh_form/jh_keyboard_utils.dart';
 import '/jh_common/jh_form/jh_login_textfield.dart';
 import '/jh_common/utils/jh_color_utils.dart';
+import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/jh_common/widgets/jh_button.dart';
 import '/project/configs/project_config.dart';
@@ -89,11 +90,14 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: KeyboardActions(
-          config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
-          child: _mainBody(),
-        ));
+    return AnnotatedRegion(
+      value: JhStatusBarUtils.getBlackStatusBarStyle(context.jhIsDark),
+      child: Scaffold(
+          body: KeyboardActions(
+        config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
+        child: _mainBody(),
+      )),
+    );
   }
 
   Widget _mainBody() {

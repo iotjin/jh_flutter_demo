@@ -5,9 +5,13 @@
 
 import 'package:flutter/material.dart';
 
+extension ThemeExtension on BuildContext {
+  bool get jhIsDark => Theme.of(this).brightness == Brightness.dark;
+}
+
 class KColors {
   // 主题色（导航条背景、提交按钮背景、弹框确认文字、表单图标录入光标）
-  // 暗黑模式高亮显示颜色按kThemeColor设置，如tabbar选中文字图标、提交按钮背景色、指示器选中下划线、光标等
+  // 暗黑模式高亮显示颜色按kThemeColor设置，如tabBar选中文字图标、提交按钮背景色、指示器选中下划线、光标等
   static const Color kThemeColor = Color(0xFF3BB815);
   static const Color kThemeDarkColor = Color(0xFF0A0A0A); // (10, 10, 10)
   static const Color kThemeBlueColor = Color(0xFF4688FA);
@@ -29,15 +33,15 @@ class KColors {
   static const Color kNavBgDarkColor = kThemeDarkColor; // (10, 10, 10)
   static const Color kNavTitleColor = Colors.white;
 
-  // tabbar背景颜色
+  // tabBar背景颜色
   static const Color kTabBarBgColor = Colors.white;
   static const Color kTabBarBgDarkColor = Color(0xFF1D1D1D); // (29, 29, 29)
 
-  // tabbar默认文字颜色
+  // tabBar默认文字颜色
   static const Color kTabBarNormalTextColor = kBlackTextColor;
   static const Color kTabBarNormalTextDarkColor = kBlackTextDarkColor;
 
-  // tabbar选中文字颜色
+  // tabBar选中文字颜色
   static const Color kTabBarSelectTextColor = kThemeColor;
   static const Color kTabBarSelectTextDarkColor = kThemeColor;
 

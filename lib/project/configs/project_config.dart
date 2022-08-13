@@ -16,8 +16,6 @@ export '/jh_common/utils/jh_screen_utils.dart';
 export '/project/routes/jh_nav_utils.dart';
 export '/base_appbar.dart';
 
-const bool isDark = false;
-
 double wxCellH = 55.0;
 double wxRowSpace = 6.0;
 

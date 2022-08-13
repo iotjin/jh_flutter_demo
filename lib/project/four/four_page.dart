@@ -5,6 +5,7 @@
 
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
+import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/jh_common/widgets/update_dialog.dart';
 import '/project/configs/project_config.dart';
@@ -62,12 +63,16 @@ class _FourPageState extends State<FourPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AnnotatedRegion(
+      value: JhStatusBarUtils.getBlackStatusBarStyle(context.jhIsDark),
+      child: Scaffold(
 //        appBar: baseAppBar(context, '',
 //            rightImgPath: "assets/images/set.png", rightItemCallBack: () {
 //          JhNavUtils.pushNamed(context, "SetPage");
 //        }),
-        body: _body(_model));
+        body: _body(_model),
+      ),
+    );
   }
 
   Widget _body(model) {

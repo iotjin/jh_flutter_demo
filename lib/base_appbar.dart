@@ -4,9 +4,9 @@
 ///  description:  导航条基类
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'project/configs/project_config.dart';
+import 'jh_common/utils/jh_status_bar_utils.dart';
+import 'project/configs/colors.dart';
 import 'project/provider/theme_provider.dart';
 
 const double _titleFontSize = 18.0;
@@ -14,11 +14,12 @@ const double _textFontSize = 16.0;
 const double _itemSpace = 15.0; // 右侧item内间距
 const double _imgWH = 22.0; // 右侧图片wh
 const double _rightSpace = 5.0; // 右侧item右间距
-const Brightness _brightness = Brightness.light;
 // 默认颜色
-// const Color _bgColor = KColors.kNavThemeBgColor; // 通过ThemeProvider获取
+const Color _bgColor = KColors.kNavThemeBgColor;
 const Color _bgDarkColor = KColors.kNavBgDarkColor;
 const Color _titleColor = KColors.kNavTitleColor;
+// 状态栏字体颜色，当backgroundColor透明或者是白色，状态栏字体为黑色，暗黑模式为白色
+const Brightness _brightness = Brightness.light;
 
 const Color appbarStartColor = KColors.kGradientStartColor; // 默认appBar 渐变开始色
 const Color appbarEndColor = KColors.kGradientEndColor; // 默认appBar 渐变结束色
@@ -123,20 +124,27 @@ baseAppBar(
   Function? rightItemCallBack,
   Function? leftItemCallBack,
 }) {
-  Color _color = (backgroundColor == Colors.transparent ||
-          backgroundColor == Colors.white ||
-          backgroundColor == KColors.kNavWhiteBgColor)
-      ? Colors.black
-      : _titleColor;
   // 默认颜色
-  // var bgColor = backgroundColor ?? _bgColor;
+  Color titleAndIconColor = _titleColor;
+  Color bgColor = backgroundColor ?? _bgColor;
+
+  // 如果背景透明或者是白色，设置字体和图标、状态栏字体为黑色
+  if (backgroundColor == Colors.transparent ||
+      backgroundColor == Colors.white ||
+      backgroundColor == KColors.kNavWhiteBgColor) {
+    titleAndIconColor = Colors.black;
+    brightness = Brightness.dark;
+  } else {
+    brightness = Brightness.light;
+  }
 
   // TODO: 通过ThemeProvider进行主题管理
   final provider = Provider.of<ThemeProvider>(context);
+  final bool isDark = provider.isDark();
   // 设置的颜色优先级高于暗黑模式
-  var bgColor = backgroundColor ?? (provider.isDark() ? _bgDarkColor : provider.getThemeColor());
-  if (provider.isDark()) {
-    _color = _titleColor;
+  bgColor = backgroundColor ?? (isDark ? _bgDarkColor : provider.getThemeColor());
+  if (isDark) {
+    titleAndIconColor = _titleColor;
   }
 
   Widget rightItem = Text("");
@@ -145,7 +153,7 @@ baseAppBar(
       child: Container(
           margin: EdgeInsets.all(_itemSpace),
           color: Colors.transparent,
-          child: Center(child: Text(rightText, style: TextStyle(fontSize: _textFontSize, color: _color)))),
+          child: Center(child: Text(rightText, style: TextStyle(fontSize: _textFontSize, color: titleAndIconColor)))),
       onTap: () {
         if (rightItemCallBack != null) {
           rightItemCallBack();
@@ -159,7 +167,7 @@ baseAppBar(
         rightImgPath,
         width: _imgWH,
         height: _imgWH,
-        color: _color,
+        color: titleAndIconColor,
       ),
       onPressed: () {
         if (rightItemCallBack != null) {
@@ -169,10 +177,10 @@ baseAppBar(
     );
   }
   return AppBar(
-    title: Text(title, style: TextStyle(fontSize: _titleFontSize, color: _color)),
+    title: Text(title, style: TextStyle(fontSize: _titleFontSize, color: titleAndIconColor)),
     centerTitle: true,
     backgroundColor: bgColor,
-    systemOverlayStyle: SystemUiOverlayStyle(statusBarBrightness: brightness),
+    systemOverlayStyle: JhStatusBarUtils.getStatusBarStyle(isDark: isDark, brightness: brightness),
     bottom: bottom,
     elevation: elevation,
     leading: isBack == false
@@ -181,7 +189,7 @@ baseAppBar(
 //      icon: Icon(Icons.arrow_back_ios,color: _color),
             icon: ImageIcon(
               AssetImage("assets/images/common/ic_nav_back_white.png"),
-              color: _color,
+              color: titleAndIconColor,
             ),
             iconSize: 18,
             padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),

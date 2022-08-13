@@ -41,26 +41,6 @@ class JhThemeUtils {
   static Color? getKeyboardActionsColor(BuildContext context) {
     return isDark(context) ? Colours.dark_bg_color : Colors.grey[200];
   }
-
-  /// 设置NavigationBar样式
-  static void setSystemNavigationBarStyle(BuildContext context, ThemeMode mode) {
-    /// 仅针对安卓
-    if (JhDeviceUtils.isAndroid) {
-      bool _isDark = false;
-      final ui.Brightness platformBrightness = MediaQuery.platformBrightnessOf(context);
-      print(platformBrightness);
-      if (mode == ThemeMode.dark || (mode == ThemeMode.system && platformBrightness == ui.Brightness.dark)) {
-        _isDark = true;
-      }
-      print(_isDark);
-      final SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: _isDark ? Colours.dark_bg_color : Colors.white,
-        systemNavigationBarIconBrightness: _isDark ? Brightness.light : Brightness.dark,
-      );
-      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-    }
-  }
 }
 
 extension ThemeExtension on BuildContext {
