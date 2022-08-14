@@ -10,58 +10,103 @@ import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/project/configs/colors.dart';
 
-const String _appTheme = 'AppTheme';
-const String themeSystem = 'System';
-const String themeLight = 'Light';
-const String themeDark = 'Dark';
-const String themeBlue = 'Blue';
-const String themePurple = 'Purple';
+const String _appThemeKey = 'AppTheme';
+const String _themeSystem = 'System';
+const String _themeLight = 'Light';
+const String _themeDark = 'Dark';
+const String _themeBlue = 'Blue';
+const String _themePurple = 'Purple';
+const Color _lightThemeColor = KColors.kThemeColor;
+const Color _darkThemeColor = KColors.kThemeDarkColor;
+const Color _blueThemeColor = KColors.kThemeBlueColor;
+const Color _purpleThemeColor = KColors.kThemePurpleColor;
 
-extension ThemeModeExtension on ThemeMode {
-  String get value => <String>[themeSystem, themeLight, themeDark, themeBlue, themePurple][index];
-}
+enum ThemeMethod { themeSystem, themeLight, themeDark, themeBlue, themePurple }
+
+/// 使用：ThemeMethodValues[ThemeMethod.themeSystem]
+const ThemeMethodValues = {
+  ThemeMethod.themeSystem: _themeSystem,
+  ThemeMethod.themeLight: _themeLight,
+  ThemeMethod.themeDark: _themeDark,
+  ThemeMethod.themeBlue: _themeBlue,
+  ThemeMethod.themePurple: _themePurple,
+};
+
+/// app的设置是否高于系统设置
+/// 需要设置为true,并在 lib/project/configs/colors.dart 调用 provider.isDark()方法
+const bool isPriorityApp = false;
 
 class ThemeProvider extends ChangeNotifier {
-  void setTheme(ThemeMode themeMode) {
-    JhAESStorageUtils.saveString(_appTheme, themeMode.value);
+  /// 是否跟随系统
+  bool get isFollowSystem =>
+      getThemeMode() == ThemeMode.system && getThemeColor() != _blueThemeColor && getThemeColor() != _purpleThemeColor;
+
+  /// 获取主题列表
+  List getThemeList() {
+    return [
+      {'label': '浅色', 'value': _lightThemeColor, 'themeMode': ThemeMethod.themeLight},
+      {'label': '深色', 'value': _darkThemeColor, 'themeMode': ThemeMethod.themeDark},
+      {'label': '蓝色', 'value': _blueThemeColor, 'themeMode': ThemeMethod.themeBlue},
+      {'label': '紫色', 'value': _purpleThemeColor, 'themeMode': ThemeMethod.themePurple}
+    ];
+  }
+
+  /// 设置主题
+  void setTheme([ThemeMethod themeMode = ThemeMethod.themeLight]) {
+    JhAESStorageUtils.saveString(_appThemeKey, ThemeMethodValues[themeMode]!);
     notifyListeners();
   }
 
-  bool isDark() {
-    return getThemeColor() == KColors.kThemeDarkColor;
+  /// 暗黑模式判断
+  bool isDark(BuildContext context) {
+    if (!isPriorityApp) {
+      return Theme.of(context).brightness == Brightness.dark;
+    } else {
+      if (isFollowSystem) {
+        return Theme.of(context).brightness == Brightness.dark;
+      } else {
+        return getThemeColor() == KColors.kThemeDarkColor;
+      }
+    }
   }
 
+  /// 获取当前主题模式
   ThemeMode getThemeMode() {
-    final String theme = JhAESStorageUtils.getString(_appTheme) ?? '';
+    final String theme = JhAESStorageUtils.getString(_appThemeKey) ?? '';
     switch (theme) {
-      case themeLight:
+      case _themeLight:
         return ThemeMode.light;
-      case themeDark:
+      case _themeDark:
         return ThemeMode.dark;
       default:
         return ThemeMode.system;
     }
   }
 
+  /// 获取当前主题色
   Color getThemeColor() {
-    final String theme = JhAESStorageUtils.getString(_appTheme) ?? '';
+    final String theme = JhAESStorageUtils.getString(_appThemeKey) ?? '';
     switch (theme) {
-      case themeLight:
-        return KColors.kThemeColor;
-      case themeDark:
-        return KColors.kThemeDarkColor;
-      case themeBlue:
-        return KColors.kThemeBlueColor;
-      case themePurple:
-        return KColors.kThemePurpleColor;
+      case _themeLight:
+        return _lightThemeColor;
+      case _themeDark:
+        return _darkThemeColor;
+      case _themeBlue:
+        return _blueThemeColor;
+      case _themePurple:
+        return _purpleThemeColor;
       default:
-        return KColors.kThemeColor;
+        return _lightThemeColor;
     }
   }
 
+  /// 获取主题配置
   ThemeData getThemeData({bool isDarkMode = false}) {
     // return MyThemes.lightTheme;
-    return MyThemes.getThemeData(getThemeColor(), isDarkMode: getThemeColor() == KColors.kThemeDarkColor);
+    if (isPriorityApp && !isFollowSystem && getThemeColor() != _darkThemeColor) {
+      isDarkMode = false;
+    }
+    return MyThemes.getThemeData(getThemeColor(), isDarkMode: isDarkMode);
   }
 }
 

@@ -169,15 +169,14 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   @override
   Widget build(BuildContext context) {
     // 默认颜色
-    var isDark = Theme.of(context).brightness == Brightness.dark;
-    var _bgColor = isDark ? KColors.kPickerBgDarkColor : KColors.kPickerBgColor;
-    var _headerColor = isDark ? KColors.kPickerHeaderDarkColor : KColors.kPickerHeaderColor;
-    var _titleColor = isDark ? KColors.kPickerTitleDarkColor : KColors.kPickerTitleColor;
-    var _lineColor = isDark ? KColors.kPickerHeaderLineDarkColor : KColors.kPickerHeaderLineColor;
-    var _textColor = isDark ? KColors.kPickerTextDarkColor : KColors.kPickerTextColor;
+    var bgColor = KColors.dynamicColor(context, KColors.kPickerBgColor, KColors.kPickerBgDarkColor);
+    var headerColor = KColors.dynamicColor(context, KColors.kPickerHeaderColor, KColors.kPickerHeaderDarkColor);
+    var titleColor = KColors.dynamicColor(context, KColors.kPickerTitleColor, KColors.kPickerTitleDarkColor);
+    var lineColor = KColors.dynamicColor(context, KColors.kPickerHeaderLineColor, KColors.kPickerHeaderLineDarkColor);
+    var textColor = KColors.dynamicColor(context, KColors.kPickerTextColor, KColors.kPickerTextDarkColor);
 
     return Container(
-      color: _bgColor,
+      color: bgColor,
       child: SizedBox(
           height: MediaQuery.of(context).size.height * 11.0 / 16.0,
           child: Container(
@@ -190,9 +189,9 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
                   right: 0,
                   child: Container(
                     height: _headerHeight,
-                    color: _headerColor,
+                    color: headerColor,
                     alignment: Alignment.center,
-                    child: Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: _titleColor)),
+                    child: Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: titleColor)),
                   ),
                 ),
                 Positioned(
@@ -207,46 +206,41 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
                       width: _headerHeight * 2,
                       child: Icon(
                         Icons.close,
-                        color: _titleColor,
+                        color: titleColor,
                       ),
                     ),
                   ),
                 ),
-                _mainWidget(_bgColor, _textColor, _lineColor),
+                _mainWidget(bgColor, textColor, lineColor),
               ],
             ),
           )),
     );
   }
 
-  Widget _mainWidget(Color _bgColor, Color _textColor, Color _lineColor) {
-    // 默认颜色
-    var isDark = Theme.of(context).brightness == Brightness.dark;
-    var indicatorColor = KColors.kThemeColor;
-    var labelColor = KColors.kThemeColor;
-    var _unselectedLabelColor = isDark ? KColors.kBlackTextDarkColor : KColors.kBlackTextColor;
-
+  Widget _mainWidget(Color bgColor, Color textColor, Color lineColor) {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var _indicatorColor = provider.isDark() ? indicatorColor : provider.getThemeColor();
-    var _labelColor = provider.isDark() ? labelColor : provider.getThemeColor();
+    var indicatorColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var labelColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var unselectedLabelColor = KColors.dynamicColor(context, KColors.kBlackTextColor, KColors.kBlackTextDarkColor);
 
     return Container(
       margin: EdgeInsets.only(top: _headerHeight),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: _lineHeight, child: Container(color: _lineColor)),
+          SizedBox(height: _lineHeight, child: Container(color: lineColor)),
           Container(
-            color: _bgColor,
+            color: bgColor,
             child: TabBar(
               tabs: _myTabs,
               controller: _tabController,
               isScrollable: true,
               indicatorSize: TabBarIndicatorSize.label,
-              labelColor: _labelColor,
-              unselectedLabelColor: _unselectedLabelColor,
-              indicatorColor: _indicatorColor,
+              labelColor: labelColor,
+              unselectedLabelColor: unselectedLabelColor,
+              indicatorColor: indicatorColor,
               onTap: (index) {
                 if ((_myTabs[index].text ?? '').isEmpty) {
                   // 拦截点击事件
@@ -265,13 +259,13 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
               },
             ),
           ),
-          SizedBox(height: _lineHeight, child: Container(color: _lineColor)),
+          SizedBox(height: _lineHeight, child: Container(color: lineColor)),
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
               itemExtent: _itemHeight,
               itemBuilder: (_, index) {
-                return _buildItem(index, _bgColor, _textColor, _labelColor);
+                return _buildItem(index, bgColor, textColor, labelColor);
               },
               itemCount: _mList.length,
             ),
@@ -281,23 +275,23 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
     );
   }
 
-  Widget _buildItem(int index, Color _bgColor, Color _textColor, Color _themeColor) {
+  Widget _buildItem(int index, Color bgColor, Color textColor, Color themeColor) {
     final bool flag = _mList[index][widget.labelKey] == _myTabs[_index].text;
     return InkWell(
       child: Container(
-        color: _bgColor,
+        color: bgColor,
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         alignment: Alignment.centerLeft,
         child: Row(
           children: <Widget>[
             Text(
               _mList[index][widget.labelKey],
-              style: TextStyle(fontSize: _textFontSize, color: flag ? _themeColor : _textColor),
+              style: TextStyle(fontSize: _textFontSize, color: flag ? themeColor : textColor),
             ),
             SizedBox(width: 8),
             Visibility(
               visible: flag,
-              child: Icon(Icons.check, size: 15, color: _themeColor),
+              child: Icon(Icons.check, size: 15, color: themeColor),
             )
           ],
         ),

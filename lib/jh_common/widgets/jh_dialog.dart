@@ -13,7 +13,6 @@ const String _confirmText = '确认';
 const double _titleFontSize = 18.0;
 const double _btnFontSize = 18.0;
 const Color _cancelTextColor = Color(0xFF999999);
-const Color _confirmTextColor = KColors.kThemeColor;
 
 class JhDialog {
   /// 中间弹框
@@ -133,7 +132,7 @@ class _BaseDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var confirmTextColor = provider.isDark() ? _confirmTextColor : provider.getThemeColor();
+    var confirmTextColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
 
     Widget dialogTitle = Offstage(
       offstage: title == '',

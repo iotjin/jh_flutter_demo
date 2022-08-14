@@ -112,8 +112,8 @@ class _MyAppState extends State<MyApp> {
               return AnnotatedRegion(
                 value: SystemUiOverlayStyle(
                   statusBarColor: Colors.transparent,
-                  systemNavigationBarColor: provider.isDark() ? Colors.black : Colors.white,
-                  systemNavigationBarIconBrightness: provider.isDark() ? Brightness.light : Brightness.dark,
+                  systemNavigationBarColor: context.jhIsDark ? Colors.black : Colors.white,
+                  systemNavigationBarIconBrightness: context.jhIsDark ? Brightness.light : Brightness.dark,
                 ),
                 child: _buildMaterialApp(provider),
               );

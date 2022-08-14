@@ -3,15 +3,23 @@
 ///  Created by iotjin on 2020/07/28.
 ///  description:  主题
 
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'jh_device_utils.dart';
+import 'package:flutter/scheduler.dart';
 import '/project/configs/colors.dart';
 
+/// 未使用
+/// 主题配置在 lib/project/configs/colors.dart 和 lib/project/provider/theme_provider.dart
 class JhThemeUtils {
+  /// 暗黑模式判断
   static bool isDark(BuildContext context) {
     return Theme.of(context).brightness == Brightness.dark;
+  }
+
+  /// 暗黑模式判断
+  static bool jhIsDark() {
+    final brightness = SchedulerBinding.instance?.window.platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
+    return isDarkMode;
   }
 
   static Color? getDarkColor(BuildContext context, Color darkColor) {
@@ -41,8 +49,4 @@ class JhThemeUtils {
   static Color? getKeyboardActionsColor(BuildContext context) {
     return isDark(context) ? Colours.dark_bg_color : Colors.grey[200];
   }
-}
-
-extension ThemeExtension on BuildContext {
-  bool get isDark => JhThemeUtils.isDark(this);
 }

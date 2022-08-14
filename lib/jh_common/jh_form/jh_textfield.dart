@@ -123,9 +123,10 @@ class _JhTextFieldState extends State<JhTextField> {
   Widget build(BuildContext context) {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var _themeColor = provider.isDark() ? KColors.kThemeColor : provider.getThemeColor();
-    var labelTextStyle = TextStyle(fontSize: _labelTextFontSize, color: _themeColor);
-    var _labelTextStyle = widget.labelTextStyle ?? labelTextStyle;
+    var themeColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var labelTextStyle = TextStyle(fontSize: _labelTextFontSize, color: themeColor);
+    // 设置的颜色优先级高于暗黑模式
+    labelTextStyle = widget.labelTextStyle ?? labelTextStyle;
 
     return TextField(
       enabled: widget.enabled,
@@ -146,7 +147,7 @@ class _JhTextFieldState extends State<JhTextField> {
           hintText: widget.hintText,
           hintStyle: widget.hintTextStyle,
           labelText: widget.labelText.isEmpty ? null : widget.labelText,
-          labelStyle: _isFocused ? _labelTextStyle : widget.hintTextStyle,
+          labelStyle: _isFocused ? labelTextStyle : widget.hintTextStyle,
           errorText: widget.errorText.isEmpty ? null : widget.errorText,
           isDense: true,
           contentPadding: widget.border != InputBorder.none

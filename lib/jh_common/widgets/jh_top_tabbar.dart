@@ -106,25 +106,19 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    // 默认颜色
-    var bgColor = Color(0xFFF2F2F2); //242
-    var indicatorColor = KColors.kThemeColor;
-    var labelColor = KColors.kThemeColor;
-    var unselectedLabelColor = KColors.kBlackTextColor;
-    var _centerLineColor = Color(0xFFC8C8C8); // 200
-
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var _bgColor = provider.isDark() ? KColors.kTabBarBgDarkColor : bgColor;
-    var _indicatorColor = provider.isDark() ? indicatorColor : provider.getThemeColor();
-    var _labelColor = provider.isDark() ? labelColor : provider.getThemeColor();
-    var _unselectedLabelColor = provider.isDark() ? KColors.kBlackTextDarkColor : unselectedLabelColor;
+    var bgColor = KColors.dynamicColor(context, Color(0xFFF2F2F2), KColors.kTabBarBgDarkColor); // 242
+    var indicatorColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var labelColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var unselectedLabelColor = KColors.dynamicColor(context, KColors.kBlackTextColor, KColors.kBlackTextDarkColor);
+    var centerLineColor = Color(0xFFC8C8C8); // 200
 
     // 设置的颜色优先级高于暗黑模式
-    _bgColor = widget.bgColor ?? _bgColor;
-    _indicatorColor = widget.indicatorColor ?? _indicatorColor;
-    _labelColor = widget.labelColor ?? _labelColor;
-    _unselectedLabelColor = widget.unselectedLabelColor ?? _unselectedLabelColor;
+    bgColor = widget.bgColor ?? bgColor;
+    indicatorColor = widget.indicatorColor ?? indicatorColor;
+    labelColor = widget.labelColor ?? labelColor;
+    unselectedLabelColor = widget.unselectedLabelColor ?? unselectedLabelColor;
 
     return Scaffold(
       appBar: baseAppBar(
@@ -144,14 +138,14 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
               Material(
                 child: Container(
                   height: widget.height,
-                  color: _bgColor, // 这里设置tab的背景色
+                  color: bgColor, // 这里设置tab的背景色
                   child: TabBar(
                     controller: _tabController,
                     indicatorSize: TabBarIndicatorSize.label,
-                    indicatorColor: _indicatorColor,
+                    indicatorColor: indicatorColor,
                     indicatorWeight: widget.indicatorWeight,
-                    labelColor: _labelColor,
-                    unselectedLabelColor: _unselectedLabelColor,
+                    labelColor: labelColor,
+                    unselectedLabelColor: unselectedLabelColor,
                     labelStyle: widget.labelStyle,
                     unselectedLabelStyle: widget.unselectedLabelStyle,
                     indicator: widget.indicator,
@@ -164,7 +158,7 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(0, (widget.height - 20) / 2, 0, (widget.height - 20) / 2),
                     child: Container(
-                      color: _centerLineColor,
+                      color: centerLineColor,
                       height: widget.height - 20,
                       width: widget.showCenterLine == true ? 1 : 0,
                     ),

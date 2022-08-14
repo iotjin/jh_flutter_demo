@@ -36,17 +36,19 @@ class JhSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _viewBgColor = KColors.dynamicColor(context, KColors.kBgColor, KColors.kBgDarkColor);
-    var _searchBarBgColor = KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor);
-    var _searchBarBorderColor = KColors.dynamicColor(context, Colors.grey, KColors.kLineDarkColor);
-    _viewBgColor = bgColor ?? _viewBgColor;
+    // 默认颜色
+    var viewBgColor = KColors.dynamicColor(context, KColors.kBgColor, KColors.kBgDarkColor);
+    var searchBarBgColor = KColors.dynamicColor(context, KColors.kSearchBarBgColor, KColors.kSearchBarBgDarkColor);
+    var searchBarBorderColor = KColors.dynamicColor(context, Colors.grey, KColors.kLineDarkColor);
+    // 设置的颜色优先级高于暗黑模式
+    viewBgColor = bgColor ?? viewBgColor;
 
     return Container(
-      color: _viewBgColor,
+      color: viewBgColor,
       child: Container(
         decoration: BoxDecoration(
-          color: _searchBarBgColor,
-          border: isShowBorder ? Border.all(color: _searchBarBorderColor, width: _borderWidth) : null,
+          color: searchBarBgColor,
+          border: isShowBorder ? Border.all(color: searchBarBorderColor, width: _borderWidth) : null,
           borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
         ),
         alignment: Alignment.center,

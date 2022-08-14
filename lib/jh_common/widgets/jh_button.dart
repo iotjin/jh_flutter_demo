@@ -24,15 +24,16 @@ class JhButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var bgColor = KColors.kThemeColor; // 默认按钮背景色
-    var disabledBgColor = KColors.kThemeColor.withOpacity(0.6); // disabled按钮背景色
-    var _textColor = Colors.white; // 默认按钮文字颜色
-    var _disabledTextColor = _textColor.withOpacity(0.6); // disabled按钮文字颜色
+    var textColor = Colors.white; // 默认按钮文字颜色
+    var disabledTextColor = textColor.withOpacity(0.6); // disabled按钮文字颜色
 
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var _bgColor = provider.isDark() ? bgColor : provider.getThemeColor();
-    var _disabledBgColor = provider.isDark() ? disabledBgColor : provider.getThemeColor().withOpacity(0.6);
+    // 按钮背景色
+    var bgColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    // disabled按钮背景色
+    var disabledBgColor =
+        KColors.dynamicColor(context, provider.getThemeColor().withOpacity(0.6), KColors.kThemeColor.withOpacity(0.6));
 
     return TextButton(
       onPressed: onPressed,
@@ -45,10 +46,10 @@ class JhButton extends StatelessWidget {
           (states) {
             if (states.contains(MaterialState.disabled)) {
               // disabled状态颜色
-              return _disabledBgColor;
+              return disabledBgColor;
             }
             // 默认状态颜色
-            return _bgColor;
+            return bgColor;
           },
         ),
         // 文字颜色
@@ -56,15 +57,15 @@ class JhButton extends StatelessWidget {
           (states) {
             if (states.contains(MaterialState.disabled)) {
               // disabled状态颜色
-              return _disabledTextColor;
+              return disabledTextColor;
             }
             // 默认状态颜色
-            return _textColor;
+            return textColor;
           },
         ),
         // 边框
         side: MaterialStateProperty.all(
-          BorderSide(color: _bgColor, width: _borderWidth),
+          BorderSide(color: bgColor, width: _borderWidth),
         ),
         // 圆角
         shape: MaterialStateProperty.all(

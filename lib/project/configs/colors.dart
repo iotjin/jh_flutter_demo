@@ -3,13 +3,26 @@
 ///  Created by iotjin on 2020/07/06.
 ///  description:  颜色 配置
 
-import 'package:flutter/material.dart';
+// ignore_for_file: unused_import
 
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '/project/provider/theme_provider.dart';
+
+/// 暗黑模式判断
 extension ThemeExtension on BuildContext {
   bool get jhIsDark => Theme.of(this).brightness == Brightness.dark;
+
+  // bool get jhIsDark => Provider.of<ThemeProvider>(this).isDark(this);
 }
 
 class KColors {
+  /// 设置动态颜色
+  static Color dynamicColor(BuildContext context, Color lightColor, [Color? darkColor]) {
+    var isDark = context.jhIsDark;
+    return isDark ? darkColor ?? lightColor : lightColor;
+  }
+
   // 主题色（导航条背景、提交按钮背景、弹框确认文字、表单图标录入光标）
   // 暗黑模式高亮显示颜色按kThemeColor设置，如tabBar选中文字图标、提交按钮背景色、指示器选中下划线、光标等
   static const Color kThemeColor = Color(0xFF3BB815);
@@ -156,12 +169,6 @@ class KColors {
   static const Color wxTextBlueColor = Color(0xFF586D98);
 
   static const Color transparent = Colors.transparent;
-
-  /// 设置动态颜色
-  static Color dynamicColor(BuildContext context, Color lightColor, [Color? darkColor]) {
-    var isDark = Theme.of(context).brightness == Brightness.dark;
-    return isDark ? darkColor ?? lightColor : lightColor;
-  }
 }
 
 class Colours {

@@ -44,17 +44,18 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
   String _btnStr = _normalText;
   int _countDownNum = _normalTime;
 
-  // 默认颜色
-  var bgColor = Colors.transparent;
-  var textColor = KColors.kThemeColor;
-
   @override
   Widget build(BuildContext context) {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var _bgColor = widget.bgColor ?? widget.bgColor;
-    var _textColor = widget.bgColor ?? (provider.isDark() ? KColors.kThemeColor : provider.getThemeColor());
-    var _borderColor = widget.borderColor ?? (provider.isDark() ? KColors.kThemeColor : provider.getThemeColor());
+    var bgColor = Colors.transparent;
+    var textColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var borderColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+
+    // 设置的颜色优先级高于暗黑模式
+    bgColor = widget.bgColor ?? bgColor;
+    textColor = widget.textColor ?? textColor;
+    borderColor = widget.borderColor ?? borderColor;
 
     if (widget.getVCode == null) {
       return Container();
@@ -66,14 +67,14 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
           // 设置按钮大小
           minimumSize: MaterialStateProperty.all(Size(120, 30)),
           // 背景色
-          backgroundColor: MaterialStateProperty.all(_bgColor),
+          backgroundColor: MaterialStateProperty.all(bgColor),
           // 文字颜色
-          foregroundColor: MaterialStateProperty.all(_textColor),
+          foregroundColor: MaterialStateProperty.all(textColor),
           // 边框
           side: widget.showBorder == false
               ? null
               : MaterialStateProperty.all(
-                  BorderSide(color: _borderColor, width: _borderWidth),
+                  BorderSide(color: borderColor, width: _borderWidth),
                 ),
           // 圆角
           shape: MaterialStateProperty.all(

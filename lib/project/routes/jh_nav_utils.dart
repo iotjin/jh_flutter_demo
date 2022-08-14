@@ -55,7 +55,7 @@ class JhNavUtils {
     // 对象或对象数组传值可以通过arguments字段进行传值，然后在router.define那里处理、设置页面接收
     if (arguments != null) {
       String jsonStr = Uri.encodeComponent(jsonEncode(arguments));
-      path = '${routeName}?jumpParams=${jsonStr}';
+      path = '$routeName?jumpParams=$jsonStr';
     }
     _NavFluroUtils.pushResult(context, path, (result) {
       function(result);

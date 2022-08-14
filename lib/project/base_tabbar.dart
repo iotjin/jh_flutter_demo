@@ -16,6 +16,9 @@ import '/project/Two/two_page.dart';
 import '/project/Three/three_page.dart';
 import '/project/four/four_page.dart';
 
+const double _iconWH = 24.0;
+const double _fontSize = 10.0;
+
 class BaseTabBar extends StatefulWidget {
   BaseTabBar({Key? key}) : super(key: key);
 
@@ -25,16 +28,6 @@ class BaseTabBar extends StatefulWidget {
 class _BaseTabBarState extends State<BaseTabBar> {
   int _currentIndex = 0;
   List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), FourPage()];
-  static double _iconWH = 24.0;
-  static double _fontSize = 10.0;
-
-  // 默认颜色
-  Color bgColor = KColors.kTabBarBgColor;
-  Color bgDarkColor = KColors.kTabBarBgDarkColor;
-  Color normalTextColor = KColors.kTabBarNormalTextColor;
-  Color normalTextDarkColor = KColors.kTabBarNormalTextDarkColor;
-  Color selectTextColor = KColors.kTabBarSelectTextColor;
-  Color selectTextDarkColor = KColors.kTabBarSelectTextDarkColor;
 
   List<BottomNavigationBarItem> getBottomTabs(iconColor) {
     return [
@@ -93,9 +86,11 @@ class _BaseTabBarState extends State<BaseTabBar> {
   Widget build(BuildContext context) {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var _bgColor = provider.isDark() ? bgDarkColor : bgColor;
-    var _textSelectColor = provider.isDark() ? selectTextDarkColor : provider.getThemeColor();
-    var _iconSelectColor = provider.isDark() ? KColors.kThemeColor : provider.getThemeColor();
+    var bgColor = KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor);
+    var normalTextColor =
+        KColors.dynamicColor(context, KColors.kTabBarNormalTextColor, KColors.kTabBarNormalTextDarkColor);
+    var selectTextColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var selectIconColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
 
     return Scaffold(
       body: IndexedStack(
@@ -103,18 +98,18 @@ class _BaseTabBarState extends State<BaseTabBar> {
         children: _pageList,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: _bgColor,
+        backgroundColor: bgColor,
         // 未选中颜色
-        // unselectedItemColor: Colors.red,
+        unselectedItemColor: normalTextColor,
         // 选中颜色,与fixedColor不能同时设置
         // selectedItemColor: selectColor,
         // 选中的颜色
-        fixedColor: _textSelectColor,
+        fixedColor: selectTextColor,
         unselectedFontSize: _fontSize,
         selectedFontSize: _fontSize,
         // 配置底部BaseTabBar可以有多个按钮
         type: BottomNavigationBarType.fixed,
-        items: getBottomTabs(_iconSelectColor),
+        items: getBottomTabs(selectIconColor),
         // 配置对应的索引值选中
         currentIndex: this._currentIndex,
         onTap: (int index) {

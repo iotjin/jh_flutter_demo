@@ -87,24 +87,23 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
     double _topSpace = 0; // title 顶对齐 间距
 
     // 默认颜色
-    var isDark = Theme.of(context).brightness == Brightness.dark;
-    var bgColor = isDark ? KColors.kBgDarkColor : KColors.kBgColor;
-    var titleColor = isDark ? KColors.kFormTitleDarkColor : KColors.kFormTitleColor;
+    var bgColor = KColors.dynamicColor(context, KColors.kBgColor, KColors.kBgDarkColor);
+    var titleColor = KColors.dynamicColor(context, KColors.kFormTitleColor, KColors.kFormTitleDarkColor);
     var titleStyle = TextStyle(fontSize: _titleFontSize, color: titleColor);
-    var textColor = isDark ? KColors.kFormInfoDarkColor : KColors.kFormInfoColor;
+    var textColor = KColors.dynamicColor(context, KColors.kFormInfoColor, KColors.kFormInfoDarkColor);
     var textStyle = TextStyle(fontSize: _textFontSize, color: textColor);
-    var hintColor = isDark ? KColors.kFormHintDarkColor : KColors.kFormHintColor;
+    var hintColor = KColors.dynamicColor(context, KColors.kFormHintColor, KColors.kFormHintDarkColor);
     var hintTextStyle = TextStyle(fontSize: _hintTextFontSize, color: hintColor);
-    var _lineColor = isDark ? KColors.kFormLineDarkColor : KColors.kFormLineColor;
+    var lineColor = KColors.dynamicColor(context, KColors.kFormLineColor, KColors.kFormLineDarkColor);
 
     // 设置的颜色优先级高于暗黑模式
-    var _bgColor = widget.bgColor ?? bgColor;
-    var _titleStyle = widget.titleStyle ?? titleStyle;
-    var _textStyle = widget.textStyle ?? textStyle;
-    var _hintTextStyle = widget.hintTextStyle ?? hintTextStyle;
+    bgColor = widget.bgColor ?? bgColor;
+    titleStyle = widget.titleStyle ?? titleStyle;
+    textStyle = widget.textStyle ?? textStyle;
+    hintTextStyle = widget.hintTextStyle ?? hintTextStyle;
 
     return Container(
-        color: _bgColor,
+        color: bgColor,
         child: Container(
             constraints: BoxConstraints(
                 minWidth: double.infinity, // 宽度尽可能大
@@ -116,7 +115,7 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
 //        ),
             decoration: UnderlineTabIndicator(
                 borderSide:
-                    BorderSide(width: _lineHeight, color: widget.hiddenLine == true ? Colors.transparent : _lineColor),
+                    BorderSide(width: _lineHeight, color: widget.hiddenLine == true ? Colors.transparent : lineColor),
                 insets: EdgeInsets.fromLTRB(_starW, 0, 0, 0)),
             child: Row(
                 crossAxisAlignment: widget.topAlign == true ? CrossAxisAlignment.start : CrossAxisAlignment.center,
@@ -132,7 +131,7 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                     child: Container(
                         width: widget.space - _starW,
                         padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? _topSpace : 0, 0, 0),
-                        child: Text(widget.title, style: _titleStyle)),
+                        child: Text(widget.title, style: titleStyle)),
                   ),
                   Expanded(
                       child: JhTextField(
@@ -148,8 +147,8 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                     enabled: widget.enabled,
                     inputFormatters: widget.inputFormatters,
                     inputCallBack: widget.inputCallBack,
-                    textStyle: _textStyle,
-                    hintTextStyle: _hintTextStyle,
+                    textStyle: textStyle,
+                    hintTextStyle: hintTextStyle,
                     labelTextStyle: widget.labelTextStyle,
                     textAlign: widget.textAlign,
                     border: widget.border,

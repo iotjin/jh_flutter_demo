@@ -131,25 +131,24 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     }
 
     // 默认颜色
-    var isDark = Theme.of(context).brightness == Brightness.dark;
-    var textColor = isDark ? KColors.kFormInfoDarkColor : KColors.kFormInfoColor;
-    var _textStyle = TextStyle(fontSize: _textFontSize, color: textColor);
-    var hintColor = isDark ? KColors.kFormHintDarkColor : KColors.kFormHintColor;
-    var _hintTextStyle = TextStyle(fontSize: _hintTextFontSize, color: hintColor);
-    var _underlineColor = isDark ? KColors.kFocusedBorderDarkColor : Theme.of(context).primaryColor;
+    var textColor = KColors.dynamicColor(context, KColors.kFormInfoColor, KColors.kFormInfoDarkColor);
+    var textStyle = TextStyle(fontSize: _textFontSize, color: textColor);
+    var hintColor = KColors.dynamicColor(context, KColors.kFormHintColor, KColors.kFormHintDarkColor);
+    var hintTextStyle = TextStyle(fontSize: _hintTextFontSize, color: hintColor);
+    var underlineColor = KColors.dynamicColor(context, Theme.of(context).primaryColor, KColors.kFocusedBorderDarkColor);
 
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var _themeColor = provider.isDark() ? KColors.kThemeColor : provider.getThemeColor();
-    var _labelTextStyle = TextStyle(fontSize: _hintTextFontSize, color: _themeColor);
+    var themeColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var labelTextStyle = TextStyle(fontSize: _hintTextFontSize, color: themeColor);
 
     return Theme(
       // 主题设置主要针对左侧图标和光标
       data: new ThemeData(
-        primaryColor: _themeColor,
-        primarySwatch: JhColorUtils.materialColor(_themeColor),
+        primaryColor: themeColor,
+        primarySwatch: JhColorUtils.materialColor(themeColor),
         inputDecorationTheme: InputDecorationTheme(
-          prefixIconColor: _isFocused ? _themeColor : hintColor,
+          prefixIconColor: _isFocused ? themeColor : hintColor,
         ),
       ),
       child: Stack(
@@ -159,7 +158,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
             focusNode: _focusNode,
             controller: _textController,
             keyboardType: widget.keyboardType,
-            style: _textStyle,
+            style: textStyle,
 //            // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
 //            inputFormatters: (widget.keyboardType == TextInputType.number || widget.keyboardType == TextInputType.phone) ?
 //            [FilteringTextInputFormatter.allow(RegExp('[0-9]'))] : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
@@ -170,15 +169,15 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
               prefixIcon: widget.leftWidget,
               labelText: widget.labelText != null ? widget.labelText : null,
               hintText: widget.hintText,
-              hintStyle: _hintTextStyle,
-              labelStyle: _isFocused ? _labelTextStyle : _hintTextStyle,
+              hintStyle: hintTextStyle,
+              labelStyle: _isFocused ? labelTextStyle : hintTextStyle,
               isDense: widget.isDense,
               enabledBorder: widget.border != null
                   ? widget.border
                   : UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: _lineHeight)),
               focusedBorder: widget.border != null
                   ? widget.border
-                  : UnderlineInputBorder(borderSide: BorderSide(color: _underlineColor, width: _lineHeight)),
+                  : UnderlineInputBorder(borderSide: BorderSide(color: underlineColor, width: _lineHeight)),
               // suffixIcon: Container(), //如果通过suffixIcon添加右侧自定义widget点击会弹出键盘
             ),
             obscureText: _pwdShow!,

@@ -78,21 +78,20 @@ class _JhSetCellState extends State<JhSetCell> {
   @override
   Widget build(BuildContext context) {
     // 默认颜色
-    var isDark = Theme.of(context).brightness == Brightness.dark;
-    var bgColor = isDark ? KColors.kCellBgDarkColor : KColors.kCellBgColor;
-    var titleColor = isDark ? KColors.kFormTitleDarkColor : KColors.kFormTitleColor;
+    var bgColor = KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor);
+    var titleColor = KColors.dynamicColor(context, KColors.kFormTitleColor, KColors.kFormTitleDarkColor);
     var titleStyle = TextStyle(fontSize: _titleFontSize, color: titleColor);
-    var textColor = isDark ? KColors.kFormInfoDarkColor : KColors.kFormInfoColor;
+    var textColor = KColors.dynamicColor(context, KColors.kFormInfoColor, KColors.kFormInfoDarkColor);
     var textStyle = TextStyle(fontSize: _textFontSize, color: textColor);
-    var _lineColor = isDark ? KColors.kFormLineDarkColor : KColors.kFormLineColor;
+    var lineColor = KColors.dynamicColor(context, KColors.kFormLineColor, KColors.kFormLineDarkColor);
 
     // 设置的颜色优先级高于暗黑模式
-    var _bgColor = widget.bgColor ?? bgColor;
-    var _titleStyle = widget.titleStyle ?? titleStyle;
-    var _textStyle = widget.textStyle ?? textStyle;
+    bgColor = widget.bgColor ?? bgColor;
+    titleStyle = widget.titleStyle ?? titleStyle;
+    textStyle = widget.textStyle ?? textStyle;
 
     return Material(
-        color: _bgColor,
+        color: bgColor,
         child: InkWell(
           child: Container(
             constraints: BoxConstraints(
@@ -102,7 +101,7 @@ class _JhSetCellState extends State<JhSetCell> {
             padding: EdgeInsets.fromLTRB(_leftEdge, 0, _rightEdge, 0),
             decoration: UnderlineTabIndicator(
                 borderSide:
-                    BorderSide(width: _lineHeight, color: widget.hiddenLine == true ? Colors.transparent : _lineColor),
+                    BorderSide(width: _lineHeight, color: widget.hiddenLine == true ? Colors.transparent : lineColor),
                 insets: EdgeInsets.fromLTRB(widget.lineLeftEdge, 0, widget.lineRightEdge, 0)),
             child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
               widget.leftImgPath != null
@@ -117,7 +116,7 @@ class _JhSetCellState extends State<JhSetCell> {
                 offstage: widget.title.isEmpty ? true : false,
                 child: Container(
                   width: widget.titleWidth,
-                  child: Text(widget.title, style: _titleStyle),
+                  child: Text(widget.title, style: titleStyle),
                 ),
               ),
               Expanded(
@@ -125,7 +124,7 @@ class _JhSetCellState extends State<JhSetCell> {
                 text: widget.text,
                 hintText: '',
                 enabled: false,
-                textStyle: _textStyle,
+                textStyle: textStyle,
                 textAlign: widget.textAlign,
                 border: InputBorder.none,
               )),

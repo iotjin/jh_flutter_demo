@@ -16,6 +16,7 @@ class SetPage extends StatelessWidget {
     "个人主页 - SliverAppBar+tabbar",
     "个人主页2",
     "导航条渐变显隐",
+    "主题设置",
     "关于",
     "关于iOS",
     "退出登录"
@@ -50,6 +51,9 @@ class SetPage extends StatelessWidget {
         }
         if (str == "导航条渐变显隐") {
           JhNavUtils.pushNamed(context, "FadeAppBarPage");
+        }
+        if (str == "主题设置") {
+          JhNavUtils.pushNamed(context, "ThemePage");
         }
         if (str == "关于") {
           JhNavUtils.pushNamed(context, "AboutPage");

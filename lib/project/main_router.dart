@@ -14,6 +14,7 @@ import '/project/three/three_page.dart';
 import '/project/four/four_page.dart';
 import '/project/four/pages/set_page.dart';
 import '/project/four/pages/info_page.dart';
+import '/project/four/pages/theme_page.dart';
 import '/project/four/pages/about_page.dart';
 import '/project/four/pages/about_ios_page.dart';
 import '/project/four/pages/mine_page.dart';
@@ -68,6 +69,7 @@ class MainRouter implements IRouterProvider {
 
     router.define("SetPage", handler: Handler(handlerFunc: (_, __) => SetPage()));
     router.define("InfoPage", handler: Handler(handlerFunc: (_, __) => InfoPage()));
+    router.define("ThemePage", handler: Handler(handlerFunc: (_, __) => ThemePage()));
     router.define("AboutPage", handler: Handler(handlerFunc: (_, __) => AboutPage()));
     router.define("AboutIOSPage", handler: Handler(handlerFunc: (_, __) => AboutIOSPage()));
     router.define("MinePage", handler: Handler(handlerFunc: (_, __) => MinePage()));

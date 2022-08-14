@@ -140,7 +140,7 @@ baseAppBar(
 
   // TODO: 通过ThemeProvider进行主题管理
   final provider = Provider.of<ThemeProvider>(context);
-  final bool isDark = provider.isDark();
+  final bool isDark = context.jhIsDark;
   // 设置的颜色优先级高于暗黑模式
   bgColor = backgroundColor ?? (isDark ? _bgDarkColor : provider.getThemeColor());
   if (isDark) {
