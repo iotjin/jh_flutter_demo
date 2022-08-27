@@ -107,19 +107,7 @@ class _MyAppState extends State<MyApp> {
         ],
         child: Consumer<ThemeProvider>(
           builder: (_, ThemeProvider provider, __) {
-            if (Platform.isAndroid) {
-              /// 设置安卓底部虚拟按键颜色
-              return AnnotatedRegion(
-                value: SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent,
-                  systemNavigationBarColor: context.jhIsDark ? Colors.black : Colors.white,
-                  systemNavigationBarIconBrightness: context.jhIsDark ? Brightness.light : Brightness.dark,
-                ),
-                child: _buildMaterialApp(provider),
-              );
-            } else {
-              return _buildMaterialApp(provider);
-            }
+            return _buildMaterialApp(provider);
           },
         ));
 
@@ -158,6 +146,18 @@ class _MyAppState extends State<MyApp> {
         Locale('zh', 'CN'),
 //        Locale('en', 'US'),
       ],
+      builder: (BuildContext context, Widget? child) {
+        if (Platform.isAndroid) {
+          /// 设置安卓底部虚拟按键颜色
+          JhStatusBarUtils.setSystemNavigationBarStyle(provider.isDark(context));
+        }
+
+        /// 保证文字大小不受手机系统设置影响
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          child: child!,
+        );
+      },
     );
   }
 

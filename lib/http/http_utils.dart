@@ -72,6 +72,8 @@ class HttpUtils {
   }) {
     // 参数处理（如果需要加密等统一参数）
     if (!LogUtils.inProduction && isOpenLog) {
+      print("---------- HttpUtils URL ----------");
+      print(url);
       print("---------- HttpUtils params ----------");
       print(params);
     }

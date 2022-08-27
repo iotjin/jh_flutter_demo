@@ -33,6 +33,7 @@ class JhCascadeTreePicker {
   static void show(
     BuildContext context, {
     required List data, // tree数组
+    List values: const [], // 默认选中的数组
     String labelKey: _labelKey, // tree数据的文字字段
     String valueKey: _valueKey, // tree数据的数值字段
     String childrenKey: _childrenKey, // tree数据的children字段
@@ -66,6 +67,7 @@ class JhCascadeTreePicker {
         return SafeArea(
           child: JhCascadePickerView(
             data: data,
+            values: values,
             labelKey: labelKey,
             valueKey: valueKey,
             childrenKey: childrenKey,
@@ -86,6 +88,7 @@ class JhCascadePickerView extends StatefulWidget {
   const JhCascadePickerView({
     Key? key,
     required this.data,
+    this.values: const [],
     this.labelKey: _labelKey,
     this.valueKey: _valueKey,
     this.childrenKey: _childrenKey,
@@ -98,6 +101,7 @@ class JhCascadePickerView extends StatefulWidget {
   }) : super(key: key);
 
   final List? data; // tree数组
+  final List values; // 默认选中的数组
   final String labelKey; // tree数据的文字字段
   final String valueKey; // tree数据的数值字段
   final String childrenKey; // tree数据的children字段
@@ -137,7 +141,11 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   void initState() {
     super.initState();
 
-    _initData();
+    if (widget.values.length > 0) {
+      _initSelectData();
+    } else {
+      _initData();
+    }
   }
 
   @override
@@ -157,6 +165,42 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
       _mList = dataArr;
       _tabController = TabController(vsync: this, length: dataArr.length);
       _tabController?.animateTo(_index, duration: Duration.zero);
+    }
+  }
+
+  void _initSelectData() {
+    if (widget.data != null) {
+      List dataArr = widget.data!;
+      List tempArr = widget.values;
+      for (int i = 0; i < tempArr.length; i++) {
+        var item = tempArr[i];
+        _myTabs.add(Tab(text: item));
+        var index = _getTreeIndexByName(dataArr, item);
+        _positions.add(index);
+        if (i == tempArr.length - 1) {
+          _setList(i);
+          _setIndex(i);
+        }
+      }
+      _tabController = TabController(vsync: this, length: tempArr.length);
+      _tabController?.animateTo(tempArr.length - 1, duration: Duration.zero);
+    }
+  }
+
+  /// 根据节点的文字获取对应节点所在的index
+  _getTreeIndexByName(treeArr, name) {
+    for (int i = 0; i < treeArr.length; i++) {
+      var item = treeArr[i];
+      if (treeArr[i][widget.labelKey] == name) {
+        return i;
+      } else {
+        if (_isNotEmptyChildren(item)) {
+          var res = _getTreeIndexByName(item[widget.childrenKey], name);
+          if (res != null) {
+            return res;
+          }
+        }
+      }
     }
   }
 

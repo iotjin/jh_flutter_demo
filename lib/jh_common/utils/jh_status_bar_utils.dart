@@ -40,7 +40,8 @@ class JhStatusBarUtils {
   }
 
   /// 设置setSystemNavigationBarStyle样式
-  /// 有缺陷，全局build时下个页面有可能会把上个页面的覆盖，配置一样不影响
+  /// 单页面设置时，全局build时下个页面有可能会把上个页面的覆盖，配置一样不影响
+  /// 或者在main那里统一设置
   static void setSystemNavigationBarStyle([bool isDark = false]) {
     /// 仅针对安卓
     if (JhDeviceUtils.isAndroid) {
@@ -52,7 +53,9 @@ class JhStatusBarUtils {
         // 设置底部状态栏(虚拟按键)亮度 (Android SDK >=O ), dark效果不明显，设置为light即可
         systemNavigationBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
       );
-      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+      Future.delayed(Duration(milliseconds: 200), () {
+        SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+      });
     }
   }
 }

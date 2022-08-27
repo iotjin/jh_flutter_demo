@@ -99,12 +99,16 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
 
+    /// 更新text的值，并处理光标
+    /// https://github.com/flutter/flutter/issues/11416
+    var cursorPos = _textController!.selection;
     // 更新text值到_textController
     _textController!.text = widget.text ?? '';
-    // 光标保持在文本最后
-    _textController!.selection = TextSelection.fromPosition(
-      TextPosition(offset: _textController!.text.length),
-    );
+    if (cursorPos.start > _textController!.text.length) {
+      // 光标保持在文本最后
+      cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
+    }
+    _textController!.selection = cursorPos;
   }
 
   @override
