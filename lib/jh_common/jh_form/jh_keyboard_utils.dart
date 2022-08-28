@@ -5,13 +5,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import '/project/configs/colors.dart';
 
 class JhKeyboardUtils {
   /// 三方键盘配置
   static KeyboardActionsConfig getKeyboardConfig(BuildContext context, List<FocusNode> list) {
     return KeyboardActionsConfig(
 //      keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
-      keyboardBarColor: Colors.grey[200],
+      keyboardBarColor: context.jhIsDark ? Colors.grey[800] : Colors.grey[200],
       nextFocus: true,
       actions: List.generate(
           list.length,
