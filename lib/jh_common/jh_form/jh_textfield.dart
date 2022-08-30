@@ -13,13 +13,18 @@ const int _maxLines = 5; // 最大行数
 const int _maxLength = 100; // 最大录入长度
 const double _labelTextFontSize = 15.0;
 
+/// 录入回调
 typedef _InputCallBack = void Function(String value);
+
+/// 录入完成回调（失去焦点或者点击键盘右下角按钮触发）
+/// isSubmitted：是否通过onSubmitted方法触发
+/// 直接使用回调范围更大，可判断外部三方键盘关闭按钮点击事件，如果有多个textField切换，也会走这个回调，按需使用
+typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted);
 
 class JhTextField extends StatefulWidget {
   const JhTextField({
     Key? key,
     this.text: '',
-    this.keyboardType: TextInputType.text,
     this.hintText: '请输入',
     this.labelText: '',
     this.errorText: '',
@@ -32,19 +37,21 @@ class JhTextField extends StatefulWidget {
     this.enabled: true,
     this.inputFormatters,
     this.inputCallBack,
+    this.inputCompletionCallBack,
     this.textStyle,
     this.hintTextStyle,
     this.labelTextStyle,
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
     this.controller,
+    this.keyboardType: TextInputType.text,
+    this.textInputAction = TextInputAction.done,
   }) : super(key: key);
 
   final String? text;
   final String hintText;
   final String labelText; // top提示文字
   final String errorText; // 错误提示文字
-  final TextInputType keyboardType; // 键盘类型，默认文字
   final FocusNode? focusNode;
   final Widget? leftWidget; // 左侧widget ，默认隐藏
   final Widget? rightWidget; // 右侧widget ，默认隐藏
@@ -54,12 +61,15 @@ class JhTextField extends StatefulWidget {
   final bool enabled; // 是否可编辑，默认true
   final List<TextInputFormatter>? inputFormatters;
   final _InputCallBack? inputCallBack;
+  final _InputCompletionCallBack? inputCompletionCallBack;
   final TextStyle? textStyle;
   final TextStyle? hintTextStyle;
   final TextStyle? labelTextStyle; // 默认为hintTextStyle，高亮为主题色
   final TextAlign textAlign; // 对齐方式，默认左对齐
   final InputBorder border; // 边框样式，默认无边框
   final TextEditingController? controller;
+  final TextInputType keyboardType; // 键盘类型，默认文字
+  final TextInputAction? textInputAction; // 键盘右下角按钮类型
 
   @override
   _JhTextFieldState createState() => _JhTextFieldState();
@@ -69,6 +79,7 @@ class _JhTextFieldState extends State<JhTextField> {
   TextEditingController? _textController;
   FocusNode? _focusNode;
   bool _isFocused = false;
+  bool _isSubmitted = false; // 记录是否点击键盘右下角按钮
 
   @override
   void initState() {
@@ -82,6 +93,10 @@ class _JhTextFieldState extends State<JhTextField> {
     _focusNode!.addListener(() {
       setState(() {
         _isFocused = _focusNode!.hasFocus;
+        // 录入完成回调，失去焦点并且不是点击键盘右下角时触发
+        if (!_isFocused && !_isSubmitted) {
+          widget.inputCompletionCallBack?.call(_textController!.text, false);
+        }
       });
     });
   }
@@ -145,6 +160,7 @@ class _JhTextFieldState extends State<JhTextField> {
       focusNode: _focusNode,
       controller: _textController,
       keyboardType: widget.keyboardType,
+      textInputAction: widget.textInputAction,
       style: widget.textStyle,
       textAlign: widget.textAlign,
       minLines: widget.maxLines != null ? widget.maxLines : 1,
@@ -154,22 +170,36 @@ class _JhTextFieldState extends State<JhTextField> {
           ? widget.inputFormatters
           : [LengthLimitingTextInputFormatter(widget.maxLength)],
       decoration: InputDecoration(
-          prefixIcon: widget.leftWidget,
-          suffixIcon: widget.rightWidget,
-          hintText: widget.hintText,
-          hintStyle: widget.hintTextStyle,
-          labelText: widget.labelText.isEmpty ? null : widget.labelText,
-          labelStyle: _isFocused ? labelTextStyle : widget.hintTextStyle,
-          errorText: widget.errorText.isEmpty ? null : widget.errorText,
-          isDense: true,
-          contentPadding: widget.border != InputBorder.none
-              ? EdgeInsets.symmetric(horizontal: 5, vertical: 8)
-              : EdgeInsets.fromLTRB(0, 8, 5, 8),
-          border: widget.border),
+        prefixIcon: widget.leftWidget,
+        suffixIcon: widget.rightWidget,
+        hintText: widget.hintText,
+        hintStyle: widget.hintTextStyle,
+        labelText: widget.labelText.isEmpty ? null : widget.labelText,
+        labelStyle: _isFocused ? labelTextStyle : widget.hintTextStyle,
+        errorText: widget.errorText.isEmpty ? null : widget.errorText,
+        isDense: true,
+        contentPadding: widget.border != InputBorder.none
+            ? EdgeInsets.symmetric(horizontal: 5, vertical: 8)
+            : EdgeInsets.fromLTRB(0, 8, 5, 8),
+        border: widget.border,
+      ),
+      // 执行顺序为 onTap -> onChanged -> onEditingComplete -> onSubmitted
+      // 点击输入框
+      onTap: () {
+        _isSubmitted = false;
+      },
+      // 每次输入框文字改变，均会执行
       onChanged: (value) {
-        if (widget.inputCallBack != null) {
-          widget.inputCallBack!(_textController!.text);
-        }
+        widget.inputCallBack?.call(_textController!.text);
+      },
+      // 输入完成，提交按钮点击后会先执行这里
+      onEditingComplete: () {
+        _focusNode!.unfocus();
+      },
+      // 提交按钮点击
+      onSubmitted: (value) {
+        _isSubmitted = true;
+        widget.inputCompletionCallBack?.call(_textController!.text, true);
       },
     );
   }

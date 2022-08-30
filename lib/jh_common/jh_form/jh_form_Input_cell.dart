@@ -17,6 +17,7 @@ const double _textFontSize = 15.0;
 const double _hintTextFontSize = 15.0;
 
 typedef _InputCallBack = void Function(String value);
+typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted);
 
 class JhFormInputCell extends StatefulWidget {
   const JhFormInputCell({
@@ -26,6 +27,7 @@ class JhFormInputCell extends StatefulWidget {
     this.labelText: '',
     this.errorText: '',
     this.keyboardType: TextInputType.text,
+    this.textInputAction = TextInputAction.done,
     this.hintText: '请输入',
     this.focusNode,
     this.showRedStar: false,
@@ -37,6 +39,7 @@ class JhFormInputCell extends StatefulWidget {
     this.enabled: true,
     this.inputFormatters,
     this.inputCallBack,
+    this.inputCompletionCallBack,
     this.space = _titleSpace,
     this.titleStyle,
     this.textStyle,
@@ -55,6 +58,7 @@ class JhFormInputCell extends StatefulWidget {
   final String labelText; // top提示文字
   final String errorText; // 错误提示文字
   final TextInputType keyboardType; // 键盘类型，默认文字
+  final TextInputAction? textInputAction; // 键盘右下角按钮类型
   final FocusNode? focusNode;
   final bool showRedStar; // 显示左侧小红星，默认不显示
   final Widget? leftWidget; // 左侧widget ，默认隐藏
@@ -65,6 +69,7 @@ class JhFormInputCell extends StatefulWidget {
   final bool enabled; // 是否可编辑，默认true
   final List<TextInputFormatter>? inputFormatters;
   final _InputCallBack? inputCallBack;
+  final _InputCompletionCallBack? inputCompletionCallBack;
   final double space; // 标题宽度
   final TextStyle? titleStyle;
   final TextStyle? textStyle;
@@ -134,25 +139,28 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                         child: Text(widget.title, style: titleStyle)),
                   ),
                   Expanded(
-                      child: JhTextField(
-                    text: widget.text,
-                    keyboardType: widget.keyboardType,
-                    hintText: widget.hintText,
-                    labelText: widget.labelText,
-                    errorText: widget.errorText,
-                    focusNode: widget.focusNode,
-                    maxLines: widget.maxLines,
-                    maxLength: widget.maxLength,
-                    showMaxLength: widget.showMaxLength,
-                    enabled: widget.enabled,
-                    inputFormatters: widget.inputFormatters,
-                    inputCallBack: widget.inputCallBack,
-                    textStyle: textStyle,
-                    hintTextStyle: hintTextStyle,
-                    labelTextStyle: widget.labelTextStyle,
-                    textAlign: widget.textAlign,
-                    border: widget.border,
-                  )),
+                    child: JhTextField(
+                      text: widget.text,
+                      keyboardType: widget.keyboardType,
+                      textInputAction: widget.textInputAction,
+                      hintText: widget.hintText,
+                      labelText: widget.labelText,
+                      errorText: widget.errorText,
+                      focusNode: widget.focusNode,
+                      maxLines: widget.maxLines,
+                      maxLength: widget.maxLength,
+                      showMaxLength: widget.showMaxLength,
+                      enabled: widget.enabled,
+                      inputFormatters: widget.inputFormatters,
+                      inputCallBack: widget.inputCallBack,
+                      inputCompletionCallBack: widget.inputCompletionCallBack,
+                      textStyle: textStyle,
+                      hintTextStyle: hintTextStyle,
+                      labelTextStyle: widget.labelTextStyle,
+                      textAlign: widget.textAlign,
+                      border: widget.border,
+                    ),
+                  ),
                   widget.rightWidget ?? Container(),
                 ])));
   }

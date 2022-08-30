@@ -102,20 +102,18 @@ class _TwoPageState extends State<TwoPage> {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = Theme
-        .of(context)
-        .brightness == Brightness.dark;
+    var isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: isDark
           ? baseAppBar(context, KStrings.twoTabTitle,
-          backgroundColor: KColors.kNavBgDarkColor,
-          rightImgPath: 'assets/images/tianjiahaoyou.png', rightItemCallBack: () {
-            JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-          })
+              backgroundColor: KColors.kNavBgDarkColor,
+              rightImgPath: 'assets/images/tianjiahaoyou.png', rightItemCallBack: () {
+              JhNavUtils.pushNamed(context, 'WxAddFriendPage');
+            })
           : gradientAppBar(context, KStrings.twoTabTitle, rightImgPath: 'assets/images/tianjiahaoyou.png',
-          rightItemCallBack: () {
-            JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-          }),
+              rightItemCallBack: () {
+              JhNavUtils.pushNamed(context, 'WxAddFriendPage');
+            }),
       body: _body(),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
@@ -217,6 +215,10 @@ class _TwoPageState extends State<TwoPage> {
     Widget _searchBar = JhSearchBar(
       hintText: '搜索',
       bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
+      textInputAction: TextInputAction.search,
+      inputCompletionCallBack: (value, isSubmitted) {
+        print('inputCompletionCallBack: $value / $isSubmitted ');
+      },
     );
 
     _topWidgetList.insert(0, _searchBar);

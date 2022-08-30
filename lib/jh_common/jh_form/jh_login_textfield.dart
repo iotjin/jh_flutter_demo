@@ -14,16 +14,23 @@ const double _lineHeight = 0.8; // 底部线高
 const double _textFontSize = 15.0;
 const double _hintTextFontSize = 15.0;
 
+/// 录入回调
 typedef _InputCallBack = void Function(String value);
+
+/// 录入完成回调（失去焦点或者点击键盘右下角按钮触发）
+/// isSubmitted：是否通过onSubmitted方法触发
+/// 直接使用回调范围更大，可判断外部三方键盘关闭按钮点击事件，如果有多个textField切换，也会走这个回调，按需使用
+typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted);
 
 class JhLoginTextField extends StatefulWidget {
   const JhLoginTextField({
     Key? key,
     this.text: '',
-    this.keyboardType: TextInputType.text,
     this.hintText: '',
     this.labelText,
     this.controller,
+    this.keyboardType: TextInputType.text,
+    this.textInputAction = TextInputAction.done,
     this.focusNode,
     this.isPwd = false,
     this.leftWidget,
@@ -32,6 +39,7 @@ class JhLoginTextField extends StatefulWidget {
     this.isShowDeleteBtn = false,
     this.inputFormatters,
     this.inputCallBack,
+    this.inputCompletionCallBack,
     this.pwdOpen,
     this.pwdClose,
     this.border,
@@ -43,6 +51,7 @@ class JhLoginTextField extends StatefulWidget {
   final String? labelText; // top提示文字
   final TextEditingController? controller;
   final TextInputType keyboardType;
+  final TextInputAction? textInputAction; // 键盘右下角按钮类型
   final FocusNode? focusNode;
   final bool isPwd; // 是否是密码，默认不是
   final Widget? leftWidget; // 左侧widget ，默认隐藏
@@ -51,6 +60,7 @@ class JhLoginTextField extends StatefulWidget {
   final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认不显示
   final List<TextInputFormatter>? inputFormatters;
   final _InputCallBack? inputCallBack;
+  final _InputCompletionCallBack? inputCompletionCallBack;
   final String? pwdOpen; // 自定义密码图片路径 睁眼
   final String? pwdClose; // 自定义密码图片路径 闭眼
   final InputBorder? border; // 边框样式
@@ -68,6 +78,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
   bool? _isHiddenPwdBtn; // 是否隐藏 右侧密码明文切换按钮 ，密码样式才显示（isPwd =true），
   bool? _pwdShow; // 控制密码 明文切换
   Widget? _pwdImg; // 自定义密码图片
+  bool _isSubmitted = false; // 记录是否点击键盘右下角按钮
 
   @override
   void initState() {
@@ -90,6 +101,10 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
       setState(() {
         _isFocused = _focusNode!.hasFocus;
         _isShowDelete = _textController!.text.isNotEmpty && _focusNode!.hasFocus;
+        // 录入完成回调，失去焦点并且不是点击键盘右下角时触发
+        if (!_isFocused && !_isSubmitted) {
+          widget.inputCompletionCallBack?.call(_textController!.text, false);
+        }
       });
     });
   }
@@ -162,6 +177,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
             focusNode: _focusNode,
             controller: _textController,
             keyboardType: widget.keyboardType,
+            textInputAction: widget.textInputAction,
             style: textStyle,
 //            // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
 //            inputFormatters: (widget.keyboardType == TextInputType.number || widget.keyboardType == TextInputType.phone) ?
@@ -185,10 +201,23 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
               // suffixIcon: Container(), //如果通过suffixIcon添加右侧自定义widget点击会弹出键盘
             ),
             obscureText: _pwdShow!,
+            // 执行顺序为 onTap -> onChanged -> onEditingComplete -> onSubmitted
+            // 点击输入框
+            onTap: () {
+              _isSubmitted = false;
+            },
+            // 每次输入框文字改变，均会执行
             onChanged: (value) {
-              if (widget.inputCallBack != null) {
-                widget.inputCallBack!(_textController!.text);
-              }
+              widget.inputCallBack?.call(_textController!.text);
+            },
+            // 输入完成，提交按钮点击后会先执行这里
+            onEditingComplete: () {
+              _focusNode!.unfocus();
+            },
+            // 提交按钮点击
+            onSubmitted: (value) {
+              _isSubmitted = true;
+              widget.inputCompletionCallBack?.call(_textController!.text, true);
             },
           ),
           Row(

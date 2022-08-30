@@ -13,6 +13,7 @@ const double _borderWidth = 0.3;
 const double _searchViewHeight = 58.0;
 
 typedef _InputCallBack = void Function(String value);
+typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted);
 
 class JhSearchBar extends StatelessWidget {
   const JhSearchBar({
@@ -23,7 +24,9 @@ class JhSearchBar extends StatelessWidget {
     this.bgColor,
     this.isShowDeleteBtn: true,
     this.isShowBorder: false,
+    this.textInputAction = TextInputAction.done,
     this.inputCallBack,
+    this.inputCompletionCallBack,
   }) : super(key: key);
 
   final String? text;
@@ -32,7 +35,9 @@ class JhSearchBar extends StatelessWidget {
   final Color? bgColor;
   final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认显示
   final bool isShowBorder; // 是否显示边框，默认不显示
+  final TextInputAction? textInputAction; // 键盘右下角按钮类型
   final _InputCallBack? inputCallBack;
+  final _InputCompletionCallBack? inputCompletionCallBack;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +66,9 @@ class JhSearchBar extends StatelessWidget {
           hintText: this.hintText,
           isShowDeleteBtn: this.isShowDeleteBtn,
           border: InputBorder.none,
+          textInputAction: this.textInputAction,
           inputCallBack: this.inputCallBack,
+          inputCompletionCallBack: this.inputCompletionCallBack,
         ),
       ),
     );

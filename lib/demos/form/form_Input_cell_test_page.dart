@@ -28,6 +28,9 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
                 inputCallBack: (value) {
                   print(value);
                 },
+                inputCompletionCallBack: (value, isSubmitted) {
+                  print('inputCompletionCallBack: $value / $isSubmitted ');
+                },
               ),
               JhFormInputCell(
                 hintText: '请输入',

@@ -39,6 +39,9 @@ class _FormValidatePageState extends State<FormValidatePage> {
               keyboardType: TextInputType.phone,
               inputFormatters: phone,
               inputCallBack: (value) => params['phone'] = value,
+              inputCompletionCallBack: (value, isSubmitted) {
+                print('inputCompletionCallBack: $value / $isSubmitted ');
+              },
             ),
             JhFormInputCell(
               title: "手机号",
