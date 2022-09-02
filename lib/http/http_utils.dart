@@ -88,14 +88,16 @@ class HttpUtils {
     }
 
     if (loadingText != null && loadingText.isNotEmpty) {
-      JhProgressHUD.showLoadingText(loadingText: loadingText);
+      JhProgressHUD.showLoadingText(loadingText);
     }
     DioUtils.instance.request(method, url, data: data, queryParameters: queryParameters, onSuccess: (result) {
       if (!LogUtils.inProduction && isOpenLog) {
         print("---------- HttpUtils response ----------");
         print(result);
       }
-      JhProgressHUD.hide();
+      if (loadingText != null && loadingText.isNotEmpty) {
+        JhProgressHUD.hide();
+      }
       if (result['code'] == ExceptionHandle.success) {
         success?.call(result);
       } else {
@@ -104,7 +106,9 @@ class HttpUtils {
         fail?.call(result['code'], result['msg']);
       }
     }, onError: (code, msg) {
-      JhProgressHUD.hide();
+      if (loadingText != null && loadingText.isNotEmpty) {
+        JhProgressHUD.hide();
+      }
       JhProgressHUD.showError(msg);
       fail?.call(code, msg);
     });

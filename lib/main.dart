@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars/flustars.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
 import 'package:jhtoast/jhtoast.dart';
@@ -111,13 +111,13 @@ class _MyAppState extends State<MyApp> {
           },
         ));
 
-    return OKToast(
-//          dismissOtherOnShow: true,
-      child: app,
-    );
+    return app;
   }
 
   Widget _buildMaterialApp(ThemeProvider provider) {
+    //警告:不要随意调整调用BotToastInit函数的位置
+    final botToastBuilder = BotToastInit(); //1.调用BotToastInit
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // 多主题切换
@@ -153,11 +153,16 @@ class _MyAppState extends State<MyApp> {
         }
 
         /// 保证文字大小不受手机系统设置影响
-        return MediaQuery(
+        child = MediaQuery(
           data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
           child: child!,
         );
+        // 1.调用BotToastInit
+        child = botToastBuilder(context, child);
+        return child;
       },
+      // 2.注册路由观察者
+      navigatorObservers: [BotToastNavigatorObserver()],
     );
   }
 
