@@ -17,7 +17,7 @@ class AboutIOSPage extends StatefulWidget {
 
 class _AboutIOSPageState extends State<AboutIOSPage> {
   var _currentVersion;
-  var _info = "";
+  var _info = '';
   var _isNeedUpdate = false;
 
   @override
@@ -65,7 +65,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "关于我们"),
+      appBar: backAppBar(context, '关于我们'),
       body: Column(
         children: <Widget>[
           SizedBox(
@@ -77,7 +77,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
           SizedBox(
             height: 20,
           ),
-          Text("Version：$_currentVersion"),
+          Text('Version：$_currentVersion'),
           SizedBox(
             height: 50,
           ),
@@ -91,7 +91,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
               content: 'iotjin',
               onTap: () => JhNavRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')),
           ClickItem(
-              title: "版本更新",
+              title: '版本更新',
               content: _info,
               onTap: () {
                 if (_isNeedUpdate == true) {
@@ -104,13 +104,13 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
   }
 
   void _getAPPStoreVersion() async {
-    print("response----");
-    var url = "https://itunes.apple.com/cn/lookup?id=414478124";
-    Options options = Options(headers: {HttpHeaders.acceptHeader: "Content-Type:application/x-www-form-urlencoded"});
+    print('response----');
+    var url = 'https://itunes.apple.com/cn/lookup?id=414478124';
+    Options options = Options(headers: {HttpHeaders.acceptHeader: 'Content-Type:application/x-www-form-urlencoded'});
 
     var response = await Dio().post(url, options: options);
 
-    print("results---");
+    print('results---');
 //  print(response.toString());
 //  print('--${response.data.trim()}--');
 
@@ -130,17 +130,17 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
     print(_currentVersion.compareTo(_appStoreVersion)); // 比较大小, 0:相同、1:大于、-1:小于
 
     if (_currentVersion.compareTo(_appStoreVersion) < 0) {
-      print("提示更新");
+      print('提示更新');
 
       setState(() {
-        _info = "有新版本,去更新";
+        _info = '有新版本,去更新';
         _isNeedUpdate = true;
       });
     } else {
-      print("不需要更新");
+      print('不需要更新');
 
       setState(() {
-        _info = "iOS已是最新版本";
+        _info = 'iOS已是最新版本';
         _isNeedUpdate = false;
       });
     }

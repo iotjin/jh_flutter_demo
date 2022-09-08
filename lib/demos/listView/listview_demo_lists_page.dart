@@ -4,40 +4,40 @@ import '/project/routes/jh_nav_utils.dart';
 
 class ListViewDemoListsPage extends StatelessWidget {
   final List titleData = [
-    "ListViewTest",
-    "ListViewTest2",
-    "ListViewTest3",
-    "ListViewTest4",
-    "ListViewTest5",
-    "ListViewTestCard",
-    "ListViewTestCustomVC",
-    "ListViewTestSimplePullDown",
-    "ListViewTestPullDownVC",
-    "ListViewGroup",
-    "ListViewGroup2",
-    "ListViewGroup3 - 刷新",
-    "ListViewHeader - 头部跟随滚动",
+    'ListViewTest',
+    'ListViewTest2',
+    'ListViewTest3',
+    'ListViewTest4',
+    'ListViewTest5',
+    'ListViewTestCard',
+    'ListViewTestCustomVC',
+    'ListViewTestSimplePullDown',
+    'ListViewTestPullDownVC',
+    'ListViewGroup',
+    'ListViewGroup2',
+    'ListViewGroup3 - 刷新',
+    'ListViewHeader - 头部跟随滚动',
   ];
   final List routeData = [
-    "ListViewTest",
-    "ListViewTest2",
-    "ListViewTest3",
-    "ListViewTest4",
-    "ListViewTest5",
-    "ListViewTestCard",
-    "ListViewTestCustomVC",
-    "ListViewTestSimplePullDown",
-    "ListViewTestPullDownVC",
-    "ListViewGroupPage",
-    "ListViewGroupPage2",
-    "ListViewGroupPage3",
-    "ListViewHeaderPage",
+    'ListViewTest',
+    'ListViewTest2',
+    'ListViewTest3',
+    'ListViewTest4',
+    'ListViewTest5',
+    'ListViewTestCard',
+    'ListViewTestCustomVC',
+    'ListViewTestSimplePullDown',
+    'ListViewTestPullDownVC',
+    'ListViewGroupPage',
+    'ListViewGroupPage2',
+    'ListViewGroupPage3',
+    'ListViewHeaderPage',
   ];
 
   @override
   Widget build(BuildContext context) {
     return JhTextList(
-      title: "ListViewDemoLists",
+      title: 'ListViewDemoLists',
       dataArr: titleData,
       callBack: (index, str) {
         print(routeData[index]);

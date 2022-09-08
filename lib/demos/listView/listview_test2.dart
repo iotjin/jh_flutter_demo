@@ -6,7 +6,7 @@ class ListViewTest2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "ListViewTest2_外部引用假数据"),
+      appBar: backAppBar(context, 'ListViewTest2_外部引用假数据'),
       body: HomeContent(),
     );
   }
@@ -15,11 +15,11 @@ class ListViewTest2 extends StatelessWidget {
 class HomeContent extends StatelessWidget {
   Widget _getListData(context, index) {
     return ListTile(
-      title: Text(listData[index]["title"]),
-      leading: Image.network(listData[index]["imageUrl"]),
-      subtitle: Text(listData[index]["content"]),
+      title: Text(listData[index]['title']),
+      leading: Image.network(listData[index]['imageUrl']),
+      subtitle: Text(listData[index]['content']),
       onTap: () {
-        print("点击的index" + index.toString());
+        print('点击的index' + index.toString());
       },
     );
   }
@@ -35,6 +35,6 @@ Widget contentBody = Container(
     height: 200,
     color: Colors.red,
     child: TextButton(
-      child: Text("normal"),
+      child: Text('normal'),
       onPressed: () {},
     ));

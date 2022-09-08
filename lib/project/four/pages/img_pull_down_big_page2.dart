@@ -38,7 +38,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2> with SingleTi
   void _addListener() {
     _scrollController.addListener(() {
       double _y = _scrollController.offset;
-//      print("滑动距离: $_y");
+//      print('滑动距离: $_y');
 
       if (_y < _scrollMinOffSet) {
         _imgExtraHeight = -_y;
@@ -100,7 +100,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2> with SingleTi
                     height: _imgNormalHeight,
                   );
                 }
-                return ListTile(title: Text("$index"));
+                return ListTile(title: Text('$index'));
               }),
         ),
       ),

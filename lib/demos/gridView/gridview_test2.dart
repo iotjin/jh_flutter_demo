@@ -11,9 +11,9 @@ List getData() {
   for (int i = 0; i < 9; i++) {
     var img;
     if (i % 2 == 0) {
-      img = "https://gitee.com/iotjh/Picture/raw/master/lufei2.png";
+      img = 'https://gitee.com/iotjh/Picture/raw/master/lufei2.png';
     } else {
-      img = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+      img = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     }
     dataArr!.add(img);
   }
@@ -25,9 +25,9 @@ List getData2() {
   for (int i = 0; i < 4; i++) {
     var img;
     if (i % 2 == 0) {
-      img = "https://gitee.com/iotjh/Picture/raw/master/lufei2.png";
+      img = 'https://gitee.com/iotjh/Picture/raw/master/lufei2.png';
     } else {
-      img = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+      img = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     }
     dataArr2!.add(img);
   }
@@ -50,12 +50,12 @@ class _GridViewTest2State extends State<GridViewTest2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "GridView实现朋友圈（九宫格）"),
+        appBar: backAppBar(context, 'GridView实现朋友圈（九宫格）'),
         body: Container(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("九宫格"),
+            Text('九宫格'),
             Container(
                 padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                 color: Colors.blue,
@@ -63,10 +63,10 @@ class _GridViewTest2State extends State<GridViewTest2> {
                   imgData: dataArr,
                   lRSpace: 110,
                   onLongPress: () {
-                    JhBottomSheet.showText(context, dataArr: ["保存图片"]);
+                    JhBottomSheet.showText(context, dataArr: ['保存图片']);
                   },
                 )),
-            Text("九宫格，4图未处理"),
+            Text('九宫格，4图未处理'),
             Container(
                 padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                 color: Colors.blue,
@@ -75,7 +75,7 @@ class _GridViewTest2State extends State<GridViewTest2> {
                   lRSpace: 110,
                   isHandleFour: false,
                   onLongPress: () {
-                    JhBottomSheet.showText(context, dataArr: ["保存图片"]);
+                    JhBottomSheet.showText(context, dataArr: ['保存图片']);
                   },
                 )),
           ],

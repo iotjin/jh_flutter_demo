@@ -44,7 +44,7 @@ class _ChartPage1State extends State<ChartPage1> {
         data: dataLine,
         domainFn: (Linesales lines, _) => lines.time,
         measureFn: (Linesales lines, _) => lines.sale,
-        id: "Lines",
+        id: 'Lines',
       )
     ];
     // 是TimeSeriesChart，而不是LineChart,因为x轴是DataTime类
@@ -55,12 +55,12 @@ class _ChartPage1State extends State<ChartPage1> {
 
   Widget getBar() {
     List<Barsales> dataBar = [
-      new Barsales("1", 20),
-      new Barsales("2", 50),
-      new Barsales("3", 20),
-      new Barsales("4", 80),
-      new Barsales("5", 120),
-      new Barsales("6", 30),
+      new Barsales('1', 20),
+      new Barsales('2', 50),
+      new Barsales('3', 20),
+      new Barsales('4', 80),
+      new Barsales('5', 120),
+      new Barsales('6', 30),
     ];
 
     var seriesBar = [
@@ -68,7 +68,7 @@ class _ChartPage1State extends State<ChartPage1> {
         data: dataBar,
         domainFn: (Barsales sales, _) => sales.day,
         measureFn: (Barsales sales, _) => sales.sale,
-        id: "Sales",
+        id: 'Sales',
       )
     ];
     return charts.BarChart(seriesBar);

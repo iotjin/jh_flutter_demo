@@ -35,13 +35,13 @@ class _ChartPage2State extends State<ChartPage2> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      child: Text("年份：$_year"),
+                      child: Text('年份：$_year'),
                     ),
                   ),
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      child: Text("数值：$_sales"),
+                      child: Text('数值：$_sales'),
                     ),
                   )
                 ],

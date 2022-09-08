@@ -17,11 +17,11 @@ class HttPageTestItem extends StatelessWidget {
 
     Color textColor = Colors.black;
     data!.state = data!.state == '2' ? '已完成' : (data!.state == '1' ? '处理中' : '流转中');
-    if (data!.state == "流转中") {
+    if (data!.state == '流转中') {
       textColor = Colors.red;
-    } else if (data!.state == "处理中") {
+    } else if (data!.state == '处理中') {
       textColor = Colors.red;
-    } else if (data!.state == "已完成") {
+    } else if (data!.state == '已完成') {
       textColor = Colors.orange;
     }
 
@@ -41,23 +41,23 @@ class HttPageTestItem extends StatelessWidget {
 //        mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text("地点：${this.data!.place}", style: TextStyle(fontSize: 18.0)),
+                  Text('地点：${this.data!.place}', style: TextStyle(fontSize: 18.0)),
                   Row(
                     children: <Widget>[
-                      Text("${this.data!.state}", style: TextStyle(fontSize: 18.0, color: textColor)),
+                      Text('${this.data!.state}', style: TextStyle(fontSize: 18.0, color: textColor)),
                       Padding(
                         padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                       ),
-                      Image.network("${this.data!.imageUrl}", width: 30, height: 30),
+                      Image.network('${this.data!.imageUrl}', width: 30, height: 30),
                     ],
                   )
                 ],
               ),
               SizedBox(height: spaceHeight),
-//            Text("联系人电话：${this.data.phone}",textAlign: TextAlign.left,style: TextStyle(fontSize: 18.0)),
+//            Text('联系人电话：${this.data.phone}',textAlign: TextAlign.left,style: TextStyle(fontSize: 18.0)),
               Offstage(
                 offstage: isHidden,
-                child: Text("联系人电话：${this.data!.phone}", textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0)),
+                child: Text('联系人电话：${this.data!.phone}', textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0)),
               ),
               Offstage(
                 offstage: isHidden,
@@ -65,7 +65,7 @@ class HttPageTestItem extends StatelessWidget {
               ),
 
 //            Text(
-//                "问题描述：${this.data.content}",
+//                '问题描述：${this.data.content}',
 //                textAlign: TextAlign.left,
 //                style: TextStyle(
 //                    fontSize: 18.0,
@@ -76,9 +76,9 @@ class HttPageTestItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("问题描述：", style: TextStyle(fontSize: 18.0, color: Colors.black)),
+                  Text('问题描述：', style: TextStyle(fontSize: 18.0, color: Colors.black)),
                   Expanded(
-                    child: Text("${this.data!.content}",
+                    child: Text('${this.data!.content}',
                         style: TextStyle(
                           fontSize: 18.0,
                         )),

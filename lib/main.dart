@@ -44,9 +44,9 @@ void main() async {
   runApp(MyApp(isHome: !isNewFeaturePage));
 
   if (Platform.isAndroid) {
-    print("Android");
+    print('Android');
   } else if (Platform.isIOS) {
-    print("iOS");
+    print('iOS');
   }
 
   // 设置安卓透明状态栏

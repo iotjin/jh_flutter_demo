@@ -7,8 +7,8 @@ import 'dart:convert';
 import 'package:encrypt/encrypt.dart';
 import 'package:flustars/flustars.dart';
 
-var _key = "sdfg5468wwdfd542sd4asdf4sadfqd12";
-var _iv = "0000000000000000";
+var _key = 'sdfg5468wwdfd542sd4asdf4sadfqd12';
+var _iv = '0000000000000000';
 
 // 128的keySize=16，192keySize=24，256keySize=32
 
@@ -37,7 +37,7 @@ class JhEncryptUtils {
       final encrypted = encrypter.encrypt(plainText, iv: iv);
       return encrypted.base64;
     } catch (err) {
-      print("AES encode error:$err");
+      print('AES encode error:$err');
       return plainText;
     }
   }
@@ -51,7 +51,7 @@ class JhEncryptUtils {
       final decrypted = encrypter.decrypt64(encrypted, iv: iv);
       return decrypted;
     } catch (err) {
-      print("AES decode error:$err");
+      print('AES decode error:$err');
       return encrypted;
     }
   }
@@ -65,7 +65,7 @@ class JhEncryptUtils {
 //      final encrypted = encrypter.encrypt(plainText, iv: iv);
 //      return encrypted.base64;
 //    } catch (err) {
-//      print("AES encode error:$err");
+//      print('AES encode error:$err');
 //      return plainText;
 //    }
 //  }
@@ -79,7 +79,7 @@ class JhEncryptUtils {
 //      final decrypted = encrypter.decrypt64(encrypted, iv: iv);
 //      return decrypted;
 //    } catch (err) {
-//      print("AES decode error:$err");
+//      print('AES decode error:$err');
 //      return encrypted;
 //    }
 //  }

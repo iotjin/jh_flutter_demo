@@ -148,7 +148,7 @@
 //           ..position = XAxisPosition.BOTTOM
 //           ..drawGridLines = false
 //           ..typeface =
-//           TypeFace(fontFamily: "OpenSans", fontWeight: FontWeight.w800)
+//           TypeFace(fontFamily: 'OpenSans', fontWeight: FontWeight.w800)
 //           ..setGranularity(1.0);
 // //          ..centerAxisLabels = true;
 // //          ..setAxisMinimum(XStartData.toDouble())
@@ -193,7 +193,7 @@
 //       entries.add(Entry(x: index + 0.5, y: getRandom(40,50)));
 //     }
 //
-//     LineDataSet set = LineDataSet(entries, "Line DataSet");
+//     LineDataSet set = LineDataSet(entries, 'Line DataSet');
 //     set.setColor1(Color.fromARGB(255, 240, 238, 70));
 //     set.setLineWidth(2.0);
 // //    set.setCircleColor(Color.fromARGB(255, 240, 238, 70));
@@ -228,10 +228,10 @@
 //     }
 //
 //     BarDataSet set1, set2;
-//     set1 = new BarDataSet(entries1, "Data Set");
+//     set1 = new BarDataSet(entries1, 'Data Set');
 //     set1.setColor1(Color(0xFF527FFD));
 //     set1.setDrawValues(false);
-//     set2 = BarDataSet(entries2, "Data Set22");
+//     set2 = BarDataSet(entries2, 'Data Set22');
 //     set2.setColor1(Color(0xFF00DEB7));
 //     set2.setDrawValues(false);
 //
@@ -239,7 +239,7 @@
 //     d.barWidth = (0.5);
 //     d.setValueTextSize(5);
 //     d.setValueTypeface(
-//         TypeFace(fontFamily: "OpenSans", fontWeight: FontWeight.w800));
+//         TypeFace(fontFamily: 'OpenSans', fontWeight: FontWeight.w800));
 //
 //     // make this BarData object grouped
 //     d.groupBars(XStartData.toDouble(), groupSpace, barSpace); // start at x = 0

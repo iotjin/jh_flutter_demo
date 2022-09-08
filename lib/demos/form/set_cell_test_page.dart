@@ -34,15 +34,15 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
                 text: '右侧文字',
                 titleWidth: 150,
               ),
-              JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置', text: '右侧文字'),
+              JhSetCell(leftImgPath: 'assets/images/shezhi.png', title: '设置', text: '右侧文字'),
               JhSetCell(
-                leftImgPath: "assets/images/shezhi.png",
+                leftImgPath: 'assets/images/shezhi.png',
                 title: '关于',
                 text: '有新版本',
                 textStyle: TextStyle(fontSize: 15.0, color: Colors.red),
               ),
               JhSetCell(
-                leftImgPath: "assets/images/shezhi.png",
+                leftImgPath: 'assets/images/shezhi.png',
                 title: '左侧文字红色',
                 titleStyle: TextStyle(fontSize: 15.0, color: Colors.red),
               ),
@@ -61,7 +61,7 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
                 ),
               ),
               JhSetCell(
-                title: "左标题",
+                title: '左标题',
                 text: '右侧自定义',
                 rightWidget: Container(
                   color: Colors.yellow,
@@ -71,15 +71,15 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
               ),
               SizedBox(height: 5),
               JhSetCell(
-                leftImgPath: "assets/images/shezhi.png",
-                title: "左标题",
+                leftImgPath: 'assets/images/shezhi.png',
+                title: '左标题',
                 text: '隐藏底部线',
                 hiddenLine: true,
               ),
               SizedBox(height: 5),
               JhSetCell(
-                leftImgPath: "assets/images/shezhi.png",
-                title: "左标题",
+                leftImgPath: 'assets/images/shezhi.png',
+                title: '左标题',
                 text: '隐藏底部线',
                 hiddenLine: true,
               ),

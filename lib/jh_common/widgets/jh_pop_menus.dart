@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
 
 List _listData = [
-  {"text": "发起群聊", "icon": "assets/images/popMenus/ic_chat.png"},
-  {"text": "添加朋友", "icon": "assets/images/popMenus/ic_add.png"},
-  {"text": "扫一扫", "icon": "assets/images/popMenus/ic_scan.png"},
-  {"text": "收付款", "icon": "assets/images/popMenus/ic_pay.png"},
+  {'text': '发起群聊', 'icon': 'assets/images/popMenus/ic_chat.png'},
+  {'text': '添加朋友', 'icon': 'assets/images/popMenus/ic_add.png'},
+  {'text': '扫一扫', 'icon': 'assets/images/popMenus/ic_scan.png'},
+  {'text': '收付款', 'icon': 'assets/images/popMenus/ic_pay.png'},
 ];
 
 const Color _bgColor = Color(0xFF2D2D2D);
@@ -192,7 +192,7 @@ class CustomDialog extends Dialog {
   CustomDialog({
     Key? key,
     this.child,
-    this.clickBgHidden: false, // 点击背景隐藏，默认不隐藏
+    this.clickBgHidden = false, // 点击背景隐藏，默认不隐藏
   }) : super(key: key);
 
   final Widget? child;

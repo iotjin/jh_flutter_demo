@@ -11,34 +11,34 @@ import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
-    "title": "群聊一",
-    "subtitle": "群聊一",
-    "img": "assets/images/picture/touxiang_1.jpeg",
+    'title': '群聊一',
+    'subtitle': '群聊一',
+    'img': 'assets/images/picture/touxiang_1.jpeg',
   },
   {
-    "title": "群聊2",
-    "subtitle": "hello",
-    "img": "assets/images/picture/touxiang_2.jpeg",
+    'title': '群聊2',
+    'subtitle': 'hello',
+    'img': 'assets/images/picture/touxiang_2.jpeg',
   },
   {
-    "title": "群聊3",
-    "subtitle": "[图片]",
-    "img": "assets/images/picture/touxiang_3.jpeg",
+    'title': '群聊3',
+    'subtitle': '[图片]',
+    'img': 'assets/images/picture/touxiang_3.jpeg',
   },
   {
-    "title": "群聊4",
-    "subtitle": "[动画表情]",
-    "img": "assets/images/picture/touxiang_4.jpeg",
+    'title': '群聊4',
+    'subtitle': '[动画表情]',
+    'img': 'assets/images/picture/touxiang_4.jpeg',
   },
   {
-    "title": "群聊666",
-    "subtitle": "",
-    "img": "assets/images/picture/touxiang_5.jpeg",
+    'title': '群聊666',
+    'subtitle': '',
+    'img': 'assets/images/picture/touxiang_5.jpeg',
   },
   {
-    "title": "HHHHHH",
-    "subtitle": "hi",
-    "img": "assets/images/picture/touxiang_6.jpg",
+    'title': 'HHHHHH',
+    'subtitle': 'hi',
+    'img': 'assets/images/picture/touxiang_6.jpg',
   },
 ];
 

@@ -7,42 +7,42 @@ import '/base_appbar.dart';
 
 List groupData33 = [
   {
-    "groupTitle": "groupTitle_1",
-    "num": "15",
-    "data": [
+    'groupTitle': 'groupTitle_1',
+    'num': '15',
+    'data': [
       {
-        "title": "group1_title11",
-        "num": "12",
-        "phone": "111xxxx",
-        "content": "content2-content2-content2-content2-content2-content2",
-        "imageUrl": "https://gitee.com/iotjh/Picture/raw/master/lufei.png"
+        'title': 'group1_title11',
+        'num': '12',
+        'phone': '111xxxx',
+        'content': 'content2-content2-content2-content2-content2-content2',
+        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
       },
       {
-        "title": "group1_title2",
-        "num": "5",
-        "phone": "222xxxx",
-        "content": "content2-content2-content2-content2-content2-content2",
-        "imageUrl": "https://gitee.com/iotjh/Picture/raw/master/lufei.png"
+        'title': 'group1_title2',
+        'num': '5',
+        'phone': '222xxxx',
+        'content': 'content2-content2-content2-content2-content2-content2',
+        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
       }
     ]
   },
   {
-    "groupTitle": "groupTitle_2",
-    "num": "22",
-    "data": [
+    'groupTitle': 'groupTitle_2',
+    'num': '22',
+    'data': [
       {
-        "title": "group2_title33",
-        "num": "20",
-        "phone": "333xxxx",
-        "content": "content2-content2-content2-content2-content2-content2",
-        "imageUrl": "https://gitee.com/iotjh/Picture/raw/master/lufei.png"
+        'title': 'group2_title33',
+        'num': '20',
+        'phone': '333xxxx',
+        'content': 'content2-content2-content2-content2-content2-content2',
+        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
       },
       {
-        "title": "group2_title44",
-        "num": "1",
-        "phone": "444xxxx",
-        "content": "content2-content2-content2-content2-content2-content2",
-        "imageUrl": "https://gitee.com/iotjh/Picture/raw/master/lufei.png"
+        'title': 'group2_title44',
+        'num': '1',
+        'phone': '444xxxx',
+        'content': 'content2-content2-content2-content2-content2-content2',
+        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
       }
     ]
   }
@@ -61,7 +61,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
   EasyRefreshController _controller = EasyRefreshController();
 
   TabController? _tabController;
-  List tabs = ["近30日", "近7日", "今日"];
+  List tabs = ['近30日', '近7日', '今日'];
   var _rowHeight = 44.0;
 
   @override
@@ -81,8 +81,8 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
 
   void getNewData() {
     pageIndex = 0;
-    print("pageIndex- $pageIndex");
-    DataUtils.getPageGroupList({"page": pageIndex, "limit": 10}, success: (res) {
+    print('pageIndex- $pageIndex');
+    DataUtils.getPageGroupList({'page': pageIndex, 'limit': 10}, success: (res) {
       print(res);
       setState(() {
         groupData = res['data'];
@@ -93,9 +93,9 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
 
   void getMoreData() {
     pageIndex++;
-    print("more pageIndex- $pageIndex");
+    print('more pageIndex- $pageIndex');
 
-    DataUtils.getPageGroupList({"page": pageIndex, "limit": 10}, success: (res) {
+    DataUtils.getPageGroupList({'page': pageIndex, 'limit': 10}, success: (res) {
       var moreData = res['data'];
       setState(() {
         if (moreData.length > 0) {
@@ -153,13 +153,13 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
       child: _content(),
       onRefresh: () async {
         await Future.delayed(Duration(seconds: 1), () {
-          print("下拉刷新-----");
+          print('下拉刷新-----');
           getNewData();
         });
       },
       onLoad: () async {
         await Future.delayed(Duration(seconds: 1), () {
-          print("上拉加载-----");
+          print('上拉加载-----');
           getMoreData();
         });
       },
@@ -209,7 +209,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
 //      height: 200,
 //      color: Colors.yellow,
 //      padding: EdgeInsets.all(15),
-//      child: Text("Header"),
+//      child: Text('Header'),
 //    );
 //  }
 

@@ -38,7 +38,7 @@ class FadeAppBarState extends State<FadeAppBarPage> {
       btnTop: 34,
       left: 20,
       opacity: 0,
-      image: "assets/images/common/ic_nav_back_white.png",
+      image: 'assets/images/common/ic_nav_back_white.png',
       actionFunction: () {
         print('rect left');
       },

@@ -78,7 +78,7 @@ class _JhPhotoAllScreenShowState extends State<JhPhotoAllScreenShow> {
             top: MediaQuery.of(context).padding.top + 30,
             width: MediaQuery.of(context).size.width,
             child: Center(
-              child: Text("${_currentIndex + 1}/${widget.imgDataArr.length}",
+              child: Text('${_currentIndex + 1}/${widget.imgDataArr.length}',
                   style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ),

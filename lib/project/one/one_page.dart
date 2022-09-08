@@ -13,76 +13,76 @@ import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
-    "title": "Demo 列表",
-    "subtitle": "点击跳转demo列表",
-    "img": "assets/images/ic_demo1.png",
-    "time": "",
-    "isNew": false,
-    "type": '0',
+    'title': 'Demo 列表',
+    'subtitle': '点击跳转demo列表',
+    'img': 'assets/images/ic_demo1.png',
+    'time': '',
+    'isNew': false,
+    'type': '0',
   },
   {
-    "title": "微信运动",
-    "subtitle": "[应用消息]",
-    "img": "assets/wechat/home/wechat_motion.png",
-    "time": "22:23",
-    "isNew": true,
-    "type": '1',
+    'title': '微信运动',
+    'subtitle': '[应用消息]',
+    'img': 'assets/wechat/home/wechat_motion.png',
+    'time': '22:23',
+    'isNew': true,
+    'type': '1',
   },
   {
-    "title": "订阅号消息",
-    "subtitle": "新闻联播开始啦",
-    "img": "assets/wechat/home/ic_subscription_number.png",
-    "time": "19:00",
-    "isNew": true,
-    "type": '1',
+    'title': '订阅号消息',
+    'subtitle': '新闻联播开始啦',
+    'img': 'assets/wechat/home/ic_subscription_number.png',
+    'time': '19:00',
+    'isNew': true,
+    'type': '1',
   },
   {
-    "title": "QQ邮箱提醒",
-    "subtitle": "您有一封新的邮件，请前往查收",
-    "img": "assets/wechat/home/Ic_email.png",
-    "time": "17:30",
-    "isNew": false,
-    "type": '3',
+    'title': 'QQ邮箱提醒',
+    'subtitle': '您有一封新的邮件，请前往查收',
+    'img': 'assets/wechat/home/Ic_email.png',
+    'time': '17:30',
+    'isNew': false,
+    'type': '3',
   },
   {
-    "title": "张三",
-    "subtitle": "欢迎欢迎",
-    "img": "assets/images/picture/touxiang_1.jpeg",
-    "time": "17:30",
-    "isNew": false,
-    "type": '2',
+    'title': '张三',
+    'subtitle': '欢迎欢迎',
+    'img': 'assets/images/picture/touxiang_1.jpeg',
+    'time': '17:30',
+    'isNew': false,
+    'type': '2',
   },
   {
-    "title": "李四",
-    "subtitle": "hello",
-    "img": "assets/images/picture/touxiang_2.jpeg",
-    "time": "17:30",
-    "isNew": false,
-    "type": '2',
+    'title': '李四',
+    'subtitle': 'hello',
+    'img': 'assets/images/picture/touxiang_2.jpeg',
+    'time': '17:30',
+    'isNew': false,
+    'type': '2',
   },
   {
-    "title": "王五",
-    "subtitle": "[图片]",
-    "img": "assets/images/picture/touxiang_3.jpeg",
-    "time": "17:30",
-    "isNew": false,
-    "type": '2',
+    'title': '王五',
+    'subtitle': '[图片]',
+    'img': 'assets/images/picture/touxiang_3.jpeg',
+    'time': '17:30',
+    'isNew': false,
+    'type': '2',
   },
   {
-    "title": "赵六",
-    "subtitle": "[动画表情]",
-    "img": "assets/images/picture/touxiang_4.jpeg",
-    "time": "17:30",
-    "isNew": false,
-    "type": '2',
+    'title': '赵六',
+    'subtitle': '[动画表情]',
+    'img': 'assets/images/picture/touxiang_4.jpeg',
+    'time': '17:30',
+    'isNew': false,
+    'type': '2',
   },
   {
-    "title": "微信团队",
-    "subtitle": "安全登录提醒",
-    "img": "assets/wechat/home/ic_about.png",
-    "time": "2020/8/8",
-    "isNew": false,
-    "type": '1',
+    'title': '微信团队',
+    'subtitle': '安全登录提醒',
+    'img': 'assets/wechat/home/ic_about.png',
+    'time': '2020/8/8',
+    'isNew': false,
+    'type': '1',
   },
 ];
 
@@ -148,7 +148,7 @@ class OnePage extends StatelessWidget {
     // 带分割线不带背景
     JhPopMenus.showLinePop(context, clickCallback: (index, selText) {
       print('选中index: $index');
-      print("选中text: $selText");
+      print('选中text: $selText');
 
       if (selText == '添加朋友') {
         JhNavUtils.pushNamed(context, 'WxAddFriendPage');
@@ -318,7 +318,7 @@ class OnePage extends StatelessWidget {
   }
 
   // 点击cell
-  _clickCell(context, item) {
+  void _clickCell(context, item) {
     // JhToast.showText(context, msg: '点击 $item['title']');
     if (item['title'] == 'Demo 列表') {
       JhNavUtils.pushNamed(context, 'DemoListsPage');

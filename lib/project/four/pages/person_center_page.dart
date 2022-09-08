@@ -28,7 +28,7 @@ class _PersonCenterPageState extends State<PersonCenterPage> with SingleTickerPr
   void _addListener() {
     _scrollController.addListener(() {
       double _y = _scrollController.offset;
-//      print("滑动距离: $_y");
+//      print('滑动距离: $_y');
       if (_y < 0 && _y > -_scrollMaxOffSet) {
         setState(() {
           _topH = _y.abs();

@@ -13,7 +13,7 @@ const String _confirmText = '确定';
 const String _yearSuffix = '年';
 const String _monthSuffix = '月';
 const String _daySuffix = '日';
-const List<String> _strAMPM = ["上午", "下午"];
+const List<String> _strAMPM = ['上午', '下午'];
 const double _kPickerHeight = 216.0;
 const double _kItemHeight = 50.0;
 const double _kHeaderLineHeight = 0.25;
@@ -104,10 +104,10 @@ class JhPickerTool {
     DateTime? maxTime,
     DateTime? minTime,
     DateTime? selectTime,
-    int? yearBegin: 1900,
-    int? yearEnd: 2100,
-    int? minHour: 0,
-    int? maxHour: 23,
+    int? yearBegin = 1900,
+    int? yearEnd = 2100,
+    int? minHour = 0,
+    int? maxHour = 23,
     required _ClickCallBack clickCallBack,
   }) {
     int timeType;

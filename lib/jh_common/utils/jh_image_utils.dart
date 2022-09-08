@@ -14,7 +14,7 @@ class JhImageUtils {
   /// image: AssetImage('assets/images/set.png')
   /// image: JhImageUtils.getAssetImage('set')
   static ImageProvider getAssetImage(String name, {String format: 'png'}) {
-    //    print("路径-- "+ getImgPath(name, format: format));
+    //    print('路径-- '+ getImgPath(name, format: format));
     return AssetImage(getImgPath(name, format: format));
   }
 
@@ -29,7 +29,7 @@ class JhImageUtils {
 //    if(imageUrl ==null || imageUrl.isEmpty){
 //      return AssetImage(Jh_getImgPath(holderImg));
 //    }
-//    return CachedNetworkImageProvider(imageUrl, errorListener: () => print("图片加载失败！"));
+//    return CachedNetworkImageProvider(imageUrl, errorListener: () => print('图片加载失败！'));
 //  }
 
 }

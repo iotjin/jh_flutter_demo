@@ -34,7 +34,7 @@
 //   void initState() {
 //     // TODO: implement initState
 //     super.initState();
-//     imgData.add("selectPhoto_add"); // 先添加 加号按钮 的图片
+//     imgData.add('selectPhoto_add'); // 先添加 加号按钮 的图片
 //   }
 //
 //   @override
@@ -81,12 +81,12 @@
 // /// 添加按钮
 // Widget addBtn(context, setState, imgData, imgPicked) {
 //   return GestureDetector(
-//     child: Image(image: JhImageUtils.getAssetImage("selectPhoto_add")),
+//     child: Image(image: JhImageUtils.getAssetImage('selectPhoto_add')),
 //     onTap: () {
 //       pickAsset(context, setState, imgData, imgPicked);
 //
 //       // 点击添加按钮
-// //        JhBottomSheet.showText(context, dataArr: ["拍照","相册"],title: "标题",
+// //        JhBottomSheet.showText(context, dataArr: ['拍照','相册'],title: '标题',
 // //        clickCallback: (index,str) async{
 // //          if(index==0){
 // //            var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -121,7 +121,7 @@
 //         ),
 //         GestureDetector(
 //           child: Image(
-//             image: JhImageUtils.getAssetImage("selectPhoto_close"),
+//             image: JhImageUtils.getAssetImage('selectPhoto_close'),
 //             width: _deleteBtnWH,
 //             height: _deleteBtnWH,
 //           ),
@@ -136,7 +136,7 @@
 //       ]),
 //     ),
 //     onTap: () {
-//       print("点击第${index}张图片");
+//       print('点击第${index}张图片');
 //     },
 //   );
 // }
@@ -150,7 +150,7 @@
 //       pickType: PickType.onlyImage);
 //
 //   if (result != null && result.isNotEmpty) {
-//     print("imgPicked.length" + imgPicked.length.toString());
+//     print('imgPicked.length' + imgPicked.length.toString());
 //     imgPicked.clear();
 //     for (var e in result) {
 //       imgPicked.add(e);

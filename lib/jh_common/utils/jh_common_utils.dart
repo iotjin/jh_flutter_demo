@@ -23,7 +23,7 @@ class JhCommonUtils {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      JhProgressHUD.showText("打开链接失败！");
+      JhProgressHUD.showText('打开链接失败！');
     }
   }
 
@@ -33,7 +33,7 @@ class JhCommonUtils {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      JhProgressHUD.showText("拨号失败！");
+      JhProgressHUD.showText('拨号失败！');
     }
   }
 
@@ -45,7 +45,7 @@ class JhCommonUtils {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {
-      JhProgressHUD.showText("跳转失败！");
+      JhProgressHUD.showText('跳转失败！');
     }
   }
 }

@@ -19,7 +19,7 @@ class JhAESStorageUtils {
   /// 取 String
   static String? getString(String key) {
     key = JhEncryptUtils.aesEncrypt(key);
-    var enValue = SpUtil.getString(key) ?? "";
+    var enValue = SpUtil.getString(key) ?? '';
     if (enValue.length > 0) {
       return JhEncryptUtils.aesDecrypt(enValue);
     }
@@ -28,14 +28,14 @@ class JhAESStorageUtils {
 
   /// 存 bool
   static Future<bool>? saveBool(String key, bool value) {
-    var newValue = value == true ? "TRUE" : "FALSE";
+    var newValue = value == true ? 'TRUE' : 'FALSE';
     return saveString(key, newValue);
   }
 
   /// 取 bool
   static bool? getBool(String key) {
     var value = getString(key);
-    return value == "TRUE" ? true : false;
+    return value == 'TRUE' ? true : false;
   }
 
   /// 存 int

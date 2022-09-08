@@ -24,7 +24,7 @@ void setToken(accessToken) {
 }
 
 String getRefreshToken() {
-  var refreshToken = JhStorageUtils.getString('refreshToken') ?? "";
+  var refreshToken = JhStorageUtils.getString('refreshToken') ?? '';
   return refreshToken;
 }
 
@@ -55,7 +55,7 @@ class TokenInterceptor extends QueuedInterceptor {
     try {
       _tokenDio ??= Dio();
       _tokenDio!.options = DioUtils.instance.dio.options;
-      _tokenDio!.options.headers["Authorization"] = 'Bearer ' + getToken();
+      _tokenDio!.options.headers['Authorization'] = 'Bearer ' + getToken();
       final Response<dynamic> response = await _tokenDio!.post<dynamic>(kRefreshTokenUrl, data: params);
       var res = response.data as dynamic;
       if (res['code'] == ExceptionHandle.success) {

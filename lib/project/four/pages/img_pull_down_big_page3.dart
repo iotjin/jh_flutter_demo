@@ -26,7 +26,7 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3> with SingleTi
   void _addListener() {
     _scrollController.addListener(() {
       double _y = _scrollController.offset;
-      print("滑动距离: $_y");
+      print('滑动距离: $_y');
       if (_y < 0 && _y > -_scrollMaxOffSet) {
         setState(() {
           _topH = _y.abs();
@@ -63,7 +63,7 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3> with SingleTi
               itemExtent: 50.0,
               // 强制高度为50.0
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(title: Text("$index"));
+                return ListTile(title: Text('$index'));
               }),
         ),
       ),

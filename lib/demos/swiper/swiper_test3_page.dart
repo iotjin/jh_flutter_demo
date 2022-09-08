@@ -9,15 +9,15 @@ class SwiperTest3Page extends StatefulWidget {
 
 class _SwiperTest3PageState extends State<SwiperTest3Page> {
   List imgList = [
-    "https://gitee.com/iotjh/Picture/raw/master/cat.png",
-    "https://gitee.com/iotjh/Picture/raw/master/lufei2.png",
-    "https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg",
+    'https://gitee.com/iotjh/Picture/raw/master/cat.png',
+    'https://gitee.com/iotjh/Picture/raw/master/lufei2.png',
+    'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
   ];
 
   List imgList2 = [
-    "https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/02/00/ChMkJlbKw1eIdabyAASvPG-H6SwAALG1gFD3VQABK9U648.jpg",
-    "https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/02/00/ChMkJ1bKw1eILNybAAMnVXZZfj0AALG1gFIjKgAAydt911.jpg",
-    "https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/02/00/ChMkJlbKw1eIe_ACAAS4xbkUZBoAALG1gFLtBUABLjd443.jpg",
+    'https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/02/00/ChMkJlbKw1eIdabyAASvPG-H6SwAALG1gFD3VQABK9U648.jpg',
+    'https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/02/00/ChMkJ1bKw1eILNybAAMnVXZZfj0AALG1gFIjKgAAydt911.jpg',
+    'https://desk-fd.zol-img.com.cn/t_s1024x768c5/g5/M00/02/00/ChMkJlbKw1eIe_ACAAS4xbkUZBoAALG1gFLtBUABLjd443.jpg',
   ];
 
   @override

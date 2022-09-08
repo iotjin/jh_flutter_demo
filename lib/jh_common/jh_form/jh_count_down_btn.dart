@@ -21,10 +21,10 @@ class JhCountDownBtn extends StatefulWidget {
     this.getVCode,
     this.textColor,
     this.bgColor,
-    this.fontSize: _fontSize,
+    this.fontSize = _fontSize,
     this.borderColor,
-    this.borderRadius: _borderRadius,
-    this.showBorder: false,
+    this.borderRadius = _borderRadius,
+    this.showBorder = false,
   }) : super(key: key);
 
   final Future<bool> Function()? getVCode;

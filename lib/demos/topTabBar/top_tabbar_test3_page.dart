@@ -21,7 +21,7 @@ class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
             badge: Badge(
               toAnimate: false,
               position: BadgePosition.topEnd(top: -5, end: -20),
-              child: Text("标题一"),
+              child: Text('标题一'),
             )),
         JhTopTabBarModel(
             widget: HomeContent(),
@@ -29,7 +29,7 @@ class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
               toAnimate: false,
               position: BadgePosition.topEnd(top: -12, end: -20),
               badgeContent: Text(_count.toString(), style: TextStyle(color: Colors.white, fontSize: 10)),
-              child: Text("标题二"),
+              child: Text('标题二'),
             )),
       ],
       showCenterLine: true,
@@ -52,11 +52,11 @@ class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
 class HomeContent extends StatelessWidget {
   Widget _getListData(context, index) {
     return ListTile(
-      title: Text(listData[index]["title"]),
-      leading: Image.network(listData[index]["imageUrl"]),
-      subtitle: Text(listData[index]["content"]),
+      title: Text(listData[index]['title']),
+      leading: Image.network(listData[index]['imageUrl']),
+      subtitle: Text(listData[index]['content']),
       onTap: () {
-        print("点击的index" + index.toString());
+        print('点击的index' + index.toString());
       },
     );
   }
@@ -72,6 +72,6 @@ Widget contentBody = Container(
     height: 200,
     color: Colors.red,
     child: ElevatedButton(
-      child: Text("normal"),
+      child: Text('normal'),
       onPressed: () {},
     ));

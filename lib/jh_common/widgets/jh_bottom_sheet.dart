@@ -76,7 +76,7 @@ class JhBottomSheet {
                   height: titleHeight,
                   child: Center(
                     child: Text(
-                      title ?? "",
+                      title ?? '',
                       style: TextStyle(fontSize: _titleFontSize, color: _titleColor),
                       textAlign: TextAlign.center,
                     ),

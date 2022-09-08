@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import '/project/configs/colors.dart';
-import 'jh_textfield.dart';
+import 'jh_text_field.dart';
 
 const double _titleSpace = 100.0; // 左侧title默认宽
 const double _cellHeight = 45.0; // 输入、选择样式一行的高度
@@ -19,13 +19,13 @@ typedef _ClickCallBack = void Function();
 class JhFormSelectCell extends StatefulWidget {
   const JhFormSelectCell({
     Key? key,
-    this.title: '',
-    this.text: '',
-    this.hintText: '请选择',
-    this.labelText: '',
-    this.errorText: '',
-    this.showRedStar: false,
-    this.hiddenArrow: false,
+    this.title = '',
+    this.text = '',
+    this.hintText = '请选择',
+    this.labelText = '',
+    this.errorText = '',
+    this.showRedStar = false,
+    this.hiddenArrow = false,
     this.leftWidget,
     this.rightWidget,
     this.clickCallBack,
@@ -122,7 +122,7 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
                     Container(
                       width: _starW,
                       padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? _topSpace : 0, 0, 0),
-                      child: Text(widget.showRedStar ? "*" : " ", style: TextStyle(fontSize: 18.0, color: Colors.red)),
+                      child: Text(widget.showRedStar ? '*' : ' ', style: TextStyle(fontSize: 18.0, color: Colors.red)),
                     ),
                     Offstage(
                       offstage: widget.title.isEmpty ? true : false,

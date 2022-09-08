@@ -15,27 +15,27 @@ class _QRCodeTestState extends State<QRCodeTest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "二维码"),
+      appBar: backAppBar(context, '二维码'),
       body: Scrollbar(
           child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Text("二维码扫描 - qr_code_scanner"),
+            Text('二维码扫描 - qr_code_scanner'),
             ElevatedButton(
-              child: Text("二维码扫描"),
+              child: Text('二维码扫描'),
               onPressed: () => _scan1(context),
             ),
             ElevatedButton(
-              child: Text("二维码扫描-显示扫描线动画"),
+              child: Text('二维码扫描-显示扫描线动画'),
               onPressed: () => _scan2(context),
             ),
             ElevatedButton(
-              child: Text("二维码扫描-显示网格线动画"),
+              child: Text('二维码扫描-显示网格线动画'),
               onPressed: () => _scan3(context),
             ),
-            Text("二维码扫描 - barcode_scan"),
+            Text('二维码扫描 - barcode_scan'),
             ElevatedButton(
-              child: Text("二维码扫描"),
+              child: Text('二维码扫描'),
               onPressed: () => _scan4(context),
             ),
             SizedBox(height: 20),
@@ -49,10 +49,10 @@ class _QRCodeTestState extends State<QRCodeTest> {
             Text('生成二维码'),
             SizedBox(height: 10),
             // 生成二维码
-            JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100, foregroundColor: Colors.yellow),
-            JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码", 100, backgroundColor: Colors.yellow),
+            JhQrCodeUtils.createQRCode('生成二维码生成二维码生成二维码', 100, foregroundColor: Colors.yellow),
+            JhQrCodeUtils.createQRCode('生成二维码生成二维码生成二维码', 100, backgroundColor: Colors.yellow),
             SizedBox(height: 10),
-            JhQrCodeUtils.createQRCode("生成二维码生成二维码生成二维码2222", 100,
+            JhQrCodeUtils.createQRCode('生成二维码生成二维码生成二维码2222', 100,
                 image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'), imageSize: Size(20, 20)),
             Center(
               child: QrImage(

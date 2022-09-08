@@ -9,12 +9,12 @@ import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
-    "title": "消息1",
-    "subtitle": "您收到一封新的邮件",
+    'title': '消息1',
+    'subtitle': '您收到一封新的邮件',
   },
   {
-    "title": "消息2",
-    "subtitle": "您收到一封新的邮件",
+    'title': '消息2',
+    'subtitle': '您收到一封新的邮件',
   },
 ];
 

@@ -6,7 +6,7 @@ class ListViewTestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "ListViewTestCard"),
+      appBar: backAppBar(context, 'ListViewTestCard'),
       body: ContentBody(),
     );
   }
@@ -25,14 +25,14 @@ class ContentBody extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 20 / 9,
                 child: Image.network(
-                  value["imageUrl"],
+                  value['imageUrl'],
                   fit: BoxFit.cover,
                 ),
               ),
               ListTile(
-                leading: CircleAvatar(backgroundImage: NetworkImage(value["imageUrl"])),
-                title: Text(value["title"]),
-                subtitle: Text(value["content"], maxLines: 1, overflow: TextOverflow.ellipsis),
+                leading: CircleAvatar(backgroundImage: NetworkImage(value['imageUrl'])),
+                title: Text(value['title']),
+                subtitle: Text(value['content'], maxLines: 1, overflow: TextOverflow.ellipsis),
               )
             ],
           ),

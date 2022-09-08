@@ -59,7 +59,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
   void _addListener() {
     _scrollController.addListener(() {
       double _y = _scrollController.offset;
-//      print("滑动距离: $_y");
+//      print('滑动距离: $_y');
 
       if (_y < _scrollMinOffSet) {
         _imgExtraHeight = -_y;

@@ -10,6 +10,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:provider/provider.dart';
 import '/jh_common/utils/jh_image_utils.dart';
 import '/project/configs/colors.dart';
+import '/project/provider/tabbar_provider.dart';
 import '/project/provider/theme_provider.dart';
 import '/project/one/one_page.dart';
 import '/project/Two/two_page.dart';
@@ -26,23 +27,25 @@ class BaseTabBar extends StatefulWidget {
 }
 
 class _BaseTabBarState extends State<BaseTabBar> {
-  int _currentIndex = 0;
+  // int _currentIndex = 0;
   List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), FourPage()];
+
+  final PageController _pageController = PageController();
 
   List<BottomNavigationBarItem> getBottomTabs(iconColor) {
     return [
       BottomNavigationBarItem(
-        label: "微信",
+        label: '微信',
         icon: JhLoadAssetImage('tab/nav_tab_1', width: _iconWH),
         activeIcon: JhLoadAssetImage('tab/nav_tab_1_on', width: _iconWH, color: iconColor),
       ),
       BottomNavigationBarItem(
-        label: "通讯录",
+        label: '通讯录',
         icon: JhLoadAssetImage('tab/nav_tab_2', width: _iconWH),
         activeIcon: JhLoadAssetImage('tab/nav_tab_2_on', width: _iconWH, color: iconColor),
       ),
       BottomNavigationBarItem(
-        label: "发现",
+        label: '发现',
 //      icon: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH),
         activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH, color: iconColor),
         icon: Badge(
@@ -55,7 +58,7 @@ class _BaseTabBarState extends State<BaseTabBar> {
 //          child: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH)),
       ),
       BottomNavigationBarItem(
-        label: "我的",
+        label: '我的',
         icon: JhLoadAssetImage('tab/nav_tab_4', width: _iconWH),
         activeIcon: JhLoadAssetImage('tab/nav_tab_4_on', width: _iconWH, color: iconColor),
       ),
@@ -83,6 +86,12 @@ class _BaseTabBarState extends State<BaseTabBar> {
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
@@ -92,35 +101,97 @@ class _BaseTabBarState extends State<BaseTabBar> {
     var selectTextColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
     var selectIconColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
 
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pageList,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: bgColor,
-        // 未选中颜色
-        unselectedItemColor: normalTextColor,
-        // 选中颜色,与fixedColor不能同时设置
-        // selectedItemColor: selectColor,
-        // 选中的颜色
-        fixedColor: selectTextColor,
-        unselectedFontSize: _fontSize,
-        selectedFontSize: _fontSize,
-        // 配置底部BaseTabBar可以有多个按钮
-        type: BottomNavigationBarType.fixed,
-        items: getBottomTabs(selectIconColor),
-        // 配置对应的索引值选中
-        currentIndex: this._currentIndex,
-        onTap: (int index) {
-          setState(() {
-            // 改变状态
-            this._currentIndex = index;
-          });
-        },
+    /// 通过 PageView + AutomaticKeepAliveClientMixin 保持页面状态（进到哪个页面，哪个页面开始初始化）
+    /// 在需要保持页面状态的子页面State中，继承AutomaticKeepAliveClientMixin并重写方法 wantKeepAlive => true
+    /// 并且它们的[build]方法必须调用super.build(context);
+    return ChangeNotifierProvider(
+      create: (_) => TabbarProvider(),
+      child: Scaffold(
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(), // 禁止滑动
+          controller: _pageController,
+          children: _pageList,
+        ),
+        bottomNavigationBar: Consumer<TabbarProvider>(builder: (_, provider, __) {
+          return BottomNavigationBar(
+            backgroundColor: bgColor,
+            // 未选中颜色
+            unselectedItemColor: normalTextColor,
+            // 选中颜色,与fixedColor不能同时设置
+            // selectedItemColor: selectColor,
+            // 选中的颜色
+            fixedColor: selectTextColor,
+            unselectedFontSize: _fontSize,
+            selectedFontSize: _fontSize,
+            // 配置底部BaseTabBar可以有多个按钮
+            type: BottomNavigationBarType.fixed,
+            items: getBottomTabs(selectIconColor),
+            // 配置对应的索引值选中
+            currentIndex: provider.currentIndex,
+            // 配置对应的索引值选中
+            onTap: (int index) {
+              setState(() {
+                // 改变状态
+                provider.currentIndex = index;
+                _pageController.jumpToPage(index);
+              });
+            },
+          );
+        }),
       ),
     );
   }
+
+/*-----------------------------------------------------------------------------*/
+
+  /// 保持页面状态的几种方式
+  /// https://www.jianshu.com/p/4b09054640f3
+  /// https://www.jianshu.com/p/369f00a40cc2
+  /// https://zhuanlan.zhihu.com/p/58582876
+
+  ///  使用IndexedStack保持页面状态如下：
+  ///  这种方式有个小缺点：IndexedStack中管理的子页面在第一次加载时便实例化了所有的子页面State
+
+// @override
+// Widget build(BuildContext context) {
+//   // TODO: 通过ThemeProvider进行主题管理
+//   final provider = Provider.of<ThemeProvider>(context);
+//   var bgColor = KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor);
+//   var normalTextColor =
+//       KColors.dynamicColor(context, KColors.kTabBarNormalTextColor, KColors.kTabBarNormalTextDarkColor);
+//   var selectTextColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+//   var selectIconColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+//
+//   return Scaffold(
+//     body: IndexedStack(
+//       index: _currentIndex,
+//       children: _pageList,
+//     ),
+//     bottomNavigationBar: BottomNavigationBar(
+//       backgroundColor: bgColor,
+//       // 未选中颜色
+//       unselectedItemColor: normalTextColor,
+//       // 选中颜色,与fixedColor不能同时设置
+//       // selectedItemColor: selectColor,
+//       // 选中的颜色
+//       fixedColor: selectTextColor,
+//       unselectedFontSize: _fontSize,
+//       selectedFontSize: _fontSize,
+//       // 配置底部BaseTabBar可以有多个按钮
+//       type: BottomNavigationBarType.fixed,
+//       items: getBottomTabs(selectIconColor),
+//       // 配置对应的索引值选中
+//       currentIndex: this._currentIndex,
+//       onTap: (int index) {
+//         setState(() {
+//           // 改变状态
+//           this._currentIndex = index;
+//         });
+//       },
+//     ),
+//   );
+// }
+
 }
 
 /*-----------------------------------------------------------------------------*/

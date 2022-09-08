@@ -52,7 +52,7 @@ class JhProgressHUD {
     return _showToast(loadingText, _ToastType.info);
   }
 
-  static showLoadingText([loadingText = "加载中..."]) {
+  static showLoadingText([loadingText = '加载中...']) {
     return _showLoading(loadingText);
   }
 

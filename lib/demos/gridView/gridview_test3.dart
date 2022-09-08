@@ -11,9 +11,9 @@ List getData() {
   for (int i = 0; i < 9; i++) {
     var img;
     if (i % 2 == 0) {
-      img = "https://gitee.com/iotjh/Picture/raw/master/lufei2.png";
+      img = 'https://gitee.com/iotjh/Picture/raw/master/lufei2.png';
     } else {
-      img = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+      img = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     }
     dataArr!.add(img);
   }
@@ -25,9 +25,9 @@ List getData2() {
   for (int i = 0; i < 4; i++) {
     var img;
     if (i % 2 == 0) {
-      img = "https://gitee.com/iotjh/Picture/raw/master/lufei2.png";
+      img = 'https://gitee.com/iotjh/Picture/raw/master/lufei2.png';
     } else {
-      img = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+      img = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     }
     dataArr2!.add(img);
   }
@@ -50,13 +50,13 @@ class _GridViewTest3State extends State<GridViewTest3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "GridView实现朋友圈效果（九宫格）"),
+        appBar: backAppBar(context, 'GridView实现朋友圈效果（九宫格）'),
         body: Container(
             height: 1600,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("九宫格"),
+                Text('九宫格'),
                 Container(
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
@@ -64,10 +64,10 @@ class _GridViewTest3State extends State<GridViewTest3> {
                       imgData: dataArr,
                       lRSpace: 110,
                       onLongPress: () {
-                        JhBottomSheet.showText(context, dataArr: ["保存图片"]);
+                        JhBottomSheet.showText(context, dataArr: ['保存图片']);
                       },
                     )),
-                Text("九宫格，4图处理"),
+                Text('九宫格，4图处理'),
                 Container(
                     padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
                     color: Colors.blue,
@@ -75,7 +75,7 @@ class _GridViewTest3State extends State<GridViewTest3> {
                       imgData: dataArr2,
                       lRSpace: 110,
                       onLongPress: () {
-                        JhBottomSheet.showText(context, dataArr: ["保存图片"]);
+                        JhBottomSheet.showText(context, dataArr: ['保存图片']);
                       },
                     )),
 

@@ -155,11 +155,11 @@
 //           x: i.toDouble(), y: (random.nextDouble() * randomMultiplier)));
 //     }
 //
-//     set1 = new BarDataSet(values1, "Data Set");
+//     set1 = new BarDataSet(values1, 'Data Set');
 //     set1.setColor1(Color(0xFF527FFD));
 //     set1.setDrawValues(false);
 //
-//     set2 = BarDataSet(values2, "Data Set22");
+//     set2 = BarDataSet(values2, 'Data Set22');
 //     set2.setColor1(Color(0xFF00DEB7));
 //     set2.setDrawValues(false);
 //
@@ -171,7 +171,7 @@
 //     _controller.data
 // //      ..setValueFormatter(LargeValueFormatter())
 //       ..setValueTypeface(
-//           TypeFace(fontFamily: "OpenSans", fontWeight: FontWeight.w800))
+//           TypeFace(fontFamily: 'OpenSans', fontWeight: FontWeight.w800))
 //       ..setValueTextSize(5)
 //     // specify the width each bar should have
 //       ..barWidth = (0.5);
@@ -210,14 +210,14 @@
 //           ..position = XAxisPosition.BOTTOM
 //           ..drawGridLines = false
 //           ..typeface =
-//           TypeFace(fontFamily: "OpenSans", fontWeight: FontWeight.w800)
+//           TypeFace(fontFamily: 'OpenSans', fontWeight: FontWeight.w800)
 //           ..setGranularity(1.0);
 // //          ..centerAxisLabels = true;
 // //          ..setAxisMinimum(XStartData.toDouble())
 // //          ..setAxisMaximum(XStartData +
 // //              (controller.data as BarData).getGroupWidth(groupSpace, barSpace) *
 // //                  32);
-//         //(0.2 + 0.03) * 4 + 0.08 = 1.00 -> interval per "group"
+//         //(0.2 + 0.03) * 4 + 0.08 = 1.00 -> interval per 'group'
 //         (controller as BarChartController)
 //             .groupBars(XStartData.toDouble(), groupSpace, barSpace);
 //       },

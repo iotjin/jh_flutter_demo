@@ -52,7 +52,7 @@ class _AboutPageState extends State<AboutPage> {
 
   Timer? _countdownTimer;
 
-  var _currentVersion = "";
+  var _currentVersion = '';
 
   @override
   void initState() {
@@ -103,7 +103,7 @@ class _AboutPageState extends State<AboutPage> {
       _currentVersion = version;
     });
 
-//   print("$appName=$packageName=$version=$buildNumber");
+//   print('$appName=$packageName=$version=$buildNumber');
   }
 
   @override
@@ -116,7 +116,7 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "关于我们"),
+      appBar: backAppBar(context, '关于我们'),
       body: Column(
         children: <Widget>[
           SizedBox(
@@ -131,7 +131,7 @@ class _AboutPageState extends State<AboutPage> {
           SizedBox(
             height: 20,
           ),
-          Text("Version：$_currentVersion"),
+          Text('Version：$_currentVersion'),
           SizedBox(
             height: 50,
           ),
@@ -144,7 +144,7 @@ class _AboutPageState extends State<AboutPage> {
               title: 'author',
               content: 'iotjin',
               onTap: () => JhNavRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')),
-          ClickItem(title: "检查更新", onTap: () => JhCommonUtils.jumpAppStore)
+          ClickItem(title: '检查更新', onTap: () => JhCommonUtils.jumpAppStore)
         ],
       ),
     );

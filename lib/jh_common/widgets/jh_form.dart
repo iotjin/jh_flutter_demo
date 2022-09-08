@@ -27,7 +27,7 @@ class JhForm {
   /// 一行输入样式
   static Widget inputText({
     required String title,
-    String inputInfo = "",
+    String inputInfo = '',
     String hintText = '请输入',
     FocusNode? focusNode,
     TextInputType keyboardType = TextInputType.text,
@@ -47,7 +47,7 @@ class JhForm {
 
   /// 多行输入样式
   static Widget textView({
-    String inputInfo = "",
+    String inputInfo = '',
     String hintText = '请输入',
     FocusNode? focusNode,
     bool showRedStar = false,
@@ -65,7 +65,7 @@ class JhForm {
   /// 选择样式
   static Widget selectText({
     required String title,
-    String selectInfo = "",
+    String selectInfo = '',
     String hintText = '请选择',
     double space = _titleSpace,
     _ClickCallBack? clickCallBack,
@@ -99,7 +99,7 @@ class JhForm {
                           ),
                           Positioned(
                             right: 15,
-                            child: Text("关闭"),
+                            child: Text('关闭'),
                           ),
                         ]));
                   },
@@ -224,7 +224,7 @@ class _CreateTextViewCellState extends State<CreateTextViewCell> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(widget.showRedStar! ? "*" : "", style: TextStyle(fontSize: 18.0, color: Colors.red)),
+          Text(widget.showRedStar! ? '*' : '', style: TextStyle(fontSize: 18.0, color: Colors.red)),
           SizedBox(
             width: widget.showRedStar! ? 5 : 0,
           ),

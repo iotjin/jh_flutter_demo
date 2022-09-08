@@ -4,17 +4,18 @@
 ///  description: 我的
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
 import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/jh_common/widgets/update_dialog.dart';
 import '/project/configs/project_config.dart';
+import '/project/provider/tabbar_provider.dart';
 import '/project/model/user_model.dart';
 
-double _leftSpace = 50.0;
 double _cellH = wxCellH;
+double _leftSpace = 50.0;
 double _rowSpace = wxRowSpace;
-
 double _scrollMaxOffSet = 1000;
 
 class FourPage extends StatefulWidget {
@@ -22,9 +23,11 @@ class FourPage extends StatefulWidget {
   _FourPageState createState() => _FourPageState();
 }
 
-class _FourPageState extends State<FourPage> {
-  UserModel? _model;
+class _FourPageState extends State<FourPage> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
 
+  UserModel? _model;
   ScrollController _scrollController = new ScrollController(initialScrollOffset: 0.0);
   double _topH = 0;
 
@@ -36,9 +39,13 @@ class _FourPageState extends State<FourPage> {
     _model = UserModel.fromJson(modelJson);
 //    print(_model.avatarUrl);
 
+    _addListener();
+  }
+
+  void _addListener() {
     _scrollController.addListener(() {
       double _y = _scrollController.offset;
-//      print("滑动距离: $_y");
+//      print('滑动距离: $_y');
 
 //      if (_y > 0 && _y < _scrollMaxOffSet) {
 //        setState(() {
@@ -62,13 +69,25 @@ class _FourPageState extends State<FourPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    var currentIndex = Provider.of<TabbarProvider>(context).currentIndex;
+    if (currentIndex == 3) {
+      print('========== FourPage ==========');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return AnnotatedRegion(
       value: JhStatusBarUtils.getBlackStatusBarStyle(context.jhIsDark),
       child: Scaffold(
 //        appBar: baseAppBar(context, '',
-//            rightImgPath: "assets/images/set.png", rightItemCallBack: () {
-//          JhNavUtils.pushNamed(context, "SetPage");
+//            rightImgPath: 'assets/images/set.png', rightItemCallBack: () {
+//          JhNavUtils.pushNamed(context, 'SetPage');
 //        }),
         body: _body(_model),
       ),
@@ -122,7 +141,7 @@ class _FourPageState extends State<FourPage> {
             ),
           ),
           onTap: () {
-            JhNavUtils.pushNamed(context, "SetPage");
+            JhNavUtils.pushNamed(context, 'SetPage');
           },
         )
       ],
@@ -140,46 +159,46 @@ class _FourPageState extends State<FourPage> {
         SizedBox(height: _rowSpace),
         JhSetCell(
             cellHeight: _cellH,
-            leftImgPath: "assets/wechat/mine/ic_wallet.png",
+            leftImgPath: 'assets/wechat/mine/ic_wallet.png',
             title: '支付',
             hiddenLine: true,
             clickCallBack: () {
-              JhNavUtils.pushNamed(context, "WxPayPage");
+              JhNavUtils.pushNamed(context, 'WxPayPage');
             }),
         SizedBox(height: _rowSpace),
         JhSetCell(
             cellHeight: _cellH,
             lineLeftEdge: _leftSpace,
-            leftImgPath: "assets/wechat/mine/ic_collections.png",
+            leftImgPath: 'assets/wechat/mine/ic_collections.png',
             title: '收藏'),
         JhSetCell(
-            cellHeight: _cellH, lineLeftEdge: _leftSpace, leftImgPath: "assets/wechat/mine/ic_album.png", title: '相册'),
+            cellHeight: _cellH, lineLeftEdge: _leftSpace, leftImgPath: 'assets/wechat/mine/ic_album.png', title: '相册'),
         JhSetCell(
             cellHeight: _cellH,
             lineLeftEdge: _leftSpace,
-            leftImgPath: "assets/wechat/mine/ic_cards_wallet.png",
+            leftImgPath: 'assets/wechat/mine/ic_cards_wallet.png',
             title: '卡包'),
         JhSetCell(
           cellHeight: _cellH,
           lineLeftEdge: _leftSpace,
-          leftImgPath: "assets/wechat/mine/ic_emotions.png",
+          leftImgPath: 'assets/wechat/mine/ic_emotions.png',
           title: '表情',
           hiddenLine: true,
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
           cellHeight: _cellH,
-          leftImgPath: "assets/wechat/mine/ic_settings.png",
+          leftImgPath: 'assets/wechat/mine/ic_settings.png',
           title: '设置',
           hiddenLine: true,
           clickCallBack: () {
-            JhNavUtils.pushNamed(context, "SetPage");
+            JhNavUtils.pushNamed(context, 'SetPage');
           },
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
           cellHeight: _cellH,
-          leftImgPath: "assets/images/ic_about.png",
+          leftImgPath: 'assets/images/ic_about.png',
           title: '检查更新',
           text: '有新版本',
           textStyle: TextStyle(fontSize: 14.0, color: Colors.red),
@@ -227,7 +246,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('点击昵称==  ${model.userName}');
-                        JhNavUtils.pushNamed(context, "WxPersonInfoPage");
+                        JhNavUtils.pushNamed(context, 'WxPersonInfoPage');
                       },
                       child: Container(
                         width: double.maxFinite,
@@ -246,7 +265,7 @@ class _FourPageState extends State<FourPage> {
                     InkWell(
                       onTap: () {
                         print('跳转个人信息');
-                        JhNavUtils.pushNamed(context, "WxPersonInfoPage");
+                        JhNavUtils.pushNamed(context, 'WxPersonInfoPage');
                       },
                       child: Padding(
                         padding: EdgeInsets.only(top: 5.0),

@@ -5,7 +5,7 @@ class GridViewTest4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "GirdView"),
+      appBar: backAppBar(context, 'GirdView'),
       body: bgView,
     );
   }
@@ -63,7 +63,7 @@ List<Widget> getWidgetList() {
 }
 
 Widget getItemContainer(itemData) {
-  print("$itemData");
+  print('$itemData');
 //  int itemIndex = int.parse(index);
 //  var data = listData333[itemIndex]['title'];
 //var data = index['title'];
@@ -130,82 +130,82 @@ Widget getTextCon(itemData) {
       ));
 }
 
-List<String> bottomData = ["1111", "2222", "3333333333333333333", "4444", "5555"];
+List<String> bottomData = ['1111', '2222', '3333333333333333333', '4444', '5555'];
 
 List listData333 = [
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/1.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/1.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/2.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/2.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/3.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/3.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/4.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/4.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   },
   {
-    "title": "Candy Shop",
-    "author": "Mohamed Chahin",
-    "imageUrl": "https://www.itying.com/images/flutter/5.png",
+    'title': 'Candy Shop',
+    'author': 'Mohamed Chahin',
+    'imageUrl': 'https://www.itying.com/images/flutter/5.png',
   }
 ];

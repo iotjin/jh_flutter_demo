@@ -13,7 +13,7 @@ class HttpTest1Page extends StatefulWidget {
 }
 
 class _HttpTest1PageState extends State<HttpTest1Page> {
-  var _text = "";
+  var _text = '';
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "HttpTest1"),
+        appBar: backAppBar(context, 'HttpTest1'),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(15),
           child: Text(_text),
@@ -39,10 +39,10 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
   void getRequest() async {
     var url = APIs.apiPrefix + APIs.getPage;
     var dio = new Dio();
-    var response = await dio.get(url, queryParameters: {"page": 0, "limit": 10});
+    var response = await dio.get(url, queryParameters: {'page': 0, 'limit': 10});
     var result = response.data.toString();
-    print("返回数据： " + result);
-    print(response.data["msg"]);
+    print('返回数据： ' + result);
+    print(response.data['msg']);
     setState(() {
       _text = result;
     });
@@ -52,28 +52,28 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
 void postRequest() async {
   var url = APIs.apiPrefix + APIs.getSimpleArrDic;
   var dio = new Dio();
-  var response = await dio.post(url, data: {"id": 12, "name": "wendu"});
+  var response = await dio.post(url, data: {'id': 12, 'name': 'wendu'});
   var result = response.data.toString();
-  print("返回数据： " + result);
-  print(response.data["msg"]);
+  print('返回数据： ' + result);
+  print(response.data['msg']);
 }
 
 void postRequest2() async {
   var url = APIs.apiPrefix + APIs.getSimpleArrDic;
   var response = await Dio().post(url);
-  print("返回数据： " + response.data.toString());
-  print(response.data["msg"]);
+  print('返回数据： ' + response.data.toString());
+  print(response.data['msg']);
 }
 
 void postRequest3() async {
-  print("response----");
-//      var url = "https://itunes.apple.com/lookup?id=id414478124";
-  var url = "https://itunes.apple.com/cn/lookup?id=414478124";
-  Options options = Options(headers: {HttpHeaders.acceptHeader: "Content-Type:application/x-www-form-urlencoded"});
+  print('response----');
+//      var url = 'https://itunes.apple.com/lookup?id=id414478124';
+  var url = 'https://itunes.apple.com/cn/lookup?id=414478124';
+  Options options = Options(headers: {HttpHeaders.acceptHeader: 'Content-Type:application/x-www-form-urlencoded'});
 
   var response = await Dio().post(url, options: options);
 
-  print("results---");
+  print('results---');
 //  print(response.toString());
 //  print('--${response.data.trim()}--');
 

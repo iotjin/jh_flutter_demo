@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/project/configs/colors.dart';
-import 'jh_textfield.dart';
+import 'jh_text_field.dart';
 
 const double _titleSpace = 100.0; // 左侧title默认宽
 const double _cellHeight = 45.0; // 输入、选择样式一行的高度
@@ -22,21 +22,21 @@ typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted)
 class JhFormInputCell extends StatefulWidget {
   const JhFormInputCell({
     Key? key,
-    this.title: '',
-    this.text: '',
-    this.labelText: '',
-    this.errorText: '',
-    this.keyboardType: TextInputType.text,
+    this.title = '',
+    this.text = '',
+    this.labelText = '',
+    this.errorText = '',
+    this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
-    this.hintText: '请输入',
+    this.hintText = '请输入',
     this.focusNode,
-    this.showRedStar: false,
+    this.showRedStar = false,
     this.leftWidget,
     this.rightWidget,
     this.maxLines,
-    this.maxLength: _maxLength,
-    this.showMaxLength: false,
-    this.enabled: true,
+    this.maxLength = _maxLength,
+    this.showMaxLength = false,
+    this.enabled = true,
     this.inputFormatters,
     this.inputCallBack,
     this.inputCompletionCallBack,
@@ -129,7 +129,7 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                   Container(
                     width: _starW,
                     padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? _topSpace : 0, 0, 0),
-                    child: Text(widget.showRedStar ? "*" : " ", style: TextStyle(fontSize: 18.0, color: Colors.red)),
+                    child: Text(widget.showRedStar ? '*' : ' ', style: TextStyle(fontSize: 18.0, color: Colors.red)),
                   ),
                   Offstage(
                     offstage: widget.title.isEmpty ? true : false,

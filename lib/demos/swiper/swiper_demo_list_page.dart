@@ -21,7 +21,7 @@ class SwiperDemoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JhTextList(
-      title: "轮播",
+      title: '轮播',
       dataArr: titleData,
       callBack: (index, str) {
         JhNavUtils.pushNamed(context, routeData[index]);

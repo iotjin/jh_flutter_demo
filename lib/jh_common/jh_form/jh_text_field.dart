@@ -1,4 +1,4 @@
-///  jh_textfield.dart
+///  jh_text_field.dart
 ///
 ///  Created by iotjin on 2020/02/18.
 ///  description:  输入框（默认没有边框，宽充满屏幕，文字居左，默认显示1行，自动换行，最多5行，可设置键盘类型，右侧添加自定义widget，多行，最大长度，是否可编辑，文字样式）
@@ -24,17 +24,17 @@ typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted)
 class JhTextField extends StatefulWidget {
   const JhTextField({
     Key? key,
-    this.text: '',
-    this.hintText: '请输入',
-    this.labelText: '',
-    this.errorText: '',
+    this.text = '',
+    this.hintText = '请输入',
+    this.labelText = '',
+    this.errorText = '',
     this.focusNode,
     this.leftWidget,
     this.rightWidget,
     this.maxLines,
-    this.maxLength: _maxLength,
-    this.showMaxLength: false,
-    this.enabled: true,
+    this.maxLength = _maxLength,
+    this.showMaxLength = false,
+    this.enabled = true,
     this.inputFormatters,
     this.inputCallBack,
     this.inputCompletionCallBack,
@@ -44,7 +44,7 @@ class JhTextField extends StatefulWidget {
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
     this.controller,
-    this.keyboardType: TextInputType.text,
+    this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
   }) : super(key: key);
 
@@ -88,6 +88,10 @@ class _JhTextFieldState extends State<JhTextField> {
 
     _textController = widget.controller ?? TextEditingController();
     _textController!.text = widget.text ?? '';
+    // 超过最大长度截取
+    if ((widget.text ?? '').length > widget.maxLength) {
+      _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+    }
     _focusNode = widget.focusNode != null ? widget.focusNode : FocusNode();
 
     _focusNode!.addListener(() {
@@ -111,6 +115,10 @@ class _JhTextFieldState extends State<JhTextField> {
     var cursorPos = _textController!.selection;
     // 更新text值到_textController
     _textController!.text = widget.text ?? '';
+    // 超过最大长度截取
+    if ((widget.text ?? '').length > widget.maxLength) {
+      _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+    }
     if (cursorPos.start > _textController!.text.length) {
       // 光标保持在文本最后
       cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
@@ -143,7 +151,7 @@ class _JhTextFieldState extends State<JhTextField> {
     _focusNode!.unfocus();
     _textController!.dispose();
     super.dispose();
-//    print("JhTextField dispose");
+//    print('JhTextField dispose');
   }
 
   @override

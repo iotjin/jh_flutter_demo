@@ -15,7 +15,7 @@ class AnimationDemoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JhTextList(
-      title: "Animation",
+      title: 'Animation',
       dataArr: titleData,
       callBack: (index, str) {
         JhNavUtils.pushNamed(context, routeData[index]);

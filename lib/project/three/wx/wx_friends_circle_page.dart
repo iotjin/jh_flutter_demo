@@ -57,7 +57,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   void _addListener() {
     _scrollController.addListener(() {
       double _y = _scrollController.offset;
-      // print("滑动距离: $_y");
+      // print('滑动距离: $_y');
 
       if (_y < _scrollMinOffSet) {
         _imgExtraHeight = -_y;
@@ -194,7 +194,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                         fit: BoxFit.fitHeight,
-                        image: AssetImage("assets/images/lufei.png"),
+                        image: AssetImage('assets/images/lufei.png'),
                       ),
                     ),
                   ),
@@ -296,7 +296,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
       onLongPress: () {
         print('onLongPress:');
 
-        JhBottomSheet.showText(context, dataArr: ["保存图片"]);
+        JhBottomSheet.showText(context, dataArr: ['保存图片']);
       },
     ));
   }
@@ -307,7 +307,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   }
 
   _clickNav() {
-    JhBottomSheet.showText(context, title: "请选择操作", dataArr: ['拍摄', '从手机相册选择'], clickCallback: (index, text) {});
+    JhBottomSheet.showText(context, title: '请选择操作', dataArr: ['拍摄', '从手机相册选择'], clickCallback: (index, text) {});
   }
 
   _jumpInfo() {
@@ -326,6 +326,6 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
     model.isStar = false;
 
     String jsonStr = Uri.encodeComponent(jsonEncode(model));
-    JhNavUtils.pushNamed(context, '${"WxUserInfoPage"}?passValue=$jsonStr');
+    JhNavUtils.pushNamed(context, '${'WxUserInfoPage'}?passValue=$jsonStr');
   }
 }

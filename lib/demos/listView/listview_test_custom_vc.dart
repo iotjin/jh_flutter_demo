@@ -10,17 +10,17 @@ List getData() {
   dataArr = [];
   for (int i = 0; i < 50; i++) {
     var map = new Map();
-    map["title"] = "title$i";
-    map["place"] = "place$i";
-    map["state"] = "流转中$i";
-    map["content"] = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
-    map["phone"] = '$i$i$i' + 'xxxxxxx';
-    map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+    map['title'] = 'title$i';
+    map['place'] = 'place$i';
+    map['state'] = '流转中$i';
+    map['content'] = '这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容';
+    map['phone'] = '$i$i$i' + 'xxxxxxx';
+    map['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     dataArr.add(map);
   }
 
   dataJson = json.encode(dataArr); //转json 字符串
-//  print("转json 字符串:"+dataJson);
+//  print('转json 字符串:'+dataJson);
   dataArr = json.decode(dataJson);
 //  dataArr.forEach((v) {
 //    print(v);
@@ -33,7 +33,7 @@ class ListViewTestCustomVC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, "ListViewTestCustomVC"),
+      appBar: backAppBar(context, 'ListViewTestCustomVC'),
       body: ContentBody(),
     );
   }
@@ -52,7 +52,7 @@ class ContentBody extends StatelessWidget {
         alignment: Alignment.topCenter,
         padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
         //    alignment: Alignment.center,
-        child: Text("暂无数据", textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
+        child: Text('暂无数据', textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
       );
     } else {
       return ListView.separated(
@@ -63,7 +63,7 @@ class ContentBody extends StatelessWidget {
 //        print(json);
           /*将Json转成实体类*/
           CustomViewModel model = CustomViewModel.fromJson(json);
-          print("title" + model.title!);
+          print('title' + model.title!);
           return ListViewTestCustomCell(data: model);
         },
         separatorBuilder: (context, index) {

@@ -24,15 +24,15 @@ Widget _scrollbar() {
       child: SingleChildScrollView(
     child: Column(
       children: <Widget>[
-        _initHeader("柱状图 - 点击无提示框"),
+        _initHeader('柱状图 - 点击无提示框'),
         _initBarChart1(),
-        _initHeader("柱状图 - 设置柱状图文字，点击显示提示框"),
+        _initHeader('柱状图 - 设置柱状图文字，点击显示提示框'),
         _initBarChart2(),
-        _initHeader("柱状图 - 背景色"),
+        _initHeader('柱状图 - 背景色'),
         _initBarChart3(),
-        _initHeader("柱状图 - 横向渐变背景色"),
+        _initHeader('柱状图 - 横向渐变背景色'),
         _initBarChart4(),
-        _initHeader("多个柱状图 - 自定义图例"),
+        _initHeader('多个柱状图 - 自定义图例'),
         _initBarChart5(),
       ],
     ),

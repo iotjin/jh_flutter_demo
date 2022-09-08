@@ -18,7 +18,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   List<ContactsModel> _cityList = [];
   double _suspensionHeight = 40;
   double _itemHeight = 50;
-  String _suspensionTag = "";
+  String _suspensionTag = '';
 
   @override
   void initState() {
@@ -49,10 +49,10 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
       String pinyin = PinyinHelper.getPinyinE(list[i].name!);
       String tag = pinyin.substring(0, 1).toUpperCase();
       list[i].namePinyin = pinyin;
-      if (RegExp("[A-Z]").hasMatch(tag)) {
+      if (RegExp('[A-Z]').hasMatch(tag)) {
         list[i].tagIndex = tag;
       } else {
-        list[i].tagIndex = "#";
+        list[i].tagIndex = '#';
       }
     }
     //根据A-Z排序
@@ -84,7 +84,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
     return Column(
       children: <Widget>[
         ListTile(
-            title: Text("当前城市"),
+            title: Text('当前城市'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -92,7 +92,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
                   Icons.place,
                   size: 20.0,
                 ),
-                Text(" 成都市"),
+                Text(' 成都市'),
               ],
             )),
         Divider(
@@ -141,12 +141,12 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   Widget _buildHeader() {
     List<ContactsModel> hotCityList = [];
     hotCityList.addAll([
-      ContactsModel(name: "北京市"),
-      ContactsModel(name: "广州市"),
-      ContactsModel(name: "成都市"),
-      ContactsModel(name: "深圳市"),
-      ContactsModel(name: "杭州市"),
-      ContactsModel(name: "武汉市"),
+      ContactsModel(name: '北京市'),
+      ContactsModel(name: '广州市'),
+      ContactsModel(name: '成都市'),
+      ContactsModel(name: '深圳市'),
+      ContactsModel(name: '杭州市'),
+      ContactsModel(name: '武汉市'),
     ]);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -162,7 +162,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
               foregroundColor: MaterialStateProperty.all(Colors.black),
             ),
             onPressed: () {
-              print("OnItemClick: ${e.name}");
+              print('OnItemClick: ${e.name}');
 //              Navigator.pop(context, e);
             },
           );
@@ -202,7 +202,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
           child: ListTile(
             title: Text(model.name!),
             onTap: () {
-              print("OnItemClick: ${model.name}");
+              print('OnItemClick: ${model.name}');
             },
           ),
         )

@@ -8,100 +8,100 @@ import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
-    "text": "功能功能0",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能0',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能1",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能1',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能2",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能2',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能3",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能3',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能4",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能4',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能5",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能5',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能6",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能6',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能7",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能7',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
 ];
 
 List _dataArr2 = [
   {
-    "text": "功能功能0",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能0',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能1",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能1',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   }
 ];
 
 List _dataArr3 = [
   {
-    "text": "功能功能0",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能0',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能1",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能1',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能2",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能2',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能3",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能3',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能4",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能4',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能5",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能5',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能6",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能6',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
   {
-    "text": "功能功能7",
-    "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-    "pushName": "PageName",
+    'text': '功能功能7',
+    'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+    'pushName': 'PageName',
   },
 ];
 
@@ -113,7 +113,7 @@ class WxPayPage extends StatelessWidget {
     return Scaffold(
       appBar: backAppBar(context, KStrings.wxPay,
           rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
-        JhNavUtils.pushNamed(context, "WxPayManagerPage");
+        JhNavUtils.pushNamed(context, 'WxPayManagerPage');
       }),
       body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),

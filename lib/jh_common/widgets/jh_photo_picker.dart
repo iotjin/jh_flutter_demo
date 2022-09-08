@@ -44,7 +44,7 @@
 //   void initState() {
 //     // TODO: implement initState
 //     super.initState();
-//     imgData.add("selectPhoto_add"); // 先添加 加号按钮 的图片
+//     imgData.add('selectPhoto_add'); // 先添加 加号按钮 的图片
 //   }
 //
 //   @override
@@ -104,10 +104,10 @@
 //   /// 添加按钮
 //   Widget addBtn(context, setState, imgData, imgPicked) {
 //     return GestureDetector(
-//       child: Image(image: JhImageUtils.getAssetImage("selectPhoto_add")),
+//       child: Image(image: JhImageUtils.getAssetImage('selectPhoto_add')),
 //       onTap: () {
 //         /// 点击添加按钮
-//         JhBottomSheet.showText(context, dataArr: ["拍照", "相册"], title: "请选择",
+//         JhBottomSheet.showText(context, dataArr: ['拍照', '相册'], title: '请选择',
 //             clickCallback: (index, str) async {
 //           if (index == 1) {
 //             var image = await ImagePicker().getImage(source: ImageSource.camera);
@@ -137,7 +137,7 @@
 //           ),
 //           GestureDetector(
 //             child: Image(
-//               image: JhImageUtils.getAssetImage("selectPhoto_close"),
+//               image: JhImageUtils.getAssetImage('selectPhoto_close'),
 //               width: _deleteBtnWH,
 //               height: _deleteBtnWH,
 //             ),
@@ -152,7 +152,7 @@
 //         ]),
 //       ),
 //       onTap: () {
-//         print("点击第${index}张图片");
+//         print('点击第${index}张图片');
 //         Navigator.of(context).push(new FadeRoute(
 //             page: JhPhotoBrowser(
 //           imgDataArr: getImgData(),

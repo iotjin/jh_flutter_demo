@@ -6,7 +6,7 @@ List<String>? dataArr;
 List getData() {
   dataArr = [];
   for (int i = 0; i < 10; i++) {
-    var str = "$i";
+    var str = '$i';
     dataArr!.add(str);
   }
   print(dataArr);

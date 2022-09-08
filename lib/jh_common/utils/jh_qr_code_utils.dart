@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:barcode_scan2/barcode_scan2.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
-import "/project/routes/jh_nav_utils.dart";
+import '/project/routes/jh_nav_utils.dart';
 import 'jh_device_utils.dart';
 
 class JhQrCodeUtils {
@@ -18,8 +18,8 @@ class JhQrCodeUtils {
   /// 添加 --enable-software-rendering debug模式闪退
   static Future jumpScan(
     BuildContext context, {
-    isShowScanLine: false, // 是否显示扫描线动画
-    isShowGridLine: false, // 是否显示网格线动画，优先级高于扫描线
+    isShowScanLine = false, // 是否显示扫描线动画
+    isShowGridLine = false, // 是否显示网格线动画，优先级高于扫描线
     Function(String data)? callBack,
   }) async {
     if (JhDeviceUtils.isMobile) {
@@ -101,7 +101,7 @@ class JhQrCodeUtils {
 //       }
 //     }
 //   }
-//   return "";
+//   return '';
 // }
 /*
    Future.delayed(Duration(milliseconds: 400), () {

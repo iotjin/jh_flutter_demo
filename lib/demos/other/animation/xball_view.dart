@@ -10,42 +10,42 @@ Scaffold(
       body: XBallView(
         mediaQueryData: MediaQuery.of(context),
         keywords: [
-          "北京",
-          "天津",
-          "上海",
-          "重庆",
-          "河北",
-          "山西",
-          "辽宁",
-          "吉林",
-          "黑龙江",
-          "江苏",
-          "浙江",
-          "安徽",
-          "福建",
-          "江西",
-          "山东",
-          "河南",
-          "湖北",
-          "湖南",
-          "广东",
-          "海南",
-          "四川asdfasdf",
-          "贵州",
-          "云南",
-          "陕西",
-          "甘肃",
-          "青海",
-          "台湾",
-          "内蒙古asdfsadfadf",
-          "广西",
-          "西藏",
-          "宁夏",
-          "新疆",
-          "香港",
-          "澳门",
+          '北京',
+          '天津',
+          '上海',
+          '重庆',
+          '河北',
+          '山西',
+          '辽宁',
+          '吉林',
+          '黑龙江',
+          '江苏',
+          '浙江',
+          '安徽',
+          '福建',
+          '江西',
+          '山东',
+          '河南',
+          '湖北',
+          '湖南',
+          '广东',
+          '海南',
+          '四川asdfasdf',
+          '贵州',
+          '云南',
+          '陕西',
+          '甘肃',
+          '青海',
+          '台湾',
+          '内蒙古asdfsadfadf',
+          '广西',
+          '西藏',
+          '宁夏',
+          '新疆',
+          '香港',
+          '澳门',
         ],
-        highlight: ["四川"],
+        highlight: ['四川'],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
 
@@ -248,7 +248,7 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
               left: 0,
               top: 0,
               child: Image.asset(
-                "assets/images/demos/symptom_light@3x.png",
+                'assets/images/demos/symptom_light@3x.png',
                 width: 260,
                 height: 260,
                 fit: BoxFit.fill,
@@ -262,7 +262,7 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
                   alignment: Alignment.center,
                   children: <Widget>[
                     Image.asset(
-                      "assets/images/demos/symptom_ballwithflare@3x.png",
+                      'assets/images/demos/symptom_ballwithflare@3x.png',
                       width: sizeOfBallWithFlare,
                       height: sizeOfBallWithFlare,
                       fit: BoxFit.fill,
@@ -271,7 +271,7 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
                   ],
                 ),
                 Image.asset(
-                  "assets/images/demos/symptom_ball_shadow@3x.png",
+                  'assets/images/demos/symptom_ball_shadow@3x.png',
                   width: 260,
                   height: 20,
                   fit: BoxFit.fill,
@@ -365,7 +365,7 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
 
                 //跳转页面
                 Future.delayed(Duration(milliseconds: 500), () {
-                  print("点击“${points[i].name}”");
+                  print('点击“${points[i].name}”');
                 });
               }
               break;
@@ -541,9 +541,9 @@ ui.Paragraph buildText(
     String firstLine = text.substring(0, 5);
     String secondLine = text.substring(5);
     if (secondLine.length > 5) {
-      secondLine = secondLine.substring(0, 4) + "...";
+      secondLine = secondLine.substring(0, 4) + '...';
     }
-    text = "$firstLine\n$secondLine";
+    text = '$firstLine\n$secondLine';
   }
 
   ui.ParagraphBuilder paragraphBuilder = ui.ParagraphBuilder(ui.ParagraphStyle());

@@ -4,7 +4,9 @@
 ///  description:  dio 工具类
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:connectivity/connectivity.dart';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'apis.dart';
 import 'error_handle.dart';
@@ -72,6 +74,13 @@ class DioUtils {
 //      client.badCertificateCallback =
 //          (X509Certificate cert, String host, int port) => true;
 //    };
+
+    /// 测试环境忽略证书校验
+    if (!LogUtils.inProduction) {
+      (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
+        client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+      };
+    }
 
     /// 添加拦截器
     void addInterceptor(Interceptor interceptor) {

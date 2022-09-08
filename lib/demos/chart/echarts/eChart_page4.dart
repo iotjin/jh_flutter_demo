@@ -279,7 +279,7 @@ class _EChartPage4State extends State<EChartPage4> {
                         data: ${jsonEncode(chartData['legendData'])},
                         top:10,
                         right: 30,
-                        icon: "circle",
+                        icon: 'circle',
                         itemWidth: 10,
                         itemHeight: 10,
                         selected: {

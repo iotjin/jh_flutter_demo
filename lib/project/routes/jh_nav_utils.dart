@@ -140,7 +140,7 @@ var jumpParams = {'a': 123};
 var jumpParams2 = [{'a': 123},{'b': 456}];
 JhNavUtils.pushNamed(context, 'TestPage', arguments: jumpParams2);
 
-router.define("TestPage", handler: Handler(handlerFunc: (_, params) {
+router.define('TestPage', handler: Handler(handlerFunc: (_, params) {
   var jumpParams = params['jumpParams']!.first;
   return TestPage(jsonDecode(jumpParams));
 }));

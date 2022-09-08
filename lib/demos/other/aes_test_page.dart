@@ -11,12 +11,12 @@ class AESTestPage extends StatefulWidget {
 }
 
 class _AESTestPageState extends State<AESTestPage> {
-  var _textStr = "123";
-  var _base64encodeStr = "";
-  var _base64decodeStr = "";
-  var _aesEncryptStr = "";
-  var _aesDecryptStr = "";
-  var _md5Str = "";
+  var _textStr = '123';
+  var _base64encodeStr = '';
+  var _base64decodeStr = '';
+  var _aesEncryptStr = '';
+  var _aesDecryptStr = '';
+  var _md5Str = '';
 
   @override
   void initState() {
@@ -39,19 +39,19 @@ class _AESTestPageState extends State<AESTestPage> {
       child: Column(
         children: <Widget>[
           JhFormInputCell(
-            title: "明文",
-            hintText: "请输入要加密的文字",
+            title: '明文',
+            hintText: '请输入要加密的文字',
             text: _textStr,
             inputCallBack: (value) {
               setState(() => _textStr = value);
             },
           ),
-          JhFormInputCell(title: "Base64编码", text: _base64encodeStr, enabled: false),
-          JhFormInputCell(title: "Base64解码", text: _base64decodeStr, enabled: false),
-          JhFormInputCell(title: "AES加密", text: _aesEncryptStr, enabled: false),
-          JhFormInputCell(title: "AES解密", text: _aesDecryptStr, enabled: false),
-          JhFormInputCell(title: "MD5加密", text: _md5Str, enabled: false),
-          JhFormInputCell(text: "本地加密存储请看控制台输出", enabled: false),
+          JhFormInputCell(title: 'Base64编码', text: _base64encodeStr, enabled: false),
+          JhFormInputCell(title: 'Base64解码', text: _base64decodeStr, enabled: false),
+          JhFormInputCell(title: 'AES加密', text: _aesEncryptStr, enabled: false),
+          JhFormInputCell(title: 'AES解密', text: _aesDecryptStr, enabled: false),
+          JhFormInputCell(title: 'MD5加密', text: _md5Str, enabled: false),
+          JhFormInputCell(text: '本地加密存储请看控制台输出', enabled: false),
           SizedBox(height: 50),
           JhButton(
             text: '更新',
@@ -65,7 +65,7 @@ class _AESTestPageState extends State<AESTestPage> {
   }
 
   void _test(str) {
-    print("-------------------数据加解密-------------------");
+    print('-------------------数据加解密-------------------');
     var text = str;
     print('明文：$text');
 
@@ -101,8 +101,8 @@ class _AESTestPageState extends State<AESTestPage> {
   //  本地加密存储
   void storageTest() {
     print('-------------------本地加密存储-------------------');
-    JhAESStorageUtils.saveString("testStr", "这是测试本地加密存储的字符串");
-    var testStr = JhAESStorageUtils.getString("testStr");
+    JhAESStorageUtils.saveString('testStr', '这是测试本地加密存储的字符串');
+    var testStr = JhAESStorageUtils.getString('testStr');
     print('testStr : $testStr');
 
     JhAESStorageUtils.saveBool('testBool', true);
@@ -117,17 +117,17 @@ class _AESTestPageState extends State<AESTestPage> {
     var testDouble = JhAESStorageUtils.getDouble('testDouble');
     print('testDouble : $testDouble');
 
-    var dic = {"a": "aaa", 'b': "bbb", "c": "ccc"};
+    var dic = {'a': 'aaa', 'b': 'bbb', 'c': 'ccc'};
 //    print('原始dic: ${dic}');
-    JhAESStorageUtils.saveModel("testDic", dic);
+    JhAESStorageUtils.saveModel('testDic', dic);
     var testDic = JhAESStorageUtils.getModel('testDic');
     print('testDic : $testDic');
 
     // 取不存在的key
     print('-------------------取不存在的key----------------------');
 
-    var testStr2 = JhAESStorageUtils.getString("testStr222");
-    var test = testStr2 == '' ? "1" : '2222';
+    var testStr2 = JhAESStorageUtils.getString('testStr222');
+    var test = testStr2 == '' ? '1' : '2222';
     print(test);
     print('testStr2 : $testStr2');
 

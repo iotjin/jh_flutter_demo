@@ -29,7 +29,7 @@ class JhKeyboardUtils {
                           ),
                           Positioned(
                             right: 15,
-                            child: Text("关闭"),
+                            child: Text('关闭'),
                           ),
                         ]));
                   },

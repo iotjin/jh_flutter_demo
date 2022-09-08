@@ -33,11 +33,11 @@ class _TopTabBarTest2PageState extends State<TopTabBarTest2Page> {
 class HomeContent extends StatelessWidget {
   Widget _getListData(context, index) {
     return ListTile(
-      title: Text(listData[index]["title"]),
-      leading: Image.network(listData[index]["imageUrl"]),
-      subtitle: Text(listData[index]["content"]),
+      title: Text(listData[index]['title']),
+      leading: Image.network(listData[index]['imageUrl']),
+      subtitle: Text(listData[index]['content']),
       onTap: () {
-        print("点击的index" + index.toString());
+        print('点击的index' + index.toString());
       },
     );
   }
@@ -53,6 +53,6 @@ Widget contentBody = Container(
     height: 200,
     color: Colors.red,
     child: ElevatedButton(
-      child: Text("normal"),
+      child: Text('normal'),
       onPressed: () {},
     ));

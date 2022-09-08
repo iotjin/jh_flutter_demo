@@ -22,17 +22,17 @@ class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(context, KStrings.fourTabTitle, rightImgPath: "assets/images/set.png", rightItemCallBack: () {
-        JhNavUtils.pushNamed(context, "SetPage");
+      appBar: baseAppBar(context, KStrings.fourTabTitle, rightImgPath: 'assets/images/set.png', rightItemCallBack: () {
+        JhNavUtils.pushNamed(context, 'SetPage');
       }),
       // backgroundColor: Color(0xFFF8F8F8),
       body: ListView(
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: <Widget>[
           SizedBox(height: 15),
-          JhSetCell(leftImgPath: "assets/images/ic_accountSafe.png", title: '账号安全'),
+          JhSetCell(leftImgPath: 'assets/images/ic_accountSafe.png', title: '账号安全'),
           JhSetCell(
-            leftImgPath: "assets/images/ic_saoyisao.png",
+            leftImgPath: 'assets/images/ic_saoyisao.png',
             title: '扫一扫',
             clickCallBack: () {
               JhQrCodeUtils.jumpScan(context, isShowGridLine: true, callBack: (data) {
@@ -41,14 +41,14 @@ class _MinePageState extends State<MinePage> {
             },
           ),
           JhSetCell(
-            leftImgPath: "assets/images/shezhi.png",
+            leftImgPath: 'assets/images/shezhi.png',
             title: '设置',
             clickCallBack: () {
-              JhNavUtils.pushNamed(context, "SetPage");
+              JhNavUtils.pushNamed(context, 'SetPage');
             },
           ),
           JhSetCell(
-            leftImgPath: "assets/images/ic_about.png",
+            leftImgPath: 'assets/images/ic_about.png',
             title: '检查更新',
             text: '有新版本',
             textStyle: TextStyle(fontSize: 14.0, color: Colors.red),
@@ -57,10 +57,10 @@ class _MinePageState extends State<MinePage> {
             },
           ),
           JhSetCell(
-            leftImgPath: "assets/images/ic_exit.png",
+            leftImgPath: 'assets/images/ic_exit.png',
             title: '退出',
             clickCallBack: () {
-              JhDialog.show(context, title: "提示", content: '您确定要退出登录吗？');
+              JhDialog.show(context, title: '提示', content: '您确定要退出登录吗？');
             },
           ),
         ],
@@ -73,10 +73,10 @@ class _MinePageState extends State<MinePage> {
 //              Column(
 //                children: <Widget>[
 //                  SizedBox(height: 15,),
-//                  JhSetCell(leftImgPath: "assets/images/ic_accountSafe.png", title: '账号安全'),
-//                  JhSetCell(leftImgPath: "assets/images/ic_saoyisao.png", title: '扫一扫'),
-//                  JhSetCell(leftImgPath: "assets/images/shezhi.png", title: '设置'),
-//                  JhSetCell(leftImgPath: "assets/images/ic_about.png", title: '检查更新',text: '有新版本',textStyle: TextStyle(fontSize: 14.0,color: Colors.red),),
+//                  JhSetCell(leftImgPath: 'assets/images/ic_accountSafe.png', title: '账号安全'),
+//                  JhSetCell(leftImgPath: 'assets/images/ic_saoyisao.png', title: '扫一扫'),
+//                  JhSetCell(leftImgPath: 'assets/images/shezhi.png', title: '设置'),
+//                  JhSetCell(leftImgPath: 'assets/images/ic_about.png', title: '检查更新',text: '有新版本',textStyle: TextStyle(fontSize: 14.0,color: Colors.red),),
 //                ],
 //              ),
 //

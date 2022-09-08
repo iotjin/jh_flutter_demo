@@ -43,7 +43,7 @@
 //   }
 //
 //   @override
-//   String getTitle() => "Line Chart Performance";
+//   String getTitle() => 'Line Chart Performance';
 //
 //   @override
 //   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@
 //           Container(
 //             color: Colors.white,
 //             child: Text(
-//               "title",
+//               'title',
 //               textAlign: TextAlign.center,
 //               style: TextStyle(fontSize: 25),
 //             ),
@@ -73,12 +73,12 @@
 //
 //   void _initController() {
 //     var desc = Description()
-//       ..text = "desc2"
+//       ..text = 'desc2'
 //       ..enabled = true;
 //     Description description = Description();
-//     description.text = "desc";
+//     description.text = 'desc';
 //     description.enabled = true;
-//     LimitLine limitL = LimitLine(90, "Upper Limit");
+//     LimitLine limitL = LimitLine(90, 'Upper Limit');
 //     limitL.setLineWidth(1);
 //     limitL.enableDashedLine(15, 5, 0); //设置线的间隔
 //     limitL.labelPosition = (LimitLabelPosition.CENTER_TOP);
@@ -86,7 +86,7 @@
 //     limitL.backgroundColor = Colors.red;
 //     limitL.textSize = (12);
 //     limitL.typeface =
-//         TypeFace(fontFamily: "OpenSans", fontWeight: FontWeight.w800);
+//         TypeFace(fontFamily: 'OpenSans', fontWeight: FontWeight.w800);
 //
 //     _controller = LineChartController(
 //         axisLeftSettingFunction: (axisLeft, controller) {
@@ -147,7 +147,7 @@
 //     values.add(new Entry(x: 120, y: 90));
 //
 //     // create a dataset and give it a type
-//     LineDataSet set1 = new LineDataSet(values, "DataSet 1");
+//     LineDataSet set1 = new LineDataSet(values, 'DataSet 1');
 //
 //     set1.setMode(Mode.CUBIC_BEZIER);
 //     set1.setColor1(Colors.orange);
@@ -175,7 +175,7 @@
 //     values2.add(new Entry(x: 115, y: 87));
 //     values2.add(new Entry(x: 120, y: 92));
 //
-//     LineDataSet set2 = new LineDataSet(values2, "DataSet 2");
+//     LineDataSet set2 = new LineDataSet(values2, 'DataSet 2');
 //     set2.setMode(Mode.CUBIC_BEZIER);
 //     set2.setColor1(Colors.yellow);
 //     set2.setLineWidth(1.5);

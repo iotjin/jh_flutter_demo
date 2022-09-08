@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '/jh_common/jh_form/jh_textfield.dart';
+import '/jh_common/jh_form/jh_text_field.dart';
 import '/base_appbar.dart';
 
 class InputTextFieldTestPage extends StatefulWidget {
@@ -20,21 +20,21 @@ class _InputTextFieldTestPageState extends State<InputTextFieldTestPage> {
           child: Column(
             children: <Widget>[
               JhTextField(
-                hintText: "默认样式，没有边框",
+                hintText: '默认样式，没有边框',
               ),
               SizedBox(height: 10),
               JhTextField(
-                text: "text赋初值,不可编辑",
+                text: 'text赋初值,不可编辑',
                 enabled: false,
               ),
               SizedBox(height: 10),
-              JhTextField(hintText: "限制 长度5，0-9，phone键盘", keyboardType: TextInputType.phone, inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+              JhTextField(hintText: '限制 长度5，0-9，phone键盘', keyboardType: TextInputType.phone, inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                 LengthLimitingTextInputFormatter(5)
               ]),
               SizedBox(height: 10),
-              JhTextField(hintText: "自定义inputFormatters 长度10，a-zA-Z0-9", inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+              JhTextField(hintText: '自定义inputFormatters 长度10，a-zA-Z0-9', inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
                 LengthLimitingTextInputFormatter(10)
               ]),
               SizedBox(height: 10),
@@ -57,7 +57,7 @@ class _InputTextFieldTestPageState extends State<InputTextFieldTestPage> {
               ),
               SizedBox(height: 10),
               JhTextField(
-                hintText: "设置maxLines=5，设置边框",
+                hintText: '设置maxLines=5，设置边框',
                 maxLines: 5,
                 border: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
@@ -69,7 +69,7 @@ class _InputTextFieldTestPageState extends State<InputTextFieldTestPage> {
               ),
               SizedBox(height: 10),
               JhTextField(
-                hintText: "默认1行，自动换行，最多5行，100字符",
+                hintText: '默认1行，自动换行，最多5行，100字符',
                 border: OutlineInputBorder(
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
                   borderSide: BorderSide(

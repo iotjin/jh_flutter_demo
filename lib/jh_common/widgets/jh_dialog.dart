@@ -18,15 +18,15 @@ class JhDialog {
   /// 中间弹框
   static void show(
     BuildContext context, {
-    String title: "",
-    bool isBoldTitle: true,
-    String content: "",
-    String leftText: _cancelText,
-    String rightText: _confirmText,
+    String title = '',
+    bool isBoldTitle = true,
+    String content = '',
+    String leftText = _cancelText,
+    String rightText = _confirmText,
     final VoidCallback? onCancel,
     final VoidCallback? onConfirm,
-    bool hiddenCancel: false,
-    bool clickBtnPop: true, // 点击确认按钮是否弹框消失
+    bool hiddenCancel = false,
+    bool clickBtnPop = true, // 点击确认按钮是否弹框消失
   }) {
     showDialog(
         context: context,
@@ -35,7 +35,7 @@ class JhDialog {
           return _BaseDialog(
             title: title,
             isBoldTitle: isBoldTitle,
-            widget: content == ""
+            widget: content == ''
                 ? null
                 : Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -60,15 +60,15 @@ class JhDialog {
   /// 自定义弹框
   static void showCustomDialog(
     BuildContext context, {
-    String title: "",
-    bool isBoldTitle: true,
+    String title = '',
+    bool isBoldTitle = true,
     Widget? content,
-    String leftText: _cancelText,
-    String rightText: _confirmText,
+    String leftText = _cancelText,
+    String rightText = _confirmText,
     final VoidCallback? onCancel,
     final VoidCallback? onConfirm,
-    bool hiddenCancel: false,
-    bool clickBtnPop: true, // 点击确认按钮是否弹框消失
+    bool hiddenCancel = false,
+    bool clickBtnPop = true, // 点击确认按钮是否弹框消失
   }) {
     showDialog(
         context: context,
@@ -92,7 +92,7 @@ class JhDialog {
   static void showAllCustomDialog(
     BuildContext context, {
     Widget? child,
-    bool clickBgHidden: false,
+    bool clickBgHidden = false,
   }) {
     showDialog(
       context: context,
@@ -107,15 +107,15 @@ class JhDialog {
 class _BaseDialog extends StatelessWidget {
   _BaseDialog({
     Key? key,
-    this.title: "",
-    this.isBoldTitle: true,
+    this.title = '',
+    this.isBoldTitle = true,
     this.widget,
-    this.leftText: _cancelText,
-    this.rightText: _confirmText,
+    this.leftText = _cancelText,
+    this.rightText = _confirmText,
     this.onCancel,
     this.onConfirm,
-    this.hiddenCancel: false,
-    this.clickBtnPop: true,
+    this.hiddenCancel = false,
+    this.clickBtnPop = true,
   }) : super(key: key);
 
   final String title;
@@ -215,7 +215,7 @@ class _BaseDialog extends StatelessWidget {
 class _DialogButton extends StatelessWidget {
   _DialogButton({
     Key? key,
-    this.text: '',
+    this.text = '',
     this.textColor,
     this.onPressed,
   }) : super(key: key);
@@ -245,7 +245,7 @@ class _CustomDialog extends Dialog {
   _CustomDialog({
     Key? key,
     this.child,
-    this.clickBgHidden: false, // 点击背景隐藏，默认不隐藏
+    this.clickBgHidden = false, // 点击背景隐藏，默认不隐藏
   }) : super(key: key);
 
   final Widget? child;

@@ -312,7 +312,7 @@ class TagsPainter extends CustomPainter {
 //      pb.pushStyle(
 //        ui.TextStyle(fontSize: 12, color: Colors.white),
 //      );
-//      pb.addText("这是文字文字 \n ");
+//      pb.addText('这是文字文字 \n ');
 //      pb.addText('FF');
 //      ParagraphConstraints pc = ParagraphConstraints(width: 90);
 //      Paragraph paragraph = pb.build()..layout(pc);

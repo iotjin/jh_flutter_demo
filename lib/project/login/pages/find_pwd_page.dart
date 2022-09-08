@@ -22,14 +22,14 @@ class _FindPwdPageState extends State<FindPwdPage> {
   @override
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
-    _nameController.text = "";
+    _nameController.text = '';
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "重置密码"),
+        appBar: backAppBar(context, '重置密码'),
         body: KeyboardActions(
           config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
           child: _mainBody(),
@@ -51,8 +51,8 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   focusNode: _node1,
                   controller: _nameController,
                   decoration: InputDecoration(
-                    labelText: "用户名",
-                    hintText: "请输入用户名",
+                    labelText: '用户名',
+                    hintText: '请输入用户名',
                     hintStyle: TextStyle(fontSize: 15),
                     focusedBorder:
                         UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
@@ -64,8 +64,8 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   focusNode: _node2,
                   controller: _pwdController,
                   decoration: InputDecoration(
-                      labelText: "密码",
-                      hintText: "请输入密码",
+                      labelText: '密码',
+                      hintText: '请输入密码',
                       hintStyle: TextStyle(fontSize: 15),
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
@@ -81,7 +81,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   obscureText: !pwdShow,
                 ),
                 SizedBox(height: 50),
-                JhButton(text: "重 置", onPressed: _clickOkBtn)
+                JhButton(text: '重 置', onPressed: _clickOkBtn)
               ],
             ),
           ),
@@ -95,11 +95,11 @@ class _FindPwdPageState extends State<FindPwdPage> {
 //         MaterialPageRoute(builder: (context) => BaseTabBar()
 //        ), (route) => route == null);
 
-//    Navigator.pushReplacementNamed(context, "BaseTabBar");
+//    Navigator.pushReplacementNamed(context, 'BaseTabBar');
 
     var hide = JhToast.showIOSLoadingText(
       context,
-      msg: "正在重置...",
+      msg: '正在重置...',
     );
     Future.delayed(Duration(seconds: 1), () {
       Navigator.pop(context);

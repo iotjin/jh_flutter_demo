@@ -34,7 +34,7 @@ class UIPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("UITest", style: TextStyle(color: Colors.white)),
+          title: Text('UITest', style: TextStyle(color: Colors.white)),
           elevation: 0.0,
         ),
         body: BaseScrollView());
@@ -65,27 +65,27 @@ class BaseScrollView extends StatelessWidget {
             height: 1500,
             width: double.infinity,
             color: Colors.yellow,
-            child: Text("往下滑动"),
+            child: Text('往下滑动'),
           ),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
-          Text("data"),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
+          Text('data'),
         ],
       ),
     ));
   }
 }
 
-List<String> bottomData = ["1111", "2222", "3333333333333333333", "4444"];
+List<String> bottomData = ['1111', '2222', '3333333333333333333', '4444'];
 
 Widget textListView = Container(
   child: ListView(
@@ -118,7 +118,7 @@ Widget testBtn = Column(children: <Widget>[
     height: 40,
     child: TextButton(
       onPressed: () {},
-      child: Text("Submit", style: TextStyle(fontSize: 15.0)),
+      child: Text('Submit', style: TextStyle(fontSize: 15.0)),
       style: ButtonStyle(
         // 背景色
         backgroundColor: MaterialStateProperty.resolveWith((states) {
@@ -148,14 +148,14 @@ Widget testBtn = Column(children: <Widget>[
   // 扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
   TextButton(
     child: Text(
-      "扁平按钮(TextButton)",
+      '扁平按钮(TextButton)',
       style: TextStyle(color: Colors.black),
     ),
     onPressed: () {},
   ),
   TextButton.icon(
     icon: Icon(Icons.send),
-    label: Text("扁平按钮,带图标"),
+    label: Text('扁平按钮,带图标'),
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all(Colors.blue),
 //      backgroundColor: MaterialStateProperty.resolveWith((states) {
@@ -196,29 +196,29 @@ Widget testBtn = Column(children: <Widget>[
     onPressed: () {},
   ),
   FlatButton(
-    child: Text("扁平按钮(FlatButton、Flutter1.22废弃)"),
+    child: Text('扁平按钮(FlatButton、Flutter1.22废弃)'),
     onPressed: () {},
   ),
   // 带边框的按钮、Flutter1.22 之后新增
   // 默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
   OutlinedButton(
-    child: Text("带边框的按钮（OutlinedButton）"),
+    child: Text('带边框的按钮（OutlinedButton）'),
     onPressed: () {},
   ),
   // 废弃
   OutlineButton(
-    child: Text("带边框的按钮(OutlineButton、Flutter1.22废弃)"),
+    child: Text('带边框的按钮(OutlineButton、Flutter1.22废弃)'),
     onPressed: () {},
   ),
-  // "漂浮"按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
+  // '漂浮'按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
   ElevatedButton(
-    child: Text("凸起的按钮(ElevatedButton)"),
+    child: Text('凸起的按钮(ElevatedButton)'),
     onPressed: () {},
   ),
   IconButton(onPressed: () {}, icon: Icon(Icons.send)),
   RaisedButton.icon(
     icon: Icon(Icons.send),
-    label: Text("带图标的按钮(RaisedButton、Flutter1.22废弃)"),
+    label: Text('带图标的按钮(RaisedButton、Flutter1.22废弃)'),
     onPressed: () {},
   ),
 ]);
@@ -242,7 +242,7 @@ Widget testImage = Container(
 //  width: 400,
 //  height: 400,
   child: Image(
-//        image: AssetImage("assets/images/touxiang.jpeg"),
+//        image: AssetImage('assets/images/touxiang.jpeg'),
     image: JhImageUtils.getAssetImage('picture/tubiao'),
     width: 50,
     height: 50,
@@ -251,7 +251,7 @@ Widget testImage = Container(
   ),
 
 //  child: Image.network(
-//      "https://pics4.baidu.com/feed/2cf5e0fe9925bc3182c54af16fbe80b7ca1370a2.jpeg?token=f1baf830f16d6b912bdb19ab7318374c&s=B28AA7E95272AFCE02793003030090C2",
+//      'https://pics4.baidu.com/feed/2cf5e0fe9925bc3182c54af16fbe80b7ca1370a2.jpeg?token=f1baf830f16d6b912bdb19ab7318374c&s=B28AA7E95272AFCE02793003030090C2',
 //      width: 100.0,
 ////    fit: BoxFit.fitHeight,
 ////    height: 100
@@ -276,7 +276,7 @@ Widget testContainer = Container(
   alignment: Alignment.topRight,
   // 子组件将以何种方式进行排列
   color: Colors.yellow,
-  child: Text("这是文字"),
+  child: Text('这是文字'),
 );
 
 // 绝对定位

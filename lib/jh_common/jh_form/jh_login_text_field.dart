@@ -1,4 +1,4 @@
-///  jh_login_textfield.dart
+///  jh_login_text_field.dart
 ///
 ///  Created by iotjin on 2020/03/26.
 ///  description:  登录输入框
@@ -25,17 +25,17 @@ typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted)
 class JhLoginTextField extends StatefulWidget {
   const JhLoginTextField({
     Key? key,
-    this.text: '',
-    this.hintText: '',
+    this.text = '',
+    this.hintText = '',
     this.labelText,
     this.controller,
-    this.keyboardType: TextInputType.text,
+    this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
     this.focusNode,
     this.isPwd = false,
     this.leftWidget,
     this.rightWidget,
-    this.maxLength: 20,
+    this.maxLength = 20,
     this.isShowDeleteBtn = false,
     this.inputFormatters,
     this.inputCallBack,
@@ -43,7 +43,8 @@ class JhLoginTextField extends StatefulWidget {
     this.pwdOpen,
     this.pwdClose,
     this.border,
-    this.isDense: false,
+    this.isDense = false,
+    this.contentPadding,
   }) : super(key: key);
 
   final String? text;
@@ -65,6 +66,7 @@ class JhLoginTextField extends StatefulWidget {
   final String? pwdClose; // 自定义密码图片路径 闭眼
   final InputBorder? border; // 边框样式
   final bool isDense; // 是否紧凑显示，默认false
+  final EdgeInsetsGeometry? contentPadding; // 当父组件固定高度时，文本一行显示文本过多会出现文字显示不全bug,可设置EdgeInsets.symmetric(vertical: 4)
 
   @override
   _JhLoginTextFieldState createState() => _JhLoginTextFieldState();
@@ -87,6 +89,10 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 
     _textController = widget.controller ?? TextEditingController();
     _textController!.text = widget.text ?? '';
+    // 超过最大长度截取
+    if ((widget.text ?? '').length > widget.maxLength) {
+      _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+    }
     _focusNode = widget.focusNode ?? FocusNode();
     _isHiddenPwdBtn = !widget.isPwd;
     _pwdShow = widget.isPwd;
@@ -119,6 +125,10 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     var cursorPos = _textController!.selection;
     // 更新text值到_textController
     _textController!.text = widget.text ?? '';
+    // 超过最大长度截取
+    if ((widget.text ?? '').length > widget.maxLength) {
+      _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+    }
     if (cursorPos.start > _textController!.text.length) {
       // 光标保持在文本最后
       cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
@@ -145,8 +155,8 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
       }
     } else {
       _pwdImg = Icon(_pwdShow! ? Icons.visibility_off : Icons.visibility);
-//      _pwdImg = _pwdShow?Image.asset("assets/images/ic_pwd_close.png",width: 18.0,):Image.asset("assets/images/ic_pwd_open.png",width: 18.0,);
-//      _pwdImg = _pwdShow?ImageIcon(AssetImage("assets/images/ic_pwd_close.png")):ImageIcon(AssetImage("assets/images/ic_pwd_open.png")) ;
+//      _pwdImg = _pwdShow?Image.asset('assets/images/ic_pwd_close.png',width: 18.0,):Image.asset('assets/images/ic_pwd_open.png',width: 18.0,);
+//      _pwdImg = _pwdShow?ImageIcon(AssetImage('assets/images/ic_pwd_close.png')):ImageIcon(AssetImage('assets/images/ic_pwd_open.png')) ;
     }
 
     // 默认颜色
@@ -186,6 +196,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
                 ? widget.inputFormatters
                 : [LengthLimitingTextInputFormatter(widget.maxLength)],
             decoration: InputDecoration(
+              contentPadding: widget.contentPadding,
               prefixIcon: widget.leftWidget,
               labelText: widget.labelText != null ? widget.labelText : null,
               hintText: widget.hintText,
@@ -233,18 +244,18 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
                           size: 20,
                         ),
                         onPressed: () {
-                          _textController!.text = "";
+                          _textController!.text = '';
                           if (widget.inputCallBack != null) {
                             widget.inputCallBack!(_textController!.text);
                           }
                         })
-                    : Text(""),
+                    : Text(''),
               ),
               Offstage(
                   offstage: _isHiddenPwdBtn!,
                   child: IconButton(
 //                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
-//                  icon: Image.asset("assets/images/ic_pwd_close.png",width: 18.0,),
+//                  icon: Image.asset('assets/images/ic_pwd_close.png',width: 18.0,),
                     icon: _pwdImg!,
                     iconSize: 18.0,
                     onPressed: () {
@@ -285,17 +296,17 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 //                _isShowDelete
 //                    ? IconButton(icon: Icon(Icons.cancel,color: Color(0xFFC8C8C8),size: 20,),
 //                    onPressed: (){
-//                      _textController.text = "";
+//                      _textController.text = '';
 //                      if(widget.inputCallBack!=null){
 //                        widget.inputCallBack(_textController.text);
 //                      }
 //                    }
-//                ): Text(""),
+//                ): Text(''),
 //                ),
 //                Offstage( offstage: _isHiddenPwdBtn, child:
 //                IconButton(
 ////                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
-////                  icon: Image.asset("assets/images/ic_pwd_close.png",width: 18.0,),
+////                  icon: Image.asset('assets/images/ic_pwd_close.png',width: 18.0,),
 //                  icon: _pwdImg,
 //                  iconSize: 18.0 ,
 //                  onPressed: () {

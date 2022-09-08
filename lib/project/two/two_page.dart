@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:jh_flutter_demo/jh_common/widgets/jh_progress_hud.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:lpinyin/lpinyin.dart';
 import '/jh_common/utils/jh_color_utils.dart';
@@ -24,7 +25,10 @@ class TwoPage extends StatefulWidget {
   _TwoPageState createState() => _TwoPageState();
 }
 
-class _TwoPageState extends State<TwoPage> {
+class _TwoPageState extends State<TwoPage> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   List<ContactsModel> _dataList = [];
 
   // 联系人总数
@@ -32,18 +36,26 @@ class _TwoPageState extends State<TwoPage> {
 
   double _suspensionHeight = 40;
   double _itemHeight = 50;
-  String _suspensionTag = "";
+  String _suspensionTag = '';
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    _requestData();
+  }
+
+  void _requestData() {
+    JhProgressHUD.showLoadingText();
     Future.delayed(Duration(milliseconds: 500), () {
-      _loadData();
+      _loadData().then((value) {
+        JhProgressHUD.hide();
+      });
     });
   }
 
-  void _loadData() async {
+  Future<void> _loadData() async {
     // 获取用户信息列表
     final jsonStr = await rootBundle.loadString('lib/res/wx_contacts.json');
 
@@ -71,11 +83,11 @@ class _TwoPageState extends State<TwoPage> {
       String tag = pinyin.substring(0, 1).toUpperCase();
       list[i].namePinyin = pinyin;
       if (list[i].isStar == true) {
-        list[i].tagIndex = "★";
-      } else if (RegExp("[A-Z]").hasMatch(tag)) {
+        list[i].tagIndex = '★';
+      } else if (RegExp('[A-Z]').hasMatch(tag)) {
         list[i].tagIndex = tag;
       } else {
-        list[i].tagIndex = "#";
+        list[i].tagIndex = '#';
       }
     }
     // 根据A-Z排序
@@ -95,13 +107,15 @@ class _TwoPageState extends State<TwoPage> {
     // add header.
     _dataList.insert(0, ContactsModel(name: 'header', tagIndex: '🔍'));
 
-    _contactsCount = "${_dataList.length} 位朋友及联系人";
+    _contactsCount = '${_dataList.length} 位朋友及联系人';
 
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     var isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: isDark
@@ -165,20 +179,20 @@ class _TwoPageState extends State<TwoPage> {
   Widget _buildHeader() {
     List _topData = [
       {
-        "title": "新的朋友",
-        "imgUrl": "assets/wechat/contacts/ic_new_friend.png",
+        'title': '新的朋友',
+        'imgUrl': 'assets/wechat/contacts/ic_new_friend.png',
       },
       {
-        "title": "群聊",
-        "imgUrl": "assets/wechat/contacts/ic_group_chat.png",
+        'title': '群聊',
+        'imgUrl': 'assets/wechat/contacts/ic_group_chat.png',
       },
       {
-        "title": "标签",
-        "imgUrl": "assets/wechat/contacts/ic_tag.png",
+        'title': '标签',
+        'imgUrl': 'assets/wechat/contacts/ic_tag.png',
       },
       {
-        "title": "公众号",
-        "imgUrl": "assets/wechat/contacts/ic_public_account.png",
+        'title': '公众号',
+        'imgUrl': 'assets/wechat/contacts/ic_public_account.png',
       },
     ];
 
@@ -273,7 +287,7 @@ class _TwoPageState extends State<TwoPage> {
       clickCallBack: () {
         // 跳转个人信息页 跳转传递model
         String jsonStr = Uri.encodeComponent(jsonEncode(model));
-        JhNavUtils.pushNamed(context, '${"WxUserInfoPage"}?passValue=$jsonStr');
+        JhNavUtils.pushNamed(context, '${'WxUserInfoPage'}?passValue=$jsonStr');
       },
     );
 
@@ -350,7 +364,7 @@ class _TwoPageState extends State<TwoPage> {
 //            height: 1500,
 //            width: double.infinity,
 //            color: Colors.white,
-//            child: Text("往下滑动"),
+//            child: Text('往下滑动'),
 //          ),
 //          RichText(
 //            text: TextSpan(
@@ -365,11 +379,11 @@ class _TwoPageState extends State<TwoPage> {
 //                  ),
 //                ]),
 //          ),
-//          Text("data"),
-//          Text("data"),
-//          Text("data"),
-//          Text("data"),
-//          Text("data"),
+//          Text('data'),
+//          Text('data'),
+//          Text('data'),
+//          Text('data'),
+//          Text('data'),
 //        ],
 //      ),
 //    ));

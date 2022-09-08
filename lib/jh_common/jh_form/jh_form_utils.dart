@@ -17,7 +17,7 @@ final number = FilteringTextInputFormatter.allow(RegExp('[0-9]'));
 // 年龄
 final age = FilteringTextInputFormatter.allow(RegExp('[1-9]'));
 // 字母
-final letter = FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]"));
+final letter = FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'));
 // 允许中文
 final chinese = FilteringTextInputFormatter.allow(RegExp('[\u4e00-\u9fa5]'));
 // 小数 | 小数键盘 TextInputType.numberWithOptions(decimal: true)
@@ -30,7 +30,7 @@ final twoDecimal = FilteringTextInputFormatter.allow(RegExp(r'^\d+(\.)?[0-9]{0,2
 // 不允许录入中文
 final denyChinese = FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'));
 // 限制只能输入汉字或者字母或数字
-final test = FilteringTextInputFormatter(RegExp("[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]"), allow: true);
+final test = FilteringTextInputFormatter(RegExp('[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]'), allow: true);
 
 // 长度限制
 final length5 = LengthLimitingTextInputFormatter(5);

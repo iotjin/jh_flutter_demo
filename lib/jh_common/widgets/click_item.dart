@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ClickItem extends StatelessWidget {
-  const ClickItem(
-      {Key? key, this.onTap, required this.title, this.content: '', this.textAlign: TextAlign.start, this.maxLines: 1})
-      : super(key: key);
+  const ClickItem({
+    Key? key,
+    this.onTap,
+    required this.title,
+    this.content = '',
+    this.textAlign = TextAlign.start,
+    this.maxLines = 1,
+  }) : super(key: key);
 
   final GestureTapCallback? onTap;
   final String title;

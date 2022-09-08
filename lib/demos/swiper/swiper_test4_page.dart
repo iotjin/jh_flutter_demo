@@ -9,9 +9,9 @@ class SwiperTest4Page extends StatefulWidget {
 
 class _SwiperTest4PageState extends State<SwiperTest4Page> {
   List imgList = [
-    "https://gitee.com/iotjh/Picture/raw/master/cat.png",
-    "https://gitee.com/iotjh/Picture/raw/master/lufei2.png",
-    "https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg",
+    'https://gitee.com/iotjh/Picture/raw/master/cat.png',
+    'https://gitee.com/iotjh/Picture/raw/master/lufei2.png',
+    'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
   ];
 
   List imgList2 = ['1', '2', '3', '4', '5'];

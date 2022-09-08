@@ -11,15 +11,15 @@ class PassValuePage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     // 获取路由参数
     var value = ModalRoute.of(context)!.settings.arguments;
-    print("接收传值" + value.toString());
-    print("接收传值_passValue: " + _passValue.toString());
+    print('接收传值' + value.toString());
+    print('接收传值_passValue: ' + _passValue.toString());
 
     value = _passValue;
 
     return Scaffold(
         appBar: backAppBar(context, '接收的值: $value'),
         body: ElevatedButton(
-          child: Text("点击回传"),
+          child: Text('点击回传'),
           onPressed: () {
 //            Navigator.of(context).pop('456');
             JhNavUtils.goBackWithParams(context, '456');

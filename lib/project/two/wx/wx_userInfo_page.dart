@@ -23,7 +23,7 @@ class WxUserInfoPage extends StatelessWidget {
           rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
         // 跳转资料设置
         String jsonStr = Uri.encodeComponent(jsonEncode(_passValue));
-        JhNavUtils.pushNamed(context, '${"WxInfoSetPage"}?passValue=$jsonStr');
+        JhNavUtils.pushNamed(context, '${'WxInfoSetPage'}?passValue=$jsonStr');
       }),
       body: _body(context),
     );

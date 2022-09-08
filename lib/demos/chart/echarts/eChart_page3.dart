@@ -127,7 +127,7 @@ class _EChartPage3State extends State<EChartPage3> {
                         data: ${jsonEncode(chartData['legendData'])},
                         top:10,
                         right: 30,
-                        icon: "circle",
+                        icon: 'circle',
                         itemWidth: 10,
                         itemHeight: 10,
                     },
@@ -135,7 +135,7 @@ class _EChartPage3State extends State<EChartPage3> {
                         {
                             type: 'category',
                             data: ${jsonEncode(chartData['xData'])},
-                            "axisLabel": {
+                            'axisLabel': {
                                 interval: 0
                             },
                             axisPointer: {
@@ -232,7 +232,7 @@ option = {
         data: chartData.legendData,
         top:10,
         right: 30,
-        icon: "circle",
+        icon: 'circle',
         itemWidth: 10,
         itemHeight: 10,
     },
@@ -240,7 +240,7 @@ option = {
         {
             type: 'category',
             data: chartData.xData,
-            "axisLabel": {
+            'axisLabel': {
               interval: 0
               },
             axisPointer: {
@@ -304,7 +304,7 @@ option = {
         data: ['最高温度', '最低温度', '环境温度'],
         top:10,
         right: 30,
-        icon: "circle",
+        icon: 'circle',
         itemWidth: 10,
         itemHeight: 10,
     },
@@ -312,7 +312,7 @@ option = {
         {
             type: 'category',
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            "axisLabel": {
+            'axisLabel': {
               interval: 0
              },
             axisPointer: {

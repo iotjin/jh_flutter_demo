@@ -15,7 +15,7 @@ const double _borderRadius = 5.0; // 边框圆角
 class JhButton extends StatelessWidget {
   const JhButton({
     Key? key,
-    this.text: '',
+    this.text = '',
     this.onPressed, // 传空为disabled状态
   }) : super(key: key);
 

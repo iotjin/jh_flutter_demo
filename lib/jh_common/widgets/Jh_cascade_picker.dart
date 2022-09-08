@@ -26,10 +26,10 @@ class JhCascadePicker {
   static void show(
     BuildContext context, {
     required List data, // 多维数组，根据维数决定列数
-    String labelKey: _labelKey, // 对象数组的文字字段
-    String title: _titleText,
-    String tabText: _tabText,
-    bool isShowRadius: true,
+    String labelKey = _labelKey, // 对象数组的文字字段
+    String title = _titleText,
+    String tabText = _tabText,
+    bool isShowRadius = true,
     _ClickCallBack? clickCallBack,
   }) {
     if (data.length <= 0) {
@@ -69,9 +69,9 @@ class JhCascadePickerView extends StatefulWidget {
   const JhCascadePickerView({
     Key? key,
     required this.data,
-    this.labelKey: _labelKey,
-    this.title: _titleText,
-    this.tabText: _tabText,
+    this.labelKey = _labelKey,
+    this.title = _titleText,
+    this.tabText = _tabText,
     this.clickCallBack,
   }) : super(key: key);
 

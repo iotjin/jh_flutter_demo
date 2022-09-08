@@ -42,7 +42,7 @@ class _ListViewTestSimplePullDownState extends State<ListViewTestSimplePullDown>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "ListViewTestSimplePullDown"),
+        appBar: backAppBar(context, 'ListViewTestSimplePullDown'),
         body: EasyRefresh(
           controller: _controller,
           firstRefresh: true,
@@ -50,26 +50,26 @@ class _ListViewTestSimplePullDownState extends State<ListViewTestSimplePullDown>
               itemCount: _count,
               itemExtent: 50.0, // 强制高度为50.0
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(title: Text("$index"));
+                return ListTile(title: Text('$index'));
               }),
           onRefresh: () async {
             await Future.delayed(Duration(seconds: 2), () {
-              print("下拉刷新-----");
+              print('下拉刷新-----');
               getNewData();
               setState(() {
                 _count = dataArr.length;
-                print("最新条数" + _count.toString());
+                print('最新条数' + _count.toString());
                 _controller.resetLoadState();
               });
             });
           },
           onLoad: () async {
             await Future.delayed(Duration(seconds: 2), () {
-              print("上拉加载-----");
+              print('上拉加载-----');
               getMoreData();
               setState(() {
                 _count = dataArr.length;
-                print("加载更多条数" + _count.toString());
+                print('加载更多条数' + _count.toString());
               });
               _controller.finishLoad(noMore: _count >= 30);
             });

@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import '/project/configs/colors.dart';
-import 'jh_textfield.dart';
+import 'jh_text_field.dart';
 
 const double _imgWH = 22.0; // 左侧图片宽高
 const double _titleSpace = 100.0; // 左侧title默认宽
@@ -23,11 +23,11 @@ typedef _ClickCallBack = void Function();
 class JhSetCell extends StatefulWidget {
   const JhSetCell({
     Key? key,
-    this.title: '',
+    this.title = '',
     this.leftImgPath,
     this.leftWidget,
-    this.text: '',
-    this.hiddenArrow: false,
+    this.text = '',
+    this.hiddenArrow = false,
     this.rightWidget,
     this.clickCallBack,
     this.titleWidth = _titleSpace,

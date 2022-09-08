@@ -147,7 +147,7 @@ baseAppBar(
     titleAndIconColor = _titleColor;
   }
 
-  Widget rightItem = Text("");
+  Widget rightItem = Text('');
   if (rightText != null) {
     rightItem = InkWell(
       child: Container(
@@ -188,7 +188,7 @@ baseAppBar(
         : IconButton(
 //      icon: Icon(Icons.arrow_back_ios,color: _color),
             icon: ImageIcon(
-              AssetImage("assets/images/common/ic_nav_back_white.png"),
+              AssetImage('assets/images/common/ic_nav_back_white.png'),
               color: titleAndIconColor,
             ),
             iconSize: 18,

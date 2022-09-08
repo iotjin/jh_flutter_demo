@@ -112,7 +112,7 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
           child: Offstage(
             offstage: widget.imgDataArr.length == 1 || widget.isHiddenTitle,
             child: Center(
-              child: Text("${_currentIndex + 1}/${widget.imgDataArr.length}",
+              child: Text('${_currentIndex + 1}/${widget.imgDataArr.length}',
                   style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ),

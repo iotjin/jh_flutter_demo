@@ -16,44 +16,44 @@ class _GridViewTestPage5State extends State<GridViewTestPage5> {
 
     _dataArr = [
       {
-        "text": "功能功能0",
-        "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-        "pushName": "PageName",
+        'text': '功能功能0',
+        'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+        'pushName': 'PageName',
       },
       {
-        "text": "功能功能1",
-        "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-        "pushName": "PageName",
+        'text': '功能功能1',
+        'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+        'pushName': 'PageName',
       },
       {
-        "text": "功能功能2",
-        "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-        "pushName": "PageName",
+        'text': '功能功能2',
+        'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+        'pushName': 'PageName',
       },
       {
-        "text": "功能功能3",
-        "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-        "pushName": "PageName",
+        'text': '功能功能3',
+        'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+        'pushName': 'PageName',
       },
       {
-        "text": "功能功能4",
-        "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-        "pushName": "PageName",
+        'text': '功能功能4',
+        'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+        'pushName': 'PageName',
       },
       {
-        "text": "功能功能5",
-        "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-        "pushName": "PageName",
+        'text': '功能功能5',
+        'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+        'pushName': 'PageName',
       },
       {
-        "text": "功能功能6",
-        "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-        "pushName": "PageName",
+        'text': '功能功能6',
+        'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+        'pushName': 'PageName',
       },
       {
-        "text": "功能功能7",
-        "img": "https://gitee.com/iotjh/Picture/raw/master/lufei.png",
-        "pushName": "PageName",
+        'text': '功能功能7',
+        'img': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+        'pushName': 'PageName',
       },
     ];
   }
@@ -61,7 +61,7 @@ class _GridViewTestPage5State extends State<GridViewTestPage5> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "标题"),
+        appBar: backAppBar(context, '标题'),
         backgroundColor: Color(0xFFF8F8F8),
         body: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

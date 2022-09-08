@@ -20,7 +20,7 @@ const Color _scanLineColor = KColors.kThemeColor;
 class QrCodeScannerPage extends StatefulWidget {
   const QrCodeScannerPage({
     Key? key,
-    this.isShowScanLine: true,
+    this.isShowScanLine = true,
   }) : super(key: key);
 
   final bool isShowScanLine; // 是否显示扫描线动画
@@ -119,7 +119,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
 
   // ignore: unused_element
   _appBar1() {
-    return backAppBar(context, "");
+    return backAppBar(context, '');
   }
 
   _appBar2() {

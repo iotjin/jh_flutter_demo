@@ -66,15 +66,15 @@ class HttpUtils {
     Method method,
     String url,
     params, {
-    String? loadingText: '加载中...',
+    String? loadingText = '加载中...',
     Success? success,
     Fail? fail,
   }) {
     // 参数处理（如果需要加密等统一参数）
     if (!LogUtils.inProduction && isOpenLog) {
-      print("---------- HttpUtils URL ----------");
+      print('---------- HttpUtils URL ----------');
       print(url);
-      print("---------- HttpUtils params ----------");
+      print('---------- HttpUtils params ----------');
       print(params);
     }
 
@@ -92,7 +92,7 @@ class HttpUtils {
     }
     DioUtils.instance.request(method, url, data: data, queryParameters: queryParameters, onSuccess: (result) {
       if (!LogUtils.inProduction && isOpenLog) {
-        print("---------- HttpUtils response ----------");
+        print('---------- HttpUtils response ----------');
         print(result);
       }
       if (loadingText != null && loadingText.isNotEmpty) {

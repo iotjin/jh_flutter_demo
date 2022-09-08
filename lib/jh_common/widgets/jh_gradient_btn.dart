@@ -16,8 +16,8 @@ class JhGradientBtn extends StatelessWidget {
   const JhGradientBtn({
     Key? key,
     required this.text,
-    this.width: 150,
-    this.height: 50,
+    this.width = 150,
+    this.height = 50,
     this.onTap,
   }) : super(key: key);
 

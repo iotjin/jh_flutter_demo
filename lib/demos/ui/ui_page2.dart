@@ -121,7 +121,7 @@ class _UIPage2State extends State<UIPage2> {
                     });
                   }),
               RadioListTile(
-                  title: Text("第二个单选按钮"),
+                  title: Text('第二个单选按钮'),
                   value: 2,
                   activeColor: Colors.red,
                   groupValue: radioValue,
@@ -131,7 +131,7 @@ class _UIPage2State extends State<UIPage2> {
                     });
                   }),
               RadioListTile(
-                  title: Text("第三个单选按钮"),
+                  title: Text('第三个单选按钮'),
                   value: 3,
                   activeColor: Colors.red,
                   groupValue: radioValue,

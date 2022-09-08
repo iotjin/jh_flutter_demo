@@ -143,7 +143,7 @@ class _QrCodeGridScannerPageState extends State<QrCodeGridScannerPage> with Tick
                     ),
                   ),
                   Text(
-                    "请将二维码/条形码置于方框中",
+                    '请将二维码/条形码置于方框中',
                     style: TextStyle(color: Colors.white),
                   ),
                 ],

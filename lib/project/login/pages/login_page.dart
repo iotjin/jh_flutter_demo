@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import '/jh_common/jh_form/jh_keyboard_utils.dart';
-import '/jh_common/jh_form/jh_login_textfield.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
 import '/jh_common/utils/jh_color_utils.dart';
 import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
@@ -16,12 +16,12 @@ import '/data/data_utils.dart';
    keyboardType: TextInputType.numberWithOptions(decimal: true),// 设置键盘为可录入小数的数字
    inputFormatters: [FilteringTextInputFormatter.allow.digitsOnly],// 设置只能录入数字[0-9]
 
-   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),// 只允许输入字母
+   FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),// 只允许输入字母
    FilteringTextInputFormatter.allow.digitsOnly],// 只允许输入数字
-   FilteringTextInputFormatter.allow(RegExp("[0-9.]")),// 只允许输入小数
-   BlacklistingTextInputFormatter(RegExp("[abFeG])), // 黑名单
+   FilteringTextInputFormatter.allow(RegExp('[0-9.]')),// 只允许输入小数
+   BlacklistingTextInputFormatter(RegExp('[abFeG])), // 黑名单
 
-   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")) ,
+   FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')) ,
    LengthLimitingTextInputFormatter(20)
 */
 
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    print("login dispose");
+    print('login dispose');
     _node1.unfocus();
     _node2.unfocus();
   }
@@ -112,9 +112,9 @@ class _LoginPageState extends State<LoginPage> {
                   child: Align(
                       alignment: Alignment.topRight,
                       child: InkWell(
-                        child: Text("注册", style: TextStyle(fontSize: 18)),
+                        child: Text('注册', style: TextStyle(fontSize: 18)),
                         onTap: () {
-                          JhNavUtils.pushNamed(context, "RegisterPage");
+                          JhNavUtils.pushNamed(context, 'RegisterPage');
                         },
                       )),
                 ),
@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 30),
                 JhLoginTextField(
                   text: _name,
-                  hintText: "请输入用户名",
+                  hintText: '请输入用户名',
                   focusNode: _node1,
                   leftWidget: Icon(Icons.person),
                   isShowDeleteBtn: true,
@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 10),
                 JhLoginTextField(
                   text: _pwd,
-                  hintText: "请输入密码",
+                  hintText: '请输入密码',
                   focusNode: _node2,
                   leftWidget: Icon(Icons.lock),
                   isShowDeleteBtn: true,
@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 50),
                 JhButton(
-                  text: "登 录",
+                  text: '登 录',
                   onPressed: _isClick ? _clickOkBtn : null,
                 ),
                 SizedBox(height: 15),
@@ -171,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '验证码登录',
                           ),
-                          onTap: () => JhNavUtils.pushNamed(context, "CodeLoginPage")),
+                          onTap: () => JhNavUtils.pushNamed(context, 'CodeLoginPage')),
                     ),
                     Container(
                       height: 50.0,
@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             '忘记密码',
                           ),
-                          onTap: () => JhNavUtils.pushNamed(context, "FindPwdPage")),
+                          onTap: () => JhNavUtils.pushNamed(context, 'FindPwdPage')),
                     ),
                   ],
                 )
@@ -195,16 +195,16 @@ class _LoginPageState extends State<LoginPage> {
   void _clickOkBtn() async {
     var hide = JhToast.showIOSLoadingText(
       context,
-      msg: "正在登录...",
+      msg: '正在登录...',
     );
 
-    var params = {"userName": _name, "pwd": _pwd};
+    var params = {'userName': _name, 'pwd': _pwd};
     // 登录请求
     DataUtils.login(params, success: (res) {
       hide();
       // 保存本地
-      JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res["data"]);
-      JhToast.showSuccess(context, msg: res["msg"]);
+      JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res['data']);
+      JhToast.showSuccess(context, msg: res['msg']);
       JhNavUtils.pushReplacement(context, Routes.home);
     }, fail: (code, msg) {
       hide();
@@ -212,13 +212,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 // void _clickOkBtn() async {
-//   var params = {"userName": _name, "pwd": _pwd};
+//   var params = {'userName': _name, 'pwd': _pwd};
 //   // 登录请求
 //   HttpUtils.post(APIs.login, params, loadingText: '正在登录...', success: (res) {
-//     JhProgressHUD.showSuccess(res["msg"]);
+//     JhProgressHUD.showSuccess(res['msg']);
 //     // 保存本地
-//     JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res["data"]);
-//     JhToast.showSuccess(context, msg: res["msg"]);
+//     JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res['data']);
+//     JhToast.showSuccess(context, msg: res['msg']);
 //     JhNavUtils.pushReplacement(context, Routes.home);
 //   }, fail: (code, msg) {});
 // }

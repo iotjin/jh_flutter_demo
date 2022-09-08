@@ -10,15 +10,15 @@ class NewFeaturePage extends StatefulWidget {
 
 class _NewFeaturePageState extends State<NewFeaturePage> {
 //  List imgList = [
-//    "https://gitee.com/iotjh/Picture/raw/master/cat.png",
-//    "https://gitee.com/iotjh/Picture/raw/master/lufei2.png",
-//    "https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg",
+//    'https://gitee.com/iotjh/Picture/raw/master/cat.png',
+//    'https://gitee.com/iotjh/Picture/raw/master/lufei2.png',
+//    'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
 //  ];
   List _imgList = [
-    "assets/images/newFeature/newFeature_0.jpeg",
-    "assets/images/newFeature/newFeature_1.jpeg",
-    "assets/images/newFeature/newFeature_2.jpeg",
-    "assets/images/newFeature/newFeature_3.jpeg",
+    'assets/images/newFeature/newFeature_0.jpeg',
+    'assets/images/newFeature/newFeature_1.jpeg',
+    'assets/images/newFeature/newFeature_2.jpeg',
+    'assets/images/newFeature/newFeature_3.jpeg',
   ];
 
   List<Widget> _imgWidgets = [];
@@ -68,7 +68,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
                   bottom: JhScreenUtils.bottomSafeHeight + 50,
                   child: GestureDetector(
                     child: Image.asset(
-                      "assets/images/newFeature/start-now.jpg",
+                      'assets/images/newFeature/start-now.jpg',
                       width: 180,
                       height: 50,
                     ),

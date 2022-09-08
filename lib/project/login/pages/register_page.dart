@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import '/jh_common/jh_form/jh_keyboard_utils.dart';
-import '/jh_common/jh_form/jh_login_textfield.dart';
+import '/jh_common/jh_form/jh_login_text_field.dart';
 import '/jh_common/jh_form/jh_count_down_btn.dart';
 import '/jh_common/widgets/jh_button.dart';
 import '/base_appbar.dart';
@@ -56,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
 //                SizedBox(height: 50),
                 JhLoginTextField(
                     text: _phone,
-                    hintText: "请输入手机号",
+                    hintText: '请输入手机号',
                     labelText: '手机号',
                     focusNode: _node1,
                     maxLength: 11,
@@ -67,7 +67,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 JhLoginTextField(
                     text: _code,
-                    hintText: "请输入验证码",
+                    hintText: '请输入验证码',
                     labelText: '验证码',
                     focusNode: _node2,
                     maxLength: 6,
@@ -83,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 JhLoginTextField(
                     text: _pwd,
-                    hintText: "请输入密码",
+                    hintText: '请输入密码',
                     labelText: '密码',
                     focusNode: _node3,
                     isShowDeleteBtn: true,
@@ -95,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 SizedBox(height: 15),
                 SizedBox(height: 50),
-                JhButton(text: "注 册", onPressed: _clickOkBtn),
+                JhButton(text: '注 册', onPressed: _clickOkBtn),
                 SizedBox(height: 20),
                 RichText(
                   text: TextSpan(style: TextStyle(fontSize: 12, color: Colors.black), children: <InlineSpan>[
@@ -120,11 +120,11 @@ class _RegisterPageState extends State<RegisterPage> {
 //         MaterialPageRoute(builder: (context) => BaseTabBar()
 //        ), (route) => route == null);
 
-//    Navigator.pushReplacementNamed(context, "BaseTabBar");
+//    Navigator.pushReplacementNamed(context, 'BaseTabBar');
 
     var hide = JhToast.showIOSLoadingText(
       context,
-      msg: "正在注册...",
+      msg: '正在注册...',
     );
     Future.delayed(Duration(seconds: 1), () {
       Navigator.pop(context);

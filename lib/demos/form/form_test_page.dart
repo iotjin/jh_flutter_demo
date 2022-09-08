@@ -21,78 +21,78 @@ class _FormTestPageState extends State<FormTestPage> {
                 child: Column(
           children: <Widget>[
             JhFormInputCell(
-              title: "左标题",
-              hintText: "默认1行,最多5行,100字符,标题垂直居中",
+              title: '左标题',
+              hintText: '默认1行,最多5行,100字符,标题垂直居中',
             ),
-            JhFormInputCell(title: "左标题", text: "text赋初值,不可编辑", enabled: false),
+            JhFormInputCell(title: '左标题', text: 'text赋初值,不可编辑', enabled: false),
             JhFormInputCell(
-              title: "左标题",
-              hintText: "标题加红星",
+              title: '左标题',
+              hintText: '标题加红星',
               showRedStar: true,
             ),
             JhFormInputCell(
-              title: "左标题",
-              hintText: "红色标题",
+              title: '左标题',
+              hintText: '红色标题',
               titleStyle: TextStyle(
                 fontSize: 15.0,
                 color: Colors.red,
               ),
             ),
             JhFormInputCell(
-              title: "左标题",
-              text: "红色文字",
+              title: '左标题',
+              text: '红色文字',
               textStyle: TextStyle(
                 fontSize: 15.0,
                 color: Colors.red,
               ),
             ),
             JhFormInputCell(
-              title: "左标题",
-              text: "text靠右",
+              title: '左标题',
+              text: 'text靠右',
               textAlign: TextAlign.right,
             ),
             JhFormInputCell(
-                title: "左标题",
-                hintText: "限制 长度5，0-9，phone键盘",
+                title: '左标题',
+                hintText: '限制 长度5，0-9，phone键盘',
                 keyboardType: TextInputType.phone,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                  FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                   LengthLimitingTextInputFormatter(5)
                 ]),
-            JhFormInputCell(title: "左标题", hintText: "自定义inputFormatters 长度10，a-zA-Z0-9", inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z0-9]")),
+            JhFormInputCell(title: '左标题', hintText: '自定义inputFormatters 长度10，a-zA-Z0-9', inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
               LengthLimitingTextInputFormatter(10)
             ]),
-            JhFormSelectCell(title: "左标题"),
-            JhFormSelectCell(title: "左标题", text: "text赋初值"),
+            JhFormSelectCell(title: '左标题'),
+            JhFormSelectCell(title: '左标题', text: 'text赋初值'),
             JhFormSelectCell(
-              title: "左标题",
-              hintText: "标题加红星",
+              title: '左标题',
+              hintText: '标题加红星',
               showRedStar: true,
             ),
             JhFormSelectCell(
-              title: "左标题",
-              hintText: "红色标题",
+              title: '左标题',
+              hintText: '红色标题',
               titleStyle: TextStyle(
                 fontSize: 15.0,
                 color: Colors.red,
               ),
             ),
             JhFormSelectCell(
-              title: "左标题",
-              text: "红色文字",
+              title: '左标题',
+              text: '红色文字',
               textStyle: TextStyle(
                 fontSize: 15.0,
                 color: Colors.red,
               ),
             ),
             JhFormSelectCell(
-              title: "左标题",
-              text: "text靠右",
+              title: '左标题',
+              text: 'text靠右',
               textAlign: TextAlign.right,
             ),
             JhFormSelectCell(
-              title: "左标题",
+              title: '左标题',
               hintText: '隐藏箭头',
               rightWidget: Container(
                 color: Colors.yellow,

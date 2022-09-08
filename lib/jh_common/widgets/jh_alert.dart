@@ -29,17 +29,17 @@ class JhAlert {
           return CupertinoAlertDialog(
             title: Offstage(
               offstage: title == null ? true : false,
-              child: Text(title == null ? "" : title),
+              child: Text(title == null ? '' : title),
             ),
             content: Offstage(
               offstage: content == null ? true : false,
-              child: Container(padding: const EdgeInsets.only(top: 10), child: Text(content == null ? "" : content)),
+              child: Container(padding: const EdgeInsets.only(top: 10), child: Text(content == null ? '' : content)),
             ),
             actions: <Widget>[
 //            CupertinoButton(
 //              child: Text(_cancelText,style: TextStyle(fontSize: 10),),
 //              onPressed: () {
-//                Navigator.pop(context); // Navigator.of(context).pop("点击了取消");
+//                Navigator.pop(context); // Navigator.of(context).pop('点击了取消');
 //              },
 //            ),
               TextButton(

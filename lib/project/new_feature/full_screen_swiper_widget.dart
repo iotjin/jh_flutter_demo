@@ -12,10 +12,10 @@ class _FullScreenSwiperWidgetState extends State<FullScreenSwiperWidget> {
   static const _kCurve = Curves.ease;
 
   List _imgList = [
-    "assets/images/newFeature/newFeature_0.jpeg",
-    "assets/images/newFeature/newFeature_1.jpeg",
-    "assets/images/newFeature/newFeature_2.jpeg",
-    "assets/images/newFeature/newFeature_3.jpeg",
+    'assets/images/newFeature/newFeature_0.jpeg',
+    'assets/images/newFeature/newFeature_1.jpeg',
+    'assets/images/newFeature/newFeature_2.jpeg',
+    'assets/images/newFeature/newFeature_3.jpeg',
   ];
 
   List<Widget> _imgWidgets = [];

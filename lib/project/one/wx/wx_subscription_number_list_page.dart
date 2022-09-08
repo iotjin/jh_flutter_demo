@@ -14,10 +14,10 @@ List _getData() {
   _dataArr = [];
   for (int i = 0; i < 50; i++) {
     var map = new Map();
-    map["title"] = "title$i";
-    map["subtitle"] = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
-    map["img"] = "assets/images/ic_demo1.png";
-    map["time"] = "17:30";
+    map['title'] = 'title$i';
+    map['subtitle'] = '这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容';
+    map['img'] = 'assets/images/ic_demo1.png';
+    map['time'] = '17:30';
     _dataArr.add(map);
   }
   return _dataArr;

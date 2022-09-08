@@ -38,8 +38,8 @@ import '/demos/chart/mpChart_line_page1.dart';
 
 // 表单
 import '/demos/form/form_demo_lists_page.dart';
-import '/demos/form/login_textfeld_test_page.dart';
-import '/demos/form/input_textfield_test_page.dart';
+import '/demos/form/login_text_field_test_page.dart';
+import '/demos/form/input_text_field_test_page.dart';
 import '/demos/form/form_Input_cell_test_page.dart';
 import '/demos/form/form_select_cell_test_page.dart';
 import '/demos/form/set_cell_test_page.dart';
@@ -108,9 +108,9 @@ final String demoListsPage = 'DemoListsPage';
 // 配置路由命名信息
 final routes = {
   loginPage: (context) => LoginPage(),
-  "RegisterPage": (context) => RegisterPage(),
-  "FindPwdPage": (context) => FindPwdPage(),
-  "CodeLoginPage": (context) => CodeLoginPage(),
+  'RegisterPage': (context) => RegisterPage(),
+  'FindPwdPage': (context) => FindPwdPage(),
+  'CodeLoginPage': (context) => CodeLoginPage(),
 
   onePage: (context) => OnePage(),
   twoPage: (context) => TwoPage(),
@@ -118,87 +118,87 @@ final routes = {
 
   // four
   fourPage: (context) => FourPage(),
-  "SetPage": (context) => SetPage(),
-  "InfoPage": (context) => InfoPage(),
-  "AboutPage": (context) => AboutPage(),
-  "AboutIOSPage": (context) => AboutIOSPage(),
+  'SetPage': (context) => SetPage(),
+  'InfoPage': (context) => InfoPage(),
+  'AboutPage': (context) => AboutPage(),
+  'AboutIOSPage': (context) => AboutIOSPage(),
 
   demoListsPage: (context) => DemoListsPage(),
 
   // Alert
-  "AlertDemoListsPage": (context) => AlertDemoListsPage(),
-  "AlertTestPage": (context) => AlertTestPage(),
-  "BottomSheetTest": (context) => BottomSheetTest(),
+  'AlertDemoListsPage': (context) => AlertDemoListsPage(),
+  'AlertTestPage': (context) => AlertTestPage(),
+  'BottomSheetTest': (context) => BottomSheetTest(),
   // toast
-  "ToastDemoListsPage": (context) => ToastDemoListsPage(),
-  "ToastTestPage": (context) => ToastTestPage(),
+  'ToastDemoListsPage': (context) => ToastDemoListsPage(),
+  'ToastTestPage': (context) => ToastTestPage(),
 
   // chart
-  "ChartDemoListPage": (context) => ChartDemoListPage(),
-  "ChartPage1": (context) => ChartPage1(),
-  "ChartPage2": (context) => ChartPage2(),
-  "EChartPage1": (context) => EChartPage1(),
-  // "MpChartLinePage1": (context) => MpChartLinePage1(),
+  'ChartDemoListPage': (context) => ChartDemoListPage(),
+  'ChartPage1': (context) => ChartPage1(),
+  'ChartPage2': (context) => ChartPage2(),
+  'EChartPage1': (context) => EChartPage1(),
+  // 'MpChartLinePage1': (context) => MpChartLinePage1(),
 
   // 表单
-  "FormDemoListsPage": (context) => FormDemoListsPage(),
-  "LoginTextFieldTestPage": (context) => LoginTextFieldTestPage(),
-  "InputTextFieldTestPage": (context) => InputTextFieldTestPage(),
-  "FormInputCellTestPage": (context) => FormInputCellTestPage(),
-  "FormSelectCellTestPage": (context) => FormSelectCellTestPage(),
-  "SetCellTestPage": (context) => SetCellTestPage(),
-  "FormTestPage": (context) => FormTestPage(),
+  'FormDemoListsPage': (context) => FormDemoListsPage(),
+  'LoginTextFieldTestPage': (context) => LoginTextFieldTestPage(),
+  'InputTextFieldTestPage': (context) => InputTextFieldTestPage(),
+  'FormInputCellTestPage': (context) => FormInputCellTestPage(),
+  'FormSelectCellTestPage': (context) => FormSelectCellTestPage(),
+  'SetCellTestPage': (context) => SetCellTestPage(),
+  'FormTestPage': (context) => FormTestPage(),
 
   // GridView
-  "GridViewDemoListsPage": (context) => GridViewDemoListsPage(),
-  "GridViewTest1": (context) => GridViewTest1(),
-  "GridViewTest2": (context) => GridViewTest2(),
-  "GridViewTest3": (context) => GridViewTest3(),
-  "GridViewTest4": (context) => GridViewTest4(),
-  "GridViewTestPage5": (context) => GridViewTestPage5(),
+  'GridViewDemoListsPage': (context) => GridViewDemoListsPage(),
+  'GridViewTest1': (context) => GridViewTest1(),
+  'GridViewTest2': (context) => GridViewTest2(),
+  'GridViewTest3': (context) => GridViewTest3(),
+  'GridViewTest4': (context) => GridViewTest4(),
+  'GridViewTestPage5': (context) => GridViewTestPage5(),
 
   // http
-  "HttpDemoListsPage": (context) => HttpDemoListsPage(),
-  "HttpTest1Page": (context) => HttpTest1Page(),
-  "HttpPageTestPage": (context) => HttpPageTestPage(),
+  'HttpDemoListsPage': (context) => HttpDemoListsPage(),
+  'HttpTest1Page': (context) => HttpTest1Page(),
+  'HttpPageTestPage': (context) => HttpPageTestPage(),
 
   // ListView
-  "ListViewDemoListsPage": (context) => ListViewDemoListsPage(),
-  "ListViewTest": (context) => ListViewTest(),
-  "ListViewTest2": (context) => ListViewTest2(),
-  "ListViewTest3": (context) => ListViewTest3(),
-  "ListViewTest4": (context) => ListViewTest4(),
-  "ListViewTest5": (context) => ListViewTest5(),
-  "ListViewTestCard": (context) => ListViewTestCard(),
-  "ListViewTestCustomVC": (context) => ListViewTestCustomVC(),
-  "ListViewTestSimplePullDown": (context) => ListViewTestSimplePullDown(),
-  "ListViewTestPullDownVC": (context) => ListViewTestPullDownVC(),
+  'ListViewDemoListsPage': (context) => ListViewDemoListsPage(),
+  'ListViewTest': (context) => ListViewTest(),
+  'ListViewTest2': (context) => ListViewTest2(),
+  'ListViewTest3': (context) => ListViewTest3(),
+  'ListViewTest4': (context) => ListViewTest4(),
+  'ListViewTest5': (context) => ListViewTest5(),
+  'ListViewTestCard': (context) => ListViewTestCard(),
+  'ListViewTestCustomVC': (context) => ListViewTestCustomVC(),
+  'ListViewTestSimplePullDown': (context) => ListViewTestSimplePullDown(),
+  'ListViewTestPullDownVC': (context) => ListViewTestPullDownVC(),
 
   // other
-  "FormTest": (context) => FormTest(),
-  "PhotoSelectTest": (context) => PhotoSelectTest(),
-  "PassValuePage": (context) => PassValuePage(),
-//  "PassValuePage2": (context) => PassValuePage2(),
-  "NavTestPage": (context) => NavTestPage(),
-  "RedDotPage": (context) => RedDotPage(),
-  "QRCodeTest": (context) => QRCodeTest(),
+  'FormTest': (context) => FormTest(),
+  'PhotoSelectTest': (context) => PhotoSelectTest(),
+  'PassValuePage': (context) => PassValuePage(),
+//  'PassValuePage2': (context) => PassValuePage2(),
+  'NavTestPage': (context) => NavTestPage(),
+  'RedDotPage': (context) => RedDotPage(),
+  'QRCodeTest': (context) => QRCodeTest(),
 
   // search
-  "SearchDemoListPage": (context) => SearchDemoListPage(),
-  "SearchTest1Page": (context) => SearchTest1Page(),
-  "SearchTest2Page": (context) => SearchTest2Page(),
-  "SearchTest3Page": (context) => SearchTest3Page(),
+  'SearchDemoListPage': (context) => SearchDemoListPage(),
+  'SearchTest1Page': (context) => SearchTest1Page(),
+  'SearchTest2Page': (context) => SearchTest2Page(),
+  'SearchTest3Page': (context) => SearchTest3Page(),
 
   // TopTabBarDemoListPage
-  "TopTabBarDemoListPage": (context) => TopTabBarDemoListPage(),
-  "TopTabBarTest1Page": (context) => TopTabBarTest1Page(),
-  "TopTabBarTest2Page": (context) => TopTabBarTest2Page(),
-  "TopTabBarTest3Page": (context) => TopTabBarTest3Page(),
+  'TopTabBarDemoListPage': (context) => TopTabBarDemoListPage(),
+  'TopTabBarTest1Page': (context) => TopTabBarTest1Page(),
+  'TopTabBarTest2Page': (context) => TopTabBarTest2Page(),
+  'TopTabBarTest3Page': (context) => TopTabBarTest3Page(),
 
   // ui
-  "UIDemoListsPage": (context) => UIDemoListsPage(),
-  "UIPage": (context) => UIPage(),
-  "UIPage2": (context) => UIPage2(),
+  'UIDemoListsPage': (context) => UIDemoListsPage(),
+  'UIPage': (context) => UIPage(),
+  'UIPage2': (context) => UIPage2(),
 };
 
 class UnknownPage extends StatelessWidget {

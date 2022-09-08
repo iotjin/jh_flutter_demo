@@ -33,7 +33,7 @@ class _LoginPageFeiState extends State<LoginPageFei> {
   @override
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
-    _nameController.text = "jin";
+    _nameController.text = 'jin';
     if (_nameController.text != null) {
       _nameAutoFocus = false;
     }
@@ -87,7 +87,7 @@ class _LoginPageFeiState extends State<LoginPageFei> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    print("login dispose-fei");
+    print('login dispose-fei');
   }
 
   @override
@@ -111,15 +111,15 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                   child: Align(
                       alignment: Alignment.topRight,
                       child: InkWell(
-                        child: Text("注册", style: TextStyle(fontSize: 18)),
+                        child: Text('注册', style: TextStyle(fontSize: 18)),
                         onTap: () {
-                          JhNavUtils.pushNamed(context, "RegisterPage");
+                          JhNavUtils.pushNamed(context, 'RegisterPage');
                         },
                       )),
                 ),
 
                 SizedBox(height: 50),
-//                  Image.asset("assets/images/lufei.png",width: 100,),
+//                  Image.asset('assets/images/lufei.png',width: 100,),
 
                 Container(
                   height: 100,
@@ -141,8 +141,8 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                   focusNode: _node1,
                   controller: _nameController,
                   decoration: InputDecoration(
-//                    labelText: "用户名",
-                    hintText: "请输入用户名",
+//                    labelText: '用户名',
+                    hintText: '请输入用户名',
                     hintStyle: TextStyle(fontSize: 15),
                     prefixIcon: Icon(Icons.person),
                     suffixIcon: Container(
@@ -157,7 +157,7 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                                     size: 20,
                                   ),
                                   onPressed: () => _clickDeleteBtn())
-                              : Text(""),
+                              : Text(''),
                         ],
                       ),
                     ),
@@ -171,8 +171,8 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                   focusNode: _node2,
                   controller: _pwdController,
                   decoration: InputDecoration(
-//                    labelText: "密码",
-                    hintText: "请输入密码",
+//                    labelText: '密码',
+                    hintText: '请输入密码',
                     hintStyle: TextStyle(fontSize: 15),
                     focusedBorder:
                         UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
@@ -198,8 +198,8 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                                     color: Color(0xFFC8C8C8),
                                     size: 20,
                                   ),
-                                  onPressed: () => _pwdController.text = "")
-                              : Text(""),
+                                  onPressed: () => _pwdController.text = '')
+                              : Text(''),
                           IconButton(
                             icon: Icon(pwdShow ? Icons.visibility : Icons.visibility_off),
                             onPressed: () {
@@ -215,7 +215,7 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                   obscureText: !pwdShow,
                 ),
                 SizedBox(height: 50),
-                JhButton(text: "登 录", onPressed: _clickOkBtn),
+                JhButton(text: '登 录', onPressed: _clickOkBtn),
                 SizedBox(height: 10),
                 Container(
                   height: 40.0,
@@ -224,7 +224,7 @@ class _LoginPageFeiState extends State<LoginPageFei> {
                       child: Text(
                         '忘记密码',
                       ),
-                      onTap: () => JhNavUtils.pushNamed(context, "FindPwdPage")),
+                      onTap: () => JhNavUtils.pushNamed(context, 'FindPwdPage')),
                 ),
               ],
             ),
@@ -235,8 +235,8 @@ class _LoginPageFeiState extends State<LoginPageFei> {
   }
 
   void _clickDeleteBtn() {
-    print("点击删除");
-    _nameController.text = "";
+    print('点击删除');
+    _nameController.text = '';
   }
 
   void _clickOkBtn() async {
@@ -244,11 +244,11 @@ class _LoginPageFeiState extends State<LoginPageFei> {
 //         MaterialPageRoute(builder: (context) => BaseTabBar()
 //        ), (route) => route == null);
 
-//    Navigator.pushReplacementNamed(context, "BaseTabBar");
+//    Navigator.pushReplacementNamed(context, 'BaseTabBar');
 
     var hide = JhToast.showIOSLoadingText(
       context,
-      msg: "正在登录...",
+      msg: '正在登录...',
     );
     Future.delayed(Duration(seconds: 0), () {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (BaseTabBar())));

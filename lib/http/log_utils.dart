@@ -67,7 +67,7 @@ class LogUtils {
     data.keys.toList().asMap().forEach((index, key) {
       final bool isLast = index == data.length - 1;
       var value = data[key];
-      if (value is String) value = '\"$value\"';
+      if (value is String) value = '\'$value\'';
       if (value is Map) {
         if (value.length == 0)
           LogUtil.v('${_indent(tabs)} $key: $value${!isLast ? ',' : ''}', tag: tag);

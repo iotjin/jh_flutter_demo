@@ -34,8 +34,8 @@ class JhNinePicture extends StatelessWidget {
         : imgData!.length <= 3
             ? 1
             : 2;
-    // print("九宫格宽 $_ninePictureW ");
-    // print("item宽  $_itemWH ");
+    // print('九宫格宽 $_ninePictureW ');
+    // print('item宽  $_itemWH ');
 
     bool _isHandleFour = isHandleFour && imgData!.length == 4;
 

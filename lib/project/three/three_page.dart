@@ -31,7 +31,7 @@ Widget _body(context) {
     children: <Widget>[
       JhSetCell(
         cellHeight: _cellH,
-        leftImgPath: "assets/wechat/discover/ic_social_circle.png",
+        leftImgPath: 'assets/wechat/discover/ic_social_circle.png',
         title: '朋友圈',
         hiddenLine: true,
 //      rightWidget: Image.network('https://gitee.com/iotjh/Picture/raw/master/lufei.png',width: 50,height: 50,),
@@ -46,7 +46,7 @@ Widget _body(context) {
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
-        leftImgPath: "assets/wechat/discover/ic_video_number.png",
+        leftImgPath: 'assets/wechat/discover/ic_video_number.png',
         title: '视频号',
         hiddenLine: true,
         clickCallBack: () => _clickCell(context, '视频号'),
@@ -55,13 +55,13 @@ Widget _body(context) {
       JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
-        leftImgPath: "assets/wechat/discover/ic_quick_scan.png",
+        leftImgPath: 'assets/wechat/discover/ic_quick_scan.png',
         title: '扫一扫',
         clickCallBack: () => _clickCell(context, '扫一扫'),
       ),
       JhSetCell(
         cellHeight: _cellH,
-        leftImgPath: "assets/wechat/discover/ic_shake_phone.png",
+        leftImgPath: 'assets/wechat/discover/ic_shake_phone.png',
         title: '摇一摇',
         hiddenLine: true,
         clickCallBack: () => _clickCell(context, '摇一摇'),
@@ -70,13 +70,13 @@ Widget _body(context) {
       JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
-        leftImgPath: "assets/wechat/discover/ic_feeds.png",
+        leftImgPath: 'assets/wechat/discover/ic_feeds.png',
         title: '看一看',
         clickCallBack: () => _clickCell(context, '看一看'),
       ),
       JhSetCell(
         cellHeight: _cellH,
-        leftImgPath: "assets/wechat/discover/ic_quick_search.png",
+        leftImgPath: 'assets/wechat/discover/ic_quick_search.png',
         title: '搜一搜',
         hiddenLine: true,
         clickCallBack: () => _clickCell(context, '搜一搜'),
@@ -84,7 +84,7 @@ Widget _body(context) {
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
-        leftImgPath: "assets/wechat/discover/ic_people_nearby.png",
+        leftImgPath: 'assets/wechat/discover/ic_people_nearby.png',
         title: '附近的人',
         hiddenLine: true,
         clickCallBack: () => _clickCell(context, '附近的人'),
@@ -93,13 +93,13 @@ Widget _body(context) {
       JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
-        leftImgPath: "assets/wechat/discover/ic_shopping.png",
+        leftImgPath: 'assets/wechat/discover/ic_shopping.png',
         title: '购物',
         clickCallBack: () => _clickCell(context, '购物'),
       ),
       JhSetCell(
         cellHeight: _cellH,
-        leftImgPath: "assets/wechat/discover/ic_game_entry.png",
+        leftImgPath: 'assets/wechat/discover/ic_game_entry.png',
         title: '游戏',
         hiddenLine: true,
         clickCallBack: () => _clickCell(context, '游戏'),
@@ -107,7 +107,7 @@ Widget _body(context) {
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
-        leftImgPath: "assets/wechat/discover/ic_mini_program.png",
+        leftImgPath: 'assets/wechat/discover/ic_mini_program.png',
         title: '小程序',
         hiddenLine: true,
         clickCallBack: () => _clickCell(context, '小程序'),
@@ -137,12 +137,12 @@ Widget testBtn(context) {
       height: 200,
       child: ElevatedButton(
 //        color: Colors.red,
-        child: Text("点击跳转"),
+        child: Text('点击跳转'),
         onPressed: () {
           print('onPressed');
-          JhNavUtils.pushNamed(context, "UIDemoListsPage");
+          JhNavUtils.pushNamed(context, 'UIDemoListsPage');
 //          Navigator.push(context, MaterialPageRoute(builder: (context) => (UIDemoListsPage())));// 普通路由
-//          Navigator.push(context, MaterialPageRoute(builder: (context) => (testPage(content: "这是route传递的参数",))));// 普通路由
+//          Navigator.push(context, MaterialPageRoute(builder: (context) => (testPage(content: '这是route传递的参数',))));// 普通路由
 //          JhNavUtils.pushNamed(context,'/Test');// 命名路由
         },
       ));

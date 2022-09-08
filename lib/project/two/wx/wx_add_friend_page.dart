@@ -10,34 +10,34 @@ import '/project/configs/project_config.dart';
 
 List _dataArr = [
   {
-    "title": "雷达加朋友",
-    "subtitle": "添加身边的朋友",
-    "img": "assets/wechat/contacts/add/add_friend_icon_reda_36x36_@3x.png",
+    'title': '雷达加朋友',
+    'subtitle': '添加身边的朋友',
+    'img': 'assets/wechat/contacts/add/add_friend_icon_reda_36x36_@3x.png',
   },
   {
-    "title": "面对面建群",
-    "subtitle": "与身边的朋友进入同一个群聊",
-    "img": "assets/wechat/contacts/add/add_friend_icon_addgroup_36x36_@3x.png",
+    'title': '面对面建群',
+    'subtitle': '与身边的朋友进入同一个群聊',
+    'img': 'assets/wechat/contacts/add/add_friend_icon_addgroup_36x36_@3x.png',
   },
   {
-    "title": "扫一扫",
-    "subtitle": "扫描二维码名片",
-    "img": "assets/wechat/contacts/add/add_friend_icon_scanqr_36x36_@3x.png",
+    'title': '扫一扫',
+    'subtitle': '扫描二维码名片',
+    'img': 'assets/wechat/contacts/add/add_friend_icon_scanqr_36x36_@3x.png',
   },
   {
-    "title": "手机联系人",
-    "subtitle": "添加手机通讯录中的朋友",
-    "img": "assets/wechat/contacts/add/add_friend_icon_contacts_36x36_@3x.png",
+    'title': '手机联系人',
+    'subtitle': '添加手机通讯录中的朋友',
+    'img': 'assets/wechat/contacts/add/add_friend_icon_contacts_36x36_@3x.png',
   },
   {
-    "title": "公众号",
-    "subtitle": "获取更多资讯和服务",
-    "img": "assets/wechat/contacts/add/add_friend_icon_offical_36x36_@3x.png",
+    'title': '公众号',
+    'subtitle': '获取更多资讯和服务',
+    'img': 'assets/wechat/contacts/add/add_friend_icon_offical_36x36_@3x.png',
   },
   {
-    "title": "企业微信联系人",
-    "subtitle": "通过手机号搜索企业微信用户",
-    "img": "assets/wechat/contacts/add/add_friend_icon_search_wework_40x40_@2x.png",
+    'title': '企业微信联系人',
+    'subtitle': '通过手机号搜索企业微信用户',
+    'img': 'assets/wechat/contacts/add/add_friend_icon_search_wework_40x40_@2x.png',
   },
 ];
 

@@ -20,10 +20,10 @@ typedef _CallBack = void Function(int selectIndex, String selectStr);
 class JhTextList extends StatelessWidget {
   const JhTextList({
     Key? key,
-    this.title = "",
+    this.title = '',
     this.dataArr,
     this.callBack,
-    this.isBack: true,
+    this.isBack = true,
   }) : super(key: key);
 
   final List? dataArr;
@@ -61,7 +61,7 @@ class JhTextList extends StatelessWidget {
               ],
             )),
         onTap: () {
-//              print("点击的index---"+index.toString());
+//              print('点击的index---'+index.toString());
           if (callBack != null) {
             callBack!(index, dataArr?[index]);
           }
@@ -91,7 +91,7 @@ class JhTextList extends StatelessWidget {
 //                 title: Text(dataArr[index]),
 //                   trailing: Icon(Icons.arrow_forward_ios,size: 18,color: Color(0xFFC8C8C8),),
 //                       onTap:() {
-//        //                 print("点击的index---"+index.toString());
+//        //                 print('点击的index---'+index.toString());
 //                           if(callBack !=null){callBack(index,dataArr[index]);}
 //                          }
 //                  )

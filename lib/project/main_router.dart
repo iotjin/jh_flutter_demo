@@ -62,23 +62,23 @@ class MainRouter implements IRouterProvider {
     router.define(fourPage, handler: Handler(handlerFunc: (_, __) => FourPage()));
     // 二维码扫描
     router.define('QrCodeGridScannerPage', handler: Handler(handlerFunc: (_, __) => QrCodeGridScannerPage()));
-    router.define("QrCodeScannerPage", handler: Handler(handlerFunc: (_, params) {
+    router.define('QrCodeScannerPage', handler: Handler(handlerFunc: (_, params) {
       var jumpParams = params['jumpParams']!.first;
       return QrCodeScannerPage(isShowScanLine: jsonDecode(jumpParams));
     }));
 
-    router.define("SetPage", handler: Handler(handlerFunc: (_, __) => SetPage()));
-    router.define("InfoPage", handler: Handler(handlerFunc: (_, __) => InfoPage()));
-    router.define("ThemePage", handler: Handler(handlerFunc: (_, __) => ThemePage()));
-    router.define("AboutPage", handler: Handler(handlerFunc: (_, __) => AboutPage()));
-    router.define("AboutIOSPage", handler: Handler(handlerFunc: (_, __) => AboutIOSPage()));
-    router.define("MinePage", handler: Handler(handlerFunc: (_, __) => MinePage()));
-    router.define("ImgPullDownBigPage", handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage()));
-    router.define("ImgPullDownBigPage2", handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage2()));
-    router.define("ImgPullDownBigPage3", handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage3()));
-    router.define("PersonCenterPage", handler: Handler(handlerFunc: (_, __) => PersonCenterPage()));
-    router.define("PersonCenterPage2", handler: Handler(handlerFunc: (_, __) => PersonCenterPage2()));
-    router.define("FadeAppBarPage", handler: Handler(handlerFunc: (_, __) => FadeAppBarPage()));
+    router.define('SetPage', handler: Handler(handlerFunc: (_, __) => SetPage()));
+    router.define('InfoPage', handler: Handler(handlerFunc: (_, __) => InfoPage()));
+    router.define('ThemePage', handler: Handler(handlerFunc: (_, __) => ThemePage()));
+    router.define('AboutPage', handler: Handler(handlerFunc: (_, __) => AboutPage()));
+    router.define('AboutIOSPage', handler: Handler(handlerFunc: (_, __) => AboutIOSPage()));
+    router.define('MinePage', handler: Handler(handlerFunc: (_, __) => MinePage()));
+    router.define('ImgPullDownBigPage', handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage()));
+    router.define('ImgPullDownBigPage2', handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage2()));
+    router.define('ImgPullDownBigPage3', handler: Handler(handlerFunc: (_, __) => ImgPullDownBigPage3()));
+    router.define('PersonCenterPage', handler: Handler(handlerFunc: (_, __) => PersonCenterPage()));
+    router.define('PersonCenterPage2', handler: Handler(handlerFunc: (_, __) => PersonCenterPage2()));
+    router.define('FadeAppBarPage', handler: Handler(handlerFunc: (_, __) => FadeAppBarPage()));
 
     /********************************* 首页 ********************************/
 
@@ -92,31 +92,31 @@ class MainRouter implements IRouterProvider {
     /********************************* 联系人 ********************************/
 
     // 个人信息页面
-    router.define("WxUserInfoPage", handler: Handler(handlerFunc: (_, params) {
-//      print("---------params---------");
+    router.define('WxUserInfoPage', handler: Handler(handlerFunc: (_, params) {
+//      print('---------params---------');
 //      print(params);
       String jsonStr = params['passValue']!.first;
       ContactsModel model = ContactsModel.fromJson(json.decode(jsonStr));
 //      print('model: ${ model.name }');
-//      print("---------params---------");
+//      print('---------params---------');
       return WxUserInfoPage(model);
     }));
     // 资料设置
-    router.define("WxInfoSetPage", handler: Handler(handlerFunc: (_, params) {
+    router.define('WxInfoSetPage', handler: Handler(handlerFunc: (_, params) {
       String jsonStr = params['passValue']!.first;
       ContactsModel model = ContactsModel.fromJson(json.decode(jsonStr));
       return WxInfoSetPage(model);
     }));
-    router.define("WxAddFriendPage", handler: Handler(handlerFunc: (_, __) => WxAddFriendPage()));
-    router.define("WxNewFriendPage", handler: Handler(handlerFunc: (_, __) => WxNewFriendPage()));
-    router.define("WxGroupChatPage", handler: Handler(handlerFunc: (_, __) => WxGroupChatPage()));
+    router.define('WxAddFriendPage', handler: Handler(handlerFunc: (_, __) => WxAddFriendPage()));
+    router.define('WxNewFriendPage', handler: Handler(handlerFunc: (_, __) => WxNewFriendPage()));
+    router.define('WxGroupChatPage', handler: Handler(handlerFunc: (_, __) => WxGroupChatPage()));
 
     /********************************* 发现 ********************************/
-    router.define("WxFriendsCirclePage", handler: Handler(handlerFunc: (_, __) => WxFriendsCirclePage()));
+    router.define('WxFriendsCirclePage', handler: Handler(handlerFunc: (_, __) => WxFriendsCirclePage()));
 
     /********************************* 我的 ********************************/
-    router.define("WxPersonInfoPage", handler: Handler(handlerFunc: (_, __) => WxPersonInfoPage()));
-    router.define("WxPayPage", handler: Handler(handlerFunc: (_, __) => WxPayPage()));
-    router.define("WxPayManagerPage", handler: Handler(handlerFunc: (_, __) => WxPayManagerPage()));
+    router.define('WxPersonInfoPage', handler: Handler(handlerFunc: (_, __) => WxPersonInfoPage()));
+    router.define('WxPayPage', handler: Handler(handlerFunc: (_, __) => WxPayPage()));
+    router.define('WxPayManagerPage', handler: Handler(handlerFunc: (_, __) => WxPayManagerPage()));
   }
 }

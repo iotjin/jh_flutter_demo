@@ -33,16 +33,16 @@ class JhCascadeTreePicker {
   static void show(
     BuildContext context, {
     required List data, // tree数组
-    List values: const [], // 默认选中的数组
-    String labelKey: _labelKey, // tree数据的文字字段
-    String valueKey: _valueKey, // tree数据的数值字段
-    String childrenKey: _childrenKey, // tree数据的children字段
-    String title: _titleText,
-    String tabText: _tabText,
-    bool isShowSearch: true,
-    String searchHintText: _searchHintText,
-    String splitString: _splitString, // 搜索结果显示时分割两级的字符串
-    bool isShowRadius: true,
+    List values = const [], // 默认选中的数组
+    String labelKey = _labelKey, // tree数据的文字字段
+    String valueKey = _valueKey, // tree数据的数值字段
+    String childrenKey = _childrenKey, // tree数据的children字段
+    String title = _titleText,
+    String tabText = _tabText,
+    bool isShowSearch = true,
+    String searchHintText = _searchHintText,
+    String splitString = _splitString, // 搜索结果显示时分割两级的字符串
+    bool isShowRadius = true,
     _ClickCallBack? clickCallBack,
   }) {
     if (data.length <= 0) {
@@ -88,15 +88,15 @@ class JhCascadePickerView extends StatefulWidget {
   const JhCascadePickerView({
     Key? key,
     required this.data,
-    this.values: const [],
-    this.labelKey: _labelKey,
-    this.valueKey: _valueKey,
-    this.childrenKey: _childrenKey,
-    this.title: _titleText,
-    this.tabText: _tabText,
-    this.isShowSearch: true,
-    this.searchHintText: _searchHintText,
-    this.splitString: _splitString,
+    this.values = const [],
+    this.labelKey = _labelKey,
+    this.valueKey = _valueKey,
+    this.childrenKey = _childrenKey,
+    this.title = _titleText,
+    this.tabText = _tabText,
+    this.isShowSearch = true,
+    this.searchHintText = _searchHintText,
+    this.splitString = _splitString,
     this.clickCallBack,
   }) : super(key: key);
 

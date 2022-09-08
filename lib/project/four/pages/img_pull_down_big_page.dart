@@ -105,7 +105,7 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage> with TickerProv
   Widget _cell(context, index) {
     return Container(
       child: Text(
-        "This is item $index",
+        'This is item $index',
         style: TextStyle(fontSize: 20),
       ),
       color: Colors.redAccent,

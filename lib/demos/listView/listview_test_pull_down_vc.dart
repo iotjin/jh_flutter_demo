@@ -17,12 +17,12 @@ void getNewData() {
   dataArr = [];
   for (int i = pageIndex * count; i < count; i++) {
     var map = new Map();
-    map["title"] = "title$i";
-    map["place"] = "place$i";
-    map["state"] = "流转中$i";
-    map["content"] = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
-    map["phone"] = '$i$i$i' + 'xxxxxxx';
-    map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+    map['title'] = 'title$i';
+    map['place'] = 'place$i';
+    map['state'] = '流转中$i';
+    map['content'] = '这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容';
+    map['phone'] = '$i$i$i' + 'xxxxxxx';
+    map['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     dataArr.add(map);
   }
 }
@@ -31,12 +31,12 @@ void getMoreData() {
   pageIndex++;
   for (int i = pageIndex * count; i < pageIndex * count + count; i++) {
     var map = new Map();
-    map["title"] = "title$i";
-    map["place"] = "place$i";
-    map["state"] = "流转中$i";
-    map["content"] = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容";
-    map["phone"] = '$i$i$i' + 'xxxxxxx';
-    map["imageUrl"] = "https://gitee.com/iotjh/Picture/raw/master/lufei.png";
+    map['title'] = 'title$i';
+    map['place'] = 'place$i';
+    map['state'] = '流转中$i';
+    map['content'] = '这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容';
+    map['phone'] = '$i$i$i' + 'xxxxxxx';
+    map['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     dataArr.add(map);
   }
 }
@@ -59,29 +59,29 @@ class _ListViewTestPullDownVCState extends State<ListViewTestPullDownVC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, "ListViewTestPullDownVC"),
+        appBar: backAppBar(context, 'ListViewTestPullDownVC'),
         body: EasyRefresh(
             header: BallPulseHeader(),
             controller: _controller,
             firstRefresh: true,
             onRefresh: () async {
               await Future.delayed(Duration(seconds: 2), () {
-                print("下拉刷新-----");
+                print('下拉刷新-----');
                 getNewData();
                 setState(() {
                   _count = dataArr.length;
-                  print("最新条数" + _count.toString());
+                  print('最新条数' + _count.toString());
                   _controller.resetLoadState();
                 });
               });
             },
             onLoad: () async {
               await Future.delayed(Duration(seconds: 2), () {
-                print("上拉加载-----");
+                print('上拉加载-----');
                 getMoreData();
                 setState(() {
                   _count = dataArr.length;
-                  print("加载更多条数" + _count.toString());
+                  print('加载更多条数' + _count.toString());
                 });
                 _controller.finishLoad(noMore: _count >= 30);
               });
@@ -99,7 +99,7 @@ Widget cell(int dataCount) {
 //        print(json);
       // 将Json转成实体类
       CustomViewModel model = CustomViewModel.fromJson(json);
-      print("title" + model.title!);
+      print('title' + model.title!);
       return ListViewTestCustomCell(data: model);
     },
     separatorBuilder: (context, index) {

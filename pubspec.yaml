@@ -117,7 +117,8 @@ dependencies:
   azlistview: ^2.0.0
   # 汉字转拼音 https://pub.flutter-io.cn/packages/lpinyin
   lpinyin: ^2.0.3
-
+  # 拖拽排序 https://pub.flutter-io.cn/packages/reorderables
+  reorderables: ^0.4.4
 
   #  # 加载框,华为手机有异常 https://pub.flutter-io.cn/packages/oktoast
   #  oktoast: ^3.1.4
