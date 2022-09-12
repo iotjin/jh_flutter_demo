@@ -5,7 +5,7 @@
 
 import 'dart:convert';
 import 'package:encrypt/encrypt.dart';
-import 'package:flustars/flustars.dart';
+import 'package:flustars_flutter3/flustars_flutter3.dart';
 
 var _key = 'sdfg5468wwdfd542sd4asdf4sadfqd12';
 var _iv = '0000000000000000';

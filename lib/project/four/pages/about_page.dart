@@ -58,7 +58,7 @@ class _AboutPageState extends State<AboutPage> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 2s定时器
       _countdownTimer = Timer.periodic(Duration(seconds: 2), (timer) {
         // https://www.jianshu.com/p/e4106b829bff

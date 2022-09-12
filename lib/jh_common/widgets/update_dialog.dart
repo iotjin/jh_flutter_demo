@@ -6,7 +6,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:flustars/flustars.dart';
+import 'package:flustars_flutter3/flustars_flutter3.dart';
 import 'package:flutter/foundation.dart';
 import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_theme_utils.dart';

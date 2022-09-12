@@ -4,7 +4,7 @@
 ///  description:  AES 数据存储（封装第三方）
 
 import 'dart:convert';
-import 'package:flustars/flustars.dart';
+import 'package:flustars_flutter3/flustars_flutter3.dart';
 import '/jh_common/utils/jh_encrypt_utils.dart';
 
 /// AES 加密存储

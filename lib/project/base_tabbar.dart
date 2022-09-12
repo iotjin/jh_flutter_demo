@@ -70,7 +70,7 @@ class _BaseTabBarState extends State<BaseTabBar> {
     // TODO: implement initState
     super.initState();
 
-    SchedulerBinding.instance!.addPostFrameCallback((Duration timestamp) {
+    SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
       // 设置EasyRefresh的默认样式
       EasyRefresh.defaultHeader = ClassicalHeader(
         enableInfiniteRefresh: false,

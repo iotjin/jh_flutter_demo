@@ -206,10 +206,10 @@ Widget testBtn = Column(children: <Widget>[
     onPressed: () {},
   ),
   // 废弃
-  OutlineButton(
-    child: Text('带边框的按钮(OutlineButton、Flutter1.22废弃)'),
-    onPressed: () {},
-  ),
+  // OutlineButton(
+  //   child: Text('带边框的按钮(OutlineButton、Flutter1.22废弃)'),
+  //   onPressed: () {},
+  // ),
   // '漂浮'按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
   ElevatedButton(
     child: Text('凸起的按钮(ElevatedButton)'),

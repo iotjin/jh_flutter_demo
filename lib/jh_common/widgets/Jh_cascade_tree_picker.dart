@@ -1,7 +1,7 @@
 ///  Jh_cascade_tree_picker.dart
 ///
 ///  Created by iotjin on 2022/07/23.
-///  description: 级级选择器（树形结构数据、支持搜索）
+///  description: 级联选择器（树形结构数据、支持搜索）
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

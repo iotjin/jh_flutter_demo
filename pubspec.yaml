@@ -11,11 +11,11 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.10.1+1
+version: 3.0.0+1
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
-  flutter: ">=2.5.0"
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -42,60 +42,65 @@ dependencies:
   # 状态管理 https://pub.flutter-io.cn/packages/provider
   provider: ^6.0.3
   # 屏幕参数适配 https://pub.flutter-io.cn/packages/flutter_screenutil
-  flutter_screenutil: ^5.5.3+2
+  flutter_screenutil: ^5.5.4
   # 常用工具类库（本地化 屏幕适配） https://pub.flutter-io.cn/packages/flustars
-  flustars: ^2.0.1
+  #  flustars: ^2.0.1
+  # flustars很久不维护，可以使用这个替代 https://pub.flutter-io.cn/packages/flustars_flutter3
+  flustars_flutter3: ^3.0.0
   # 加密 https://pub.flutter-io.cn/packages/encrypt
   encrypt: ^5.0.1
   # 本地化存储 https://pub.flutter-io.cn/packages/shared_preferences
   shared_preferences: ^2.0.15
   # sq https://pub.flutter-io.cn/packages/sqflite
-  sqflite: ^2.0.2
+  sqflite: ^2.0.3+1
   # webview https://pub.flutter-io.cn/packages/webview_flutter
-  webview_flutter: ^2.8.0
+  webview_flutter: ^3.0.4
   # url打开工具 https://pub.flutter-io.cn/packages/url_launcher
-  url_launcher: ^6.1.2
+  url_launcher: ^6.1.5
   # 处理键盘事件 https://pub.flutter-io.cn/packages/keyboard_actions
-  keyboard_actions: ^3.4.7
+  keyboard_actions: ^4.0.1
   # 时间格式转换 https://pub.flutter-io.cn/packages/date_format
   date_format: ^2.0.6
   # 图片缓存 https://pub.flutter-io.cn/packages/cached_network_image
-  cached_network_image: ^3.2.0
+  cached_network_image: ^3.2.1
   # 图片手势 https://pub.flutter-io.cn/packages/photo_view
   photo_view: ^0.14.0
-  # 图片选择 https://pub.flutter-io.cn/packages/image_picker
-  image_picker: ^0.8.5+3
+  # 手机权限 https://pub.flutter-io.cn/packages/permission_handler
+  permission_handler: ^9.2.0
+  # 图片视频选择器(微信UI) https://pub.flutter-io.cn/packages/wechat_assets_picker
+  wechat_assets_picker: ^8.0.2
+  # 拍照与录像(微信UI) https://pub.flutter-io.cn/packages/wechat_camera_picker
+  wechat_camera_picker: ^3.5.0+1
   # 获取安卓iOS设备信息 https://pub.flutter-io.cn/packages/device_info_plus
-  device_info_plus: ^4.0.0
+  device_info_plus: ^4.1.2
   # 获取版本信息 https://pub.flutter-io.cn/packages/package_info_plus
-  package_info_plus: ^1.4.2
+  package_info_plus: ^1.4.3+1
   # 图片库 https://pub.flutter-io.cn/packages/cupertino_icons
-  cupertino_icons: ^1.0.4
+  cupertino_icons: ^1.0.5
   # toast https://pub.flutter-io.cn/packages/jhtoast
-  jhtoast: 1.1.0
+  jhtoast: ^1.2.0
   # 加载框 https://pub.flutter-io.cn/packages/bot_toast
   bot_toast: 4.0.3
   # 弹框 https://pub.flutter-io.cn/packages/fluttertoast
   fluttertoast: ^8.0.9
   # 底部弹出 日期选择器 单列多列  https://pub.flutter-io.cn/packages/flutter_picker
-  flutter_picker: ^2.0.4
-
+  flutter_picker: ^2.0.5
   # 下拉刷新 https://pub.flutter-io.cn/packages/pull_to_refresh
   pull_to_refresh: ^2.0.0
   # 下拉刷新 https://pub.flutter-io.cn/packages/flutter_easyrefresh
   flutter_easyrefresh: ^2.2.1
   # 列表悬浮头 https://pub.flutter-io.cn/packages/sticky_headers
-  sticky_headers: ^0.2.0
+  sticky_headers: ^0.3.0+2
   # 进度条 https://pub.flutter-io.cn/packages/percent_indicator
-  percent_indicator: ^3.4.0
+  percent_indicator: ^4.2.2
   # 侧滑删除 https://pub.flutter-io.cn/packages/flutter_slidable
-  flutter_slidable: ^1.3.0
+  flutter_slidable: ^2.0.0
   # 小红点 https://pub.flutter-io.cn/packages/badges
-  badges: ^2.0.2
+  badges: ^2.0.3
   # 图表（EChart Flutter版） https://pub.flutter-io.cn/packages/graphic
-  graphic: ^0.10.5
+  graphic: ^0.10.6
   # EChart 图表（缩放手势冲突，不稳定） https://pub.flutter-io.cn/packages/flutter_echarts
-  flutter_echarts: ^2.3.0
+  flutter_echarts: ^2.4.0
   # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter
   charts_flutter: ^0.12.0
   # 图表  https://pub.flutter-io.cn/packages/fl_chart
@@ -103,14 +108,13 @@ dependencies:
   # 二维码生成 https://pub.flutter-io.cn/packages/qr_flutter
   qr_flutter: ^4.0.0
   # 二维码扫描(跳页面) https://pub.flutter-io.cn/packages/qr_code_scanner
-  qr_code_scanner: ^0.7.0
+  qr_code_scanner: ^1.0.1
   # 二维码扫描 https://pub.flutter-io.cn/packages/barcode_scan2
   barcode_scan2: ^4.2.1
   # 轮播 https://pub.flutter-io.cn/packages/flutter_swiper
   #  flutter_swiper: ^1.1.6
-  # 轮播 https://pub.flutter-io.cn/packages/flutter_swiper_null_safety
-  # 这个库，完全根据https://github.com/jzoom/flutter_swiper 使用方式，跟原作者一样 修改的空安全，兼容2.0。
-  flutter_swiper_null_safety: ^1.0.2
+  # Flutter 轮播图 https://pub.flutter-io.cn/packages/flutter_swiper_null_safety_flutter3
+  flutter_swiper_null_safety_flutter3: ^2.0.0   # flutter_swiper很久不维护，可以使用这个替代
   # 轮播 https://pub.flutter-io.cn/packages/carousel_slider
   carousel_slider: ^4.1.1
   # 城市选择列表 https://pub.flutter-io.cn/packages/azlistview
@@ -118,18 +122,43 @@ dependencies:
   # 汉字转拼音 https://pub.flutter-io.cn/packages/lpinyin
   lpinyin: ^2.0.3
   # 拖拽排序 https://pub.flutter-io.cn/packages/reorderables
-  reorderables: ^0.4.4
+  reorderables: ^0.5.0
 
+
+  # ----- 废弃 -----
+  # 图片选择(改为使用wechat_assets_picker) https://pub.flutter-io.cn/packages/image_picker
+  #  image_picker: ^0.8.5+3
   #  # 加载框,华为手机有异常 https://pub.flutter-io.cn/packages/oktoast
   #  oktoast: ^3.1.4
   # 与flutter2.0冲突
+  # 注：Flutter版本升到2.0.3之后，使用以下库写的图片多选选择器和mp_chart图表，暂时先注释了代码，如需查看可按tag v1.0.0版本环境运行查看
   # 相册多图选择 https://pub.flutter-io.cn/packages/photo
   #  photo: 0.4.8
   #  multi_image_picker: ^4.6.1
   # 图表（没有提示栏) https://pub.flutter-io.cn/packages/mp_chart
   #  mp_chart: ^0.3.1 #latest version
+  # ----- 废弃 -----
 
+dependency_overrides:
+  # Pub get 没被覆盖，可删除或修复flutterSDk .pub-cache 中的所有依赖项
+  # 运行命令：flutter pub cache clean 或 flutter pub cache repair 后删除 bin/cache路径下的lockfile重试
+  # 因为引用了GitHub的charts_flutter，要确保能访问GitHub
 
+  # wechat_camera_picker引用，有警告
+  camera: ^0.10.0+1
+
+  # 以下两个处理升级3.0后SchedulerBinding引起的警告(binding的instance是不可为空的，所以不需要使用!)
+
+  # azlistview引用 https://pub.flutter-io.cn/packages/scrollable_positioned_list
+  # https://github.com/flutterchina/azlistview/issues/81
+  scrollable_positioned_list: ^0.3.2
+  # add override of charts_flutter
+  # https://github.com/google/charts/issues/771
+  charts_flutter:
+    git:
+      url: https://github.com/kennenfromchina/charts.git
+      path: charts_flutter
+      ref: fix_flutter3.0
 
 dev_dependencies:
   flutter_test:

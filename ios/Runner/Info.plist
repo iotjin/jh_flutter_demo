@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -32,11 +34,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>是否允许"APP"使用您的相机,以便于进行XXX等操作</string>
+	<string>是否允许"APP"使用您的相机,以便于进行拍照</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>是否允许"APP"访问您的相册,以便于保存图片</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否允许"APP"访问您的相册,以便于进行图片上传等操作</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>是否允许"APP"使用您的麦克风,以便于视频录制、语音识别、语音聊天</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
