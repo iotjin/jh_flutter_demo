@@ -161,4 +161,14 @@ JhNavUtils.pushNamedResult(context, 'TestPage', params, (data) {
 
 JhNavUtils.goBackWithParams(context, {'isRefresh': true});
 
+// 多级返回
+
+Navigator.of(context)
+  ..pop()
+  ..pop();
+
+JhNavUtils.goBack(context);
+JhNavUtils.goBack(context);
+JhNavUtils.goBackWithParams(context, {'isRefresh': true});
+
 */

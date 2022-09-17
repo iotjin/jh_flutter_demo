@@ -177,7 +177,7 @@ baseAppBar(
     );
   }
   return AppBar(
-    title: Text(title, style: TextStyle(fontSize: _titleFontSize, color: titleAndIconColor)),
+    title: Text(title, style: TextStyle(fontSize: _titleFontSize, color: titleAndIconColor), maxLines: 2),
     centerTitle: true,
     backgroundColor: bgColor,
     systemOverlayStyle: JhStatusBarUtils.getStatusBarStyle(isDark: isDark, brightness: brightness),

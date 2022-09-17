@@ -33,12 +33,13 @@ class JhCascadeTreePicker {
   static void show(
     BuildContext context, {
     required List data, // tree数组
-    List values = const [], // 默认选中的数组
     String labelKey = _labelKey, // tree数据的文字字段
     String valueKey = _valueKey, // tree数据的数值字段
     String childrenKey = _childrenKey, // tree数据的children字段
     String title = _titleText,
     String tabText = _tabText,
+    List values = const [], // 默认选中的数组(一维数组)，通过valuesKey确定是根据value还是label进行比较，最好使用唯一值作为元素
+    String valuesKey = _valueKey, // 选中数组内元素使用的字段，对应valueKey或者labelKey
     bool isShowSearch = true,
     String searchHintText = _searchHintText,
     String splitString = _splitString, // 搜索结果显示时分割两级的字符串
@@ -67,12 +68,13 @@ class JhCascadeTreePicker {
         return SafeArea(
           child: JhCascadePickerView(
             data: data,
-            values: values,
             labelKey: labelKey,
             valueKey: valueKey,
             childrenKey: childrenKey,
             title: title,
             tabText: tabText,
+            values: values,
+            valuesKey: valuesKey,
             isShowSearch: isShowSearch,
             searchHintText: searchHintText,
             splitString: splitString,
@@ -88,12 +90,13 @@ class JhCascadePickerView extends StatefulWidget {
   const JhCascadePickerView({
     Key? key,
     required this.data,
-    this.values = const [],
     this.labelKey = _labelKey,
     this.valueKey = _valueKey,
     this.childrenKey = _childrenKey,
     this.title = _titleText,
     this.tabText = _tabText,
+    this.values = const [],
+    this.valuesKey = _valueKey,
     this.isShowSearch = true,
     this.searchHintText = _searchHintText,
     this.splitString = _splitString,
@@ -101,12 +104,13 @@ class JhCascadePickerView extends StatefulWidget {
   }) : super(key: key);
 
   final List? data; // tree数组
-  final List values; // 默认选中的数组
   final String labelKey; // tree数据的文字字段
   final String valueKey; // tree数据的数值字段
   final String childrenKey; // tree数据的children字段
   final String title;
   final String tabText;
+  final List values; // 默认选中的数组(一维数组)，通过valuesKey确定是根据value还是label进行比较，最好使用唯一值作为元素
+  final String valuesKey; // 选中数组内元素使用的字段，对应valueKey或者labelKey
   final bool isShowSearch;
   final String searchHintText;
   final String splitString;
@@ -141,10 +145,9 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   void initState() {
     super.initState();
 
+    _initData();
     if (widget.values.length > 0) {
       _initSelectData();
-    } else {
-      _initData();
     }
   }
 
@@ -173,29 +176,31 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
       List dataArr = widget.data!;
       List tempArr = widget.values;
       for (int i = 0; i < tempArr.length; i++) {
-        var item = tempArr[i];
-        _myTabs.add(Tab(text: item));
-        var index = _getTreeIndexByName(dataArr, item);
-        _positions.add(index);
-        if (i == tempArr.length - 1) {
-          _setList(i);
-          _setIndex(i);
+        var value = tempArr[i];
+        var index = _getTreeIndexByName(dataArr, value);
+        _myTabs[_index] = Tab(text: _mList[index][widget.labelKey]);
+        _positions[_index] = index;
+        _indexIncrement();
+        if (_isNotEmptyChildren(_mList[_positions[_index - 1]])) {
+          _setListAndChangeTab();
+        } else {
+          _setIndex(_index - 1);
         }
+        _tabController?.animateTo(_index);
       }
-      _tabController = TabController(vsync: this, length: tempArr.length);
-      _tabController?.animateTo(tempArr.length - 1, duration: Duration.zero);
     }
   }
 
   /// 根据节点的文字获取对应节点所在的index
-  _getTreeIndexByName(treeArr, name) {
+  /// 根据选中的数组values的每一项的值，通过和valuesKey做对比，获取对应节点所在的index
+  _getTreeIndexByName(treeArr, value) {
     for (int i = 0; i < treeArr.length; i++) {
       var item = treeArr[i];
-      if (treeArr[i][widget.labelKey] == name) {
+      if (treeArr[i][widget.valuesKey] == value) {
         return i;
       } else {
         if (_isNotEmptyChildren(item)) {
-          var res = _getTreeIndexByName(item[widget.childrenKey], name);
+          var res = _getTreeIndexByName(item[widget.childrenKey], value);
           if (res != null) {
             return res;
           }

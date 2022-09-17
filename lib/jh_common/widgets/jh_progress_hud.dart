@@ -13,12 +13,15 @@ const int _closeTime = 1500;
 const bool _onlyOne = true;
 // 是否在点击屏幕触发事件时自动关闭该Toast,默认false
 const bool _clickClose = false;
-// 是否跨页面显示,如果为true,则该Toast会跨越多个Route显示,如果为false则在当前Route发生变化时,会自动关闭该Toast,默认false
-const bool _crossPage = false;
+// 是否跨页面显示,如果为true,则该Toast会跨越多个Route显示,如果为false则在当前Route发生变化时,会自动关闭该Toast,默认true
+// 注意，设置为false时，如果需要在全屏弹框回调中展示toast，可以添加100延时
+const bool _crossPage = true;
 // 点击穿透toast显示区域,为true可以穿透,默认false
 const bool _ignoreContentClick = false;
 // 是否在该Loading Toast显示时,能否正常点击触发事件,默认false
 const bool _allowClickLoading = false;
+// 是否允许该Loading跨页面显示,如果为true,则该Toast会跨越多个Route显示,如果为false则在当前Route发生变化时,会自动关闭该Toast,默认false
+const bool _crossPageLoading = false;
 // 点击物理返回键的行为(在android上等同于物理的返回键)
 const BackButtonBehavior _backButtonBehavior = BackButtonBehavior.none;
 // Toast显示位置,中间往上一点
@@ -82,7 +85,7 @@ CancelFunc _showLoading(loadingText) {
     align: _alignment,
     clickClose: _clickClose,
     allowClick: _allowClickLoading,
-    crossPage: _crossPage,
+    crossPage: _crossPageLoading,
     ignoreContentClick: _ignoreContentClick,
     backButtonBehavior: _backButtonBehavior,
     backgroundColor: Colors.transparent,
