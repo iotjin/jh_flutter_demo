@@ -16,7 +16,7 @@ class _SwiperTest1PageState extends State<SwiperTest1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: backAppBar(context, 'flutter-swiper 1'),
+//      appBar: BaseAppBar( 'flutter-swiper 1'),
       body: Container(
 //        padding: EdgeInsets.fromLTRB(0, 10, 0, 50),
 //        height: 280,

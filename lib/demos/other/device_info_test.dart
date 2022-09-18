@@ -192,7 +192,7 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
                             : '';
 
     return Scaffold(
-      appBar: backAppBar(context, title),
+      appBar: BaseAppBar(title),
       body: ListView(
         children: _deviceData.keys.map(
           (String property) {

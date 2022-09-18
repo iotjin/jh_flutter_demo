@@ -34,7 +34,7 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '资料设置', backgroundColor: Colors.transparent),
+      appBar: BaseAppBar('资料设置', bgColor: Colors.transparent),
       body: _body(context),
     );
   }

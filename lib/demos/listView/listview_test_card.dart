@@ -6,7 +6,7 @@ class ListViewTestCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'ListViewTestCard'),
+      appBar: BaseAppBar('ListViewTestCard'),
       body: ContentBody(),
     );
   }

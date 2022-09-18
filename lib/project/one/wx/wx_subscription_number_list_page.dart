@@ -31,8 +31,8 @@ class WxSubscriptionNumberListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '订阅号',
-          rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
+      appBar: BaseAppBar('订阅号', rightImgPath: 'assets/images/ic_more_black.png', bgColor: Colors.transparent,
+          rightItemCallBack: () {
         _clickCell(context, '更多');
       }),
       body: _body(context, _dataArr),

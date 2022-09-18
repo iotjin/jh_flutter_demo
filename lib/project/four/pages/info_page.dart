@@ -63,7 +63,7 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(context, ''),
+      appBar: BaseAppBar(''),
       body: _body(),
     );
   }

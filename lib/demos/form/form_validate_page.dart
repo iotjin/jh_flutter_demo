@@ -26,7 +26,7 @@ class _FormValidatePageState extends State<FormValidatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'FormValidatePage'),
+        appBar: BaseAppBar('FormValidatePage'),
         body: Scrollbar(
             child: SingleChildScrollView(
                 child: Column(

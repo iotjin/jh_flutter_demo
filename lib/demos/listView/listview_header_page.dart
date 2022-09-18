@@ -10,7 +10,7 @@ class ListViewHeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'ListViewHeader'),
+      appBar: BaseAppBar('ListViewHeader'),
       body: CustomScrollView(
         slivers: <Widget>[
           // 如果不是Sliver家族的Widget，需要使用SliverToBoxAdapter做层包裹

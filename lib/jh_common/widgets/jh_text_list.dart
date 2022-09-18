@@ -71,7 +71,7 @@ class JhTextList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: baseAppBar(context, title, isBack: isBack),
+        appBar: BaseAppBar(title),
         body: ListView.builder(
           physics: BouncingScrollPhysics(),
           itemCount: dataArr?.length,

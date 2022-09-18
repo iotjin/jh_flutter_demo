@@ -61,7 +61,7 @@ class _GridViewTestPage5State extends State<GridViewTestPage5> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, '标题'),
+        appBar: BaseAppBar('标题'),
         backgroundColor: Color(0xFFF8F8F8),
         body: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

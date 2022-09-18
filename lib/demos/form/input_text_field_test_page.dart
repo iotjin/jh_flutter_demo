@@ -12,7 +12,7 @@ class _InputTextFieldTestPageState extends State<InputTextFieldTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'JhTextField'),
+        appBar: BaseAppBar('JhTextField'),
         body: Scrollbar(
             child: SingleChildScrollView(
                 child: Padding(

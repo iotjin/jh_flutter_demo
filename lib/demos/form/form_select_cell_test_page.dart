@@ -11,7 +11,7 @@ class _FormSelectCellTestPageState extends State<FormSelectCellTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'JhFormSelectCell'),
+        appBar: BaseAppBar('JhFormSelectCell'),
         body: Scrollbar(
             child: SingleChildScrollView(
                 child: Padding(

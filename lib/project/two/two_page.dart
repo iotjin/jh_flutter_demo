@@ -117,17 +117,21 @@ class _TwoPageState extends State<TwoPage> with AutomaticKeepAliveClientMixin {
     super.build(context);
 
     var isDark = Theme.of(context).brightness == Brightness.dark;
+
+    var appbar = isDark
+        ? BaseAppBar(KStrings.twoTabTitle,
+            bgColor: KColors.kNavBgDarkColor,
+            leftWidget: Container(),
+            rightImgPath: 'assets/images/tianjiahaoyou.png', rightItemCallBack: () {
+            JhNavUtils.pushNamed(context, 'WxAddFriendPage');
+          })
+        : GradientAppBar(KStrings.twoTabTitle, leftWidget: Container(), rightImgPath: 'assets/images/tianjiahaoyou.png',
+            rightItemCallBack: () {
+            JhNavUtils.pushNamed(context, 'WxAddFriendPage');
+          });
+
     return Scaffold(
-      appBar: isDark
-          ? baseAppBar(context, KStrings.twoTabTitle,
-              backgroundColor: KColors.kNavBgDarkColor,
-              rightImgPath: 'assets/images/tianjiahaoyou.png', rightItemCallBack: () {
-              JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-            })
-          : gradientAppBar(context, KStrings.twoTabTitle, rightImgPath: 'assets/images/tianjiahaoyou.png',
-              rightItemCallBack: () {
-              JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-            }),
+      appBar: appbar as PreferredSizeWidget,
       body: _body(),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );

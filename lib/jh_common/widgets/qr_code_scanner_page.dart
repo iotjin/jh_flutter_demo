@@ -75,6 +75,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
         (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
     return Scaffold(
       body: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
           QRView(
             key: qrKey,
@@ -119,15 +120,14 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
 
   // ignore: unused_element
   _appBar1() {
-    return backAppBar(context, '');
+    return BaseAppBar('');
   }
 
   _appBar2() {
-    return baseAppBar(
-      context,
+    return BaseAppBar(
       '',
-      backgroundColor: Colors.transparent,
-      leftItem: IconButton(
+      bgColor: Colors.transparent,
+      leftWidget: IconButton(
         icon: const Icon(
           Icons.arrow_back_ios_new,
           size: 30,
@@ -159,8 +159,8 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
     );
 
     _animationSize = Tween<EdgeInsets>(
-      begin: EdgeInsets.only(top: scanArea),
-      end: EdgeInsets.only(top: scanArea * 2),
+      begin: EdgeInsets.only(bottom: scanArea),
+      end: EdgeInsets.only(top: scanArea),
     ).animate(
       // 设置Curve值 动画的执行速率
       CurvedAnimation(parent: _animationController, curve: Interval(0.0, 1.0)),

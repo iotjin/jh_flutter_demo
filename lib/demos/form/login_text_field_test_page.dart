@@ -17,7 +17,7 @@ class _LoginTextFieldTestPageState extends State<LoginTextFieldTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'JhLoginTextField'),
+        appBar: BaseAppBar('JhLoginTextField'),
         body: Scrollbar(
             child: SingleChildScrollView(
                 child: Padding(

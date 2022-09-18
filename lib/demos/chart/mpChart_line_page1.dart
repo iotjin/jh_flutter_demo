@@ -48,7 +48,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       appBar: backAppBar(context, '折线图'),
+//       appBar: BaseAppBar('折线图'),
 //       body: ListView(
 //         children: <Widget>[
 //           SizedBox(

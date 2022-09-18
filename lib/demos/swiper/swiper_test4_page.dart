@@ -19,7 +19,7 @@ class _SwiperTest4PageState extends State<SwiperTest4Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'swiper4 - carousel_slider'),
+        appBar: BaseAppBar('swiper4 - carousel_slider'),
         body: ListView(
           children: <Widget>[
             swiper_1(),

@@ -55,8 +55,8 @@ class WxMotionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '微信运动',
-          rightImgPath: 'assets/images/ic_set_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
+      appBar: BaseAppBar('微信运动', rightImgPath: 'assets/images/ic_set_black.png', bgColor: Colors.transparent,
+          rightItemCallBack: () {
         _clickCell(context, '设置');
       }),
       body: _body(context, _dataArr),

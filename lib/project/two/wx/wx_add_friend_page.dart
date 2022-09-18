@@ -45,7 +45,7 @@ class WxAddFriendPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '添加朋友', backgroundColor: Colors.transparent),
+      appBar: BaseAppBar('添加朋友', bgColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
@@ -91,8 +91,8 @@ class WxAddFriendPage extends StatelessWidget {
                 leading: Container(
                     child: CircleAvatar(
                         backgroundImage: AssetImage(
-                          item['img'],
-                        ))),
+                  item['img'],
+                ))),
                 title: Text(
                   item['title'],
                   style: TextStyle(color: KColors.wxTextBlueColor),

@@ -50,7 +50,7 @@ class _GridViewTest3State extends State<GridViewTest3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'GridView实现朋友圈效果（九宫格）'),
+        appBar: BaseAppBar('GridView实现朋友圈效果（九宫格）'),
         body: Container(
             height: 1600,
             child: Column(

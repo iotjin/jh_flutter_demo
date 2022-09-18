@@ -70,7 +70,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: gradientAppBar(context, '城市选择列表', rightText: '选择', rightItemCallBack: () {
+      appBar: GradientAppBar('城市选择列表', rightText: '选择', rightItemCallBack: () {
         print('object: ');
       }),
       body: SafeArea(

@@ -6,7 +6,7 @@ class PhotoSelectTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'PhotoSelect'),
+      appBar: BaseAppBar('PhotoSelect'),
       body: _body(),
     );
   }

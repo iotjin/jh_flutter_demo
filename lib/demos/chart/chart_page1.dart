@@ -11,7 +11,7 @@ class _ChartPage1State extends State<ChartPage1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'chart'),
+      appBar: BaseAppBar('chart'),
       body: Container(
         child: ListView(
           children: <Widget>[

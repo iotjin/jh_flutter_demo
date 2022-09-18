@@ -34,7 +34,7 @@ class _DBallPage4State extends State<DBallPage4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '3D球 - 圆形阴影'),
+      appBar: BaseAppBar('3D球 - 圆形阴影'),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Padding(
@@ -414,7 +414,7 @@ class TagsPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
 double _getOpacity(double z) {

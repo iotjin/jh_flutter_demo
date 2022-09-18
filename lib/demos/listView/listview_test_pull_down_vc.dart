@@ -59,7 +59,7 @@ class _ListViewTestPullDownVCState extends State<ListViewTestPullDownVC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'ListViewTestPullDownVC'),
+        appBar: BaseAppBar('ListViewTestPullDownVC'),
         body: EasyRefresh(
             header: BallPulseHeader(),
             controller: _controller,

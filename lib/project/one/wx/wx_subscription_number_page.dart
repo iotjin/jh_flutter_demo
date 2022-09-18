@@ -78,8 +78,8 @@ class WxSubscriptionNumberPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '订阅号消息',
-          rightImgPath: 'assets/images/ic_gengduo.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
+      appBar: BaseAppBar('订阅号消息', rightImgPath: 'assets/images/ic_gengduo.png', bgColor: Colors.transparent,
+          rightItemCallBack: () {
         JhNavUtils.pushNamed(context, 'WxSubscriptionNumberListPage');
       }),
       body: _body(context, _dataArr),

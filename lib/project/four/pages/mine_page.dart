@@ -22,7 +22,7 @@ class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(context, KStrings.fourTabTitle, rightImgPath: 'assets/images/set.png', rightItemCallBack: () {
+      appBar: BaseAppBar(KStrings.fourTabTitle, rightImgPath: 'assets/images/set.png', rightItemCallBack: () {
         JhNavUtils.pushNamed(context, 'SetPage');
       }),
       // backgroundColor: Color(0xFFF8F8F8),

@@ -22,8 +22,8 @@ class WxQQMessagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'QQ邮箱提醒',
-          rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
+      appBar: BaseAppBar('QQ邮箱提醒', rightImgPath: 'assets/images/ic_more_black.png', bgColor: Colors.transparent,
+          rightItemCallBack: () {
         _clickCell(context, '更多');
       }),
       body: _body(context, _dataArr),

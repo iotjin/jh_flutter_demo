@@ -19,8 +19,8 @@ class WxUserInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '',
-          rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
+      appBar: BaseAppBar('', rightImgPath: 'assets/images/ic_more_black.png', bgColor: Colors.transparent,
+          rightItemCallBack: () {
         // 跳转资料设置
         String jsonStr = Uri.encodeComponent(jsonEncode(_passValue));
         JhNavUtils.pushNamed(context, '${'WxInfoSetPage'}?passValue=$jsonStr');

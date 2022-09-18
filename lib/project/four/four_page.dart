@@ -85,7 +85,7 @@ class _FourPageState extends State<FourPage> with AutomaticKeepAliveClientMixin 
     return AnnotatedRegion(
       value: JhStatusBarUtils.getBlackStatusBarStyle(context.jhIsDark),
       child: Scaffold(
-//        appBar: baseAppBar(context, '',
+//        appBar: BaseAppBar( '',
 //            rightImgPath: 'assets/images/set.png', rightItemCallBack: () {
 //          JhNavUtils.pushNamed(context, 'SetPage');
 //        }),

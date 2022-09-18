@@ -7,7 +7,7 @@ class SideslipTestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '列表侧滑'),
+      appBar: BaseAppBar('列表侧滑'),
       body: _body(context),
     );
   }

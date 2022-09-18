@@ -110,10 +110,9 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(
-        context,
+      appBar: BaseAppBar(
         'ListViewGroupPage3',
-        bottom: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
+        bottomWidget: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
       ),
 //      body: _content(),
       body: _refresh(),

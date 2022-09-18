@@ -45,7 +45,7 @@ class _EChartPage3State extends State<EChartPage3> {
   Widget build(BuildContext context) {
     var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
-    return Scaffold(appBar: backAppBar(context, 'EChart3 - 多图表 - 动态数据'), body: _scrollbar());
+    return Scaffold(appBar: BaseAppBar('EChart3 - 多图表 - 动态数据'), body: _scrollbar());
   }
 
   Widget _scrollbar() {
@@ -102,6 +102,7 @@ class _EChartPage3State extends State<EChartPage3> {
     return Container(
 //      color: Colors.cyan,
       child: Echarts(
+        reloadAfterInit: true,
         captureAllGestures: false,
         option: '''
                     {

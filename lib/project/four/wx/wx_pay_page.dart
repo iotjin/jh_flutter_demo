@@ -111,8 +111,8 @@ class WxPayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KStrings.wxPay,
-          rightImgPath: 'assets/images/ic_more_black.png', backgroundColor: Colors.transparent, rightItemCallBack: () {
+      appBar: BaseAppBar(KStrings.wxPay, rightImgPath: 'assets/images/ic_more_black.png', bgColor: Colors.transparent,
+          rightItemCallBack: () {
         JhNavUtils.pushNamed(context, 'WxPayManagerPage');
       }),
       body: _body(context),

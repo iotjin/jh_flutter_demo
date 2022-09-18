@@ -42,8 +42,9 @@ class JhTopTabBar extends StatefulWidget {
     this.showCenterLine = false,
     this.rightText,
     this.rightImgPath,
-    this.leftItem,
-    this.isBack = true,
+    this.leftWidget,
+    this.titleWidget,
+    this.rightWidgets,
     this.elevation = 3,
     this.rightItemCallBack,
     this.leftItemCallBack,
@@ -65,10 +66,11 @@ class JhTopTabBar extends StatefulWidget {
   final bool showCenterLine;
 
   // appbar参数
-  final String? rightText;
-  final String? rightImgPath;
-  final Widget? leftItem;
-  final bool isBack;
+  final String? rightText; // 右侧按钮文字
+  final String? rightImgPath; // 右侧按钮图片路径，优先级高于rightText
+  final Widget? leftWidget; // 左侧Widget，为空显示返回按钮
+  final Widget? titleWidget; // 标题Widget，优先级高于title
+  final List<Widget>? rightWidgets; // 优先级高于rightText和rightImgPath
   final double elevation;
   final Function? rightItemCallBack;
   final Function? leftItemCallBack;
@@ -121,17 +123,17 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
     unselectedLabelColor = widget.unselectedLabelColor ?? unselectedLabelColor;
 
     return Scaffold(
-      appBar: baseAppBar(
-        context,
+      appBar: BaseAppBar(
         widget.title,
         rightText: widget.rightText,
         rightImgPath: widget.rightImgPath,
-        leftItem: widget.leftItem,
-        isBack: widget.isBack,
+        leftWidget: widget.leftWidget,
+        titleWidget: widget.titleWidget,
+        rightWidgets: widget.rightWidgets,
         elevation: widget.elevation,
         rightItemCallBack: widget.rightItemCallBack,
         leftItemCallBack: widget.leftItemCallBack,
-        bottom: PreferredSize(
+        bottomWidget: PreferredSize(
           preferredSize: Size.fromHeight(widget.height),
           child: Stack(
             children: <Widget>[

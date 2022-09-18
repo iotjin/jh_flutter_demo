@@ -46,7 +46,7 @@ class WxGroupChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '群聊', backgroundColor: Colors.transparent),
+      appBar: BaseAppBar('群聊', bgColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );

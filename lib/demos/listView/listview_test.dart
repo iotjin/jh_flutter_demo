@@ -34,7 +34,7 @@ class ListViewTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'ListViewTest_for循环造假数据'),
+      appBar: BaseAppBar('ListViewTest_for循环造假数据'),
       body: ContentBody(),
     );
   }

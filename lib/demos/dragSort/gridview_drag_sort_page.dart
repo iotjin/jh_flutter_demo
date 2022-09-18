@@ -23,7 +23,7 @@ class _GridviewDragSortPageState extends State<GridviewDragSortPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'GridviewDragSortPage'),
+      appBar: BaseAppBar('GridviewDragSortPage'),
       body: _body(context),
     );
   }

@@ -34,10 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(
-          context,
-          '账号注册',
-        ),
+        appBar: BaseAppBar('账号注册'),
         body: KeyboardActions(
           config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2, _node3]),
           child: _mainBody(),

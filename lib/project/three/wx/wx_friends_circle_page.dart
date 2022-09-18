@@ -142,8 +142,8 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         top: 0,
         left: 0,
         right: 0,
-        child: backAppBar(context, '朋友圈',
-            backgroundColor: _navBgColor,
+        child: BaseAppBar('朋友圈',
+            bgColor: _navBgColor,
             brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/wechat/discover/ic_xiangji.png', rightItemCallBack: () {
           _clickNav();

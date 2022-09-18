@@ -50,7 +50,7 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'ListViewGroupPage'),
+      appBar: BaseAppBar('ListViewGroupPage'),
       body: ListView.builder(
           itemCount: groupData.length,
           itemBuilder: (context, index) {

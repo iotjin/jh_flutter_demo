@@ -41,7 +41,7 @@
 //     var value = ModalRoute.of(context).settings.arguments;
 //     value = value ?? '';
 //     return Scaffold(
-//       appBar:backAppBar(context, 'MpChartBar'),
+//       appBar:BaseAppBar('MpChartBar'),
 //       body: _content(),
 //     );
 //   }

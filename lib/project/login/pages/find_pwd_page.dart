@@ -29,7 +29,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, '重置密码'),
+        appBar: BaseAppBar('重置密码'),
         body: KeyboardActions(
           config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
           child: _mainBody(),

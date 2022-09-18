@@ -6,7 +6,7 @@ class ListViewTest2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'ListViewTest2_外部引用假数据'),
+      appBar: BaseAppBar('ListViewTest2_外部引用假数据'),
       body: HomeContent(),
     );
   }

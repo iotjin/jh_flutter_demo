@@ -24,7 +24,7 @@ class _DBallPageState extends State<DBallPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '3D球'),
+      appBar: BaseAppBar('3D球'),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Padding(

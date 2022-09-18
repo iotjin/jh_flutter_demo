@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/base_appbar.dart';
 
 class NavTestPage extends StatelessWidget {
-  final List titleData = ['nav-只有title', 'nav-左侧返回，右侧文字', 'nav-左侧返回，右侧图片', 'nav-左侧自定义右侧文字', 'nav-设置透明背景色', '渐变导航条'];
+  final List titleData = [
+    'nav-只有title',
+    'nav-左侧返回，右侧文字',
+    'nav-左侧返回(拦截点击事件)，右侧图片',
+    'nav-左侧自定义右侧文字',
+    'nav-设置透明背景色',
+    '渐变导航条'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +45,9 @@ class _Nav1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(
-        context,
+      appBar: BaseAppBar(
         '微信1',
+        leftWidget: Container(),
       ),
       body: ElevatedButton(
         child: Text('返回'),
@@ -55,13 +63,14 @@ class _Nav2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '微信', rightText: '发布',
-//          rightImgPath: 'assets/images/search.png',
-          rightItemCallBack: () {
-        print('点击右侧');
-      }, backCallBack: () {
-        print('点击左侧');
-      }),
+      appBar: BaseAppBar(
+        '微信',
+        rightText: '发布',
+        rightItemCallBack: () {
+          JhProgressHUD.showText('点击右侧');
+          print('点击右侧');
+        },
+      ),
       body: ElevatedButton(
         child: Text('返回'),
         onPressed: () {
@@ -76,11 +85,11 @@ class _Nav3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '微信',
-//          rightText: '发布',
-          rightImgPath: 'assets/images/search.png', rightItemCallBack: () {
+      appBar: BaseAppBar('微信', rightImgPath: 'assets/images/search.png', rightItemCallBack: () {
+        JhProgressHUD.showText('点击右侧');
         print('点击右侧');
-      }, backCallBack: () {
+      }, leftItemCallBack: () {
+        JhProgressHUD.showText('点击左侧');
         print('点击左侧');
       }),
       body: ElevatedButton(
@@ -97,23 +106,19 @@ class _Nav4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(context, '微信',
-//          leftItem: Container(),
-          leftItem: IconButton(
-            icon: Image.asset(
-              'assets/images/search.png',
-              width: 22,
-              height: 22,
-            ),
+      appBar: BaseAppBar('微信',
+          leftWidget: IconButton(
+            icon: Image.asset('assets/images/search.png', width: 22, height: 22),
             onPressed: () {
+              JhProgressHUD.showText('点击search');
               print('search');
             },
           ),
-          rightText: '发布',
-//          rightImgPath: 'assets/images/search.png',
-          rightItemCallBack: () {
+          rightText: '发布', rightItemCallBack: () {
+        JhProgressHUD.showText('点击右侧');
         print('点击右侧');
       }, leftItemCallBack: () {
+        JhProgressHUD.showText('点击左侧');
         print('点击左侧');
       }),
       body: ElevatedButton(
@@ -130,9 +135,10 @@ class _Nav5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, '透明背景色', rightText: '发布', rightItemCallBack: () {
+        appBar: BaseAppBar('透明背景色', rightText: '发布', rightItemCallBack: () {
+          JhProgressHUD.showText('点击右侧');
           print('点击右侧');
-        }, backgroundColor: Colors.transparent),
+        }, bgColor: Colors.transparent),
         body: Container(
           child: ElevatedButton(
             child: Text('返回'),
@@ -148,11 +154,11 @@ class _Nav6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backGradientAppBar(
-          context,
+        appBar: GradientAppBar(
           '渐变导航条',
           rightText: '发布',
           rightItemCallBack: () {
+            JhProgressHUD.showText('点击右侧');
             print('点击右侧');
           },
         ),

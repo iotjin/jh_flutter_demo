@@ -32,7 +32,7 @@ class _ListviewDragSortPage2State extends State<ListviewDragSortPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'ListviewDragSortPage2'),
+      appBar: BaseAppBar('ListviewDragSortPage2'),
       body: _body(context),
       // backgroundColor: KColors.kBgColor,
     );

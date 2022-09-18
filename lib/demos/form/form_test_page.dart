@@ -15,7 +15,7 @@ class _FormTestPageState extends State<FormTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'FormTest'),
+        appBar: BaseAppBar('FormTest'),
         body: Scrollbar(
             child: SingleChildScrollView(
                 child: Column(

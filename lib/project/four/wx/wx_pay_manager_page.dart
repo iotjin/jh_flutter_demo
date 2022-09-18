@@ -24,7 +24,7 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KStrings.wxPayManager, backgroundColor: Colors.transparent),
+      appBar: BaseAppBar(KStrings.wxPayManager, bgColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );

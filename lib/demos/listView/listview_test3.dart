@@ -23,7 +23,7 @@ class ListViewTest3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'ListViewTest3_复杂样式'),
+      appBar: BaseAppBar('ListViewTest3_复杂样式'),
       body: ContentBody(),
     );
   }

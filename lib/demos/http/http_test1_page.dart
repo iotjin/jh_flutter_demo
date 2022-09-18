@@ -29,7 +29,7 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'HttpTest1'),
+        appBar: BaseAppBar('HttpTest1'),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(15),
           child: Text(_text),

@@ -54,7 +54,7 @@ class _BaseWebViewState extends State<BaseWebView> {
               return Future.value(true);
             },
             child: Scaffold(
-              appBar: backAppBar(context, widget.title),
+              appBar: BaseAppBar(widget.title),
               body: Stack(
                 children: [
                   WebView(

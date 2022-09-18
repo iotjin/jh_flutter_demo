@@ -11,7 +11,7 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'JhSetCell'),
+        appBar: BaseAppBar('JhSetCell'),
         body: Scrollbar(
             child: SingleChildScrollView(
                 child: Padding(

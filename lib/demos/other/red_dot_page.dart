@@ -17,9 +17,9 @@ class _RedDotPageState extends State<RedDotPage> {
         length: 2,
         child: Scaffold(
           bottomNavigationBar: _bottomNavigationBar(),
-          appBar: baseAppBar(
-            context, '小红点',
-            bottom: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _tabBar()),
+          appBar: BaseAppBar(
+            '小红点',
+            bottomWidget: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _tabBar()),
 //            elevation: 3,
           ),
           body: Column(

@@ -31,7 +31,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, '分页加载'),
+        appBar: BaseAppBar('分页加载'),
         body: EasyRefresh(
             header: DeliveryHeader(),
             controller: _controller,

@@ -93,8 +93,10 @@ class OnePage extends StatelessWidget {
     // GlobalKey anchorKey = GlobalKey();
 
     return Scaffold(
-      appBar: baseAppBar(context, KStrings.oneTabTitle,
-          rightImgPath: 'assets/images/ic_nav_add.png', rightItemCallBack: () => _showPop(context)),
+      appBar: BaseAppBar(KStrings.oneTabTitle,
+          leftWidget: Container(),
+          rightImgPath: 'assets/images/ic_nav_add.png',
+          rightItemCallBack: () => _showPop(context)),
       body: _body(context, _dataArr),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
 

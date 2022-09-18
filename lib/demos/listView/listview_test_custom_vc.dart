@@ -33,7 +33,7 @@ class ListViewTestCustomVC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'ListViewTestCustomVC'),
+      appBar: BaseAppBar('ListViewTestCustomVC'),
       body: ContentBody(),
     );
   }

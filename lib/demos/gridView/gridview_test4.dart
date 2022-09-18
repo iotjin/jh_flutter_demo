@@ -5,7 +5,7 @@ class GridViewTest4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'GirdView'),
+      appBar: BaseAppBar('GirdView'),
       body: bgView,
     );
   }

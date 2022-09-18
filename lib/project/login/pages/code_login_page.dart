@@ -30,7 +30,7 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, '', backgroundColor: Colors.transparent),
+        appBar: BaseAppBar('', bgColor: Colors.transparent),
         body: KeyboardActions(
           config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
           child: _mainBody(),

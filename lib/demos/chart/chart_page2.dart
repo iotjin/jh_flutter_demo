@@ -26,7 +26,7 @@ class _ChartPage2State extends State<ChartPage2> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: backAppBar(context, 'chart2'),
+        appBar: BaseAppBar('chart2'),
         body: Container(
           child: Column(
             children: <Widget>[

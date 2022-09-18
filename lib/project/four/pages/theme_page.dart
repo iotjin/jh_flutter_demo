@@ -23,7 +23,7 @@ class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '主题设置'),
+      appBar: BaseAppBar('主题设置'),
       body: _body(context),
     );
   }

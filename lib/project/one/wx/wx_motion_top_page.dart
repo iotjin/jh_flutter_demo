@@ -148,8 +148,8 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
         top: 0,
         left: 0,
         right: 0,
-        child: backAppBar(context, '排行榜',
-            backgroundColor: _navBgColor,
+        child: BaseAppBar('排行榜',
+            bgColor: _navBgColor,
             brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/images/ic_more_black.png', rightItemCallBack: () {
           _clickCell(context, '更多');

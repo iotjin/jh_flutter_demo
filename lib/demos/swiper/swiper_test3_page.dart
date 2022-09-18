@@ -23,7 +23,7 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'swiper3 - flutter_swiper'),
+        appBar: BaseAppBar('swiper3 - flutter_swiper'),
         body: ListView(
           children: <Widget>[
             swiper_1(),

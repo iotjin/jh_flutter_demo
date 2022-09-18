@@ -10,7 +10,7 @@ class PassValuePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, '传值'),
+        appBar: BaseAppBar('传值'),
         body: ElevatedButton(
           child: Text('带参数跳转'),
           onPressed: () {

@@ -15,7 +15,7 @@ class GraphicBarPage extends StatefulWidget {
 class _GraphicBarPageState extends State<GraphicBarPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: backAppBar(context, 'Graphic - 柱状图'), body: _scrollbar());
+    return Scaffold(appBar: BaseAppBar('Graphic - 柱状图'), body: _scrollbar());
   }
 }
 

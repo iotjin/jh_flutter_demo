@@ -11,7 +11,7 @@ class _DBallPage2State extends State<DBallPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '3D球'),
+      appBar: BaseAppBar('3D球'),
       backgroundColor: Colors.white,
       body: XBallView(
         mediaQueryData: MediaQuery.of(context),

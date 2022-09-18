@@ -51,8 +51,7 @@ class WxNewFriendPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-      backAppBar(context, '新的朋友', backgroundColor: Colors.transparent, rightText: '添加朋友', rightItemCallBack: () {
+      appBar: BaseAppBar('新的朋友', bgColor: Colors.transparent, rightText: '添加朋友', rightItemCallBack: () {
         JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }),
       body: _body(context),
@@ -120,14 +119,14 @@ class WxNewFriendPage extends StatelessWidget {
     );
     Widget _text = InkWell(
         child: Container(
-          alignment: Alignment.center,
-          width: 70,
-          height: 35,
-          child: Text(
-            '已添加',
-            style: TextStyle(color: Colors.grey),
-          ),
-        ));
+      alignment: Alignment.center,
+      width: 70,
+      height: 35,
+      child: Text(
+        '已添加',
+        style: TextStyle(color: Colors.grey),
+      ),
+    ));
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -140,8 +139,8 @@ class WxNewFriendPage extends StatelessWidget {
               leading: Container(
                   child: CircleAvatar(
                       backgroundImage: AssetImage(
-                        item['img'],
-                      ))),
+                item['img'],
+              ))),
               title: Text(
                 item['title'],
                 style: TextStyle(color: KColors.wxTextBlueColor),

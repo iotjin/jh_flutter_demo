@@ -162,7 +162,7 @@ class AppBarState extends State<AppBarWidget> {
       opacity: opacity,
       child: Container(
         height: appBarHeight,
-        child: backAppBar(context, '图片下拉放大2', backgroundColor: Colors.deepOrange),
+        child: BaseAppBar('图片下拉放大2', bgColor: Colors.deepOrange),
       ),
     );
   }

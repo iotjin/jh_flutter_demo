@@ -17,7 +17,7 @@ class _SwiperTest2PageState extends State<SwiperTest2Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'swiper2-缩放'),
+      appBar: BaseAppBar('swiper2-缩放'),
       body: Container(
         padding: EdgeInsets.fromLTRB(0, 10, 0, 50),
         height: 280,

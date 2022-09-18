@@ -16,7 +16,7 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'JhFormInputCell'),
+        appBar: BaseAppBar('JhFormInputCell'),
         body: Scrollbar(
             child: SingleChildScrollView(
                 child: Padding(

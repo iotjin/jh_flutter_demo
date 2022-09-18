@@ -38,8 +38,7 @@ const Visibility({
 class ScrollPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: baseAppBar(context, 'ScrollPage'), body: BaseScrollView(), backgroundColor: KColors.wxBgColor);
+    return Scaffold(appBar: BaseAppBar('ScrollPage'), body: BaseScrollView(), backgroundColor: KColors.wxBgColor);
   }
 }
 

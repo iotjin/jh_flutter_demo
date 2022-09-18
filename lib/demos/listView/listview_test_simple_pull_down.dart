@@ -42,7 +42,7 @@ class _ListViewTestSimplePullDownState extends State<ListViewTestSimplePullDown>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'ListViewTestSimplePullDown'),
+        appBar: BaseAppBar('ListViewTestSimplePullDown'),
         body: EasyRefresh(
           controller: _controller,
           firstRefresh: true,

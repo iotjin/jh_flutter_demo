@@ -101,6 +101,8 @@ class _BaseTabBarState extends State<BaseTabBar> {
     var selectTextColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
     var selectIconColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
 
+    /// 保持页面状态的几种方式 https://blog.csdn.net/iotjin/article/details/126870716
+    /// 如果需要在某个页面跳转返回到tabbar的指定页面，Provider create 添加到main.dart，否则写在BaseTabBar中
     /// 通过 PageView + AutomaticKeepAliveClientMixin 保持页面状态（进到哪个页面，哪个页面开始初始化）
     /// 在需要保持页面状态的子页面State中，继承AutomaticKeepAliveClientMixin并重写方法 wantKeepAlive => true
     /// 并且它们的[build]方法必须调用super.build(context);
@@ -141,89 +143,4 @@ class _BaseTabBarState extends State<BaseTabBar> {
       ),
     );
   }
-
-/*-----------------------------------------------------------------------------*/
-
-  /// 保持页面状态的几种方式
-  /// https://www.jianshu.com/p/4b09054640f3
-  /// https://www.jianshu.com/p/369f00a40cc2
-  /// https://zhuanlan.zhihu.com/p/58582876
-
-  ///  使用IndexedStack保持页面状态如下：
-  ///  这种方式有个小缺点：IndexedStack中管理的子页面在第一次加载时便实例化了所有的子页面State
-
-// @override
-// Widget build(BuildContext context) {
-//   // TODO: 通过ThemeProvider进行主题管理
-//   final provider = Provider.of<ThemeProvider>(context);
-//   var bgColor = KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor);
-//   var normalTextColor =
-//       KColors.dynamicColor(context, KColors.kTabBarNormalTextColor, KColors.kTabBarNormalTextDarkColor);
-//   var selectTextColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
-//   var selectIconColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
-//
-//   return Scaffold(
-//     body: IndexedStack(
-//       index: _currentIndex,
-//       children: _pageList,
-//     ),
-//     bottomNavigationBar: BottomNavigationBar(
-//       backgroundColor: bgColor,
-//       // 未选中颜色
-//       unselectedItemColor: normalTextColor,
-//       // 选中颜色,与fixedColor不能同时设置
-//       // selectedItemColor: selectColor,
-//       // 选中的颜色
-//       fixedColor: selectTextColor,
-//       unselectedFontSize: _fontSize,
-//       selectedFontSize: _fontSize,
-//       // 配置底部BaseTabBar可以有多个按钮
-//       type: BottomNavigationBarType.fixed,
-//       items: getBottomTabs(selectIconColor),
-//       // 配置对应的索引值选中
-//       currentIndex: this._currentIndex,
-//       onTap: (int index) {
-//         setState(() {
-//           // 改变状态
-//           this._currentIndex = index;
-//         });
-//       },
-//     ),
-//   );
-// }
-
 }
-
-/*-----------------------------------------------------------------------------*/
-/*
-
- Theme(
-   data: ThemeData(
-     highlightColor: Color.fromRGBO(0, 0, 0, 0),
-     splashColor: Color.fromRGBO(0, 0, 0, 0),
-   ),
- )
-
-BottomNavigationBar({
-    Key key,
-    @required this.items,  // 必须有的item
-    this.onTap,  // 点击事件
-    this.currentIndex = 0,  // 当前选中
-    this.elevation = 8.0,  // 高度
-    BottomNavigationBarType type,  // 排列方式
-    Color fixedColor,    // 'Either selectedItemColor or fixedColor can be specified, but not both'
-    this.backgroundColor,  // 背景
-    this.iconSize = 24.0,  // icon大小
-    Color selectedItemColor,  // 选中颜色
-    this.unselectedItemColor,  // 未选中颜色
-    this.selectedIconTheme = const IconThemeData(),
-    this.unselectedIconTheme = const IconThemeData(),
-    this.selectedFontSize = 14.0,  // 选中文字大小
-    this.unselectedFontSize = 12.0,  // 未选中文字大小
-    this.selectedLabelStyle,
-    this.unselectedLabelStyle,
-    this.showSelectedLabels = true, // 是否显示选中的Item的文字
-    bool showUnselectedLabels,  // 是否显示未选中的Item的问题
-  })
-
- */

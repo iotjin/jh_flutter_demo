@@ -13,7 +13,7 @@ class WxPersonInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, KStrings.wxPersonInfo, backgroundColor: Colors.transparent),
+      appBar: BaseAppBar(KStrings.wxPersonInfo, bgColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );

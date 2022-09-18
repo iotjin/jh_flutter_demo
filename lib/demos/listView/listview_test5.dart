@@ -20,7 +20,7 @@ class ListViewTest5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '这是标题'),
+      appBar: BaseAppBar('这是标题'),
       body: ContentBody(),
     );
   }

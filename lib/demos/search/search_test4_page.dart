@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import '../../jh_common/widgets/Jh_highlight_text.dart';
+import '/jh_common/widgets/Jh_highlight_text.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/project/configs/project_config.dart';
-
-const _headerHeight = 50.0;
 
 class SearchTest4Page extends StatefulWidget {
   const SearchTest4Page({Key? key}) : super(key: key);
@@ -65,11 +63,9 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(
-        context,
+      appBar: BaseAppBar(
         'SearchTest4Page',
-        isBack: true,
-        bottom: PreferredSize(preferredSize: Size.fromHeight(_headerHeight), child: _header()),
+        bottomWidget: PreferredSize(preferredSize: Size.fromHeight(kSearchViewHeight), child: _header()),
       ),
       body: _body(),
       // backgroundColor: KColors.kBgColor,

@@ -7,7 +7,7 @@ class NotFoundPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '页面不存在'),
+      appBar: BaseAppBar('页面不存在'),
     );
   }
 }

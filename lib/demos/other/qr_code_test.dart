@@ -15,7 +15,7 @@ class _QRCodeTestState extends State<QRCodeTest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '二维码'),
+      appBar: BaseAppBar('二维码'),
       body: Scrollbar(
           child: SingleChildScrollView(
         child: Column(

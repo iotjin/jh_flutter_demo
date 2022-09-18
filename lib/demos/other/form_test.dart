@@ -34,7 +34,7 @@ class _FormTestState extends State<FormTest> {
         },
         child: Scaffold(
 //              resizeToAvoidBottomPadding: true, //输入框抵住键盘
-            appBar: backAppBar(context, 'FormTest'),
+            appBar: BaseAppBar('FormTest'),
             body: KeyboardActions(
               config: JhForm.getKeyboardConfig(context, [_node1, _node2, _node3, _node4]),
               child: _mainBody(),

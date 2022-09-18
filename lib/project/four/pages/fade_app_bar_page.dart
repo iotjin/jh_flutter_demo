@@ -247,12 +247,9 @@ class AppBarState extends State<AppBarWidget> {
     return Opacity(
       opacity: opacity,
       child: Container(
-          height: appBarHeight,
-          child: backAppBar(
-            context,
-            'app bar',
-            backgroundColor: Colors.deepOrange,
-          )),
+        height: appBarHeight,
+        child: BaseAppBar('app bar', bgColor: Colors.deepOrange),
+      ),
     );
   }
 }

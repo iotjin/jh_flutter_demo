@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import '/project/configs/colors.dart';
 import 'jh_login_text_field.dart';
 
+const double kSearchViewHeight = 58.0;
 const String _hintText = '请输入';
 const double _borderRadius = 5.0;
 const double _borderWidth = 0.3;
-const double _searchViewHeight = 58.0;
 const EdgeInsetsGeometry _contentPadding = EdgeInsets.symmetric(vertical: 4);
 
 typedef _InputCallBack = void Function(String value);
@@ -61,7 +61,7 @@ class JhSearchBar extends StatelessWidget {
         ),
         alignment: Alignment.center,
         margin: EdgeInsets.all(10),
-        height: _searchViewHeight - 20,
+        height: kSearchViewHeight - 20,
         child: JhLoginTextField(
           maxLength: this.maxLength,
           leftWidget: Icon(Icons.search, size: 25),

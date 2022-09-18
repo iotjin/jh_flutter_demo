@@ -15,7 +15,7 @@ class _UIPage2State extends State<UIPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: backAppBar(context, 'UITest2'),
+        appBar: BaseAppBar('UITest2'),
         body: Scrollbar(
             child: SingleChildScrollView(
                 child: Padding(

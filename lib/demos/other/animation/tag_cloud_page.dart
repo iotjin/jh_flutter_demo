@@ -22,8 +22,8 @@ class _TagCloudPageState extends State<TagCloudPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'TagCloudWidget'),
-      backgroundColor: Color(0xFFF8F8F8),
+      appBar: BaseAppBar('TagCloudWidget'),
+      // backgroundColor: Color(0xFFF8F8F8),
       body: Padding(
           padding: const EdgeInsets.all(40.0),
           child: LayoutBuilder(builder: (context, constraints) {

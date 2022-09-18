@@ -206,7 +206,7 @@ class _EChartPage4State extends State<EChartPage4> {
   Widget build(BuildContext context) {
     var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
-    return Scaffold(appBar: backAppBar(context, 'EChart4 - 渐变折线图'), body: _scrollbar());
+    return Scaffold(appBar: BaseAppBar('EChart4 - 渐变折线图'), body: _scrollbar());
   }
 
   Widget _scrollbar() {
@@ -254,6 +254,7 @@ class _EChartPage4State extends State<EChartPage4> {
     return Container(
 //      color: Colors.cyan,
       child: Echarts(
+        reloadAfterInit: true,
         captureAllGestures: false,
         option: '''
                     {

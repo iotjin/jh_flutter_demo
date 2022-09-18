@@ -14,10 +14,11 @@ class EChartPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, 'EChart1 - 平滑折线图 警戒线'),
+      appBar: BaseAppBar('EChart1 - 平滑折线图 警戒线'),
       body: Container(
         color: Colors.cyan,
         child: Echarts(
+          reloadAfterInit: true,
           captureAllGestures: false,
           option: '''
                       {

@@ -28,7 +28,7 @@ class _AESTestPageState extends State<AESTestPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: backAppBar(context, 'base64、AES、MD5和本地加密存储'), body: _body());
+    return Scaffold(appBar: BaseAppBar('base64、AES、MD5和本地加密存储'), body: _body());
   }
 
   Widget _body() {

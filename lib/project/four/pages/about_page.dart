@@ -116,7 +116,7 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: backAppBar(context, '关于我们'),
+      appBar: BaseAppBar('关于我们'),
       body: Column(
         children: <Widget>[
           SizedBox(

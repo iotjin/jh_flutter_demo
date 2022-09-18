@@ -18,7 +18,7 @@ class GraphicLinePage extends StatefulWidget {
 class _GraphicLinePageState extends State<GraphicLinePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: backAppBar(context, 'Graphic - 折线图'), body: _scrollbar());
+    return Scaffold(appBar: BaseAppBar('Graphic - 折线图'), body: _scrollbar());
   }
 }
 

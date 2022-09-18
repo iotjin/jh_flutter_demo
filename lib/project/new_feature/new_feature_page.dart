@@ -40,7 +40,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//        appBar: backAppBar(context, '新特性'),
+//        appBar: BaseAppBar( '新特性'),
         body: _buildNewFeatureWidget());
   }
 

@@ -73,10 +73,9 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: baseAppBar(
-        context,
+      appBar: BaseAppBar(
         'ListViewGroupPage2',
-        bottom: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
+        bottomWidget: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
       ),
       body: _content(),
     );
