@@ -13,13 +13,10 @@ import '/project/login/login_router.dart';
 import '/project/main_router.dart';
 import '/demos/demos_router.dart';
 
-final String home = '/';
-
-final String demoListsPage = 'DemoListsPage';
-
 class Routes {
-  static String home = '/home';
-  static String webViewPage = '/webView';
+  static String pHome = '/home';
+  static String pWebViewPage = '/webView';
+  static String pDemoListPage = 'DemoListPage';
 
   static final List<IRouterProvider> _listRouter = [];
 
@@ -32,10 +29,10 @@ class Routes {
       return NotFoundPage();
     });
 
-    router.define(home,
+    router.define(pHome,
         handler: Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> params) => BaseTabBar()));
 
-    router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
+    router.define(pWebViewPage, handler: Handler(handlerFunc: (_, params) {
       final String title = params['title']?.first ?? '';
       final String url = params['url']?.first ?? '';
       return BaseWebView(title: title, url: url);

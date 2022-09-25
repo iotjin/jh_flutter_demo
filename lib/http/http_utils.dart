@@ -47,7 +47,7 @@ class HttpUtils {
     Success? success,
     Fail? fail,
   }) {
-    _request(Method.get, url, params, loadingText: loadingText, success: success, fail: fail);
+    request(Method.get, url, params, loadingText: loadingText, success: success, fail: fail);
   }
 
   /// post 请求
@@ -58,11 +58,11 @@ class HttpUtils {
     Success? success,
     Fail? fail,
   }) {
-    _request(Method.post, url, params, loadingText: loadingText, success: success, fail: fail);
+    request(Method.post, url, params, loadingText: loadingText, success: success, fail: fail);
   }
 
   /// _request 请求
-  static void _request<T>(
+  static void request<T>(
     Method method,
     String url,
     params, {

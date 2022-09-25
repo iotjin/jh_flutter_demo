@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
-class FormDemoListsPage extends StatelessWidget {
+class FormDemoListPage extends StatelessWidget {
   final List titleData = [
     'JhLoginTextField',
     'JhTextField',

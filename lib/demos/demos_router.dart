@@ -1,11 +1,17 @@
 // ignore_for_file: unused_import
 
+import 'dart:convert';
 import 'package:fluro/fluro.dart';
-import 'demo_lists_page.dart';
 import '/project/routes/router_init.dart';
+import 'demo_list_page.dart';
+
+// base
+import 'base/base_demo_list_page.dart';
+import 'base/base_listview_test_page.dart';
+import 'base/empty_demo_list_page.dart';
 
 // alert
-import 'alert/alert_demo_lists_page.dart';
+import 'alert/alert_demo_list_page.dart';
 import 'alert/bottom_sheet_test.dart';
 import 'alert/alert_test.dart';
 import 'alert/jhDialog_test_page.dart';
@@ -13,7 +19,7 @@ import 'alert/cascade_picker_test.dart';
 import 'alert/cascade_tree_picker_test.dart';
 
 // toast
-import 'alert/toast/toast_demo_lists_page.dart';
+import 'alert/toast/toast_demo_list_page.dart';
 import 'alert/toast/toast_test.dart';
 
 // chart
@@ -32,7 +38,7 @@ import 'chart/mpChart_bar_page1.dart';
 import 'chart/mpChart_combined_page.dart';
 
 // 表单
-import 'form/form_demo_lists_page.dart';
+import 'form/form_demo_list_page.dart';
 import 'form/login_text_field_test_page.dart';
 import 'form/input_text_field_test_page.dart';
 import 'form/form_Input_cell_test_page.dart';
@@ -42,7 +48,7 @@ import 'form/form_test_page.dart';
 import 'form/form_validate_page.dart';
 
 // gridView
-import 'gridView/gridview_demo_lists_page.dart';
+import 'gridView/gridview_demo_list_page.dart';
 import 'gridView/gridview_test1.dart';
 import 'gridView/gridview_test2.dart';
 import 'gridView/gridview_test3.dart';
@@ -50,12 +56,12 @@ import 'gridView/gridview_test4.dart';
 import 'gridView/gridview_test5.dart';
 
 // http
-import 'http/http_demo_lists_page.dart';
+import 'http/http_demo_list_page.dart';
 import 'http/http_test1_page.dart';
 import 'http/http_page_test_page.dart';
 
 // ListView
-import 'listView/listview_demo_lists_page.dart';
+import 'listView/listview_demo_list_page.dart';
 import 'listView/listview_test.dart';
 import 'listView/listview_test2.dart';
 import 'listView/listview_test3.dart';
@@ -71,7 +77,7 @@ import 'listView/listview_group_page3.dart';
 import 'listView/listview_header_page.dart';
 
 // 拖拽排序
-import 'dragSort/drag_sort_demo_lists_page.dart';
+import 'dragSort/drag_sort_demo_list_page.dart';
 import 'dragSort/gridview_drag_sort_page.dart';
 import 'dragSort/listview_drag_sort_page.dart';
 import 'dragSort/listview_drag_sort_page2.dart';
@@ -87,7 +93,7 @@ import 'other/form_test.dart';
 import 'other/photo_select_test.dart';
 import 'other/pass_value_page.dart';
 import 'other/pass_value_page2.dart';
-import 'other/nav_test.dart';
+import 'base/nav_test.dart';
 import 'other/red_dot_page.dart';
 import 'other/qr_code_test.dart';
 import 'other/aes_test_page.dart';
@@ -117,19 +123,28 @@ import 'topTabBar/top_tabbar_test1_page.dart';
 import 'topTabBar/top_tabbar_test2_page.dart';
 import 'topTabBar/top_tabbar_test3_page.dart';
 
-import 'ui/ui_demo_lists.dart';
+import 'ui/ui_demo_list_page.dart';
 import 'ui/ui_page.dart';
 import 'ui/ui_page2.dart';
 import 'ui/scroll_page.dart';
+import 'ui/grammar_test_page.dart';
 
 class DemosRouter implements IRouterProvider {
-  static String demoListsPage = 'DemoListsPage';
+  static String pDemoListPage = 'DemoListPage';
 
   @override
   void initRouter(FluroRouter router) {
-    router.define(demoListsPage, handler: Handler(handlerFunc: (_, __) => DemoListsPage()));
+    router.define(pDemoListPage, handler: Handler(handlerFunc: (_, __) => DemoListPage()));
+    // base
+    router.define('BaseDemoListPage', handler: Handler(handlerFunc: (_, __) => BaseDemoListPage()));
+    router.define('BaseListViewTestPage', handler: Handler(handlerFunc: (_, params) {
+      var jumpParams = params['jumpParams']!.first;
+      return BaseListViewTestPage(jsonDecode(jumpParams));
+    }));
+    router.define('EmptyDemoListPage', handler: Handler(handlerFunc: (_, __) => EmptyDemoListPage()));
+
     // Alert
-    router.define('AlertDemoListsPage', handler: Handler(handlerFunc: (_, __) => AlertDemoListsPage()));
+    router.define('AlertDemoListPage', handler: Handler(handlerFunc: (_, __) => AlertDemoListPage()));
     router.define('AlertTestPage', handler: Handler(handlerFunc: (_, __) => AlertTestPage()));
     router.define('BottomSheetTest', handler: Handler(handlerFunc: (_, __) => BottomSheetTest()));
     router.define('JhDialogTestPage', handler: Handler(handlerFunc: (_, __) => JhDialogTestPage()));
@@ -137,7 +152,7 @@ class DemosRouter implements IRouterProvider {
     router.define('CascadeTreePickerTest', handler: Handler(handlerFunc: (_, __) => CascadeTreePickerTest()));
 
     // toast
-    router.define('ToastDemoListsPage', handler: Handler(handlerFunc: (_, __) => ToastDemoListsPage()));
+    router.define('ToastDemoListPage', handler: Handler(handlerFunc: (_, __) => ToastDemoListPage()));
     router.define('ToastTestPage', handler: Handler(handlerFunc: (_, __) => ToastTestPage()));
     // chart
     router.define('ChartDemoListPage', handler: Handler(handlerFunc: (_, __) => ChartDemoListPage()));
@@ -154,7 +169,7 @@ class DemosRouter implements IRouterProvider {
     // router.define('MpChartBarPage1', handler: Handler(handlerFunc: (_, __) => MpChartBarPage1()));
     // router.define('MpChartCombinedPage', handler: Handler(handlerFunc: (_, __) => MpChartCombinedPage()));
     // 表单
-    router.define('FormDemoListsPage', handler: Handler(handlerFunc: (_, __) => FormDemoListsPage()));
+    router.define('FormDemoListPage', handler: Handler(handlerFunc: (_, __) => FormDemoListPage()));
     router.define('LoginTextFieldTestPage', handler: Handler(handlerFunc: (_, __) => LoginTextFieldTestPage()));
     router.define('InputTextFieldTestPage', handler: Handler(handlerFunc: (_, __) => InputTextFieldTestPage()));
     router.define('FormInputCellTestPage', handler: Handler(handlerFunc: (_, __) => FormInputCellTestPage()));
@@ -164,18 +179,18 @@ class DemosRouter implements IRouterProvider {
     router.define('FormValidatePage', handler: Handler(handlerFunc: (_, __) => FormValidatePage()));
 
     // GridView
-    router.define('GridViewDemoListsPage', handler: Handler(handlerFunc: (_, __) => GridViewDemoListsPage()));
+    router.define('GridViewDemoListPage', handler: Handler(handlerFunc: (_, __) => GridViewDemoListPage()));
     router.define('GridViewTest1', handler: Handler(handlerFunc: (_, __) => GridViewTest1()));
     router.define('GridViewTest2', handler: Handler(handlerFunc: (_, __) => GridViewTest2()));
     router.define('GridViewTest3', handler: Handler(handlerFunc: (_, __) => GridViewTest3()));
     router.define('GridViewTest4', handler: Handler(handlerFunc: (_, __) => GridViewTest4()));
     router.define('GridViewTestPage5', handler: Handler(handlerFunc: (_, __) => GridViewTestPage5()));
     // http
-    router.define('HttpDemoListsPage', handler: Handler(handlerFunc: (_, __) => HttpDemoListsPage()));
+    router.define('HttpDemoListPage', handler: Handler(handlerFunc: (_, __) => HttpDemoListPage()));
     router.define('HttpTest1Page', handler: Handler(handlerFunc: (_, __) => HttpTest1Page()));
     router.define('HttpPageTestPage', handler: Handler(handlerFunc: (_, __) => HttpPageTestPage()));
     // ListView
-    router.define('ListViewDemoListsPage', handler: Handler(handlerFunc: (_, __) => ListViewDemoListsPage()));
+    router.define('ListViewDemoListPage', handler: Handler(handlerFunc: (_, __) => ListViewDemoListPage()));
     router.define('ListViewTest', handler: Handler(handlerFunc: (_, __) => ListViewTest()));
     router.define('ListViewTest2', handler: Handler(handlerFunc: (_, __) => ListViewTest2()));
     router.define('ListViewTest3', handler: Handler(handlerFunc: (_, __) => ListViewTest3()));
@@ -191,7 +206,7 @@ class DemosRouter implements IRouterProvider {
     router.define('ListViewHeaderPage', handler: Handler(handlerFunc: (_, __) => ListViewHeaderPage()));
 
     // 拖拽排序
-    router.define('DragSortDemoListsPage', handler: Handler(handlerFunc: (_, __) => DragSortDemoListsPage()));
+    router.define('DragSortDemoListPage', handler: Handler(handlerFunc: (_, __) => DragSortDemoListPage()));
     router.define('ListviewDragSortPage', handler: Handler(handlerFunc: (_, __) => ListviewDragSortPage()));
     router.define('ListviewDragSortPage2', handler: Handler(handlerFunc: (_, __) => ListviewDragSortPage2()));
     router.define('GridviewDragSortPage', handler: Handler(handlerFunc: (_, __) => GridviewDragSortPage()));
@@ -244,9 +259,10 @@ class DemosRouter implements IRouterProvider {
     router.define('TopTabBarTest2Page', handler: Handler(handlerFunc: (_, __) => TopTabBarTest2Page()));
     router.define('TopTabBarTest3Page', handler: Handler(handlerFunc: (_, __) => TopTabBarTest3Page()));
     // ui
-    router.define('UIDemoListsPage', handler: Handler(handlerFunc: (_, __) => UIDemoListsPage()));
+    router.define('UIDemoListPage', handler: Handler(handlerFunc: (_, __) => UIDemoListPage()));
     router.define('UIPage', handler: Handler(handlerFunc: (_, __) => UIPage()));
     router.define('UIPage2', handler: Handler(handlerFunc: (_, __) => UIPage2()));
     router.define('ScrollPage', handler: Handler(handlerFunc: (_, __) => ScrollPage()));
+    router.define('GrammarTestPage', handler: Handler(handlerFunc: (_, __) => GrammarTestPage()));
   }
 }

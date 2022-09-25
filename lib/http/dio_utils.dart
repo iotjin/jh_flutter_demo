@@ -5,7 +5,7 @@
 
 import 'dart:convert';
 import 'dart:io';
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'apis.dart';
@@ -110,7 +110,7 @@ class DioUtils {
   }) async {
     try {
       // 没有网络
-      var connectivityResult = await (new Connectivity().checkConnectivity());
+      var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult == ConnectivityResult.none) {
         _onError(ExceptionHandle.net_error, '网络异常，请检查你的网络！', onError);
         return;

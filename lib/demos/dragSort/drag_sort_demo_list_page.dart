@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
-class DragSortDemoListsPage extends StatelessWidget {
+class DragSortDemoListPage extends StatelessWidget {
   final List titleData = [
     'ListviewDragSort',
     'ListviewDragSort2 - reorderables',
@@ -17,7 +17,7 @@ class DragSortDemoListsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JhTextList(
-      title: 'DragSortDemoLists',
+      title: 'DragSortDemoList',
       dataArr: titleData,
       callBack: (index, str) {
         print(routeData[index]);

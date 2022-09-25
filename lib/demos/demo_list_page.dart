@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
-class DemoListsPage extends StatelessWidget {
+class DemoListPage extends StatelessWidget {
   final List titleData = [
     'UI',
+    '基类',
     'ListView',
     'GridView',
     'Chart',
     '网络请求',
     'base64、AES、MD5和本地加密存储',
-    'baseNav导航条',
     '底部、中间、toast、自定义弹框',
     'JhForm表单',
     'Form',
@@ -28,15 +28,15 @@ class DemoListsPage extends StatelessWidget {
     '设备信息'
   ];
   final List routeData = [
-    'UIDemoListsPage',
-    'ListViewDemoListsPage',
-    'GridViewDemoListsPage',
+    'UIDemoListPage',
+    'BaseDemoListPage',
+    'ListViewDemoListPage',
+    'GridViewDemoListPage',
     'ChartDemoListPage',
-    'HttpDemoListsPage',
+    'HttpDemoListPage',
     'AESTestPage',
-    'NavTestPage',
-    'AlertDemoListsPage',
-    'FormDemoListsPage',
+    'AlertDemoListPage',
+    'FormDemoListPage',
     'FormTest',
     'TopTabBarDemoListPage',
     'PassValuePage',
@@ -48,14 +48,14 @@ class DemoListsPage extends StatelessWidget {
     'AnimationDemoListPage',
     'SideslipTestPage',
     'CitySelectListPage',
-    'DragSortDemoListsPage',
+    'DragSortDemoListPage',
     'DeviceInfoTest',
   ];
 
   @override
   Widget build(BuildContext context) {
     return JhTextList(
-      title: 'DemoLists',
+      title: 'DemoList',
       dataArr: titleData,
       callBack: (index, str) {
 //          print(index);

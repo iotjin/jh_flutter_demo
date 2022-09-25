@@ -35,8 +35,8 @@ dependencies:
   dio: ^4.0.6
   #  # 网络请求 https://pub.flutter-io.cn/packages/dio_http_cache
   #  dio_http_cache: ^0.3.0
-  # 监测网络状态（停止更新） https://pub.flutter-io.cn/packages/connectivity
-  connectivity: ^3.0.6
+  # 监测网络状态 https://pub.flutter-io.cn/packages/connectivity_plus
+  connectivity_plus: ^2.3.7
   # 路由管理 https://pub.flutter-io.cn/packages/fluro
   fluro: ^2.0.3
   # 状态管理 https://pub.flutter-io.cn/packages/provider
@@ -85,10 +85,12 @@ dependencies:
   fluttertoast: ^8.0.9
   # 底部弹出 日期选择器 单列多列  https://pub.flutter-io.cn/packages/flutter_picker
   flutter_picker: ^2.0.5
-  # 下拉刷新 https://pub.flutter-io.cn/packages/pull_to_refresh
-  pull_to_refresh: ^2.0.0
+  # 下拉刷新(flutter_easyrefresh 3.0版本) https://pub.flutter-io.cn/packages/easy_refresh
+  easy_refresh: ^3.0.4+2
   # 下拉刷新 https://pub.flutter-io.cn/packages/flutter_easyrefresh
   flutter_easyrefresh: ^2.2.1
+  # 下拉刷新 https://pub.flutter-io.cn/packages/pull_to_refresh
+  pull_to_refresh: ^2.0.0
   # 列表悬浮头 https://pub.flutter-io.cn/packages/sticky_headers
   sticky_headers: ^0.3.0+2
   # 进度条 https://pub.flutter-io.cn/packages/percent_indicator
@@ -179,6 +181,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/common/
+    - assets/images/common/empty/
     - assets/images/newFeature/
     - assets/images/picture/
     - assets/images/popMenus/

@@ -49,17 +49,17 @@ import 'four/wx/wx_pay_page.dart';
 import 'four/wx/wx_pay_manager_page.dart';
 
 class MainRouter implements IRouterProvider {
-  static String onePage = '/onePage';
-  static String twoPage = '/twoPage';
-  static String threePage = '/threePage';
-  static String fourPage = '/fourPage';
+  static String pOnePage = '/onePage';
+  static String pTwoPage = '/twoPage';
+  static String pThreePage = '/threePage';
+  static String pFourPage = '/fourPage';
 
   @override
   void initRouter(FluroRouter router) {
-    router.define(onePage, handler: Handler(handlerFunc: (_, __) => OnePage()));
-    router.define(twoPage, handler: Handler(handlerFunc: (_, __) => TwoPage()));
-    router.define(threePage, handler: Handler(handlerFunc: (_, __) => ThreePage()));
-    router.define(fourPage, handler: Handler(handlerFunc: (_, __) => FourPage()));
+    router.define(pOnePage, handler: Handler(handlerFunc: (_, __) => OnePage()));
+    router.define(pTwoPage, handler: Handler(handlerFunc: (_, __) => TwoPage()));
+    router.define(pThreePage, handler: Handler(handlerFunc: (_, __) => ThreePage()));
+    router.define(pFourPage, handler: Handler(handlerFunc: (_, __) => FourPage()));
     // 二维码扫描
     router.define('QrCodeGridScannerPage', handler: Handler(handlerFunc: (_, __) => QrCodeGridScannerPage()));
     router.define('QrCodeScannerPage', handler: Handler(handlerFunc: (_, params) {

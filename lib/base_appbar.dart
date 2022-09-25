@@ -234,3 +234,38 @@ void _popThis(BuildContext context) {
     Navigator.of(context).pop();
   }
 }
+
+// 多行标题
+class TwoLinesTitle extends StatelessWidget {
+  const TwoLinesTitle({
+    Key? key,
+    this.title = '',
+    this.subtitle = '',
+    this.color = Colors.white,
+  }) : super(key: key);
+
+  final String title;
+  final String subtitle;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget widget;
+
+    if (subtitle.isEmpty) {
+      widget = Text(title, style: TextStyle(fontSize: _titleFontSize, color: color));
+    } else {
+      widget = RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          text: title,
+          style: TextStyle(fontSize: 20, color: color),
+          children: <TextSpan>[
+            TextSpan(text: '\n$subtitle', style: TextStyle(color: color, fontSize: 14)),
+          ],
+        ),
+      );
+    }
+    return widget;
+  }
+}

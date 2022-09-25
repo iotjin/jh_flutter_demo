@@ -205,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
       // 保存本地
       JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res['data']);
       JhToast.showSuccess(context, msg: res['msg']);
-      JhNavUtils.pushReplacement(context, Routes.home);
+      JhNavUtils.pushReplacement(context, Routes.pHome);
     }, fail: (code, msg) {
       hide();
     });
@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
 //     // 保存本地
 //     JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res['data']);
 //     JhToast.showSuccess(context, msg: res['msg']);
-//     JhNavUtils.pushReplacement(context, Routes.home);
+//     JhNavUtils.pushReplacement(context, Routes.pHome);
 //   }, fail: (code, msg) {});
 // }
 }

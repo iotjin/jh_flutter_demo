@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
-class ToastDemoListsPage extends StatelessWidget {
+class ToastDemoListPage extends StatelessWidget {
   final List titleData = [
     '文字',
     '成功',

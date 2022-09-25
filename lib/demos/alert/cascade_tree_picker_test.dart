@@ -373,11 +373,11 @@ class CascadeTreePickerTest extends StatelessWidget {
             });
           }
           if (str == 'JhCascadeTreePicker-不定列-默认选中(三级)') {
-            var tempArr = [
-              {'value': 'zujian', 'label': '组件(三级)'},
-              {'value': 'form', 'label': 'Form'},
-              {'value': 'cascader', 'label': 'Cascader 级联选择器'},
-            ];
+            // var tempArr = [
+            //   {'value': 'zujian', 'label': '组件(三级)'},
+            //   {'value': 'form', 'label': 'Form'},
+            //   {'value': 'cascader', 'label': 'Cascader 级联选择器'},
+            // ];
             var values = ['zujian', 'form', 'cascader'];
             JhCascadeTreePicker.show(context, data: treeData, values: values, valuesKey: 'value', title: '请选择类型',
                 clickCallBack: (selectItem, selectArr) {
@@ -387,10 +387,10 @@ class CascadeTreePickerTest extends StatelessWidget {
             });
           }
           if (str == 'JhCascadeTreePicker-不定列-默认选中(只有两级)') {
-            var tempArr = [
-              {'value': 'ziyuan', 'label': '资源(两级)'},
-              {'value': 'axure', 'label': 'Axure Components'},
-            ];
+            // var tempArr = [
+            //   {'value': 'ziyuan', 'label': '资源(两级)'},
+            //   {'value': 'axure', 'label': 'Axure Components'},
+            // ];
             var values = ['资源(两级)', 'Axure Components'];
             JhCascadeTreePicker.show(context, data: treeData, values: values, valuesKey: 'label', title: '请选择类型',
                 clickCallBack: (selectItem, selectArr) {

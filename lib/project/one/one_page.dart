@@ -323,7 +323,7 @@ class OnePage extends StatelessWidget {
   void _clickCell(context, item) {
     // JhToast.showText(context, msg: '点击 $item['title']');
     if (item['title'] == 'Demo 列表') {
-      JhNavUtils.pushNamed(context, 'DemoListsPage');
+      JhNavUtils.pushNamed(context, 'DemoListPage');
     } else if (item['title'] == 'QQ邮箱提醒') {
       JhNavUtils.pushNamed(context, 'WxQQMessagePage');
     } else if (item['title'] == '订阅号消息') {
@@ -331,7 +331,7 @@ class OnePage extends StatelessWidget {
     } else if (item['title'] == '微信运动') {
       JhNavUtils.pushNamed(context, 'WxMotionPage');
     } else {
-      JhNavUtils.pushNamed(context, 'DemoListsPage');
+      JhNavUtils.pushNamed(context, 'DemoListPage');
     }
   }
 

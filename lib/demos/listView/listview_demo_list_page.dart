@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
-class ListViewDemoListsPage extends StatelessWidget {
+class ListViewDemoListPage extends StatelessWidget {
   final List titleData = [
     'ListViewTest',
     'ListViewTest2',
@@ -37,7 +37,7 @@ class ListViewDemoListsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JhTextList(
-      title: 'ListViewDemoLists',
+      title: 'ListViewDemoList',
       dataArr: titleData,
       callBack: (index, str) {
         print(routeData[index]);

@@ -140,8 +140,8 @@ Widget testBtn(context) {
         child: Text('点击跳转'),
         onPressed: () {
           print('onPressed');
-          JhNavUtils.pushNamed(context, 'UIDemoListsPage');
-//          Navigator.push(context, MaterialPageRoute(builder: (context) => (UIDemoListsPage())));// 普通路由
+          JhNavUtils.pushNamed(context, 'UIDemoListPage');
+//          Navigator.push(context, MaterialPageRoute(builder: (context) => (UIDemoListPage())));// 普通路由
 //          Navigator.push(context, MaterialPageRoute(builder: (context) => (testPage(content: '这是route传递的参数',))));// 普通路由
 //          JhNavUtils.pushNamed(context,'/Test');// 命名路由
         },

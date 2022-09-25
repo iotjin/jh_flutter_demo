@@ -121,7 +121,7 @@ class _NavFluroUtils {
   /// 跳到WebView页
   static void goWebViewPage(BuildContext context, String title, String url) {
     //fluro 不支持传中文,需转换
-    push(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}');
+    push(context, '${Routes.pWebViewPage}?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}');
   }
 
   static void unFocus() {

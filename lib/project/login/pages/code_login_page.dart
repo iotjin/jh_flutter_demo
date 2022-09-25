@@ -96,7 +96,7 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
       // 保存本地
       JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res['data']);
       JhToast.showSuccess(context, msg: res['msg']);
-      JhNavUtils.pushReplacement(context, Routes.home);
+      JhNavUtils.pushReplacement(context, Routes.pHome);
     }, fail: (code, msg) {
       hide();
     });
@@ -138,7 +138,7 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
 // //      Navigator.pushReplacement(context,
 // //          MaterialPageRoute(builder: (context) => (BaseTabBar()
 // //          )));
-//       JhNavUtils.pushReplacement(context, Routes.home);
+//       JhNavUtils.pushReplacement(context, Routes.pHome);
 //       hide();
 //     });
 //   }

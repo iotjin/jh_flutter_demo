@@ -10,13 +10,14 @@ class NavTestPage extends StatelessWidget {
     'nav-左侧返回(拦截点击事件)，右侧图片',
     'nav-左侧自定义右侧文字',
     'nav-设置透明背景色',
-    '渐变导航条'
+    'nav-渐变导航条',
+    'nav-多行标题',
   ];
 
   @override
   Widget build(BuildContext context) {
     return JhTextList(
-        title: 'NavTest',
+        title: 'BaseAppBar',
         dataArr: titleData,
         callBack: (index, str) {
           if (index == 0) {
@@ -36,6 +37,9 @@ class NavTestPage extends StatelessWidget {
           }
           if (index == 5) {
             Navigator.push(context, MaterialPageRoute(builder: (context) => (_Nav6()))); // 普通路由
+          }
+          if (index == 6) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => (_Nav7()))); // 普通路由
           }
         });
   }
@@ -85,7 +89,7 @@ class _Nav3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('微信', rightImgPath: 'assets/images/search.png', rightItemCallBack: () {
+      appBar: BaseAppBar('nav-左侧返回(拦截点击事件)，右侧图片', rightImgPath: 'assets/images/search.png', rightItemCallBack: () {
         JhProgressHUD.showText('点击右侧');
         print('点击右侧');
       }, leftItemCallBack: () {
@@ -170,5 +174,23 @@ class _Nav6 extends StatelessWidget {
             },
           ),
         ));
+  }
+}
+
+class _Nav7 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: BaseAppBar(
+        '微信1',
+        titleWidget: TwoLinesTitle(title: '主标题', subtitle: '这是副标题'),
+      ),
+      body: ElevatedButton(
+        child: Text('返回'),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    );
   }
 }

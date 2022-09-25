@@ -81,7 +81,7 @@ class SetPage extends StatelessWidget {
                 //   (route) => false,
                 // );
 
-                JhNavUtils.pushReplacement(context, LoginRouter.loginPage);
+                JhNavUtils.pushReplacement(context, LoginRouter.pLoginPage);
 
                 hide();
               });

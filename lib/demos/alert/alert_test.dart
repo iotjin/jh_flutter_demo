@@ -17,7 +17,7 @@ class AlertTestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JhTextList(
-      title: 'AlertDemoLists',
+      title: 'AlertDemoList',
       dataArr: titleData,
       callBack: (index, str) {
         if (index == 0) {

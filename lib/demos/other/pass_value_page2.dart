@@ -17,13 +17,30 @@ class PassValuePage2 extends StatelessWidget {
     value = _passValue;
 
     return Scaffold(
-        appBar: BaseAppBar('接收的值: $value'),
-        body: ElevatedButton(
+      appBar: BaseAppBar('接收的值: $value'),
+      body: _body(context),
+    );
+  }
+
+  _body(context) {
+    return Column(
+      children: [
+        ElevatedButton(
           child: Text('点击回传'),
           onPressed: () {
 //            Navigator.of(context).pop('456');
             JhNavUtils.goBackWithParams(context, '456');
           },
-        ));
+        ),
+        ElevatedButton(
+          child: Text('返回多级'),
+          onPressed: () {
+            JhNavUtils.goBack(context);
+            JhNavUtils.goBack(context);
+            JhNavUtils.goBackWithParams(context, '456');
+          },
+        )
+      ],
+    );
   }
 }

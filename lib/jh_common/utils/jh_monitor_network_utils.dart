@@ -5,7 +5,7 @@
 
 // ignore_for_file: body_might_complete_normally_nullable
 
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class JhMonitorNetworkUtils {
   /// 是否有网
