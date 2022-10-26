@@ -50,7 +50,7 @@ class JhNavUtils {
   }
 
   /// 跳转 - 带回调参数
-  static void pushNamedResult(BuildContext context, String routeName, Object? arguments, Function(Object) function) {
+  static void pushNamedResult(BuildContext context, String routeName, Object? arguments, Function(dynamic) function) {
     var path = routeName;
     // 对象或对象数组传值可以通过arguments字段进行传值，然后在router.define那里处理、设置页面接收
     if (arguments != null) {
@@ -152,8 +152,7 @@ final dynamic jumpParams;
 // 跳转传值带回调刷新
 
 var params = dataArr[index];
-JhNavUtils.pushNamedResult(context, 'TestPage', params, (data) {
-  var returnData = data as Map;
+JhNavUtils.pushNamedResult(context, 'TestPage', params, (returnData) {
   if (returnData['isRefresh'] == true) {
     requestData();
   }

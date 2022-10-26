@@ -15,6 +15,7 @@ class JhDialogTestPage extends StatelessWidget {
     'JhDialog-标题内容只有确定',
     'JhDialog-修改按钮文字',
     'JhDialog-点击按钮弹框不消失',
+    'JhDialog-录入框',
     'JhDialog-自定义内容',
     'JhDialog-自定义内容2',
     'JhDialog-自定义内容3-录入框',
@@ -58,14 +59,36 @@ class JhDialogTestPage extends StatelessWidget {
             });
           });
         }
-
         if (index == 7) {
+          var inputValue = '';
+          JhDialog.showInputDialog(
+            context,
+            title: '提示',
+            inputText: inputValue,
+            hintText: 'number',
+            labelText: 'number',
+            keyboardType: TextInputType.number,
+            inputFormatters: [number, length5],
+            inputCallBack: (value) => inputValue = value,
+            onConfirm: () {
+              if (inputValue.isEmpty) {
+                JhProgressHUD.showText('Please input number');
+                return;
+              }
+              Navigator.pop(context);
+              JhProgressHUD.showText('number: $inputValue');
+              print('inputValue: $inputValue');
+            },
+          );
+        }
+
+        if (index == 8) {
           JhDialog.showCustomDialog(context, content: Container(height: 200, color: Colors.red));
         }
-        if (index == 8) {
+        if (index == 9) {
           JhDialog.showCustomDialog(context, title: '提示', content: Container(height: 200, color: Colors.red));
         }
-        if (index == 9) {
+        if (index == 10) {
           var inputValue = '';
           JhDialog.showCustomDialog(
             context,
@@ -100,7 +123,7 @@ class JhDialogTestPage extends StatelessWidget {
           );
         }
 
-        if (index == 10) {
+        if (index == 11) {
           JhDialog.showAllCustomDialog(
             context,
             clickBgHidden: true,
@@ -116,7 +139,7 @@ class JhDialogTestPage extends StatelessWidget {
             ),
           );
         }
-        if (index == 11) {
+        if (index == 12) {
           JhDialog.showAllCustomDialog(context,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,

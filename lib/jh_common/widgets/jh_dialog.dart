@@ -4,7 +4,9 @@
 ///  description:  中间、自定义、全屏弹框
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import '/Jh_common/jh_form/jh_form_Input_cell.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/theme_provider.dart';
 
@@ -32,10 +34,10 @@ class JhDialog {
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return _BaseDialog(
+          return BaseDialog(
             title: title,
             isBoldTitle: isBoldTitle,
-            widget: content == ''
+            content: content == ''
                 ? null
                 : Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -57,7 +59,54 @@ class JhDialog {
     Navigator.pop(context);
   }
 
+  static void showInputDialog(
+    BuildContext context, {
+    String title = '',
+    bool isBoldTitle = false,
+    String leftText = _cancelText,
+    String rightText = _confirmText,
+    final VoidCallback? onCancel,
+    final VoidCallback? onConfirm,
+    bool hiddenCancel = false,
+    bool clickBtnPop = false, // 点击确认按钮是否弹框消失
+    String? inputText = '',
+    String hintText = '请输入',
+    String labelText = '请输入',
+    TextInputType keyboardType = TextInputType.text,
+    List<TextInputFormatter>? inputFormatters,
+    void Function(String value)? inputCallBack,
+    void Function(String value, bool isSubmitted)? inputCompletionCallBack,
+  }) {
+    JhDialog.showCustomDialog(
+      context,
+      title: title,
+      isBoldTitle: isBoldTitle,
+      onCancel: onCancel,
+      onConfirm: onConfirm,
+      hiddenCancel: hiddenCancel,
+      clickBtnPop: clickBtnPop,
+      content: Container(
+        height: 55,
+        margin: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          border: Border.all(color: KColors.kLineColor, width: 1),
+        ),
+        child: JhFormInputCell(
+          text: inputText,
+          hintText: hintText,
+          labelText: labelText,
+          keyboardType: keyboardType,
+          hiddenLine: true,
+          inputFormatters: inputFormatters,
+          inputCallBack: inputCallBack,
+          inputCompletionCallBack: inputCompletionCallBack,
+        ),
+      ),
+    );
+  }
+
   /// 自定义弹框
+  /// 更新弹窗内容(使用StatefulBuilder) https://www.cnhackhy.com/109249.html
   static void showCustomDialog(
     BuildContext context, {
     String title = '',
@@ -74,10 +123,10 @@ class JhDialog {
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return _BaseDialog(
+          return BaseDialog(
             title: title,
             isBoldTitle: isBoldTitle,
-            widget: content,
+            content: content,
             leftText: leftText,
             rightText: rightText,
             onCancel: onCancel,
@@ -104,12 +153,12 @@ class JhDialog {
   }
 }
 
-class _BaseDialog extends StatelessWidget {
-  _BaseDialog({
+class BaseDialog extends StatelessWidget {
+  BaseDialog({
     Key? key,
     this.title = '',
     this.isBoldTitle = true,
-    this.widget,
+    this.content,
     this.leftText = _cancelText,
     this.rightText = _confirmText,
     this.onCancel,
@@ -120,7 +169,7 @@ class _BaseDialog extends StatelessWidget {
 
   final String title;
   final bool isBoldTitle;
-  final Widget? widget;
+  final Widget? content;
   final String leftText;
   final String rightText;
   final VoidCallback? onCancel;
@@ -183,7 +232,7 @@ class _BaseDialog extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: 24),
           dialogTitle,
-          widget == null ? Container() : Flexible(child: widget!),
+          content == null ? Container() : Flexible(child: content!),
           SizedBox(height: 8),
           Divider(height: 1),
           bottomButton,

@@ -27,7 +27,7 @@ class JhQrCodeUtils {
       // 延时保证键盘收起，否则进入扫码页会黑屏
       Future<dynamic>.delayed(const Duration(milliseconds: 500), () {
         JhNavUtils.pushNamedResult(context, isShowGridLine ? 'QrCodeGridScannerPage' : 'QrCodeScannerPage',
-            isShowGridLine ? null : isShowScanLine, (Object code) {
+            isShowGridLine ? null : isShowScanLine, (dynamic code) {
           callBack?.call(code.toString());
         });
       });
