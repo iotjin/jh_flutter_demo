@@ -6,14 +6,22 @@ class BaseDemoListPage extends StatelessWidget {
   final List titleData = [
     'BaseListView',
     'BaseGridView',
-    '空数据',
+    'BaseListView - 骨架屏',
+    'BaseGridView - 骨架屏',
+    'BaseRefreshView - header/footer固定',
+    'BaseRefreshView - header/footer跟随',
     'BaseAppBar(导航条)',
+    'JhEmptyView(空数据)',
   ];
   final List routeData = [
-    'BaseListViewTestPage',
-    'BaseListViewTestPage',
-    'EmptyDemoListPage',
+    'BaseRefreshViewTestPage',
+    'BaseRefreshViewTestPage',
+    'BaseListViewShimmerTestPage',
+    'BaseGridViewShimmerTestPage',
+    'BaseRefreshViewHeaderFixedPage',
+    'BaseRefreshViewHeaderFollowPage',
     'NavTestPage',
+    'EmptyDemoListPage',
   ];
 
   @override

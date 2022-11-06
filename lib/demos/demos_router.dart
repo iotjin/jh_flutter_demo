@@ -7,7 +7,11 @@ import 'demo_list_page.dart';
 
 // base
 import 'base/base_demo_list_page.dart';
-import 'base/base_listview_test_page.dart';
+import 'base/base_refresh_view_test_page.dart';
+import 'base/base_listview_shimmer_test_page.dart';
+import 'base/base_gridview_shimmer_test_page.dart';
+import 'base/base_refresh_view_header_fixed_page.dart';
+import 'base/base_refresh_view_header_follow_page.dart';
 import 'base/empty_demo_list_page.dart';
 
 // alert
@@ -137,10 +141,18 @@ class DemosRouter implements IRouterProvider {
     router.define(pDemoListPage, handler: Handler(handlerFunc: (_, __) => DemoListPage()));
     // base
     router.define('BaseDemoListPage', handler: Handler(handlerFunc: (_, __) => BaseDemoListPage()));
-    router.define('BaseListViewTestPage', handler: Handler(handlerFunc: (_, params) {
+    router.define('BaseRefreshViewTestPage', handler: Handler(handlerFunc: (_, params) {
       var jumpParams = params['jumpParams']!.first;
-      return BaseListViewTestPage(jsonDecode(jumpParams));
+      return BaseRefreshViewTestPage(jsonDecode(jumpParams));
     }));
+    router.define('BaseListViewShimmerTestPage',
+        handler: Handler(handlerFunc: (_, __) => BaseListViewShimmerTestPage()));
+    router.define('BaseGridViewShimmerTestPage',
+        handler: Handler(handlerFunc: (_, __) => BaseGridViewShimmerTestPage()));
+    router.define('BaseRefreshViewHeaderFixedPage',
+        handler: Handler(handlerFunc: (_, __) => BaseRefreshViewHeaderFixedPage()));
+    router.define('BaseRefreshViewHeaderFollowPage',
+        handler: Handler(handlerFunc: (_, __) => BaseRefreshViewHeaderFollowPage()));
     router.define('EmptyDemoListPage', handler: Handler(handlerFunc: (_, __) => EmptyDemoListPage()));
 
     // Alert

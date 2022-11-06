@@ -1,7 +1,7 @@
 ///  base_refresh_view.dart
 ///
 ///  Created by iotjin on 2022/09/22.
-///  description: EasyRefresh封装
+///  description: EasyRefresh封装，支持骨架屏、设置header、footer、空数据与网络异常处理
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -23,6 +23,11 @@ class BaseRefreshView extends StatefulWidget {
     Key? key,
     required this.data,
     this.limit = 15,
+    this.enableShimmer = false,
+    this.shimmerView,
+    this.headerView,
+    this.footerView,
+    this.child,
     this.itemBuilder,
     this.separatorBuilder,
     this.onRefresh,
@@ -30,13 +35,18 @@ class BaseRefreshView extends StatefulWidget {
     this.firstRefresh = false,
     this.header,
     this.footer,
-    this.child,
+    this.emptyText = '暂无数据',
     this.empty,
     this.controller,
   }) : super(key: key);
 
   final List data; // 数据
   final int limit; // 分页条数，为了控制上拉加载完成显示状态
+  final bool enableShimmer; // 是否使用骨架屏，默认不使用，开启后初始化请求会显示骨架屏(需要设置shimmerView)
+  final Widget? shimmerView; // 骨架屏view
+  final Widget? headerView; // 头部view(跟随滚动)，设置后子组件要禁止滚动
+  final Widget? footerView; // 尾部view(跟随滚动)，设置后子组件要禁止滚动
+  final Widget? child; // 自定义子组件, 优先级高于itemBuilder，使用后itemBuilder失效
   final IndexedWidgetBuilder? itemBuilder; // listview子组件内的itemBuilder
   final IndexedWidgetBuilder? separatorBuilder; // listview子组件内的separatorBuilder
   final FutureOr Function()? onRefresh; // 刷新回调(null为不开启下拉刷新)
@@ -44,8 +54,8 @@ class BaseRefreshView extends StatefulWidget {
   final bool firstRefresh; // 首次刷新
   final Header? header; // 不传使用默认header
   final Footer? footer; // 不传使用默认footer
-  final Widget? child; // 自定义子组件, 优先级高于itemBuilder,使用后itemBuilder失效
-  final Widget? empty; // 空视图
+  final String emptyText; // 空视图文字
+  final Widget? empty; // 自定义空视图，优先级高于emptyText，设置后emptyText失效
   final EasyRefreshController? controller; // EasyRefresh controller
 
   @override
@@ -54,6 +64,7 @@ class BaseRefreshView extends StatefulWidget {
 
 class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
   bool _isNetWorkError = false;
+  bool _isShowShimmer = false;
   EasyRefreshController _controller = EasyRefreshController(
     controlFinishRefresh: false,
     controlFinishLoad: true,
@@ -64,6 +75,7 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
     super.initState();
 
     _controller = widget.controller ?? _controller;
+    _isShowShimmer = widget.enableShimmer;
   }
 
   @override
@@ -83,25 +95,65 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
       header: widget.header ?? _defaultHeader(),
       footer: widget.footer ?? _defaultFooter(),
       refreshOnStart: widget.firstRefresh,
-      onRefresh: widget.onRefresh,
+      onRefresh: _isShowShimmer ? null : widget.onRefresh,
       onLoad: widget.data.length == 0 ? null : widget.onLoad,
-      child: widget.child ?? _defaultChild(),
+      child: _listView(),
     );
   }
 
-  _defaultChild() {
+  _listView() {
+    if (_isShowShimmer && widget.shimmerView != null) {
+      return widget.shimmerView;
+    }
+
+    var child;
+    if (widget.headerView == null && widget.footerView == null) {
+      child = _defaultChild(false);
+    } else {
+      child = ListView(
+        children: <Widget>[
+          widget.headerView ?? Container(),
+          _defaultChild(true),
+          widget.footerView ?? Container(),
+        ],
+      );
+    }
+
+    return child;
+  }
+
+  _defaultChild(bool hasHeaderOrFooter) {
     if (widget.data.length == 0) {
+      if (hasHeaderOrFooter) {
+        return widget.empty ?? _emptyWidget();
+      }
       return ListView.builder(
         itemCount: 1,
         itemBuilder: (context, index) => widget.empty ?? _emptyWidget(),
       );
     } else {
+      // 如果使用自定义子组件，优先自定义组件
+      if (widget.child != null) {
+        return widget.child;
+      }
       return ListView.separated(
+        shrinkWrap: hasHeaderOrFooter,
+        physics: hasHeaderOrFooter ? NeverScrollableScrollPhysics() : null,
         itemCount: widget.data.length,
         itemBuilder: widget.itemBuilder!,
         separatorBuilder: widget.separatorBuilder!,
       );
     }
+  }
+
+  _emptyWidget() {
+    if (_isNetWorkError) {
+      return JhEmptyView(
+        type: EmptyType.error,
+        clickCallBack: () async => _controller.callRefresh(),
+      );
+    }
+    return JhEmptyView(text: widget.emptyText);
   }
 
   _defaultHeader() {
@@ -131,27 +183,19 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
     );
   }
 
-  _emptyWidget() {
-    if (_isNetWorkError) {
-      return JhEmptyView(
-        type: EmptyType.error,
-        clickCallBack: () async => _controller.callRefresh(),
-      );
-    }
-    return JhEmptyView();
-  }
-
   /// 网络请求
   void jhRequestData(String url, Map<String, dynamic>? params,
       {Method method = Method.post, String? loadingText, isLoadMore = false, Success? success, Fail? fail}) {
     HttpUtils.request(method, url, params, loadingText: loadingText, success: (res) {
       setState(() {
+        _isShowShimmer = false;
         _isNetWorkError = false;
       });
       _handleRefresh(isLoadMore);
       success?.call(res);
     }, fail: (code, msg) {
       setState(() {
+        _isShowShimmer = false;
         _isNetWorkError = true;
       });
       _handleRefresh(isLoadMore);

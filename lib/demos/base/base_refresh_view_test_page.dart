@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/base_refresh_view.dart';
-import '/jh_common/widgets/jh_empty_view.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/project/configs/project_config.dart';
 
-class BaseListViewTestPage extends StatefulWidget {
-  const BaseListViewTestPage(
+class BaseRefreshViewTestPage extends StatefulWidget {
+  const BaseRefreshViewTestPage(
     this.jumpParams, {
     Key? key,
   }) : super(key: key);
@@ -13,10 +12,10 @@ class BaseListViewTestPage extends StatefulWidget {
   final dynamic jumpParams;
 
   @override
-  State<BaseListViewTestPage> createState() => _BaseListViewTestPageState();
+  State<BaseRefreshViewTestPage> createState() => _BaseRefreshViewTestPageState();
 }
 
-class _BaseListViewTestPageState extends State<BaseListViewTestPage> {
+class _BaseRefreshViewTestPageState extends State<BaseRefreshViewTestPage> {
   List _dataArr = [];
   int _pageIndex = 0;
   int _limit = 15;
@@ -64,38 +63,31 @@ class _BaseListViewTestPageState extends State<BaseListViewTestPage> {
   }
 
   Widget _gridviewBody() {
-    Widget child;
-    if (_dataArr.length == 0) {
-      child = ListView.builder(
-        itemCount: 1,
-        itemBuilder: (context, index) => JhEmptyView(),
-      );
-    } else {
-      child = GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //可以直接指定每行（列）显示多少个Item
-          crossAxisCount: 2, //一行的Widget数量
-          crossAxisSpacing: 5, //水平间距
-          mainAxisSpacing: 5, //垂直间距
-          childAspectRatio: 1.0, //子Widget宽高比例
-        ),
-        //GridView内边距
-        padding: EdgeInsets.all(5),
-        itemCount: _dataArr.length,
-        itemBuilder: (context, index) {
-          return _itemWidget(index);
-        },
-      );
-    }
+    Widget child = GridView.builder(
+      shrinkWrap: true,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        // 可以直接指定每行（列）显示多少个Item
+        crossAxisCount: 2, // 一行的Widget数量
+        crossAxisSpacing: 5, // 水平间距
+        mainAxisSpacing: 5, // 垂直间距
+        childAspectRatio: 1.0, // 子Widget宽高比例
+      ),
+      //GridView内边距
+      padding: EdgeInsets.all(5),
+      itemCount: _dataArr.length,
+      itemBuilder: (context, index) {
+        return _itemWidget(index);
+      },
+    );
+
     return BaseRefreshView(
       key: globalKeyRefresh,
       data: _dataArr,
       limit: _limit,
+      child: child,
       onRefresh: () async => _requestData(),
       onLoad: () async => _requestData(isLoadMore: true),
       // onLoad: _dataArr.length == 0 ? null : () async => _requestData(isLoadMore: true),
-      child: child,
     );
   }
 
