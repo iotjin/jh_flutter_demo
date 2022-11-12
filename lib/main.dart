@@ -17,6 +17,7 @@ import 'jh_common/utils/jh_storage_utils.dart';
 import 'jh_common/utils/jh_screen_utils.dart';
 import 'project/configs/project_config.dart';
 import 'project/provider/theme_provider.dart';
+import 'project/routes/app_route_observer.dart';
 import 'project/routes/not_found_page.dart';
 import 'project/routes/routes.dart';
 import 'project/routes/routes_old.dart' as luyou;
@@ -162,7 +163,7 @@ class _MyAppState extends State<MyApp> {
         return child;
       },
       // 2.注册路由观察者
-      navigatorObservers: [BotToastNavigatorObserver()],
+      navigatorObservers: [BotToastNavigatorObserver(), AppRouteObserver().routeObserver],
     );
   }
 

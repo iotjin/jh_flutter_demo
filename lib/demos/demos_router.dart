@@ -12,6 +12,7 @@ import 'base/base_listview_shimmer_test_page.dart';
 import 'base/base_gridview_shimmer_test_page.dart';
 import 'base/base_refresh_view_header_fixed_page.dart';
 import 'base/base_refresh_view_header_follow_page.dart';
+import 'base/nav_test.dart';
 import 'base/empty_demo_list_page.dart';
 
 // alert
@@ -80,6 +81,14 @@ import 'listView/listview_group_page2.dart';
 import 'listView/listview_group_page3.dart';
 import 'listView/listview_header_page.dart';
 
+// 路由
+import 'route_test_page/route_demo_list_page.dart';
+import 'route_test_page/pass_value_page.dart';
+import 'route_test_page/pass_value_page2.dart';
+import 'route_test_page/pass_value_page3.dart';
+import 'route_test_page/route_test_page1.dart';
+import 'route_test_page/route_test_page2.dart';
+
 // 拖拽排序
 import 'dragSort/drag_sort_demo_list_page.dart';
 import 'dragSort/gridview_drag_sort_page.dart';
@@ -95,9 +104,6 @@ import 'other/animation/3DBall_page4.dart';
 import 'other/animation/tag_cloud_page.dart';
 import 'other/form_test.dart';
 import 'other/photo_select_test.dart';
-import 'other/pass_value_page.dart';
-import 'other/pass_value_page2.dart';
-import 'base/nav_test.dart';
 import 'other/red_dot_page.dart';
 import 'other/qr_code_test.dart';
 import 'other/aes_test_page.dart';
@@ -153,6 +159,7 @@ class DemosRouter implements IRouterProvider {
         handler: Handler(handlerFunc: (_, __) => BaseRefreshViewHeaderFixedPage()));
     router.define('BaseRefreshViewHeaderFollowPage',
         handler: Handler(handlerFunc: (_, __) => BaseRefreshViewHeaderFollowPage()));
+    router.define('NavTestPage', handler: Handler(handlerFunc: (_, __) => NavTestPage()));
     router.define('EmptyDemoListPage', handler: Handler(handlerFunc: (_, __) => EmptyDemoListPage()));
 
     // Alert
@@ -217,6 +224,17 @@ class DemosRouter implements IRouterProvider {
     router.define('ListViewGroupPage3', handler: Handler(handlerFunc: (_, __) => ListViewGroupPage3()));
     router.define('ListViewHeaderPage', handler: Handler(handlerFunc: (_, __) => ListViewHeaderPage()));
 
+    // 路由
+    router.define('RouteDemoListPage', handler: Handler(handlerFunc: (_, __) => RouteDemoListPage()));
+    router.define('PassValuePage', handler: Handler(handlerFunc: (_, __) => PassValuePage()));
+    router.define('PassValuePage2', handler: Handler(handlerFunc: (_, params) {
+      var jumpParams = params['jumpParams']!.first;
+      return PassValuePage2(jsonDecode(jumpParams));
+    }));
+    router.define('PassValuePage3', handler: Handler(handlerFunc: (_, __) => PassValuePage3()));
+    router.define('RouteTestPage1', handler: Handler(handlerFunc: (_, __) => RouteTestPage1()));
+    router.define('RouteTestPage2', handler: Handler(handlerFunc: (_, __) => RouteTestPage2()));
+
     // 拖拽排序
     router.define('DragSortDemoListPage', handler: Handler(handlerFunc: (_, __) => DragSortDemoListPage()));
     router.define('ListviewDragSortPage', handler: Handler(handlerFunc: (_, __) => ListviewDragSortPage()));
@@ -233,16 +251,6 @@ class DemosRouter implements IRouterProvider {
     router.define('TagCloudPage', handler: Handler(handlerFunc: (_, __) => TagCloudPage()));
     router.define('FormTest', handler: Handler(handlerFunc: (_, __) => FormTest()));
     router.define('PhotoSelectTest', handler: Handler(handlerFunc: (_, __) => PhotoSelectTest()));
-    router.define('PassValuePage', handler: Handler(handlerFunc: (_, __) => PassValuePage()));
-//    router.define('PassValuePage2', handler: Handler(handlerFunc: (_, __) => PassValuePage2()));
-    router.define('PassValuePage2', handler: Handler(handlerFunc: (_, params) {
-      print('---------params---------');
-      print(params);
-      final String passValue = params['passValue']!.first;
-      // final bool isScan = params['isScan']?.first == 'true';
-      return PassValuePage2(passValue);
-    }));
-    router.define('NavTestPage', handler: Handler(handlerFunc: (_, __) => NavTestPage()));
     router.define('RedDotPage', handler: Handler(handlerFunc: (_, __) => RedDotPage()));
     router.define('QRCodeTest', handler: Handler(handlerFunc: (_, __) => QRCodeTest()));
     router.define('SideslipTestPage', handler: Handler(handlerFunc: (_, __) => SideslipTestPage()));

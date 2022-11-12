@@ -1,13 +1,14 @@
 ///  jh_monitor_network_utils.dart
 ///
 ///  Created by iotjin on 2020/03/27.
-///  description:  路由跳转工具类（原生）
+///  description:  路由跳转工具类（原生封装）
 
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/base_web_view.dart';
 
 /// 更推荐使用jh_nav_utils
 class JhNavRouterUtils {
+  /// 跳转
   static push(BuildContext context, Widget scene) {
     Navigator.push(
       context,
@@ -36,7 +37,8 @@ class JhNavRouterUtils {
         (route) => false);
   }
 
-  static pushResult(BuildContext context, Widget scene, Function(Object) function) {
+  ///  跳转 - 带回调参数
+  static pushNamedResult(BuildContext context, Widget scene, Function(dynamic) function) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -55,11 +57,13 @@ class JhNavRouterUtils {
 
   /// 返回
   static void goBack(BuildContext context) {
+    unFocus();
     Navigator.pop(context);
   }
 
   /// 带参数返回
   static void goBackWithParams(BuildContext context, result) {
+    unFocus();
     Navigator.pop(context, result);
   }
 
@@ -77,5 +81,12 @@ class JhNavRouterUtils {
 //      return WebViewPage(title:'作者博客', url: 'https://blog.csdn.net/iotjin');
 //
 //    }));
+  }
+
+  static void unFocus() {
+    /// 使用下面的方式，会触发不必要的build。
+    /// FocusScope.of(context).unFocus();
+    /// https://blog.csdn.net/iotjin
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 }

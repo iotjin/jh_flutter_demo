@@ -73,8 +73,8 @@ import '../../demos/listView/listview_test_pull_down_vc.dart';
 // other
 import '/demos/other/form_test.dart';
 import '/demos/other/photo_select_test.dart';
-import '../../demos/other/pass_value_page.dart';
-import '../../demos/other/pass_value_page2.dart';
+import '../../demos/route_test_page/pass_value_page.dart';
+import '../../demos/route_test_page/pass_value_page2.dart';
 import '../../demos/base/nav_test.dart';
 import '../../demos/other/red_dot_page.dart';
 import '../../demos/other/qr_code_test.dart';
