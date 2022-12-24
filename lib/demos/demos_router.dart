@@ -95,6 +95,10 @@ import 'dragSort/gridview_drag_sort_page.dart';
 import 'dragSort/listview_drag_sort_page.dart';
 import 'dragSort/listview_drag_sort_page2.dart';
 
+// 功能组件
+import 'components/component_demo_list_page.dart';
+import 'components/slide_menu_test_page.dart';
+
 // other
 import 'other/animation/animation_demo_list_page.dart';
 import 'other/animation/3DBall_page.dart';
@@ -240,6 +244,10 @@ class DemosRouter implements IRouterProvider {
     router.define('ListviewDragSortPage', handler: Handler(handlerFunc: (_, __) => ListviewDragSortPage()));
     router.define('ListviewDragSortPage2', handler: Handler(handlerFunc: (_, __) => ListviewDragSortPage2()));
     router.define('GridviewDragSortPage', handler: Handler(handlerFunc: (_, __) => GridviewDragSortPage()));
+
+    // 功能组件
+    router.define('ComponentDemoListPage', handler: Handler(handlerFunc: (_, __) => ComponentDemoListPage()));
+    router.define('SlideMenuTestPage', handler: Handler(handlerFunc: (_, __) => SlideMenuTestPage()));
 
     // other
     router.define('AnimationDemoListPage', handler: Handler(handlerFunc: (_, __) => AnimationDemoListPage()));

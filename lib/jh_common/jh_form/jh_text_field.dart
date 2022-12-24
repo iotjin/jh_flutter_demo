@@ -95,13 +95,15 @@ class _JhTextFieldState extends State<JhTextField> {
     _focusNode = widget.focusNode != null ? widget.focusNode : FocusNode();
 
     _focusNode!.addListener(() {
-      setState(() {
-        _isFocused = _focusNode!.hasFocus;
-        // 录入完成回调，失去焦点并且不是点击键盘右下角时触发
-        if (!_isFocused && !_isSubmitted) {
-          widget.inputCompletionCallBack?.call(_textController!.text, false);
-        }
-      });
+      if (mounted) {
+        setState(() {
+          _isFocused = _focusNode!.hasFocus;
+          // 录入完成回调，失去焦点并且不是点击键盘右下角时触发
+          if (!_isFocused && !_isSubmitted) {
+            widget.inputCompletionCallBack?.call(_textController!.text, false);
+          }
+        });
+      }
     });
   }
 

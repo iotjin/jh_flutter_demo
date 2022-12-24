@@ -184,6 +184,7 @@ flutter:
     - assets/images/
     - assets/images/common/
     - assets/images/common/empty/
+    - assets/images/funcMenu/
     - assets/images/newFeature/
     - assets/images/picture/
     - assets/images/popMenus/
