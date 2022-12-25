@@ -1,11 +1,13 @@
 ///  wx_subscription_number_page.dart
 ///
 ///  Created by iotjin on 2020/09/03.
-///  description:
+///  description: 订阅号消息
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import '/project/configs/project_config.dart';
+import '../models/wx_subscription_number_model.dart';
+import '../widgets/wx_subscription_number_cell.dart';
 
 List _dataArr = [
   {
@@ -89,100 +91,17 @@ class WxSubscriptionNumberPage extends StatelessWidget {
 
   Widget _body(context, dataArr) {
     return ListView.builder(
-        itemCount: _dataArr.length,
-        itemBuilder: (context, index) {
-          return _cell(context, dataArr[index], index);
-        });
-  }
-
-  Widget _cell(context, item, index) {
-    Widget _widget1 = Column(
-      children: <Widget>[
-        ListTile(
-          leading: Container(
-              child: CircleAvatar(
-                  backgroundImage: AssetImage(
-            item['img2'],
-          ))),
-          title: Text(
-            item['title'],
-            style: TextStyle(color: KColors.wxTextBlueColor),
-          ),
-          trailing: Text(
-            item['time'],
-          ),
-        ),
-        Stack(
-          children: [
-            AspectRatio(
-              aspectRatio: 20 / 9,
-//          child: Image.network(value['imageUrl'], fit: BoxFit.cover),
-              child: Image.asset(item['img1'], fit: BoxFit.cover),
-            ),
-            Positioned(
-              left: 18.0,
-              bottom: 10,
-              child: Text(
-                item['subtitle'],
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-        ListTile(
-            contentPadding: EdgeInsets.all(18),
-            title: Text(
-              item['text2'],
-              style: TextStyle(color: KColors.wxTextBlueColor),
-            ),
-            trailing: Image.asset(
-              item['img2'],
-              width: 60,
-            ))
-      ],
-    );
-
-    Widget _widget2 = Column(
-      children: <Widget>[
-        ListTile(
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: Image.asset(
-              item['img2'],
-              width: 30,
-            ),
-          ),
-          title: Text(item['title']),
-        ),
-        ListTile(
-            contentPadding: EdgeInsets.all(18),
-            title: Text(
-              item['text2'],
-              style: TextStyle(color: KColors.wxTextBlueColor),
-            ),
-            trailing: Image.asset(
-              item['img2'],
-              width: 60,
-            ))
-      ],
-    );
-
-    return InkWell(
-      child: Card(
-          margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-          // 设置圆角
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          // 抗锯齿
-          clipBehavior: Clip.antiAlias,
-          // 普通的边
-//    shape: Border.all(color: Colors.yellow, width: 5.0),
-          elevation: 3,
-          // 阴影大小
-          child: Container(
-            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
-            child: index % 2 == 0 ? _widget1 : _widget2,
-          )),
-      onTap: () => _clickCell(context, item['title']),
+      itemCount: _dataArr.length,
+      itemBuilder: (context, index) {
+        WxSubscriptionNumberModel model = WxSubscriptionNumberModel.fromJson(dataArr[index]);
+        return WxSubscriptionNumberCell(
+          model: model,
+          index: index,
+          onClickCell: (model) {
+            _clickCell(context, model['title']);
+          },
+        );
+      },
     );
   }
 

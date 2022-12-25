@@ -1,4 +1,4 @@
-class WorkOrderModel {
+class HttpPageTestModel {
   // ignore: non_constant_identifier_names
   var ID;
   String? place;
@@ -7,16 +7,17 @@ class WorkOrderModel {
   String? content;
   String? imageUrl;
 
-  WorkOrderModel(
-      // ignore: non_constant_identifier_names
-      {this.ID,
-      this.place,
-      this.state,
-      this.phone,
-      this.content,
-      this.imageUrl});
+  HttpPageTestModel({
+    // ignore: non_constant_identifier_names
+    this.ID,
+    this.place,
+    this.state,
+    this.phone,
+    this.content,
+    this.imageUrl,
+  });
 
-  WorkOrderModel.fromJson(Map<String, dynamic> json) {
+  HttpPageTestModel.fromJson(Map<String, dynamic> json) {
     ID = json['ID'];
     place = json['place'];
     state = json['state'];

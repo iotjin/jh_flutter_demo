@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import '/jh_common/widgets/Jh_highlight_text.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
-import '/jh_common/widgets/jh_progress_hud.dart';
 import '/project/configs/project_config.dart';
 
 class SearchTest4Page extends StatefulWidget {

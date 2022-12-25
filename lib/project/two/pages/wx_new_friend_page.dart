@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
 import '/project/configs/project_config.dart';
+import '../models/wx_new_friend_model.dart';
+import '../widgets/wx_new_friend_cell.dart';
 
 List _dataArr = [
   {
@@ -60,6 +62,19 @@ class WxNewFriendPage extends StatelessWidget {
   }
 
   Widget _body(context) {
+    return ListView(
+      children: [
+        Column(
+          children: <Widget>[
+            _header(context),
+            _listWidget(_dataArr),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _header(context) {
     Widget _searchBar = JhSearchBar(
       hintText: '微信号/手机号',
       bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
@@ -67,17 +82,21 @@ class WxNewFriendPage extends StatelessWidget {
 
     Widget _myCode = InkWell(
       child: Container(
-          padding: EdgeInsets.all(10),
-          color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
+        width: double.infinity,
+        padding: EdgeInsets.all(10),
+        color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
 //        height: 60,
-          child: Column(children: <Widget>[
+        child: Column(
+          children: <Widget>[
             Icon(Icons.phone_iphone, color: KColors.wxThemeColor),
             SizedBox(height: 10),
             Text(
               '添加手机联系人',
               style: TextStyle(color: Colors.grey),
             ),
-          ])),
+          ],
+        ),
+      ),
       onTap: () => _clickCell(context, '添加手机联系人'),
     );
 
@@ -88,77 +107,39 @@ class WxNewFriendPage extends StatelessWidget {
       child: Text('三天前', style: TextStyle(color: Colors.grey)),
     );
 
-    List<Widget> _topWidgetList = _dataArr.map((item2) => _cell(context, item2)).toList();
-
-    _topWidgetList.insert(0, _text);
-    _topWidgetList.insert(0, _myCode);
-    _topWidgetList.insert(0, _searchBar);
-
-    return ListView(
-      children: _topWidgetList,
-    );
+    return Column(children: [
+      _searchBar,
+      _myCode,
+      _text,
+    ]);
   }
 
-  // cell
-  Widget _cell(context, item) {
-    Widget _btn = InkWell(
-      child: Container(
-        alignment: Alignment.center,
-        width: 70,
-        height: 35,
-        decoration: BoxDecoration(
-          color: KColors.wxThemeColor,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Text(
-          '接受',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      onTap: () => _clickCell(context, '接受'),
-    );
-    Widget _text = InkWell(
-        child: Container(
-      alignment: Alignment.center,
-      width: 70,
-      height: 35,
-      child: Text(
-        '已添加',
-        style: TextStyle(color: Colors.grey),
-      ),
-    ));
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
-            child: ListTile(
-              onTap: () => _clickCell(context, item['title']),
-              leading: Container(
-                  child: CircleAvatar(
-                      backgroundImage: AssetImage(
-                item['img'],
-              ))),
-              title: Text(
-                item['title'],
-                style: TextStyle(color: KColors.wxTextBlueColor),
-              ),
-              subtitle: Text(
-                item['subtitle'],
-              ),
-              trailing: item['isAdd'] ? _text : _btn,
-            )),
-        SizedBox(
-          width: 70,
-          height: 1,
-          child: Container(
-            color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
-          ),
-        )
-      ],
-    );
+  Widget _listWidget(List dataArr) {
+    if (dataArr.length == 0) {
+      return Container(
+        alignment: Alignment.topCenter,
+        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+        child: Text('暂无数据', textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
+      );
+    } else {
+      return ListView.builder(
+        itemCount: dataArr.length,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          WxNewFriendModel model = WxNewFriendModel.fromJson(dataArr[index]);
+          return WxNewFriendCell(
+            model: model,
+            onClickCell: (model) {
+              _clickCell(context, model['title']);
+            },
+            onClickBtn: (model) {
+              _clickCell(context, '接受');
+            },
+          );
+        },
+      );
+    }
   }
 
   // 点击cell

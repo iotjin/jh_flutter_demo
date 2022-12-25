@@ -1,11 +1,11 @@
-///  contacts_model.dart
+///  wx_contacts_model.dart
 ///
-///  Created by iotjin on 2020/09/01.
-///  description:  联系人model, 通讯录使用
+///  Created by iotjin on 2019/08/14.
+///  description: 微信通讯录 model
 
 import 'package:azlistview/azlistview.dart';
 
-class ContactsModel extends ISuspensionBean {
+class WxContactsModel extends ISuspensionBean {
   int? id;
   String? name; // 昵称
   String? tagIndex;
@@ -19,7 +19,7 @@ class ContactsModel extends ISuspensionBean {
   String? img;
   bool? isStar;
 
-  ContactsModel({
+  WxContactsModel({
     this.id,
     this.name,
     this.tagIndex,
@@ -34,7 +34,7 @@ class ContactsModel extends ISuspensionBean {
     this.isStar,
   });
 
-  ContactsModel.fromJson(Map<String, dynamic> json) {
+  WxContactsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     tagIndex = json['tagIndex'];

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
 import '/jh_common/widgets/base_refresh_view.dart';
 import '/jh_common/widgets/Jh_highlight_text.dart';
-import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_shimmer_view.dart';
 import '/project/configs/project_config.dart';
 

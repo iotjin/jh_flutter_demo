@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:azlistview/azlistview.dart';
 import 'package:lpinyin/lpinyin.dart';
 import '/project/configs/project_config.dart';
-import '/project/model/contacts_model.dart';
+import '/project/two/models/wx_contacts_model.dart';
 
 const Color bgColor = Colors.black87;
 const double radius = 3.0;
@@ -15,7 +15,7 @@ class CitySelectListPage extends StatefulWidget {
 }
 
 class _CitySelectListPageState extends State<CitySelectListPage> {
-  List<ContactsModel> _cityList = [];
+  List<WxContactsModel> _cityList = [];
   double _suspensionHeight = 40;
   double _itemHeight = 50;
   String _suspensionTag = '';
@@ -36,14 +36,14 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
       List list = countyMap['china'];
       list.forEach((item) {
 //        print('name: ${item['name']}');
-        _cityList.add(ContactsModel(name: item['name']));
+        _cityList.add(WxContactsModel(name: item['name']));
       });
       _handleList(_cityList);
       setState(() {});
     });
   }
 
-  void _handleList(List<ContactsModel> list) {
+  void _handleList(List<WxContactsModel> list) {
 //    if (list == null || list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
       String pinyin = PinyinHelper.getPinyinE(list[i].name!);
@@ -62,7 +62,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
     SuspensionUtil.setShowSuspensionStatus(_cityList);
 
     // add header.
-    _cityList.insert(0, ContactsModel(name: 'header', tagIndex: '★'));
+    _cityList.insert(0, WxContactsModel(name: 'header', tagIndex: '★'));
 
     setState(() {});
   }
@@ -105,12 +105,12 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
             itemCount: _cityList.length,
             itemBuilder: (BuildContext context, int index) {
               if (index == 0) return _buildHeader();
-              ContactsModel model = _cityList[index];
+              WxContactsModel model = _cityList[index];
               return _buildListItem(model);
             },
             susItemHeight: _suspensionHeight,
             susItemBuilder: (BuildContext context, int index) {
-              ContactsModel model = _cityList[index];
+              WxContactsModel model = _cityList[index];
               String tag = model.getSuspensionTag();
               if ('★' == model.getSuspensionTag()) {
                 return Container();
@@ -139,14 +139,14 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   }
 
   Widget _buildHeader() {
-    List<ContactsModel> hotCityList = [];
+    List<WxContactsModel> hotCityList = [];
     hotCityList.addAll([
-      ContactsModel(name: '北京市'),
-      ContactsModel(name: '广州市'),
-      ContactsModel(name: '成都市'),
-      ContactsModel(name: '深圳市'),
-      ContactsModel(name: '杭州市'),
-      ContactsModel(name: '武汉市'),
+      WxContactsModel(name: '北京市'),
+      WxContactsModel(name: '广州市'),
+      WxContactsModel(name: '成都市'),
+      WxContactsModel(name: '深圳市'),
+      WxContactsModel(name: '杭州市'),
+      WxContactsModel(name: '武汉市'),
     ]);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -189,7 +189,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
     );
   }
 
-  Widget _buildListItem(ContactsModel model) {
+  Widget _buildListItem(WxContactsModel model) {
     String susTag = model.getSuspensionTag();
     return Column(
       children: <Widget>[

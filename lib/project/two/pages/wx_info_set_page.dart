@@ -8,18 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
 import '/project/configs/project_config.dart';
-import '/project/model/contacts_model.dart';
+import '/project/two/models/wx_contacts_model.dart';
 
 class WxInfoSetPage extends StatefulWidget {
-  final ContactsModel? _passValue;
+  const WxInfoSetPage(this.jumpParams, {Key? key}) : super(key: key);
 
-  WxInfoSetPage(this._passValue);
+  final dynamic jumpParams;
 
   @override
   _WxInfoSetPageState createState() => _WxInfoSetPageState();
 }
 
 class _WxInfoSetPageState extends State<WxInfoSetPage> {
+  WxContactsModel model = WxContactsModel();
   bool _switchSelected = false;
   bool _switchSelected2 = false;
 
@@ -28,7 +29,8 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
     // TODO: implement initState
     super.initState();
 
-    _switchSelected = widget._passValue!.isStar!;
+    model = WxContactsModel.fromJson(widget.jumpParams);
+    _switchSelected = model.isStar!;
   }
 
   @override
@@ -48,7 +50,7 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
         JhSetCell(
           cellHeight: _cellH,
           title: '备注和标签',
-          text: widget._passValue!.label!,
+          text: model.label.jhNullSafe,
           clickCallBack: () => _clickCell(context, '备注和标签'),
         ),
         JhSetCell(
@@ -61,9 +63,9 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
         JhSetCell(
           cellHeight: _cellH,
           titleWidth: 150,
-          title: widget._passValue!.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友',
+          title: model.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, widget._passValue!.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友'),
+          clickCallBack: () => _clickCell(context, model.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(

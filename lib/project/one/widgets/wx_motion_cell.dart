@@ -1,92 +1,39 @@
-///  wx_motion_page.dart
+///  wx_motion_cell.dart
 ///
 ///  Created by iotjin on 2020/09/09.
-///  description: 微信运动
+///  description: 微信运动 cell
 
 import 'package:flutter/material.dart';
-import 'package:jhtoast/jhtoast.dart';
-import '/jh_common/utils/jh_color_utils.dart';
 import '/project/configs/project_config.dart';
+import '../models/wx_motion_model.dart';
 
-List _dataArr = [
-  {
-    'time': '2020年5月8日 22:10',
-    'ranking': '10',
-    'steps': '2861',
-    'img': 'assets/images/picture/touxiang_1.jpeg',
-    'text': '夺得05月08日排行榜冠军',
-    'color': '#00AE5B',
-  },
-  {
-    'time': '2020年6月6日 22:22',
-    'ranking': '3',
-    'steps': '12180',
-    'img': 'assets/images/picture/touxiang_2.jpeg',
-    'text': '夺得6月6日排行榜冠军',
-    'color': '#FF8B22',
-  },
-  {
-    'time': '2020年7月12日 22:01',
-    'ranking': '7',
-    'steps': '1986',
-    'img': 'assets/images/picture/touxiang_3.jpeg',
-    'text': '夺得7月12日排行榜冠军',
-    'color': '#00AE5B',
-  },
-  {
-    'time': '2020年8月18日 22:09',
-    'ranking': '6',
-    'steps': '23354',
-    'img': 'assets/images/picture/touxiang_4.jpeg',
-    'text': '夺得8月18日排行榜冠军',
-    'color': '#FF8B22',
-  },
-  {
-    'time': '2020年9月9日 22:23',
-    'ranking': '1',
-    'steps': '20015',
-    'img': 'assets/images/picture/touxiang_5.jpeg',
-    'text': '夺得9月9日排行榜冠军',
-    'color': '#FF8B22',
-  },
-];
+class WxMotionCell extends StatelessWidget {
+  const WxMotionCell({
+    Key? key,
+    required this.model,
+    this.onClickCell,
+  }) : super(key: key);
 
-class WxMotionPage extends StatelessWidget {
+  final WxMotionModel model;
+  final Function(dynamic model)? onClickCell;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: BaseAppBar('微信运动', rightImgPath: 'assets/images/ic_set_black.png', bgColor: Colors.transparent,
-          rightItemCallBack: () {
-        _clickCell(context, '设置');
-      }),
-      body: _body(context, _dataArr),
-      backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
-      bottomNavigationBar: _bottomView(context),
-    );
+    return _cell(context);
   }
 
-  Widget _body(context, dataArr) {
-    return ListView.builder(
-        itemCount: _dataArr.length,
-        // itemExtent: 150.0, // 强制高度为100.0
-        itemBuilder: (context, index) {
-          return _cell(context, dataArr[index]);
-        });
-  }
-
-  // cell
-  Widget _cell(context, item) {
+  _cell(context) {
     return Column(
       children: [
         Container(
           padding: EdgeInsets.all(10),
           child: Text(
-            item['time'],
+            model.time.jhNullSafe,
             style: TextStyle(fontSize: 13, color: Colors.grey),
           ),
         ),
         InkWell(
-          onTap: () => _jumpTop(context, item),
+          onTap: () => onClickCell?.call(model.toJson()),
           child: Card(
               margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
               // 设置圆角
@@ -121,12 +68,12 @@ class WxMotionPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    item['ranking'],
-                                    style: TextStyle(color: JhColorUtils.hexColor(item['color']), fontSize: 35),
+                                    model.ranking.jhNullSafe,
+                                    style: TextStyle(color: JhColorUtils.hexColor(model.color!), fontSize: 35),
                                   ),
                                   Text(
                                     '名次',
-                                    style: TextStyle(color: JhColorUtils.hexColor(item['color']), fontSize: 12),
+                                    style: TextStyle(color: JhColorUtils.hexColor(model.color!), fontSize: 12),
                                   ),
                                 ],
                               ),
@@ -138,12 +85,12 @@ class WxMotionPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    item['steps'],
-                                    style: TextStyle(color: JhColorUtils.hexColor(item['color']), fontSize: 35),
+                                    model.steps.jhNullSafe,
+                                    style: TextStyle(color: JhColorUtils.hexColor(model.color!), fontSize: 35),
                                   ),
                                   Text(
                                     '步数',
-                                    style: TextStyle(color: JhColorUtils.hexColor(item['color']), fontSize: 12),
+                                    style: TextStyle(color: JhColorUtils.hexColor(model.color!), fontSize: 12),
                                   ),
                                 ],
                               ),
@@ -161,14 +108,14 @@ class WxMotionPage extends StatelessWidget {
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.asset(
-                            item['img'],
+                            model.img!,
                             width: 40,
                           ),
                         ),
                         title: Text(
-                          item['text'],
+                          model.text.jhNullSafe,
                           style: TextStyle(
-                            color: JhColorUtils.hexColor(item['color']),
+                            color: JhColorUtils.hexColor(model.color!),
                             fontSize: 15,
                           ),
                         ),
@@ -181,36 +128,5 @@ class WxMotionPage extends StatelessWidget {
         )
       ],
     );
-  }
-
-  // 点击cell
-  _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 $text');
-  }
-
-  _bottomView(context) {
-    return Container(
-      height: JhScreenUtils.bottomSafeHeight + 60,
-      color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
-      child: SafeArea(
-          child: Row(
-        children: <Widget>[
-          Expanded(
-            child: InkWell(
-              child: Container(
-                height: 60,
-                color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
-                child: Center(child: Text('步数排行榜')),
-              ),
-              onTap: () => _clickCell(context, '步数排行榜'),
-            ),
-          )
-        ],
-      )),
-    );
-  }
-
-  _jumpTop(context, item) {
-    JhNavUtils.pushNamed(context, 'WxMotionTopPage');
   }
 }

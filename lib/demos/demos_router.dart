@@ -64,6 +64,7 @@ import 'gridView/gridview_test5.dart';
 import 'http/http_demo_list_page.dart';
 import 'http/http_test1_page.dart';
 import 'http/http_page_test_page.dart';
+import 'http/http_page_test_header_follow_page.dart';
 
 // ListView
 import 'listView/listview_demo_list_page.dart';
@@ -212,6 +213,8 @@ class DemosRouter implements IRouterProvider {
     router.define('HttpDemoListPage', handler: Handler(handlerFunc: (_, __) => HttpDemoListPage()));
     router.define('HttpTest1Page', handler: Handler(handlerFunc: (_, __) => HttpTest1Page()));
     router.define('HttpPageTestPage', handler: Handler(handlerFunc: (_, __) => HttpPageTestPage()));
+    router.define('HttpPageTestHeaderFollowPage',
+        handler: Handler(handlerFunc: (_, __) => HttpPageTestHeaderFollowPage()));
     // ListView
     router.define('ListViewDemoListPage', handler: Handler(handlerFunc: (_, __) => ListViewDemoListPage()));
     router.define('ListViewTest', handler: Handler(handlerFunc: (_, __) => ListViewTest()));

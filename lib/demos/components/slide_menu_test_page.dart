@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_slide_menu_view.dart';
 import '/project/configs/project_config.dart';
 

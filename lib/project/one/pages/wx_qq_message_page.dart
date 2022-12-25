@@ -1,11 +1,13 @@
 ///  wx_qq_message_page.dart
 ///
 ///  Created by iotjin on 2020/09/03.
-///  description:
+///  description: QQ邮箱提醒
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import '/project/configs/project_config.dart';
+import '../models/wx_qq_message_model.dart';
+import '../widgets/wx_qq_message_cell.dart';
 
 List _dataArr = [
   {
@@ -34,48 +36,21 @@ class WxQQMessagePage extends StatelessWidget {
     return Stack(
       children: <Widget>[
         ListView.builder(
-            itemCount: _dataArr.length,
+          itemCount: _dataArr.length,
 //            itemExtent: 150.0, // 强制高度为100.0
-            itemBuilder: (context, index) {
-              return _cell(context, dataArr[index]);
-            }),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          child: _bottomView(context, dataArr),
+          itemBuilder: (context, index) {
+            WxQQMessageModel model = WxQQMessageModel.fromJson(dataArr[index]);
+            return WxQQMessageCell(
+              model: model,
+              onClickCell: (model) {
+                _clickCell(context, model['title']);
+              },
+            );
+          },
         ),
+        Positioned(left: 0, right: 0, bottom: 0, child: _bottomView(context, dataArr)),
       ],
     );
-  }
-
-  // cell
-  Widget _cell(context, item) {
-    return Card(
-        margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-        // 设置圆角
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        // 抗锯齿
-        clipBehavior: Clip.antiAlias,
-        // 普通的边
-//    shape: Border.all(color: Colors.yellow, width: 5.0),
-        elevation: 3,
-        // 阴影大小
-        child: Container(
-          color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
-          child: ListTile(
-            title: Text(item['title']),
-            subtitle: Text(
-              item['subtitle'],
-            ),
-            onTap: () => _clickCell(context, item['title']),
-          ),
-        ));
-  }
-
-  // 点击cell
-  _clickCell(context, text) {
-    JhToast.showText(context, msg: '点击 $text');
   }
 
   _bottomView(context, dataArr) {
@@ -111,5 +86,10 @@ class WxQQMessagePage extends StatelessWidget {
         ],
       )),
     );
+  }
+
+  // 点击cell
+  _clickCell(context, text) {
+    JhToast.showText(context, msg: '点击 $text');
   }
 }

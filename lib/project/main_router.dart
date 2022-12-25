@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:fluro/fluro.dart';
 
-import '/project/model/contacts_model.dart';
 import '/project/routes/router_init.dart';
 import '/jh_common/widgets/qr_code_grid_scanner_page.dart';
 import '/jh_common/widgets/qr_code_scanner_page.dart';
@@ -9,16 +8,16 @@ import '/jh_common/widgets/qr_code_scanner_page.dart';
 import '/project/one/one_page.dart';
 import '/project/two/two_page.dart';
 import '/project/three/three_page.dart';
+import '/project/four/four_page.dart';
 
 // four
-import '/project/four/four_page.dart';
 import '/project/four/pages/set_page.dart';
 import '/project/four/pages/info_page.dart';
 import '/project/four/pages/theme_page.dart';
 import '/project/four/pages/about_page.dart';
 import '/project/four/pages/about_ios_page.dart';
 import '/project/four/pages/mine_page.dart';
-import '/project/two/wx/wx_info_set_page.dart';
+import '/project/two/pages/wx_info_set_page.dart';
 import '/project/four/pages/img_pull_down_big_page.dart';
 import '/project/four/pages/img_pull_down_big_page2.dart';
 import '/project/four/pages/img_pull_down_big_page3.dart';
@@ -28,25 +27,29 @@ import '/project/four/pages/fade_app_bar_page.dart';
 
 // wx
 // 首页
-import 'one/wx/wx_qq_message_page.dart';
-import 'one/wx/wx_subscription_number_page.dart';
-import 'one/wx/wx_subscription_number_list_page.dart';
-import 'one/wx/wx_motion_page.dart';
-import 'one/wx/wx_motion_top_page.dart';
+import 'one/pages/wx_home_page.dart';
+import 'one/pages/wx_qq_message_page.dart';
+import 'one/pages/wx_subscription_number_page.dart';
+import 'one/pages/wx_subscription_number_list_page.dart';
+import 'one/pages/wx_motion_page.dart';
+import 'one/pages/wx_motion_top_page.dart';
 
 // 联系人
-import 'two/wx/wx_userInfo_page.dart';
-import 'two/wx/wx_new_friend_page.dart';
-import 'two/wx/wx_add_friend_page.dart';
-import 'two/wx/wx_group_chat_page.dart';
+import 'two/pages/wx_contacts_page.dart';
+import 'two/pages/wx_userInfo_page.dart';
+import 'two/pages/wx_new_friend_page.dart';
+import 'two/pages/wx_add_friend_page.dart';
+import 'two/pages/wx_group_chat_page.dart';
 
 // 发现
-import 'three/wx/wx_friends_circle_page.dart';
+import 'three/pages/wx_discover_page.dart';
+import 'three/pages/wx_friends_circle_page.dart';
 
 // 我的
-import 'four/wx/wx_person_info_page.dart';
-import 'four/wx/wx_pay_page.dart';
-import 'four/wx/wx_pay_manager_page.dart';
+import 'four/pages/wx_mine_page.dart';
+import 'four/pages/wx_person_info_page.dart';
+import 'four/pages/wx_pay_page.dart';
+import 'four/pages/wx_pay_manager_page.dart';
 
 class MainRouter implements IRouterProvider {
   static String pOnePage = '/onePage';
@@ -82,6 +85,7 @@ class MainRouter implements IRouterProvider {
 
     /********************************* 首页 ********************************/
 
+    router.define('WxHomePage', handler: Handler(handlerFunc: (_, __) => WxHomePage()));
     router.define('WxQQMessagePage', handler: Handler(handlerFunc: (_, __) => WxQQMessagePage()));
     router.define('WxSubscriptionNumberPage', handler: Handler(handlerFunc: (_, __) => WxSubscriptionNumberPage()));
     router.define('WxSubscriptionNumberListPage',
@@ -91,30 +95,29 @@ class MainRouter implements IRouterProvider {
 
     /********************************* 联系人 ********************************/
 
+    router.define('WxContactsPage', handler: Handler(handlerFunc: (_, __) => WxContactsPage()));
     // 个人信息页面
     router.define('WxUserInfoPage', handler: Handler(handlerFunc: (_, params) {
-//      print('---------params---------');
-//      print(params);
-      String jsonStr = params['passValue']!.first;
-      ContactsModel model = ContactsModel.fromJson(json.decode(jsonStr));
-//      print('model: ${ model.name }');
-//      print('---------params---------');
-      return WxUserInfoPage(model);
+      var jumpParams = params['jumpParams']!.first;
+      return WxUserInfoPage(jsonDecode(jumpParams));
     }));
     // 资料设置
     router.define('WxInfoSetPage', handler: Handler(handlerFunc: (_, params) {
-      String jsonStr = params['passValue']!.first;
-      ContactsModel model = ContactsModel.fromJson(json.decode(jsonStr));
-      return WxInfoSetPage(model);
+      var jumpParams = params['jumpParams']!.first;
+      return WxInfoSetPage(jsonDecode(jumpParams));
     }));
     router.define('WxAddFriendPage', handler: Handler(handlerFunc: (_, __) => WxAddFriendPage()));
     router.define('WxNewFriendPage', handler: Handler(handlerFunc: (_, __) => WxNewFriendPage()));
     router.define('WxGroupChatPage', handler: Handler(handlerFunc: (_, __) => WxGroupChatPage()));
 
     /********************************* 发现 ********************************/
+
+    router.define('WxDiscoverPage', handler: Handler(handlerFunc: (_, __) => WxDiscoverPage()));
     router.define('WxFriendsCirclePage', handler: Handler(handlerFunc: (_, __) => WxFriendsCirclePage()));
 
     /********************************* 我的 ********************************/
+
+    router.define('WxMinePage', handler: Handler(handlerFunc: (_, __) => WxMinePage()));
     router.define('WxPersonInfoPage', handler: Handler(handlerFunc: (_, __) => WxPersonInfoPage()));
     router.define('WxPayPage', handler: Handler(handlerFunc: (_, __) => WxPayPage()));
     router.define('WxPayManagerPage', handler: Handler(handlerFunc: (_, __) => WxPayManagerPage()));

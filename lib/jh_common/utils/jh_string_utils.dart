@@ -8,6 +8,11 @@ extension StringExtension on String? {
   String get jhNullSafe => this ?? '';
 }
 
+extension IntExtension on int? {
+  /// int类型转String类型整数
+  String get jhIntToStr => (this ?? 0).toString();
+}
+
 extension NumExtension on num? {
   /// num类型转String类型整数
   String get jhToIntStr => (this ?? 0).toInt().toString();

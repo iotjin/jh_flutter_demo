@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_progress_hud.dart';
+import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/base_appbar.dart';
 
