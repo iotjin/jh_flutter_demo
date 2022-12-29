@@ -1,14 +1,13 @@
 ///  base_tabbar.dart
 ///
 ///  Created by iotjin on 2020/03/08.
-///  description:  tabbar基类
+///  description: tabbar基类
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:badges/badges.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:provider/provider.dart';
 import '/jh_common/utils/jh_image_utils.dart';
+import '/jh_common/widgets/base_refresh_view.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/tabbar_provider.dart';
 import '/project/provider/theme_provider.dart';
@@ -70,19 +69,8 @@ class _BaseTabBarState extends State<BaseTabBar> {
     // TODO: implement initState
     super.initState();
 
-    SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
-      // 设置EasyRefresh的默认样式
-      EasyRefresh.defaultHeader = ClassicalHeader(
-        enableInfiniteRefresh: false,
-        refreshText: '下拉刷新',
-        refreshReadyText: '释放刷新',
-        refreshingText: '加载中...',
-        refreshedText: '加载完成',
-        refreshFailedText: '加载失败',
-        noMoreText: '没有更多',
-        showInfo: false,
-      );
-    });
+    // 设置EasyRefresh的默认样式
+    initEasyRefresh();
   }
 
   @override

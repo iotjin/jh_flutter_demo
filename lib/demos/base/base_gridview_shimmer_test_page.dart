@@ -66,6 +66,7 @@ class _BaseGridViewShimmerTestPageState extends State<BaseGridViewShimmerTestPag
       enableShimmer: true,
       shimmerView: JhShimmerView.gridShimmerView1(context),
       child: child,
+      refreshType: RefreshType.delivery,
       onRefresh: () async => _requestData(),
       onLoad: () async => _requestData(isLoadMore: true),
     );
@@ -99,7 +100,6 @@ class _BaseGridViewShimmerTestPageState extends State<BaseGridViewShimmerTestPag
     globalKeyRefresh.currentState?.jhRequestData(APIs.getPage, params, loadingText: loadingText, isLoadMore: isLoadMore,
         success: (res) {
       var tempData = res['data'];
-      tempData = tempData.isNotEmpty ? tempData : [];
       if (!mounted) return;
       setState(() {
         if (isLoadMore) {

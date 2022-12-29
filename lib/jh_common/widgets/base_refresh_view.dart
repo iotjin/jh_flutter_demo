@@ -7,12 +7,22 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:easy_refresh/easy_refresh.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '/http/dio_utils.dart';
 import '/http/http_utils.dart';
 import '/jh_common/widgets/jh_empty_view.dart';
 
 typedef Success<T> = Function(T data);
 typedef Fail = Function(int code, String msg);
+
+/// 默认刷新样式(easy_refresh的Header和Footer样式)
+enum RefreshType {
+  classic,
+  material,
+  bezier,
+  cupertino,
+  delivery,
+}
 
 /// 父组件中调用 globalKeyRefresh.currentState.jhRequestData()
 /// 初始化调用要延时加载
@@ -35,6 +45,7 @@ class BaseRefreshView extends StatefulWidget {
     this.firstRefresh = false,
     this.header,
     this.footer,
+    this.refreshType = RefreshType.classic,
     this.emptyText = '暂无数据',
     this.empty,
     this.controller,
@@ -52,8 +63,9 @@ class BaseRefreshView extends StatefulWidget {
   final FutureOr Function()? onRefresh; // 刷新回调(null为不开启下拉刷新)
   final FutureOr Function()? onLoad; // 加载回调(null为不开启上拉加载)
   final bool firstRefresh; // 首次刷新
-  final Header? header; // 不传使用默认header
-  final Footer? footer; // 不传使用默认footer
+  final Header? header; // 不传使用默认header，优先级高于refreshType
+  final Footer? footer; // 不传使用默认footer，优先级高于refreshType
+  final RefreshType refreshType; // 默认刷新样式(easy_refresh的header、footer样式)
   final String emptyText; // 空视图文字
   final Widget? empty; // 自定义空视图，优先级高于emptyText，设置后emptyText失效
   final EasyRefreshController? controller; // EasyRefresh controller
@@ -66,7 +78,7 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
   bool _isNetWorkError = false;
   bool _isShowShimmer = false;
   EasyRefreshController _controller = EasyRefreshController(
-    controlFinishRefresh: false,
+    controlFinishRefresh: true,
     controlFinishLoad: true,
   );
 
@@ -157,93 +169,168 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
   }
 
   _defaultHeader() {
-    return ClassicHeader(
-      dragText: '下拉刷新',
-      armedText: '释放刷新',
-      readyText: '加载中...',
-      processingText: '加载中...',
-      processedText: '加载完成',
-      noMoreText: '没有更多',
-      failedText: '加载失败',
-      messageText: '最后更新于 %T',
-    );
+    switch (widget.refreshType) {
+      case RefreshType.material:
+        return MaterialHeader(triggerOffset: 60, clamping: false, showBezierBackground: false);
+      case RefreshType.bezier:
+        return BezierHeader(
+          triggerOffset: 60,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.grey,
+          // 固定
+          clamping: false,
+          // 显示小球
+          showBalls: false,
+          // 弹簧回弹
+          springRebound: false,
+          spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
+        );
+      case RefreshType.cupertino:
+        return CupertinoHeader();
+      case RefreshType.delivery:
+        return DeliveryHeader();
+      default:
+        return ClassicHeader(
+          dragText: '下拉刷新',
+          armedText: '释放刷新',
+          readyText: '加载中...',
+          processingText: '加载中...',
+          processedText: '加载完成',
+          noMoreText: '没有更多',
+          failedText: '加载失败',
+          messageText: '最后更新于 %T',
+        );
+    }
   }
 
   _defaultFooter() {
-    return ClassicFooter(
-      dragText: '上拉加载',
-      armedText: '释放刷新',
-      readyText: '加载中...',
-      processingText: '加载中...',
-      processedText: '加载完成',
-      noMoreText: '没有更多',
-      failedText: '加载失败',
-      messageText: '最后更新于 %T',
-      showMessage: false, // 隐藏更新时间
-    );
+    switch (widget.refreshType) {
+      case RefreshType.material:
+        return MaterialFooter(triggerOffset: 60, clamping: false, showBezierBackground: false);
+      case RefreshType.bezier:
+        return BezierFooter(
+          triggerOffset: 60,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.grey,
+          // 固定
+          clamping: false,
+          // 显示小球
+          showBalls: false,
+          // 弹簧回弹
+          springRebound: false,
+          spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
+        );
+      case RefreshType.cupertino:
+        return CupertinoFooter();
+      case RefreshType.delivery:
+        return DeliveryFooter();
+      default:
+        return ClassicFooter(
+          dragText: '上拉加载',
+          armedText: '释放刷新',
+          readyText: '加载中...',
+          processingText: '加载中...',
+          processedText: '加载完成',
+          noMoreText: '没有更多',
+          failedText: '加载失败',
+          messageText: '最后更新于 %T',
+          showMessage: false, // 隐藏更新时间
+        );
+    }
   }
 
   /// 网络请求
   void jhRequestData(String url, Map<String, dynamic>? params,
       {Method method = Method.post, String? loadingText, isLoadMore = false, Success? success, Fail? fail}) {
     HttpUtils.request(method, url, params, loadingText: loadingText, success: (res) {
+      // TODO: 项目中分页都用的同一个接口，所以上拉加载完成状态判断按同一种方式处理
+      var tempData = res['data'];
       setState(() {
         _isShowShimmer = false;
         _isNetWorkError = false;
       });
-      _handleRefresh(isLoadMore);
+      _handleRefresh(isLoadMore, tempData);
       success?.call(res);
     }, fail: (code, msg) {
       setState(() {
         _isShowShimmer = false;
         _isNetWorkError = true;
       });
-      _handleRefresh(isLoadMore);
+      _handleRefresh(isLoadMore, []);
       fail?.call(code, msg);
     });
   }
 
-  void _handleRefresh(isLoadMore) {
+  void _handleRefresh(isLoadMore, List tempData) {
     if (widget.controller == null) {
       if (isLoadMore) {
         if (widget.onLoad != null) {
-          _controller.finishLoad(widget.data.length == widget.limit ? IndicatorResult.success : IndicatorResult.noMore);
+          _controller.finishLoad(tempData.length == widget.limit ? IndicatorResult.success : IndicatorResult.noMore);
         }
       } else {
-        // if (widget.onRefresh != null) {
-        //   _controller.finishRefresh();
-        // }
+        if (widget.onRefresh != null) {
+          _controller.finishRefresh();
+        }
         if (widget.onLoad != null) {
           _controller.resetFooter();
         }
       }
     }
   }
+}
 
-  /// 设置EasyRefresh的默认样式
-  // ignore: unused_element
-  void _initEasyRefresh() {
-    SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
-      EasyRefresh.defaultHeaderBuilder = () => ClassicHeader(
-            dragText: 'Pull to refresh',
-            armedText: 'Release ready',
-            readyText: 'Refreshing...',
-            processingText: 'Refreshing...',
-            processedText: 'Succeeded',
-            noMoreText: 'No more',
-            failedText: 'Failed',
-            messageText: 'Last updated at %T',
-          );
-      EasyRefresh.defaultFooterBuilder = () => ClassicFooter(
-            dragText: 'Pull to load',
-            armedText: 'Release ready',
-            readyText: 'Loading...',
-            processingText: 'Loading...',
-            processedText: 'Succeeded',
-            noMoreText: 'No more',
-            failedText: 'Failed',
-            messageText: 'Last updated at %T',
-          );
-    });
-  }
+/// 设置EasyRefresh的默认样式
+// ignore: unused_element
+void initEasyRefresh({isChinese = true}) {
+  const classicHeaderChinese = ClassicHeader(
+    dragText: '下拉刷新',
+    armedText: '释放刷新',
+    readyText: '加载中...',
+    processingText: '加载中...',
+    processedText: '加载完成',
+    noMoreText: '没有更多',
+    failedText: '加载失败',
+    messageText: '最后更新于 %T',
+  );
+
+  const classicFooterChinese = ClassicFooter(
+    dragText: '上拉加载',
+    armedText: '释放刷新',
+    readyText: '加载中...',
+    processingText: '加载中...',
+    processedText: '加载完成',
+    noMoreText: '没有更多',
+    failedText: '加载失败',
+    messageText: '最后更新于 %T',
+    showMessage: false, // 隐藏更新时间
+  );
+
+  const classicHeaderEnglish = ClassicHeader(
+    dragText: 'Pull to refresh',
+    armedText: 'Release ready',
+    readyText: 'Refreshing...',
+    processingText: 'Refreshing...',
+    processedText: 'Succeeded',
+    noMoreText: 'No more',
+    failedText: 'Failed',
+    messageText: 'Last updated at %T',
+  );
+
+  const classicFooterEnglish = ClassicFooter(
+    dragText: 'Pull to load',
+    armedText: 'Release ready',
+    readyText: 'Loading...',
+    processingText: 'Loading...',
+    processedText: 'Succeeded',
+    noMoreText: 'No more',
+    failedText: 'Failed',
+    messageText: 'Last updated at %T',
+    showMessage: false, // 隐藏更新时间
+  );
+
+  SchedulerBinding.instance.addPostFrameCallback((Duration timestamp) {
+    // 设置EasyRefresh的默认样式
+    EasyRefresh.defaultHeaderBuilder = () => isChinese ? classicHeaderChinese : classicHeaderEnglish;
+    EasyRefresh.defaultFooterBuilder = () => isChinese ? classicFooterChinese : classicFooterEnglish;
+  });
 }

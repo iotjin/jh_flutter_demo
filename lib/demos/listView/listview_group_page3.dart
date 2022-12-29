@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import '/data/data_utils.dart';
-import '/base_appbar.dart';
+import '/project/configs/project_config.dart';
 
 List groupData33 = [
   {
@@ -48,17 +47,21 @@ List groupData33 = [
   }
 ];
 
-var dataArr;
-var pageIndex = 0; // 页数
-var groupData = [];
-
+// 3.x 版本 EasyRefresh
 class ListViewGroupPage3 extends StatefulWidget {
   @override
   _ListViewGroupPage3State createState() => _ListViewGroupPage3State();
 }
 
 class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTickerProviderStateMixin {
-  EasyRefreshController _controller = EasyRefreshController();
+  List _groupDataArr = [];
+  int _pageIndex = 0;
+  int _limit = 10;
+
+  EasyRefreshController _controller = EasyRefreshController(
+    controlFinishRefresh: true,
+    controlFinishLoad: true,
+  );
 
   TabController? _tabController;
   List tabs = ['近30日', '近7日', '今日'];
@@ -79,30 +82,23 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
     _tabController!.dispose();
   }
 
-  void getNewData() {
-    pageIndex = 0;
-    print('pageIndex- $pageIndex');
-    DataUtils.getPageGroupList({'page': pageIndex, 'limit': 10}, success: (res) {
-      print(res);
+  void _requestData({isShowLoading = false, isLoadMore = false}) {
+    _pageIndex = isLoadMore ? _pageIndex + 1 : 0;
+    var params = {
+      'page': _pageIndex,
+      'limit': _limit,
+    };
+    var loadingText = isShowLoading == true ? 'Loading...' : null;
+    HttpUtils.get(APIs.getGroupPage, params, loadingText: loadingText, success: (res) {
+      var tempData = res['data'];
       setState(() {
-        groupData = res['data'];
-        _controller.resetLoadState();
-      });
-    }, fail: (code, msg) {});
-  }
-
-  void getMoreData() {
-    pageIndex++;
-    print('more pageIndex- $pageIndex');
-
-    DataUtils.getPageGroupList({'page': pageIndex, 'limit': 10}, success: (res) {
-      var moreData = res['data'];
-      setState(() {
-        if (moreData.length > 0) {
-          _controller.finishLoad();
-          groupData = groupData + moreData;
+        if (isLoadMore) {
+          _groupDataArr = _groupDataArr + tempData;
+          _controller.finishLoad(tempData.length == _limit ? IndicatorResult.success : IndicatorResult.noMore);
         } else {
-          _controller.finishLoad(noMore: true);
+          _groupDataArr = tempData;
+          _controller.finishRefresh();
+          _controller.resetFooter();
         }
       });
     }, fail: (code, msg) {});
@@ -111,95 +107,74 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        'ListViewGroupPage3',
+        'ListViewGroupPage3 - 分组分页',
         bottomWidget: PreferredSize(preferredSize: Size.fromHeight(_rowHeight), child: _topTabBar()),
       ),
-//      body: _content(),
-      body: _refresh(),
+      // body: _content(),
+      body: _body(),
     );
   }
 
 // 顶部
   Widget _topTabBar() {
     return Container(
-        height: _rowHeight,
-        color: Colors.white,
-        child: TabBar(
-          controller: _tabController,
-          tabs: tabs.map((e) => Tab(text: e)).toList(),
-          indicatorColor: Colors.blueAccent,
-          labelColor: Color(0xFF646464),
-          unselectedLabelColor: Color(0xFF9B9B9B),
-          indicatorSize: TabBarIndicatorSize.label,
-        ));
+      height: _rowHeight,
+      color: Colors.white,
+      child: TabBar(
+        controller: _tabController,
+        tabs: tabs.map((e) => Tab(text: e)).toList(),
+        indicatorColor: Colors.blueAccent,
+        labelColor: Color(0xFF646464),
+        unselectedLabelColor: Color(0xFF9B9B9B),
+        indicatorSize: TabBarIndicatorSize.label,
+      ),
+    );
   }
 
   // 刷新
-  Widget _refresh() {
+  Widget _body() {
     return EasyRefresh(
-      header: ClassicalHeader(
-        showInfo: false,
-        noMoreText: 'noMoreText',
-        refreshedText: '加载完成',
-        refreshFailedText: '加载失败',
-        refreshingText: '加载中...',
-        refreshReadyText: '释放刷新',
-        refreshText: '下拉刷新',
-      ),
-      footer: ClassicalFooter(showInfo: false),
       controller: _controller,
-      firstRefresh: true,
-      child: _content(),
-      onRefresh: () async {
-        await Future.delayed(Duration(seconds: 1), () {
-          print('下拉刷新-----');
-          getNewData();
-        });
-      },
-      onLoad: () async {
-        await Future.delayed(Duration(seconds: 1), () {
-          print('上拉加载-----');
-          getMoreData();
-        });
-      },
+      refreshOnStart: true,
+      child: _listWidget(),
+      onRefresh: () async => _requestData(),
+      onLoad: () async => _requestData(isLoadMore: true),
     );
   }
 
   // content
-  Widget _content() {
+  Widget _listWidget() {
     return ListView.builder(
-        itemCount: groupData.length + 1,
-        itemBuilder: (context, index) {
-          return index == 0
-              ? _topHeader()
-              : StickyHeader(
-                  header: Container(
-                    height: 50.0,
-                    padding: EdgeInsets.only(left: 15),
-                    alignment: Alignment.centerLeft,
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-//                        border: Border(
-//                          bottom:
-//                              BorderSide(width: 1, color: Color(0xffe5e5e5)),
-//                        )
-                      border: Border.all(color: Colors.grey, width: 0.5),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(width: 8),
-                        Text(
-                          groupData[index - 1]['groupTitle'],
-                        ),
-                        SizedBox(width: 8),
-                        Text('(${groupData[index - 1]['id']})', style: TextStyle(color: Colors.red, fontSize: 22))
-                      ],
-                    ),
+      itemCount: _groupDataArr.length + 1,
+      itemBuilder: (context, index) {
+        return index == 0
+            ? _topHeader()
+            : StickyHeader(
+                header: Container(
+                  height: 50.0,
+                  padding: EdgeInsets.only(left: 15),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: Colors.orange,
+                    // border: Border(bottom: BorderSide(width: 1, color: Color(0xffe5e5e5))),
+                    border: Border.all(color: Colors.grey, width: 0.5),
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  content: Column(children: buildGroup(groupData[index - 1]['data'], groupData[index - 1]['groupNum'])),
-                );
-        });
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(width: 8),
+                      Text(_groupDataArr[index - 1]['groupTitle']),
+                      SizedBox(width: 8),
+                      Text('(${_groupDataArr[index - 1]['id']})', style: TextStyle(color: Colors.red, fontSize: 22))
+                    ],
+                  ),
+                ),
+                content: Column(
+                  children: buildGroup(_groupDataArr[index - 1]['data'], _groupDataArr[index - 1]['groupNum']),
+                ),
+              );
+      },
+    );
   }
 
   // _topHeader
@@ -214,56 +189,45 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
 
   Widget _topHeader() {
     return Container(
-        padding: EdgeInsets.all(15),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-              height: 70,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      SizedBox(width: 8),
-                      Text('这是title', style: TextStyle(fontSize: 18)),
-                      SizedBox(width: 8)
-                    ],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Image.asset(
-                      'assets/images/lufei.png',
-                      width: 60,
-                      height: 60,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
+      padding: EdgeInsets.all(15),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+            height: 70,
+            decoration: BoxDecoration(
               color: Colors.white,
-              height: 1,
-              child: Divider(
-                thickness: 1,
-                indent: 15,
-                endIndent: 15,
-              ),
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
             ),
-            Container(
-              height: 200,
-              padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8.0), bottomRight: Radius.circular(8.0)),
-              ),
-            )
-          ],
-        ));
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: 8),
+                    Text('这是title', style: TextStyle(fontSize: 18)),
+                    SizedBox(width: 8)
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Image.asset('assets/images/lufei.png', width: 60, height: 60),
+                ),
+              ],
+            ),
+          ),
+          Container(color: Colors.white, height: 1, child: Divider(thickness: 1, indent: 15, endIndent: 15)),
+          Container(
+            height: 200,
+            padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8.0), bottomRight: Radius.circular(8.0)),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   List<Widget> buildGroup(List group, var groupNum) {
@@ -285,24 +249,25 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
       var ratio = double.parse(_num.toString()) / double.parse(groupNum.toString());
 //      print(ratio);
       return Container(
-          color: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          height: 40,
-          child: Row(
-            children: <Widget>[
-              Text(item['name'], style: TextStyle(color: Colors.grey)),
-              SizedBox(width: 8),
-              LinearPercentIndicator(
-                width: _bgW,
-                lineHeight: 10.0,
-                percent: ratio,
-                backgroundColor: Color(0xFFDCDCE6),
-                progressColor: color,
-              ),
-              SizedBox(width: 8),
-              Text('$_num次', style: TextStyle(color: Colors.grey)),
-            ],
-          ));
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        height: 40,
+        child: Row(
+          children: <Widget>[
+            Text(item['name'], style: TextStyle(color: Colors.grey)),
+            SizedBox(width: 8),
+            LinearPercentIndicator(
+              width: _bgW,
+              lineHeight: 10.0,
+              percent: ratio,
+              backgroundColor: Color(0xFFDCDCE6),
+              progressColor: color,
+            ),
+            SizedBox(width: 8),
+            Text('$_num次', style: TextStyle(color: Colors.grey)),
+          ],
+        ),
+      );
     }).toList();
   }
 }

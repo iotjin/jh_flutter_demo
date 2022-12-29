@@ -11,11 +11,10 @@ class ListViewDemoListPage extends StatelessWidget {
     'ListViewTest5',
     'ListViewTestCard',
     'ListViewTestCustomVC',
-    'ListViewTestSimplePullDown',
-    'ListViewTestPullDownVC',
+    '假数据分页 - header/footer跟随',
     'ListViewGroup',
     'ListViewGroup2',
-    'ListViewGroup3 - 刷新',
+    'ListViewGroup3 - 分组分页',
     'ListViewHeader - 头部跟随滚动',
   ];
   final List routeData = [
@@ -26,7 +25,6 @@ class ListViewDemoListPage extends StatelessWidget {
     'ListViewTest5',
     'ListViewTestCard',
     'ListViewTestCustomVC',
-    'ListViewTestSimplePullDown',
     'ListViewTestPullDownVC',
     'ListViewGroupPage',
     'ListViewGroupPage2',

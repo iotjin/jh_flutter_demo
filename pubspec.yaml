@@ -86,7 +86,9 @@ dependencies:
   # 底部弹出 日期选择器 单列多列  https://pub.flutter-io.cn/packages/flutter_picker
   flutter_picker: ^2.0.5
   # 下拉刷新(flutter_easyrefresh 3.0版本) https://pub.flutter-io.cn/packages/easy_refresh
-  easy_refresh: ^3.0.4+2
+  easy_refresh: ^3.1.0
+  # 加载动画 https://pub.flutter-io.cn/packages/flutter_spinkit
+  flutter_spinkit: ^5.1.0
   # 骨架屏 https://pub.flutter-io.cn/packages/shimmer
   shimmer: ^2.0.0
   # 下拉刷新 https://pub.flutter-io.cn/packages/flutter_easyrefresh

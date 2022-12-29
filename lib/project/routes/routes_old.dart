@@ -67,7 +67,6 @@ import '../../demos/listView/listview_test4.dart';
 import '../../demos/listView/listview_test5.dart';
 import '../../demos/listView/listview_test_card.dart';
 import '../../demos/listView/listview_test_custom_vc.dart';
-import '../../demos/listView/listview_test_simple_pull_down.dart';
 import '../../demos/listView/listview_test_pull_down_vc.dart';
 
 // other
@@ -171,7 +170,6 @@ final routes = {
   'ListViewTest5': (context) => ListViewTest5(),
   'ListViewTestCard': (context) => ListViewTestCard(),
   'ListViewTestCustomVC': (context) => ListViewTestCustomVC(),
-  'ListViewTestSimplePullDown': (context) => ListViewTestSimplePullDown(),
   'ListViewTestPullDownVC': (context) => ListViewTestPullDownVC(),
 
   // other

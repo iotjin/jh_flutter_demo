@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:easy_refresh/easy_refresh.dart';
 import '/jh_common/widgets/Jh_highlight_text.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
 import '/project/configs/project_config.dart';
@@ -114,7 +114,6 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
       );
     } else {
       return EasyRefresh(
-        header: BallPulseHeader(),
         onRefresh: () async => _requestData(),
         child: _listWidget(_dataArr),
       );

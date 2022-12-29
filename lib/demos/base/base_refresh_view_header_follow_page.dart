@@ -87,6 +87,7 @@ class _BaseRefreshViewHeaderFollowPageState extends State<BaseRefreshViewHeaderF
       footerView: _footer(),
       child: _listView(),
       emptyText: '暂无数据',
+      refreshType: RefreshType.material,
       onRefresh: () async => _requestData(),
       onLoad: () async => _requestData(isLoadMore: true),
 
@@ -125,7 +126,6 @@ class _BaseRefreshViewHeaderFollowPageState extends State<BaseRefreshViewHeaderF
     globalKeyRefresh.currentState?.jhRequestData(APIs.getPage, params, loadingText: loadingText, isLoadMore: isLoadMore,
         success: (res) {
       var tempData = res['data'];
-      tempData = tempData.isNotEmpty ? tempData : [];
       if (!mounted) return;
       setState(() {
         if (isLoadMore) {

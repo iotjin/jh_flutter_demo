@@ -48,6 +48,7 @@ class _BaseListViewShimmerTestPageState extends State<BaseListViewShimmerTestPag
       limit: _limit,
       enableShimmer: true,
       shimmerView: JhShimmerView.listShimmerView1(context),
+      refreshType: RefreshType.bezier,
       onRefresh: () async => _requestData(),
       onLoad: () async => _requestData(isLoadMore: true),
       itemBuilder: (context, index) => _itemWidget(index),
@@ -84,7 +85,6 @@ class _BaseListViewShimmerTestPageState extends State<BaseListViewShimmerTestPag
     globalKeyRefresh.currentState?.jhRequestData(APIs.getPage, params, loadingText: loadingText, isLoadMore: isLoadMore,
         success: (res) {
       var tempData = res['data'];
-      tempData = tempData.isNotEmpty ? tempData : [];
       setState(() {
         if (isLoadMore) {
           _dataArr = _dataArr + tempData;

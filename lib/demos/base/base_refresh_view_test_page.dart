@@ -112,7 +112,6 @@ class _BaseRefreshViewTestPageState extends State<BaseRefreshViewTestPage> {
     globalKeyRefresh.currentState?.jhRequestData(APIs.getPage, params, loadingText: loadingText, isLoadMore: isLoadMore,
         success: (res) {
       var tempData = res['data'];
-      tempData = tempData.isNotEmpty ? tempData : [];
       if (!mounted) return;
       setState(() {
         if (isLoadMore) {

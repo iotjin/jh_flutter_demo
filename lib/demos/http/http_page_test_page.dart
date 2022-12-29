@@ -5,6 +5,7 @@ import '/project/configs/project_config.dart';
 import 'http_page_test_cell.dart';
 import 'http_page_test_model.dart';
 
+// 2.x版本EasyRefresh，基类或网络请求使用的3.x版本EasyRefresh
 class HttpPageTestPage extends StatefulWidget {
   const HttpPageTestPage({Key? key}) : super(key: key);
 
@@ -25,6 +26,12 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
     _requestData(isShowLoading: true);
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   void _requestData({isShowLoading = false, isLoadMore = false}) {
     _pageIndex = isLoadMore ? _pageIndex + 1 : 0;
     var params = {
@@ -34,17 +41,13 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
     var loadingText = isShowLoading == true ? 'Loading...' : null;
     HttpUtils.get(APIs.getPage, params, loadingText: loadingText, success: (res) {
       var tempData = res['data'];
-      tempData = tempData.isNotEmpty ? tempData : [];
       setState(() {
         if (isLoadMore) {
           _dataArr = _dataArr + tempData;
-          if (tempData.length == _limit) {
-            _controller.finishLoad();
-          } else {
-            _controller.finishLoad(noMore: true);
-          }
+          _controller.finishLoad(noMore: tempData.length != _limit);
         } else {
           _dataArr = tempData;
+          // _controller.finishRefresh();
           _controller.resetLoadState();
         }
       });
@@ -62,7 +65,9 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
   Widget _body() {
     return EasyRefresh(
       controller: _controller,
-      header: DeliveryHeader(),
+      // header: DeliveryHeader(),
+      header: BallPulseHeader(),
+      footer: BallPulseFooter(),
       onRefresh: () async => _requestData(),
       onLoad: () async => _requestData(isLoadMore: true),
       child: _listWidget(_dataArr),

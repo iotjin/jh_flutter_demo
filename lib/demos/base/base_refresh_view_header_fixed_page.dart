@@ -111,6 +111,7 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
         enableShimmer: true,
         shimmerView: JhShimmerView.listShimmerView1(context),
         emptyText: '暂无数据',
+        refreshType: RefreshType.cupertino,
         onRefresh: () async => _requestData(),
         onLoad: () async => _requestData(isLoadMore: true),
         itemBuilder: (context, index) => _itemWidget(index),
@@ -179,7 +180,6 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
     globalKeyRefresh.currentState?.jhRequestData(APIs.getPage, params, loadingText: loadingText, isLoadMore: isLoadMore,
         success: (res) {
       var tempData = res['data'];
-      tempData = tempData.isNotEmpty ? tempData : [];
       if (!mounted) return;
       setState(() {
         if (isLoadMore) {
