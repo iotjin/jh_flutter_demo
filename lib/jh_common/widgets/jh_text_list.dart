@@ -21,78 +21,53 @@ class JhTextList extends StatelessWidget {
   const JhTextList({
     Key? key,
     this.title = '',
-    this.dataArr,
+    this.dataArr = const [],
     this.callBack,
-    this.isBack = true,
   }) : super(key: key);
 
-  final List? dataArr;
+  final List dataArr;
   final String title;
   final _CallBack? callBack;
-  final bool isBack;
-
-  Widget _getWidget(context, index) {
-    var lineColor = Theme.of(context).brightness == Brightness.dark ? _lineDarkColor : _lineColor;
-    var cellBgColor = Theme.of(context).brightness == Brightness.dark ? _cellBgDarkColor : _cellBgColor;
-
-    return InkWell(
-        child: Container(
-            height: _cellHeight,
-            color: cellBgColor,
-            child: Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                Positioned(
-                  left: _lfSpace,
-                  child: Text(dataArr?[index]),
-                ),
-                Positioned(
-                  right: _lfSpace,
-                  child: Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8)),
-                ),
-                Positioned(
-                    bottom: 0.0,
-                    left: _lfSpace,
-                    right: 0,
-                    child: Container(
-                      color: lineColor,
-                      height: _lineHeight,
-                    )),
-              ],
-            )),
-        onTap: () {
-//              print('点击的index---'+index.toString());
-          if (callBack != null) {
-            callBack!(index, dataArr?[index]);
-          }
-        });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar(title),
-        body: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          itemCount: dataArr?.length,
-          itemBuilder: this._getWidget,
-        ));
+      appBar: BaseAppBar(title),
+      body: _body(),
+    );
+  }
+
+  _body() {
+    return ListView.builder(
+      physics: BouncingScrollPhysics(),
+      itemCount: dataArr.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _cell(context, index);
+      },
+    );
+  }
+
+  Widget _cell(context, index) {
+    var lineColor = KColors.dynamicColor(context, _lineColor, _lineDarkColor);
+    var cellBgColor = KColors.dynamicColor(context, _cellBgColor, _cellBgDarkColor);
+
+    return InkWell(
+      child: Container(
+        height: _cellHeight,
+        color: cellBgColor,
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Positioned(left: _lfSpace, child: Text(dataArr[index])),
+            Positioned(
+              right: _lfSpace,
+              child: Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8)),
+            ),
+            Positioned(bottom: 0.0, left: _lfSpace, right: 0, child: Container(color: lineColor, height: _lineHeight)),
+          ],
+        ),
+      ),
+      onTap: () => callBack?.call(index, dataArr[index]),
+    );
   }
 }
-
-//           Container(
-//             decoration: BoxDecoration(
-//                 border: Border(
-//                   bottom: Divider.createBorderSide(context, width: 1),
-//                 )
-//             ),
-//             child:
-//             ListTile(
-//                 title: Text(dataArr[index]),
-//                   trailing: Icon(Icons.arrow_forward_ios,size: 18,color: Color(0xFFC8C8C8),),
-//                       onTap:() {
-//        //                 print('点击的index---'+index.toString());
-//                           if(callBack !=null){callBack(index,dataArr[index]);}
-//                          }
-//                  )
-//           );

@@ -175,6 +175,7 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
   }
 
   List<Figure> centralPieLabel(
+    Size size,
     Offset anchor,
     Map<int, Tuple> selectedTuples,
   ) {

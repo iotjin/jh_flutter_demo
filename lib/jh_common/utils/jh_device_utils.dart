@@ -51,15 +51,33 @@ class JhDeviceUtils {
     return packageInfo.buildNumber;
   }
 
+  static Future<String> buildSignature() async {
+    PackageInfo packageInfo = await getPackageInfo();
+    return packageInfo.buildSignature;
+  }
+
+  static Future<String?> installerStore() async {
+    PackageInfo packageInfo = await getPackageInfo();
+    return packageInfo.installerStore;
+  }
+
 /* 使用
 
- void _getPackageInfo() async {
+  void _getPackageInfo() async {
     PackageInfo packageInfo = await JhDeviceUtils.getPackageInfo();
+    String appName = packageInfo.appName;
+    String packageName = packageInfo.packageName;
+    String version = packageInfo.version;
+    String buildNumber = packageInfo.buildNumber;
+    String buildSignature = packageInfo.buildSignature;
+    String installerStore = packageInfo.installerStore ?? 'not available';
     print('packageInfo：');
-    print(packageInfo.appName);
-    print(packageInfo.packageName);
-    print(packageInfo.version);
-    print(packageInfo.buildNumber);
+    print('appName $appName');
+    print('packageName $packageName');
+    print('version $version');
+    print('buildNumber $buildNumber');
+    print('buildSignature $buildSignature');
+    print('installerStore $installerStore');
   }
 
  void _getPackageInfo() async {

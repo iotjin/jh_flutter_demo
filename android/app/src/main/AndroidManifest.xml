@@ -45,23 +45,31 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-    <!--权限-->
-    <!--访问网络-->
+    <!-- 权限 -->
+    <!-- 访问网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--拍照权限，允许访问摄像头进行拍照-->
+    <!-- 拍照权限，允许访问摄像头进行拍照 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 闪光灯 -->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <!-- 写权限 -->
     <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-    <!-- 读权限 -->
+    <!-- 读权限(Android 13 (API 33)失效) -->
     <!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
 
     <!-- 写权限 -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="29" />
+
+    <!-- Android 13 (API 33) 权限配置，如果不需要拍照或录像，可以考虑将对应权限移除 -->
+    <!-- 如果需要获取图片，添加该权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- 如果需要获取视频，添加该权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <!-- 如果需要获取音频，添加该权限 -->
+    <!-- <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" /> -->
 
     <!-- 图片选择器使用 -->
     <!-- 如果compileSdkVersion超过29，必须将android:requestLegacyExternalStorage="true"添加到AndroidManifest.xml中才能获得资源 -->

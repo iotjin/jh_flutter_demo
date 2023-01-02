@@ -34,7 +34,7 @@ const ThemeMethodValues = {
 
 /// app的设置是否高于系统设置
 /// 需要设置为true,并在 lib/project/configs/colors.dart 调用 provider.isDark()方法
-const bool isPriorityApp = false;
+const bool isPriorityApp = true;
 
 class ThemeProvider extends ChangeNotifier {
   /// 是否跟随系统

@@ -195,10 +195,10 @@ Widget testBtn = Column(children: <Widget>[
     ),
     onPressed: () {},
   ),
-  FlatButton(
-    child: Text('扁平按钮(FlatButton、Flutter1.22废弃)'),
-    onPressed: () {},
-  ),
+  // FlatButton(
+  //   child: Text('扁平按钮(FlatButton、Flutter1.22废弃)'),
+  //   onPressed: () {},
+  // ),
   // 带边框的按钮、Flutter1.22 之后新增
   // 默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
   OutlinedButton(
@@ -216,11 +216,11 @@ Widget testBtn = Column(children: <Widget>[
     onPressed: () {},
   ),
   IconButton(onPressed: () {}, icon: Icon(Icons.send)),
-  RaisedButton.icon(
-    icon: Icon(Icons.send),
-    label: Text('带图标的按钮(RaisedButton、Flutter1.22废弃)'),
-    onPressed: () {},
-  ),
+  // RaisedButton.icon(
+  //   icon: Icon(Icons.send),
+  //   label: Text('带图标的按钮(RaisedButton、Flutter1.22废弃)'),
+  //   onPressed: () {},
+  // ),
 ]);
 
 Widget testText = Container(

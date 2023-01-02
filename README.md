@@ -1,6 +1,6 @@
 # jh_flutter_demo
 
-A new Flutter project - 实现一些常用效果、封装通用组件和工具类 <br> 
+A new Flutter project - 实现一些常用效果、封装通用组件和工具类 <br>
 <br>
 
 pwd：123456
@@ -79,8 +79,8 @@ pwd：123456
 
 ## 项目运行环境
 
-* Flutter version 3.0.0
-* Dart version 2.17.0
+* Flutter version 3.3.0
+* Dart version 2.18.0
 
 ## 注意事项
 
@@ -92,6 +92,7 @@ pwd：123456
   <summary><strong>重要更新</strong></summary>
    
 ```
+* v3.3.0  - 更新三方库和flutter版本（Flutter 3.3.0，Dart 2.18.0），iOS最低构建版本改为11.0
 * v3.0.0  - 更新三方库和flutter版本（Flutter 3.0.0，Dart 2.17.0）
 * v2.10.1 - 暗黑模式(DarkMode)适配
 * v2.10.0 - 更新三方库和flutter版本（Flutter 2.10.0，Dart 2.16.0）

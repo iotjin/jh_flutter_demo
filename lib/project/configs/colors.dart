@@ -11,9 +11,9 @@ import '/project/provider/theme_provider.dart';
 
 /// 暗黑模式判断
 extension ThemeExtension on BuildContext {
-  bool get jhIsDark => Theme.of(this).brightness == Brightness.dark;
+  // bool get jhIsDark => Theme.of(this).brightness == Brightness.dark;
 
-  // bool get jhIsDark => Provider.of<ThemeProvider>(this).isDark(this);
+  bool get jhIsDark => Provider.of<ThemeProvider>(this).isDark(this);
 }
 
 class KColors {
