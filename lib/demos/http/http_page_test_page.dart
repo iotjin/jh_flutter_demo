@@ -51,7 +51,14 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
           _controller.resetLoadState();
         }
       });
-    }, fail: (code, msg) {});
+    }, fail: (code, msg) {
+      if (isLoadMore) {
+        _controller.finishLoad();
+      } else {
+        // _controller.finishRefresh();
+        _controller.resetLoadState();
+      }
+    });
   }
 
   @override

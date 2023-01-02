@@ -57,6 +57,7 @@ class PhotoSelectTest extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(left: 5),
               child: JhAssetPicker(
+                assetType: AssetType.imageAndVideo,
                 lineCount: 4,
                 bgColor: Colors.red,
                 callBack: (assetEntityList) {

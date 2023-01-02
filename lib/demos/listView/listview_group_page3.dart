@@ -101,7 +101,14 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
           _controller.resetFooter();
         }
       });
-    }, fail: (code, msg) {});
+    }, fail: (code, msg) {
+      if (isLoadMore) {
+        _controller.finishLoad();
+      } else {
+        _controller.finishRefresh();
+        _controller.resetFooter();
+      }
+    });
   }
 
   Widget build(BuildContext context) {
@@ -254,17 +261,18 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
         height: 40,
         child: Row(
           children: <Widget>[
-            Text(item['name'], style: TextStyle(color: Colors.grey)),
-            SizedBox(width: 8),
-            LinearPercentIndicator(
-              width: _bgW,
-              lineHeight: 10.0,
-              percent: ratio,
-              backgroundColor: Color(0xFFDCDCE6),
-              progressColor: color,
+            Expanded(flex: 20, child: Text(item['name'], style: TextStyle(color: Colors.grey))),
+            Expanded(
+              flex: 60,
+              child: LinearPercentIndicator(
+                width: _bgW,
+                lineHeight: 10.0,
+                percent: ratio,
+                backgroundColor: Color(0xFFDCDCE6),
+                progressColor: color,
+              ),
             ),
-            SizedBox(width: 8),
-            Text('$_num次', style: TextStyle(color: Colors.grey)),
+            Expanded(flex: 20, child: Text('$_num次', style: TextStyle(color: Colors.grey))),
           ],
         ),
       );

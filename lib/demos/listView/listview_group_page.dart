@@ -1,45 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sticky_headers/sticky_headers.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/base_appbar.dart';
-
-List groupData = [
-  {
-    'groupTitle': 'groupTitle_1',
-    'num': '22',
-    'data': [
-      {
-        'title': 'group1_title11',
-        'phone': '111xxxx',
-        'content': 'content2-content2-content2-content2-content2-content2',
-        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-      },
-      {
-        'title': 'group1_title2',
-        'phone': '222xxxx',
-        'content': 'content2-content2-content2-content2-content2-content2',
-        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-      }
-    ]
-  },
-  {
-    'groupTitle': 'groupTitle_2',
-    'num': '22',
-    'data': [
-      {
-        'title': 'group2_title33',
-        'phone': '333xxxx',
-        'content': 'content2-content2-content2-content2-content2-content2',
-        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-      },
-      {
-        'title': 'group2_title44',
-        'phone': '444xxxx',
-        'content': 'content2-content2-content2-content2-content2-content2',
-        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-      }
-    ]
-  }
-];
 
 class ListViewGroupPage extends StatefulWidget {
   @override
@@ -47,12 +9,43 @@ class ListViewGroupPage extends StatefulWidget {
 }
 
 class _ListViewGroupPageState extends State<ListViewGroupPage> {
+  var _groupData = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _groupData = _getData();
+  }
+
+  _getData() {
+    var dataArr = [];
+    for (int i = 0; i < 30; i++) {
+      var groupDict = new Map();
+      groupDict['groupTitle'] = 'groupTitle_$i';
+      groupDict['num'] = '$i';
+      var tempArr = [];
+      int length = JhCommonUtils.getRandom(2, 5).toInt();
+      for (int j = 0; j < length; j++) {
+        var tempDict = new Map();
+        tempDict['title'] = 'group$i' + '_title$j';
+        tempDict['phone'] = '$j$j$j' + 'xxxxxxx';
+        tempDict['content'] = 'content{$j}-content{$j}-content{$j}-content{$j}-content{$j}-content{$j}';
+        tempDict['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
+        tempArr.add(tempDict);
+      }
+      groupDict['data'] = tempArr;
+      dataArr.add(groupDict);
+    }
+    return dataArr;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar('ListViewGroupPage'),
       body: ListView.builder(
-          itemCount: groupData.length,
+          itemCount: _groupData.length,
           itemBuilder: (context, index) {
             return StickyHeader(
               header: Container(
@@ -65,7 +58,7 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
-              content: Column(children: buildGroup(groupData[index]['data'])),
+              content: Column(children: buildGroup(_groupData[index]['data'])),
             );
           }),
     );

@@ -164,7 +164,7 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
 
   // 点击添加按钮
   void _showBottomSheet() {
-    JhBottomSheet.showText(context, dataArr: ['拍照', '相册'], title: '请选择', clickCallback: (index, str) async {
+    JhBottomSheet.showText(context, dataArr: ['拍摄', '相册'], title: '请选择', clickCallback: (index, str) async {
       if (index == 1) {
         _openCamera();
       }

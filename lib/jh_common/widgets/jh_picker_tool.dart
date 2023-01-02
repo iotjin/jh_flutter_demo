@@ -20,6 +20,7 @@ const double _kHeaderLineHeight = 0.25;
 const double _kHeaderRadius = 10.0;
 const double _kTitleFontSize = 18.0;
 const double _kBtnFontSize = 17.0;
+const double _textFontSize = 18.0;
 const double _selectTextFontSize = 20.0;
 
 /// 选择回调
@@ -176,6 +177,7 @@ _showPicker(
       confirmText: _confirmText,
       confirmTextStyle: TextStyle(color: _btnColor, fontSize: _kBtnFontSize),
       textAlign: TextAlign.center,
+      textStyle: TextStyle(color: _selectTextColor, fontSize: _textFontSize),
       selectedTextStyle: TextStyle(color: _selectTextColor, fontSize: _selectTextFontSize),
       selectionOverlay: Container(height: _kItemHeight, color: _selectItemBgColor),
       backgroundColor: _bgColor,

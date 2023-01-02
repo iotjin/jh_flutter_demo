@@ -30,9 +30,19 @@ class HttPageTestCell extends StatelessWidget {
     return GestureDetector(
       onTap: () => onClickCell?.call(model.toJson()),
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-        padding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
-        decoration: KStyles.cellBorderStyle,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+        decoration: BoxDecoration(
+          color: context.jhIsDark ? null : Colors.white,
+          borderRadius: BorderRadius.circular(3),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12, // 阴影颜色
+              spreadRadius: 1.5, // 阴影浓度
+              blurRadius: 1.5, // 阴影范围
+            ),
+          ],
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -66,7 +76,7 @@ class HttPageTestCell extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('问题描述：', style: TextStyle(fontSize: 18.0, color: Colors.black)),
+                Text('问题描述：', style: TextStyle(fontSize: 18.0)),
                 Expanded(child: Text(model.content.jhNullSafe, style: TextStyle(fontSize: 18.0))),
               ],
             ),

@@ -1,50 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:sticky_headers/sticky_headers.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/base_appbar.dart';
-
-List groupData = [
-  {
-    'groupTitle': 'groupTitle_1',
-    'num': '15',
-    'data': [
-      {
-        'title': 'group1_title11',
-        'num': '12',
-        'phone': '111xxxx',
-        'content': 'content2-content2-content2-content2-content2-content2',
-        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-      },
-      {
-        'title': 'group1_title2',
-        'num': '5',
-        'phone': '222xxxx',
-        'content': 'content2-content2-content2-content2-content2-content2',
-        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-      }
-    ]
-  },
-  {
-    'groupTitle': 'groupTitle_2',
-    'num': '22',
-    'data': [
-      {
-        'title': 'group2_title33',
-        'num': '20',
-        'phone': '333xxxx',
-        'content': 'content2-content2-content2-content2-content2-content2',
-        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-      },
-      {
-        'title': 'group2_title44',
-        'num': '1',
-        'phone': '444xxxx',
-        'content': 'content2-content2-content2-content2-content2-content2',
-        'imageUrl': 'https://gitee.com/iotjh/Picture/raw/master/lufei.png'
-      }
-    ]
-  }
-];
 
 class ListViewGroupPage2 extends StatefulWidget {
   @override
@@ -55,14 +13,40 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
   TabController? _tabController;
   List tabs = ['近30日', '近7日', '今日'];
   var _rowHeight = 44.0;
+  var _groupData = [];
 
   @override
   void initState() {
     super.initState();
+
+    _groupData = _getData();
     _tabController = TabController(vsync: this, length: tabs.length);
     _tabController!.addListener(() {
       print(_tabController!.index);
     });
+  }
+
+  _getData() {
+    var dataArr = [];
+    for (int i = 0; i < 30; i++) {
+      var groupDict = new Map();
+      groupDict['groupTitle'] = 'groupTitle_$i';
+      groupDict['num'] = JhCommonUtils.getRandom(50, 100).toInt().toString();
+      var tempArr = [];
+      int length = JhCommonUtils.getRandom(2, 5).toInt();
+      for (int j = 0; j < length; j++) {
+        var tempDict = new Map();
+        tempDict['title'] = 'group$i' + '_title$j';
+        tempDict['num'] = JhCommonUtils.getRandom(1, 50).toInt().toString();
+        tempDict['phone'] = '$j$j$j' + 'xxxxxxx';
+        tempDict['content'] = 'content{$j}-content{$j}-content{$j}-content{$j}-content{$j}-content{$j}';
+        tempDict['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
+        tempArr.add(tempDict);
+      }
+      groupDict['data'] = tempArr;
+      dataArr.add(groupDict);
+    }
+    return dataArr;
   }
 
   @override
@@ -99,7 +83,7 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
   // content
   Widget _content() {
     return ListView.builder(
-        itemCount: groupData.length + 1,
+        itemCount: _groupData.length + 1,
         itemBuilder: (context, index) {
           return index == 0
               ? _topHeader()
@@ -121,14 +105,14 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
                       children: <Widget>[
                         SizedBox(width: 8),
                         Text(
-                          groupData[index - 1]['groupTitle'],
+                          _groupData[index - 1]['groupTitle'],
                         ),
                         SizedBox(width: 8),
-                        Text('(${groupData[index - 1]['num']})', style: TextStyle(color: Colors.red, fontSize: 22))
+                        Text('(${_groupData[index - 1]['num']})', style: TextStyle(color: Colors.red, fontSize: 22))
                       ],
                     ),
                   ),
-                  content: Column(children: buildGroup(groupData[index - 1]['data'], groupData[index - 1]['num'])),
+                  content: Column(children: buildGroup(_groupData[index - 1]['data'], _groupData[index - 1]['num'])),
                 );
         });
   }
@@ -210,17 +194,18 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
           height: 40,
           child: Row(
             children: <Widget>[
-              Text(item['title'], style: TextStyle(color: Colors.grey)),
-              SizedBox(width: 8),
-              LinearPercentIndicator(
-                width: _bgW,
-                lineHeight: 10.0,
-                percent: ratio,
-                backgroundColor: Color(0xFFDCDCE6),
-                progressColor: Colors.red,
+              Expanded(flex: 30, child: Text(item['title'], style: TextStyle(color: Colors.grey))),
+              Expanded(
+                flex: 55,
+                child: LinearPercentIndicator(
+                  width: _bgW,
+                  lineHeight: 10.0,
+                  percent: ratio,
+                  backgroundColor: Color(0xFFDCDCE6),
+                  progressColor: Colors.red,
+                ),
               ),
-              SizedBox(width: 8),
-              Text('$_num次', style: TextStyle(color: Colors.grey)),
+              Expanded(flex: 15, child: Text('$_num次', style: TextStyle(color: Colors.grey))),
             ],
           ));
     }).toList();

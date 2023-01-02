@@ -59,6 +59,7 @@ class JhDialog {
     Navigator.pop(context);
   }
 
+  /// 带输入框弹框
   static void showInputDialog(
     BuildContext context, {
     String title = '',
@@ -89,7 +90,10 @@ class JhDialog {
         height: 55,
         margin: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          border: Border.all(color: KColors.kLineColor, width: 1),
+          border: Border.all(
+            color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
+            width: 1,
+          ),
         ),
         child: JhFormInputCell(
           text: inputText,
@@ -203,8 +207,11 @@ class BaseDialog extends StatelessWidget {
                 text: leftText,
                 textColor: _cancelTextColor,
                 onPressed: () {
-                  Navigator.pop(context);
-                  onCancel?.call();
+                  if (onCancel != null) {
+                    onCancel?.call();
+                  } else {
+                    Navigator.pop(context);
+                  }
                 },
               ),
         SizedBox(

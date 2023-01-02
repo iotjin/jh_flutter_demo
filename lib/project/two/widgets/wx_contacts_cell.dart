@@ -165,12 +165,6 @@ class WxContactsCell extends StatelessWidget {
             width: double.infinity,
             height: _cellH,
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border(
-                top: BorderSide(width: 0.5, color: KColors.kLineColor),
-              ),
-            ),
             child: Text(
               bottomContactsCountText,
               style: TextStyle(fontSize: 16, color: Colors.grey),

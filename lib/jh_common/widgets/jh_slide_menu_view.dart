@@ -4,6 +4,7 @@
 ///  description: 水平滑动菜单(效果同拼多多首页、淘宝我的频道)
 
 import 'package:flutter/material.dart';
+import '/project/configs/colors.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
 
 const double _sliderW = 20.0;
@@ -23,7 +24,7 @@ class JhSlideMenuView extends StatefulWidget {
     this.maxColumn = 5,
     this.margin = 0.0,
     this.radius = 0.0,
-    this.bgColor = Colors.white,
+    this.bgColor,
     this.isShowSlider = true,
     this.clickCallBack,
   }) : super(key: key);
@@ -33,7 +34,7 @@ class JhSlideMenuView extends StatefulWidget {
   final int maxColumn; // 每行菜单个数
   final double margin; // 整体外边距
   final double radius; // 整体圆角
-  final Color bgColor; // 背景色
+  final Color? bgColor; // 背景色
   final bool isShowSlider; // 是否显示底部滑块
   final _ClickCallBack? clickCallBack;
 
@@ -70,9 +71,12 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
   _body() {
     var margin = widget.margin;
     var mainAxisExtent = (JhScreenUtils.screenWidth - margin * 2) / widget.maxColumn;
+    var bgColor = widget.bgColor != null
+        ? widget.bgColor
+        : KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor);
     return Container(
       margin: EdgeInsets.all(margin),
-      decoration: BoxDecoration(color: widget.bgColor, borderRadius: BorderRadius.circular(widget.radius)),
+      decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(widget.radius)),
       child: Column(
         children: [
           Container(

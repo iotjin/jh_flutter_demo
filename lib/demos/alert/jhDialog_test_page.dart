@@ -75,7 +75,8 @@ class JhDialogTestPage extends StatelessWidget {
                 JhProgressHUD.showText('Please input number');
                 return;
               }
-              Navigator.pop(context);
+              // 手动隐藏弹框
+              JhDialog.hide(context);
               JhProgressHUD.showText('number: $inputValue');
               print('inputValue: $inputValue');
             },
@@ -99,7 +100,10 @@ class JhDialogTestPage extends StatelessWidget {
               height: 50,
               margin: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                border: Border.all(color: KColors.kLineColor, width: 1),
+                border: Border.all(
+                  color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
+                  width: 1,
+                ),
               ),
               child: JhFormInputCell(
                 text: inputValue,
@@ -110,7 +114,7 @@ class JhDialogTestPage extends StatelessWidget {
                 inputCallBack: (value) => inputValue = value,
               ),
             ),
-            onCancel: () => Navigator.pop(context),
+            onCancel: () => JhDialog.hide(context),
             onConfirm: () {
               if (inputValue.isEmpty) {
                 JhProgressHUD.showText('Please input number');

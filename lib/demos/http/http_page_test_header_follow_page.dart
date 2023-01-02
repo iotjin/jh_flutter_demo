@@ -60,7 +60,14 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
           _controller.resetFooter();
         }
       });
-    }, fail: (code, msg) {});
+    }, fail: (code, msg) {
+      if (isLoadMore) {
+        _controller.finishLoad();
+      } else {
+        _controller.finishRefresh();
+        _controller.resetFooter();
+      }
+    });
   }
 
   @override
