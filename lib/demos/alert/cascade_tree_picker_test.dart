@@ -10,6 +10,8 @@ class CascadeTreePickerTest extends StatelessWidget {
     'JhCascadeTreePicker-不定列-隐藏搜索',
     'JhCascadeTreePicker-不定列-默认选中(三级)',
     'JhCascadeTreePicker-不定列-默认选中(只有两级)',
+    'JhCascadeTreePicker-第一列长度为1',
+    'JhCascadeTreePicker-第一列长度为1-默认选中',
   ];
 
   final treeData = [
@@ -339,6 +341,51 @@ class CascadeTreePickerTest extends StatelessWidget {
     }
   ];
 
+  final treeData4 = [
+    {
+      'value': '4',
+      'label': '大类4(有三级有四级)',
+      'children': [
+        {
+          'value': '4-11',
+          'label': '大类4-中类1(四级)',
+          'children': [
+            {
+              'value': '4-111',
+              'label': '大类4-小类1',
+              'children': [
+                {'value': '4-111-1111', 'label': '大类4-中类1-小类1-超小类1'},
+                {'value': '4-111-2222', 'label': '大类4-中类1-小类1-超小类2'},
+                {'value': '4-111-3333', 'label': '大类4-中类1-小类1-超小类3'},
+                {'value': '4-111-4444', 'label': '大类4-中类1-小类1-超小类4'},
+              ]
+            },
+            {
+              'value': '4-222',
+              'label': '大类4-小类2',
+              'children': [
+                {'value': '4-222-1111', 'label': '大类4-中类1-小类2-超小类1'},
+                {'value': '4-222-2222', 'label': '大类4-中类1-小类2-超小类2'},
+                {'value': '4-222-3333', 'label': '大类4-中类1-小类2-超小类3'},
+                {'value': '4-222-4444', 'label': '大类4-中类1-小类2-超小类4'},
+              ]
+            },
+          ]
+        },
+        {
+          'value': '4-12',
+          'label': '大类4-中类2(三级)',
+          'children': [
+            {'value': '4-12-111', 'label': '大类4-中类2-小类1'},
+            {'value': '4-12-222', 'label': '大类4-中类2-小类2'},
+            {'value': '4-12-333', 'label': '大类4-中类2-小类3'},
+            {'value': '4-12-444', 'label': '大类4-中类2-小类4'},
+          ]
+        }
+      ]
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return JhTextList(
@@ -393,6 +440,22 @@ class CascadeTreePickerTest extends StatelessWidget {
             // ];
             var values = ['资源(两级)', 'Axure Components'];
             JhCascadeTreePicker.show(context, data: treeData, values: values, valuesKey: 'label', title: '请选择类型',
+                clickCallBack: (selectItem, selectArr) {
+              print(selectItem);
+              print(selectArr);
+              showText(selectItem);
+            });
+          }
+          if (str == 'JhCascadeTreePicker-第一列长度为1') {
+            JhCascadeTreePicker.show(context, data: treeData4, title: '请选择类型', clickCallBack: (selectItem, selectArr) {
+              print(selectItem);
+              print(selectArr);
+              showText(selectItem);
+            });
+          }
+          if (str == 'JhCascadeTreePicker-第一列长度为1-默认选中') {
+            var values = ['4', '4-11', '4-222', '4-222-4444'];
+            JhCascadeTreePicker.show(context, data: treeData4, values: values, valuesKey: 'value', title: '请选择类型',
                 clickCallBack: (selectItem, selectArr) {
               print(selectItem);
               print(selectArr);

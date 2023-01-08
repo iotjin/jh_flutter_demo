@@ -120,7 +120,7 @@ class JhCascadePickerView extends StatefulWidget {
   State<JhCascadePickerView> createState() => _JhCascadePickerViewState();
 }
 
-class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTickerProviderStateMixin {
+class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerProviderStateMixin {
   TabController? _tabController;
   final ScrollController _scrollController = ScrollController();
 
@@ -133,8 +133,8 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   // 多级联动选择的position
   List<int> _positions = [];
 
-  // 索引
-  int _index = 0;
+  // 当前列
+  int _currentColumn = 0;
 
   // 搜索数据
   List _searchData = [];
@@ -161,13 +161,11 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   void _initData() {
     if (widget.data != null) {
       List dataArr = widget.data!;
-      for (int i = 0; i < dataArr.length; i++) {
-        _myTabs.add(Tab(text: i == 0 ? widget.tabText : ''));
-        _positions.add(0);
-      }
       _mList = dataArr;
-      _tabController = TabController(vsync: this, length: dataArr.length);
-      _tabController?.animateTo(_index, duration: Duration.zero);
+      _myTabs.add(Tab(text: widget.tabText));
+      _positions.add(0);
+      _tabController = TabController(vsync: this, length: 1);
+      _tabController?.animateTo(_currentColumn, duration: Duration.zero);
     }
   }
 
@@ -178,15 +176,15 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
       for (int i = 0; i < tempArr.length; i++) {
         var value = tempArr[i];
         var index = _getTreeIndexByName(dataArr, value);
-        _myTabs[_index] = Tab(text: _mList[index][widget.labelKey]);
-        _positions[_index] = index;
-        _indexIncrement();
-        if (_isNotEmptyChildren(_mList[_positions[_index - 1]])) {
-          _setListAndChangeTab();
+        _myTabs[_currentColumn] = Tab(text: _mList[index][widget.labelKey]);
+        _positions[_currentColumn] = index;
+        _columnIncrement();
+        if (_isNotEmptyChildren(_mList[index])) {
+          _setListAndChangeTab(index);
         } else {
-          _setIndex(_index - 1);
+          _setColumn(_currentColumn - 1);
         }
-        _tabController?.animateTo(_index);
+        _tabController?.animateTo(_currentColumn);
       }
     }
   }
@@ -219,28 +217,26 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
     return false;
   }
 
-  void _setIndex(int index) {
-    _index = index;
+  void _setColumn(int column) {
+    _currentColumn = column;
   }
 
-  void _indexIncrement() {
-    _index++;
+  void _columnIncrement() {
+    _currentColumn++;
   }
 
   /// tabBar点击后更新数据
-  void _setList(int index) {
+  void _onClickTab(currentColumn) {
     if (widget.data != null) {
       List dataArr = widget.data!;
-      if (dataArr.length > index) {
-        if (index == 0) {
-          _mList = dataArr;
-        } else {
-          // 获取点击tabBar的数据（根据上一级tabBar文字获取）
-          var tabText = _myTabs[index - 1].text;
-          if (tabText != widget.tabText) {
-            var tempData = _getTreeDataByName(dataArr, tabText);
-            _mList = tempData[widget.childrenKey];
-          }
+      if (currentColumn == 0) {
+        _mList = dataArr;
+      } else {
+        // 获取点击tabBar的数据（根据上一级tabBar文字获取）
+        var tabText = _myTabs[currentColumn - 1].text;
+        if (tabText != widget.tabText) {
+          var tempData = _getTreeDataByName(dataArr, tabText);
+          _mList = tempData[widget.childrenKey];
         }
       }
     }
@@ -264,22 +260,30 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   }
 
   /// 选项点击后设置下一级数据并改变tabBar
-  void _setListAndChangeTab() {
-    // 这里的index已经+1
+  /// 这里的currentColumn已经+1
+  /// index是点击item的索引
+  void _setListAndChangeTab(index) {
     if (widget.data != null) {
-      List dataArr = widget.data!;
-      if (dataArr.length > _index - 1 && dataArr.length != _index) {
-        _mList = _mList[_positions[_index - 1]][widget.childrenKey];
-        _myTabs.asMap().forEach((i, e) {
-          if (i > _index - 1) {
-            if (i == _index) {
-              _myTabs[i] = Tab(text: widget.tabText);
-            } else {
-              _myTabs[i] = Tab(text: '');
-            }
-          }
-        });
+      if (_myTabs.length <= _currentColumn) {
+        _myTabs.add(Tab(text: widget.tabText));
+        _positions.add(0);
+        _tabController = TabController(initialIndex: _currentColumn - 1, vsync: this, length: _myTabs.length);
       }
+      // 更新前的tabText
+      var beforeTabText = _myTabs[_currentColumn - 1].text;
+      _myTabs[_currentColumn - 1] = Tab(text: _mList[index][widget.labelKey]);
+      _positions[_currentColumn - 1] = index;
+      // 更新后的tabText
+      var tabText = _mList[index][widget.labelKey];
+      // 选中改变后删掉多余的Tabs
+      if (_myTabs.length > _currentColumn + 1 && beforeTabText != tabText) {
+        _myTabs.removeRange(_currentColumn + 1, _myTabs.length);
+        _myTabs[_myTabs.length - 1] = Tab(text: widget.tabText);
+        _positions.removeRange(_currentColumn + 1, _positions.length);
+        _tabController = TabController(initialIndex: _currentColumn - 1, vsync: this, length: _myTabs.length);
+      }
+      // 设置下一级数据
+      _mList = _mList[index][widget.childrenKey];
     }
   }
 
@@ -369,14 +373,14 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
               onTap: (index) {
                 if ((_myTabs[index].text ?? '').isEmpty) {
                   // 拦截点击事件
-                  _tabController?.animateTo(_index);
+                  _tabController?.animateTo(_currentColumn);
                   return;
                 }
                 setState(() {
-                  _setList(index);
-                  _setIndex(index);
+                  _setColumn(index);
+                  _onClickTab(index);
                   _scrollController.animateTo(
-                    _positions[_index] * _itemHeight,
+                    _positions[_currentColumn] * _itemHeight,
                     duration: Duration(milliseconds: 10),
                     curve: Curves.ease,
                   );
@@ -401,7 +405,12 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   }
 
   Widget _buildItem(int index, Color bgColor, Color textColor, Color themeColor) {
-    final bool flag = _mList[index][widget.labelKey] == _myTabs[_index].text;
+    var tempData = _mList[index];
+    bool flag = false;
+    if (_currentColumn >= 0) {
+      flag = tempData[widget.labelKey] == _myTabs[_currentColumn].text;
+    }
+
     return InkWell(
       child: Container(
         color: bgColor,
@@ -410,7 +419,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
         child: Row(
           children: <Widget>[
             Text(
-              _mList[index][widget.labelKey],
+              tempData[widget.labelKey],
               style: TextStyle(fontSize: _textFontSize, color: flag ? themeColor : textColor),
             ),
             SizedBox(width: 8),
@@ -423,27 +432,29 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
       ),
       onTap: () {
         setState(() {
-          _myTabs[_index] = Tab(text: _mList[index][widget.labelKey]);
-          _positions[_index] = index;
-          _indexIncrement();
-          if (_isNotEmptyChildren(_mList[_positions[_index - 1]])) {
-            _setListAndChangeTab();
+          if (_isNotEmptyChildren(tempData)) {
+            // 有子结点
+            _columnIncrement();
+            _setListAndChangeTab(index);
+            // 跳到指定位置
+            _scrollController.animateTo(0.0, duration: Duration(milliseconds: 100), curve: Curves.ease);
+            Future.delayed(Duration(milliseconds: 100), () {
+              _tabController?.animateTo(_currentColumn);
+            });
           } else {
-            // 获取选中的索引数组
+            // 无子结点
+
+            // 索引数组
+            // _positions[_positions.length - 1] = index;
             // var tempIndexArr = List.from(_positions);
-            // if (_index <= tempIndexArr.length) {
-            //   tempIndexArr = tempIndexArr.sublist(0, _index);
-            // }
 
             // 根据末级节点查出包含父节点的数据
             List res = _findParentNodeDataByValue(widget.data!, _mList[index][widget.valueKey]);
             // 选择回调
             widget.clickCallBack?.call(res.last, res);
             JhNavUtils.goBack(context);
-            _setIndex(_index - 1);
+            _setColumn(_currentColumn - 1);
           }
-          _scrollController.animateTo(0.0, duration: Duration(milliseconds: 100), curve: Curves.ease);
-          _tabController?.animateTo(_index);
         });
       },
     );
