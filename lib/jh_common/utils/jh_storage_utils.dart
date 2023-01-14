@@ -20,7 +20,7 @@ class JhAESStorageUtils {
   static String? getString(String key) {
     key = JhEncryptUtils.aesEncrypt(key);
     var enValue = SpUtil.getString(key) ?? '';
-    if (enValue.length > 0) {
+    if (enValue.isNotEmpty) {
       return JhEncryptUtils.aesDecrypt(enValue);
     }
     return null;

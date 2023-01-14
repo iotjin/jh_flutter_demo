@@ -30,13 +30,13 @@ class WxHomeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
-    data['img'] = this.img;
-    data['time'] = this.time;
-    data['isNew'] = this.isNew;
-    data['type'] = this.type;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['subtitle'] = subtitle;
+    data['img'] = img;
+    data['time'] = time;
+    data['isNew'] = isNew;
+    data['type'] = type;
     return data;
   }
 }

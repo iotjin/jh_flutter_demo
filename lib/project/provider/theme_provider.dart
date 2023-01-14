@@ -24,7 +24,7 @@ const Color _purpleThemeColor = KColors.kThemePurpleColor;
 enum ThemeMethod { themeSystem, themeLight, themeDark, themeBlue, themePurple }
 
 /// 使用：ThemeMethodValues[ThemeMethod.themeSystem]
-const ThemeMethodValues = {
+const themeMethodValues = {
   ThemeMethod.themeSystem: _themeSystem,
   ThemeMethod.themeLight: _themeLight,
   ThemeMethod.themeDark: _themeDark,
@@ -53,7 +53,7 @@ class ThemeProvider extends ChangeNotifier {
 
   /// 设置主题
   void setTheme([ThemeMethod themeMode = ThemeMethod.themeLight]) {
-    JhAESStorageUtils.saveString(_appThemeKey, ThemeMethodValues[themeMode]!);
+    JhAESStorageUtils.saveString(_appThemeKey, themeMethodValues[themeMode]!);
     notifyListeners();
   }
 
@@ -129,7 +129,7 @@ class MyThemes {
       appBarTheme: AppBarTheme(
         systemOverlayStyle: JhStatusBarUtils.getStatusBarStyle(isDark: isDarkMode),
         color: isDarkMode ? KColors.kNavBgDarkColor : themeColor,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       // 主界面tabbar，在base_tabbar页面配置
       // bottomNavigationBarTheme: BottomNavigationBarThemeData(

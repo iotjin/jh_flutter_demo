@@ -30,13 +30,13 @@ class WxSubscriptionNumberModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
-    data['time'] = this.time;
-    data['img1'] = this.img1;
-    data['text2'] = this.text2;
-    data['img2'] = this.img2;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['subtitle'] = subtitle;
+    data['time'] = time;
+    data['img1'] = img1;
+    data['text2'] = text2;
+    data['img2'] = img2;
     return data;
   }
 }

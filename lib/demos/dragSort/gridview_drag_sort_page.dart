@@ -3,12 +3,14 @@ import 'package:reorderables/reorderables.dart';
 import '/project/configs/project_config.dart';
 
 class GridviewDragSortPage extends StatefulWidget {
+  const GridviewDragSortPage({Key? key}) : super(key: key);
+
   @override
-  _GridviewDragSortPageState createState() => _GridviewDragSortPageState();
+  State<GridviewDragSortPage> createState() => _GridviewDragSortPageState();
 }
 
 class _GridviewDragSortPageState extends State<GridviewDragSortPage> {
-  List _mList = [];
+  final List _mList = [];
 
   @override
   void initState() {
@@ -23,17 +25,16 @@ class _GridviewDragSortPageState extends State<GridviewDragSortPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('GridviewDragSortPage'),
-      body: _body(context),
+      appBar: const BaseAppBar('GridviewDragSortPage'),
+      body: _body(),
     );
   }
 
-  Widget _body(context) {
+  Widget _body() {
     return ReorderableWrap(
         spacing: 8.0,
         runSpacing: 4.0,
         padding: const EdgeInsets.all(8),
-        children: _mList.map((e) => _cell(e)).toList(),
         onReorder: _onReorder,
         onNoReorder: (int index) {
           //this callback is optional
@@ -42,7 +43,8 @@ class _GridviewDragSortPageState extends State<GridviewDragSortPage> {
         onReorderStarted: (int index) {
           //this callback is optional
           debugPrint('${DateTime.now().toString().substring(5, 22)} reorder started: index:$index');
-        });
+        },
+        children: _mList.map((e) => _cell(e)).toList());
   }
 
   void _onReorder(int oldIndex, int newIndex) {
@@ -58,13 +60,13 @@ class _GridviewDragSortPageState extends State<GridviewDragSortPage> {
         height: 80,
         width: 80,
         decoration: BoxDecoration(
-          color: KColors.dynamicColor(context, Color(0xFFF2F3F7), Colors.black87),
+          color: KColors.dynamicColor(context, const Color(0xFFF2F3F7), Colors.black87),
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.favorite),
+            const Icon(Icons.favorite),
             Text(item['name']),
           ],
         ),

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -5,14 +7,16 @@ import '/jh_common/utils/jh_common_utils.dart';
 import '/base_appbar.dart';
 
 class ListViewGroupPage2 extends StatefulWidget {
+  const ListViewGroupPage2({Key? key}) : super(key: key);
+
   @override
-  _ListViewGroupPage2State createState() => _ListViewGroupPage2State();
+  State<ListViewGroupPage2> createState() => _ListViewGroupPage2State();
 }
 
 class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   List tabs = ['近30日', '近7日', '今日'];
-  var _rowHeight = 44.0;
+  final _rowHeight = 44.0;
   var _groupData = [];
 
   @override
@@ -29,16 +33,16 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
   _getData() {
     var dataArr = [];
     for (int i = 0; i < 30; i++) {
-      var groupDict = new Map();
+      var groupDict = {};
       groupDict['groupTitle'] = 'groupTitle_$i';
       groupDict['num'] = JhCommonUtils.getRandom(50, 100).toInt().toString();
       var tempArr = [];
       int length = JhCommonUtils.getRandom(2, 5).toInt();
       for (int j = 0; j < length; j++) {
-        var tempDict = new Map();
-        tempDict['title'] = 'group$i' + '_title$j';
+        var tempDict = {};
+        tempDict['title'] = 'group$i' '_title$j';
         tempDict['num'] = JhCommonUtils.getRandom(1, 50).toInt().toString();
-        tempDict['phone'] = '$j$j$j' + 'xxxxxxx';
+        tempDict['phone'] = '$j$j$j' 'xxxxxxx';
         tempDict['content'] = 'content{$j}-content{$j}-content{$j}-content{$j}-content{$j}-content{$j}';
         tempDict['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
         tempArr.add(tempDict);
@@ -55,6 +59,7 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
     _tabController!.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
@@ -74,8 +79,8 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
           controller: _tabController,
           tabs: tabs.map((e) => Tab(text: e)).toList(),
           indicatorColor: Colors.blueAccent,
-          labelColor: Color(0xFF646464),
-          unselectedLabelColor: Color(0xFF9B9B9B),
+          labelColor: const Color(0xFF646464),
+          unselectedLabelColor: const Color(0xFF9B9B9B),
           indicatorSize: TabBarIndicatorSize.label,
         ));
   }
@@ -90,7 +95,7 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
               : StickyHeader(
                   header: Container(
                     height: 50.0,
-                    padding: EdgeInsets.only(left: 15),
+                    padding: const EdgeInsets.only(left: 15),
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                       color: Colors.orange,
@@ -103,12 +108,13 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
                     ),
                     child: Row(
                       children: <Widget>[
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Text(
                           _groupData[index - 1]['groupTitle'],
                         ),
-                        SizedBox(width: 8),
-                        Text('(${_groupData[index - 1]['num']})', style: TextStyle(color: Colors.red, fontSize: 22))
+                        const SizedBox(width: 8),
+                        Text('(${_groupData[index - 1]['num']})',
+                            style: const TextStyle(color: Colors.red, fontSize: 22))
                       ],
                     ),
                   ),
@@ -129,13 +135,13 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
 
   Widget _topHeader() {
     return Container(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
               height: 70,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
               ),
@@ -143,19 +149,15 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Row(
-                    children: <Widget>[
+                    children: const <Widget>[
                       SizedBox(width: 8),
                       Text('这是title', style: TextStyle(fontSize: 18)),
                       SizedBox(width: 8)
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Image.asset(
-                      'assets/images/lufei.png',
-                      width: 60,
-                      height: 60,
-                    ),
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Image.asset('assets/images/lufei.png', width: 60, height: 60),
                   ),
                 ],
               ),
@@ -163,16 +165,12 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
             Container(
               color: Colors.white,
               height: 1,
-              child: Divider(
-                thickness: 1,
-                indent: 15,
-                endIndent: 15,
-              ),
+              child: const Divider(thickness: 1, indent: 15, endIndent: 15),
             ),
             Container(
               height: 200,
               padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8.0), bottomRight: Radius.circular(8.0)),
               ),
@@ -183,29 +181,29 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
 
   List<Widget> buildGroup(List group, var groupNum) {
     return group.map((item) {
-      var _width = MediaQuery.of(context).size.width;
-      var _bgW = _width * 0.5;
-      var _num = item['num'];
-      var ratio = double.parse(_num) / double.parse(groupNum);
+      var width = MediaQuery.of(context).size.width;
+      var bgW = width * 0.5;
+      var num = item['num'];
+      var ratio = double.parse(num) / double.parse(groupNum);
 //      print(ratio);
       return Container(
           color: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           height: 40,
           child: Row(
             children: <Widget>[
-              Expanded(flex: 30, child: Text(item['title'], style: TextStyle(color: Colors.grey))),
+              Expanded(flex: 30, child: Text(item['title'], style: const TextStyle(color: Colors.grey))),
               Expanded(
                 flex: 55,
                 child: LinearPercentIndicator(
-                  width: _bgW,
+                  width: bgW,
                   lineHeight: 10.0,
                   percent: ratio,
-                  backgroundColor: Color(0xFFDCDCE6),
+                  backgroundColor: const Color(0xFFDCDCE6),
                   progressColor: Colors.red,
                 ),
               ),
-              Expanded(flex: 15, child: Text('$_num次', style: TextStyle(color: Colors.grey))),
+              Expanded(flex: 15, child: Text('$num次', style: const TextStyle(color: Colors.grey))),
             ],
           ));
     }).toList();

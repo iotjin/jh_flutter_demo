@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/09/14.
 ///  description: 朋友圈 cell
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_bottom_sheet.dart';
 import '/jh_common/widgets/jh_nine_picture.dart';
@@ -48,13 +50,15 @@ class WxFriendsCircleCell extends StatelessWidget {
             InkWell(
               onTap: () => onClickHeadPortrait?.call(model.toJson()),
               child: Container(
-                margin: EdgeInsets.all(15),
+                margin: const EdgeInsets.all(15),
                 height: 50,
                 width: 50,
-                decoration:
-                    BoxDecoration(color: JhColorUtils.hexColor(model.color!), borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(
+                  color: JhColorUtils.hexColor(model.color!),
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: Center(
-                  child: Text(model.name!.substring(0, 1), style: TextStyle(color: Colors.white, fontSize: 20)),
+                  child: Text(model.name!.substring(0, 1), style: const TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               ),
             ),
@@ -63,24 +67,24 @@ class WxFriendsCircleCell extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 13),
+                    margin: const EdgeInsets.only(top: 13),
                     child: Text(
                       model.name!,
-                      style: TextStyle(color: KColors.wxTextBlueColor, fontSize: 15),
+                      style: const TextStyle(color: KColors.wxTextBlueColor, fontSize: 15),
                     ),
                   ),
                   Container(
-                      margin: EdgeInsets.fromLTRB(0, 5, 15, 5),
-                      child: Text(model.content.jhNullSafe, style: TextStyle(fontSize: 13))),
+                      margin: const EdgeInsets.fromLTRB(0, 5, 15, 5),
+                      child: Text(model.content.jhNullSafe, style: const TextStyle(fontSize: 13))),
                   _imagesWidget(context),
                   Container(
-                    margin: EdgeInsets.fromLTRB(0, 5, 15, 10),
+                    margin: const EdgeInsets.fromLTRB(0, 5, 15, 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           model.time.jhNullSafe,
-                          style: TextStyle(color: KColors.kLightGreyTextColor, fontSize: 13),
+                          style: const TextStyle(color: KColors.kLightGreyTextColor, fontSize: 13),
                         ),
                         InkWell(
                           child: Container(
@@ -89,7 +93,7 @@ class WxFriendsCircleCell extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: KColors.dynamicColor(
-                                  context, Color.fromRGBO(240, 240, 240, 1), KColors.kCellBgDarkColor),
+                                  context, const Color.fromRGBO(240, 240, 240, 1), KColors.kCellBgDarkColor),
                             ),
                             child: Image.asset(
                               'assets/wechat/discover/ic_diandian.png',
@@ -112,14 +116,13 @@ class WxFriendsCircleCell extends StatelessWidget {
 
   // 图片view
   Widget _imagesWidget(context) {
-    return Container(
-        child: JhNinePicture(
+    return JhNinePicture(
       imgData: model.images ?? [],
       lRSpace: (80.0 + 20.0),
       onLongPress: () {
         print('onLongPress:');
         JhBottomSheet.showText(context, dataArr: ['保存图片']);
       },
-    ));
+    );
   }
 }

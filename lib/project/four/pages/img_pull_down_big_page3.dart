@@ -3,19 +3,23 @@
 ///  Created by iotjin on 2020/09/04.
 ///  description:
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
 
 double _scrollMaxOffSet = 1000;
 
 class ImgPullDownBigPage3 extends StatefulWidget {
+  const ImgPullDownBigPage3({Key? key}) : super(key: key);
+
   @override
-  _ImgPullDownBigPage3State createState() => _ImgPullDownBigPage3State();
+  State<ImgPullDownBigPage3> createState() => _ImgPullDownBigPage3State();
 }
 
 class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3> with SingleTickerProviderStateMixin {
   double _topH = 0;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -25,11 +29,11 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3> with SingleTi
 
   void _addListener() {
     _scrollController.addListener(() {
-      double _y = _scrollController.offset;
-      print('滑动距离: $_y');
-      if (_y < 0 && _y > -_scrollMaxOffSet) {
+      double y = _scrollController.offset;
+      print('滑动距离: $y');
+      if (y < 0 && y > -_scrollMaxOffSet) {
         setState(() {
-          _topH = _y.abs();
+          _topH = y.abs();
           print(_topH);
         });
       }
@@ -45,51 +49,50 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3> with SingleTi
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _body());
+    return Scaffold(
+      body: _body(),
+    );
   }
 
   Widget _body() {
-    return Stack(children: <Widget>[
-      Container(
-        padding: EdgeInsets.fromLTRB(0, 200, 0, 0),
-        color: Colors.yellow,
-        child: MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
-          child: ListView.builder(
+    return Stack(
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
+          color: Colors.yellow,
+          child: MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100,
               itemExtent: 50.0,
               // 强制高度为50.0
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(title: Text('$index'));
-              }),
-        ),
-      ),
-      Positioned(
-        top: 0,
-        width: JhScreenUtils.screenWidth,
-        height: _topH + 200,
-        child: Container(
-//            color: Colors.yellow,
-            color: Colors.white,
-            child: Image.network(
-              'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
-              fit: BoxFit.cover,
-            )),
-      ),
-      Positioned(
-        top: JhScreenUtils.topSafeHeight + 18,
-        left: 18,
-        child: InkWell(
-          onTap: () => Navigator.pop(context),
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
+              },
+            ),
           ),
         ),
-      ),
-    ]);
+        Positioned(
+          top: 0,
+          width: JhScreenUtils.screenWidth,
+          height: _topH + 200,
+          child: Container(
+//            color: Colors.yellow,
+              color: Colors.white,
+              child: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover)),
+        ),
+        Positioned(
+          top: JhScreenUtils.topSafeHeight + 18,
+          left: 18,
+          child: InkWell(
+            onTap: () => Navigator.pop(context),
+            child: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          ),
+        ),
+      ],
+    );
   }
 }

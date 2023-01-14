@@ -1,6 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:easy_refresh/easy_refresh.dart';
-import '/jh_common/widgets/Jh_highlight_text.dart';
+import '/jh_common/widgets/jh_highlight_text.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
 import '/project/configs/project_config.dart';
 
@@ -31,10 +33,10 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
     if (isShowLoading) {
       JhProgressHUD.showLoadingText();
     }
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       var tempArr = [];
       for (var i = 0; i < 20; i++) {
-        tempArr.add({'id': i.toString() + '---' + _keyWord, 'name': 'name$i'});
+        tempArr.add({'id': '$i---$_keyWord', 'name': 'name$i'});
       }
       setState(() {
         _dataArr = tempArr;
@@ -64,7 +66,7 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
     return Scaffold(
       appBar: BaseAppBar(
         'SearchTest4Page',
-        bottomWidget: PreferredSize(preferredSize: Size.fromHeight(kSearchViewHeight), child: _header()),
+        bottomWidget: PreferredSize(preferredSize: const Size.fromHeight(kSearchViewHeight), child: _header()),
       ),
       body: _body(),
       // backgroundColor: KColors.kBgColor,
@@ -80,7 +82,7 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
       inputCallBack: (value) {
         setState(() {
           _keyWord = value;
-          if (value.length == 0) {
+          if (value.isEmpty) {
             _searchData = [];
           }
           if (value.length >= 3) {
@@ -103,14 +105,12 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
   }
 
   Widget _body() {
-    if (_searchData.length > 0) {
-      return Container(
-        child: ListView.builder(
-          itemBuilder: (_, index) {
-            return _searchResultItem(index);
-          },
-          itemCount: _searchData.length,
-        ),
+    if (_searchData.isNotEmpty) {
+      return ListView.builder(
+        itemBuilder: (_, index) {
+          return _searchResultItem(index);
+        },
+        itemCount: _searchData.length,
       );
     } else {
       return EasyRefresh(
@@ -121,11 +121,11 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
   }
 
   Widget _listWidget(List dataArr) {
-    if (dataArr.length == 0) {
+    if (dataArr.isEmpty) {
       return Container(
         alignment: Alignment.topCenter,
-        padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-        child: Text("暂无数据", textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
+        padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+        child: const Text("暂无数据", textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
       );
     } else {
       return ListView.separated(
@@ -147,11 +147,11 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
 
   Widget _cell(item) {
     return Container(
-        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12, // 阴影颜色
               spreadRadius: 1.5, // 阴影浓度
@@ -164,7 +164,7 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                const SizedBox(
                   width: 60,
                   child: Text('Code:', style: KStyles.textBold15),
                 ),
@@ -173,11 +173,11 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                const SizedBox(
                   width: 60,
                   child: Text('Name:', style: KStyles.textBold15),
                 ),
@@ -193,9 +193,9 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
   Widget _searchResultItem(index) {
     return InkWell(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10.0),
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(color: KColors.kLineColor, width: 0.5)),
         ),
         child: Row(
@@ -204,7 +204,7 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
             Flexible(
               child: JhHighlightText(text: _searchData[index]['name'], highlightText: _keyWord),
             ),
-            Icon(Icons.north_west, size: 15, color: Colors.black),
+            const Icon(Icons.north_west, size: 15, color: Colors.black),
           ],
         ),
       ),

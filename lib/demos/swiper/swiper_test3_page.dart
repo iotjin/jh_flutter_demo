@@ -1,10 +1,14 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety_flutter3/flutter_swiper_null_safety_flutter3.dart';
 import '/base_appbar.dart';
 
 class SwiperTest3Page extends StatefulWidget {
+  const SwiperTest3Page({Key? key}) : super(key: key);
+
   @override
-  _SwiperTest3PageState createState() => _SwiperTest3PageState();
+  State<SwiperTest3Page> createState() => _SwiperTest3PageState();
 }
 
 class _SwiperTest3PageState extends State<SwiperTest3Page> {
@@ -23,18 +27,19 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar('swiper3 - flutter_swiper'),
-        body: ListView(
-          children: <Widget>[
-            swiper_1(),
-            swiper_2(),
-          ],
-        ));
+      appBar: const BaseAppBar('swiper3 - flutter_swiper'),
+      body: ListView(
+        children: <Widget>[
+          swiper_1(),
+          swiper_2(),
+        ],
+      ),
+    );
   }
 
   Widget swiper_1() {
     return Container(
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         height: 260,
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
@@ -45,11 +50,11 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
           },
           itemCount: imgList.length,
           autoplay: true,
-          pagination: SwiperPagination(
+          pagination: const SwiperPagination(
               // 位置 Alignment.bottomCenter 底部中间
               alignment: Alignment.bottomRight,
               // 距离调整
-              margin: const EdgeInsets.fromLTRB(0, 0, 20, 10),
+              margin: EdgeInsets.fromLTRB(0, 0, 20, 10),
               builder: FractionPaginationBuilder(
                 color: Colors.white, // 字体颜色
                 activeColor: Colors.yellow, // 当前的指示字体颜色
@@ -61,7 +66,7 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
 
   Widget swiper_2() {
     return Container(
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         height: 260,
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
@@ -72,8 +77,8 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
           },
           itemCount: imgList2.length,
           autoplay: true,
-          pagination: SwiperPagination(),
-          control: SwiperControl(),
+          pagination: const SwiperPagination(),
+          control: const SwiperControl(),
         ));
   }
 }

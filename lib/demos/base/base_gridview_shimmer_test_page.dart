@@ -13,13 +13,13 @@ class BaseGridViewShimmerTestPage extends StatefulWidget {
 class _BaseGridViewShimmerTestPageState extends State<BaseGridViewShimmerTestPage> {
   List _dataArr = [];
   int _pageIndex = 0;
-  int _limit = 15;
+  final int _limit = 15;
 
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _requestData(isShowLoading: false);
     });
   }
@@ -44,15 +44,15 @@ class _BaseGridViewShimmerTestPageState extends State<BaseGridViewShimmerTestPag
   Widget _body() {
     Widget child = GridView.builder(
       shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         // 可以直接指定每行（列）显示多少个Item
         crossAxisCount: 2, // 一行的Widget数量
         crossAxisSpacing: 5, // 水平间距
         mainAxisSpacing: 5, // 垂直间距
         childAspectRatio: 1.0, // 子Widget宽高比例
       ),
-      //GridView内边距
-      padding: EdgeInsets.all(5),
+      // GridView内边距
+      padding: const EdgeInsets.all(5),
       itemCount: _dataArr.length,
       itemBuilder: (context, index) {
         return _itemWidget(index);
@@ -65,23 +65,23 @@ class _BaseGridViewShimmerTestPageState extends State<BaseGridViewShimmerTestPag
       limit: _limit,
       enableShimmer: true,
       shimmerView: JhShimmerView.gridShimmerView1(context),
-      child: child,
       refreshType: RefreshType.delivery,
       onRefresh: () async => _requestData(),
       onLoad: () async => _requestData(isLoadMore: true),
+      child: child,
     );
   }
 
   Widget _itemWidget(index) {
     var cell = InkWell(
       child: Container(
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: index % 2 == 0 ? Colors.red : Colors.yellow,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Container(
-          padding: EdgeInsets.only(left: 5, top: 5),
+          padding: const EdgeInsets.only(left: 5, top: 5),
           child: Text(_dataArr[index]['title']),
         ),
       ),

@@ -1,25 +1,31 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_top_tabbar.dart';
 
 class TopTabBarTest1Page extends StatefulWidget {
+  const TopTabBarTest1Page({Key? key}) : super(key: key);
+
   @override
-  _TopTabBarTest1PageState createState() => _TopTabBarTest1PageState();
+  State<TopTabBarTest1Page> createState() => _TopTabBarTest1PageState();
 }
 
 class _TopTabBarTest1PageState extends State<TopTabBarTest1Page> {
   List<JhTopTabBarModel> model = [
     JhTopTabBarModel(
-        title: '标题一',
-        widget: Container(
-          alignment: Alignment.center,
-          child: Text('页面一', textScaleFactor: 3),
-        )),
+      title: '标题一',
+      widget: Container(
+        alignment: Alignment.center,
+        child: const Text('页面一', textScaleFactor: 3),
+      ),
+    ),
     JhTopTabBarModel(
-        title: '标题二',
-        widget: Container(
-          alignment: Alignment.center,
-          child: Text('页面二', textScaleFactor: 3),
-        )),
+      title: '标题二',
+      widget: Container(
+        alignment: Alignment.center,
+        child: const Text('页面二', textScaleFactor: 3),
+      ),
+    ),
   ];
 
   @override

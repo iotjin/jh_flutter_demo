@@ -1,11 +1,15 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/base_appbar.dart';
-import '/res/listData.dart';
+import '/res/list_data.dart';
 
 class ListViewTest2 extends StatelessWidget {
+  const ListViewTest2({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: BaseAppBar('ListViewTest2_外部引用假数据'),
       body: HomeContent(),
     );
@@ -13,28 +17,31 @@ class ListViewTest2 extends StatelessWidget {
 }
 
 class HomeContent extends StatelessWidget {
+  const HomeContent({super.key});
+
   Widget _getListData(context, index) {
     return ListTile(
       title: Text(listData[index]['title']),
       leading: Image.network(listData[index]['imageUrl']),
       subtitle: Text(listData[index]['content']),
       onTap: () {
-        print('点击的index' + index.toString());
+        print('点击的index ${index.toString()}');
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemCount: listData.length, itemBuilder: this._getListData);
+    return ListView.builder(itemCount: listData.length, itemBuilder: _getListData);
   }
 }
 
 Widget contentBody = Container(
-    width: 200,
-    height: 200,
-    color: Colors.red,
-    child: TextButton(
-      child: Text('normal'),
-      onPressed: () {},
-    ));
+  width: 200,
+  height: 200,
+  color: Colors.red,
+  child: TextButton(
+    child: const Text('normal'),
+    onPressed: () {},
+  ),
+);

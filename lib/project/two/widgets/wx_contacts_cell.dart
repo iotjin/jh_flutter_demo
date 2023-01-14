@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2019/08/14.
 ///  description: 微信通讯录 cell
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -39,7 +41,7 @@ class WxContactsCell extends StatelessWidget {
 
   // 头部：新的朋友、群聊、标签、公众号
   Widget _buildHeader(context) {
-    List _topData = [
+    List topData = [
       {
         'title': '新的朋友',
         'imgUrl': 'assets/wechat/contacts/ic_new_friend.png',
@@ -58,20 +60,20 @@ class WxContactsCell extends StatelessWidget {
       },
     ];
 
-    Widget _topCell(context, itemData) {
-      double _cellH = 55.0;
-      double _leftSpace = 65.0;
-      double _imgWH = 40;
+    Widget topCell(context, itemData) {
+      double cellH = 55.0;
+      double leftSpace = 65.0;
+      double imgWH = 40;
 
       return JhSetCell(
-        leftImgWH: _imgWH,
-        cellHeight: _cellH,
-        lineLeftEdge: _leftSpace,
+        leftImgWH: imgWH,
+        cellHeight: cellH,
+        lineLeftEdge: leftSpace,
         title: itemData['title'],
         hiddenArrow: true,
         leftWidget: Container(
-          height: _imgWH,
-          width: _imgWH,
+          height: imgWH,
+          width: imgWH,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(3),
             image: DecorationImage(
@@ -86,9 +88,9 @@ class WxContactsCell extends StatelessWidget {
       );
     }
 
-    List<Widget> _topWidgetList = _topData.map((item) => _topCell(context, item)).toList();
+    List<Widget> topWidgetList = topData.map((item) => topCell(context, item)).toList();
 
-    Widget _searchBar = JhSearchBar(
+    Widget searchBar = JhSearchBar(
       hintText: '搜索',
       bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
       textInputAction: TextInputAction.search,
@@ -97,33 +99,33 @@ class WxContactsCell extends StatelessWidget {
       },
     );
 
-    _topWidgetList.insert(0, _searchBar);
+    topWidgetList.insert(0, searchBar);
 
-    return Column(children: _topWidgetList);
+    return Column(children: topWidgetList);
   }
 
   // Cell
   Widget _buildCell() {
     String susTag = model.getSuspensionTag();
-    double _cellH = _cellHeight;
-    double _leftSpace = 65.0;
-    double _imgWH = 40;
-    Widget _cell = JhSetCell(
+    double cellH = _cellHeight;
+    double leftSpace = 65.0;
+    double imgWH = 40;
+    Widget cell = JhSetCell(
       titleWidth: 200,
-      leftImgWH: _imgWH,
-      cellHeight: _cellH,
-      lineLeftEdge: _leftSpace,
+      leftImgWH: imgWH,
+      cellHeight: cellH,
+      lineLeftEdge: leftSpace,
       title: model.name!,
       hiddenArrow: true,
       leftWidget: Container(
-        height: _imgWH,
-        width: _imgWH,
+        height: imgWH,
+        width: imgWH,
         decoration: BoxDecoration(
           color: JhColorUtils.hexColor(model.color!),
           borderRadius: BorderRadius.circular(3),
         ),
         child: Center(
-          child: Text(model.name!.substring(0, 1), style: TextStyle(color: Colors.white, fontSize: 20)),
+          child: Text(model.name!.substring(0, 1), style: const TextStyle(color: Colors.white, fontSize: 20)),
         ),
       ),
       clickCallBack: () => onClickCell?.call(model.toJson()),
@@ -136,21 +138,15 @@ class WxContactsCell extends StatelessWidget {
 //          child: _buildSusWidget(susTag),
 //        ),
         Slidable(
-          child: _cell,
-          // 右侧按钮列表
           endActionPane: ActionPane(
             motion: const ScrollMotion(),
             extentRatio: 0.2,
             children: [
               CustomSlidableAction(
                 backgroundColor: Colors.black54,
-                child: Text(
+                child: const Text(
                   '备注',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
                 ),
                 onPressed: (context) {
                   JhToast.showText(context, msg: '点击备注');
@@ -158,17 +154,15 @@ class WxContactsCell extends StatelessWidget {
               ),
             ],
           ),
+          child: cell,
         ),
         Offstage(
           offstage: dataArr[dataArr.length - 1].id != model.id,
           child: Container(
             width: double.infinity,
-            height: _cellH,
+            height: cellH,
             alignment: Alignment.center,
-            child: Text(
-              bottomContactsCountText,
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
+            child: Text(bottomContactsCountText, style: const TextStyle(fontSize: 16, color: Colors.grey)),
           ),
         ),
       ],

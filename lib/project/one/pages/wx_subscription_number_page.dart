@@ -77,6 +77,8 @@ List _dataArr = [
 ];
 
 class WxSubscriptionNumberPage extends StatelessWidget {
+  const WxSubscriptionNumberPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,14 +86,15 @@ class WxSubscriptionNumberPage extends StatelessWidget {
           rightItemCallBack: () {
         JhNavUtils.pushNamed(context, 'WxSubscriptionNumberListPage');
       }),
-      body: _body(context, _dataArr),
+      body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
-  Widget _body(context, dataArr) {
+  Widget _body(context) {
+    var dataArr = _dataArr;
     return ListView.builder(
-      itemCount: _dataArr.length,
+      itemCount: dataArr.length,
       itemBuilder: (context, index) {
         WxSubscriptionNumberModel model = WxSubscriptionNumberModel.fromJson(dataArr[index]);
         return WxSubscriptionNumberCell(

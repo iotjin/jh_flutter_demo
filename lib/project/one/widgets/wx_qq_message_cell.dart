@@ -24,7 +24,7 @@ class WxQQMessageCell extends StatelessWidget {
 
   _cell(context) {
     return Card(
-      margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       // 设置圆角
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       // 抗锯齿

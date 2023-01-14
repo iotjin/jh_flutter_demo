@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import '/jh_common/utils/jh_nav_router_utils.dart';
@@ -7,10 +9,12 @@ import '/base_appbar.dart';
 import '/demos/route_test_page/pass_value_page2.dart';
 
 class PassValuePage extends StatelessWidget {
+  const PassValuePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('传值'),
+      appBar: const BaseAppBar('传值'),
       body: _body(context),
     );
   }
@@ -28,14 +32,14 @@ class PassValuePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('以下是JhNavUtils方式(基于fluro路由封装) - 推荐'),
+            const Text('以下是JhNavUtils方式(基于fluro路由封装) - 推荐'),
             ElevatedButton(
-              child: Text('带参数跳转带回传刷新 - pushNamedResult'),
+              child: const Text('带参数跳转带回传刷新 - pushNamedResult'),
               onPressed: () {
                 params['type'] = '1';
 
                 JhNavUtils.pushNamedResult(context, 'PassValuePage2', params, (returnData) {
-                  print('回传的值====' + returnData.toString());
+                  print('回传的值====$returnData');
                   if (returnData['isRefresh'] == true) {
                     _requestData();
                   }
@@ -43,46 +47,46 @@ class PassValuePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: Text('带参数跳转带回传 - pushNamedResult'),
+              child: const Text('带参数跳转带回传 - pushNamedResult'),
               onPressed: () {
                 params['type'] = '2';
 
                 JhNavUtils.pushNamedResult(context, 'PassValuePage2', params, (returnData) {
-                  print('回传的值====' + returnData.toString());
+                  print('回传的值====$returnData');
                   JhToast.showText(context, msg: '返回的参数: ${returnData.toString()}');
                 });
               },
             ),
             ElevatedButton(
-              child: Text('带参数跳转 - pushNamed'),
+              child: const Text('带参数跳转 - pushNamed'),
               onPressed: () {
                 params['type'] = '3';
 
                 JhNavUtils.pushNamed(context, 'PassValuePage2', arguments: params);
               },
             ),
-            Text('以下是flutter原生方式'),
+            const Text('以下是flutter原生方式'),
             ElevatedButton(
-              child: Text('带参数跳转带回传 - Navigator.push'),
+              child: const Text('带参数跳转带回传 - Navigator.push'),
               onPressed: () {
                 params['type'] = '4';
 
                 // 普通路由跳转传值带回传
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => (PassValuePage2(params))))
                 //     .then((returnData) {
-                //   print('回传的值====' + returnData.toString());
+                //   print('回传的值====$returnData');
                 //   JhToast.showText(context, msg: '返回的参数: ${returnData.toString()}');
                 // });
 
                 // 效果同上，基于Navigator封装
                 JhNavRouterUtils.pushNamedResult(context, PassValuePage2(params), (returnData) {
-                  print('回传的值====' + returnData.toString());
+                  print('回传的值====$returnData');
                   JhToast.showText(context, msg: '返回的参数: ${returnData.toString()}');
                 });
               },
             ),
             ElevatedButton(
-              child: Text('带参数跳转 - Navigator.push'),
+              child: const Text('带参数跳转 - Navigator.push'),
               onPressed: () {
                 params['type'] = '5';
 
@@ -95,14 +99,14 @@ class PassValuePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: Text('带参数跳转(渐隐转场动画) - Navigator.push'),
+              child: const Text('带参数跳转(渐隐转场动画) - Navigator.push'),
               onPressed: () {
                 params['type'] = '6';
 
                 // 渐隐转场动画
                 Navigator.of(context)
                     .push(PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 500), //动画时间为500毫秒
+                        transitionDuration: const Duration(milliseconds: 500), //动画时间为500毫秒
                         pageBuilder: (context, animation1, animation2) {
                           return FadeTransition(
                             opacity: animation1,
@@ -110,19 +114,19 @@ class PassValuePage extends StatelessWidget {
                           );
                         }))
                     .then((returnData) {
-                  print('回传的值====' + returnData.toString());
+                  print('回传的值====$returnData');
                   JhToast.showText(context, msg: '返回的参数: ${returnData.toString()}');
                 });
               },
             ),
             ElevatedButton(
-              child: Text('带参数跳转带回传 - Navigator.pushNamed'),
+              child: const Text('带参数跳转带回传 - Navigator.pushNamed'),
               onPressed: () {
                 params['type'] = '7';
 
                 // 命名路由跳转传值带回传
                 Navigator.pushNamed(context, 'PassValuePage3', arguments: params).then((returnData) {
-                  print('回传的值====' + returnData.toString());
+                  print('回传的值====$returnData');
                   JhToast.showText(context, msg: '返回的参数: ${returnData.toString()}');
                 });
               },
@@ -133,7 +137,7 @@ class PassValuePage extends StatelessWidget {
 
   void _requestData() {
     JhProgressHUD.showLoadingText();
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       JhProgressHUD.hide();
     });
   }

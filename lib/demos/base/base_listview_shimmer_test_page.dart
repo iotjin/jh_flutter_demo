@@ -13,13 +13,13 @@ class BaseListViewShimmerTestPage extends StatefulWidget {
 class _BaseListViewShimmerTestPageState extends State<BaseListViewShimmerTestPage> {
   List _dataArr = [];
   int _pageIndex = 0;
-  int _limit = 15;
+  final int _limit = 15;
 
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _requestData(isShowLoading: false);
     });
   }
@@ -60,13 +60,13 @@ class _BaseListViewShimmerTestPageState extends State<BaseListViewShimmerTestPag
     var cell = InkWell(
       child: Container(
         height: 100,
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: index % 2 == 0 ? Colors.red : Colors.yellow,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Container(
-          padding: EdgeInsets.only(left: 5, top: 5),
+          padding: const EdgeInsets.only(left: 5, top: 5),
           child: Text(_dataArr[index]['title']),
         ),
       ),

@@ -1,17 +1,19 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/base_appbar.dart';
 
-var dataArr;
+var dataArr = [];
 
 List getData() {
   dataArr = [];
   for (int i = 0; i < 5; i++) {
-    var map = new Map();
+    var map = {};
     map['title'] = 'title$i';
     map['place'] = 'place$i';
     map['state'] = '流转中$i';
     map['content'] = '这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容';
-    map['phone'] = '$i$i$i' + 'xxxxxxx';
+    map['phone'] = '$i$i$i' 'xxxxxxx';
     map['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     dataArr.add(map);
   }
@@ -20,10 +22,12 @@ List getData() {
 }
 
 class ListViewTest3 extends StatelessWidget {
+  const ListViewTest3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('ListViewTest3_复杂样式'),
+      appBar: const BaseAppBar('ListViewTest3_复杂样式'),
       body: ContentBody(),
     );
   }
@@ -43,9 +47,9 @@ class ContentBody extends StatelessWidget {
 //     );
         ListView.separated(
       itemCount: dataArr.length,
-      itemBuilder: this._getWidget,
+      itemBuilder: _getWidget,
       separatorBuilder: (context, index) {
-        return Divider(
+        return const Divider(
           height: .5,
           indent: 15,
           endIndent: 15,
@@ -61,7 +65,7 @@ class ContentBody extends StatelessWidget {
 
     return Container(
 //      height: 100,
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         color: Colors.yellow,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,24 +75,22 @@ class ContentBody extends StatelessWidget {
 //        mainAxisAlignment: MainAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(dataArr[index]['place'], style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
+                Text(dataArr[index]['place'], style: const TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
 //            Text(dataArr[index]['state'],style: TextStyle(fontSize: 18.0,backgroundColor: Colors.blue)),
                 Row(
                   children: <Widget>[
-                    Text(dataArr[index]['state'], style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    ),
+                    Text(dataArr[index]['state'], style: const TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
+                    const Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
                     Image.network(dataArr[index]['imageUrl'], width: 30, height: 30),
                   ],
                 )
               ],
             ),
             SizedBox(height: spaceHeight),
-            Text(dataArr[index]['phone'], textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0)),
+            Text(dataArr[index]['phone'], textAlign: TextAlign.left, style: const TextStyle(fontSize: 18.0)),
             SizedBox(height: spaceHeight),
             Text(dataArr[index]['content'],
-                textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
+                textAlign: TextAlign.left, style: const TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
           ],
         ));
   }

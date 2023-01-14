@@ -4,9 +4,8 @@
 ///  description:  微信样式 底部弹框
 
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
 import '/project/configs/colors.dart';
-
-typedef _ClickCallBack = void Function(int selectIndex, String selectText);
 
 const double _cellHeight = 50.0;
 const double _spaceHeight = 5.0;
@@ -24,123 +23,156 @@ class JhBottomSheet {
     List<String>? dataArr,
     String? redBtnTitle,
     bool isShowRadius = true,
-    _ClickCallBack? clickCallback,
+    Function(int selectIndex, String selectText)? clickCallback,
   }) {
-    List<String> _dataArr = [];
+    var radius = isShowRadius ? 10.0 : 0.0;
 
-    if (dataArr != null) {
-      _dataArr = dataArr;
+    showModalBottomSheet(
+      context: context,
+      // 设置圆角
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radius),
+          topRight: Radius.circular(radius),
+        ),
+      ),
+      // 抗锯齿
+      clipBehavior: Clip.antiAlias,
+      builder: (BuildContext context) {
+        return JhBottomSheetView(
+          title: title,
+          dataArr: dataArr,
+          redBtnTitle: redBtnTitle,
+          clickCallBack: clickCallback,
+        );
+      },
+    );
+  }
+}
+
+class JhBottomSheetView extends StatefulWidget {
+  const JhBottomSheetView({
+    Key? key,
+    this.title,
+    this.dataArr,
+    this.redBtnTitle,
+    this.clickCallBack,
+  }) : super(key: key);
+
+  final String? title;
+  final List<String>? dataArr;
+  final String? redBtnTitle;
+  final Function(int selectIndex, String selectText)? clickCallBack;
+
+  @override
+  State<JhBottomSheetView> createState() => _JhBottomSheetViewState();
+}
+
+class _JhBottomSheetViewState extends State<JhBottomSheetView> {
+  List<String> _dataArr = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    if (widget.dataArr != null) {
+      _dataArr = widget.dataArr!;
     }
-    if (redBtnTitle != null) {
-      _dataArr.insert(_dataArr.length, redBtnTitle);
+    if (widget.redBtnTitle != null) {
+      _dataArr.insert(_dataArr.length, widget.redBtnTitle!);
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _body();
+  }
+
+  _body() {
     var titleHeight = _cellHeight;
     var titleLineHeight = 0.6;
-    if (title == null) {
+    if (widget.title == null) {
       titleHeight = 0.0;
       titleLineHeight = 0.0;
     }
-
-    var _bgHeight =
+    var bgHeight =
         _cellHeight * (_dataArr.length + 1) + (_dataArr.length - 1) * 1 + _spaceHeight + titleHeight + titleLineHeight;
-    var _radius = isShowRadius ? 10.0 : 0.0;
 
     // 默认颜色
-    var _redTextColor = KColors.kPickerRedTextDarkColor;
-    var isDark = Theme.of(context).brightness == Brightness.dark;
-    var _bgColor = isDark ? KColors.kPickerBgDarkColor : KColors.kPickerBgColor;
-    var _titleColor = isDark ? KColors.kPickerTitleDarkColor : KColors.kPickerTitleColor;
-    var _textColor = isDark ? KColors.kPickerTextDarkColor : KColors.kPickerTextColor;
-    var _lineColor = isDark ? KColors.kLineDarkColor : KColors.kLineColor;
+    var redTextColor = KColors.dynamicColor(context, KColors.kPickerRedTextDarkColor);
+    var bgColor = KColors.dynamicColor(context, KColors.kPickerBgColor, KColors.kPickerBgDarkColor);
+    var titleColor = KColors.dynamicColor(context, KColors.kPickerTitleColor, KColors.kPickerTitleDarkColor);
+    var textColor = KColors.dynamicColor(context, KColors.kPickerTextColor, KColors.kPickerTextDarkColor);
+    var lineColor = KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor);
 
-    showModalBottomSheet(
-        context: context,
-        // 设置圆角
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(_radius),
-            topRight: Radius.circular(_radius),
+    return Container(
+      color: bgColor,
+      height: bgHeight + JhScreenUtils.bottomSafeHeight,
+      child: Column(
+        children: <Widget>[
+          Container(
+            color: bgColor,
+            height: titleHeight,
+            child: Center(
+              child: Text(
+                widget.title ?? '',
+                style: TextStyle(fontSize: _titleFontSize, color: titleColor),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
-        ),
-        // 抗锯齿
-        clipBehavior: Clip.antiAlias,
-        builder: (BuildContext context) {
-          return SafeArea(
-              child: Container(
-            color: _bgColor,
-            height: _bgHeight,
-            child: Column(
-              children: <Widget>[
-                Container(
-                  color: _bgColor,
-                  height: titleHeight,
+          SizedBox(height: titleLineHeight, child: Container(color: lineColor)),
+          ListView.separated(
+            padding: const EdgeInsets.all(0),
+            itemCount: _dataArr.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              Color btnTextColor =
+                  (widget.redBtnTitle != null && index == _dataArr.length - 1) ? redTextColor : textColor;
+
+              return GestureDetector(
+                child: Container(
+                  height: _cellHeight,
+                  color: bgColor,
                   child: Center(
                     child: Text(
-                      title ?? '',
-                      style: TextStyle(fontSize: _titleFontSize, color: _titleColor),
+                      _dataArr[index],
+                      style: TextStyle(fontSize: _textFontSize, color: btnTextColor),
                       textAlign: TextAlign.center,
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: titleLineHeight,
-                  child: Container(color: _lineColor),
+                onTap: () {
+                  widget.clickCallBack?.call(index + 1, _dataArr[index]);
+                  Navigator.of(context).pop();
+                },
+              );
+            },
+            separatorBuilder: (context, index) => Divider(height: 1, color: lineColor),
+          ),
+          SizedBox(height: _spaceHeight, child: Container(color: lineColor)),
+          GestureDetector(
+            child: Container(
+              padding: EdgeInsets.only(bottom: JhScreenUtils.bottomSafeHeight),
+              height: _cellHeight + JhScreenUtils.bottomSafeHeight,
+              color: bgColor,
+              child: Center(
+                child: Text(
+                  _cancelText,
+                  style: TextStyle(fontSize: _textFontSize, color: textColor),
+                  textAlign: TextAlign.center,
                 ),
-                ListView.separated(
-                  itemCount: _dataArr.length,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    Color _btnTextColor =
-                        (redBtnTitle != null && index == _dataArr.length - 1) ? _redTextColor : _textColor;
-
-                    return GestureDetector(
-                      child: Container(
-                        height: _cellHeight,
-                        color: _bgColor,
-                        child: Center(
-                          child: Text(
-                            _dataArr[index],
-                            style: TextStyle(fontSize: _textFontSize, color: _btnTextColor),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      // onTap: () => Navigator.of(context).pop(index),
-                      onTap: () {
-                        Navigator.of(context).pop(index);
-                        if (clickCallback != null) {
-                          clickCallback(index + 1, _dataArr[index]);
-                        }
-                      },
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Divider(
-                      height: 1,
-                      color: _lineColor,
-                    );
-                  },
-                ),
-                SizedBox(height: _spaceHeight, child: Container(color: _lineColor)),
-                GestureDetector(
-                  child: Container(
-                      height: _cellHeight,
-                      color: _bgColor,
-                      child: Center(
-                          child: Text(_cancelText,
-                              style: TextStyle(fontSize: _textFontSize, color: _textColor),
-                              textAlign: TextAlign.center))),
-                  onTap: () {
-                    if (clickCallback != null) {
-                      clickCallback(0, _cancelText);
-                    }
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
+              ),
             ),
-          ));
-        });
+            onTap: () {
+              widget.clickCallBack?.call(0, _cancelText);
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      ),
+    );
   }
 }

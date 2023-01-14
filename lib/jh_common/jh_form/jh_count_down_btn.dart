@@ -36,7 +36,7 @@ class JhCountDownBtn extends StatefulWidget {
   final bool showBorder;
 
   @override
-  _JhCountDownBtnState createState() => _JhCountDownBtnState();
+  State<JhCountDownBtn> createState() => _JhCountDownBtnState();
 }
 
 class _JhCountDownBtnState extends State<JhCountDownBtn> {
@@ -44,8 +44,20 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
   String _btnStr = _normalText;
   int _countDownNum = _normalTime;
 
+  /// 释放掉Timer
+  @override
+  void dispose() {
+    _countDownTimer?.cancel();
+    _countDownTimer = null;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    return _body();
+  }
+
+  _body() {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
     var bgColor = Colors.transparent;
@@ -59,13 +71,12 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
 
     if (widget.getVCode == null) {
       return Container();
-    } else
+    } else {
       return TextButton(
         onPressed: () => _getVCode(),
-        child: Text(_btnStr, style: TextStyle(fontSize: widget.fontSize)),
         style: ButtonStyle(
           // 设置按钮大小
-          minimumSize: MaterialStateProperty.all(Size(120, 30)),
+          minimumSize: MaterialStateProperty.all(const Size(120, 30)),
           // 背景色
           backgroundColor: MaterialStateProperty.all(bgColor),
           // 文字颜色
@@ -73,15 +84,14 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
           // 边框
           side: widget.showBorder == false
               ? null
-              : MaterialStateProperty.all(
-                  BorderSide(color: borderColor, width: _borderWidth),
-                ),
+              : MaterialStateProperty.all(BorderSide(color: borderColor, width: _borderWidth)),
           // 圆角
           shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(widget.borderRadius!)),
-          ),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(widget.borderRadius!))),
         ),
+        child: Text(_btnStr, style: TextStyle(fontSize: widget.fontSize)),
       );
+    }
   }
 
   Future _getVCode() async {
@@ -101,7 +111,7 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
       }
       // Timer的第一秒倒计时是有一点延迟的，为了立刻显示效果可以添加下一行。
       _btnStr = '重新获取(${_countDownNum--}s)';
-      _countDownTimer = new Timer.periodic(new Duration(seconds: 1), (timer) {
+      _countDownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
         setState(() {
           if (_countDownNum > 0) {
             _btnStr = '重新获取(${_countDownNum--}s)';
@@ -114,13 +124,5 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
         });
       });
     });
-  }
-
-  /// 释放掉Timer
-  @override
-  void dispose() {
-    _countDownTimer?.cancel();
-    _countDownTimer = null;
-    super.dispose();
   }
 }

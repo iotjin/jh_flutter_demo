@@ -1,7 +1,7 @@
 ///  apis.dart
 ///
 ///  Created by iotjin on 2020/07/07.
-///  description:  api 管理
+///  description:  api管理
 
 class APIs {
   /// url 前缀

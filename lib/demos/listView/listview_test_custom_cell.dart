@@ -20,13 +20,13 @@ class CustomViewModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['place'] = this.place;
-    data['state'] = this.state;
-    data['phone'] = this.phone;
-    data['content'] = this.content;
-    data['imageUrl'] = this.imageUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['place'] = place;
+    data['state'] = state;
+    data['phone'] = phone;
+    data['content'] = content;
+    data['imageUrl'] = imageUrl;
     return data;
   }
 }
@@ -41,7 +41,7 @@ class ListViewTestCustomCell extends StatelessWidget {
     var spaceHeight = 10.0;
     return Container(
 //      height: 100,
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         color: Colors.yellow,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,24 +51,22 @@ class ListViewTestCustomCell extends StatelessWidget {
 //        mainAxisAlignment: MainAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('${this.data!.place}', style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
-//            Text('${this.data.state}',style: TextStyle(fontSize: 18.0,backgroundColor: Colors.blue)),
+                Text('${data!.place}', style: const TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
+//            Text('${data.state}',style: TextStyle(fontSize: 18.0,backgroundColor: Colors.blue)),
                 Row(
                   children: <Widget>[
-                    Text('${this.data!.state}', style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    ),
-                    Image.network('${this.data!.imageUrl}', width: 30, height: 30),
+                    Text('${data!.state}', style: const TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
+                    const SizedBox(width: 10),
+                    Image.network('${data!.imageUrl}', width: 30, height: 30),
                   ],
                 )
               ],
             ),
             SizedBox(height: spaceHeight),
-            Text('${this.data!.phone}', textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0)),
+            Text('${data!.phone}', textAlign: TextAlign.left, style: const TextStyle(fontSize: 18.0)),
             SizedBox(height: spaceHeight),
-            Text('${this.data!.content}',
-                textAlign: TextAlign.left, style: TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
+            Text('${data!.content}',
+                textAlign: TextAlign.left, style: const TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
           ],
         ));
   }

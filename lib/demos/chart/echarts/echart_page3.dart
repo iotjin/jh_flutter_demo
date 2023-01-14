@@ -4,12 +4,14 @@ import 'package:flutter_echarts/flutter_echarts.dart';
 import '/base_appbar.dart';
 
 class EChartPage3 extends StatefulWidget {
+  const EChartPage3({Key? key}) : super(key: key);
+
   @override
-  _EChartPage3State createState() => _EChartPage3State();
+  State<EChartPage3> createState() => _EChartPage3State();
 }
 
 class _EChartPage3State extends State<EChartPage3> {
-  var chartData;
+  late Map<String, dynamic> chartData;
 
   @override
   void initState() {
@@ -45,10 +47,13 @@ class _EChartPage3State extends State<EChartPage3> {
   Widget build(BuildContext context) {
     var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
-    return Scaffold(appBar: BaseAppBar('EChart3 - 多图表 - 动态数据'), body: _scrollbar());
+    return Scaffold(
+      appBar: const BaseAppBar('EChart3 - 多图表 - 动态数据'),
+      body: _body(),
+    );
   }
 
-  Widget _scrollbar() {
+  Widget _body() {
     return Scrollbar(
         child: SingleChildScrollView(
       child: Column(
@@ -80,10 +85,8 @@ class _EChartPage3State extends State<EChartPage3> {
   Widget _header(String title) {
     return Container(
       height: 50.0,
-      padding: EdgeInsets.only(left: 15),
-      decoration: BoxDecoration(
-        color: Color(0xFFF9F9F9),
-      ),
+      padding: const EdgeInsets.only(left: 15),
+      decoration: const BoxDecoration(color: Color(0xFFF9F9F9)),
       child: Row(
         children: <Widget>[
 //          Image.asset(
@@ -91,15 +94,18 @@ class _EChartPage3State extends State<EChartPage3> {
 //            width: 25,
 //            height: 25,
 //          ),
-          SizedBox(width: 8),
-          Text(title, style: TextStyle(fontSize: 22))
+          const SizedBox(width: 8),
+          Text(title, style: const TextStyle(fontSize: 22))
         ],
       ),
     );
   }
 
   Widget _initChart2(chartData) {
-    return Container(
+    return SizedBox(
+//      color: Colors.cyan,
+      width: double.infinity,
+      height: 250,
 //      color: Colors.cyan,
       child: Echarts(
         reloadAfterInit: true,
@@ -169,8 +175,6 @@ class _EChartPage3State extends State<EChartPage3> {
                 }
                 ''',
       ),
-      width: double.infinity,
-      height: 250,
     );
   }
 }

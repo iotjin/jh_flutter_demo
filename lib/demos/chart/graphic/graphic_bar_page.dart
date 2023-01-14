@@ -15,11 +15,14 @@ class GraphicBarPage extends StatefulWidget {
 class _GraphicBarPageState extends State<GraphicBarPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: BaseAppBar('Graphic - 柱状图'), body: _scrollbar());
+    return Scaffold(
+      appBar: const BaseAppBar('Graphic - 柱状图'),
+      body: _body(),
+    );
   }
 }
 
-Widget _scrollbar() {
+Widget _body() {
   return Scrollbar(
       child: SingleChildScrollView(
     child: Column(
@@ -56,7 +59,7 @@ Widget _initBarChart1() {
       height: 300,
       // color: Colors.yellow,
       child: Chart(
-        data: [
+        data: const [
           {'genre': 'Sports', 'sold': 275},
           {'genre': 'Strategy', 'sold': 115},
           {'genre': 'Action', 'sold': 120},
@@ -100,12 +103,9 @@ Widget _initBarChart2() {
           IntervalElement(
             // 文字设置
             label: LabelAttr(
-                encoder: (tuple) => Label(
-                      tuple['sold'].toString(),
-                      LabelStyle(
-                        style: TextStyle(fontSize: 16, color: Colors.red),
-                      ),
-                    )),
+              encoder: (tuple) =>
+                  Label(tuple['sold'].toString(), LabelStyle(style: const TextStyle(fontSize: 16, color: Colors.red))),
+            ),
             elevation: ElevationAttr(value: 0, updaters: {
               'tap': {true: (_) => 5}
             }),
@@ -281,10 +281,7 @@ Widget _initBarChart5() {
             anchor: (size) => const Offset(25, 290),
           ),
           TagAnnotation(
-            label: Label(
-              'Email',
-              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
-            ),
+            label: Label('Email', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => const Offset(34, 290),
           ),
           MarkAnnotation(
@@ -293,10 +290,7 @@ Widget _initBarChart5() {
             anchor: (size) => Offset(25 + size.width / 5, 290),
           ),
           TagAnnotation(
-            label: Label(
-              'Affiliate',
-              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
-            ),
+            label: Label('Affiliate', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => Offset(34 + size.width / 5, 290),
           ),
           MarkAnnotation(
@@ -305,10 +299,7 @@ Widget _initBarChart5() {
             anchor: (size) => Offset(25 + size.width / 5 * 2, 290),
           ),
           TagAnnotation(
-            label: Label(
-              'Video',
-              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
-            ),
+            label: Label('Video', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => Offset(34 + size.width / 5 * 2, 290),
           ),
           MarkAnnotation(
@@ -317,10 +308,7 @@ Widget _initBarChart5() {
             anchor: (size) => Offset(25 + size.width / 5 * 3, 290),
           ),
           TagAnnotation(
-            label: Label(
-              'Direct',
-              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
-            ),
+            label: Label('Direct', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => Offset(34 + size.width / 5 * 3, 290),
           ),
           MarkAnnotation(
@@ -329,10 +317,7 @@ Widget _initBarChart5() {
             anchor: (size) => Offset(25 + size.width / 5 * 4, 290),
           ),
           TagAnnotation(
-            label: Label(
-              'Search',
-              LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight),
-            ),
+            label: Label('Search', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => Offset(34 + size.width / 5 * 4, 290),
           ),
         ],

@@ -3,8 +3,10 @@ import 'package:flutter_echarts/flutter_echarts.dart';
 import '/base_appbar.dart';
 
 class EChartPage2 extends StatefulWidget {
+  const EChartPage2({Key? key}) : super(key: key);
+
   @override
-  _EChartPage2State createState() => _EChartPage2State();
+  State<EChartPage2> createState() => _EChartPage2State();
 }
 
 class _EChartPage2State extends State<EChartPage2> {
@@ -17,10 +19,13 @@ class _EChartPage2State extends State<EChartPage2> {
   Widget build(BuildContext context) {
     var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
-    return Scaffold(appBar: BaseAppBar('EChart2 - 多图表'), body: _scrollbar());
+    return Scaffold(
+      appBar: const BaseAppBar('EChart2 - 多图表'),
+      body: _body(),
+    );
   }
 
-  Widget _scrollbar() {
+  Widget _body() {
     return Scrollbar(
         child: SingleChildScrollView(
       child: Column(
@@ -29,22 +34,22 @@ class _EChartPage2State extends State<EChartPage2> {
             height: 100,
             width: double.infinity,
             color: Colors.yellow,
-            child: Text('往下滑动'),
+            child: const Text('往下滑动'),
           ),
           _initChart2(),
           Container(
             height: 500,
             width: double.infinity,
             color: Colors.yellow,
-            child: Text('往下滑动'),
+            child: const Text('往下滑动'),
           ),
           _initChart(),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
         ],
       ),
     ));
@@ -53,6 +58,8 @@ class _EChartPage2State extends State<EChartPage2> {
   Widget _initChart2() {
     return Container(
       color: Colors.cyan,
+      width: 500,
+      height: 250,
       child: Echarts(
         reloadAfterInit: true,
         captureAllGestures: false,
@@ -130,13 +137,13 @@ class _EChartPage2State extends State<EChartPage2> {
                     }
                 ''',
       ),
-      width: 500,
-      height: 250,
     );
   }
 
   Widget _initChart() {
-    return Container(
+    return SizedBox(
+      width: 300,
+      height: 250,
       child: Echarts(
         reloadAfterInit: true,
         captureAllGestures: false,
@@ -156,8 +163,6 @@ class _EChartPage2State extends State<EChartPage2> {
     }
   ''',
       ),
-      width: 300,
-      height: 250,
     );
   }
 }

@@ -15,13 +15,13 @@ class BaseRefreshViewHeaderFollowPage extends StatefulWidget {
 class _BaseRefreshViewHeaderFollowPageState extends State<BaseRefreshViewHeaderFollowPage> {
   List _dataArr = [];
   int _pageIndex = 0;
-  int _limit = 15;
+  final int _limit = 15;
 
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _requestData(isShowLoading: false);
     });
   }
@@ -31,7 +31,7 @@ class _BaseRefreshViewHeaderFollowPageState extends State<BaseRefreshViewHeaderF
     return Scaffold(
       appBar: BaseAppBar(
         'BaseRefreshView - header/footer跟随',
-        titleWidget: TwoLinesTitle(title: 'BaseRefreshView', subtitle: 'header/footer跟随'),
+        titleWidget: const TwoLinesTitle(title: 'BaseRefreshView', subtitle: 'header/footer跟随'),
         rightText: '空数据',
         rightItemCallBack: () {
           if (!mounted) return;
@@ -50,7 +50,7 @@ class _BaseRefreshViewHeaderFollowPageState extends State<BaseRefreshViewHeaderF
         alignment: Alignment.center,
         color: Colors.orange,
         height: _headerHeight,
-        child: Text('header', style: TextStyle(color: Colors.white)),
+        child: const Text('header', style: TextStyle(color: Colors.white)),
       )
     ]);
   }
@@ -60,14 +60,14 @@ class _BaseRefreshViewHeaderFollowPageState extends State<BaseRefreshViewHeaderF
       alignment: Alignment.center,
       color: Colors.orange,
       height: _headerHeight,
-      child: Text('footer', style: TextStyle(color: Colors.white)),
+      child: const Text('footer', style: TextStyle(color: Colors.white)),
     );
   }
 
   Widget _listView() {
     return ListView.separated(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: _dataArr.length,
       itemBuilder: (context, index) {
         return _itemWidget(index);
@@ -85,11 +85,11 @@ class _BaseRefreshViewHeaderFollowPageState extends State<BaseRefreshViewHeaderF
       shimmerView: JhShimmerView.listShimmerView1(context),
       headerView: _header(),
       footerView: _footer(),
-      child: _listView(),
       emptyText: '暂无数据',
       refreshType: RefreshType.material,
       onRefresh: () async => _requestData(),
       onLoad: () async => _requestData(isLoadMore: true),
+      child: _listView(),
 
       /// child: _listView() 等同于下面两行代码
       // itemBuilder: (context, index) => _itemWidget(index),
@@ -101,13 +101,13 @@ class _BaseRefreshViewHeaderFollowPageState extends State<BaseRefreshViewHeaderF
     var cell = InkWell(
       child: Container(
         height: 100,
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: index % 2 == 0 ? Colors.red : Colors.yellow,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Container(
-          padding: EdgeInsets.only(left: 5, top: 5),
+          padding: const EdgeInsets.only(left: 5, top: 5),
           child: Text(_dataArr[index]['title']),
         ),
       ),

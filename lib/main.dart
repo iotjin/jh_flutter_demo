@@ -1,4 +1,5 @@
 // ignore_for_file: unused_import, unnecessary_import
+// ignore_for_file: avoid_print
 
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
@@ -78,13 +79,13 @@ Future<bool> _isNewFeaturePage() async {
 class MyApp extends StatefulWidget {
   const MyApp({
     Key? key,
-    this.isHome: false,
+    this.isHome = false,
   }) : super(key: key);
 
   final bool isHome;
 
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -137,13 +138,13 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: Routes.router.generator,
       onUnknownRoute: (RouteSettings settings) => MaterialPageRoute(builder: (context) => const NotFoundPage()),
       //        locale: Locale('en','US'),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        const FallbackCupertinoLocalisationsDelegate()
+        FallbackCupertinoLocalisationsDelegate()
       ],
-      supportedLocales: [
+      supportedLocales: const [
         Locale('zh', 'CN'),
 //        Locale('en', 'US'),
       ],
@@ -169,15 +170,15 @@ class _MyAppState extends State<MyApp> {
 
   Widget _switchRootWidget() {
     if (widget.isHome == false) {
-      return NewFeaturePage();
+      return const NewFeaturePage();
     } else {
       var modelJson = JhAESStorageUtils.getModel(kUserDefault_UserInfo);
       if (modelJson != null) {
         UserModel model = UserModel.fromJson(modelJson);
-        print('本地取出的 userName:' + model.userName!);
-        return BaseTabBar();
+        print('本地取出的 userName:${model.userName!}');
+        return const BaseTabBar();
       } else {
-        return LoginPage();
+        return const LoginPage();
       }
     }
   }

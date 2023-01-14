@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2019/08/14.
 ///  description: 微信我的
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
@@ -19,13 +21,15 @@ double _rowSpace = wxRowSpace;
 double _scrollMaxOffSet = 1000;
 
 class WxMinePage extends StatefulWidget {
+  const WxMinePage({Key? key}) : super(key: key);
+
   @override
-  _WxMinePageState createState() => _WxMinePageState();
+  State<WxMinePage> createState() => _WxMinePageState();
 }
 
 class _WxMinePageState extends State<WxMinePage> {
   UserModel? _model;
-  ScrollController _scrollController = new ScrollController(initialScrollOffset: 0.0);
+  final ScrollController _scrollController = ScrollController(initialScrollOffset: 0.0);
   double _topH = 0;
 
   @override
@@ -41,17 +45,17 @@ class _WxMinePageState extends State<WxMinePage> {
 
   void _addListener() {
     _scrollController.addListener(() {
-      double _y = _scrollController.offset;
-//      print('滑动距离: $_y');
+      double y = _scrollController.offset;
+//      print('滑动距离: $y');
 
-//      if (_y > 0 && _y < _scrollMaxOffSet) {
+//      if (y > 0 && y < _scrollMaxOffSet) {
 //        setState(() {
-//          _topH = _y;
+//          _topH = y;
 //        });
 //      }
-      if (_y < 0 && _y > -_scrollMaxOffSet) {
+      if (y < 0 && y > -_scrollMaxOffSet) {
         setState(() {
-          _topH = _y.abs();
+          _topH = y.abs();
 //          print(_topH);
         });
       }
@@ -129,7 +133,7 @@ class _WxMinePageState extends State<WxMinePage> {
               children: <Widget>[
                 Image(
                   height: 25,
-                  image: AssetImage('assets/images/ic_set_black.png'),
+                  image: const AssetImage('assets/images/ic_set_black.png'),
                   color: KColors.dynamicColor(context, KColors.kIconColor),
                 ),
               ],
@@ -148,31 +152,36 @@ class _WxMinePageState extends State<WxMinePage> {
     return ListView(
       controller: _scrollController,
       // physics: const AlwaysScrollableScrollPhysics(),
-      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       children: <Widget>[
         _header(model),
         SizedBox(height: _rowSpace),
         JhSetCell(
-            cellHeight: _cellH,
-            leftImgPath: 'assets/wechat/mine/ic_wallet.png',
-            title: '支付',
-            hiddenLine: true,
-            clickCallBack: () {
-              JhNavUtils.pushNamed(context, 'WxPayPage');
-            }),
+          cellHeight: _cellH,
+          leftImgPath: 'assets/wechat/mine/ic_wallet.png',
+          title: '支付',
+          hiddenLine: true,
+          clickCallBack: () => JhNavUtils.pushNamed(context, 'WxPayPage'),
+        ),
         SizedBox(height: _rowSpace),
         JhSetCell(
-            cellHeight: _cellH,
-            lineLeftEdge: _leftSpace,
-            leftImgPath: 'assets/wechat/mine/ic_collections.png',
-            title: '收藏'),
+          cellHeight: _cellH,
+          lineLeftEdge: _leftSpace,
+          leftImgPath: 'assets/wechat/mine/ic_collections.png',
+          title: '收藏',
+        ),
         JhSetCell(
-            cellHeight: _cellH, lineLeftEdge: _leftSpace, leftImgPath: 'assets/wechat/mine/ic_album.png', title: '相册'),
+          cellHeight: _cellH,
+          lineLeftEdge: _leftSpace,
+          leftImgPath: 'assets/wechat/mine/ic_album.png',
+          title: '相册',
+        ),
         JhSetCell(
-            cellHeight: _cellH,
-            lineLeftEdge: _leftSpace,
-            leftImgPath: 'assets/wechat/mine/ic_cards_wallet.png',
-            title: '卡包'),
+          cellHeight: _cellH,
+          lineLeftEdge: _leftSpace,
+          leftImgPath: 'assets/wechat/mine/ic_cards_wallet.png',
+          title: '卡包',
+        ),
         JhSetCell(
           cellHeight: _cellH,
           lineLeftEdge: _leftSpace,
@@ -186,9 +195,7 @@ class _WxMinePageState extends State<WxMinePage> {
           leftImgPath: 'assets/wechat/mine/ic_settings.png',
           title: '设置',
           hiddenLine: true,
-          clickCallBack: () {
-            JhNavUtils.pushNamed(context, 'SetPage');
-          },
+          clickCallBack: () => JhNavUtils.pushNamed(context, 'SetPage'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
@@ -196,28 +203,26 @@ class _WxMinePageState extends State<WxMinePage> {
           leftImgPath: 'assets/images/ic_about.png',
           title: '检查更新',
           text: '有新版本',
-          textStyle: TextStyle(fontSize: 14.0, color: Colors.red),
+          textStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
           hiddenLine: true,
-          clickCallBack: () {
-            _showUpdateDialog();
-          },
+          clickCallBack: () => _showUpdateDialog(),
         ),
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
       ],
     );
   }
 
   void _showUpdateDialog() {
-    showDialog<void>(context: context, barrierDismissible: false, builder: (_) => UpdateDialog());
+    showDialog<void>(context: context, barrierDismissible: false, builder: (_) => const UpdateDialog());
   }
 
   // 头部
   Widget _header(model) {
     return Container(
-      padding: EdgeInsets.only(left: 15, bottom: 40.0, top: 72.0),
+      padding: const EdgeInsets.only(left: 15, bottom: 40.0, top: 72.0),
       color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
         // color: Colors.white,
         child: Row(
           children: <Widget>[
@@ -226,8 +231,9 @@ class _WxMinePageState extends State<WxMinePage> {
                 height: 75,
                 width: 75,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(model.avatarUrl))),
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(model.avatarUrl)),
+                ),
               ),
               onTap: () {
                 print('点击头像==  ${model.avatarUrl}');
@@ -235,7 +241,7 @@ class _WxMinePageState extends State<WxMinePage> {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: 16.0),
+                padding: const EdgeInsets.only(left: 16.0),
                 child: Column(
                   children: <Widget>[
                     InkWell(
@@ -243,14 +249,11 @@ class _WxMinePageState extends State<WxMinePage> {
                         print('点击昵称==  ${model.userName}');
                         JhNavUtils.pushNamed(context, 'WxPersonInfoPage');
                       },
-                      child: Container(
+                      child: SizedBox(
                         width: double.maxFinite,
                         child: Text(
                           model.userName,
-                          style: TextStyle(
-                            fontSize: 28.0,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          style: const TextStyle(fontSize: 28.0, fontWeight: FontWeight.w500),
                           textAlign: TextAlign.left,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -263,14 +266,12 @@ class _WxMinePageState extends State<WxMinePage> {
                         JhNavUtils.pushNamed(context, 'WxPersonInfoPage');
                       },
                       child: Padding(
-                        padding: EdgeInsets.only(top: 5.0),
+                        padding: const EdgeInsets.only(top: 5.0),
                         child: Row(
                           children: <Widget>[
-                            Expanded(
-                              child: Text('微信号：abc', style: TextStyle(fontSize: 17, color: Colors.grey)),
-                            ),
+                            const Expanded(child: Text('微信号：abc', style: TextStyle(fontSize: 17, color: Colors.grey))),
                             Padding(
-                              padding: EdgeInsets.only(right: 20.0),
+                              padding: const EdgeInsets.only(right: 20.0),
                               child: Image.asset(
                                 'assets/wechat/mine/ic_setting_myQR.png',
                                 width: 18.0,
@@ -283,7 +284,7 @@ class _WxMinePageState extends State<WxMinePage> {
 //                              width: 8.0,
 //                              height: 13.0,
 //                            )
-                            Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8))
+                            const Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8))
                           ],
                         ),
                       ),

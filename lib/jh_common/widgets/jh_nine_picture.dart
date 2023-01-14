@@ -27,9 +27,9 @@ class JhNinePicture extends StatelessWidget {
   Widget build(BuildContext context) {
     var kScreenWidth = MediaQuery.of(context).size.width;
 
-    var _ninePictureW = (kScreenWidth - _space * 2 - 2 * _itemSpace - lRSpace);
-    var _itemWH = _ninePictureW / 3;
-    int _columnCount = imgData!.length > 6
+    var ninePictureW = (kScreenWidth - _space * 2 - 2 * _itemSpace - lRSpace);
+    var itemWH = ninePictureW / 3;
+    int columnCount = imgData!.length > 6
         ? 3
         : imgData!.length <= 3
             ? 1
@@ -37,49 +37,50 @@ class JhNinePicture extends StatelessWidget {
     // print('九宫格宽 $_ninePictureW ');
     // print('item宽  $_itemWH ');
 
-    bool _isHandleFour = isHandleFour && imgData!.length == 4;
+    bool isHandleFourNew = isHandleFour && imgData!.length == 4;
 
-    var _bgWidth = _isHandleFour ? (_space * 2 + _itemSpace + _itemWH * 2) : (kScreenWidth - lRSpace);
-    var _bgHeight = _columnCount * _itemWH + _space * 2 + (_columnCount - 1) * _itemSpace;
-    var _crossAxisCount = _isHandleFour ? 2 : 3;
-    var _childAspectRatio = 1.0;
+    var bgWidth = isHandleFourNew ? (_space * 2 + _itemSpace + itemWH * 2) : (kScreenWidth - lRSpace);
+    var bgHeight = columnCount * itemWH + _space * 2 + (columnCount - 1) * _itemSpace;
+    var crossAxisCount = isHandleFourNew ? 2 : 3;
+    var childAspectRatio = 1.0;
 
     if (imgData!.length == 1) {
-      _bgWidth = (kScreenWidth - lRSpace) * 0.55;
-      _bgHeight = (kScreenWidth - lRSpace) * 0.75;
-      _crossAxisCount = 1;
-      _childAspectRatio = 55.0 / 76.0;
+      bgWidth = (kScreenWidth - lRSpace) * 0.55;
+      bgHeight = (kScreenWidth - lRSpace) * 0.75;
+      crossAxisCount = 1;
+      childAspectRatio = 55.0 / 76.0;
     }
 
     return Offstage(
-      offstage: imgData!.length == 0,
-      child: Container(
-        width: _bgWidth,
-        height: _bgHeight,
+      offstage: imgData!.isEmpty,
+      child: SizedBox(
+        width: bgWidth,
+        height: bgHeight,
         child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              // 可以直接指定每行（列）显示多少个Item
-              crossAxisCount: _crossAxisCount, // 一行的Widget数量
-              crossAxisSpacing: _itemSpace, // 水平间距
-              mainAxisSpacing: _itemSpace, // 垂直间距
-              childAspectRatio: _childAspectRatio, // 子Widget宽高比例
-            ),
-            // 禁用滚动事件
-            physics: NeverScrollableScrollPhysics(),
-            // GridView内边距
-            padding: EdgeInsets.all(_space),
-            itemCount: imgData!.length,
-            itemBuilder: (context, index) {
-              return _itemCell(context, index);
-            }),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            // 可以直接指定每行（列）显示多少个Item
+            crossAxisCount: crossAxisCount, // 一行的Widget数量
+            crossAxisSpacing: _itemSpace, // 水平间距
+            mainAxisSpacing: _itemSpace, // 垂直间距
+            childAspectRatio: childAspectRatio, // 子Widget宽高比例
+          ),
+          // 禁用滚动事件
+          physics: const NeverScrollableScrollPhysics(),
+          // GridView内边距
+          padding: const EdgeInsets.all(_space),
+          itemCount: imgData!.length,
+          itemBuilder: (context, index) {
+            return _itemCell(context, index);
+          },
+        ),
       ),
     );
   }
 
   _itemCell(context, index) {
-    var _img = imgData![index];
-    Widget _picture =
-        _img.startsWith('http') ? Image.network(_img, fit: BoxFit.cover) : Image.asset(_img, fit: BoxFit.cover);
+    var img = imgData![index];
+    Widget picture =
+        img.startsWith('http') ? Image.network(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
 
     // CachedNetworkImage(
     //   imageUrl: imgData[index],
@@ -96,8 +97,8 @@ class JhNinePicture extends StatelessWidget {
     // ),
     return GestureDetector(
       child: ConstrainedBox(
-        child: _picture,
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
+        child: picture,
       ),
       onTap: () => _clickItemCell(context, index),
     );
@@ -106,7 +107,7 @@ class JhNinePicture extends StatelessWidget {
   /// 点击cell，展示全图
   _clickItemCell(context, index) {
     // FadeRoute是自定义的切换过度动画（渐隐渐现） 如果不需要 可以使用默认的MaterialPageRoute
-    Navigator.of(context).push(new FadeRoute(
+    Navigator.of(context).push(FadeRoute(
       page: JhPhotoBrowser(
         imgDataArr: imgData!,
         index: index,

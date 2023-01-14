@@ -38,7 +38,7 @@ class KStyles {
   static BoxDecoration cellBorderStyle = BoxDecoration(
     color: Colors.white,
     borderRadius: BorderRadius.circular(3),
-    boxShadow: [
+    boxShadow: const [
       BoxShadow(
         color: Colors.black12, // 阴影颜色
         spreadRadius: 1.5, // 阴影浓度
@@ -48,10 +48,10 @@ class KStyles {
   );
 
   /// 列表分割线样式1
-  static Divider cellLineStyle = Divider(height: 0.0001, color: Colors.transparent);
+  static Divider cellLineStyle = const Divider(height: 0.0001, color: Colors.transparent);
 
   /// 列表分割线样式2
-  static Divider cellLineGrayStyle = Divider(height: .5, indent: 15, endIndent: 15, color: KColors.kLineColor);
+  static Divider cellLineGrayStyle = const Divider(height: .5, indent: 15, endIndent: 15, color: KColors.kLineColor);
 
   static const TextStyle titleBold15 = TextStyle(fontSize: KDimens.font_sp15, color: KColors.kFormTitleColor);
 }

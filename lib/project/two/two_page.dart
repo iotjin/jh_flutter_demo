@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import './pages/wx_contacts_page.dart';
 
 class TwoPage extends StatefulWidget {
+  const TwoPage({Key? key}) : super(key: key);
+
   @override
-  _TwoPageState createState() => _TwoPageState();
+  State<TwoPage> createState() => _TwoPageState();
 }
 
 class _TwoPageState extends State<TwoPage> with AutomaticKeepAliveClientMixin {
@@ -25,7 +27,7 @@ class _TwoPageState extends State<TwoPage> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     super.build(context);
 
-    return WxContactsPage();
+    return const WxContactsPage();
   }
 }
 

@@ -9,6 +9,8 @@ import '/jh_common/jh_form/jh_set_cell.dart';
 import '/project/configs/project_config.dart';
 
 class WxDiscoverPage extends StatelessWidget {
+  const WxDiscoverPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +35,12 @@ Widget _body(context) {
         hiddenLine: true,
 //      rightWidget: Image.network('https://gitee.com/iotjh/Picture/raw/master/lufei.png',width: 50,height: 50,),
         rightWidget: Container(
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-            child: Badge(
-                padding: EdgeInsets.all(4),
-                position: BadgePosition.topEnd(top: -4, end: -4),
-                child: Image.asset('assets/images/lufei.png', width: 30, height: 30, fit: BoxFit.fill))),
+          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+          child: Badge(
+              padding: const EdgeInsets.all(4),
+              position: BadgePosition.topEnd(top: -4, end: -4),
+              child: Image.asset('assets/images/lufei.png', width: 30, height: 30, fit: BoxFit.fill)),
+        ),
         clickCallBack: () => _clickCell(context, '朋友圈'),
       ),
       SizedBox(height: _rowSpace),
@@ -109,7 +112,7 @@ Widget _body(context) {
         hiddenLine: true,
         clickCallBack: () => _clickCell(context, '小程序'),
       ),
-      SizedBox(height: 15),
+      const SizedBox(height: 15),
     ],
   );
 }
@@ -123,22 +126,21 @@ _clickCell(context, text) {
 
 Widget testBtn(context) {
   return Container(
-      alignment: Alignment.center,
-      // 子组件将以何种方式进行排列
-      margin: EdgeInsets.all(20),
-      // 容器外补白
-      color: Colors.yellow,
-      width: 200,
-      height: 200,
-      child: ElevatedButton(
-//        color: Colors.red,
-        child: Text('点击跳转'),
-        onPressed: () {
-          print('onPressed');
-          JhNavUtils.pushNamed(context, 'UIDemoListPage');
+    alignment: Alignment.center,
+    // 子组件将以何种方式进行排列
+    margin: const EdgeInsets.all(20),
+    // 容器外补白
+    color: Colors.yellow,
+    width: 200,
+    height: 200,
+    child: ElevatedButton(
+      child: const Text('点击跳转'),
+      onPressed: () {
+        JhNavUtils.pushNamed(context, 'UIDemoListPage');
 //          Navigator.push(context, MaterialPageRoute(builder: (context) => (UIDemoListPage())));// 普通路由
 //          Navigator.push(context, MaterialPageRoute(builder: (context) => (testPage(content: '这是route传递的参数',))));// 普通路由
 //          JhNavUtils.pushNamed(context,'/Test');// 命名路由
-        },
-      ));
+      },
+    ),
+  );
 }

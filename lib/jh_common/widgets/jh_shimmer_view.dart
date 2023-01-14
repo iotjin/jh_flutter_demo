@@ -26,7 +26,7 @@ class JhShimmerView {
     double height = 100,
   }) {
     var cell = Container(
-      margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
+      margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(borderRadius),
@@ -44,21 +44,21 @@ class JhShimmerView {
   /// listShimmerView - 左侧头像，右侧3行文字(两长一短)
   static listShimmerView2(BuildContext context) {
     var cell = Container(
-      margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(width: 48, height: 48, color: Colors.white),
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(width: double.infinity, height: 10, color: Colors.white),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Container(width: double.infinity, height: 10, color: Colors.white),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Container(width: 60, height: 8, color: Colors.white),
               ],
             ),
@@ -81,7 +81,7 @@ class JhShimmerView {
     int crossAxisCount = 2,
   }) {
     var cell = Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(borderRadius),
@@ -99,7 +99,7 @@ class JhShimmerView {
         childAspectRatio: 1, // 子Widget宽高比例
       ),
       //GridView内边距
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       itemCount: 10,
       itemBuilder: (context, index) => cell,
     );

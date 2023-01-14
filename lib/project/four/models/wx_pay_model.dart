@@ -17,16 +17,16 @@ class WxPayModel {
     if (json['funcList'] != null) {
       funcList = <FuncList>[];
       json['funcList'].forEach((v) {
-        funcList!.add(new FuncList.fromJson(v));
+        funcList!.add(FuncList.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    if (this.funcList != null) {
-      data['funcList'] = this.funcList!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['title'] = title;
+    if (funcList != null) {
+      data['funcList'] = funcList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -50,10 +50,10 @@ class FuncList {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['text'] = this.text;
-    data['img'] = this.img;
-    data['pushName'] = this.pushName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['text'] = text;
+    data['img'] = img;
+    data['pushName'] = pushName;
     return data;
   }
 }

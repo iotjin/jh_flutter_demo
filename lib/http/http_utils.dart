@@ -1,8 +1,9 @@
 ///  http_utils.dart
 ///
 ///  Created by iotjin on 2020/07/07.
-///  description:  网络请求工具类（dio二次封装）
+///  description: 网络请求工具类（dio二次封装）
 
+// ignore_for_file: avoid_print
 import 'package:dio/dio.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import 'apis.dart';
@@ -78,8 +79,8 @@ class HttpUtils {
       print(params);
     }
 
-    var data;
-    var queryParameters;
+    Object? data;
+    Map<String, dynamic>? queryParameters;
     if (method == Method.get) {
       queryParameters = params;
     }

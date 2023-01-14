@@ -11,11 +11,11 @@ import 'error_handle.dart';
 import 'log_utils.dart';
 
 // default token
-const String TOKEN = '';
+const String defaultToken = '';
 const String kRefreshTokenUrl = APIs.refreshToken;
 
 String getToken() {
-  var token = JhStorageUtils.getString('accessToken') ?? TOKEN;
+  var token = JhStorageUtils.getString('accessToken') ?? defaultToken;
   return token;
 }
 
@@ -55,7 +55,7 @@ class TokenInterceptor extends QueuedInterceptor {
     try {
       _tokenDio ??= Dio();
       _tokenDio!.options = DioUtils.instance.dio.options;
-      _tokenDio!.options.headers['Authorization'] = 'Bearer ' + getToken();
+      _tokenDio!.options.headers['Authorization'] = 'Bearer ${getToken()}';
       final Response<dynamic> response = await _tokenDio!.post<dynamic>(kRefreshTokenUrl, data: params);
       var res = response.data as dynamic;
       if (res['code'] == ExceptionHandle.success) {
@@ -147,7 +147,7 @@ class LoggingInterceptor extends Interceptor {
       LogUtils.e('ResponseCode: ${response.statusCode}');
     }
     // 输出结果
-    LogUtils.d('返回数据：' + response.data.toString());
+    LogUtils.d('返回数据：${response.data}');
     LogUtils.d('-------------------- End: $duration 毫秒 --------------------');
     super.onResponse(response, handler);
   }

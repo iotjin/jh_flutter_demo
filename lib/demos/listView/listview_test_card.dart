@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import '/base_appbar.dart';
-import '/res/listData.dart';
+import '/res/list_data.dart';
 
 class ListViewTestCard extends StatelessWidget {
+  const ListViewTestCard({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: BaseAppBar('ListViewTestCard'),
       body: ContentBody(),
     );
@@ -13,21 +15,20 @@ class ListViewTestCard extends StatelessWidget {
 }
 
 class ContentBody extends StatelessWidget {
+  const ContentBody({super.key});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return ListView(
       children: listData.map((value) {
         return Card(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
               AspectRatio(
                 aspectRatio: 20 / 9,
-                child: Image.network(
-                  value['imageUrl'],
-                  fit: BoxFit.cover,
-                ),
+                child: Image.network(value['imageUrl'], fit: BoxFit.cover),
               ),
               ListTile(
                 leading: CircleAvatar(backgroundImage: NetworkImage(value['imageUrl'])),

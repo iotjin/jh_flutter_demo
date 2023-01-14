@@ -43,52 +43,52 @@ List _dataArr = [
 ];
 
 class WxGroupChatPage extends StatelessWidget {
+  const WxGroupChatPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('群聊', bgColor: Colors.transparent),
+      appBar: const BaseAppBar('群聊', bgColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
   Widget _body(context) {
-    Widget _searchBar = JhSearchBar(
+    Widget searchBar = JhSearchBar(
       hintText: '搜索',
       bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
 
-    List<Widget> _topWidgetList = _dataArr.map((item2) => _cell(context, item2)).toList();
+    List<Widget> topWidgetList = _dataArr.map((item2) => _cell(context, item2)).toList();
 
-    _topWidgetList.insert(0, _searchBar);
+    topWidgetList.insert(0, searchBar);
 
     return ListView(
-      children: _topWidgetList,
+      children: topWidgetList,
     );
   }
 
   // cell
   Widget _cell(context, itemData) {
-    double _cellH = 55.0;
-    double _leftSpace = 65.0;
-    double _imgWH = 40;
+    double cellH = 55.0;
+    double leftSpace = 65.0;
+    double imgWH = 40;
 
     return JhSetCell(
-      leftImgWH: _imgWH,
-      cellHeight: _cellH,
-      lineLeftEdge: _leftSpace,
+      leftImgWH: imgWH,
+      cellHeight: cellH,
+      lineLeftEdge: leftSpace,
       title: itemData['title'],
       hiddenArrow: true,
       leftWidget: Container(
-        height: _imgWH,
-        width: _imgWH,
+        height: imgWH,
+        width: imgWH,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(3),
           image: DecorationImage(
             fit: BoxFit.fitHeight,
-            image: AssetImage(
-              itemData['img'],
-            ),
+            image: AssetImage(itemData['img']),
           ),
         ),
       ),

@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/08/27.
 ///  description: 微信支付
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/project/configs/project_config.dart';
 import '../models/wx_pay_model.dart';
@@ -18,7 +20,7 @@ class WxPayPage extends StatefulWidget {
 }
 
 class _WxPayPageState extends State<WxPayPage> {
-  var _dataArr = [];
+  final _dataArr = [];
 
   @override
   void initState() {
@@ -29,11 +31,11 @@ class _WxPayPageState extends State<WxPayPage> {
       var maxCount = i == 1 ? 2 : 8;
       var title = i == 0 ? '腾讯服务' : (i == 1 ? '限时推广' : '三方服务');
 
-      var map = new Map<String, dynamic>();
+      var map = <String, dynamic>{};
       map['title'] = title;
       var funcList = [];
       for (int j = 0; j < maxCount; j++) {
-        var map2 = new Map<String, dynamic>();
+        var map2 = <String, dynamic>{};
         map2['text'] = '功能功能$j';
         map2['img'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
         map2['pushName'] = 'PageName';
@@ -53,19 +55,19 @@ class _WxPayPageState extends State<WxPayPage> {
         bgColor: Colors.transparent,
         rightItemCallBack: () => JhNavUtils.pushNamed(context, 'WxPayManagerPage'),
       ),
-      body: _body(context),
+      body: _body(),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
-  Widget _body(context) {
+  Widget _body() {
     return ListView(
       children: [
         Column(
           children: <Widget>[
             _payCard(),
             _listWidget(_dataArr),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
           ],
         ),
       ],
@@ -74,7 +76,7 @@ class _WxPayPageState extends State<WxPayPage> {
 
   Widget _payCard() {
     return Card(
-      margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       // 设置圆角
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       // 普通的边
@@ -90,30 +92,26 @@ class _WxPayPageState extends State<WxPayPage> {
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 30),
-                    Image.asset('assets/wechat/mine/ic_shoufukuan.png', width: 40),
-                    SizedBox(height: 8),
-                    Text('收付款', style: TextStyle(color: Colors.white, fontSize: 16))
-                  ],
-                ),
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(height: 30),
+                  Image.asset('assets/wechat/mine/ic_shoufukuan.png', width: 40),
+                  const SizedBox(height: 8),
+                  const Text('收付款', style: TextStyle(color: Colors.white, fontSize: 16))
+                ],
               ),
             ),
             Expanded(
               flex: 1,
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 30),
-                    Image.asset('assets/wechat/mine/ic_qianbao.png', width: 40),
-                    SizedBox(height: 8),
-                    Text('收付款', style: TextStyle(color: Colors.white, fontSize: 16)),
-                    SizedBox(height: 5),
-                    Text('¥$_money', style: TextStyle(color: Colors.white, fontSize: 14)),
-                  ],
-                ),
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(height: 30),
+                  Image.asset('assets/wechat/mine/ic_qianbao.png', width: 40),
+                  const SizedBox(height: 8),
+                  const Text('收付款', style: TextStyle(color: Colors.white, fontSize: 16)),
+                  const SizedBox(height: 5),
+                  Text('¥$_money', style: const TextStyle(color: Colors.white, fontSize: 14)),
+                ],
               ),
             )
           ],
@@ -123,17 +121,17 @@ class _WxPayPageState extends State<WxPayPage> {
   }
 
   Widget _listWidget(List dataArr) {
-    if (dataArr.length == 0) {
+    if (dataArr.isEmpty) {
       return Container(
         alignment: Alignment.topCenter,
-        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-        child: Text('暂无数据', textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
+        padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+        child: const Text('暂无数据', textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
       );
     } else {
       return ListView.builder(
         itemCount: dataArr.length,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           WxPayModel model = WxPayModel.fromJson(dataArr[index]);
           return WxPayCell(

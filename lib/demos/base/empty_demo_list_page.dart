@@ -1,17 +1,21 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_empty_view.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/base_appbar.dart';
 
+final List titleData = [
+  '空数据-默认',
+  '空数据-只有图片',
+  '空数据-只有文字',
+  '网络错误-默认',
+  '网络错误-自定义',
+];
+
 class EmptyDemoListPage extends StatelessWidget {
-  final List titleData = [
-    '空数据-默认',
-    '空数据-只有图片',
-    '空数据-只有文字',
-    '网络错误-默认',
-    '网络错误-自定义',
-  ];
+  const EmptyDemoListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +24,19 @@ class EmptyDemoListPage extends StatelessWidget {
       dataArr: titleData,
       callBack: (index, str) {
         if (index == 0) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => (Demo1()))); // 普通路由
+          Navigator.push(context, MaterialPageRoute(builder: (context) => (const Demo1()))); // 普通路由
         }
         if (index == 1) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => (Demo2()))); // 普通路由
+          Navigator.push(context, MaterialPageRoute(builder: (context) => (const Demo2()))); // 普通路由
         }
         if (index == 2) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => (Demo3()))); // 普通路由
+          Navigator.push(context, MaterialPageRoute(builder: (context) => (const Demo3()))); // 普通路由
         }
         if (index == 3) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => (Demo4()))); // 普通路由
+          Navigator.push(context, MaterialPageRoute(builder: (context) => (const Demo4()))); // 普通路由
         }
         if (index == 4) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => (Demo5()))); // 普通路由
+          Navigator.push(context, MaterialPageRoute(builder: (context) => (const Demo5()))); // 普通路由
         }
       },
     );
@@ -44,7 +48,7 @@ class Demo1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: BaseAppBar('空数据-默认'),
       body: JhEmptyView(),
     );
@@ -56,7 +60,7 @@ class Demo2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: BaseAppBar('空数据-只有图片'),
       body: JhEmptyView(
         image: 'assets/images/common/empty/空.png',
@@ -71,7 +75,7 @@ class Demo3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: BaseAppBar('空数据-只有文字'),
       body: JhEmptyView(
         verticalTop: 20,
@@ -88,7 +92,7 @@ class Demo4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('网络错误-默认'),
+      appBar: const BaseAppBar('网络错误-默认'),
       body: JhEmptyView(
         type: EmptyType.error,
         clickCallBack: () {
@@ -106,7 +110,7 @@ class Demo5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('网络错误-自定义'),
+      appBar: const BaseAppBar('网络错误-自定义'),
       body: JhEmptyView(
         type: EmptyType.error,
         verticalTop: 40,

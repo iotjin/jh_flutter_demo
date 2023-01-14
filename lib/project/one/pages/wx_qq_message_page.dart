@@ -21,22 +21,27 @@ List _dataArr = [
 ];
 
 class WxQQMessagePage extends StatelessWidget {
+  const WxQQMessagePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('QQ邮箱提醒', rightImgPath: 'assets/images/ic_more_black.png', bgColor: Colors.transparent,
-          rightItemCallBack: () {
-        _clickCell(context, '更多');
-      }),
-      body: _body(context, _dataArr),
+      appBar: BaseAppBar(
+        'QQ邮箱提醒',
+        rightImgPath: 'assets/images/ic_more_black.png',
+        bgColor: Colors.transparent,
+        rightItemCallBack: () => _clickCell(context, '更多'),
+      ),
+      body: _body(context),
     );
   }
 
-  Widget _body(context, dataArr) {
+  Widget _body(context) {
+    var dataArr = _dataArr;
     return Stack(
       children: <Widget>[
         ListView.builder(
-          itemCount: _dataArr.length,
+          itemCount: dataArr.length,
 //            itemExtent: 150.0, // 强制高度为100.0
           itemBuilder: (context, index) {
             WxQQMessageModel model = WxQQMessageModel.fromJson(dataArr[index]);
@@ -66,7 +71,7 @@ class WxQQMessagePage extends StatelessWidget {
               child: Container(
                 height: 60,
                 color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
-                child: Center(child: Text('写邮件')),
+                child: const Center(child: Text('写邮件')),
               ),
               onTap: () => _clickCell(context, '写邮件'),
             ),

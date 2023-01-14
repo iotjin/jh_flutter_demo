@@ -42,9 +42,9 @@ class JhQrCodeUtils {
     return QrImage(
       data: data,
       size: size,
-      backgroundColor: backgroundColor == null ? Color(0x00FFFFFF) : backgroundColor,
-      foregroundColor: foregroundColor == null ? Color(0xFF000000) : foregroundColor,
-      padding: padding == null ? EdgeInsets.all(10.0) : padding,
+      backgroundColor: backgroundColor ?? const Color(0x00FFFFFF),
+      foregroundColor: foregroundColor ?? const Color(0xFF000000),
+      padding: padding ?? const EdgeInsets.all(10.0),
       embeddedImage: image,
       embeddedImageStyle: QrEmbeddedImageStyle(size: imageSize),
     );
@@ -54,7 +54,7 @@ class JhQrCodeUtils {
   static Future scan({
     Function(String data)? callBack,
   }) async {
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       try {
         const ScanOptions options = ScanOptions(
           strings: {
@@ -64,7 +64,7 @@ class JhQrCodeUtils {
           },
         );
         BarcodeScanner.scan(options: options).then((ScanResult result) {
-          if (result.rawContent.length > 0) {
+          if (result.rawContent.isNotEmpty) {
             callBack?.call(result.rawContent);
           }
         });

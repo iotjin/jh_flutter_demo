@@ -10,6 +10,8 @@ import '/jh_common/widgets/jh_photo_browser.dart';
 import '/project/configs/project_config.dart';
 
 class WxPersonInfoPage extends StatelessWidget {
+  const WxPersonInfoPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +36,16 @@ Widget _body(context) {
           height: 55,
           width: 55,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              image: DecorationImage(
-                  fit: BoxFit.fitHeight, image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'))),
+            borderRadius: BorderRadius.circular(5),
+            image: const DecorationImage(
+              fit: BoxFit.fitHeight,
+              image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'),
+            ),
+          ),
         ),
         clickCallBack: () {
           var imgData = ['https://gitee.com/iotjh/Picture/raw/master/lufei.png'];
-          Navigator.of(context).push(new FadeRoute(
+          Navigator.of(context).push(FadeRoute(
               page: JhPhotoBrowser(
             imgDataArr: imgData,
             index: 0,
@@ -52,39 +57,21 @@ Widget _body(context) {
           )));
         },
       ),
-      JhSetCell(
-        cellHeight: _cellH,
-        title: '名字',
-        text: 'jin',
-      ),
-      JhSetCell(
-        cellHeight: _cellH,
-        title: '拍一拍',
-      ),
-      JhSetCell(
-        cellHeight: _cellH,
-        title: '微信号',
-        text: 'abc',
-      ),
+      JhSetCell(cellHeight: _cellH, title: '名字', text: 'jin'),
+      JhSetCell(cellHeight: _cellH, title: '拍一拍'),
+      JhSetCell(cellHeight: _cellH, title: '微信号', text: 'abc'),
       JhSetCell(
         cellHeight: _cellH,
         title: '我的二维码',
         rightWidget: Container(
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-            child: Image.asset('assets/wechat/mine/ic_setting_myQR.png', width: 20, height: 20, fit: BoxFit.fill)),
+          padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+          child: Image.asset('assets/wechat/mine/ic_setting_myQR.png', width: 20, height: 20, fit: BoxFit.fill),
+        ),
       ),
-      JhSetCell(
-        cellHeight: _cellH,
-        title: '更多',
-        hiddenLine: true,
-      ),
+      JhSetCell(cellHeight: _cellH, title: '更多', hiddenLine: true),
       SizedBox(height: _rowSpace),
-      JhSetCell(
-        cellHeight: _cellH,
-        title: '我的地址',
-        hiddenLine: true,
-      ),
-      SizedBox(height: 15),
+      JhSetCell(cellHeight: _cellH, title: '我的地址', hiddenLine: true),
+      const SizedBox(height: 15),
     ],
   );
 }

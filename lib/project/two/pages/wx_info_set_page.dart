@@ -12,11 +12,10 @@ import '/project/two/models/wx_contacts_model.dart';
 
 class WxInfoSetPage extends StatefulWidget {
   const WxInfoSetPage(this.jumpParams, {Key? key}) : super(key: key);
-
   final dynamic jumpParams;
 
   @override
-  _WxInfoSetPageState createState() => _WxInfoSetPageState();
+  State<WxInfoSetPage> createState() => _WxInfoSetPageState();
 }
 
 class _WxInfoSetPageState extends State<WxInfoSetPage> {
@@ -36,40 +35,40 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('资料设置', bgColor: Colors.transparent),
-      body: _body(context),
+      appBar: const BaseAppBar('资料设置', bgColor: Colors.transparent),
+      body: _body(),
     );
   }
 
-  Widget _body(context) {
-    double _cellH = wxCellH;
-    double _rowSpace = wxRowSpace;
+  Widget _body() {
+    double cellH = wxCellH;
+    double rowSpace = wxRowSpace;
 
     return ListView(
       children: <Widget>[
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           title: '备注和标签',
           text: model.label.jhNullSafe,
-          clickCallBack: () => _clickCell(context, '备注和标签'),
+          clickCallBack: () => _clickCell('备注和标签'),
         ),
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           title: '朋友权限',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, '朋友权限'),
+          clickCallBack: () => _clickCell('朋友权限'),
         ),
-        SizedBox(height: _rowSpace),
+        SizedBox(height: rowSpace),
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           titleWidth: 150,
           title: model.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, model.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友'),
+          clickCallBack: () => _clickCell(model.sex == '0' ? '把他推荐给朋友' : '把她推荐给朋友'),
         ),
-        SizedBox(height: _rowSpace),
+        SizedBox(height: rowSpace),
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           title: '设为星标朋友',
           hiddenLine: true,
           hiddenArrow: true,
@@ -81,11 +80,11 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
               });
             },
           ),
-          clickCallBack: () => _clickCell(context, '设为星标朋友'),
+          clickCallBack: () => _clickCell('设为星标朋友'),
         ),
-        SizedBox(height: _rowSpace),
+        SizedBox(height: rowSpace),
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           title: '加入黑名单',
           hiddenArrow: true,
           rightWidget: CupertinoSwitch(
@@ -96,32 +95,33 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
               });
             },
           ),
-          clickCallBack: () => _clickCell(context, '加入黑名单'),
+          clickCallBack: () => _clickCell('加入黑名单'),
         ),
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           title: '投诉',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, '投诉'),
+          clickCallBack: () => _clickCell('投诉'),
         ),
-        SizedBox(height: _rowSpace),
+        SizedBox(height: rowSpace),
         InkWell(
-          onTap: () => _clickCell(context, '删除'),
+          onTap: () => _clickCell('删除'),
           child: Container(
-              height: _cellH,
-              color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('删除', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red))
-                ],
-              )),
+            height: cellH,
+            color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Text('删除', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red))
+              ],
+            ),
+          ),
         )
       ],
     );
   }
 
-  void _clickCell(context, title) {
+  void _clickCell(title) {
     JhToast.showText(context, msg: '点击 $title');
   }
 }

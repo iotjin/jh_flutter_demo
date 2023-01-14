@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/03/25.
 ///  description:  时间工具类
 
+// ignore_for_file: constant_identifier_names
+
 import 'package:date_format/date_format.dart';
 
 const YMD = [yyyy, '-', mm, '-', dd];
@@ -90,10 +92,10 @@ class JhTimeUtils {
     if (time.contains('-')) {
       return time;
     }
-    time = time.replaceAll(new RegExp(r'/'), '-');
-    time = time.replaceAll(new RegExp(r'年'), '-');
-    time = time.replaceAll(new RegExp(r'月'), '-');
-    time = time.replaceAll(new RegExp(r'日'), '');
+    time = time.replaceAll(RegExp(r'/'), '-');
+    time = time.replaceAll(RegExp(r'年'), '-');
+    time = time.replaceAll(RegExp(r'月'), '-');
+    time = time.replaceAll(RegExp(r'日'), '');
     if (time.contains(':')) {
       // 带时分秒
       var tempArr = time.split(' ')[0].split('-');
@@ -101,24 +103,24 @@ class JhTimeUtils {
       var month = tempArr[1];
       var day = tempArr[2];
       if (month.length < 2) {
-        month = '0' + month;
+        month = '0$month';
       }
       if (day.length < 2) {
-        day = '0' + day;
+        day = '0$day';
       }
-      return year + '-' + month + '-' + day + ' ' + time.split(' ')[1];
+      return '$year-$month-$day ${time.split(' ')[1]}';
     } else {
       var tempArr = time.split('-');
       var year = tempArr[0];
       var month = tempArr[1];
       var day = tempArr[2];
       if (month.length < 2) {
-        month = '0' + month;
+        month = '0$month';
       }
       if (day.length < 2) {
-        day = '0' + day;
+        day = '0$day';
       }
-      return year + '-' + month + '-' + day;
+      return '$year-$month-$day';
     }
   }
 }

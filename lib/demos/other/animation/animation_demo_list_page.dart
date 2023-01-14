@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
+final List titleData = ['3D球', '3D球2', '3D球 - 文字', '3D球 - 封装', '3D球 - 圆形阴影'];
+final List routeData = [
+  'Ball3DPage',
+  'Ball3DPage2',
+  'Ball3DPage3',
+  'TagCloudPage',
+  'Ball3DPage4',
+];
+
 class AnimationDemoListPage extends StatelessWidget {
-  final List titleData = ['3D球', '3D球2', '3D球 - 文字', '3D球 - 封装', '3D球 - 圆形阴影'];
-  final List routeData = [
-    'DBallPage',
-    'DBallPage2',
-    'DBallPage3',
-    'TagCloudPage',
-    'DBallPage4',
-  ];
+  const AnimationDemoListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

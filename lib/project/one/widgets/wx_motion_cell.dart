@@ -26,16 +26,16 @@ class WxMotionCell extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Text(
             model.time.jhNullSafe,
-            style: TextStyle(fontSize: 13, color: Colors.grey),
+            style: const TextStyle(fontSize: 13, color: Colors.grey),
           ),
         ),
         InkWell(
           onTap: () => onClickCell?.call(model.toJson()),
           child: Card(
-              margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+              margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
               // 设置圆角
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
               // 抗锯齿
@@ -63,7 +63,7 @@ class WxMotionCell extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              padding: EdgeInsets.only(left: 30),
+                              padding: const EdgeInsets.only(left: 30),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -79,7 +79,7 @@ class WxMotionCell extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(right: 30),
+                              padding: const EdgeInsets.only(right: 30),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -99,7 +99,7 @@ class WxMotionCell extends StatelessWidget {
                         )),
                     Container(
                       color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
-                      margin: EdgeInsets.symmetric(horizontal: 15),
+                      margin: const EdgeInsets.symmetric(horizontal: 15),
                       height: 1,
                     ),
                     Expanded(
@@ -107,19 +107,13 @@ class WxMotionCell extends StatelessWidget {
                       child: ListTile(
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            model.img!,
-                            width: 40,
-                          ),
+                          child: Image.asset(model.img!, width: 40),
                         ),
                         title: Text(
                           model.text.jhNullSafe,
-                          style: TextStyle(
-                            color: JhColorUtils.hexColor(model.color!),
-                            fontSize: 15,
-                          ),
+                          style: TextStyle(color: JhColorUtils.hexColor(model.color!), fontSize: 15),
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios, color: Colors.black26),
+                        trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black26),
                       ),
                     ),
                   ],

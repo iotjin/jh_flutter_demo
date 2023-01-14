@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import '/Jh_common/jh_form/jh_form_Input_cell.dart';
+import '/Jh_common/jh_form/jh_form_input_cell.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/theme_provider.dart';
 
@@ -31,26 +31,27 @@ class JhDialog {
     bool clickBtnPop = true, // 点击确认按钮是否弹框消失
   }) {
     showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return BaseDialog(
-            title: title,
-            isBoldTitle: isBoldTitle,
-            content: content == ''
-                ? null
-                : Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                    child: Text(content, style: TextStyle(fontSize: 16.0)),
-                  ),
-            leftText: leftText,
-            rightText: rightText,
-            onCancel: onCancel,
-            onConfirm: onConfirm,
-            hiddenCancel: hiddenCancel,
-            clickBtnPop: clickBtnPop,
-          );
-        });
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return BaseDialog(
+          title: title,
+          isBoldTitle: isBoldTitle,
+          content: content == ''
+              ? null
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Text(content, style: const TextStyle(fontSize: 16.0)),
+                ),
+          leftText: leftText,
+          rightText: rightText,
+          onCancel: onCancel,
+          onConfirm: onConfirm,
+          hiddenCancel: hiddenCancel,
+          clickBtnPop: clickBtnPop,
+        );
+      },
+    );
   }
 
   /// 当clickBtnPop=false时，手动隐藏弹框
@@ -82,35 +83,26 @@ class JhDialog {
       context,
       title: title,
       isBoldTitle: isBoldTitle,
+      leftText: leftText,
+      rightText: rightText,
       onCancel: onCancel,
       onConfirm: onConfirm,
       hiddenCancel: hiddenCancel,
       clickBtnPop: clickBtnPop,
-      content: Container(
-        height: 55,
-        margin: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor),
-            width: 1,
-          ),
-        ),
-        child: JhFormInputCell(
-          text: inputText,
-          hintText: hintText,
-          labelText: labelText,
-          keyboardType: keyboardType,
-          hiddenLine: true,
-          inputFormatters: inputFormatters,
-          inputCallBack: inputCallBack,
-          inputCompletionCallBack: inputCompletionCallBack,
-        ),
+      content: _InputWidget(
+        inputText: inputText,
+        hintText: hintText,
+        labelText: labelText,
+        keyboardType: keyboardType,
+        inputFormatters: inputFormatters,
+        inputCallBack: inputCallBack,
+        inputCompletionCallBack: inputCompletionCallBack,
       ),
     );
   }
 
   /// 自定义弹框
-  /// 更新弹窗内容(使用StatefulBuilder) https://www.cnhackhy.com/109249.html
+  /// 更新弹窗内容使用StatefulBuilder
   static void showCustomDialog(
     BuildContext context, {
     String title = '',
@@ -124,24 +116,26 @@ class JhDialog {
     bool clickBtnPop = true, // 点击确认按钮是否弹框消失
   }) {
     showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return BaseDialog(
-            title: title,
-            isBoldTitle: isBoldTitle,
-            content: content,
-            leftText: leftText,
-            rightText: rightText,
-            onCancel: onCancel,
-            onConfirm: onConfirm,
-            hiddenCancel: hiddenCancel,
-            clickBtnPop: clickBtnPop,
-          );
-        });
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return BaseDialog(
+          title: title,
+          isBoldTitle: isBoldTitle,
+          content: content,
+          leftText: leftText,
+          rightText: rightText,
+          onCancel: onCancel,
+          onConfirm: onConfirm,
+          hiddenCancel: hiddenCancel,
+          clickBtnPop: clickBtnPop,
+        );
+      },
+    );
   }
 
   /// 完全自定义弹框
+  /// 更新弹窗内容使用StatefulBuilder
   static void showAllCustomDialog(
     BuildContext context, {
     Widget? child,
@@ -151,14 +145,14 @@ class JhDialog {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        return _CustomDialog(child: child!, clickBgHidden: clickBgHidden);
+        return _CustomDialog(clickBgHidden: clickBgHidden, child: child);
       },
     );
   }
 }
 
 class BaseDialog extends StatelessWidget {
-  BaseDialog({
+  const BaseDialog({
     Key? key,
     this.title = '',
     this.isBoldTitle = true,
@@ -190,7 +184,7 @@ class BaseDialog extends StatelessWidget {
     Widget dialogTitle = Offstage(
       offstage: title == '',
       child: Padding(
-        padding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 8.0),
+        padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 8.0),
         child: Text(
           title,
           textAlign: TextAlign.center,
@@ -214,11 +208,7 @@ class BaseDialog extends StatelessWidget {
                   }
                 },
               ),
-        SizedBox(
-          height: 48.0,
-          width: 0.6,
-          child: VerticalDivider(),
-        ),
+        const SizedBox(height: 48.0, width: 0.6, child: VerticalDivider()),
         _DialogButton(
           text: rightText,
           textColor: confirmTextColor,
@@ -237,19 +227,19 @@ class BaseDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           dialogTitle,
           content == null ? Container() : Flexible(child: content!),
-          SizedBox(height: 8),
-          Divider(height: 1),
+          const SizedBox(height: 8),
+          const Divider(height: 1),
           bottomButton,
         ],
       ),
     );
 
     return AnimatedPadding(
-      padding: MediaQuery.of(context).viewInsets + EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
-      duration: Duration(milliseconds: 120),
+      padding: MediaQuery.of(context).viewInsets + const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+      duration: const Duration(milliseconds: 120),
       curve: Curves.easeInCubic,
       child: MediaQuery.removeViewInsets(
         removeLeft: true,
@@ -269,7 +259,7 @@ class BaseDialog extends StatelessWidget {
 }
 
 class _DialogButton extends StatelessWidget {
-  _DialogButton({
+  const _DialogButton({
     Key? key,
     this.text = '',
     this.textColor,
@@ -287,10 +277,8 @@ class _DialogButton extends StatelessWidget {
         height: 48.0,
         child: TextButton(
           onPressed: onPressed,
-          child: Text(text, style: TextStyle(fontSize: _btnFontSize)),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(textColor),
-          ),
+          style: ButtonStyle(foregroundColor: MaterialStateProperty.all(textColor)),
+          child: Text(text, style: const TextStyle(fontSize: _btnFontSize)),
         ),
       ),
     );
@@ -298,13 +286,12 @@ class _DialogButton extends StatelessWidget {
 }
 
 class _CustomDialog extends Dialog {
-  _CustomDialog({
+  const _CustomDialog({
     Key? key,
-    this.child,
+    super.child,
     this.clickBgHidden = false, // 点击背景隐藏，默认不隐藏
   }) : super(key: key);
 
-  final Widget? child;
   final bool clickBgHidden;
 
   @override
@@ -323,6 +310,50 @@ class _CustomDialog extends Dialog {
           // 内容
           Center(child: child)
         ],
+      ),
+    );
+  }
+}
+
+class _InputWidget extends StatelessWidget {
+  const _InputWidget({
+    Key? key,
+    this.inputText = '',
+    this.hintText = '请输入',
+    this.labelText = '请输入',
+    this.keyboardType = TextInputType.text,
+    this.inputFormatters,
+    this.inputCallBack,
+    this.inputCompletionCallBack,
+  }) : super(key: key);
+
+  final String? inputText;
+  final String hintText;
+  final String labelText;
+  final TextInputType keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
+  final Function(String value)? inputCallBack;
+  final Function(String value, bool isSubmitted)? inputCompletionCallBack;
+
+  @override
+  Widget build(BuildContext context) {
+    var lineColor = KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor);
+    var bgColor = KColors.dynamicColor(context, KColors.kAlertInputBgColor, KColors.kAlertInputBgDarkColor);
+
+    return Container(
+      height: 55,
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(border: Border.all(color: lineColor, width: 1)),
+      child: JhFormInputCell(
+        bgColor: bgColor,
+        text: inputText,
+        hintText: hintText,
+        labelText: labelText,
+        keyboardType: keyboardType,
+        hiddenLine: true,
+        inputFormatters: inputFormatters,
+        inputCallBack: inputCallBack,
+        inputCompletionCallBack: inputCompletionCallBack,
       ),
     );
   }

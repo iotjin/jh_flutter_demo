@@ -1,18 +1,22 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '/jh_common/widgets/jh_alert.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
+final List titleData = [
+  'alert1-中间',
+  'alert2-中间',
+  'alert3-底部-带标题内容',
+  'alert4-底部-带标题内容红色按钮',
+  'alert5-底部只有标题红色按钮',
+  'alert6-底部只有红色按钮',
+  'alert7-底部标题常规按钮'
+];
+
 class AlertTestPage extends StatelessWidget {
-  final List titleData = [
-    'alert1-中间',
-    'alert2-中间',
-    'alert3-底部-带标题内容',
-    'alert4-底部-带标题内容红色按钮',
-    'alert5-底部只有标题红色按钮',
-    'alert6-底部只有红色按钮',
-    'alert7-底部标题常规按钮'
-  ];
+  const AlertTestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -94,22 +98,22 @@ showLoading(BuildContext context, [String? text]) {
     builder: (context) {
       return Center(
         child: Container(
-          constraints: BoxConstraints(minHeight: 120, minWidth: 180),
-          decoration: BoxDecoration(color: Colors.black87, borderRadius: BorderRadius.circular(3.0), boxShadow: [
-            //阴影
+          constraints: const BoxConstraints(minHeight: 120, minWidth: 180),
+          decoration: BoxDecoration(color: Colors.black87, borderRadius: BorderRadius.circular(3.0), boxShadow: const [
+            // 阴影
             BoxShadow(
               color: Colors.black12,
               //offset: Offset(2.0,2.0),
               blurRadius: 10.0,
             )
           ]),
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 30,
                 width: 30,
                 child: CircularProgressIndicator(

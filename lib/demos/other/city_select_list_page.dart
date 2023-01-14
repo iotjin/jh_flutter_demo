@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -10,21 +12,23 @@ const Color bgColor = Colors.black87;
 const double radius = 3.0;
 
 class CitySelectListPage extends StatefulWidget {
+  const CitySelectListPage({Key? key}) : super(key: key);
+
   @override
-  _CitySelectListPageState createState() => _CitySelectListPageState();
+  State<CitySelectListPage> createState() => _CitySelectListPageState();
 }
 
 class _CitySelectListPageState extends State<CitySelectListPage> {
-  List<WxContactsModel> _cityList = [];
-  double _suspensionHeight = 40;
-  double _itemHeight = 50;
-  String _suspensionTag = '';
+  final List<WxContactsModel> _cityList = [];
+  final double _suspensionHeight = 40;
+  final double _itemHeight = 50;
+  final String _suspensionTag = '';
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       _loadData();
     });
   }
@@ -34,10 +38,10 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
     rootBundle.loadString('lib/res/china.json').then((value) {
       Map countyMap = json.decode(value);
       List list = countyMap['china'];
-      list.forEach((item) {
+      for (var item in list) {
 //        print('name: ${item['name']}');
         _cityList.add(WxContactsModel(name: item['name']));
-      });
+      }
       _handleList(_cityList);
       setState(() {});
     });
@@ -84,20 +88,15 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
     return Column(
       children: <Widget>[
         ListTile(
-            title: Text('当前城市'),
+            title: const Text('当前城市'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(
-                  Icons.place,
-                  size: 20.0,
-                ),
+              children: const <Widget>[
+                Icon(Icons.place, size: 20.0),
                 Text(' 成都市'),
               ],
             )),
-        Divider(
-          height: .0,
-        ),
+        const Divider(height: .0),
         Expanded(
           flex: 1,
           child: AzListView(
@@ -128,8 +127,8 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
                 alignment: Alignment.center,
                 width: 80.0,
                 height: 80.0,
-                decoration: BoxDecoration(color: Colors.black54, shape: BoxShape.circle),
-                child: Text(hint, style: TextStyle(color: Colors.white, fontSize: 30.0)),
+                decoration: const BoxDecoration(color: Colors.black54, shape: BoxShape.circle),
+                child: Text(hint, style: const TextStyle(color: Colors.white, fontSize: 30.0)),
               );
             },
           ),
@@ -156,7 +155,6 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
         spacing: 10.0,
         children: hotCityList.map((e) {
           return TextButton(
-            child: Text(e.name!),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.white),
               foregroundColor: MaterialStateProperty.all(Colors.black),
@@ -165,6 +163,7 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
               print('OnItemClick: ${e.name}');
 //              Navigator.pop(context, e);
             },
+            child: Text(e.name!),
           );
         }).toList(),
       ),
@@ -176,15 +175,12 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
       height: _suspensionHeight,
       width: JhScreenUtils.screenWidth,
       padding: const EdgeInsets.only(left: 15.0),
-      color: Color(0xfff3f4f5),
+      color: const Color(0xfff3f4f5),
       alignment: Alignment.centerLeft,
       child: Text(
-        '$susTag',
+        susTag,
         softWrap: false,
-        style: TextStyle(
-          fontSize: 14.0,
-          color: Color(0xff999999),
-        ),
+        style: const TextStyle(fontSize: 14.0, color: Color(0xff999999)),
       ),
     );
   }

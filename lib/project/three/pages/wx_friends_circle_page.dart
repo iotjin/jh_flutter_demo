@@ -14,14 +14,16 @@ import '../models/wx_friends_circle_model.dart';
 import '../widgets/wx_friends_circle_cell.dart';
 
 class WxFriendsCirclePage extends StatefulWidget {
+  const WxFriendsCirclePage({Key? key}) : super(key: key);
+
   @override
-  _WxFriendsCirclePageState createState() => _WxFriendsCirclePageState();
+  State<WxFriendsCirclePage> createState() => _WxFriendsCirclePageState();
 }
 
 class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
-  double _imgNormalHeight = 300;
+  final double _imgNormalHeight = 300;
   double _imgExtraHeight = 0;
   double _imgChangeHeight = 0;
   double _scrollMinOffSet = 0;
@@ -56,11 +58,11 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   // 滚动监听
   void _addListener() {
     _scrollController.addListener(() {
-      double _y = _scrollController.offset;
-      // print('滑动距离: $_y');
+      double y = _scrollController.offset;
+      // print('滑动距离: $y');
 
-      if (_y < _scrollMinOffSet) {
-        _imgExtraHeight = -_y;
+      if (y < _scrollMinOffSet) {
+        _imgExtraHeight = -y;
 //        print(_topH);
         setState(() {
           _imgChangeHeight = _imgNormalHeight + _imgExtraHeight;
@@ -71,11 +73,11 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         });
       }
       // // 小于0 ，下拉放大
-      // if (_y < 0) {
+      // if (y < 0) {
       // } else {}
 
       // appbar 透明度
-      double appBarOpacity = _y / _navH;
+      double appBarOpacity = y / _navH;
       if (appBarOpacity < 0) {
         // 透明
         appBarOpacity = 0.0;
@@ -102,13 +104,13 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _body(context, _dataArr),
+      body: _body(_dataArr),
     );
   }
 
-  Widget _body(context, dataArr) {
-    var _navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
-    _navBgColor = _navBgColor.withOpacity(_appbarOpacity);
+  Widget _body(dataArr) {
+    var navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
+    navBgColor = navBgColor.withOpacity(_appbarOpacity);
 
     return Stack(
       children: <Widget>[
@@ -119,31 +121,31 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
             removeTop: true,
             child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: dataArr.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
-                  return Container(width: double.infinity, height: _imgNormalHeight);
+                  return SizedBox(width: double.infinity, height: _imgNormalHeight);
                 }
                 WxFriendsCircleModel model = WxFriendsCircleModel.fromJson(dataArr[index - 1]);
                 return WxFriendsCircleCell(
                   model: model,
-                  onClickCell: (model) => _clickCell(context, model['name']),
+                  onClickCell: (model) => _clickCell(model['name']),
                   onClickHeadPortrait: (model) => _jumpInfo(),
-                  onClickComment: (model) => _clickCell(context, '评论'),
+                  onClickComment: (model) => _clickCell('评论'),
                 );
               },
             ),
           ),
         ),
-        Positioned(top: 0, left: 0, right: 0, height: _imgChangeHeight, child: _header(context)),
+        Positioned(top: 0, left: 0, right: 0, height: _imgChangeHeight, child: _header()),
         Positioned(
           top: 0,
           left: 0,
           right: 0,
           child: BaseAppBar(
             '朋友圈',
-            bgColor: _navBgColor,
+            bgColor: navBgColor,
             brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/wechat/discover/ic_xiangji.png',
             rightItemCallBack: () {
@@ -156,12 +158,12 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   }
 
   // _header
-  Widget _header(context) {
+  Widget _header() {
     return Stack(
       fit: StackFit.expand,
       children: [
         Container(
-          margin: EdgeInsets.only(bottom: 20),
+          margin: const EdgeInsets.only(bottom: 20),
           // child: Image.network(
           //   'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
           //   fit: BoxFit.cover,
@@ -178,24 +180,20 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
           child: Row(
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 10),
-                child: Text(
+                margin: const EdgeInsets.only(bottom: 10),
+                child: const Text(
                   '小于',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               InkWell(
                 child: Container(
                   height: 75,
                   width: 75,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       fit: BoxFit.fitHeight,
                       image: AssetImage('assets/images/lufei.png'),
                     ),
@@ -211,7 +209,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   }
 
   // 点击cell
-  _clickCell(context, text) {
+  _clickCell(text) {
     JhToast.showText(context, msg: '点击 $text');
   }
 

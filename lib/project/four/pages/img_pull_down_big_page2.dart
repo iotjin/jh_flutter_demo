@@ -4,20 +4,23 @@
 ///  description:
 
 // ignore_for_file: must_be_immutable
+// ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
 import '/base_appbar.dart';
 
 class ImgPullDownBigPage2 extends StatefulWidget {
+  const ImgPullDownBigPage2({Key? key}) : super(key: key);
+
   @override
-  _ImgPullDownBigPage2State createState() => _ImgPullDownBigPage2State();
+  State<ImgPullDownBigPage2> createState() => _ImgPullDownBigPage2State();
 }
 
 class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2> with SingleTickerProviderStateMixin {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
-  double _imgNormalHeight = 200;
+  final double _imgNormalHeight = 200;
   double _imgExtraHeight = 0;
   double _imgChangeHeight = 0;
   double _scrollMinOffSet = 0;
@@ -32,16 +35,16 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2> with SingleTi
     _imgChangeHeight = _imgNormalHeight + _imgExtraHeight;
     _scrollMinOffSet = _imgNormalHeight - _navH;
     _addListener();
-    appBar = AppBarWidget();
+    appBar = const AppBarWidget();
   }
 
   void _addListener() {
     _scrollController.addListener(() {
-      double _y = _scrollController.offset;
-//      print('滑动距离: $_y');
+      double y = _scrollController.offset;
+//      print('滑动距离: $y');
 
-      if (_y < _scrollMinOffSet) {
-        _imgExtraHeight = -_y;
+      if (y < _scrollMinOffSet) {
+        _imgExtraHeight = -y;
 //        print(_topH);
         setState(() {
           _imgChangeHeight = _imgNormalHeight + _imgExtraHeight;
@@ -52,11 +55,11 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2> with SingleTi
         });
       }
 //      // 小于0 ，下拉放大
-//      if (_y < 0) {
+//      if (y < 0) {
 //      } else {}
 
       // appbar 透明度
-      double appBarOpacity = _y / _navH;
+      double appBarOpacity = y / _navH;
       if (appBarOpacity < 0) {
         appBarOpacity = 0.0;
       } else if (appBarOpacity > 1) {
@@ -79,73 +82,78 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2> with SingleTi
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _body());
+    return Scaffold(
+      body: _body(),
+    );
   }
 
   Widget _body() {
-    return Stack(children: <Widget>[
-      Container(
-        color: Colors.yellow,
-        child: MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
-          child: ListView.builder(
+    return Stack(
+      children: <Widget>[
+        Container(
+          color: Colors.yellow,
+          child: MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: 100 + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
-                  return Container(
-                    width: double.infinity,
-                    height: _imgNormalHeight,
-                  );
+                  return SizedBox(width: double.infinity, height: _imgNormalHeight);
                 }
                 return ListTile(title: Text('$index'));
-              }),
-        ),
-      ),
-      Positioned(
-        top: 0,
-        width: JhScreenUtils.screenWidth,
-        height: _imgChangeHeight,
-        child: Container(
-            color: Colors.white,
-            child: Image.network(
-              'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
-              fit: BoxFit.cover,
-            )),
-      ),
-      Positioned(
-        top: JhScreenUtils.topSafeHeight + 18,
-        left: 18,
-        child: InkWell(
-          onTap: () => Navigator.pop(context),
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
+              },
+            ),
           ),
         ),
-      ),
-      appBar!,
-    ]);
+        Positioned(
+          top: 0,
+          width: JhScreenUtils.screenWidth,
+          height: _imgChangeHeight,
+          child: Container(
+            color: Colors.white,
+            child: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover),
+          ),
+        ),
+        Positioned(
+          top: JhScreenUtils.topSafeHeight + 18,
+          left: 18,
+          child: InkWell(
+            onTap: () => Navigator.pop(context),
+            child: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          ),
+        ),
+        appBar!,
+      ],
+    );
   }
 }
 
 // AppBarWidget
+
 class AppBarWidget extends StatefulWidget {
-  Function? updateAppBarOpacity;
+  const AppBarWidget({
+    Key? key,
+    this.updateAppBarOpacity,
+  }) : super(key: key);
+
+  final Function? updateAppBarOpacity;
 
   @override
-  State<StatefulWidget> createState() => AppBarState();
+  State<AppBarWidget> createState() => _AppBarWidgetState();
 }
 
-class AppBarState extends State<AppBarWidget> {
+class _AppBarWidgetState extends State<AppBarWidget> {
+  Function? updateAppBarOpacity2;
   double opacity = 0;
 
   @override
   void initState() {
     print('AppBarState init');
-    widget.updateAppBarOpacity = (double op) {
+    updateAppBarOpacity2 = widget.updateAppBarOpacity;
+    updateAppBarOpacity2 = (double op) {
       setState(() {
         opacity = op;
       });
@@ -160,9 +168,9 @@ class AppBarState extends State<AppBarWidget> {
 
     return Opacity(
       opacity: opacity,
-      child: Container(
+      child: SizedBox(
         height: appBarHeight,
-        child: BaseAppBar('图片下拉放大2', bgColor: Colors.deepOrange),
+        child: const BaseAppBar('图片下拉放大2', bgColor: Colors.deepOrange),
       ),
     );
   }

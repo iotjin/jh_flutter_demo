@@ -14,21 +14,26 @@ var _data = [
 ];
 
 class TagCloudPage extends StatefulWidget {
+  const TagCloudPage({Key? key}) : super(key: key);
+
   @override
-  _TagCloudPageState createState() => _TagCloudPageState();
+  State<TagCloudPage> createState() => _TagCloudPageState();
 }
 
 class _TagCloudPageState extends State<TagCloudPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('TagCloudWidget'),
+      appBar: const BaseAppBar('TagCloudWidget'),
       // backgroundColor: Color(0xFFF8F8F8),
       body: Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: LayoutBuilder(builder: (context, constraints) {
+        padding: const EdgeInsets.all(40.0),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
             return TagCloudWidget(constraints.maxWidth - 40 * 2, _data, rpm: 4);
-          })),
+          },
+        ),
+      ),
     );
   }
 }

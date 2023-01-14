@@ -29,13 +29,13 @@ class JhGradientBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Container(
-        width: this.width,
-        height: this.height,
-        child: Center(child: Text(this.text, style: TextStyle(fontSize: _fontSize, color: _textColor))),
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(_borderRadius),
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
@@ -44,8 +44,8 @@ class JhGradientBtn extends StatelessWidget {
             ],
           ),
         ),
+        child: Center(child: Text(text, style: const TextStyle(fontSize: _fontSize, color: _textColor))),
       ),
-      onTap: this.onTap,
     );
   }
 }

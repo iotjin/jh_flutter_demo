@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -10,14 +12,16 @@ import '/jh_common/widgets/click_item.dart';
 import '/base_appbar.dart';
 
 class AboutPage extends StatefulWidget {
+  const AboutPage({Key? key}) : super(key: key);
+
   @override
-  _AboutPageState createState() => _AboutPageState();
+  State<AboutPage> createState() => _AboutPageState();
 }
 
 class _AboutPageState extends State<AboutPage> {
-  var _styles = [FlutterLogoStyle.stacked, FlutterLogoStyle.markOnly, FlutterLogoStyle.horizontal];
+  final _styles = [FlutterLogoStyle.stacked, FlutterLogoStyle.markOnly, FlutterLogoStyle.horizontal];
 
-  // var _colors = [
+  // final _colors = [
   //   Colors.red,
   //   Colors.orange,
   //   Colors.yellow,
@@ -27,7 +31,7 @@ class _AboutPageState extends State<AboutPage> {
   //   Colors.amber
   // ];
 
-  var _curves = [
+  final _curves = [
     Curves.ease,
     Curves.easeIn,
     Curves.easeInOutCubic,
@@ -60,7 +64,7 @@ class _AboutPageState extends State<AboutPage> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 2s定时器
-      _countdownTimer = Timer.periodic(Duration(seconds: 2), (timer) {
+      _countdownTimer = Timer.periodic(const Duration(seconds: 2), (timer) {
         // https://www.jianshu.com/p/e4106b829bff
         if (!mounted) {
           return;
@@ -116,37 +120,44 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('关于我们'),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 50,
+      appBar: const BaseAppBar('关于我们'),
+      body: _body(),
+    );
+  }
+
+  _body() {
+    return Column(
+      children: <Widget>[
+        const SizedBox(height: 50),
+        FlutterLogo(
+          size: 100.0,
+          textColor: _randomColor(),
+          style: _styles[Random.secure().nextInt(3)],
+          curve: _curves[Random.secure().nextInt(12)],
+        ),
+        const SizedBox(height: 20),
+        Text('Version：$_currentVersion'),
+        const SizedBox(height: 50),
+        ClickItem(
+          title: 'Github',
+          content: 'Go Star',
+          onTap: () => JhNavRouterUtils.jumpWebViewPage(
+            context,
+            'jh_flutter_demo',
+            'https://github.com/iotjin/jh_flutter_demo',
           ),
-          FlutterLogo(
-            size: 100.0,
-            textColor: _randomColor(),
-            style: _styles[Random.secure().nextInt(3)],
-            curve: _curves[Random.secure().nextInt(12)],
+        ),
+        ClickItem(
+          title: 'author',
+          content: 'iotjin',
+          onTap: () => JhNavRouterUtils.jumpWebViewPage(
+            context,
+            '作者博客',
+            'https://blog.csdn.net/iotjin',
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Text('Version：$_currentVersion'),
-          SizedBox(
-            height: 50,
-          ),
-          ClickItem(
-              title: 'Github',
-              content: 'Go Star',
-              onTap: () => JhNavRouterUtils.jumpWebViewPage(
-                  context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo')),
-          ClickItem(
-              title: 'author',
-              content: 'iotjin',
-              onTap: () => JhNavRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')),
-          ClickItem(title: '检查更新', onTap: () => JhCommonUtils.jumpAppStore)
-        ],
-      ),
+        ),
+        ClickItem(title: '检查更新', onTap: () => JhCommonUtils.jumpAppStore)
+      ],
     );
   }
 }

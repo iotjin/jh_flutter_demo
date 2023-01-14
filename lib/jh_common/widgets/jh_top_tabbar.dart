@@ -77,7 +77,7 @@ class JhTopTabBar extends StatefulWidget {
   final Function? switchPageCallBack; // 页面切换的回调，返回index
 
   @override
-  _JhTopTabBarState createState() => _JhTopTabBarState();
+  State<JhTopTabBar> createState() => _JhTopTabBarState();
 }
 
 class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStateMixin {
@@ -110,11 +110,11 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
-    var bgColor = KColors.dynamicColor(context, Color(0xFFF2F2F2), KColors.kTabBarBgDarkColor); // 242
+    var bgColor = KColors.dynamicColor(context, const Color(0xFFF2F2F2), KColors.kTabBarBgDarkColor); // 242
     var indicatorColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
     var labelColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
     var unselectedLabelColor = KColors.dynamicColor(context, KColors.kBlackTextColor, KColors.kBlackTextDarkColor);
-    var centerLineColor = Color(0xFFC8C8C8); // 200
+    var centerLineColor = const Color(0xFFC8C8C8); // 200
 
     // 设置的颜色优先级高于暗黑模式
     bgColor = widget.bgColor ?? bgColor;
@@ -156,15 +156,16 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
                 ),
               ),
               Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, (widget.height - 20) / 2, 0, (widget.height - 20) / 2),
-                    child: Container(
-                      color: centerLineColor,
-                      height: widget.height - 20,
-                      width: widget.showCenterLine == true ? 1 : 0,
-                    ),
-                  ))
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, (widget.height - 20) / 2, 0, (widget.height - 20) / 2),
+                  child: Container(
+                    color: centerLineColor,
+                    height: widget.height - 20,
+                    width: widget.showCenterLine == true ? 1 : 0,
+                  ),
+                ),
+              )
             ],
           ),
         ),

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/project/routes/jh_nav_utils.dart';
@@ -12,7 +14,7 @@ class RouteTestPage1 extends StatefulWidget {
 }
 
 class _RouteTestPage1State extends State<RouteTestPage1> with RouteAware {
-  var _value;
+  dynamic _value;
 
   @override
   void initState() {
@@ -84,7 +86,7 @@ class _RouteTestPage1State extends State<RouteTestPage1> with RouteAware {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('监听页面出现与消失'),
+      appBar: const BaseAppBar('监听页面出现与消失'),
       body: _body(context),
     );
   }
@@ -102,18 +104,18 @@ class _RouteTestPage1State extends State<RouteTestPage1> with RouteAware {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(_value),
-            SizedBox(height: 20),
-            Text('请前往控制台查看全部输出'),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+            const Text('请前往控制台查看全部输出'),
+            const SizedBox(height: 20),
             ElevatedButton(
-              child: Text('带参数跳转带回传 - pushNamedResult'),
+              child: const Text('带参数跳转带回传 - pushNamedResult'),
               onPressed: () {
                 params['type'] = '1';
 
                 JhNavUtils.pushNamedResult(context, 'PassValuePage2', params, (returnData) {
-                  print('回传的值====' + returnData.toString());
+                  print('回传的值====$returnData');
                   if (returnData['isRefresh'] == true) {
                     _requestData();
                   }
@@ -128,7 +130,7 @@ class _RouteTestPage1State extends State<RouteTestPage1> with RouteAware {
 
   void _requestData() {
     JhProgressHUD.showLoadingText();
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       JhProgressHUD.hide();
     });
   }

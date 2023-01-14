@@ -3,40 +3,40 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import '/base_appbar.dart';
 
 class ChartPage1 extends StatefulWidget {
+  const ChartPage1({Key? key}) : super(key: key);
+
   @override
-  _ChartPage1State createState() => _ChartPage1State();
+  State<ChartPage1> createState() => _ChartPage1State();
 }
 
 class _ChartPage1State extends State<ChartPage1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('chart'),
-      body: Container(
-        child: ListView(
-          children: <Widget>[
-            Container(
-              height: 300,
-              child: getBar(),
-            ),
-            Container(
-              height: 300,
-              child: getLine(),
-            )
-          ],
-        ),
+      appBar: const BaseAppBar('chart'),
+      body: ListView(
+        children: <Widget>[
+          SizedBox(
+            height: 300,
+            child: getBar(),
+          ),
+          SizedBox(
+            height: 300,
+            child: getLine(),
+          )
+        ],
       ),
     );
   }
 
   Widget getLine() {
     List<Linesales> dataLine = [
-      new Linesales(new DateTime(2019, 7, 2), 33),
-      new Linesales(new DateTime(2019, 7, 3), 55),
-      new Linesales(new DateTime(2019, 7, 4), 22),
-      new Linesales(new DateTime(2019, 7, 5), 88),
-      new Linesales(new DateTime(2019, 7, 6), 123),
-      new Linesales(new DateTime(2019, 7, 7), 75),
+      Linesales(DateTime(2019, 7, 2), 33),
+      Linesales(DateTime(2019, 7, 3), 55),
+      Linesales(DateTime(2019, 7, 4), 22),
+      Linesales(DateTime(2019, 7, 5), 88),
+      Linesales(DateTime(2019, 7, 6), 123),
+      Linesales(DateTime(2019, 7, 7), 75),
     ];
 
     var seriesLine = [
@@ -55,12 +55,12 @@ class _ChartPage1State extends State<ChartPage1> {
 
   Widget getBar() {
     List<Barsales> dataBar = [
-      new Barsales('1', 20),
-      new Barsales('2', 50),
-      new Barsales('3', 20),
-      new Barsales('4', 80),
-      new Barsales('5', 120),
-      new Barsales('6', 30),
+      Barsales('1', 20),
+      Barsales('2', 50),
+      Barsales('3', 20),
+      Barsales('4', 80),
+      Barsales('5', 120),
+      Barsales('6', 30),
     ];
 
     var seriesBar = [

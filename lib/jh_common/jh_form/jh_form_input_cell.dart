@@ -1,7 +1,9 @@
-///  jh_form_Input_cell.dart
+///  jh_form_input_cell.dart
 ///
 ///  Created by iotjin on 2020/04/06.
 ///  description:  输入行样式，左侧title,右侧输入框，可加自定义widget
+
+// ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -82,14 +84,18 @@ class JhFormInputCell extends StatefulWidget {
   final Color? bgColor; // 背景颜色，默认白色
 
   @override
-  _JhFormInputCellState createState() => _JhFormInputCellState();
+  State<JhFormInputCell> createState() => _JhFormInputCellState();
 }
 
 class _JhFormInputCellState extends State<JhFormInputCell> {
   @override
   Widget build(BuildContext context) {
-    double _starW = widget.showRedStar == false && widget.title.isEmpty ? 0 : 8;
-    double _topSpace = 0; // title 顶对齐 间距
+    return _body();
+  }
+
+  _body() {
+    double starW = widget.showRedStar == false && widget.title.isEmpty ? 0 : 8;
+    double topSpace = 0; // title 顶对齐 间距
 
     // 默认颜色
     var bgColor = KColors.dynamicColor(context, KColors.kBgColor, KColors.kBgDarkColor);
@@ -108,60 +114,64 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
     hintTextStyle = widget.hintTextStyle ?? hintTextStyle;
 
     return Container(
-        color: bgColor,
-        child: Container(
-            constraints: BoxConstraints(
-                minWidth: double.infinity, // 宽度尽可能大
-                minHeight: _cellHeight // 最小高度
-                ),
-            padding: EdgeInsets.fromLTRB(5, 0, 10, 0),
-//        decoration: BoxDecoration(
-//            border: widget.hiddenLine== true ?null: Border(bottom: Divider.createBorderSide(context, width: 0.8),)
-//        ),
-            decoration: UnderlineTabIndicator(
-                borderSide:
-                    BorderSide(width: _lineHeight, color: widget.hiddenLine == true ? Colors.transparent : lineColor),
-                insets: EdgeInsets.fromLTRB(_starW, 0, 0, 0)),
-            child: Row(
-                crossAxisAlignment: widget.topAlign == true ? CrossAxisAlignment.start : CrossAxisAlignment.center,
-                children: <Widget>[
-                  widget.leftWidget ?? Container(),
-                  Container(
-                    width: _starW,
-                    padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? _topSpace : 0, 0, 0),
-                    child: Text(widget.showRedStar ? '*' : ' ', style: TextStyle(fontSize: 18.0, color: Colors.red)),
-                  ),
-                  Offstage(
-                    offstage: widget.title.isEmpty ? true : false,
-                    child: Container(
-                        width: widget.space - _starW,
-                        padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? _topSpace : 0, 0, 0),
-                        child: Text(widget.title, style: titleStyle)),
-                  ),
-                  Expanded(
-                    child: JhTextField(
-                      text: widget.text,
-                      keyboardType: widget.keyboardType,
-                      textInputAction: widget.textInputAction,
-                      hintText: widget.hintText,
-                      labelText: widget.labelText,
-                      errorText: widget.errorText,
-                      focusNode: widget.focusNode,
-                      maxLines: widget.maxLines,
-                      maxLength: widget.maxLength,
-                      showMaxLength: widget.showMaxLength,
-                      enabled: widget.enabled,
-                      inputFormatters: widget.inputFormatters,
-                      inputCallBack: widget.inputCallBack,
-                      inputCompletionCallBack: widget.inputCompletionCallBack,
-                      textStyle: textStyle,
-                      hintTextStyle: hintTextStyle,
-                      labelTextStyle: widget.labelTextStyle,
-                      textAlign: widget.textAlign,
-                      border: widget.border,
-                    ),
-                  ),
-                  widget.rightWidget ?? Container(),
-                ])));
+      color: bgColor,
+      child: Container(
+        constraints: const BoxConstraints(
+          minWidth: double.infinity, // 宽度尽可能大
+          minHeight: _cellHeight, // 最小高度
+        ),
+        padding: const EdgeInsets.fromLTRB(5, 0, 10, 0),
+        // decoration: BoxDecoration(
+        //   border: widget.hiddenLine == true ? null : Border(bottom: Divider.createBorderSide(context, width: 0.8)),
+        // ),
+        decoration: UnderlineTabIndicator(
+          borderSide: BorderSide(width: _lineHeight, color: widget.hiddenLine == true ? Colors.transparent : lineColor),
+          insets: EdgeInsets.fromLTRB(starW, 0, 0, 0),
+        ),
+        child: Row(
+          crossAxisAlignment: widget.topAlign == true ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+          children: <Widget>[
+            widget.leftWidget ?? Container(),
+            Container(
+              width: starW,
+              padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? topSpace : 0, 0, 0),
+              child: Text(widget.showRedStar ? '*' : ' ', style: const TextStyle(fontSize: 18.0, color: Colors.red)),
+            ),
+            Offstage(
+              offstage: widget.title.isEmpty ? true : false,
+              child: Container(
+                width: widget.space - starW,
+                padding: EdgeInsets.fromLTRB(0, widget.topAlign == true ? topSpace : 0, 0, 0),
+                child: Text(widget.title, style: titleStyle),
+              ),
+            ),
+            Expanded(
+              child: JhTextField(
+                text: widget.text,
+                keyboardType: widget.keyboardType,
+                textInputAction: widget.textInputAction,
+                hintText: widget.hintText,
+                labelText: widget.labelText,
+                errorText: widget.errorText,
+                focusNode: widget.focusNode,
+                maxLines: widget.maxLines,
+                maxLength: widget.maxLength,
+                showMaxLength: widget.showMaxLength,
+                enabled: widget.enabled,
+                inputFormatters: widget.inputFormatters,
+                inputCallBack: widget.inputCallBack,
+                inputCompletionCallBack: widget.inputCompletionCallBack,
+                textStyle: textStyle,
+                hintTextStyle: hintTextStyle,
+                labelTextStyle: widget.labelTextStyle,
+                textAlign: widget.textAlign,
+                border: widget.border,
+              ),
+            ),
+            widget.rightWidget ?? Container(),
+          ],
+        ),
+      ),
+    );
   }
 }

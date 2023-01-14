@@ -13,27 +13,29 @@ class Point {
   Point(this.x, this.y, this.z, {this.color = Colors.white});
 }
 
-class DBallPage extends StatefulWidget {
+class Ball3DPage extends StatefulWidget {
+  const Ball3DPage({Key? key}) : super(key: key);
+
   @override
-  _DBallPageState createState() => _DBallPageState();
+  State<Ball3DPage> createState() => _DBallPageState();
 }
 
-class _DBallPageState extends State<DBallPage> {
+class _DBallPageState extends State<Ball3DPage> {
   double rpm = 3;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('3D球'),
+      appBar: const BaseAppBar('3D球'),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: LayoutBuilder(builder: (context, constraints) {
-              return TagCloud(constraints.maxWidth, constraints.maxHeight, rpm: this.rpm);
+              return TagCloud(constraints.maxWidth, constraints.maxHeight, rpm: rpm);
             }),
           ),
-          Text(
+          const Text(
             '滑动球体可以改变转动方向\n滑动条可以改变转动速度',
             style: TextStyle(color: Colors.white, fontSize: 24),
             textAlign: TextAlign.center,
@@ -41,12 +43,12 @@ class _DBallPageState extends State<DBallPage> {
           Container(
             color: Colors.white,
             child: Slider(
-                value: this.rpm,
+                value: rpm,
                 min: 0,
                 max: 10,
                 onChanged: (value) {
                   setState(() {
-                    this.rpm = value;
+                    rpm = value;
                   });
                 }),
           ),
@@ -57,12 +59,16 @@ class _DBallPageState extends State<DBallPage> {
 }
 
 class TagCloud extends StatefulWidget {
+  const TagCloud(
+    this.width,
+    this.height, {
+    Key? key,
+    this.rpm = 3,
+  }) : super(key: key);
+
   final double width, height, rpm; //rpm 每分钟圈数
-
-  TagCloud(this.width, this.height, {this.rpm = 3});
-
   @override
-  _TagCloudState createState() => _TagCloudState();
+  State<TagCloud> createState() => _TagCloudState();
 }
 
 class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin {
@@ -80,7 +86,7 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
     super.initState();
     radius = widget.width / 2;
     points = _generateInitialPoints();
-    animationController = new AnimationController(
+    animationController = AnimationController(
       vsync: this,
       //按rpm，转/每分来计算旋转速度
       duration: Duration(seconds: 60 ~/ widget.rpm),
@@ -108,9 +114,9 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
   }
 
   _stopAnimation() {
-    if (animationController!.isAnimating)
+    if (animationController!.isAnimating) {
       animationController!.stop();
-    else {
+    } else {
       animationController!.repeat();
     }
   }
@@ -128,7 +134,7 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
 
       double z = sqrt(1 - x * x - y * y) * (Random().nextBool() == true ? 1 : -1);
 
-      points.add(new Point(x * radius, y * radius, z * radius,
+      points.add(Point(x * radius, y * radius, z * radius,
           color: Color.fromRGBO(
             (x.abs() * 256).ceil(),
             (y.abs() * 256).ceil(),
@@ -156,12 +162,12 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
         bc = b * c,
         sinA = sin(angle),
         cosA = cos(angle);
-    points.forEach((point) {
+    for (var point in points) {
       var x = point.x, y = point.y, z = point.z;
       point.x = (a2 + (1 - a2) * cosA) * x + (ab * (1 - cosA) - c * sinA) * y + (ac * (1 - cosA) + b * sinA) * z;
       point.y = (ab * (1 - cosA) + c * sinA) * x + (b2 + (1 - b2) * cosA) * y + (bc * (1 - cosA) - a * sinA) * z;
       point.z = (ac * (1 - cosA) - b * sinA) * x + (bc * (1 - cosA) + a * sinA) * y + (c2 + (1 - c2) * cosA) * z;
-    });
+    }
     return points;
   }
 
@@ -226,12 +232,12 @@ class TagsPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     canvas.translate(size.width / 2, size.width / 2);
-    points.forEach((point) {
+    for (var point in points) {
       var opacity = _getOpacity(point.z / size.width * 2);
       paintStyle.color = point.color.withOpacity(opacity);
       var r = _getScale(point.z / size.width * 2) * radius;
       canvas.drawCircle(Offset(point.x, point.y), r, paintStyle);
-    });
+    }
   }
 
   @override

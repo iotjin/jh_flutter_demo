@@ -3,7 +3,7 @@
 ///  Created by iotjin on 2020/07/06.
 ///  description:  颜色 配置
 
-// ignore_for_file: unused_import
+// ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -127,6 +127,8 @@ class KColors {
   // alert背景颜色
   static const Color kAlertBgColor = Colors.white;
   static const Color kAlertBgDarkColor = Color(0xFF2C2C2C); // (44, 44, 44)
+  static const Color kAlertInputBgColor = Colors.white;
+  static const Color kAlertInputBgDarkColor = Color(0xFF1E1E1E); // (30, 30, 30)
 
   // picker、bottomSheet颜色
   static const Color kPickerBgColor = Colors.white;

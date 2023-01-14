@@ -3,11 +3,15 @@
 ///  Created by iotjin on 2020/09/04.
 ///  description: 图片下拉放大   https://zhuanlan.zhihu.com/p/85549830
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 
 class ImgPullDownBigPage extends StatefulWidget {
+  const ImgPullDownBigPage({Key? key}) : super(key: key);
+
   @override
-  _ImgPullDownBigPageState createState() => _ImgPullDownBigPageState();
+  State<ImgPullDownBigPage> createState() => _ImgPullDownBigPageState();
 }
 
 class _ImgPullDownBigPageState extends State<ImgPullDownBigPage> with TickerProviderStateMixin {
@@ -24,7 +28,7 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage> with TickerProv
     super.initState();
 
     prevDy = 0;
-    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
     anim = Tween(begin: 0.0, end: 0.0).animate(animationController!);
   }
 
@@ -56,59 +60,54 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage> with TickerProv
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8F8F8), // 248
+      backgroundColor: const Color(0xFFF8F8F8), // 248
       body: _body(),
     );
   }
 
   Widget _body() {
     return Listener(
-        onPointerMove: (result) {
-          if (imgHeight + imgExtraHeight > imgMaxHeight) {
-            return;
-          }
-          print('object: $result');
+      onPointerMove: (result) {
+        if (imgHeight + imgExtraHeight > imgMaxHeight) {
+          return;
+        }
+        print('object: $result');
 //          print('result.position.dy: ${ result.position.dy }');
-          updatePicHeight(result.position.dy);
-        },
-        onPointerUp: (_) {
-          runAnimate();
-          animationController!.forward(from: 0);
-        },
-        child: CustomScrollView(
-          physics: ClampingScrollPhysics(),
+        updatePicHeight(result.position.dy);
+      },
+      onPointerUp: (_) {
+        runAnimate();
+        animationController!.forward(from: 0);
+      },
+      child: CustomScrollView(
+        physics: const ClampingScrollPhysics(),
 //          controller: _scrollController,
-          slivers: <Widget>[
-            SliverAppBar(
-              pinned: true,
-              elevation: 0,
-              expandedHeight: imgHeight + imgExtraHeight,
-              flexibleSpace: new FlexibleSpaceBar(
-                  title: Text(
-                    '图片下拉放大',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  background: Image.network(
-                    'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
-                    fit: BoxFit.cover,
-                  )),
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            elevation: 0,
+            expandedHeight: imgHeight + imgExtraHeight,
+            flexibleSpace: FlexibleSpaceBar(
+              title: const Text('图片下拉放大', style: TextStyle(color: Colors.white, fontSize: 18)),
+              background: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover),
             ),
-            SliverList(delegate: SliverChildBuilderDelegate(
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
               (context, index) {
                 return _cell(context, index);
               },
-            ))
-          ],
-        ));
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget _cell(context, index) {
     return Container(
-      child: Text(
-        'This is item $index',
-        style: TextStyle(fontSize: 20),
-      ),
       color: Colors.redAccent,
+      child: Text('This is item $index', style: const TextStyle(fontSize: 20)),
     );
   }
 }

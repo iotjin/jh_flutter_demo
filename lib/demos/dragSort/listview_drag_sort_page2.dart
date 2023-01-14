@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:reorderables/reorderables.dart';
 import '/jh_common/utils/jh_image_utils.dart';
@@ -31,20 +33,20 @@ class _ListviewDragSortPage2State extends State<ListviewDragSortPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('ListviewDragSortPage2'),
-      body: _body(context),
+      appBar: const BaseAppBar('ListviewDragSortPage2'),
+      body: _body(),
       // backgroundColor: KColors.kBgColor,
     );
   }
 
-  Widget _body(context) {
+  Widget _body() {
     return ReorderableTable(
       header: _header(),
-      children: _mList.map((e) => _cell(e)).toList(),
       onReorder: _onReorder,
       onNoReorder: (int index) {
         debugPrint('${DateTime.now().toString().substring(5, 22)} reorder cancelled. index:$index');
       },
+      children: _mList.map((e) => _cell(e)).toList(),
     );
   }
 
@@ -65,8 +67,8 @@ class _ListviewDragSortPage2State extends State<ListviewDragSortPage2> {
         Container(
           height: 50,
           width: JhScreenUtils.screenWidth - 20,
-          padding: EdgeInsets.all(5),
-          margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+          padding: const EdgeInsets.all(5),
+          margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             // color: Colors.white,
@@ -74,8 +76,8 @@ class _ListviewDragSortPage2State extends State<ListviewDragSortPage2> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('name:  ' + item['name']),
-              Icon(Icons.menu),
+              Text('name:  ${item['name']}'),
+              const Icon(Icons.menu),
             ],
           ),
         )
@@ -93,8 +95,8 @@ class _ListviewDragSortPage2State extends State<ListviewDragSortPage2> {
         });
       },
       child: Container(
-        margin: EdgeInsets.only(left: 10, right: 10, top: 16, bottom: 8),
-        padding: EdgeInsets.all(5),
+        margin: const EdgeInsets.only(left: 10, right: 10, top: 16, bottom: 8),
+        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           // color: Colors.white,
@@ -103,20 +105,20 @@ class _ListviewDragSortPage2State extends State<ListviewDragSortPage2> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text('Click to sort'),
+            const Text('Click to sort'),
             // Icon(Icons.sort),
             !_isSort
-                ? JhLoadAssetImage('ic_sort', width: 22, height: 22, color: Colors.black)
+                ? const JhLoadAssetImage('ic_sort', width: 22, height: 22, color: Colors.black)
                 : Row(
                     children: [
                       InkWell(
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                           decoration: BoxDecoration(
                             color: Colors.blue,
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          child: Text('Cancel', style: KStyles.textWhite14),
+                          child: const Text('Cancel', style: KStyles.textWhite14),
                         ),
                         onTap: () {
                           setState(() {
@@ -127,15 +129,15 @@ class _ListviewDragSortPage2State extends State<ListviewDragSortPage2> {
                           });
                         },
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       InkWell(
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                           decoration: BoxDecoration(
                             color: Colors.blue,
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          child: Text('Complete', style: KStyles.textWhite14),
+                          child: const Text('Complete', style: KStyles.textWhite14),
                         ),
                         onTap: () => _onSubmit(),
                       ),
@@ -172,10 +174,10 @@ class _ListviewDragSortPage2State extends State<ListviewDragSortPage2> {
     print('params: $params');
 
     JhProgressHUD.showLoadingText('Submitting...');
-    Future.delayed(Duration(milliseconds: 1500), () {
+    Future.delayed(const Duration(milliseconds: 1500), () {
       JhProgressHUD.hide();
       JhProgressHUD.showSuccess('Submitted successfully');
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(const Duration(seconds: 1), () {
         JhNavUtils.goBack(context);
       });
     });

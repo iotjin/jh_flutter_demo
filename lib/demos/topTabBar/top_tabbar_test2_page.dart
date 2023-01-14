@@ -1,16 +1,20 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_top_tabbar.dart';
-import '/res/listData.dart';
+import '/res/list_data.dart';
 
 class TopTabBarTest2Page extends StatefulWidget {
+  const TopTabBarTest2Page({Key? key}) : super(key: key);
+
   @override
-  _TopTabBarTest2PageState createState() => _TopTabBarTest2PageState();
+  State<TopTabBarTest2Page> createState() => _TopTabBarTest2PageState();
 }
 
 class _TopTabBarTest2PageState extends State<TopTabBarTest2Page> {
   List<JhTopTabBarModel> model = [
-    JhTopTabBarModel(title: '标题一', widget: HomeContent()),
-    JhTopTabBarModel(title: '标题二', widget: HomeContent()),
+    const JhTopTabBarModel(title: '标题一', widget: HomeContent()),
+    const JhTopTabBarModel(title: '标题二', widget: HomeContent()),
   ];
 
   @override
@@ -31,28 +35,31 @@ class _TopTabBarTest2PageState extends State<TopTabBarTest2Page> {
 }
 
 class HomeContent extends StatelessWidget {
+  const HomeContent({super.key});
+
   Widget _getListData(context, index) {
     return ListTile(
       title: Text(listData[index]['title']),
       leading: Image.network(listData[index]['imageUrl']),
       subtitle: Text(listData[index]['content']),
       onTap: () {
-        print('点击的index' + index.toString());
+        print('点击的index$index');
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemCount: listData.length, itemBuilder: this._getListData);
+    return ListView.builder(itemCount: listData.length, itemBuilder: _getListData);
   }
 }
 
 Widget contentBody = Container(
-    width: 200,
-    height: 200,
-    color: Colors.red,
-    child: ElevatedButton(
-      child: Text('normal'),
-      onPressed: () {},
-    ));
+  width: 200,
+  height: 200,
+  color: Colors.red,
+  child: ElevatedButton(
+    child: const Text('normal'),
+    onPressed: () {},
+  ),
+);

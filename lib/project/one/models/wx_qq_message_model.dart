@@ -18,9 +18,9 @@ class WxQQMessageModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['subtitle'] = subtitle;
     return data;
   }
 }

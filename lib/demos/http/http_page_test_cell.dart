@@ -30,12 +30,12 @@ class HttPageTestCell extends StatelessWidget {
     return GestureDetector(
       onTap: () => onClickCell?.call(model.toJson()),
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
         decoration: BoxDecoration(
           color: context.jhIsDark ? null : Colors.white,
           borderRadius: BorderRadius.circular(3),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12, // 阴影颜色
               spreadRadius: 1.5, // 阴影浓度
@@ -51,11 +51,11 @@ class HttPageTestCell extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Expanded(child: Text('地点：' + model.place.jhNullSafe, style: TextStyle(fontSize: 18.0))),
+                Expanded(child: Text('地点：${model.place.jhNullSafe}', style: const TextStyle(fontSize: 18.0))),
                 Row(
                   children: <Widget>[
                     Text(model.state.jhNullSafe, style: TextStyle(fontSize: 18.0, color: textColor)),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Image.network(model.imageUrl!, width: 30, height: 30),
                   ],
                 )
@@ -66,9 +66,9 @@ class HttPageTestCell extends StatelessWidget {
             Offstage(
               offstage: isHidden,
               child: Text(
-                '联系人电话：' + model.phone.jhNullSafe,
+                '联系人电话：${model.phone.jhNullSafe}',
                 textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 18.0),
+                style: const TextStyle(fontSize: 18.0),
               ),
             ),
             Offstage(offstage: isHidden, child: SizedBox(height: spaceHeight)),
@@ -76,8 +76,8 @@ class HttPageTestCell extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('问题描述：', style: TextStyle(fontSize: 18.0)),
-                Expanded(child: Text(model.content.jhNullSafe, style: TextStyle(fontSize: 18.0))),
+                const Text('问题描述：', style: TextStyle(fontSize: 18.0)),
+                Expanded(child: Text(model.content.jhNullSafe, style: const TextStyle(fontSize: 18.0))),
               ],
             ),
             SizedBox(height: spaceHeight),

@@ -1,27 +1,31 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety_flutter3/flutter_swiper_null_safety_flutter3.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
 import '/project/login/pages/login_page.dart';
 
 class NewFeaturePage extends StatefulWidget {
+  const NewFeaturePage({Key? key}) : super(key: key);
+
   @override
-  _NewFeaturePageState createState() => _NewFeaturePageState();
+  State<NewFeaturePage> createState() => _NewFeaturePageState();
 }
 
 class _NewFeaturePageState extends State<NewFeaturePage> {
-//  List imgList = [
-//    'https://gitee.com/iotjh/Picture/raw/master/cat.png',
-//    'https://gitee.com/iotjh/Picture/raw/master/lufei2.png',
-//    'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
-//  ];
-  List _imgList = [
+  // List imgList = [
+  //   'https://gitee.com/iotjh/Picture/raw/master/cat.png',
+  //   'https://gitee.com/iotjh/Picture/raw/master/lufei2.png',
+  //   'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
+  // ];
+  final List _imgList = [
     'assets/images/newFeature/newFeature_0.jpeg',
     'assets/images/newFeature/newFeature_1.jpeg',
     'assets/images/newFeature/newFeature_2.jpeg',
     'assets/images/newFeature/newFeature_3.jpeg',
   ];
 
-  List<Widget> _imgWidgets = [];
+  final List<Widget> _imgWidgets = [];
   var _index = 0; // 小圆点使用
 
   @override
@@ -29,12 +33,11 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
     // TODO: implement initState
     super.initState();
 
-    _imgList.forEach((value) {
+    for (var value in _imgList) {
 //      print(value);
       _imgWidgets.add(Image.asset(value, fit: BoxFit.fill, width: double.infinity, height: double.infinity));
-//      _imgWidgets.add(Image.network(value,
-//          fit: BoxFit.fill, width: double.infinity, height: double.infinity));
-    });
+      // _imgWidgets.add(Image.network(value, fit: BoxFit.fill, width: double.infinity, height: double.infinity));
+    }
   }
 
   @override
@@ -65,17 +68,12 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
             children: <Widget>[
               _imgWidgets[index],
               Positioned(
-                  bottom: JhScreenUtils.bottomSafeHeight + 50,
-                  child: GestureDetector(
-                    child: Image.asset(
-                      'assets/images/newFeature/start-now.jpg',
-                      width: 180,
-                      height: 50,
-                    ),
-                    onTap: () {
-                      _jumpMain();
-                    },
-                  )),
+                bottom: JhScreenUtils.bottomSafeHeight + 50,
+                child: GestureDetector(
+                  child: Image.asset('assets/images/newFeature/start-now.jpg', width: 180, height: 50),
+                  onTap: () => _jumpMain(),
+                ),
+              ),
             ],
           );
         }
@@ -86,23 +84,25 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
       },
       // 分页指示器
       pagination: SwiperPagination(
-          // 位置 Alignment.bottomCenter 底部中间
-          alignment: Alignment.bottomCenter,
-          // 距离调整
-          margin: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-          builder: DotSwiperPaginationBuilder(
-              space: 5,
-              size: _index == _imgWidgets.length - 1 ? 0 : 10,
-              activeSize: _index == _imgWidgets.length - 1 ? 0 : 12,
-              color: Colors.grey,
-              activeColor: Colors.white)),
+        // 位置 Alignment.bottomCenter 底部中间
+        alignment: Alignment.bottomCenter,
+        // 距离调整
+        margin: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+        builder: DotSwiperPaginationBuilder(
+          space: 5,
+          size: _index == _imgWidgets.length - 1 ? 0 : 10,
+          activeSize: _index == _imgWidgets.length - 1 ? 0 : 12,
+          color: Colors.grey,
+          activeColor: Colors.white,
+        ),
+      ),
       // 页面控制器 左右翻页按钮
-//          control: new SwiperControl(color: Colors.pink),
+      // control: const SwiperControl(color: Colors.pink),
     );
   }
 
   _jumpMain() {
     print('跳转主界面');
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (LoginPage())));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (const LoginPage())));
   }
 }

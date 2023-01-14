@@ -10,19 +10,19 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-const Color _boderColor = Colors.red;
-const Color _textColor_row1 = Colors.white;
-const Color _textColor_row2 = Colors.yellow;
+const Color _borderColor = Colors.red;
+const Color _textColorRow1 = Colors.white;
+const Color _textColorRow2 = Colors.yellow;
 const double _fontSize = 12.0;
-const double _boderRadius = 10.0;
-const double _boderWidth = 1.0;
+const double _borderRadius = 10.0;
+const double _borderWidth = 1.0;
 
 const Color _bgColor = Colors.blue;
 const Color _shadowColor = Colors.yellow;
 const double _blurRadius = 10.0;
 const double _spreadRadius = 10.0;
 
-const double _RPM = 4; // 旋转速度
+const double _rpm = 4; // 旋转速度
 
 const double _widgetWidth = 300;
 
@@ -30,18 +30,22 @@ class Point {
   double x, y, z;
   Color color;
 
-  Point(this.x, this.y, this.z, {this.color = _boderColor});
+  Point(this.x, this.y, this.z, {this.color = _borderColor});
 }
 
 class TagCloudWidget extends StatefulWidget {
-  final double width, rpm; // rpm 每分钟圈数
+  const TagCloudWidget(
+    this.width,
+    this.dataArr, {
+    Key? key,
+    this.rpm = _rpm,
+  }) : super(key: key);
 
+  final double width, rpm; // rpm 每分钟圈数
   final List dataArr;
 
-  TagCloudWidget(this.width, this.dataArr, {this.rpm = _RPM});
-
   @override
-  _TagCloudWidgetState createState() => _TagCloudWidgetState();
+  State<TagCloudWidget> createState() => _TagCloudWidgetState();
 }
 
 class _TagCloudWidgetState extends State<TagCloudWidget> with SingleTickerProviderStateMixin {
@@ -62,7 +66,7 @@ class _TagCloudWidgetState extends State<TagCloudWidget> with SingleTickerProvid
     pointsCount = widget.dataArr.length; // 标签数量
     radius = widget.width / 2;
     points = _generateInitialPoints();
-    animationController = new AnimationController(
+    animationController = AnimationController(
       vsync: this,
       // 按rpm，转/每分来计算旋转速度
       duration: Duration(seconds: 60 ~/ widget.rpm),
@@ -90,9 +94,9 @@ class _TagCloudWidgetState extends State<TagCloudWidget> with SingleTickerProvid
   }
 
   _stopAnimation() {
-    if (animationController!.isAnimating)
+    if (animationController!.isAnimating) {
       animationController!.stop();
-    else {
+    } else {
       animationController!.repeat();
     }
   }
@@ -110,7 +114,7 @@ class _TagCloudWidgetState extends State<TagCloudWidget> with SingleTickerProvid
 
       double z = sqrt(1 - x * x - y * y) * (Random().nextBool() == true ? 1 : -1);
 
-      points.add(new Point(x * radius, y * radius, z * radius,
+      points.add(Point(x * radius, y * radius, z * radius,
           color: Color.fromRGBO(
             (x.abs() * 256).ceil(),
             (y.abs() * 256).ceil(),
@@ -138,12 +142,12 @@ class _TagCloudWidgetState extends State<TagCloudWidget> with SingleTickerProvid
         bc = b * c,
         sinA = sin(angle),
         cosA = cos(angle);
-    points.forEach((point) {
+    for (var point in points) {
       var x = point.x, y = point.y, z = point.z;
       point.x = (a2 + (1 - a2) * cosA) * x + (ab * (1 - cosA) - c * sinA) * y + (ac * (1 - cosA) + b * sinA) * z;
       point.y = (ab * (1 - cosA) + c * sinA) * x + (b2 + (1 - b2) * cosA) * y + (bc * (1 - cosA) - a * sinA) * z;
       point.z = (ac * (1 - cosA) - b * sinA) * x + (bc * (1 - cosA) + a * sinA) * y + (c2 + (1 - c2) * cosA) * z;
-    });
+    }
     return points;
   }
 
@@ -195,7 +199,7 @@ class TagsPainter extends CustomPainter {
   double radius = 16;
   double prevX = 0;
   var paintStyle = Paint()
-    ..color = _boderColor
+    ..color = _borderColor
     ..style = PaintingStyle.stroke;
 
   TagsPainter(this.points, this.dataArr);
@@ -213,21 +217,21 @@ class TagsPainter extends CustomPainter {
           textAlign: TextAlign.center,
           text: TextSpan(
               text: '${data['name']}\n',
-              style: TextStyle(fontSize: _fontSize, color: _textColor_row1),
+              style: const TextStyle(fontSize: _fontSize, color: _textColorRow1),
               children: <TextSpan>[
                 TextSpan(
                     text: data['num'],
-                    style: TextStyle(fontSize: _fontSize, color: _textColor_row2),
+                    style: const TextStyle(fontSize: _fontSize, color: _textColorRow2),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        print('===测试暂时有误，待研究==');
+                        // print('===测试暂时有误，待研究==');
                       }),
               ]),
           textDirection: TextDirection.ltr)
         ..layout(maxWidth: 200, minWidth: 80)
         ..paint(canvas, Offset(point.x, point.y));
 
-      paintStyle.strokeWidth = _boderWidth;
+      paintStyle.strokeWidth = _borderWidth;
 
       //  正方形
 //      canvas.drawRect(Rect.fromCircle(center:Offset(point.x+text.width/2, point.y+20),radius:text.width/2), paintStyle);
@@ -237,8 +241,9 @@ class TagsPainter extends CustomPainter {
       // 圆角矩形
       canvas.drawRRect(
           RRect.fromRectAndRadius(
-              Rect.fromCenter(center: Offset(point.x + text.width / 2, point.y + 15), width: text.width, height: 50),
-              Radius.circular(_boderRadius)),
+            Rect.fromCenter(center: Offset(point.x + text.width / 2, point.y + 15), width: text.width, height: 50),
+            const Radius.circular(_borderRadius),
+          ),
           paintStyle);
     }
   }

@@ -19,14 +19,15 @@ class NinePictureAllScreenShow<T> extends PopupRoute<T> {
     this.endX,
   });
 
+  @override
   final String? barrierLabel;
-  final List? picList;
+  final List picList;
   final int? index;
   final int? startX;
   final int? endX;
 
   @override
-  Duration get transitionDuration => Duration(milliseconds: 2000);
+  Duration get transitionDuration => const Duration(milliseconds: 2000);
 
   @override
   Color get barrierColor => Colors.black; //背景颜色
@@ -55,7 +56,11 @@ class NinePictureAllScreenShow<T> extends PopupRoute<T> {
             onTap: () {
               Navigator.pop(context!);
             },
-            child: _PictureWidget(picList!, index!),
+            child: _PictureWidget(
+              picList: picList,
+              index: index,
+            ),
+            // child: _PictureWidget(index, index!),
           ),
         ),
       ),
@@ -64,15 +69,17 @@ class NinePictureAllScreenShow<T> extends PopupRoute<T> {
 }
 
 class _PictureWidget extends StatefulWidget {
-  final List? picList;
+  const _PictureWidget({
+    Key? key,
+    this.picList = const [],
+    this.index = 0,
+  }) : super(key: key);
+
+  final List picList;
   final int? index;
 
-  _PictureWidget(this.picList, this.index);
-
   @override
-  State createState() {
-    return _PictureWidgetState();
-  }
+  State<_PictureWidget> createState() => _PictureWidgetState();
 }
 
 class _PictureWidgetState extends State<_PictureWidget> {
@@ -89,17 +96,18 @@ class _PictureWidgetState extends State<_PictureWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new Material(
+    return Material(
       color: Colors.transparent,
-      child: new Container(
+      child: Container(
         width: double.infinity,
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+        alignment: Alignment.center,
         child: Stack(
           children: <Widget>[
             GestureDetector(
               child: Center(
                 child: CachedNetworkImage(
-                  imageUrl: widget.picList![index],
+                  imageUrl: widget.picList[index],
                   fit: BoxFit.fill,
                 ),
               ),
@@ -117,18 +125,17 @@ class _PictureWidgetState extends State<_PictureWidget> {
             ),
             Align(
                 alignment: Alignment.bottomCenter,
-                child: Container(
-//                color: Colors.red,
-                  width: widget.picList!.length >= 6
+                child: SizedBox(
+                  width: widget.picList.length >= 6
                       ? 200
-                      : widget.picList!.length < 3
+                      : widget.picList.length < 3
                           ? 50
                           : 100,
                   height: 50,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: List.generate(
-                      widget.picList!.length,
+                      widget.picList.length,
                       (i) => GestureDetector(
                         child: CircleAvatar(
 //                      foregroundColor: Theme.of(context).primaryColor,
@@ -148,7 +155,6 @@ class _PictureWidgetState extends State<_PictureWidget> {
                 ))
           ],
         ),
-        alignment: Alignment.center,
       ),
     );
   }
@@ -157,12 +163,12 @@ class _PictureWidgetState extends State<_PictureWidget> {
     if (delta > 50) {
       setState(() {
         index--;
-        index = index.clamp(0, widget.picList!.length - 1);
+        index = index.clamp(0, widget.picList.length - 1);
       });
     } else if (delta < 50) {
       setState(() {
         index++;
-        index = index.clamp(0, widget.picList!.length - 1);
+        index = index.clamp(0, widget.picList.length - 1);
       });
     }
   }

@@ -13,12 +13,12 @@ class JhImageUtils {
   /// 加载本地图片
   /// image: AssetImage('assets/images/set.png')
   /// image: JhImageUtils.getAssetImage('set')
-  static ImageProvider getAssetImage(String name, {String format: 'png'}) {
+  static ImageProvider getAssetImage(String name, {String format = 'png'}) {
     //    print('路径-- '+ getImgPath(name, format: format));
     return AssetImage(getImgPath(name, format: format));
   }
 
-  static String getImgPath(String name, {String format: 'png'}) {
+  static String getImgPath(String name, {String format = 'png'}) {
     return 'assets/images/$name.$format';
 //    return 'images/$name.$format';
   }
@@ -37,8 +37,15 @@ class JhImageUtils {
 /// 加载本地图片
 /// JhLoadAssetImage('account/${_bankLogoList[index]}',width: 24.0)
 class JhLoadAssetImage extends StatelessWidget {
-  const JhLoadAssetImage(this.image, {Key? key, this.width, this.height, this.fit, this.format: 'png', this.color})
-      : super(key: key);
+  const JhLoadAssetImage(
+    this.image, {
+    Key? key,
+    this.width,
+    this.height,
+    this.fit,
+    this.format = 'png',
+    this.color,
+  }) : super(key: key);
 
   final String image;
   final double? width;

@@ -50,6 +50,8 @@ List _dataArr = [
 ];
 
 class WxNewFriendPage extends StatelessWidget {
+  const WxNewFriendPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,57 +77,54 @@ class WxNewFriendPage extends StatelessWidget {
   }
 
   Widget _header(context) {
-    Widget _searchBar = JhSearchBar(
+    Widget searchBar = JhSearchBar(
       hintText: '微信号/手机号',
       bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
 
-    Widget _myCode = InkWell(
+    Widget myCode = InkWell(
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
 //        height: 60,
         child: Column(
-          children: <Widget>[
+          children: const <Widget>[
             Icon(Icons.phone_iphone, color: KColors.wxThemeColor),
             SizedBox(height: 10),
-            Text(
-              '添加手机联系人',
-              style: TextStyle(color: Colors.grey),
-            ),
+            Text('添加手机联系人', style: TextStyle(color: Colors.grey)),
           ],
         ),
       ),
       onTap: () => _clickCell(context, '添加手机联系人'),
     );
 
-    Widget _text = Container(
-      padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+    Widget text = Container(
+      padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
       alignment: Alignment.centerLeft,
       height: 35,
-      child: Text('三天前', style: TextStyle(color: Colors.grey)),
+      child: const Text('三天前', style: TextStyle(color: Colors.grey)),
     );
 
     return Column(children: [
-      _searchBar,
-      _myCode,
-      _text,
+      searchBar,
+      myCode,
+      text,
     ]);
   }
 
   Widget _listWidget(List dataArr) {
-    if (dataArr.length == 0) {
+    if (dataArr.isEmpty) {
       return Container(
         alignment: Alignment.topCenter,
-        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-        child: Text('暂无数据', textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
+        padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+        child: const Text('暂无数据', textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
       );
     } else {
       return ListView.builder(
         itemCount: dataArr.length,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           WxNewFriendModel model = WxNewFriendModel.fromJson(dataArr[index]);
           return WxNewFriendCell(

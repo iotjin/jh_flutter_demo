@@ -3,7 +3,7 @@
 ///  Created by iotjin on 2020/07/02.
 ///  description:  网络监测
 
-// ignore_for_file: body_might_complete_normally_nullable
+// ignore_for_file: body_might_complete_normally_nullable, avoid_print
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 

@@ -16,8 +16,10 @@ import '/project/routes/routes.dart';
 import '/data/data_utils.dart';
 
 class CodeLoginPage extends StatefulWidget {
+  const CodeLoginPage({Key? key}) : super(key: key);
+
   @override
-  _CodeLoginPageState createState() => _CodeLoginPageState();
+  State<CodeLoginPage> createState() => _CodeLoginPageState();
 }
 
 class _CodeLoginPageState extends State<CodeLoginPage> {
@@ -30,49 +32,49 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar('', bgColor: Colors.transparent),
-        body: KeyboardActions(
-          config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
-          child: _mainBody(),
-        ));
+      appBar: const BaseAppBar('', bgColor: Colors.transparent),
+      body: KeyboardActions(
+        config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
+        child: _body(),
+      ),
+    );
   }
 
-  Widget _mainBody() {
+  Widget _body() {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              '验证码登录',
-              style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+            const Text('验证码登录', style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 80),
+            JhLoginTextField(
+              text: _phone,
+              hintText: '请输入手机号',
+              focusNode: _node1,
+              maxLength: 11,
+              keyboardType: TextInputType.number,
+              inputCallBack: (value) => _phone = value,
             ),
-            SizedBox(height: 50),
-            SizedBox(height: 30),
+            const SizedBox(height: 10),
             JhLoginTextField(
-                text: _phone,
-                hintText: '请输入手机号',
-                focusNode: _node1,
-                maxLength: 11,
-                keyboardType: TextInputType.number,
-                inputCallBack: (value) => _phone = value),
-            SizedBox(height: 10),
-            JhLoginTextField(
-                text: _code,
-                hintText: '请输入验证码',
-                focusNode: _node2,
-                maxLength: 6,
-                keyboardType: TextInputType.number,
-                rightWidget: JhCountDownBtn(
-                    showBorder: true,
-                    getVCode: () async {
-                      return true;
-                    }),
-                inputCallBack: (value) => _code = value),
-            SizedBox(height: 50),
+              text: _code,
+              hintText: '请输入验证码',
+              focusNode: _node2,
+              maxLength: 6,
+              keyboardType: TextInputType.number,
+              rightWidget: JhCountDownBtn(
+                showBorder: true,
+                getVCode: () async {
+                  return true;
+                },
+              ),
+              inputCallBack: (value) => _code = value,
+            ),
+            const SizedBox(height: 50),
             JhButton(text: '登 录', onPressed: _clickOkBtn),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
           ],
         ),
       ),

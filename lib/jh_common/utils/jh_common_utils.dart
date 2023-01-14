@@ -40,8 +40,8 @@ class JhCommonUtils {
   /// 跳转AppStore
   static Future<void> jumpAppStore({String? url}) async {
     // 这是微信的地址，到时候换成自己的应用的地址
-    final _url = url ?? 'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8';
-    final Uri uri = Uri.parse(_url);
+    final tempURL = url ?? 'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8';
+    final Uri uri = Uri.parse(tempURL);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else {

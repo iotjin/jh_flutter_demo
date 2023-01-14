@@ -25,11 +25,11 @@ class WxSubscriptionNumberCell extends StatelessWidget {
   }
 
   Widget _cell(context, index) {
-    Widget _widget1 = Column(
+    Widget widget1 = Column(
       children: <Widget>[
         ListTile(
-          leading: Container(child: CircleAvatar(backgroundImage: AssetImage(model.img2!))),
-          title: Text(model.title.jhNullSafe, style: TextStyle(color: KColors.wxTextBlueColor)),
+          leading: CircleAvatar(backgroundImage: AssetImage(model.img2!)),
+          title: Text(model.title.jhNullSafe, style: const TextStyle(color: KColors.wxTextBlueColor)),
           trailing: Text(model.time.jhNullSafe),
         ),
         Stack(
@@ -44,20 +44,20 @@ class WxSubscriptionNumberCell extends StatelessWidget {
               bottom: 10,
               child: Text(
                 model.subtitle.jhNullSafe,
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
+                style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
           ],
         ),
         ListTile(
-          contentPadding: EdgeInsets.all(18),
-          title: Text(model.text2.jhNullSafe, style: TextStyle(color: KColors.wxTextBlueColor)),
+          contentPadding: const EdgeInsets.all(18),
+          title: Text(model.text2.jhNullSafe, style: const TextStyle(color: KColors.wxTextBlueColor)),
           trailing: Image.asset(model.img2!, width: 60),
         )
       ],
     );
 
-    Widget _widget2 = Column(
+    Widget widget2 = Column(
       children: <Widget>[
         ListTile(
           leading: ClipRRect(
@@ -67,10 +67,10 @@ class WxSubscriptionNumberCell extends StatelessWidget {
           title: Text(model.title.jhNullSafe),
         ),
         ListTile(
-          contentPadding: EdgeInsets.all(18),
+          contentPadding: const EdgeInsets.all(18),
           title: Text(
             model.text2.jhNullSafe,
-            style: TextStyle(color: KColors.wxTextBlueColor),
+            style: const TextStyle(color: KColors.wxTextBlueColor),
           ),
           trailing: Image.asset(model.img2!, width: 60),
         )
@@ -79,7 +79,7 @@ class WxSubscriptionNumberCell extends StatelessWidget {
 
     return InkWell(
       child: Card(
-        margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+        margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
         // 设置圆角
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         // 抗锯齿
@@ -90,7 +90,7 @@ class WxSubscriptionNumberCell extends StatelessWidget {
         // 阴影大小
         child: Container(
           color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
-          child: index % 2 == 0 ? _widget1 : _widget2,
+          child: index % 2 == 0 ? widget1 : widget2,
         ),
       ),
       onTap: () => onClickCell?.call(model.toJson()),

@@ -1,7 +1,9 @@
-///  Jh_cascade_tree_picker.dart
+///  jh_cascade_tree_picker.dart
 ///
 ///  Created by iotjin on 2022/07/23.
 ///  description: 级联选择器（树形结构数据、支持搜索）
+
+// ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,10 +48,10 @@ class JhCascadeTreePicker {
     bool isShowRadius = true,
     _ClickCallBack? clickCallBack,
   }) {
-    if (data.length <= 0) {
+    if (data.isEmpty) {
       return;
     }
-    var _radius = isShowRadius ? _headerRadius : 0.0;
+    var radius = isShowRadius ? _headerRadius : 0.0;
 
     showModalBottomSheet<void>(
       context: context,
@@ -58,8 +60,8 @@ class JhCascadeTreePicker {
       // 设置圆角
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(_radius),
-          topRight: Radius.circular(_radius),
+          topLeft: Radius.circular(radius),
+          topRight: Radius.circular(radius),
         ),
       ),
       // 抗锯齿
@@ -125,13 +127,13 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
   final ScrollController _scrollController = ScrollController();
 
   // TabBar 数组
-  List<Tab> _myTabs = <Tab>[];
+  final List<Tab> _myTabs = <Tab>[];
 
   // 当前列表数据
   List _mList = [];
 
   // 多级联动选择的position
-  List<int> _positions = [];
+  final List<int> _positions = [];
 
   // 当前列
   int _currentColumn = 0;
@@ -146,7 +148,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
     super.initState();
 
     _initData();
-    if (widget.values.length > 0) {
+    if (widget.values.isNotEmpty) {
       _initSelectData();
     }
   }
@@ -299,51 +301,50 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
     return Container(
       color: bgColor,
       child: SizedBox(
-          height: MediaQuery.of(context).size.height * 11.0 / 16.0,
-          child: Container(
-            child: Stack(
-              children: [
-                // header
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: _headerHeight,
-                    color: headerColor,
-                    alignment: Alignment.center,
-                    child: Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: titleColor)),
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: InkWell(
-                    onTap: () => JhNavUtils.goBack(context),
-                    child: Container(
-                      alignment: Alignment.centerRight,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      height: _headerHeight,
-                      width: _headerHeight * 2,
-                      child: Icon(
-                        Icons.close,
-                        color: titleColor,
-                      ),
-                    ),
-                  ),
-                ),
-                _searchBar(),
-                Offstage(
-                  offstage: !_isShowSearchResult,
-                  child: _searchResultView(bgColor, textColor, lineColor),
-                ),
-                Offstage(
-                  offstage: _isShowSearchResult,
-                  child: _mainWidget(bgColor, textColor, lineColor),
-                ),
-              ],
+        height: MediaQuery.of(context).size.height * 11.0 / 16.0,
+        child: Stack(
+          children: [
+            // header
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: _headerHeight,
+                color: headerColor,
+                alignment: Alignment.center,
+                child: Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: titleColor)),
+              ),
             ),
-          )),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: InkWell(
+                onTap: () => JhNavUtils.goBack(context),
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  height: _headerHeight,
+                  width: _headerHeight * 2,
+                  child: Icon(
+                    Icons.close,
+                    color: titleColor,
+                  ),
+                ),
+              ),
+            ),
+            _searchBar(),
+            Offstage(
+              offstage: !_isShowSearchResult,
+              child: _searchResultView(bgColor, textColor, lineColor),
+            ),
+            Offstage(
+              offstage: _isShowSearchResult,
+              child: _mainWidget(bgColor, textColor, lineColor),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -381,7 +382,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
                   _onClickTab(index);
                   _scrollController.animateTo(
                     _positions[_currentColumn] * _itemHeight,
-                    duration: Duration(milliseconds: 10),
+                    duration: const Duration(milliseconds: 10),
                     curve: Curves.ease,
                   );
                 });
@@ -414,7 +415,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
     return InkWell(
       child: Container(
         color: bgColor,
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         alignment: Alignment.centerLeft,
         child: Row(
           children: <Widget>[
@@ -422,7 +423,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
               tempData[widget.labelKey],
               style: TextStyle(fontSize: _textFontSize, color: flag ? themeColor : textColor),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Visibility(
               visible: flag,
               child: Icon(Icons.check, size: 15, color: themeColor),
@@ -437,8 +438,8 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
             _columnIncrement();
             _setListAndChangeTab(index);
             // 跳到指定位置
-            _scrollController.animateTo(0.0, duration: Duration(milliseconds: 100), curve: Curves.ease);
-            Future.delayed(Duration(milliseconds: 100), () {
+            _scrollController.animateTo(0.0, duration: const Duration(milliseconds: 100), curve: Curves.ease);
+            Future.delayed(const Duration(milliseconds: 100), () {
               _tabController?.animateTo(_currentColumn);
             });
           } else {
@@ -472,7 +473,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
   /// 根据关键字过滤树结构数据
   _getTreeDataByKeyword(keyWord, List treeArr) {
     var newArr = [];
-    treeArr.forEach((item) {
+    for (var item in treeArr) {
       if (item[widget.labelKey].contains(keyWord)) {
         newArr.add(item);
       } else {
@@ -484,7 +485,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
           }
         }
       }
-    });
+    }
     return newArr;
   }
 
@@ -547,16 +548,16 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
     return !widget.isShowSearch
         ? Container()
         : Container(
-            margin: EdgeInsets.only(top: _headerHeight),
+            margin: const EdgeInsets.only(top: _headerHeight),
             child: JhSearchBar(
               hintText: widget.searchHintText,
               text: _searchKeyword,
               inputCallBack: (value) {
                 setState(() {
                   _searchKeyword = value;
-                  if (value.length > 0) {
+                  if (value.isNotEmpty) {
                     _searchData = _getSearchData(value);
-                    _isShowSearchResult = _searchData.length > 0;
+                    _isShowSearchResult = _searchData.isNotEmpty;
                   } else {
                     _isShowSearchResult = false;
                   }
@@ -591,7 +592,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
   Widget _buildSearchResultItem(index, Color bgColor, Color textColor, Color lineColor) {
     return InkWell(
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.0),
+        margin: const EdgeInsets.symmetric(horizontal: 16.0),
         decoration: BoxDecoration(
           color: bgColor,
           border: Border(bottom: BorderSide(color: lineColor, width: _lineHeight)),

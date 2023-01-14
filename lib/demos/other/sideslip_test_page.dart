@@ -1,13 +1,17 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jhtoast/jhtoast.dart';
 import '/base_appbar.dart';
 
 class SideslipTestPage extends StatelessWidget {
+  const SideslipTestPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('列表侧滑'),
+      appBar: const BaseAppBar('列表侧滑'),
       body: _body(context),
     );
   }
@@ -15,19 +19,6 @@ class SideslipTestPage extends StatelessWidget {
   Widget _body(context) {
     return ListView(children: <Widget>[
       Slidable(
-        child: Container(
-          color: Colors.white,
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.indigoAccent,
-              child: Text('3'),
-              foregroundColor: Colors.white,
-            ),
-            title: Text('Tile'),
-            subtitle: Text('SlidableDrawerDelegate'),
-          ),
-        ),
-        // 左侧按钮列表
         startActionPane: ActionPane(
           motion: const ScrollMotion(),
           extentRatio: 0.4,
@@ -67,6 +58,15 @@ class SideslipTestPage extends StatelessWidget {
               },
             ),
           ],
+        ),
+        child: const ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.indigoAccent,
+            foregroundColor: Colors.white,
+            child: Text('3'),
+          ),
+          title: Text('Tile'),
+          subtitle: Text('SlidableDrawerDelegate'),
         ),
       )
     ]);

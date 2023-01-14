@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2019/08/14.
 ///  description: 微信首页
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -105,9 +107,9 @@ class _WxHomePageState extends State<WxHomePage> {
         KStrings.oneTabTitle,
         leftWidget: Container(),
         rightImgPath: 'assets/images/ic_nav_add.png',
-        rightItemCallBack: () => _showPop(context),
+        rightItemCallBack: () => _showPop(),
       ),
-      body: _body(context, _dataArr),
+      body: _body(),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
 
 //        appBar: AppBar(
@@ -144,7 +146,7 @@ class _WxHomePageState extends State<WxHomePage> {
   }
 
   // 右上角pop
-  void _showPop(context) {
+  void _showPop() {
 //    // 不带分割线，不带背景
 //    JhPopMenus.show(context, clickCallback: (index, selText) {
 //      print('选中index: ${index}');
@@ -166,13 +168,14 @@ class _WxHomePageState extends State<WxHomePage> {
         JhNavUtils.pushNamed(context, 'WxAddFriendPage');
       }
       if (selText == '扫一扫') {
-        _scan(context);
+        _scan();
       }
     });
   }
 
   // body
-  Widget _body(context, dataArr) {
+  Widget _body() {
+    var dataArr = _dataArr;
     return SlidableAutoCloseBehavior(
       child: ListView.separated(
         // 列表项构造器
@@ -191,7 +194,7 @@ class _WxHomePageState extends State<WxHomePage> {
           return WxHomeCell(
             model: model,
             onClickCell: (model) {
-              _clickCell(context, model);
+              _clickCell(model);
             },
           );
         },
@@ -200,7 +203,7 @@ class _WxHomePageState extends State<WxHomePage> {
   }
 
   // 点击cell
-  void _clickCell(context, item) {
+  void _clickCell(item) {
     // JhToast.showText(context, msg: '点击 $item['title']');
     if (item['title'] == 'Demo 列表') {
       JhNavUtils.pushNamed(context, 'DemoListPage');
@@ -216,12 +219,12 @@ class _WxHomePageState extends State<WxHomePage> {
   }
 
   // // 点击侧滑按钮
-  // void _showSnackBar(context, text) {
+  // void _showSnackBar(text) {
   //   print(text);
   //   JhToast.showText(context, msg: text);
   // }
 
-  void _scan(context) {
+  void _scan() {
     JhQrCodeUtils.jumpScan(context, isShowGridLine: true, isShowScanLine: false, callBack: (data) {
       print('扫码结果：$data');
       JhToast.showText(context, msg: '扫码结果：$data');

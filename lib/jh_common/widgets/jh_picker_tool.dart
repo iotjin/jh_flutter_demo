@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/02/17.
 ///  description:  底部选择器 包含日期，单列、多列文本
 
+// ignore_for_file: constant_identifier_names, library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 import '/project/configs/colors.dart';
@@ -37,67 +39,96 @@ enum PickerDateType {
 }
 
 enum PickerType {
-  String,
-  Array,
-  Date,
+  string,
+  array,
+  date,
 }
 
 class JhPickerTool {
   /// 单列
+  /// 单列选择器返回选中行对象和index
   static void showStringPicker<T>(
     BuildContext context, {
     required List data,
     String? title,
     String? labelKey, // 对象数组的文字字段
     int selectIndex = 0,
-    @required _ClickCallBack? clickCallBack,
+    _ClickCallBack? clickCallBack,
   }) {
-    if (data.length <= 0) {
+    if (data.isEmpty) {
       return;
     }
-    _showPicker(
-      context,
-      data: data,
-      title: title,
-      selecteds: [selectIndex],
-      pickerType: PickerType.String,
-      adapter: labelKey != null
-          ? PickerDataAdapter(pickerdata: data.map((e) => e[labelKey]).toList())
-          : PickerDataAdapter(pickerdata: data),
-      clickCallBack: clickCallBack,
+    showModalBottomSheet(
+      context: context,
+      // 设置圆角
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(_kHeaderRadius),
+          topRight: Radius.circular(_kHeaderRadius),
+        ),
+      ),
+      // 抗锯齿
+      clipBehavior: Clip.antiAlias,
+      builder: (BuildContext context) {
+        return BasePickerView(
+          data: data,
+          title: title,
+          selecteds: [selectIndex],
+          pickerType: PickerType.string,
+          adapter: labelKey != null
+              ? PickerDataAdapter(pickerdata: data.map((e) => e[labelKey]).toList())
+              : PickerDataAdapter(pickerdata: data),
+          clickCallBack: clickCallBack,
+        );
+      },
     );
   }
 
   /// 多列
+  /// 多列选择器返回选中行对象数组和index数组
   static void showArrayPicker<T>(
     BuildContext context, {
     required List data,
     String? title,
     String? labelKey, // 对象数组的文字字段
     List<int>? selectIndex,
-    required _ClickCallBack clickCallBack,
+    _ClickCallBack? clickCallBack,
   }) {
-    if (data.length <= 0) {
+    if (data.isEmpty) {
       return;
     }
-    _showPicker(
-      context,
-      data: data,
-      title: title,
-      selecteds: selectIndex,
-      pickerType: PickerType.Array,
-      adapter: labelKey != null
-          ? PickerDataAdapter(
-              pickerdata: data.map((e) {
-                return e.map((e2) => e2[labelKey]).toList();
-              }).toList(),
-              isArray: true)
-          : PickerDataAdapter(pickerdata: data, isArray: true),
-      clickCallBack: clickCallBack,
+    showModalBottomSheet(
+      context: context,
+      // 设置圆角
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(_kHeaderRadius),
+          topRight: Radius.circular(_kHeaderRadius),
+        ),
+      ),
+      // 抗锯齿
+      clipBehavior: Clip.antiAlias,
+      builder: (BuildContext context) {
+        return BasePickerView(
+          data: data,
+          title: title,
+          selecteds: selectIndex,
+          pickerType: PickerType.array,
+          adapter: labelKey != null
+              ? PickerDataAdapter(
+                  pickerdata: data.map((e) {
+                    return e.map((e2) => e2[labelKey]).toList();
+                  }).toList(),
+                  isArray: true)
+              : PickerDataAdapter(pickerdata: data, isArray: true),
+          clickCallBack: clickCallBack,
+        );
+      },
     );
   }
 
   /// 日期选择器
+  /// 时间选择器返回选中行时间（时间格式：2022-07-03 15:00:46）和index数组
   static void showDatePicker(
     BuildContext context, {
     String? title,
@@ -109,7 +140,7 @@ class JhPickerTool {
     int? yearEnd = 2100,
     int? minHour = 0,
     int? maxHour = 23,
-    required _ClickCallBack clickCallBack,
+    _ClickCallBack? clickCallBack,
   }) {
     int timeType;
     if (dateType == PickerDateType.YM) {
@@ -122,97 +153,127 @@ class JhPickerTool {
       timeType = PickerDateTimeType.kYMD;
     }
 
-    _showPicker(
-      context,
-      title: title,
-      pickerType: PickerType.Date,
-      adapter: DateTimePickerAdapter(
-        type: timeType,
-        isNumberMonth: true,
-        yearSuffix: _yearSuffix,
-        monthSuffix: _monthSuffix,
-        daySuffix: _daySuffix,
-        strAMPM: _strAMPM,
-        maxValue: maxTime,
-        minValue: minTime,
-        value: selectTime ?? DateTime.now(),
-        minHour: minHour,
-        maxHour: maxHour,
-        yearBegin: yearBegin,
-        yearEnd: yearEnd,
+    showModalBottomSheet(
+      context: context,
+      // 设置圆角
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(_kHeaderRadius),
+          topRight: Radius.circular(_kHeaderRadius),
+        ),
       ),
-      clickCallBack: clickCallBack,
+      // 抗锯齿
+      clipBehavior: Clip.antiAlias,
+      builder: (BuildContext context) {
+        return BasePickerView(
+          title: title,
+          pickerType: PickerType.date,
+          adapter: DateTimePickerAdapter(
+            type: timeType,
+            isNumberMonth: true,
+            yearSuffix: _yearSuffix,
+            monthSuffix: _monthSuffix,
+            daySuffix: _daySuffix,
+            strAMPM: _strAMPM,
+            maxValue: maxTime,
+            minValue: minTime,
+            value: selectTime ?? DateTime.now(),
+            minHour: minHour,
+            maxHour: maxHour,
+            yearBegin: yearBegin,
+            yearEnd: yearEnd,
+          ),
+          clickCallBack: clickCallBack,
+        );
+      },
     );
   }
 }
 
 /// 自定义picker
-_showPicker(
-  context, {
-  List? data,
-  String? title,
-  List<int>? selecteds,
-  PickerType? pickerType,
-  required PickerAdapter adapter,
-  _ClickCallBack? clickCallBack,
-}) {
-  // 默认颜色
-  var isDark = Theme.of(context).brightness == Brightness.dark;
-  var _bgColor = isDark ? KColors.kPickerBgDarkColor : KColors.kPickerBgColor;
-  var _headerColor = isDark ? KColors.kPickerHeaderDarkColor : KColors.kPickerHeaderColor;
-  var _kHeaderLineColor = isDark ? KColors.kPickerHeaderLineDarkColor : KColors.kPickerHeaderLineColor;
-  var _titleColor = isDark ? KColors.kPickerTitleDarkColor : KColors.kPickerTitleColor;
-  var _btnColor = isDark ? KColors.kPickerBtnDarkColor : KColors.kPickerBtnColor;
-  var _selectTextColor = isDark ? KColors.kPickerTextDarkColor : KColors.kPickerTextColor;
-  var _selectItemBgColor = Colors.grey.withOpacity(0.15);
+class BasePickerView extends StatefulWidget {
+  const BasePickerView({
+    Key? key,
+    this.data,
+    this.title,
+    this.selecteds,
+    this.pickerType,
+    required this.adapter,
+    this.clickCallBack,
+  }) : super(key: key);
 
-  var picker = Picker(
-      adapter: adapter,
-      selecteds: selecteds,
+  final List? data;
+  final String? title;
+  final List<int>? selecteds;
+  final PickerType? pickerType;
+  final PickerAdapter adapter;
+  final _ClickCallBack? clickCallBack;
+
+  @override
+  State<BasePickerView> createState() => BasePickerViewState();
+}
+
+class BasePickerViewState extends State<BasePickerView> {
+  @override
+  Widget build(BuildContext context) {
+    return _body();
+  }
+
+  _body() {
+    var bgColor = KColors.dynamicColor(context, KColors.kPickerBgColor, KColors.kPickerBgDarkColor);
+    var headerColor = KColors.dynamicColor(context, KColors.kPickerHeaderColor, KColors.kPickerHeaderDarkColor);
+    var headerLineColor =
+        KColors.dynamicColor(context, KColors.kPickerHeaderLineColor, KColors.kPickerHeaderLineDarkColor);
+    var titleColor = KColors.dynamicColor(context, KColors.kPickerTitleColor, KColors.kPickerTitleDarkColor);
+    var btnColor = KColors.dynamicColor(context, KColors.kPickerBtnColor, KColors.kPickerBtnDarkColor);
+    var selectTextColor = KColors.dynamicColor(context, KColors.kPickerTextColor, KColors.kPickerTextDarkColor);
+    var selectItemBgColor = Colors.grey.withOpacity(0.15);
+
+    var picker = Picker(
+      adapter: widget.adapter,
+      selecteds: widget.selecteds,
       height: _kPickerHeight,
       itemExtent: _kItemHeight,
-      title: Text(title ?? _titleNormalText, style: TextStyle(color: _titleColor, fontSize: _kTitleFontSize)),
+      title: Text(widget.title ?? _titleNormalText, style: TextStyle(color: titleColor, fontSize: _kTitleFontSize)),
       cancelText: _cancelText,
-      cancelTextStyle: TextStyle(color: _btnColor, fontSize: _kBtnFontSize),
+      cancelTextStyle: TextStyle(color: btnColor, fontSize: _kBtnFontSize),
       confirmText: _confirmText,
-      confirmTextStyle: TextStyle(color: _btnColor, fontSize: _kBtnFontSize),
+      confirmTextStyle: TextStyle(color: btnColor, fontSize: _kBtnFontSize),
       textAlign: TextAlign.center,
-      textStyle: TextStyle(color: _selectTextColor, fontSize: _textFontSize),
-      selectedTextStyle: TextStyle(color: _selectTextColor, fontSize: _selectTextFontSize),
-      selectionOverlay: Container(height: _kItemHeight, color: _selectItemBgColor),
-      backgroundColor: _bgColor,
+      textStyle: TextStyle(color: selectTextColor, fontSize: _textFontSize),
+      selectedTextStyle: TextStyle(color: selectTextColor, fontSize: _selectTextFontSize),
+      selectionOverlay: Container(height: _kItemHeight, color: selectItemBgColor),
+      backgroundColor: bgColor,
       headerDecoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: _kHeaderLineColor, width: _kHeaderLineHeight),
-        ),
+        border: Border(bottom: BorderSide(color: headerLineColor, width: _kHeaderLineHeight)),
       ),
       onConfirm: (Picker picker, List selectIndexArr) {
-        if (pickerType == PickerType.String) {
+        if (widget.pickerType == PickerType.string) {
           var selectIndex = selectIndexArr[0];
-          clickCallBack?.call(data![selectIndex], selectIndex);
+          widget.clickCallBack?.call(widget.data![selectIndex], selectIndex);
         }
-        if (pickerType == PickerType.Array) {
+        if (widget.pickerType == PickerType.array) {
           var selectItemArr = [];
           for (int i = 0; i < selectIndexArr.length; i++) {
             int j = selectIndexArr[i];
-            selectItemArr.add(data![i][j]);
+            selectItemArr.add(widget.data![i][j]);
           }
-          clickCallBack?.call(selectItemArr, selectIndexArr);
+          widget.clickCallBack?.call(selectItemArr, selectIndexArr);
         }
-        if (pickerType == PickerType.Date) {
+        if (widget.pickerType == PickerType.date) {
           // var time = (picker.adapter as DateTimePickerAdapter).value;
-          clickCallBack?.call(picker.adapter.text.split('.')[0], selectIndexArr);
+          widget.clickCallBack?.call(picker.adapter.text.split('.')[0], selectIndexArr);
         }
-      });
+      },
+    );
 
-  picker.showModal(context, backgroundColor: Colors.transparent, builder: (context, view) {
     return Material(
-        color: _headerColor,
-        borderRadius:
-            BorderRadius.only(topLeft: Radius.circular(_kHeaderRadius), topRight: Radius.circular(_kHeaderRadius)),
-        child: Container(
-          padding: EdgeInsets.only(top: 5),
-          child: view,
-        ));
-  });
+      color: headerColor,
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(_kHeaderRadius),
+        topRight: Radius.circular(_kHeaderRadius),
+      ),
+      child: Container(padding: const EdgeInsets.only(top: 5), child: picker.makePicker()),
+    );
+  }
 }

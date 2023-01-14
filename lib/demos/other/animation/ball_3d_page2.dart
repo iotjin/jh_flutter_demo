@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import '/base_appbar.dart';
 import 'xball_view.dart';
 
-class DBallPage2 extends StatefulWidget {
+class Ball3DPage2 extends StatefulWidget {
+  const Ball3DPage2({Key? key}) : super(key: key);
+
   @override
-  _DBallPage2State createState() => _DBallPage2State();
+  State<Ball3DPage2> createState() => _DBallPage2State();
 }
 
-class _DBallPage2State extends State<DBallPage2> {
+class _DBallPage2State extends State<Ball3DPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('3D球'),
+      appBar: const BaseAppBar('3D球'),
       backgroundColor: Colors.white,
       body: XBallView(
         mediaQueryData: MediaQuery.of(context),
-        keywords: [
+        keywords: const [
           '北京',
           '天津',
           '上海',
@@ -51,7 +53,7 @@ class _DBallPage2State extends State<DBallPage2> {
           '香港',
           '澳门',
         ],
-        highlight: ['四川'],
+        highlight: const ['四川'],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

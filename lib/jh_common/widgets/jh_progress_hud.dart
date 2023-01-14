@@ -68,7 +68,7 @@ class JhProgressHUD {
 
 CancelFunc _showToast(loadingText, _ToastType toastType) {
   return BotToast.showCustomText(
-    duration: Duration(milliseconds: _closeTime),
+    duration: const Duration(milliseconds: _closeTime),
     align: _alignment,
     onlyOne: _onlyOne,
     clickClose: _clickClose,
@@ -94,16 +94,16 @@ CancelFunc _showLoading(loadingText) {
 }
 
 Widget _showCustomToast(loadingText, _ToastType toastType) {
-  var _topWidget;
+  Container topWidget;
   if (toastType == _ToastType.text) {
-    _topWidget = Container();
+    topWidget = Container();
   } else if (toastType == _ToastType.loading) {
-    _topWidget = Container(
+    topWidget = Container(
       width: 40.0,
       height: 40.0,
-      margin: EdgeInsets.only(bottom: 8.0),
-      padding: EdgeInsets.all(4.0),
-      child: CircularProgressIndicator(
+      margin: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.all(4.0),
+      child: const CircularProgressIndicator(
         strokeWidth: 3.0,
         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       ),
@@ -119,30 +119,31 @@ Widget _showCustomToast(loadingText, _ToastType toastType) {
     if (toastType == _ToastType.info) {
       icon = Icons.info_outline;
     }
-    _topWidget = Container(
+    topWidget = Container(
       width: 40.0,
       height: 40.0,
-      margin: EdgeInsets.only(bottom: 8.0),
-      padding: EdgeInsets.all(4.0),
+      margin: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.all(4.0),
       child: Icon(icon, size: 30, color: Colors.white),
     );
   }
 
   var w = Container(
     margin: const EdgeInsets.all(50.0),
-    padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+    padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
     decoration: BoxDecoration(color: _bgColor, borderRadius: BorderRadius.circular(_radius)),
     child: ClipRect(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Visibility(
-          visible: toastType != _ToastType.text,
-          child: _topWidget,
-        ),
-        Text(loadingText, style: TextStyle(fontSize: 16, color: Colors.white), textAlign: TextAlign.center),
-      ],
-    )),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Visibility(
+            visible: toastType != _ToastType.text,
+            child: topWidget,
+          ),
+          Text(loadingText, style: const TextStyle(fontSize: 16, color: Colors.white), textAlign: TextAlign.center),
+        ],
+      ),
+    ),
   );
   return w;
 }

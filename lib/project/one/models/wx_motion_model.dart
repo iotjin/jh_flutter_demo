@@ -30,13 +30,13 @@ class WxMotionModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['time'] = this.time;
-    data['ranking'] = this.ranking;
-    data['steps'] = this.steps;
-    data['img'] = this.img;
-    data['text'] = this.text;
-    data['color'] = this.color;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['time'] = time;
+    data['ranking'] = ranking;
+    data['steps'] = steps;
+    data['img'] = img;
+    data['text'] = text;
+    data['color'] = color;
     return data;
   }
 }

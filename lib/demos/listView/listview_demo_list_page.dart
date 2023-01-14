@@ -2,35 +2,37 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
+final List titleData = [
+  'ListViewTest',
+  'ListViewTest2',
+  'ListViewTest3',
+  'ListViewTest4',
+  'ListViewTest5',
+  'ListViewTestCard',
+  'ListViewTestCustomVC',
+  '假数据分页 - header/footer跟随',
+  'ListViewGroup',
+  'ListViewGroup2',
+  'ListViewGroup3 - 分组分页',
+  'ListViewHeader - 头部跟随滚动',
+];
+final List routeData = [
+  'ListViewTest',
+  'ListViewTest2',
+  'ListViewTest3',
+  'ListViewTest4',
+  'ListViewTest5',
+  'ListViewTestCard',
+  'ListViewTestCustomVC',
+  'ListViewTestPullDownVC',
+  'ListViewGroupPage',
+  'ListViewGroupPage2',
+  'ListViewGroupPage3',
+  'ListViewHeaderPage',
+];
+
 class ListViewDemoListPage extends StatelessWidget {
-  final List titleData = [
-    'ListViewTest',
-    'ListViewTest2',
-    'ListViewTest3',
-    'ListViewTest4',
-    'ListViewTest5',
-    'ListViewTestCard',
-    'ListViewTestCustomVC',
-    '假数据分页 - header/footer跟随',
-    'ListViewGroup',
-    'ListViewGroup2',
-    'ListViewGroup3 - 分组分页',
-    'ListViewHeader - 头部跟随滚动',
-  ];
-  final List routeData = [
-    'ListViewTest',
-    'ListViewTest2',
-    'ListViewTest3',
-    'ListViewTest4',
-    'ListViewTest5',
-    'ListViewTestCard',
-    'ListViewTestCustomVC',
-    'ListViewTestPullDownVC',
-    'ListViewGroupPage',
-    'ListViewGroupPage2',
-    'ListViewGroupPage3',
-    'ListViewHeaderPage',
-  ];
+  const ListViewDemoListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,6 @@ class ListViewDemoListPage extends StatelessWidget {
       title: 'ListViewDemoList',
       dataArr: titleData,
       callBack: (index, str) {
-        print(routeData[index]);
         JhNavUtils.pushNamed(context, routeData[index]);
       },
     );

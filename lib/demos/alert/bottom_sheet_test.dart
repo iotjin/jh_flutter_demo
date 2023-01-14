@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '/jh_common/utils/jh_time_utils.dart';
@@ -5,72 +7,74 @@ import '/jh_common/widgets/jh_bottom_sheet.dart';
 import '/jh_common/widgets/jh_picker_tool.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
+final List titleData = [
+  'JhBottomSheet-不带标题',
+  'JhBottomSheet-带标题',
+  'JhBottomSheet-红色',
+  'JhPickerTool-单列（字符串数组）',
+  'JhPickerTool-单列（对象数组）',
+  'JhPickerTool-两列（字符串数组）',
+  'JhPickerTool-两列（对象数组）',
+  'JhPickerTool-三列（字符串数组）',
+  'JhPickerTool-三列（对象数组）',
+  'JhPickerTool-时间选择YMD（默认YMD）',
+  'JhPickerTool-时间选择YM',
+  'JhPickerTool-时间选择YMD_HM',
+  'JhPickerTool-时间选择YMD_AP_HM',
+  'JhPickerTool-时间选择设置最大最小时间',
+];
+
+final stringArr = ['11', '22', '33', '44'];
+
+final dictArr = [
+  {'label': '类型一', 'value': '1'},
+  {'label': '类型二', 'value': '2'},
+  {'label': '类型三', 'value': '3'},
+];
+
+final stringArr2 = [
+  ['11', '22'],
+  ['33', '44'],
+];
+
+final dictArr2 = [
+  [
+    {'label': '大类一', 'value': '1'},
+    {'label': '大类二', 'value': '2'},
+    {'label': '大类三', 'value': '3'},
+  ],
+  [
+    {'label': '小类一', 'value': '1'},
+    {'label': '小类二', 'value': '2'},
+  ],
+];
+
+final stringArr3 = [
+  ['11', '22'],
+  ['33', '44'],
+  ['55', '66']
+];
+
+final dictArr3 = [
+  [
+    {'label': '大类一', 'value': '1'},
+    {'label': '大类二', 'value': '2'},
+    {'label': '大类三', 'value': '3'},
+  ],
+  [
+    {'label': '中类一', 'value': '1'},
+    {'label': '中型二', 'value': '2'},
+    {'label': '中型三', 'value': '3'},
+    {'label': '中型四', 'value': '4'},
+  ],
+  [
+    {'label': '小类一', 'value': '1'},
+    {'label': '小类二', 'value': '2'},
+  ],
+];
+
 class BottomSheetTest extends StatelessWidget {
-  final List titleData = [
-    'JhBottomSheet-不带标题',
-    'JhBottomSheet-带标题',
-    'JhBottomSheet-红色',
-    'JhPickerTool-单列（字符串数组）',
-    'JhPickerTool-单列（对象数组）',
-    'JhPickerTool-两列（字符串数组）',
-    'JhPickerTool-两列（对象数组）',
-    'JhPickerTool-三列（字符串数组）',
-    'JhPickerTool-三列（对象数组）',
-    'JhPickerTool-时间选择YMD（默认YMD）',
-    'JhPickerTool-时间选择YM',
-    'JhPickerTool-时间选择YMD_HM',
-    'JhPickerTool-时间选择YMD_AP_HM',
-    'JhPickerTool-时间选择设置最大最小时间',
-  ];
-
-  final stringArr = ['11', '22', '33', '44'];
-
-  final dictArr = [
-    {'label': '类型一', 'value': '1'},
-    {'label': '类型二', 'value': '2'},
-    {'label': '类型三', 'value': '3'},
-  ];
-
-  final stringArr2 = [
-    ['11', '22'],
-    ['33', '44'],
-  ];
-
-  final dictArr2 = [
-    [
-      {'label': '大类一', 'value': '1'},
-      {'label': '大类二', 'value': '2'},
-      {'label': '大类三', 'value': '3'},
-    ],
-    [
-      {'label': '小类一', 'value': '1'},
-      {'label': '小类二', 'value': '2'},
-    ],
-  ];
-
-  final stringArr3 = [
-    ['11', '22'],
-    ['33', '44'],
-    ['55', '66']
-  ];
-
-  final dictArr3 = [
-    [
-      {'label': '大类一', 'value': '1'},
-      {'label': '大类二', 'value': '2'},
-      {'label': '大类三', 'value': '3'},
-    ],
-    [
-      {'label': '中类一', 'value': '1'},
-      {'label': '中型二', 'value': '2'},
-      {'label': '中型三', 'value': '3'},
-      {'label': '中型四', 'value': '4'},
-    ],
-    [
-      {'label': '小类一', 'value': '1'},
-      {'label': '小类二', 'value': '2'},
-    ],
-  ];
+  const BottomSheetTest({super.key});
 
   @override
   Widget build(BuildContext context) {

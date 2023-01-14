@@ -26,7 +26,7 @@ class QrCodeScannerPage extends StatefulWidget {
   final bool isShowScanLine; // 是否显示扫描线动画
 
   @override
-  _QrCodeScannerPageState createState() => _QrCodeScannerPageState();
+  State<QrCodeScannerPage> createState() => _QrCodeScannerPageState();
 }
 
 // 动画要添加 TickerProviderStateMixin
@@ -71,56 +71,61 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body: _body(),
+    );
+  }
+
+  _body() {
     final scanArea =
         (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          QRView(
-            key: qrKey,
-            onQRViewCreated: _onQRViewCreated,
-            overlay: QrScannerOverlayShape(
-              cutOutSize: scanArea,
-              borderColor: _borderColor,
-              borderRadius: _borderRadius,
-              borderLength: _borderLength,
-              borderWidth: _borderWidth,
+
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        QRView(
+          key: qrKey,
+          onQRViewCreated: _onQRViewCreated,
+          overlay: QrScannerOverlayShape(
+            cutOutSize: scanArea,
+            borderColor: _borderColor,
+            borderRadius: _borderRadius,
+            borderLength: _borderLength,
+            borderWidth: _borderWidth,
+          ),
+          onPermissionSet: (QRViewController controller, bool isGranted) {
+            // 没有权限
+            if (!isGranted) {
+              JhProgressHUD.showText('没有相机权限！');
+              Navigator.of(context).pop();
+            }
+          },
+        ),
+        widget.isShowScanLine ? _animatedBuilder() : Container(),
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: _appBar2(),
+        ),
+        Positioned(
+          bottom: 60,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: IconButton(
+              icon: const Icon(Icons.highlight_outlined, size: 32, color: Colors.white),
+              onPressed: () => controller.toggleFlash(),
             ),
-            onPermissionSet: (QRViewController controller, bool isGranted) {
-              // 没有权限
-              if (!isGranted) {
-                JhProgressHUD.showText('没有相机权限！');
-                Navigator.of(context).pop();
-              }
-            },
           ),
-          widget.isShowScanLine ? _animatedBuilder() : Container(),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: _appBar2(),
-          ),
-          Positioned(
-            bottom: 60,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: IconButton(
-                icon: const Icon(Icons.highlight_outlined, size: 32, color: Colors.white),
-                onPressed: () => controller.toggleFlash(),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
   // ignore: unused_element
   _appBar1() {
-    return BaseAppBar('');
+    return const BaseAppBar('');
   }
 
   _appBar2() {
@@ -128,14 +133,8 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
       '',
       bgColor: Colors.transparent,
       leftWidget: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios_new,
-          size: 30,
-          color: Colors.white,
-        ),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        icon: const Icon(Icons.arrow_back_ios_new, size: 30, color: Colors.white),
+        onPressed: () => Navigator.of(context).pop(),
       ),
     );
   }
@@ -155,7 +154,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     );
 
     _animationSize = Tween<EdgeInsets>(
@@ -163,7 +162,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
       end: EdgeInsets.only(top: scanArea),
     ).animate(
       // 设置Curve值 动画的执行速率
-      CurvedAnimation(parent: _animationController, curve: Interval(0.0, 1.0)),
+      CurvedAnimation(parent: _animationController, curve: const Interval(0.0, 1.0)),
     );
 
     /// 监听动画状态的改变

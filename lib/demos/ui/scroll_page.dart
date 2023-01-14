@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '/project/configs/project_config.dart';
@@ -36,13 +38,21 @@ const Visibility({
 * */
 
 class ScrollPage extends StatelessWidget {
+  const ScrollPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: BaseAppBar('ScrollPage'), body: BaseScrollView(), backgroundColor: KColors.wxBgColor);
+    return const Scaffold(
+      appBar: BaseAppBar('ScrollPage'),
+      body: BaseScrollView(),
+      backgroundColor: KColors.wxBgColor,
+    );
   }
 }
 
 class BaseScrollView extends StatelessWidget {
+  const BaseScrollView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scrollbar(
@@ -53,32 +63,35 @@ class BaseScrollView extends StatelessWidget {
             height: 1500,
             width: double.infinity,
             color: Colors.yellow,
-            child: Text('往下滑动'),
+            child: const Text('往下滑动'),
           ),
           RichText(
-            text: TextSpan(style: DefaultTextStyle.of(context).style, children: <InlineSpan>[
-              TextSpan(text: '登录即视为同意'),
-              TextSpan(
-                text: '《xxx服务协议》',
-                style: TextStyle(color: Colors.red),
-                recognizer: new TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
-              ),
-            ]),
+            text: TextSpan(
+              style: DefaultTextStyle.of(context).style,
+              children: <InlineSpan>[
+                const TextSpan(text: '登录即视为同意'),
+                TextSpan(
+                  text: '《xxx服务协议》',
+                  style: const TextStyle(color: Colors.red),
+                  recognizer: TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
+                ),
+              ],
+            ),
           ),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
           ElevatedButton(
-            child: Text('点击'),
+            child: const Text('点击'),
             onPressed: () {},
           ),
         ],

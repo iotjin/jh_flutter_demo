@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -11,12 +13,14 @@ import '/jh_common/widgets/click_item.dart';
 import '/base_appbar.dart';
 
 class AboutIOSPage extends StatefulWidget {
+  const AboutIOSPage({Key? key}) : super(key: key);
+
   @override
-  _AboutIOSPageState createState() => _AboutIOSPageState();
+  State<AboutIOSPage> createState() => _AboutIOSPageState();
 }
 
 class _AboutIOSPageState extends State<AboutIOSPage> {
-  var _currentVersion;
+  var _currentVersion = '';
   var _info = '';
   var _isNeedUpdate = false;
 
@@ -65,41 +69,40 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('关于我们'),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 50,
-          ),
-          FlutterLogo(
-            size: 100.0,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text('Version：$_currentVersion'),
-          SizedBox(
-            height: 50,
-          ),
-          ClickItem(
-              title: 'Github',
-              content: 'Go Star',
-              onTap: () => JhNavRouterUtils.jumpWebViewPage(
-                  context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo')),
-          ClickItem(
-              title: 'author',
-              content: 'iotjin',
-              onTap: () => JhNavRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin')),
-          ClickItem(
-              title: '版本更新',
-              content: _info,
-              onTap: () {
-                if (_isNeedUpdate == true) {
-                  JhCommonUtils.jumpAppStore();
-                }
-              })
-        ],
-      ),
+      appBar: const BaseAppBar('关于我们'),
+      body: _body(),
+    );
+  }
+
+  _body() {
+    return Column(
+      children: <Widget>[
+        const SizedBox(height: 50),
+        const FlutterLogo(size: 100.0),
+        const SizedBox(height: 20),
+        Text('Version：$_currentVersion'),
+        const SizedBox(height: 50),
+        ClickItem(
+          title: 'Github',
+          content: 'Go Star',
+          onTap: () =>
+              JhNavRouterUtils.jumpWebViewPage(context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo'),
+        ),
+        ClickItem(
+          title: 'author',
+          content: 'iotjin',
+          onTap: () => JhNavRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin'),
+        ),
+        ClickItem(
+          title: '版本更新',
+          content: _info,
+          onTap: () {
+            if (_isNeedUpdate == true) {
+              JhCommonUtils.jumpAppStore();
+            }
+          },
+        )
+      ],
     );
   }
 
@@ -118,18 +121,18 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
 //    print('results#####--- ${data['results']}');
     print('version#####--- ${data['results'][0]['version']}');
 
-    var _appStoreVersion = data['results'][0]['version'];
+    var appStoreVersion = data['results'][0]['version'];
 
     print('CurrentVersion:$_currentVersion');
-    print('APPStoreVersion:$_appStoreVersion');
+    print('APPStoreVersion:$appStoreVersion');
     print('---------------------------------');
 
 //    _currentVersion ='7.0.10';
 //    print('CurrentVersion:${_currentVersion}');
 
-    print(_currentVersion.compareTo(_appStoreVersion)); // 比较大小, 0:相同、1:大于、-1:小于
+    print(_currentVersion.compareTo(appStoreVersion)); // 比较大小, 0:相同、1:大于、-1:小于
 
-    if (_currentVersion.compareTo(_appStoreVersion) < 0) {
+    if (_currentVersion.compareTo(appStoreVersion) < 0) {
       print('提示更新');
 
       setState(() {

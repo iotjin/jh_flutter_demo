@@ -50,9 +50,7 @@ class JhNavRouterUtils {
         return;
       }
       function(result);
-    }).catchError((error) {
-      print('$error');
-    });
+    }).catchError((error) {});
   }
 
   /// 返回

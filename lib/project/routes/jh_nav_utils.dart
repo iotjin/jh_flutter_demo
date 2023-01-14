@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/08/14.
 ///  description: 路由跳转工具类（基于fluro路由封装）
 
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'routes.dart';
 import 'package:fluro/fluro.dart';
@@ -19,7 +21,7 @@ enum JumpType {
 /// 路由跳转工具类
 class JhNavUtils {
   /// 跳转
-  static void pushNamed(BuildContext context, String routeName, {Object? arguments, transition: JumpType.native}) {
+  static void pushNamed(BuildContext context, String routeName, {Object? arguments, transition = JumpType.native}) {
     var path = routeName;
     // 对象或对象数组传值可以通过arguments字段进行传值，然后在router.define那里处理、设置页面接收
     if (arguments != null) {
@@ -85,7 +87,7 @@ class JhNavUtils {
 /// fluro的路由跳转工具类
 class _NavFluroUtils {
   static void push(BuildContext context, String path,
-      {bool replace = false, bool clearStack = false, transition: TransitionType.native}) {
+      {bool replace = false, bool clearStack = false, transition = TransitionType.native}) {
     unFocus();
     Routes.router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: transition);
   }

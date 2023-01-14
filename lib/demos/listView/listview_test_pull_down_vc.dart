@@ -1,4 +1,5 @@
 // ignore_for_file: unnecessary_import, unused_import
+// ignore_for_file: avoid_print
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import '/jh_common/widgets/jh_empty_view.dart';
 import 'listview_test_custom_cell.dart';
 import '/base_appbar.dart';
 
-var dataArr;
+var dataArr = [];
 var pageIndex = 0; // 页数
 var count = 10; // 每页10条
 
@@ -17,12 +18,12 @@ void getNewData() {
   pageIndex = 0;
   dataArr = [];
   for (int i = pageIndex * count; i < count; i++) {
-    var map = new Map<String, dynamic>();
+    var map = <String, dynamic>{};
     map['title'] = 'title$i';
     map['place'] = 'place$i';
     map['state'] = '流转中$i';
     map['content'] = '这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容';
-    map['phone'] = '$i$i$i' + 'xxxxxxx';
+    map['phone'] = '$i$i$i' 'xxxxxxx';
     map['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     dataArr.add(map);
   }
@@ -31,12 +32,12 @@ void getNewData() {
 void getMoreData() {
   pageIndex++;
   for (int i = pageIndex * count; i < pageIndex * count + count; i++) {
-    var map = new Map<String, dynamic>();
+    var map = <String, dynamic>{};
     map['title'] = 'title$i';
     map['place'] = 'place$i';
     map['state'] = '流转中$i';
     map['content'] = '这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容';
-    map['phone'] = '$i$i$i' + 'xxxxxxx';
+    map['phone'] = '$i$i$i' 'xxxxxxx';
     map['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
     dataArr.add(map);
   }
@@ -44,12 +45,14 @@ void getMoreData() {
 
 // 2.x版本EasyRefresh，基类或网络请求使用的3.x版本EasyRefresh
 class ListViewTestPullDownVC extends StatefulWidget {
+  const ListViewTestPullDownVC({Key? key}) : super(key: key);
+
   @override
-  _ListViewTestPullDownVCState createState() => _ListViewTestPullDownVCState();
+  State<ListViewTestPullDownVC> createState() => _ListViewTestPullDownVCState();
 }
 
 class _ListViewTestPullDownVCState extends State<ListViewTestPullDownVC> {
-  EasyRefreshController _controller = EasyRefreshController();
+  final EasyRefreshController _controller = EasyRefreshController();
 
   @override
   void initState() {
@@ -61,30 +64,30 @@ class _ListViewTestPullDownVCState extends State<ListViewTestPullDownVC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('假数据分页 - header/footer跟随'),
+      appBar: const BaseAppBar('假数据分页 - header/footer跟随'),
       body: EasyRefresh(
         header: BallPulseHeader(),
         footer: BallPulseFooter(),
         controller: _controller,
         firstRefresh: true,
         onRefresh: () async {
-          await Future.delayed(Duration(seconds: 2), () {
+          await Future.delayed(const Duration(seconds: 2), () {
             print('下拉刷新-----');
             getNewData();
             setState(() {
               _count = dataArr.length;
-              print('最新条数' + _count.toString());
+              print('最新条数 ${_count.toString()}');
               _controller.resetLoadState();
             });
           });
         },
         onLoad: () async {
-          await Future.delayed(Duration(seconds: 2), () {
+          await Future.delayed(const Duration(seconds: 2), () {
             print('上拉加载-----');
             getMoreData();
             setState(() {
               _count = dataArr.length;
-              print('加载更多条数' + _count.toString());
+              print('加载更多条数 ${_count.toString()}');
             });
             _controller.finishLoad(noMore: _count >= 30);
           });
@@ -123,7 +126,7 @@ Widget _header() {
         alignment: Alignment.center,
         color: Colors.orange,
         height: 50,
-        child: Text('header', style: TextStyle(color: Colors.white)),
+        child: const Text('header', style: TextStyle(color: Colors.white)),
       )
     ],
   );
@@ -134,13 +137,13 @@ Widget _footer() {
     alignment: Alignment.center,
     color: Colors.orange,
     height: 50,
-    child: Text('footer', style: TextStyle(color: Colors.white)),
+    child: const Text('footer', style: TextStyle(color: Colors.white)),
   );
 }
 
 Widget _listWidget(int dataCount) {
   if (dataCount == 0) {
-    return JhEmptyView();
+    return const JhEmptyView();
     // return Container(
     //   alignment: Alignment.topCenter,
     //   padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
@@ -150,16 +153,16 @@ Widget _listWidget(int dataCount) {
     return ListView.separated(
       // 加header要加上这两个属性
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       // 加header要加上这两个属性
       itemCount: dataCount,
       itemBuilder: (context, index) {
         CustomViewModel model = CustomViewModel.fromJson(dataArr[index]);
-        print('title' + model.title!);
+        print('title${model.title!}');
         return ListViewTestCustomCell(data: model);
       },
       separatorBuilder: (context, index) {
-        return Divider(
+        return const Divider(
           height: .5,
           indent: 15,
           endIndent: 15,

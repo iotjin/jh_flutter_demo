@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import '/jh_common/widgets/jh_form.dart';
@@ -5,8 +7,10 @@ import '/jh_common/widgets/jh_picker_tool.dart';
 import '/base_appbar.dart';
 
 class FormTest extends StatefulWidget {
+  const FormTest({Key? key}) : super(key: key);
+
   @override
-  _FormTestState createState() => _FormTestState();
+  State<FormTest> createState() => _FormTestState();
 }
 
 class _FormTestState extends State<FormTest> {
@@ -27,29 +31,31 @@ class _FormTestState extends State<FormTest> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        behavior: HitTestBehavior.translucent, //事件穿透
-        onTap: () {
-          // 点击空白收起键盘
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Scaffold(
+      behavior: HitTestBehavior.translucent, //事件穿透
+      onTap: () {
+        // 点击空白收起键盘
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
 //              resizeToAvoidBottomPadding: true, //输入框抵住键盘
-            appBar: BaseAppBar('FormTest'),
-            body: KeyboardActions(
-              config: JhForm.getKeyboardConfig(context, [_node1, _node2, _node3, _node4]),
-              child: _mainBody(),
-            )));
+        appBar: const BaseAppBar('FormTest'),
+        body: KeyboardActions(
+          config: JhForm.getKeyboardConfig(context, [_node1, _node2, _node3, _node4]),
+          child: _body(),
+        ),
+      ),
+    );
   }
 
-  _mainBody() {
-    double _space = 5;
+  _body() {
+    double space = 5;
     return Scrollbar(
         child: SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          SizedBox(height: _space),
+          SizedBox(height: space),
           JhForm.inputText(title: '联系人', hintText: '这是提示文字', focusNode: _node1, space: 100),
-          SizedBox(height: _space),
+          SizedBox(height: space),
           JhForm.inputText(
               title: '联系电话',
               inputInfo: _phone,
@@ -59,10 +65,10 @@ class _FormTestState extends State<FormTest> {
               keyboardType: TextInputType.number,
               inputCallBack: (value) {
                 _phone = value;
-                print('callback' + value);
+                print('callback$value');
               }),
           SizedBox(
-            height: _space,
+            height: space,
           ),
           JhForm.textView(
               inputInfo: '这是默认值',
@@ -70,18 +76,18 @@ class _FormTestState extends State<FormTest> {
               focusNode: _node3,
               showRedStar: true,
               inputCallBack: (value) {
-                print('textView' + value);
+                print('textView$value');
               }),
           SizedBox(
-            height: _space,
+            height: space,
           ),
           JhForm.textView(
               focusNode: _node4,
               inputCallBack: (value) {
-                print('textView2' + value);
+                print('textView2$value');
               }),
           SizedBox(
-            height: _space,
+            height: space,
           ),
           JhForm.selectText(
               title: '选择样式',
@@ -95,13 +101,13 @@ class _FormTestState extends State<FormTest> {
                 });
               }),
           SizedBox(
-            height: _space,
+            height: space,
           ),
           ElevatedButton(
-              child: Text('确认'),
+              child: const Text('确认'),
               onPressed: () {
-                print('确认' + _phone);
-                print('确认' + selectTextStr);
+                print('确认$_phone');
+                print('确认$selectTextStr');
               }),
         ],
       ),

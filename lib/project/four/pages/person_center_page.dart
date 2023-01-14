@@ -4,34 +4,37 @@
 ///  description:
 
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/project/configs/project_config.dart';
 
 double _scrollMaxOffSet = 1000;
 
 class PersonCenterPage extends StatefulWidget {
+  const PersonCenterPage({Key? key}) : super(key: key);
+
   @override
-  _PersonCenterPageState createState() => _PersonCenterPageState();
+  State<PersonCenterPage> createState() => _PersonCenterPageState();
 }
 
 class _PersonCenterPageState extends State<PersonCenterPage> with SingleTickerProviderStateMixin {
   TabController? tabController;
   double _topH = 0;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    this.tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
 
     _addListener();
   }
 
   void _addListener() {
     _scrollController.addListener(() {
-      double _y = _scrollController.offset;
-//      print('滑动距离: $_y');
-      if (_y < 0 && _y > -_scrollMaxOffSet) {
+      double y = _scrollController.offset;
+//      print('滑动距离: $y');
+      if (y < 0 && y > -_scrollMaxOffSet) {
         setState(() {
-          _topH = _y.abs();
+          _topH = y.abs();
 //          print(_topH);
         });
       }
@@ -48,65 +51,68 @@ class _PersonCenterPageState extends State<PersonCenterPage> with SingleTickerPr
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        controller: _scrollController,
-        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-        slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            elevation: 0,
-            expandedHeight: _topH + 200,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('Sliver-sticky效果'),
-              background: Image.network(
-                'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
-                fit: BoxFit.cover,
-              ),
-            ),
+      body: _body(),
+    );
+  }
+
+  _body() {
+    return CustomScrollView(
+      controller: _scrollController,
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      slivers: <Widget>[
+        SliverAppBar(
+          pinned: true,
+          elevation: 0,
+          expandedHeight: _topH + 200,
+          flexibleSpace: FlexibleSpaceBar(
+            title: const Text('Sliver-sticky效果', style: TextStyle(color: KColors.kNavTitleColor)),
+            background: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover),
           ),
-          SliverPersistentHeader(
-            pinned: true,
-            delegate: StickyTabBarDelegate(
-              child: TabBar(
-                labelColor: Colors.black,
-                controller: this.tabController,
-                tabs: <Widget>[
-                  Tab(text: 'Home'),
-                  Tab(text: 'Profile'),
-                ],
-              ),
-            ),
-          ),
-          SliverFillRemaining(
-            child: TabBarView(
-              controller: this.tabController,
-              children: <Widget>[
-                Center(child: Text('Content of Home')),
-                Center(child: Text('Content of Profile')),
+        ),
+        SliverPersistentHeader(
+          pinned: true,
+          delegate: StickyTabBarDelegate(
+            child: TabBar(
+              labelColor: KColors.dynamicColor(context, KColors.kFormTitleColor, KColors.kFormTitleDarkColor),
+              controller: tabController,
+              tabs: const <Widget>[
+                Tab(text: 'Home'),
+                Tab(text: 'Profile'),
               ],
             ),
           ),
-        ],
-      ),
+        ),
+        SliverFillRemaining(
+          child: TabBarView(
+            controller: tabController,
+            children: const <Widget>[
+              Center(child: Text('Content of Home')),
+              Center(child: Text('Content of Profile')),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
 
 class StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
-  final TabBar child;
+  StickyTabBarDelegate({
+    required this.child,
+  });
 
-  StickyTabBarDelegate({required this.child});
+  final TabBar child;
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return this.child;
+    return child;
   }
 
   @override
-  double get maxExtent => this.child.preferredSize.height;
+  double get maxExtent => child.preferredSize.height;
 
   @override
-  double get minExtent => this.child.preferredSize.height;
+  double get minExtent => child.preferredSize.height;
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {

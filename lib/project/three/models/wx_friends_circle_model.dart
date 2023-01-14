@@ -30,13 +30,13 @@ class WxFriendsCircleModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['color'] = this.color;
-    data['content'] = this.content;
-    data['time'] = this.time;
-    data['images'] = this.images;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['color'] = color;
+    data['content'] = content;
+    data['time'] = time;
+    data['images'] = images;
     return data;
   }
 }

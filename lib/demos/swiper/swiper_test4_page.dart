@@ -1,10 +1,14 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '/base_appbar.dart';
 
 class SwiperTest4Page extends StatefulWidget {
+  const SwiperTest4Page({Key? key}) : super(key: key);
+
   @override
-  _SwiperTest4PageState createState() => _SwiperTest4PageState();
+  State<SwiperTest4Page> createState() => _SwiperTest4PageState();
 }
 
 class _SwiperTest4PageState extends State<SwiperTest4Page> {
@@ -19,70 +23,80 @@ class _SwiperTest4PageState extends State<SwiperTest4Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar('swiper4 - carousel_slider'),
-        body: ListView(
-          children: <Widget>[
-            swiper_1(),
-            SizedBox(
-              height: 50,
-            ),
-            swiper_2(),
-          ],
-        ));
+      appBar: const BaseAppBar('swiper4 - carousel_slider'),
+      body: ListView(
+        children: <Widget>[
+          swiper_1(),
+          const SizedBox(height: 50),
+          swiper_2(),
+        ],
+      ),
+    );
   }
 
   Widget swiper_1() {
     return Container(
-        padding: EdgeInsets.fromLTRB(0, 50, 0, 10),
-        child: CarouselSlider(
-          options: CarouselOptions(
-            height: 200.0,
-            viewportFraction: 0.8,
-            aspectRatio: 2.0,
-            initialPage: 2,
-            enlargeCenterPage: true,
-            autoPlay: true,
-          ),
-          items: imgList.map((i) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
+      padding: const EdgeInsets.fromLTRB(0, 50, 0, 10),
+      child: CarouselSlider(
+        options: CarouselOptions(
+          height: 200.0,
+          viewportFraction: 0.8,
+          aspectRatio: 2.0,
+          initialPage: 2,
+          enlargeCenterPage: true,
+          autoPlay: true,
+        ),
+        items: imgList.map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return GestureDetector(
+                onTap: () {
+                  print('点击了第: $i');
+                },
+                child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: NetworkImage(i),
-                        fit: BoxFit.fill,
-                      )),
-                );
-              },
-            );
-          }).toList(),
-        ));
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(image: NetworkImage(i), fit: BoxFit.fill),
+                  ),
+                ),
+              );
+            },
+          );
+        }).toList(),
+      ),
+    );
   }
 
   Widget swiper_2() {
     return Container(
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-        child: CarouselSlider(
-          options: CarouselOptions(
-            height: 200.0,
-            viewportFraction: 0.8,
-            aspectRatio: 2.0,
-            initialPage: 2,
-            enlargeCenterPage: true,
-            autoPlay: true,
-          ),
-          items: imgList2.map((i) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
-                    decoration: BoxDecoration(color: Colors.amber),
-                    child: Text('text $i', style: TextStyle(fontSize: 16.0)));
-              },
-            );
-          }).toList(),
-        ));
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      child: CarouselSlider(
+        options: CarouselOptions(
+          height: 200.0,
+          viewportFraction: 0.8,
+          aspectRatio: 2.0,
+          initialPage: 2,
+          enlargeCenterPage: true,
+          autoPlay: true,
+        ),
+        items: imgList2.map((i) {
+          return Builder(
+            builder: (BuildContext context) {
+              return GestureDetector(
+                onTap: () {
+                  print('点击了第: $i');
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: const BoxDecoration(color: Colors.amber),
+                  child: Text('text $i', style: const TextStyle(fontSize: 16.0)),
+                ),
+              );
+            },
+          );
+        }).toList(),
+      ),
+    );
   }
 }

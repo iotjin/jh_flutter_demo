@@ -16,18 +16,20 @@ const Color bgColor = Colors.black87;
 const double radius = 3.0;
 
 class WxContactsPage extends StatefulWidget {
+  const WxContactsPage({Key? key}) : super(key: key);
+
   @override
-  _WxContactsPageState createState() => _WxContactsPageState();
+  State<WxContactsPage> createState() => _WxContactsPageState();
 }
 
 class _WxContactsPageState extends State<WxContactsPage> {
-  List<WxContactsModel> _dataList = [];
+  final List<WxContactsModel> _dataList = [];
 
   // 联系人总数
   String _contactsCount = '';
 
-  double _suspensionHeight = 40;
-  String _suspensionTag = '';
+  final double _suspensionHeight = 40;
+  final String _suspensionTag = '';
 
   @override
   void initState() {
@@ -39,7 +41,7 @@ class _WxContactsPageState extends State<WxContactsPage> {
 
   void _requestData() {
     JhProgressHUD.showLoadingText();
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       _loadData().then((value) {
         JhProgressHUD.hide();
       });
@@ -52,12 +54,12 @@ class _WxContactsPageState extends State<WxContactsPage> {
 
     Map dic = json.decode(jsonStr);
     List dataArr = dic['data'];
-    dataArr.forEach((item) {
+    for (var item in dataArr) {
 //      print('name: ${item['name']}');
 //      _dataList.add(ContactsModel(name: item['name']));
       WxContactsModel model = WxContactsModel.fromJson(item);
       _dataList.add(model);
-    });
+    }
     _handleList(_dataList);
 
 //    print('_dataList=====');
@@ -85,12 +87,12 @@ class _WxContactsPageState extends State<WxContactsPage> {
     SuspensionUtil.sortListBySuspensionTag(_dataList);
 
     // 把星标移到最前
-    _dataList.forEach((item) {
+    for (var item in _dataList) {
       if (item.isStar == true) {
         _dataList.remove(item);
         _dataList.insert(0, item);
       }
-    });
+    }
 
     // show sus tag.
     SuspensionUtil.setShowSuspensionStatus(_dataList);
@@ -105,19 +107,20 @@ class _WxContactsPageState extends State<WxContactsPage> {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = Theme.of(context).brightness == Brightness.dark;
-
-    var appbar = isDark
-        ? BaseAppBar(KStrings.twoTabTitle,
+    var appbar = context.jhIsDark
+        ? BaseAppBar(
+            KStrings.twoTabTitle,
             bgColor: KColors.kNavBgDarkColor,
             leftWidget: Container(),
-            rightImgPath: 'assets/images/tianjiahaoyou.png', rightItemCallBack: () {
-            JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-          })
-        : GradientAppBar(KStrings.twoTabTitle, leftWidget: Container(), rightImgPath: 'assets/images/tianjiahaoyou.png',
-            rightItemCallBack: () {
-            JhNavUtils.pushNamed(context, 'WxAddFriendPage');
-          });
+            rightImgPath: 'assets/images/tianjiahaoyou.png',
+            rightItemCallBack: () => JhNavUtils.pushNamed(context, 'WxAddFriendPage'),
+          )
+        : GradientAppBar(
+            KStrings.twoTabTitle,
+            leftWidget: Container(),
+            rightImgPath: 'assets/images/tianjiahaoyou.png',
+            rightItemCallBack: () => JhNavUtils.pushNamed(context, 'WxAddFriendPage'),
+          );
 
     return Scaffold(
       appBar: appbar as PreferredSizeWidget,
@@ -143,11 +146,11 @@ class _WxContactsPageState extends State<WxContactsPage> {
             JhNavUtils.pushNamed(context, 'WxUserInfoPage', arguments: model);
           },
           onClickTopCell: (itemData) {
-            _clickCell(context, itemData['title']);
+            _clickCell(itemData['title']);
           },
         );
       },
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       susItemHeight: _suspensionHeight,
       susItemBuilder: (BuildContext context, int index) {
         WxContactsModel model = _dataList[index];
@@ -158,7 +161,7 @@ class _WxContactsPageState extends State<WxContactsPage> {
         return _buildSusWidget(tag, isFloat: false);
       },
       indexBarData: SuspensionUtil.getTagIndexList(_dataList),
-      indexBarOptions: IndexBarOptions(
+      indexBarOptions: const IndexBarOptions(
         needRebuild: true,
         ignoreDragCancel: true,
         selectTextStyle: TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w500),
@@ -184,22 +187,25 @@ class _WxContactsPageState extends State<WxContactsPage> {
     return Container(
       height: _suspensionHeight,
       width: JhScreenUtils.screenWidth,
-      padding: EdgeInsets.only(left: 15),
+      padding: const EdgeInsets.only(left: 15),
       decoration: BoxDecoration(
         color: isFloat ? Colors.white : KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
-        border: isFloat ? Border(bottom: BorderSide(color: Color(0xFFE6E6E6), width: 0.5)) : null,
+        border: isFloat ? const Border(bottom: BorderSide(color: Color(0xFFE6E6E6), width: 0.5)) : null,
       ),
       alignment: Alignment.centerLeft,
       child: Text(
-        '${susTag == '★' ? '★ 星标朋友' : susTag}',
+        susTag == '★' ? '★ 星标朋友' : susTag,
         softWrap: false,
         style: TextStyle(
-            fontSize: 18, color: isFloat ? KColors.wxPayColor : Color(0xff777777), fontWeight: FontWeight.bold),
+          fontSize: 18,
+          color: isFloat ? KColors.wxPayColor : const Color(0xff777777),
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
 
-  void _clickCell(context, text) {
+  void _clickCell(text) {
     // JhToast.showText(context, msg: '点击 $text');
     if (text == '新的朋友') {
       JhNavUtils.pushNamed(context, 'WxNewFriendPage');

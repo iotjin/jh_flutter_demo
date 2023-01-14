@@ -1,42 +1,45 @@
+// ignore_for_file: avoid_print
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 
 class FullScreenSwiperWidget extends StatefulWidget {
+  const FullScreenSwiperWidget({Key? key}) : super(key: key);
+
   @override
-  _FullScreenSwiperWidgetState createState() => _FullScreenSwiperWidgetState();
+  State<FullScreenSwiperWidget> createState() => _FullScreenSwiperWidgetState();
 }
 
 class _FullScreenSwiperWidgetState extends State<FullScreenSwiperWidget> {
-  final _controller = new PageController();
-  static const _kDuration = const Duration(milliseconds: 300);
+  final _controller = PageController();
+  static const _kDuration = Duration(milliseconds: 300);
   static const _kCurve = Curves.ease;
 
-  List _imgList = [
+  final List _imgList = [
     'assets/images/newFeature/newFeature_0.jpeg',
     'assets/images/newFeature/newFeature_1.jpeg',
     'assets/images/newFeature/newFeature_2.jpeg',
     'assets/images/newFeature/newFeature_3.jpeg',
   ];
 
-  List<Widget> _imgWidgets = [];
+  final List<Widget> _imgWidgets = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    _imgList.forEach((value) {
+    for (var value in _imgList) {
 //      print(value);
       _imgWidgets.add(Image.asset(value, fit: BoxFit.fill, width: double.infinity, height: double.infinity));
-//      _imgWidgets.add(Image.network(value,
-//          fit: BoxFit.fill, width: double.infinity, height: double.infinity));
-    });
+      // _imgWidgets.add(Image.network(value, fit: BoxFit.fill, width: double.infinity, height: double.infinity));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement buildWidget
-    return new Stack(
+    return Stack(
       children: <Widget>[
         //pageViw
         PageView.builder(
@@ -56,7 +59,7 @@ class _FullScreenSwiperWidgetState extends State<FullScreenSwiperWidget> {
 //            // 如果为 false 。下次总是从 initialPage 开始。
 //            keepPage: true,
 //          ),
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           pageSnapping: true,
           onPageChanged: (index) {
             // 监听事件
@@ -64,15 +67,15 @@ class _FullScreenSwiperWidgetState extends State<FullScreenSwiperWidget> {
           },
         ),
         // 圆点指示器
-        new Positioned(
+        Positioned(
           bottom: 0.0,
           left: 0.0,
           right: 0.0,
-          child: new Container(
+          child: Container(
             color: Colors.transparent,
             padding: const EdgeInsets.all(20.0),
-            child: new Center(
-              child: new DotsIndicator(
+            child: Center(
+              child: DotsIndicator(
                 controller: _controller,
                 itemCount: _imgWidgets.length,
                 onPageSelected: (int page) {
@@ -89,10 +92,11 @@ class _FullScreenSwiperWidgetState extends State<FullScreenSwiperWidget> {
 
 class DotsIndicator extends AnimatedWidget {
   DotsIndicator({
+    super.key,
     this.controller,
     this.itemCount,
     this.onPageSelected,
-    this.color: Colors.red,
+    this.color = Colors.red,
   }) : super(listenable: controller!);
 
   /// The PageController that this DotsIndicator is representing.
@@ -119,23 +123,23 @@ class DotsIndicator extends AnimatedWidget {
   static const double _kDotSpacing = 25.0;
 
   Widget _buildDot(int index) {
-    double selectedness = Curves.easeOut.transform(
+    double selectedNess = Curves.easeOut.transform(
       max(
         0.0,
         1.0 - ((controller!.page ?? controller!.initialPage) - index).abs(),
       ),
     );
-    double zoom = 1.0 + (_kMaxZoom - 1.0) * selectedness;
-    return new Container(
+    double zoom = 1.0 + (_kMaxZoom - 1.0) * selectedNess;
+    return SizedBox(
       width: _kDotSpacing,
-      child: new Center(
-        child: new Material(
+      child: Center(
+        child: Material(
           color: color,
           type: MaterialType.circle,
-          child: new Container(
+          child: SizedBox(
             width: _kDotSize * zoom,
             height: _kDotSize * zoom,
-            child: new InkWell(
+            child: InkWell(
               onTap: () => onPageSelected!(index),
             ),
           ),
@@ -144,10 +148,11 @@ class DotsIndicator extends AnimatedWidget {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
-    return new Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: new List<Widget>.generate(itemCount!, _buildDot),
+      children: List<Widget>.generate(itemCount!, _buildDot),
     );
   }
 }

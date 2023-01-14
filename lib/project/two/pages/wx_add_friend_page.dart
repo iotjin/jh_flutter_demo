@@ -44,10 +44,12 @@ List _dataArr = [
 ];
 
 class WxAddFriendPage extends StatelessWidget {
+  const WxAddFriendPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('添加朋友', bgColor: Colors.transparent),
+      appBar: const BaseAppBar('添加朋友', bgColor: Colors.transparent),
       body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
@@ -67,41 +69,41 @@ class WxAddFriendPage extends StatelessWidget {
   }
 
   Widget _header(context) {
-    Widget _searchBar = JhSearchBar(
+    Widget searchBar = JhSearchBar(
       hintText: '微信号/手机号',
       bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
-    Widget _myCode = Container(
+    Widget myCode = SizedBox(
       height: 60,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('我的微信号：abc'),
-          SizedBox(width: 10),
+          const Text('我的微信号：abc'),
+          const SizedBox(width: 10),
           Image.asset('assets/wechat/contacts/add/add_friend_myQR_20x20_@2x.png', width: 20)
         ],
       ),
     );
 
     return Column(children: [
-      _searchBar,
-      _myCode,
+      searchBar,
+      myCode,
     ]);
   }
 
   Widget _listWidget(List dataArr) {
-    if (dataArr.length == 0) {
+    if (dataArr.isEmpty) {
       return Container(
         alignment: Alignment.topCenter,
-        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-        child: Text('暂无数据', textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
+        padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+        child: const Text('暂无数据', textAlign: TextAlign.center, style: TextStyle(fontSize: 18.0)),
       );
     } else {
       return ListView.builder(
         itemCount: dataArr.length,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           WxAddFriendModel model = WxAddFriendModel.fromJson(dataArr[index]);
           return WxAddFriendCell(

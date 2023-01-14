@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import '/jh_common/widgets/jh_empty_view.dart';
@@ -10,14 +12,14 @@ class HttpPageTestPage extends StatefulWidget {
   const HttpPageTestPage({Key? key}) : super(key: key);
 
   @override
-  _HttpPageTestPageState createState() => _HttpPageTestPageState();
+  State<HttpPageTestPage> createState() => _HttpPageTestPageState();
 }
 
 class _HttpPageTestPageState extends State<HttpPageTestPage> {
-  EasyRefreshController _controller = EasyRefreshController();
+  final EasyRefreshController _controller = EasyRefreshController();
   List _dataArr = [];
   int _pageIndex = 0;
-  int _limit = 15;
+  final int _limit = 15;
 
   @override
   void initState() {
@@ -64,7 +66,7 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('分页加载'),
+      appBar: const BaseAppBar('分页加载'),
       body: _body(),
     );
   }
@@ -82,8 +84,8 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
   }
 
   Widget _listWidget(List dataArr) {
-    if (dataArr.length == 0) {
-      return JhEmptyView();
+    if (dataArr.isEmpty) {
+      return const JhEmptyView();
       // return Container(
       //   alignment: Alignment.topCenter,
       //   padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
@@ -98,12 +100,12 @@ class _HttpPageTestPageState extends State<HttpPageTestPage> {
             model: model,
             onClickCell: (model) {
               print('点击的index $index');
-              print('点击的地点' + model['place']);
+              print('点击的地点${model['place']}');
             },
           );
         },
         separatorBuilder: (context, index) {
-          return Divider(height: .5, indent: 15, endIndent: 15, color: Colors.purple);
+          return const Divider(height: .5, indent: 15, endIndent: 15, color: Colors.purple);
         },
       );
     }

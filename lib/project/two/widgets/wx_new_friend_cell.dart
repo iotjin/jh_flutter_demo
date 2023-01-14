@@ -25,7 +25,7 @@ class WxNewFriendCell extends StatelessWidget {
   }
 
   _cell(context) {
-    Widget _btn = InkWell(
+    Widget btn = InkWell(
       child: Container(
         alignment: Alignment.center,
         width: 70,
@@ -34,22 +34,16 @@ class WxNewFriendCell extends StatelessWidget {
           color: KColors.wxThemeColor,
           borderRadius: BorderRadius.circular(5.0),
         ),
-        child: Text(
-          '接受',
-          style: TextStyle(color: Colors.white),
-        ),
+        child: const Text('接受', style: TextStyle(color: Colors.white)),
       ),
       onTap: () => onClickBtn?.call(model.toJson()),
     );
-    Widget _text = InkWell(
+    Widget text = InkWell(
         child: Container(
       alignment: Alignment.center,
       width: 70,
       height: 35,
-      child: Text(
-        '已添加',
-        style: TextStyle(color: Colors.grey),
-      ),
+      child: const Text('已添加', style: TextStyle(color: Colors.grey)),
     ));
 
     return Column(
@@ -60,10 +54,10 @@ class WxNewFriendCell extends StatelessWidget {
           color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
           child: ListTile(
             onTap: () => onClickCell?.call(model.toJson()),
-            leading: Container(child: CircleAvatar(backgroundImage: AssetImage(model.img!))),
-            title: Text(model.title.jhNullSafe, style: TextStyle(color: KColors.wxTextBlueColor)),
+            leading: CircleAvatar(backgroundImage: AssetImage(model.img!)),
+            title: Text(model.title.jhNullSafe, style: const TextStyle(color: KColors.wxTextBlueColor)),
             subtitle: Text(model.subtitle.jhNullSafe),
-            trailing: (model.isAdd ?? false) ? _text : _btn,
+            trailing: (model.isAdd ?? false) ? text : btn,
           ),
         ),
         SizedBox(

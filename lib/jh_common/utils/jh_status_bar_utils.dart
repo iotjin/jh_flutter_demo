@@ -12,7 +12,7 @@ class JhStatusBarUtils {
   static void setAndroidTransparentBar() {
     // 仅针对安卓
     if (JhDeviceUtils.isAndroid) {
-      SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+      SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(statusBarColor: Colors.transparent);
       SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     }
   }
@@ -53,7 +53,7 @@ class JhStatusBarUtils {
         // 设置底部状态栏(虚拟按键)亮度 (Android SDK >=O ), dark效果不明显，设置为light即可
         systemNavigationBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
       );
-      Future.delayed(Duration(milliseconds: 200), () {
+      Future.delayed(const Duration(milliseconds: 200), () {
         SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
       });
     }

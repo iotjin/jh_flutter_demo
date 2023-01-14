@@ -1,4 +1,4 @@
-///  Jh_cascade_picker.dart
+///  jh_cascade_picker.dart
 ///
 ///  Created by iotjin on 2022/07/23.
 ///  description: 级联选择器（多维数组结构数据）
@@ -19,9 +19,6 @@ const double _itemHeight = 50.0;
 const double _titleFontSize = 18.0;
 const double _textFontSize = 16.0;
 
-/// 选择回调，返回选中对象
-typedef _ClickCallBack = void Function(dynamic selectValue);
-
 class JhCascadePicker {
   static void show(
     BuildContext context, {
@@ -30,12 +27,12 @@ class JhCascadePicker {
     String title = _titleText,
     String tabText = _tabText,
     bool isShowRadius = true,
-    _ClickCallBack? clickCallBack,
+    Function(dynamic selectValue)? clickCallBack, // 选择回调，返回选中对象
   }) {
-    if (data.length <= 0) {
+    if (data.isEmpty) {
       return;
     }
-    var _radius = isShowRadius ? _headerRadius : 0.0;
+    var radius = isShowRadius ? _headerRadius : 0.0;
 
     showModalBottomSheet<void>(
       context: context,
@@ -44,8 +41,8 @@ class JhCascadePicker {
       // 设置圆角
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(_radius),
-          topRight: Radius.circular(_radius),
+          topLeft: Radius.circular(radius),
+          topRight: Radius.circular(radius),
         ),
       ),
       // 抗锯齿
@@ -79,7 +76,7 @@ class JhCascadePickerView extends StatefulWidget {
   final String labelKey; // 对象数组的文字字段
   final String title;
   final String tabText;
-  final _ClickCallBack? clickCallBack;
+  final Function(dynamic selectValue)? clickCallBack; // 选择回调，返回选中对象
 
   @override
   State<JhCascadePickerView> createState() => _JhCascadePickerViewState();
@@ -90,13 +87,13 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
   final ScrollController _scrollController = ScrollController();
 
   // TabBar 数组
-  List<Tab> _myTabs = <Tab>[];
+  final List<Tab> _myTabs = <Tab>[];
 
   // 当前列表数据
   List _mList = [];
 
   // 多级联动选择的position
-  List<int> _positions = [];
+  final List<int> _positions = [];
 
   // 索引
   int _index = 0;
@@ -158,7 +155,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
             if (i == _index) {
               _myTabs[i] = Tab(text: widget.tabText);
             } else {
-              _myTabs[i] = Tab(text: '');
+              _myTabs[i] = const Tab(text: '');
             }
           }
         });
@@ -179,41 +176,39 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
       color: bgColor,
       child: SizedBox(
           height: MediaQuery.of(context).size.height * 11.0 / 16.0,
-          child: Container(
-            child: Stack(
-              children: [
-                // header
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: _headerHeight,
-                    color: headerColor,
-                    alignment: Alignment.center,
-                    child: Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: titleColor)),
-                  ),
+          child: Stack(
+            children: [
+              // header
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: _headerHeight,
+                  color: headerColor,
+                  alignment: Alignment.center,
+                  child: Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: titleColor)),
                 ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: InkWell(
-                    onTap: () => JhNavUtils.goBack(context),
-                    child: Container(
-                      alignment: Alignment.centerRight,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      height: _headerHeight,
-                      width: _headerHeight * 2,
-                      child: Icon(
-                        Icons.close,
-                        color: titleColor,
-                      ),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: InkWell(
+                  onTap: () => JhNavUtils.goBack(context),
+                  child: Container(
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    height: _headerHeight,
+                    width: _headerHeight * 2,
+                    child: Icon(
+                      Icons.close,
+                      color: titleColor,
                     ),
                   ),
                 ),
-                _mainWidget(bgColor, textColor, lineColor),
-              ],
-            ),
+              ),
+              _mainWidget(bgColor, textColor, lineColor),
+            ],
           )),
     );
   }
@@ -226,7 +221,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
     var unselectedLabelColor = KColors.dynamicColor(context, KColors.kBlackTextColor, KColors.kBlackTextDarkColor);
 
     return Container(
-      margin: EdgeInsets.only(top: _headerHeight),
+      margin: const EdgeInsets.only(top: _headerHeight),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -252,7 +247,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
                   _setIndex(index);
                   _scrollController.animateTo(
                     _positions[_index] * _itemHeight,
-                    duration: Duration(milliseconds: 10),
+                    duration: const Duration(milliseconds: 10),
                     curve: Curves.ease,
                   );
                 });
@@ -280,7 +275,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
     return InkWell(
       child: Container(
         color: bgColor,
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         alignment: Alignment.centerLeft,
         child: Row(
           children: <Widget>[
@@ -288,7 +283,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
               _mList[index][widget.labelKey],
               style: TextStyle(fontSize: _textFontSize, color: flag ? themeColor : textColor),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Visibility(
               visible: flag,
               child: Icon(Icons.check, size: 15, color: themeColor),
@@ -316,7 +311,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
             widget.clickCallBack?.call(selectArr);
             JhNavUtils.goBack(context);
           }
-          _scrollController.animateTo(0.0, duration: Duration(milliseconds: 100), curve: Curves.ease);
+          _scrollController.animateTo(0.0, duration: const Duration(milliseconds: 100), curve: Curves.ease);
           _tabController?.animateTo(_index);
         });
       },

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
+final List titleData = ['TopTabBar1', 'TopTabBar2', 'TopTabBar3'];
+final List routeData = ['TopTabBarTest1Page', 'TopTabBarTest2Page', 'TopTabBarTest3Page'];
+
 class TopTabBarDemoListPage extends StatelessWidget {
-  final List titleData = ['TopTabBar1', 'TopTabBar2', 'TopTabBar3'];
-  final List routeData = ['TopTabBarTest1Page', 'TopTabBarTest2Page', 'TopTabBarTest3Page'];
+  const TopTabBarDemoListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

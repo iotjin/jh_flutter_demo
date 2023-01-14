@@ -14,8 +14,6 @@ const double _sliderBgW = 40.0;
 const Color _sliderBgColor = Color(0xFFD7D7DC);
 const Color _sliderColor = Colors.red;
 
-typedef _ClickCallBack = void Function(int selectIndex, dynamic selectItem);
-
 class JhSlideMenuView extends StatefulWidget {
   const JhSlideMenuView({
     Key? key,
@@ -36,7 +34,7 @@ class JhSlideMenuView extends StatefulWidget {
   final double radius; // 整体圆角
   final Color? bgColor; // 背景色
   final bool isShowSlider; // 是否显示底部滑块
-  final _ClickCallBack? clickCallBack;
+  final Function(int selectIndex, dynamic selectItem)? clickCallBack;
 
   @override
   State<JhSlideMenuView> createState() => _JhSlideMenuViewState();
@@ -44,7 +42,7 @@ class JhSlideMenuView extends StatefulWidget {
 
 class _JhSlideMenuViewState extends State<JhSlideMenuView> {
   var _dataArr = [];
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   double _offset = 0.0;
 
   @override
@@ -71,15 +69,13 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
   _body() {
     var margin = widget.margin;
     var mainAxisExtent = (JhScreenUtils.screenWidth - margin * 2) / widget.maxColumn;
-    var bgColor = widget.bgColor != null
-        ? widget.bgColor
-        : KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor);
+    var bgColor = widget.bgColor ?? KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor);
     return Container(
       margin: EdgeInsets.all(margin),
       decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(widget.radius)),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: mainAxisExtent * widget.maxRow * 0.9,
             width: JhScreenUtils.screenWidth,
             child: GridView.builder(
@@ -98,7 +94,7 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
           Visibility(
             visible: widget.isShowSlider,
             child: Container(
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               width: _sliderBgW,
               height: _sliderH,
               decoration: BoxDecoration(color: _sliderBgColor, borderRadius: BorderRadius.circular(_sliderRadius)),
@@ -123,25 +119,23 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
   }
 
   Widget _buildCell(mainAxisExtent, index) {
-    var _img = _dataArr[index]['image'];
-    Widget _imageWidget =
-        _img.startsWith('http') ? Image.network(_img, fit: BoxFit.cover) : Image.asset(_img, fit: BoxFit.cover);
+    var img = _dataArr[index]['image'];
+    Widget imageWidget =
+        img.startsWith('http') ? Image.network(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
 
     return GestureDetector(
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 3),
-            Container(
-              width: mainAxisExtent * 0.6,
-              height: mainAxisExtent * 0.5,
-              child: _imageWidget,
-            ),
-            SizedBox(height: 8),
-            Text(_dataArr[index]['text'], style: TextStyle(fontSize: 13)),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 3),
+          SizedBox(
+            width: mainAxisExtent * 0.6,
+            height: mainAxisExtent * 0.5,
+            child: imageWidget,
+          ),
+          const SizedBox(height: 8),
+          Text(_dataArr[index]['text'], style: const TextStyle(fontSize: 13)),
+        ],
       ),
       onTap: () => widget.clickCallBack?.call(index, _dataArr[index]),
     );

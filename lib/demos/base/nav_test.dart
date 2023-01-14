@@ -1,18 +1,22 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/base_appbar.dart';
 
+final List titleData = [
+  'nav-只有title',
+  'nav-左侧返回，右侧文字',
+  'nav-左侧返回(拦截点击事件)，右侧图片',
+  'nav-左侧自定义右侧文字',
+  'nav-设置透明背景色',
+  'nav-渐变导航条',
+  'nav-多行标题',
+];
+
 class NavTestPage extends StatelessWidget {
-  final List titleData = [
-    'nav-只有title',
-    'nav-左侧返回，右侧文字',
-    'nav-左侧返回(拦截点击事件)，右侧图片',
-    'nav-左侧自定义右侧文字',
-    'nav-设置透明背景色',
-    'nav-渐变导航条',
-    'nav-多行标题',
-  ];
+  const NavTestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class _Nav1 extends StatelessWidget {
         leftWidget: Container(),
       ),
       body: ElevatedButton(
-        child: Text('返回'),
+        child: const Text('返回'),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -76,7 +80,7 @@ class _Nav2 extends StatelessWidget {
         },
       ),
       body: ElevatedButton(
-        child: Text('返回'),
+        child: const Text('返回'),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -97,7 +101,7 @@ class _Nav3 extends StatelessWidget {
         print('点击左侧');
       }),
       body: ElevatedButton(
-        child: Text('返回'),
+        child: const Text('返回'),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -126,7 +130,7 @@ class _Nav4 extends StatelessWidget {
         print('点击左侧');
       }),
       body: ElevatedButton(
-        child: Text('返回'),
+        child: const Text('返回'),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -139,18 +143,17 @@ class _Nav5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar('透明背景色', rightText: '发布', rightItemCallBack: () {
-          JhProgressHUD.showText('点击右侧');
-          print('点击右侧');
-        }, bgColor: Colors.transparent),
-        body: Container(
-          child: ElevatedButton(
-            child: Text('返回'),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ));
+      appBar: BaseAppBar('透明背景色', rightText: '发布', rightItemCallBack: () {
+        JhProgressHUD.showText('点击右侧');
+        print('点击右侧');
+      }, bgColor: Colors.transparent),
+      body: ElevatedButton(
+        child: const Text('返回'),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    );
   }
 }
 
@@ -158,22 +161,21 @@ class _Nav6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: GradientAppBar(
-          '渐变导航条',
-          rightText: '发布',
-          rightItemCallBack: () {
-            JhProgressHUD.showText('点击右侧');
-            print('点击右侧');
-          },
-        ),
-        body: Container(
-          child: ElevatedButton(
-            child: Text('返回'),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ));
+      appBar: GradientAppBar(
+        '渐变导航条',
+        rightText: '发布',
+        rightItemCallBack: () {
+          JhProgressHUD.showText('点击右侧');
+          print('点击右侧');
+        },
+      ),
+      body: ElevatedButton(
+        child: const Text('返回'),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    );
   }
 }
 
@@ -181,12 +183,12 @@ class _Nav7 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(
+      appBar: const BaseAppBar(
         '微信1',
         titleWidget: TwoLinesTitle(title: '主标题', subtitle: '这是副标题'),
       ),
       body: ElevatedButton(
-        child: Text('返回'),
+        child: const Text('返回'),
         onPressed: () {
           Navigator.pop(context);
         },

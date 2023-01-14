@@ -17,7 +17,7 @@ class BaseRefreshViewTestPage extends StatefulWidget {
 class _BaseRefreshViewTestPageState extends State<BaseRefreshViewTestPage> {
   List _dataArr = [];
   int _pageIndex = 0;
-  int _limit = 15;
+  final int _limit = 15;
   bool _isGridView = false;
 
   @override
@@ -26,7 +26,7 @@ class _BaseRefreshViewTestPageState extends State<BaseRefreshViewTestPage> {
 
     _isGridView = widget.jumpParams['isGridView'];
 
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _requestData(isShowLoading: true);
     });
   }
@@ -64,15 +64,15 @@ class _BaseRefreshViewTestPageState extends State<BaseRefreshViewTestPage> {
   Widget _gridviewBody() {
     Widget child = GridView.builder(
       shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         // 可以直接指定每行（列）显示多少个Item
         crossAxisCount: 2, // 一行的Widget数量
         crossAxisSpacing: 5, // 水平间距
         mainAxisSpacing: 5, // 垂直间距
         childAspectRatio: 1.0, // 子Widget宽高比例
       ),
-      //GridView内边距
-      padding: EdgeInsets.all(5),
+      // GridView内边距
+      padding: const EdgeInsets.all(5),
       itemCount: _dataArr.length,
       itemBuilder: (context, index) {
         return _itemWidget(index);

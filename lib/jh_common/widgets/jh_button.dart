@@ -37,10 +37,9 @@ class JhButton extends StatelessWidget {
 
     return TextButton(
       onPressed: onPressed,
-      child: Text(text, style: TextStyle(fontSize: _fontSize)),
       style: ButtonStyle(
         // 设置按钮大小
-        minimumSize: MaterialStateProperty.all(Size(double.infinity, 48)),
+        minimumSize: MaterialStateProperty.all(const Size(double.infinity, 48)),
         // 背景色
         backgroundColor: MaterialStateProperty.resolveWith(
           (states) {
@@ -72,6 +71,7 @@ class JhButton extends StatelessWidget {
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(_borderRadius)),
         ),
       ),
+      child: Text(text, style: const TextStyle(fontSize: _fontSize)),
     );
   }
 }

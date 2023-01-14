@@ -4,8 +4,10 @@ import '/jh_common/utils/jh_common_utils.dart';
 import '/base_appbar.dart';
 
 class ListViewGroupPage extends StatefulWidget {
+  const ListViewGroupPage({Key? key}) : super(key: key);
+
   @override
-  _ListViewGroupPageState createState() => _ListViewGroupPageState();
+  State<ListViewGroupPage> createState() => _ListViewGroupPageState();
 }
 
 class _ListViewGroupPageState extends State<ListViewGroupPage> {
@@ -21,15 +23,15 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
   _getData() {
     var dataArr = [];
     for (int i = 0; i < 30; i++) {
-      var groupDict = new Map();
+      var groupDict = {};
       groupDict['groupTitle'] = 'groupTitle_$i';
       groupDict['num'] = '$i';
       var tempArr = [];
       int length = JhCommonUtils.getRandom(2, 5).toInt();
       for (int j = 0; j < length; j++) {
-        var tempDict = new Map();
-        tempDict['title'] = 'group$i' + '_title$j';
-        tempDict['phone'] = '$j$j$j' + 'xxxxxxx';
+        var tempDict = {};
+        tempDict['title'] = 'group$i' '_title$j';
+        tempDict['phone'] = '$j$j$j' 'xxxxxxx';
         tempDict['content'] = 'content{$j}-content{$j}-content{$j}-content{$j}-content{$j}-content{$j}';
         tempDict['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
         tempArr.add(tempDict);
@@ -43,7 +45,7 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('ListViewGroupPage'),
+      appBar: const BaseAppBar('ListViewGroupPage'),
       body: ListView.builder(
           itemCount: _groupData.length,
           itemBuilder: (context, index) {
@@ -51,7 +53,7 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
               header: Container(
                 height: 50.0,
                 color: Colors.yellow[700],
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Header #$index',

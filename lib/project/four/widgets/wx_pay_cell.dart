@@ -24,7 +24,7 @@ class WxPayCell extends StatelessWidget {
 
   Widget _cardView() {
     return Card(
-      margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       // 设置圆角
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       // 普通的边
@@ -36,22 +36,22 @@ class WxPayCell extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(15),
-            child: Text(model.title.jhNullSafe),
+            padding: const EdgeInsets.all(15),
             width: double.infinity,
+            child: Text(model.title.jhNullSafe),
           ),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             // 可以直接指定每行（列）显示多少个Item
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3, // 一行的Widget数量
               crossAxisSpacing: 0.5, // 水平间距
               mainAxisSpacing: 0.5, // 垂直间距
               childAspectRatio: 1.0, // 子Widget宽高比例
             ),
             // GridView内边距
-            padding: EdgeInsets.all(0.0),
+            padding: const EdgeInsets.all(0.0),
             itemCount: model.funcList!.length,
             itemBuilder: (context, index) {
               return item(model.funcList![index]);
@@ -74,9 +74,9 @@ class WxPayCell extends StatelessWidget {
           children: <Widget>[
             // Image.asset(funcModel.img!, width: 50.0, height: 50),
             // Image.network(funcModel.img!, width: 50),
-            Icon(Icons.card_membership),
-            SizedBox(height: 10),
-            Text(funcModel.text.jhNullSafe, style: TextStyle(color: Color(0xFF666666), fontSize: 13)),
+            const Icon(Icons.card_membership),
+            const SizedBox(height: 10),
+            Text(funcModel.text.jhNullSafe, style: const TextStyle(color: Color(0xFF666666), fontSize: 13)),
           ],
         ),
       ),

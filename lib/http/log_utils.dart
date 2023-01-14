@@ -3,16 +3,20 @@
 ///  Created by iotjin on 2020/07/09.
 ///  description:  输出Log日志工具类
 
+// ignore_for_file: avoid_print
+
 import 'dart:convert' as convert;
 import 'dart:developer';
 import 'package:flutter/foundation.dart';
-import 'package:common_utils/common_utils.dart';
+import 'package:flustars_flutter3/flustars_flutter3.dart';
+// import 'package:common_utils/common_utils.dart';
 
 class LogUtils {
   static const String tag = 'DEER-LOG';
 
-  //const bool isDebug = true;//是否是调试模式
-  /// debug开关，上线需要关闭
+  /// 是否是调试模式
+  static const bool isDebug = kDebugMode;
+
   /// App运行在Release环境时，inProduction为true；当App运行在Debug和Profile环境时，inProduction为false
   static const bool inProduction = kReleaseMode;
 
@@ -51,8 +55,9 @@ class LogUtils {
         _printMap(data);
       } else if (data is List) {
         _printList(data);
-      } else
+      } else {
         LogUtil.v(msg, tag: tag);
+      }
     }
   }
 
@@ -69,14 +74,14 @@ class LogUtils {
       var value = data[key];
       if (value is String) value = '\'$value\'';
       if (value is Map) {
-        if (value.length == 0)
+        if (value.isEmpty) {
           LogUtil.v('${_indent(tabs)} $key: $value${!isLast ? ',' : ''}', tag: tag);
-        else {
+        } else {
           LogUtil.v('${_indent(tabs)} $key: {', tag: tag);
           _printMap(value, tabs: tabs);
         }
       } else if (value is List) {
-        if (value.length == 0) {
+        if (value.isEmpty) {
           LogUtil.v('${_indent(tabs)} $key: ${value.toString()}', tag: tag);
         } else {
           LogUtil.v('${_indent(tabs)} $key: [', tag: tag);
@@ -96,7 +101,7 @@ class LogUtils {
     list.asMap().forEach((i, e) {
       final bool isLast = i == list.length - 1;
       if (e is Map) {
-        if (e.length == 0) {
+        if (e.isEmpty) {
           LogUtil.v('${_indent(tabs)}  $e${!isLast ? ',' : ''}', tag: tag);
         } else {
           _printMap(e, tabs: tabs + 1, isListItem: true, isLast: isLast);

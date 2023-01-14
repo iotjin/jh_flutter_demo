@@ -23,11 +23,8 @@ class ProgressDialog extends Dialog {
           ),
           child: const CupertinoActivityIndicator(radius: 14.0),
         ),
-        SizedBox(height: 8),
-        Text(
-          hintText,
-          style: const TextStyle(color: Colors.white),
-        )
+        const SizedBox(height: 8),
+        Text(hintText, style: const TextStyle(color: Colors.white))
       ],
     );
 
@@ -39,9 +36,7 @@ class ProgressDialog extends Dialog {
           width: 120.0,
           decoration: const ShapeDecoration(
             color: Color(0xFF3A3A3A),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            ),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
           ),
           child: progress,
         ),

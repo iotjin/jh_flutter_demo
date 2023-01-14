@@ -1,11 +1,15 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/base_appbar.dart';
 
+final List titleData = [
+  '继承',
+];
+
 class GrammarTestPage extends StatelessWidget {
-  final List titleData = [
-    '继承',
-  ];
+  const GrammarTestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +18,7 @@ class GrammarTestPage extends StatelessWidget {
       dataArr: titleData,
       callBack: (index, str) {
         if (index == 0) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => (Demo1()))); // 普通路由
+          Navigator.push(context, MaterialPageRoute(builder: (context) => (const Demo1()))); // 普通路由
         }
       },
     );
@@ -26,7 +30,7 @@ class Demo1 extends BaseA {
   const Demo1({Key? key}) : super(key: key);
 
   @override
-  _Demo1State createState() => _Demo1State();
+  State<Demo1> createState() => _Demo1State();
 }
 
 class _Demo1State extends BaseAState<Demo1> {
@@ -41,9 +45,9 @@ class _Demo1State extends BaseAState<Demo1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: BaseAppBar('继承'),
-      body: Container(child: Text('控制台查看日志')),
+      body: Text('控制台查看日志'),
     );
   }
 

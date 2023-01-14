@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -49,23 +51,25 @@ List groupData33 = [
 
 // 3.x 版本 EasyRefresh
 class ListViewGroupPage3 extends StatefulWidget {
+  const ListViewGroupPage3({Key? key}) : super(key: key);
+
   @override
-  _ListViewGroupPage3State createState() => _ListViewGroupPage3State();
+  State<ListViewGroupPage3> createState() => _ListViewGroupPage3State();
 }
 
 class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTickerProviderStateMixin {
   List _groupDataArr = [];
   int _pageIndex = 0;
-  int _limit = 10;
+  final int _limit = 10;
 
-  EasyRefreshController _controller = EasyRefreshController(
+  final EasyRefreshController _controller = EasyRefreshController(
     controlFinishRefresh: true,
     controlFinishLoad: true,
   );
 
   TabController? _tabController;
   List tabs = ['近30日', '近7日', '今日'];
-  var _rowHeight = 44.0;
+  final _rowHeight = 44.0;
 
   @override
   void initState() {
@@ -111,6 +115,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
@@ -131,8 +136,8 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
         controller: _tabController,
         tabs: tabs.map((e) => Tab(text: e)).toList(),
         indicatorColor: Colors.blueAccent,
-        labelColor: Color(0xFF646464),
-        unselectedLabelColor: Color(0xFF9B9B9B),
+        labelColor: const Color(0xFF646464),
+        unselectedLabelColor: const Color(0xFF9B9B9B),
         indicatorSize: TabBarIndicatorSize.label,
       ),
     );
@@ -159,7 +164,7 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
             : StickyHeader(
                 header: Container(
                   height: 50.0,
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(left: 15),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     color: Colors.orange,
@@ -169,10 +174,11 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
                   ),
                   child: Row(
                     children: <Widget>[
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Text(_groupDataArr[index - 1]['groupTitle']),
-                      SizedBox(width: 8),
-                      Text('(${_groupDataArr[index - 1]['id']})', style: TextStyle(color: Colors.red, fontSize: 22))
+                      const SizedBox(width: 8),
+                      Text('(${_groupDataArr[index - 1]['id']})',
+                          style: const TextStyle(color: Colors.red, fontSize: 22))
                     ],
                   ),
                 ),
@@ -196,13 +202,13 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
 
   Widget _topHeader() {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
             height: 70,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
             ),
@@ -210,24 +216,24 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(
-                  children: <Widget>[
+                  children: const <Widget>[
                     SizedBox(width: 8),
                     Text('这是title', style: TextStyle(fontSize: 18)),
                     SizedBox(width: 8)
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.only(right: 10),
                   child: Image.asset('assets/images/lufei.png', width: 60, height: 60),
                 ),
               ],
             ),
           ),
-          Container(color: Colors.white, height: 1, child: Divider(thickness: 1, indent: 15, endIndent: 15)),
+          Container(color: Colors.white, height: 1, child: const Divider(thickness: 1, indent: 15, endIndent: 15)),
           Container(
             height: 200,
             padding: const EdgeInsets.fromLTRB(50, 15, 50, 25),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8.0), bottomRight: Radius.circular(8.0)),
             ),
@@ -250,29 +256,29 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
         color = Colors.blue;
       }
 
-      var _width = MediaQuery.of(context).size.width;
-      var _bgW = _width * 0.5;
-      var _num = item['num'];
-      var ratio = double.parse(_num.toString()) / double.parse(groupNum.toString());
+      var width = MediaQuery.of(context).size.width;
+      var bgW = width * 0.5;
+      var num = item['num'];
+      var ratio = double.parse(num.toString()) / double.parse(groupNum.toString());
 //      print(ratio);
       return Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         height: 40,
         child: Row(
           children: <Widget>[
-            Expanded(flex: 20, child: Text(item['name'], style: TextStyle(color: Colors.grey))),
+            Expanded(flex: 20, child: Text(item['name'], style: const TextStyle(color: Colors.grey))),
             Expanded(
               flex: 60,
               child: LinearPercentIndicator(
-                width: _bgW,
+                width: bgW,
                 lineHeight: 10.0,
                 percent: ratio,
-                backgroundColor: Color(0xFFDCDCE6),
+                backgroundColor: const Color(0xFFDCDCE6),
                 progressColor: color,
               ),
             ),
-            Expanded(flex: 20, child: Text('$_num次', style: TextStyle(color: Colors.grey))),
+            Expanded(flex: 20, child: Text('$num次', style: const TextStyle(color: Colors.grey))),
           ],
         ),
       );

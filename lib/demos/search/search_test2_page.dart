@@ -4,6 +4,8 @@ import '/project/configs/colors.dart';
 import '/project/routes/jh_nav_utils.dart';
 
 class SearchTest2Page extends StatelessWidget {
+  const SearchTest2Page({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,15 +20,13 @@ class SearchTest2Page extends StatelessWidget {
           IconButton(
               icon:
 //              ImageIcon(AssetImage('images/more.png',),color: Colors.white,size: 30,),
-                  Icon(Icons.more_horiz, color: Colors.white),
+                  const Icon(Icons.more_horiz, color: Colors.white),
               onPressed: () {}),
-          SizedBox(
-            width: 5,
-          ),
+          const SizedBox(width: 5),
         ],
       ),
       body: ElevatedButton(
-        child: Text('返回'),
+        child: const Text('返回'),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -37,15 +37,15 @@ class SearchTest2Page extends StatelessWidget {
   _searchBar(context) {
     return GestureDetector(
       child: Container(
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
           border: Border.all(color: Colors.grey, width: 1.0), // 灰色的一层边框
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
         ),
         alignment: Alignment.center,
         height: 38,
 //           padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-        child: JhTextField(
+        child: const JhTextField(
           enabled: false,
           leftWidget: Icon(
             Icons.search,

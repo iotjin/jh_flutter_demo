@@ -1,14 +1,19 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import '/base_appbar.dart';
 
 class ChartPage2 extends StatefulWidget {
-  _ChartPage2State createState() => _ChartPage2State();
+  const ChartPage2({Key? key}) : super(key: key);
+
+  @override
+  State<ChartPage2> createState() => _ChartPage2State();
 }
 
 class _ChartPage2State extends State<ChartPage2> {
-  String? _year;
-  int? _sales;
+  String _year = '未选择';
+  int _sales = 0;
 
   // 点击柱状图触发的函数
   _onSelectionChanged(charts.SelectionModel model) {
@@ -25,44 +30,42 @@ class _ChartPage2State extends State<ChartPage2> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: BaseAppBar('chart2'),
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text('年份：$_year'),
-                    ),
+    return Scaffold(
+        appBar: const BaseAppBar('chart2'),
+        body: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text('年份：$_year'),
                   ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text('数值：$_sales'),
-                    ),
+                ),
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text('数值：$_sales'),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 200.0,
+              child: charts.BarChart(
+                // 通过下面获取数据传入
+                ChartFlutterBean.createSampleData(),
+                // 配置项，以及设置触发的函数
+                selectionModels: [
+                  charts.SelectionModelConfig(
+                    type: charts.SelectionModelType.info,
+                    changedListener: _onSelectionChanged,
                   )
                 ],
               ),
-              Container(
-                width: double.infinity,
-                height: 200.0,
-                child: charts.BarChart(
-                  // 通过下面获取数据传入
-                  ChartFlutterBean.createSampleData(),
-                  // 配置项，以及设置触发的函数
-                  selectionModels: [
-                    charts.SelectionModelConfig(
-                      type: charts.SelectionModelType.info,
-                      changedListener: _onSelectionChanged,
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }
@@ -78,14 +81,14 @@ class OrdinalSales {
 class ChartFlutterBean {
   static List<charts.Series<OrdinalSales, String>> createSampleData() {
     final data = [
-      new OrdinalSales('2014', 5),
-      new OrdinalSales('2015', 25),
-      new OrdinalSales('2016', 100),
-      new OrdinalSales('2017', 75),
+      OrdinalSales('2014', 5),
+      OrdinalSales('2015', 25),
+      OrdinalSales('2016', 100),
+      OrdinalSales('2017', 75),
     ];
 
     return [
-      new charts.Series<OrdinalSales, String>(
+      charts.Series<OrdinalSales, String>(
         id: 'Sales',
         colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (OrdinalSales sales, _) => sales.year,

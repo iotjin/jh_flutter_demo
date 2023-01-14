@@ -18,40 +18,42 @@ const double _fontSize = 16.0;
 const double _cellHeight = 50.0;
 const double _imgWH = 22.0;
 
-typedef _ClickCallBack = void Function(int selectIndex, String selectText);
-
 class JhPopMenus {
   /// 显示pop
-  static void show(BuildContext context, {_ClickCallBack? clickCallback}) {
+  static void show(
+    BuildContext context, {
+    Function(int selectIndex, String selectText)? clickCallback,
+  }) {
     // Cell
-    Widget _buildMenuCell(dataArr) {
+    Widget buildMenuCell(dataArr) {
       return ListView.builder(
-          itemCount: dataArr.length,
-          itemExtent: _cellHeight,
-          padding: const EdgeInsets.all(0.0),
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (BuildContext context, int index) {
-            return Material(
-                color: _bgColor,
-                child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                      if (clickCallback != null) {
-                        clickCallback(index, _listData[index]['text']);
-                      }
-                    },
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(width: 25),
-                        Image.asset(dataArr[index]['icon'], width: _imgWH, height: _imgWH, color: Colors.white),
-                        SizedBox(width: 15),
-                        Text(dataArr[index]['text'], style: TextStyle(color: Colors.white, fontSize: _fontSize)),
-                      ],
-                    )));
-          });
+        itemCount: dataArr.length,
+        itemExtent: _cellHeight,
+        padding: const EdgeInsets.all(0.0),
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          return Material(
+            color: _bgColor,
+            child: InkWell(
+              onTap: () {
+                clickCallback?.call(index, _listData[index]['text']);
+                Navigator.pop(context);
+              },
+              child: Row(
+                children: <Widget>[
+                  const SizedBox(width: 25),
+                  Image.asset(dataArr[index]['icon'], width: _imgWH, height: _imgWH, color: Colors.white),
+                  const SizedBox(width: 15),
+                  Text(dataArr[index]['text'], style: const TextStyle(color: Colors.white, fontSize: _fontSize)),
+                ],
+              ),
+            ),
+          );
+        },
+      );
     }
 
-    Widget _menusView(dataArr) {
+    Widget menusView(dataArr) {
       var cellH = dataArr.length * _cellHeight;
       var navH = JhScreenUtils.navigationBarHeight;
       return Positioned(
@@ -62,58 +64,57 @@ class JhPopMenus {
           children: <Widget>[
             Image.asset('assets/images/popMenus/ic_menu_up_arrow.png', width: 28, height: 5),
             ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Container(color: _bgColor, width: 160, height: cellH, child: _buildMenuCell(dataArr)))
+              borderRadius: BorderRadius.circular(5),
+              child: Container(color: _bgColor, width: 160, height: cellH, child: buildMenuCell(dataArr)),
+            )
           ],
         ),
       );
     }
 
-    Navigator.of(context).push(DialogRouter(_BasePopMenus(child: _menusView(_listData))));
+    Navigator.of(context).push(DialogRouter(_BasePopMenus(child: menusView(_listData))));
   }
 
   /// 显示带线带背景 pop
-  static void showLinePop(BuildContext context, {bool isShowBg = false, _ClickCallBack? clickCallback}) {
+  static void showLinePop(
+    BuildContext context, {
+    bool isShowBg = false,
+    Function(int selectIndex, String selectText)? clickCallback,
+  }) {
     // 带线
-    Widget _buildMenuLineCell(dataArr) {
+    Widget buildMenuLineCell(dataArr) {
       return ListView.separated(
         itemCount: dataArr.length,
         padding: const EdgeInsets.all(0.0),
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {
           return Material(
-              color: _bgColor,
-              child: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                    if (clickCallback != null) {
-                      clickCallback(index, _listData[index]['text']);
-                    }
-                  },
-                  child: Container(
-                    height: _cellHeight,
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(width: 25),
-                        Image.asset(dataArr[index]['icon'], width: _imgWH, height: _imgWH, color: Colors.white),
-                        SizedBox(width: 12),
-                        Text(dataArr[index]['text'], style: TextStyle(color: Colors.white, fontSize: _fontSize))
-                      ],
-                    ),
-                  )));
-        },
-        separatorBuilder: (context, index) {
-          return Divider(
-            height: .1,
-            indent: 50,
-            endIndent: 0,
-            color: Color(0xFFE6E6E6),
+            color: _bgColor,
+            child: InkWell(
+              onTap: () {
+                clickCallback?.call(index, _listData[index]['text']);
+                Navigator.pop(context);
+              },
+              child: SizedBox(
+                height: _cellHeight,
+                child: Row(
+                  children: <Widget>[
+                    const SizedBox(width: 25),
+                    Image.asset(dataArr[index]['icon'], width: _imgWH, height: _imgWH, color: Colors.white),
+                    const SizedBox(width: 12),
+                    Text(dataArr[index]['text'], style: const TextStyle(color: Colors.white, fontSize: _fontSize))
+                  ],
+                ),
+              ),
+            ),
           );
         },
+        separatorBuilder: (context, index) =>
+            const Divider(height: .1, indent: 50, endIndent: 0, color: Color(0xFFE6E6E6)),
       );
     }
 
-    Widget _menusView(dataArr) {
+    Widget menusView(dataArr) {
       var cellH = dataArr.length * _cellHeight;
       var navH = JhScreenUtils.navigationBarHeight;
       if (isShowBg == true) {
@@ -130,7 +131,7 @@ class JhPopMenus {
             Image.asset('assets/images/popMenus/ic_menu_up_arrow.png', width: 28, height: 5),
             ClipRRect(
                 borderRadius: BorderRadius.circular(5),
-                child: Container(color: _bgColor, width: 160, height: cellH, child: _buildMenuLineCell(dataArr)))
+                child: Container(color: _bgColor, width: 160, height: cellH, child: buildMenuLineCell(dataArr)))
           ],
         ),
       );
@@ -139,24 +140,23 @@ class JhPopMenus {
     if (isShowBg == true) {
       // 带背景
       showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) {
-            return _BasePopMenus(child: _menusView(_listData));
-          });
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return _BasePopMenus(child: menusView(_listData));
+        },
+      );
     } else {
-      Navigator.of(context).push(DialogRouter(_BasePopMenus(child: _menusView(_listData))));
+      Navigator.of(context).push(DialogRouter(_BasePopMenus(child: menusView(_listData))));
     }
   }
 }
 
 class _BasePopMenus extends Dialog {
-  _BasePopMenus({
+  const _BasePopMenus({
     Key? key,
-    this.child,
+    super.child,
   }) : super(key: key);
-
-  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -189,36 +189,36 @@ class DialogRouter extends PageRouteBuilder {
 }
 
 class CustomDialog extends Dialog {
-  CustomDialog({
+  const CustomDialog({
     Key? key,
-    this.child,
+    super.child,
     this.clickBgHidden = false, // 点击背景隐藏，默认不隐藏
   }) : super(key: key);
 
-  final Widget? child;
   final bool clickBgHidden;
 
   @override
   Widget build(BuildContext context) {
     return Material(
-        // 透明层
-        type: MaterialType.transparency,
-        child: Stack(
-          children: <Widget>[
-            InkWell(
-              onTap: () {
-                if (clickBgHidden == true) {
-                  Navigator.pop(context);
-                }
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              ),
+      // 透明层
+      type: MaterialType.transparency,
+      child: Stack(
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              if (clickBgHidden == true) {
+                Navigator.pop(context);
+              }
+            },
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
             ),
-            // 内容
-            Center(child: child)
-          ],
-        ));
+          ),
+          // 内容
+          Center(child: child)
+        ],
+      ),
+    );
   }
 }

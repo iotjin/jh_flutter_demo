@@ -11,13 +11,15 @@ import '/jh_common/jh_form/jh_set_cell.dart';
 import '/project/configs/project_config.dart';
 
 class WxPayManagerPage extends StatefulWidget {
+  const WxPayManagerPage({Key? key}) : super(key: key);
+
   @override
-  _WxPayManagerPageState createState() => _WxPayManagerPageState();
+  State<WxPayManagerPage> createState() => _WxPayManagerPageState();
 }
 
 class _WxPayManagerPageState extends State<WxPayManagerPage> {
-  double _cellH = wxCellH;
-  double _rowSpace = wxRowSpace;
+  final double _cellH = wxCellH;
+  final double _rowSpace = wxRowSpace;
   bool _switchSelected = false;
   bool _switchSelected2 = true;
 
@@ -25,12 +27,12 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(KStrings.wxPayManager, bgColor: Colors.transparent),
-      body: _body(context),
+      body: _body(),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
-  Widget _body(context) {
+  Widget _body() {
     return ListView(
       children: <Widget>[
         JhSetCell(
@@ -38,19 +40,19 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
           title: '实名认证',
           text: '已认证',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, '实名认证'),
+          clickCallBack: () => _clickCell('实名认证'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
           cellHeight: _cellH,
           title: '修改支付密码',
-          clickCallBack: () => _clickCell(context, '修改支付密码'),
+          clickCallBack: () => _clickCell('修改支付密码'),
         ),
         JhSetCell(
           cellHeight: _cellH,
           title: '忘记支付密码',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, '忘记支付密码'),
+          clickCallBack: () => _clickCell('忘记支付密码'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
@@ -68,8 +70,8 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
           ),
         ),
         Container(
-          padding: EdgeInsets.fromLTRB(20, 5, 25, 15),
-          child: Text(
+          padding: const EdgeInsets.fromLTRB(20, 5, 25, 15),
+          child: const Text(
             '开启后，转账或消费时，可使用 Touch ID 验证指纹快速完成付款',
             style: TextStyle(color: Colors.grey, fontSize: 15),
           ),
@@ -90,17 +92,17 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
           ),
         ),
         Container(
-          padding: EdgeInsets.fromLTRB(20, 5, 25, 15),
+          padding: const EdgeInsets.fromLTRB(20, 5, 25, 15),
           child: RichText(
             text: TextSpan(children: <InlineSpan>[
-              TextSpan(
+              const TextSpan(
                 text: '他人可进入“收付款 > 向银行卡手机号转账”，向你的微信绑定手机号转账，收款将存入零钱。开启即同意',
                 style: TextStyle(color: Colors.grey, fontSize: 15),
               ),
               TextSpan(
                 text: '服务协议',
-                style: TextStyle(color: Colors.blueAccent, fontSize: 15),
-                recognizer: new TapGestureRecognizer()..onTap = () => _clickXieYi(context),
+                style: const TextStyle(color: Colors.blueAccent, fontSize: 15),
+                recognizer: TapGestureRecognizer()..onTap = () => _clickXieYi(),
               ),
             ]),
           ),
@@ -108,34 +110,34 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
         JhSetCell(
           cellHeight: _cellH,
           title: '扣费服务',
-          clickCallBack: () => _clickCell(context, '扣费服务'),
+          clickCallBack: () => _clickCell('扣费服务'),
         ),
         JhSetCell(
           cellHeight: _cellH,
           title: '转账到账时间',
           text: '实时到账',
-          clickCallBack: () => _clickCell(context, '转账到账时间'),
+          clickCallBack: () => _clickCell('转账到账时间'),
         ),
         JhSetCell(
           cellHeight: _cellH,
           title: '红包退款方式',
           text: '退回原支付方式',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, '红包退款方式'),
+          clickCallBack: () => _clickCell('红包退款方式'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
           cellHeight: _cellH,
           title: '服务管理',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, '服务管理'),
+          clickCallBack: () => _clickCell('服务管理'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
           cellHeight: _cellH,
           title: '注销微信支付',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, '注销微信支付'),
+          clickCallBack: () => _clickCell('注销微信支付'),
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
@@ -143,18 +145,18 @@ class _WxPayManagerPageState extends State<WxPayManagerPage> {
           titleWidth: 150,
           title: '微信收款商家版',
           hiddenLine: true,
-          clickCallBack: () => _clickCell(context, '微信收款商家版'),
+          clickCallBack: () => _clickCell('微信收款商家版'),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
       ],
     );
   }
 
-  void _clickXieYi(context) {
+  void _clickXieYi() {
     JhToast.showText(context, msg: '点击服务协议');
   }
 
-  void _clickCell(context, title) {
+  void _clickCell(title) {
     JhToast.showText(context, msg: '点击 $title');
   }
 }

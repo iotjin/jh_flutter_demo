@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
+final List titleData = [
+  '文字',
+  '成功',
+  '失败',
+  '警告',
+  '加载中',
+];
+
 class ToastDemoListPage extends StatelessWidget {
-  final List titleData = [
-    '文字',
-    '成功',
-    '失败',
-    '警告',
-    '加载中',
-  ];
+  const ToastDemoListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class ToastDemoListPage extends StatelessWidget {
         }
         if (str == '加载中') {
           JhProgressHUD.showLoadingText();
-          Future.delayed(Duration(seconds: 5), () {
+          Future.delayed(const Duration(seconds: 5), () {
             JhProgressHUD.hide();
           });
         }

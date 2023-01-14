@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2022/07/28.
 ///  description:
 
+// ignore_for_file: avoid_print
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,31 +25,31 @@ class _ThemePageState extends State<ThemePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('主题设置'),
-      body: _body(context),
+      appBar: const BaseAppBar('主题设置'),
+      body: _body(),
     );
   }
 
   // 只有主题列表
   // ignore: unused_element
-  Widget _body2(context) {
+  Widget _body2() {
     final provider = Provider.of<ThemeProvider>(context);
-    List _dataArr = provider.getThemeList();
+    List dataArr = provider.getThemeList();
     return ListView.separated(
-      itemCount: _dataArr.length,
+      itemCount: dataArr.length,
       separatorBuilder: (_, __) => const Divider(),
       itemBuilder: (context, index) {
-        var item = _dataArr[index];
-        return _cell(context, item);
+        var item = dataArr[index];
+        return _cell(item);
       },
     );
   }
 
-  Widget _body(context) {
+  Widget _body() {
     final provider = Provider.of<ThemeProvider>(context);
     _isOpen = provider.isFollowSystem;
 
-    Widget _topWidget = JhSetCell(
+    Widget topWidget = JhSetCell(
       title: '跟随系统',
       hiddenLine: true,
       hiddenArrow: true,
@@ -66,34 +68,34 @@ class _ThemePageState extends State<ThemePage> {
       ),
     );
 
-    List _dataArr = provider.getThemeList();
-    List<Widget> _widgetList = _dataArr.map((item) => _cell(context, item)).toList();
-    _widgetList.insert(0, _topWidget);
+    List dataArr = provider.getThemeList();
+    List<Widget> widgetList = dataArr.map((item) => _cell(item)).toList();
+    widgetList.insert(0, topWidget);
 
     return Scrollbar(
       child: SingleChildScrollView(
         child: Column(
-          children: _widgetList,
+          children: widgetList,
         ),
       ),
     );
   }
 
-  Widget _cell(context, item) {
+  Widget _cell(item) {
     final provider = Provider.of<ThemeProvider>(context);
     return Visibility(
       visible: !_isOpen,
       child: InkWell(
         child: Container(
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           height: 50,
           color: item['value'],
           alignment: Alignment.centerLeft,
           child: Row(
             children: <Widget>[
               Expanded(
-                child: Text(item['label'], style: TextStyle(color: Colors.white)),
+                child: Text(item['label'], style: const TextStyle(color: Colors.white)),
               ),
               Opacity(
                 opacity: provider.getThemeColor() == item['value'] ? 1 : 0,
@@ -102,12 +104,12 @@ class _ThemePageState extends State<ThemePage> {
             ],
           ),
         ),
-        onTap: () => _onClickCell(context, item),
+        onTap: () => _onClickCell(item),
       ),
     );
   }
 
-  _onClickCell(context, item) {
+  _onClickCell(item) {
     print('选中主题: $item');
     setState(() {
       Provider.of<ThemeProvider>(context, listen: false).setTheme(item['themeMode']);

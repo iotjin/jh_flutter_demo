@@ -15,12 +15,12 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('Graphic - 饼图'),
-      body: _scrollbar(),
+      appBar: const BaseAppBar('Graphic - 饼图'),
+      body: _body(),
     );
   }
 
-  Widget _scrollbar() {
+  Widget _body() {
     return Scrollbar(
         child: SingleChildScrollView(
       child: Column(
@@ -53,7 +53,7 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
         height: 300,
         // color: Colors.yellow,
         child: Chart(
-          data: [
+          data: const [
             {'genre': 'Sports', 'sold': 275},
             {'genre': 'Strategy', 'sold': 115},
             {'genre': 'Action', 'sold': 120},
@@ -69,20 +69,16 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
               accessor: (Map map) => map['sold'] as num,
             ),
           },
-          transforms: [
-            Proportion(
-              variable: 'sold',
-              as: 'percent',
-            )
-          ],
+          transforms: [Proportion(variable: 'sold', as: 'percent')],
           elements: [
             IntervalElement(
               position: Varset('percent') / Varset('genre'),
               label: LabelAttr(
-                  encoder: (tuple) => Label(
-                        tuple['sold'].toString(),
-                        LabelStyle(style: Defaults.runeStyle),
-                      )),
+                encoder: (tuple) => Label(
+                  tuple['sold'].toString(),
+                  LabelStyle(style: Defaults.runeStyle),
+                ),
+              ),
               color: ColorAttr(variable: 'genre', values: Defaults.colors10),
               modifiers: [StackModifier()],
             )
@@ -109,12 +105,7 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
               scale: LinearScale(min: 0, marginMax: 0.1),
             ),
           },
-          transforms: [
-            Proportion(
-              variable: 'sold',
-              as: 'percent',
-            )
-          ],
+          transforms: [Proportion(variable: 'sold', as: 'percent')],
           elements: [
             IntervalElement(
               position: Varset('percent') / Varset('genre'),
@@ -122,7 +113,7 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
                   encoder: (tuple) => Label(
                         tuple['sold'].toString(),
                         // LabelStyle(style: Defaults.runeStyle),
-                        LabelStyle(style: TextStyle(fontSize: 18, color: Colors.black)),
+                        LabelStyle(style: const TextStyle(fontSize: 18, color: Colors.black)),
                       )),
               color: ColorAttr(
                   variable: 'genre', values: [Colors.red, Colors.orange, Colors.yellow, Colors.green, Colors.blue]),
@@ -151,12 +142,7 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
               accessor: (Map map) => map['sold'] as num,
             ),
           },
-          transforms: [
-            Proportion(
-              variable: 'sold',
-              as: 'percent',
-            )
-          ],
+          transforms: [Proportion(variable: 'sold', as: 'percent')],
           elements: [
             IntervalElement(
               position: Varset('percent') / Varset('genre'),
@@ -180,10 +166,12 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
     Map<int, Tuple> selectedTuples,
   ) {
     final tuple = selectedTuples.values.last;
-    var titleColor = KColors.dynamicColor(context, KColors.kFormTitleColor, KColors.kFormTitleDarkColor);
+
+    var titleColor = Theme.of(context).textTheme.bodyText1?.color;
+    // var titleColor = KColors.dynamicColor(context, KColors.kFormTitleColor, KColors.kFormTitleDarkColor);
 
     final titleSpan = TextSpan(
-      text: tuple['genre'].toString() + '\n',
+      text: '${tuple['genre']}\n',
       style: TextStyle(fontSize: 14, color: titleColor),
     );
 

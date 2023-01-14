@@ -24,11 +24,11 @@ class WxNewFriendModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
-    data['img'] = this.img;
-    data['isAdd'] = this.isAdd;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['subtitle'] = subtitle;
+    data['img'] = img;
+    data['isAdd'] = isAdd;
     return data;
   }
 }

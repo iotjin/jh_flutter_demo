@@ -11,16 +11,25 @@ import '/base_appbar.dart';
 //                               }],
 
 class EChartPage1 extends StatelessWidget {
+  const EChartPage1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('EChart1 - 平滑折线图 警戒线'),
-      body: Container(
-        color: Colors.cyan,
-        child: Echarts(
-          reloadAfterInit: true,
-          captureAllGestures: false,
-          option: '''
+      appBar: const BaseAppBar('EChart1 - 平滑折线图 警戒线'),
+      body: _body(),
+    );
+  }
+
+  _body() {
+    return Container(
+      color: Colors.cyan,
+//        width: 300,
+      height: 250,
+      child: Echarts(
+        reloadAfterInit: true,
+        captureAllGestures: false,
+        option: '''
                       {
                           title: {
                               text: 'title',
@@ -83,9 +92,6 @@ class EChartPage1 extends StatelessWidget {
                           }]
                       }
                 ''',
-        ),
-//        width: 300,
-        height: 250,
       ),
     );
   }

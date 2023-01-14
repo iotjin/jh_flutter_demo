@@ -37,7 +37,7 @@ class _RouteTestPage2State extends State<RouteTestPage2> with RouteAware {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: const <Widget>[
             SizedBox(height: 10),
             Text('只能点击返回按钮返回'),
           ],

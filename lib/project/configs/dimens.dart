@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/07/06.
 ///  description:  字体 配置
 
+// ignore_for_file: constant_identifier_names
+
 class KDimens {
   static const double font_sp10 = 10.0;
   static const double font_sp12 = 12.0;

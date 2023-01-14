@@ -1,11 +1,15 @@
+// ignore_for_file: avoid_print
+
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_top_tabbar.dart';
-import '/res/listData.dart';
+import '/res/list_data.dart';
 
 class TopTabBarTest3Page extends StatefulWidget {
+  const TopTabBarTest3Page({Key? key}) : super(key: key);
+
   @override
-  _TopTabBarTest3PageState createState() => _TopTabBarTest3PageState();
+  State<TopTabBarTest3Page> createState() => _TopTabBarTest3PageState();
 }
 
 class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
@@ -17,19 +21,19 @@ class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
       title: '标题',
       tabModelArr: [
         JhTopTabBarModel(
-            widget: HomeContent(),
+            widget: const HomeContent(),
             badge: Badge(
               toAnimate: false,
               position: BadgePosition.topEnd(top: -5, end: -20),
-              child: Text('标题一'),
+              child: const Text('标题一'),
             )),
         JhTopTabBarModel(
-            widget: HomeContent(),
+            widget: const HomeContent(),
             badge: Badge(
               toAnimate: false,
               position: BadgePosition.topEnd(top: -12, end: -20),
-              badgeContent: Text(_count.toString(), style: TextStyle(color: Colors.white, fontSize: 10)),
-              child: Text('标题二'),
+              badgeContent: Text(_count.toString(), style: const TextStyle(color: Colors.white, fontSize: 10)),
+              child: const Text('标题二'),
             )),
       ],
       showCenterLine: true,
@@ -50,28 +54,31 @@ class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
 }
 
 class HomeContent extends StatelessWidget {
+  const HomeContent({super.key});
+
   Widget _getListData(context, index) {
     return ListTile(
       title: Text(listData[index]['title']),
       leading: Image.network(listData[index]['imageUrl']),
       subtitle: Text(listData[index]['content']),
       onTap: () {
-        print('点击的index' + index.toString());
+        print('点击的index$index');
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemCount: listData.length, itemBuilder: this._getListData);
+    return ListView.builder(itemCount: listData.length, itemBuilder: _getListData);
   }
 }
 
 Widget contentBody = Container(
-    width: 200,
-    height: 200,
-    color: Colors.red,
-    child: ElevatedButton(
-      child: Text('normal'),
-      onPressed: () {},
-    ));
+  width: 200,
+  height: 200,
+  color: Colors.red,
+  child: ElevatedButton(
+    child: const Text('normal'),
+    onPressed: () {},
+  ),
+);

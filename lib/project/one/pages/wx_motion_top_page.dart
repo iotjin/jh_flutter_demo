@@ -12,14 +12,16 @@ import '../models/wx_motion_top_model.dart';
 import '../widgets/wx_motion_top_cell.dart';
 
 class WxMotionTopPage extends StatefulWidget {
+  const WxMotionTopPage({Key? key}) : super(key: key);
+
   @override
-  _WxMotionTopPageState createState() => _WxMotionTopPageState();
+  State<WxMotionTopPage> createState() => _WxMotionTopPageState();
 }
 
 class _WxMotionTopPageState extends State<WxMotionTopPage> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
-  double _imgNormalHeight = 300;
+  final double _imgNormalHeight = 300;
   double _imgExtraHeight = 0;
   double _imgChangeHeight = 0;
   double _scrollMinOffSet = 0;
@@ -45,13 +47,13 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
 
     Map dic = json.decode(jsonStr);
     List dataArr = dic['data'];
-    dataArr.forEach((item) {
+    for (var item in dataArr) {
       //print('steps: ${item['steps']}');
       if (item['isOwn'] == true) {
         dataArr.remove(item);
         dataArr.insert(0, item);
       }
-    });
+    }
     _dataArr = dataArr;
     setState(() {});
   }
@@ -59,11 +61,11 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
   // 滚动监听
   void _addListener() {
     _scrollController.addListener(() {
-      double _y = _scrollController.offset;
-//      print('滑动距离: $_y');
+      double y = _scrollController.offset;
+//      print('滑动距离: $y');
 
-      if (_y < _scrollMinOffSet) {
-        _imgExtraHeight = -_y;
+      if (y < _scrollMinOffSet) {
+        _imgExtraHeight = -y;
 //        print(_topH);
         setState(() {
           _imgChangeHeight = _imgNormalHeight + _imgExtraHeight;
@@ -74,11 +76,11 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
         });
       }
 //      // 小于0 ，下拉放大
-//      if (_y < 0) {
+//      if (y < 0) {
 //      } else {}
 
       // appbar 透明度
-      double appBarOpacity = _y / _navH;
+      double appBarOpacity = y / _navH;
       if (appBarOpacity < 0) {
         appBarOpacity = 0.0;
       } else if (appBarOpacity > 1) {
@@ -103,13 +105,14 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _body(context, _dataArr),
+      body: _body(),
     );
   }
 
-  Widget _body(context, dataArr) {
-    var _navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
-    _navBgColor = _navBgColor.withOpacity(_appbarOpacity);
+  Widget _body() {
+    var dataArr = _dataArr;
+    var navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
+    navBgColor = navBgColor.withOpacity(_appbarOpacity);
 
     return Stack(
       children: <Widget>[
@@ -120,20 +123,17 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
             removeTop: true,
             child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: dataArr.length + 1,
               itemBuilder: (BuildContext context, int index) {
                 if (index == 0) {
-                  return Container(
-                    width: double.infinity,
-                    height: _imgNormalHeight,
-                  );
+                  return SizedBox(width: double.infinity, height: _imgNormalHeight);
                 }
                 WxMotionTopModel model = WxMotionTopModel.fromJson(dataArr[index - 1]);
                 return WxMotionTopCell(
                   model: model,
                   onClickCell: (model) {
-                    _clickCell(context, model['name']);
+                    _clickCell(model['name']);
                   },
                 );
               },
@@ -141,32 +141,22 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
           ),
         ),
         Positioned(
-          top: 0,
-          width: JhScreenUtils.screenWidth,
-          height: _imgChangeHeight,
-          child: Container(
-            // child: Image.network(
-            //   'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
-            //   fit: BoxFit.cover,
-            // ),
-            child: Image.asset(
-              'assets/wechat/home/ic_top.jpg',
-              fit: BoxFit.cover,
+            top: 0,
+            width: JhScreenUtils.screenWidth,
+            height: _imgChangeHeight,
+            child: Image.asset('assets/wechat/home/ic_top.jpg', fit: BoxFit.cover)
+            // Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover)
             ),
-          ),
-        ),
         Positioned(
           top: 0,
           left: 0,
           right: 0,
           child: BaseAppBar(
             '排行榜',
-            bgColor: _navBgColor,
+            bgColor: navBgColor,
             brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightImgPath: 'assets/images/ic_more_black.png',
-            rightItemCallBack: () {
-              _clickCell(context, '更多');
-            },
+            rightItemCallBack: () => _clickCell('更多'),
           ),
         ),
       ],
@@ -174,7 +164,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
   }
 
   // 点击cell
-  _clickCell(context, text) {
+  _clickCell(text) {
     JhToast.showText(context, msg: '点击 $text');
   }
 }

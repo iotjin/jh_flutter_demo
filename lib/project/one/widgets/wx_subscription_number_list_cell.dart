@@ -34,7 +34,7 @@ class WxSubscriptionNumberListCell extends StatelessWidget {
             Container(
               width: 70,
               height: 70,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: Image.asset(model.img!, width: 60),
@@ -46,27 +46,27 @@ class WxSubscriptionNumberListCell extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
 //                Container(color: KColors.kLineColor, height: 0.8),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Row(
                     children: <Widget>[
-                      Expanded(flex: 70, child: Text(model.title.jhNullSafe, style: TextStyle(fontSize: 18))),
+                      Expanded(flex: 70, child: Text(model.title.jhNullSafe, style: const TextStyle(fontSize: 18))),
                       Expanded(
                         flex: 30,
                         child: Text(
                           model.time.jhNullSafe,
-                          style: TextStyle(fontSize: 13, color: Colors.grey),
+                          style: const TextStyle(fontSize: 13, color: Colors.grey),
                           textAlign: TextAlign.right,
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                     ],
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Container(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: Text(
                       model.subtitle.jhNullSafe,
-                      style: TextStyle(fontSize: 15, color: Colors.grey),
+                      style: const TextStyle(fontSize: 15, color: Colors.grey),
                       overflow: TextOverflow.ellipsis,
                     ),
                   )

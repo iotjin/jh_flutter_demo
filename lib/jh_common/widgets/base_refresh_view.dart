@@ -108,7 +108,7 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
       footer: widget.footer ?? _defaultFooter(),
       refreshOnStart: widget.firstRefresh,
       onRefresh: _isShowShimmer ? null : widget.onRefresh,
-      onLoad: widget.data.length == 0 ? null : widget.onLoad,
+      onLoad: widget.data.isEmpty ? null : widget.onLoad,
       child: _listView(),
     );
   }
@@ -118,7 +118,7 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
       return widget.shimmerView;
     }
 
-    var child;
+    Widget child;
     if (widget.headerView == null && widget.footerView == null) {
       child = _defaultChild(false);
     } else {
@@ -135,7 +135,7 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
   }
 
   _defaultChild(bool hasHeaderOrFooter) {
-    if (widget.data.length == 0) {
+    if (widget.data.isEmpty) {
       if (hasHeaderOrFooter) {
         return widget.empty ?? _emptyWidget();
       }
@@ -150,7 +150,7 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
       }
       return ListView.separated(
         shrinkWrap: hasHeaderOrFooter,
-        physics: hasHeaderOrFooter ? NeverScrollableScrollPhysics() : null,
+        physics: hasHeaderOrFooter ? const NeverScrollableScrollPhysics() : null,
         itemCount: widget.data.length,
         itemBuilder: widget.itemBuilder!,
         separatorBuilder: widget.separatorBuilder!,
@@ -171,9 +171,9 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
   _defaultHeader() {
     switch (widget.refreshType) {
       case RefreshType.material:
-        return MaterialHeader(triggerOffset: 60, clamping: false, showBezierBackground: false);
+        return const MaterialHeader(triggerOffset: 60, clamping: false, showBezierBackground: false);
       case RefreshType.bezier:
-        return BezierHeader(
+        return const BezierHeader(
           triggerOffset: 60,
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.grey,
@@ -186,11 +186,11 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
           spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
         );
       case RefreshType.cupertino:
-        return CupertinoHeader();
+        return const CupertinoHeader();
       case RefreshType.delivery:
-        return DeliveryHeader();
+        return const DeliveryHeader();
       default:
-        return ClassicHeader(
+        return const ClassicHeader(
           dragText: '下拉刷新',
           armedText: '释放刷新',
           readyText: '加载中...',
@@ -206,9 +206,9 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
   _defaultFooter() {
     switch (widget.refreshType) {
       case RefreshType.material:
-        return MaterialFooter(triggerOffset: 60, clamping: false, showBezierBackground: false);
+        return const MaterialFooter(triggerOffset: 60, clamping: false, showBezierBackground: false);
       case RefreshType.bezier:
-        return BezierFooter(
+        return const BezierFooter(
           triggerOffset: 60,
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.grey,
@@ -221,11 +221,11 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
           spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
         );
       case RefreshType.cupertino:
-        return CupertinoFooter();
+        return const CupertinoFooter();
       case RefreshType.delivery:
-        return DeliveryFooter();
+        return const DeliveryFooter();
       default:
-        return ClassicFooter(
+        return const ClassicFooter(
           dragText: '上拉加载',
           armedText: '释放刷新',
           readyText: '加载中...',

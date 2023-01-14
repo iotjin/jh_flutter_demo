@@ -1,11 +1,15 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/base_appbar.dart';
 
 class GridViewTest4 extends StatelessWidget {
+  const GridViewTest4({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('GirdView'),
+      appBar: const BaseAppBar('GirdView'),
       body: bgView,
     );
   }
@@ -13,20 +17,16 @@ class GridViewTest4 extends StatelessWidget {
 
 Widget bgView = Container(
 //  height: 100,
-    color: Colors.yellow,
-    child: SafeArea(
-      child: Stack(
-        children: <Widget>[
-          gridView,
-          Positioned(
-            left: 10,
-            right: 10,
-            bottom: 10,
-            child: bottomView,
-          ),
-        ],
-      ),
-    ));
+  color: Colors.yellow,
+  child: SafeArea(
+    child: Stack(
+      children: <Widget>[
+        gridView,
+        Positioned(left: 10, right: 10, bottom: 10, child: bottomView),
+      ],
+    ),
+  ),
+);
 
 Widget bottomView = Container(
   alignment: Alignment.topLeft,
@@ -69,6 +69,7 @@ Widget getItemContainer(itemData) {
 //var data = index['title'];
 //return new Text('$data');
   return Container(
+    decoration: BoxDecoration(border: Border.all(color: const Color.fromRGBO(233, 233, 233, 0.9), width: 1)),
     child: Column(
       children: <Widget>[
         Image.network(
@@ -76,37 +77,35 @@ Widget getItemContainer(itemData) {
           width: 100,
         ),
 //        Image(image: JhImageUtils.getAssetImage(listData333[index]['imageUrl'])),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(
           itemData['title'],
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 15),
+          style: const TextStyle(fontSize: 15),
         )
       ],
     ),
-    decoration: BoxDecoration(border: Border.all(color: Color.fromRGBO(233, 233, 233, 0.9), width: 1)),
   );
 }
 
-//tabs_service_selected
+// tabs_service_selected
 Widget gridView = GridView.count(
-  //水平子Widget之间间距
+  // 水平子Widget之间间距
   crossAxisSpacing: 10.0,
-  //垂直子Widget之间间距
+  // 垂直子Widget之间间距
   mainAxisSpacing: 30.0,
-  //GridView内边距
-  padding: EdgeInsets.all(10.0),
-  //一行的Widget数量
+  // GridView内边距
+  padding: const EdgeInsets.all(10.0),
+  // 一行的Widget数量
   crossAxisCount: 3,
-  //子Widget宽高比例
+  // 子Widget宽高比例
   childAspectRatio: 1.0,
-  //子Widget列表
+  // 子Widget列表
   children: getWidgetList(),
 );
 
-Widget textListView = Container(
-  child: ListView(
-    shrinkWrap: true,
+Widget textListView = ListView(
+  shrinkWrap: true,
 //    physics: const NeverScrollableScrollPhysics(),// 禁止滑动
 //    children: <Widget>[
 //      Text(bottomData[0], style: TextStyle( color: Colors.black, fontSize: 18.0,)),
@@ -114,8 +113,7 @@ Widget textListView = Container(
 //      Text(bottomData[2], style: TextStyle( color: Colors.black, fontSize: 18.0,)),
 //      Text(bottomData[3], style: TextStyle( color: Colors.black, fontSize: 18.0,)),
 //    ],
-    children: getTextWidgetList(),
-  ),
+  children: getTextWidgetList(),
 );
 
 List<Widget> getTextWidgetList() {
@@ -123,11 +121,7 @@ List<Widget> getTextWidgetList() {
 }
 
 Widget getTextCon(itemData) {
-  return Text(itemData,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 18.0,
-      ));
+  return Text(itemData, style: const TextStyle(color: Colors.black, fontSize: 18.0));
 }
 
 List<String> bottomData = ['1111', '2222', '3333333333333333333', '4444', '5555'];

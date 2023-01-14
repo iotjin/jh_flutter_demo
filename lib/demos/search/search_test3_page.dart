@@ -3,6 +3,8 @@ import '/jh_common/jh_form/jh_login_text_field.dart';
 import '/project/configs/colors.dart';
 
 class SearchTest3Page extends StatelessWidget {
+  const SearchTest3Page({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +18,7 @@ class SearchTest3Page extends StatelessWidget {
         title: _searchBar(),
         actions: <Widget>[
           InkWell(
-            child: Container(
+            child: const SizedBox(
               width: 50,
               height: 50,
               child: Center(
@@ -28,7 +30,7 @@ class SearchTest3Page extends StatelessWidget {
         ],
       ),
       body: ElevatedButton(
-        child: Text('返回'),
+        child: const Text('返回'),
         onPressed: () {
           Navigator.pop(context);
         },
@@ -38,15 +40,15 @@ class SearchTest3Page extends StatelessWidget {
 
   _searchBar() {
     return Container(
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         border: Border.all(color: Colors.grey, width: 1.0), // 灰色的一层边框
         color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(5.0)),
       ),
       alignment: Alignment.center,
       height: 38,
 //           padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-      child: JhLoginTextField(
+      child: const JhLoginTextField(
         leftWidget: Icon(
           Icons.search,
           size: 30,

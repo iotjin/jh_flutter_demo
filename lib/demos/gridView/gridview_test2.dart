@@ -9,7 +9,7 @@ List<String>? dataArr2;
 List getData() {
   dataArr = [];
   for (int i = 0; i < 9; i++) {
-    var img;
+    String img;
     if (i % 2 == 0) {
       img = 'https://gitee.com/iotjh/Picture/raw/master/lufei2.png';
     } else {
@@ -23,7 +23,7 @@ List getData() {
 List getData2() {
   dataArr2 = [];
   for (int i = 0; i < 4; i++) {
-    var img;
+    String img;
     if (i % 2 == 0) {
       img = 'https://gitee.com/iotjh/Picture/raw/master/lufei2.png';
     } else {
@@ -35,8 +35,10 @@ List getData2() {
 }
 
 class GridViewTest2 extends StatefulWidget {
+  const GridViewTest2({Key? key}) : super(key: key);
+
   @override
-  _GridViewTest2State createState() => _GridViewTest2State();
+  State<GridViewTest2> createState() => _GridViewTest2State();
 }
 
 class _GridViewTest2State extends State<GridViewTest2> {
@@ -50,35 +52,36 @@ class _GridViewTest2State extends State<GridViewTest2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar('GridView实现朋友圈（九宫格）'),
-        body: Container(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('九宫格'),
-            Container(
-                padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
-                color: Colors.blue,
-                child: JhNinePicture(
-                  imgData: dataArr,
-                  lRSpace: 110,
-                  onLongPress: () {
-                    JhBottomSheet.showText(context, dataArr: ['保存图片']);
-                  },
-                )),
-            Text('九宫格，4图未处理'),
-            Container(
-                padding: EdgeInsets.fromLTRB(80, 10, 30, 10),
-                color: Colors.blue,
-                child: JhNinePicture(
-                  imgData: dataArr2,
-                  lRSpace: 110,
-                  isHandleFour: false,
-                  onLongPress: () {
-                    JhBottomSheet.showText(context, dataArr: ['保存图片']);
-                  },
-                )),
-          ],
-        )));
+      appBar: const BaseAppBar('GridView实现朋友圈（九宫格）'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Text('九宫格'),
+          Container(
+              padding: const EdgeInsets.fromLTRB(80, 10, 30, 10),
+              color: Colors.blue,
+              child: JhNinePicture(
+                imgData: dataArr,
+                lRSpace: 110,
+                onLongPress: () {
+                  JhBottomSheet.showText(context, dataArr: ['保存图片']);
+                },
+              )),
+          const Text('九宫格，4图未处理'),
+          Container(
+            padding: const EdgeInsets.fromLTRB(80, 10, 30, 10),
+            color: Colors.blue,
+            child: JhNinePicture(
+              imgData: dataArr2,
+              lRSpace: 110,
+              isHandleFour: false,
+              onLongPress: () {
+                JhBottomSheet.showText(context, dataArr: ['保存图片']);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

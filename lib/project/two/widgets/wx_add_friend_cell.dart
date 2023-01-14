@@ -31,10 +31,10 @@ class WxAddFriendCell extends StatelessWidget {
           color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
           child: ListTile(
             onTap: () => onClickCell?.call(model.toJson()),
-            leading: Container(child: CircleAvatar(backgroundImage: AssetImage(model.img!))),
-            title: Text(model.title.jhNullSafe, style: TextStyle(color: KColors.wxTextBlueColor)),
+            leading: CircleAvatar(backgroundImage: AssetImage(model.img!)),
+            title: Text(model.title.jhNullSafe, style: const TextStyle(color: KColors.wxTextBlueColor)),
             subtitle: Text(model.subtitle.jhNullSafe),
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing: const Icon(Icons.arrow_forward_ios),
           ),
         ),
         SizedBox(

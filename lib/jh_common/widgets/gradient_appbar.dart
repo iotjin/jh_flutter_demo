@@ -86,7 +86,7 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
   }
 
   @override
-  _GradientAppBarState createState() => _GradientAppBarState();
+  State<GradientAppBar> createState() => _GradientAppBarState();
 }
 
 class _GradientAppBarState extends State<GradientAppBar> {
@@ -172,8 +172,8 @@ class _GradientAppBarState extends State<GradientAppBar> {
         overflow: TextOverflow.ellipsis,
         child: Semantics(
           namesRoute: namesRoute!,
-          child: title,
           header: true,
+          child: title,
         ),
       );
     }

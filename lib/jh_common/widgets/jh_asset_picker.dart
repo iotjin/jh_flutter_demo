@@ -30,8 +30,6 @@ const String _deleteBtnIcon = 'assets/images/selectPhoto_close.png';
 // 默认背景色
 const Color _bgColor = Colors.transparent;
 
-typedef _CallBack = void Function(List<AssetEntity> assetEntityList);
-
 enum AssetType {
   image,
   video,
@@ -56,10 +54,10 @@ class JhAssetPicker extends StatefulWidget {
   final double itemSpace; // 每个GridView item间距(GridView四周与内部item间距在此统一设置)
   final Duration? maximumRecordingDuration; // 录制视频最长时长, 默认为 15 秒，可以使用 `null` 来设置无限制的视频录制
   final Color bgColor; // 背景色
-  final _CallBack? callBack; // 选择回调
+  final Function(List<AssetEntity> assetEntityList)? callBack; // 选择回调
 
   @override
-  _JhAssetPickerState createState() => _JhAssetPickerState();
+  State<JhAssetPicker> createState() => _JhAssetPickerState();
 }
 
 class _JhAssetPickerState extends State<JhAssetPicker> {
@@ -74,24 +72,29 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
 
   @override
   Widget build(BuildContext context) {
+    return _body();
+  }
+
+  _body() {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
     _themeColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
 
     var allCount = _selectedAssets.length + 1;
+
     return Container(
       color: widget.bgColor,
       child: GridView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //可以直接指定每行（列）显示多少个Item
-          crossAxisCount: widget.lineCount, //一行的Widget数量
-          crossAxisSpacing: widget.itemSpace, //水平间距
-          mainAxisSpacing: widget.itemSpace, //垂直间距
-          childAspectRatio: 1.0, //子Widget宽高比例
+          // 可以直接指定每行（列）显示多少个Item
+          crossAxisCount: widget.lineCount, // 一行的Widget数量
+          crossAxisSpacing: widget.itemSpace, // 水平间距
+          mainAxisSpacing: widget.itemSpace, // 垂直间距
+          childAspectRatio: 1.0, // 子Widget宽高比例
         ),
-        //GridView内边距
+        // GridView内边距
         padding: EdgeInsets.all(widget.itemSpace),
         itemCount: _selectedAssets.length == widget.maxAssets ? _selectedAssets.length : allCount,
         itemBuilder: (context, index) {
@@ -111,7 +114,7 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
   // 添加按钮
   Widget _addBtnWidget() {
     return GestureDetector(
-      child: Image(image: AssetImage(_addBtnIcon)),
+      child: const Image(image: AssetImage(_addBtnIcon)),
       onTap: () => _showBottomSheet(),
     );
   }
@@ -121,20 +124,23 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
     return GestureDetector(
       child: Container(
         color: Colors.transparent,
-        child: Stack(alignment: Alignment.topRight, children: <Widget>[
-          ConstrainedBox(
-            child: _loadAsset(_selectedAssets[index]),
-            constraints: BoxConstraints.expand(),
-          ),
-          GestureDetector(
-            child: Image(
-              image: AssetImage(_deleteBtnIcon),
-              width: _deleteBtnWH,
-              height: _deleteBtnWH,
+        child: Stack(
+          alignment: Alignment.topRight,
+          children: <Widget>[
+            ConstrainedBox(
+              constraints: const BoxConstraints.expand(),
+              child: _loadAsset(_selectedAssets[index]),
             ),
-            onTap: () => _deleteAsset(index),
-          )
-        ]),
+            GestureDetector(
+              child: const Image(
+                image: AssetImage(_deleteBtnIcon),
+                width: _deleteBtnWH,
+                height: _deleteBtnWH,
+              ),
+              onTap: () => _deleteAsset(index),
+            )
+          ],
+        ),
       ),
       onTap: () => _clickAsset(index),
     );

@@ -4,12 +4,14 @@ import 'package:flutter_echarts/flutter_echarts.dart';
 import '/base_appbar.dart';
 
 class EChartPage4 extends StatefulWidget {
+  const EChartPage4({Key? key}) : super(key: key);
+
   @override
-  _EChartPage4State createState() => _EChartPage4State();
+  State<EChartPage4> createState() => _EChartPage4State();
 }
 
 class _EChartPage4State extends State<EChartPage4> {
-  var chartData;
+  late Map<String, dynamic> chartData;
 
   @override
   void initState() {
@@ -206,10 +208,13 @@ class _EChartPage4State extends State<EChartPage4> {
   Widget build(BuildContext context) {
     var value = ModalRoute.of(context)!.settings.arguments;
     value = value ?? '';
-    return Scaffold(appBar: BaseAppBar('EChart4 - 渐变折线图'), body: _scrollbar());
+    return Scaffold(
+      appBar: const BaseAppBar('EChart4 - 渐变折线图'),
+      body: _body(),
+    );
   }
 
-  Widget _scrollbar() {
+  Widget _body() {
     return Scrollbar(
         child: SingleChildScrollView(
       child: Column(
@@ -240,18 +245,19 @@ class _EChartPage4State extends State<EChartPage4> {
   Widget _header(String title) {
     return Container(
       height: 50.0,
-      padding: EdgeInsets.only(left: 15),
-      decoration: BoxDecoration(
-        color: Color(0xFFF9F9F9),
-      ),
+      padding: const EdgeInsets.only(left: 15),
+      decoration: const BoxDecoration(color: Color(0xFFF9F9F9)),
       child: Row(
-        children: <Widget>[SizedBox(width: 8), Text(title, style: TextStyle(fontSize: 22))],
+        children: <Widget>[const SizedBox(width: 8), Text(title, style: const TextStyle(fontSize: 22))],
       ),
     );
   }
 
   Widget _initChart2(chartData) {
-    return Container(
+    return SizedBox(
+//      color: Colors.cyan,
+      width: double.infinity,
+      height: 250,
 //      color: Colors.cyan,
       child: Echarts(
         reloadAfterInit: true,
@@ -314,8 +320,6 @@ class _EChartPage4State extends State<EChartPage4> {
                 }
                 ''',
       ),
-      width: double.infinity,
-      height: 250,
     );
   }
 }

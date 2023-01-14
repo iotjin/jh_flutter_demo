@@ -1,8 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_image_utils.dart';
 import '/base_appbar.dart';
 
-var dataArr;
+var dataArr = [];
 
 var phone = '1234xxxx1234';
 var address = '这是地址';
@@ -17,10 +19,12 @@ var adminData = [
 ];
 
 class ListViewTest5 extends StatelessWidget {
+  const ListViewTest5({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('这是标题'),
+      appBar: const BaseAppBar('这是标题'),
       body: ContentBody(),
     );
   }
@@ -34,51 +38,56 @@ class ContentBody extends StatelessWidget {
   Widget _getWidget(context, index) {
     return Container(
 //        color: Colors.red,
-        padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-        child: Container(
-            decoration: BoxDecoration(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+      child: Container(
+        decoration: BoxDecoration(
 //              color: Colors.grey,
 //              border: Border.all(width: 2.0, color: Colors.red),
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              image: DecorationImage(
-                fit: BoxFit.cover,
+          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+          image: DecorationImage(
+            fit: BoxFit.cover,
 //                image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'),
 //                  image: JhImageUtils.getAssetImage('service/bg_service_gongdan'),
-                image: JhImageUtils.getAssetImage(dataArr[index]['bgImg']),
-              ),
-            ),
-            child: Center(
-              child: ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                  title: Text(dataArr[index]['title'], style: TextStyle(color: Colors.white, fontSize: 20)),
-                  leading: Image(image: JhImageUtils.getAssetImage(dataArr[index]['icon'])),
-                  onTap: () {
-                    print('点击的index' + index.toString());
-                  }),
-            )));
+            image: JhImageUtils.getAssetImage(dataArr[index]['bgImg']),
+          ),
+        ),
+        child: Center(
+          child: ListTile(
+            contentPadding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+            title: Text(dataArr[index]['title'], style: const TextStyle(color: Colors.white, fontSize: 20)),
+            leading: Image(image: JhImageUtils.getAssetImage(dataArr[index]['icon'])),
+            onTap: () {
+              print('点击的index ${index.toString()}');
+            },
+          ),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
 //  height: 100,
-        color: Colors.yellow,
-        child: SafeArea(
-          child: Stack(
-            children: <Widget>[
-              ListView.builder(
-                  itemCount: dataArr.length,
-                  itemExtent: 150.0, // 强制高度为100.0
-                  itemBuilder: this._getWidget),
-              Positioned(
-                left: 10,
-                right: 10,
-                bottom: 0,
-                child: bottomView,
-              ),
-            ],
-          ),
-        ));
+      color: Colors.yellow,
+      child: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            ListView.builder(
+              itemCount: dataArr.length,
+              itemExtent: 150.0, // 强制高度为100.0
+              itemBuilder: _getWidget,
+            ),
+            Positioned(
+              left: 10,
+              right: 10,
+              bottom: 0,
+              child: bottomView,
+            ),
+          ],
+        ),
+      ),
+    );
 
 //      Container(
 //      color: Colors.yellow,
@@ -126,17 +135,17 @@ Widget bottomView = Container(
     mainAxisAlignment: MainAxisAlignment.end,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Text('热线: $phone', style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
-      SizedBox(height: 5),
-      Text('地址: $address', style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
-      SizedBox(height: 5),
-      Text('描述: $range', style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
+      Text('热线: $phone', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
+      const SizedBox(height: 5),
+      Text('地址: $address', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
+      const SizedBox(height: 5),
+      Text('描述: $range', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
     ],
   ),
 );
 
 Widget cell = Container(
-  decoration: BoxDecoration(
+  decoration: const BoxDecoration(
     image: DecorationImage(
       image: AssetImage('images/service/lufei.png'),
 //    image: Image.network(''),

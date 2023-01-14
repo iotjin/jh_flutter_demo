@@ -16,7 +16,7 @@ class OnePage extends StatefulWidget {
 class _OnePageState extends State<OnePage> {
   @override
   Widget build(BuildContext context) {
-    return WxHomePage();
+    return const WxHomePage();
   }
 }
 

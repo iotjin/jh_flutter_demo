@@ -2,27 +2,29 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
+final List titleData = [
+  'BaseListView',
+  'BaseGridView',
+  'BaseListView - 骨架屏',
+  'BaseGridView - 骨架屏',
+  'BaseRefreshView - header/footer固定',
+  'BaseRefreshView - header/footer跟随',
+  'BaseAppBar(导航条)',
+  'JhEmptyView(空数据)',
+];
+final List routeData = [
+  'BaseRefreshViewTestPage',
+  'BaseRefreshViewTestPage',
+  'BaseListViewShimmerTestPage',
+  'BaseGridViewShimmerTestPage',
+  'BaseRefreshViewHeaderFixedPage',
+  'BaseRefreshViewHeaderFollowPage',
+  'NavTestPage',
+  'EmptyDemoListPage',
+];
+
 class BaseDemoListPage extends StatelessWidget {
-  final List titleData = [
-    'BaseListView',
-    'BaseGridView',
-    'BaseListView - 骨架屏',
-    'BaseGridView - 骨架屏',
-    'BaseRefreshView - header/footer固定',
-    'BaseRefreshView - header/footer跟随',
-    'BaseAppBar(导航条)',
-    'JhEmptyView(空数据)',
-  ];
-  final List routeData = [
-    'BaseRefreshViewTestPage',
-    'BaseRefreshViewTestPage',
-    'BaseListViewShimmerTestPage',
-    'BaseGridViewShimmerTestPage',
-    'BaseRefreshViewHeaderFixedPage',
-    'BaseRefreshViewHeaderFollowPage',
-    'NavTestPage',
-    'EmptyDemoListPage',
-  ];
+  const BaseDemoListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

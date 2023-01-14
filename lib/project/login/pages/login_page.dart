@@ -25,13 +25,15 @@ import '/data/data_utils.dart';
 */
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final FocusNode _node1 = FocusNode();
   final FocusNode _node2 = FocusNode();
 
@@ -81,10 +83,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     // TODO: implement dispose
-    super.dispose();
-    print('login dispose');
     _node1.unfocus();
     _node2.unfocus();
+
+    super.dispose();
   }
 
   @override
@@ -94,12 +96,12 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
           body: KeyboardActions(
         config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
-        child: _mainBody(),
+        child: _body(),
       )),
     );
   }
 
-  Widget _mainBody() {
+  Widget _body() {
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
@@ -109,45 +111,36 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 SafeArea(
                   child: Align(
-                      alignment: Alignment.topRight,
-                      child: InkWell(
-                        child: Text('注册', style: TextStyle(fontSize: 18)),
-                        onTap: () {
-                          JhNavUtils.pushNamed(context, 'RegisterPage');
-                        },
-                      )),
-                ),
-                SizedBox(height: 50),
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: logoColor,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Logo',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    alignment: Alignment.topRight,
+                    child: InkWell(
+                      child: const Text('注册', style: TextStyle(fontSize: 18)),
+                      onTap: () => JhNavUtils.pushNamed(context, 'RegisterPage'),
                     ),
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 50),
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(color: logoColor, borderRadius: BorderRadius.circular(50)),
+                  child: const Center(child: Text('Logo', style: TextStyle(fontSize: 20, color: Colors.white))),
+                ),
+                const SizedBox(height: 30),
                 JhLoginTextField(
                   text: _name,
                   hintText: '请输入用户名',
                   focusNode: _node1,
-                  leftWidget: Icon(Icons.person),
+                  leftWidget: const Icon(Icons.person),
                   isShowDeleteBtn: true,
                   controller: _nameController,
                   inputCallBack: (value) => _name = value,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 JhLoginTextField(
                   text: _pwd,
                   hintText: '请输入密码',
                   focusNode: _node2,
-                  leftWidget: Icon(Icons.lock),
+                  leftWidget: const Icon(Icons.lock),
                   isShowDeleteBtn: true,
                   isPwd: true,
                   controller: _passwordController,
@@ -155,31 +148,25 @@ class _LoginPageState extends State<LoginPage> {
                   pwdOpen: 'assets/images/ic_pwd_open.png',
                   inputCallBack: (value) => _pwd = value,
                 ),
-                SizedBox(height: 50),
-                JhButton(
-                  text: '登 录',
-                  onPressed: _isClick ? _clickOkBtn : null,
-                ),
-                SizedBox(height: 15),
+                const SizedBox(height: 50),
+                JhButton(text: '登 录', onPressed: _isClick ? _clickOkBtn : null),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
+                    SizedBox(
                       height: 50.0,
                       child: GestureDetector(
-                          child: Text(
-                            '验证码登录',
-                          ),
-                          onTap: () => JhNavUtils.pushNamed(context, 'CodeLoginPage')),
+                        child: const Text('验证码登录'),
+                        onTap: () => JhNavUtils.pushNamed(context, 'CodeLoginPage'),
+                      ),
                     ),
-                    Container(
+                    SizedBox(
                       height: 50.0,
-//                        alignment: Alignment.centerRight,
                       child: GestureDetector(
-                          child: Text(
-                            '忘记密码',
-                          ),
-                          onTap: () => JhNavUtils.pushNamed(context, 'FindPwdPage')),
+                        child: const Text('忘记密码'),
+                        onTap: () => JhNavUtils.pushNamed(context, 'FindPwdPage'),
+                      ),
                     ),
                   ],
                 )

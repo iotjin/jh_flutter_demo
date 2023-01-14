@@ -1,10 +1,14 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety_flutter3/flutter_swiper_null_safety_flutter3.dart';
 import '/base_appbar.dart';
 
 class SwiperTest2Page extends StatefulWidget {
+  const SwiperTest2Page({Key? key}) : super(key: key);
+
   @override
-  _SwiperTest2PageState createState() => _SwiperTest2PageState();
+  State<SwiperTest2Page> createState() => _SwiperTest2PageState();
 }
 
 class _SwiperTest2PageState extends State<SwiperTest2Page> {
@@ -17,9 +21,9 @@ class _SwiperTest2PageState extends State<SwiperTest2Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('swiper2-缩放'),
+      appBar: const BaseAppBar('swiper2-缩放'),
       body: Container(
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 50),
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 50),
         height: 280,
         child: Swiper(
           scrollDirection: Axis.horizontal,
@@ -39,11 +43,11 @@ class _SwiperTest2PageState extends State<SwiperTest2Page> {
             print('点击了第$index');
           },
           // 分页指示器
-          pagination: SwiperPagination(
+          pagination: const SwiperPagination(
               // 位置 Alignment.bottomCenter 底部中间
               alignment: Alignment.bottomCenter,
               // 距离调整
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
               builder: DotSwiperPaginationBuilder(
                   // 点之间的间隔
                   space: 5,

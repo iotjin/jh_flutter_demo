@@ -6,13 +6,15 @@ import '/jh_common/widgets/jh_button.dart';
 import '/base_appbar.dart';
 
 class FindPwdPage extends StatefulWidget {
+  const FindPwdPage({Key? key}) : super(key: key);
+
   @override
-  _FindPwdPageState createState() => _FindPwdPageState();
+  State<FindPwdPage> createState() => _FindPwdPageState();
 }
 
 class _FindPwdPageState extends State<FindPwdPage> {
-  TextEditingController _nameController = new TextEditingController();
-  TextEditingController _pwdController = new TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _pwdController = TextEditingController();
 
   final FocusNode _node1 = FocusNode();
   final FocusNode _node2 = FocusNode();
@@ -29,14 +31,15 @@ class _FindPwdPageState extends State<FindPwdPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar('重置密码'),
-        body: KeyboardActions(
-          config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
-          child: _mainBody(),
-        ));
+      appBar: const BaseAppBar('重置密码'),
+      body: KeyboardActions(
+        config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
+        child: _body(),
+      ),
+    );
   }
 
-  Widget _mainBody() {
+  Widget _body() {
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
@@ -46,41 +49,41 @@ class _FindPwdPageState extends State<FindPwdPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-//                SizedBox(height: 50),
                 TextFormField(
                   focusNode: _node1,
                   controller: _nameController,
                   decoration: InputDecoration(
                     labelText: '用户名',
                     hintText: '请输入用户名',
-                    hintStyle: TextStyle(fontSize: 15),
+                    hintStyle: const TextStyle(fontSize: 15),
                     focusedBorder:
                         UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
-                    enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
+                    enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   focusNode: _node2,
                   controller: _pwdController,
                   decoration: InputDecoration(
-                      labelText: '密码',
-                      hintText: '请输入密码',
-                      hintStyle: TextStyle(fontSize: 15),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
-                      enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
-                      suffixIcon: IconButton(
-                        icon: Icon(pwdShow ? Icons.visibility : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            pwdShow = !pwdShow;
-                          });
-                        },
-                      )),
+                    labelText: '密码',
+                    hintText: '请输入密码',
+                    hintStyle: const TextStyle(fontSize: 15),
+                    focusedBorder:
+                        UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+                    enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
+                    suffixIcon: IconButton(
+                      icon: Icon(pwdShow ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          pwdShow = !pwdShow;
+                        });
+                      },
+                    ),
+                  ),
                   obscureText: !pwdShow,
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 JhButton(text: '重 置', onPressed: _clickOkBtn)
               ],
             ),
@@ -101,7 +104,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
       context,
       msg: '正在重置...',
     );
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       Navigator.pop(context);
       hide();
     });

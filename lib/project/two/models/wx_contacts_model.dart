@@ -50,19 +50,19 @@ class WxContactsModel extends ISuspensionBean {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['tagIndex'] = this.tagIndex;
-    data['namePinyin'] = this.namePinyin;
-    data['phone'] = this.phone;
-    data['avatarUrl'] = this.avatarUrl;
-    data['sex'] = this.sex;
-    data['region'] = this.region;
-    data['label'] = this.label;
-    data['color'] = this.color;
-    data['img'] = this.img;
-    data['isStar'] = this.isStar;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['tagIndex'] = tagIndex;
+    data['namePinyin'] = namePinyin;
+    data['phone'] = phone;
+    data['avatarUrl'] = avatarUrl;
+    data['sex'] = sex;
+    data['region'] = region;
+    data['label'] = label;
+    data['color'] = color;
+    data['img'] = img;
+    data['isStar'] = isStar;
     return data;
   }
 

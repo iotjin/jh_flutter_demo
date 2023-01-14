@@ -27,16 +27,12 @@ class WxHomeCell extends StatelessWidget {
 
   _buildCell(context) {
     Widget noRead = CustomSlidableAction(
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
 //      foregroundColor:Colors.white,
       backgroundColor: Colors.black87,
-      child: Text(
+      child: const Text(
         '标为未读',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-        ),
+        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
       ),
       onPressed: (context) {
         JhToast.showText(context, msg: '点击标为未读');
@@ -44,15 +40,11 @@ class WxHomeCell extends StatelessWidget {
     );
 
     Widget noAttention = CustomSlidableAction(
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       backgroundColor: Colors.black87,
-      child: Text(
+      child: const Text(
         '不再关注',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-        ),
+        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
       ),
       onPressed: (context) {
         JhToast.showText(context, msg: '点击不再关注');
@@ -61,13 +53,9 @@ class WxHomeCell extends StatelessWidget {
 
     Widget delete = CustomSlidableAction(
       backgroundColor: Colors.red,
-      child: Text(
+      child: const Text(
         '删除',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-        ),
+        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
       ),
       onPressed: (context) {
         JhToast.showText(context, msg: '点击删除');
@@ -89,13 +77,11 @@ class WxHomeCell extends StatelessWidget {
 
     return Slidable(
       key: Key(model.type!),
-      child: _cell(context),
       // 右侧按钮列表
       endActionPane: ActionPane(
 //            motion: const ScrollMotion(),
         motion: const DrawerMotion(),
         extentRatio: extentRatio,
-        children: tempArr,
         // 拖动删除
         dragDismissible: false,
         dismissible: DismissiblePane(
@@ -103,7 +89,9 @@ class WxHomeCell extends StatelessWidget {
 //                dismissThreshold: 0.8,
           onDismissed: () {},
         ),
+        children: tempArr,
       ),
+      child: _cell(context),
     );
   }
 
@@ -119,17 +107,17 @@ class WxHomeCell extends StatelessWidget {
           children: <Widget>[
             Badge(
               showBadge: (model.isNew ?? false),
+              padding: const EdgeInsets.all(5),
+              position: BadgePosition.topEnd(top: 5, end: 5),
               child: Container(
                 width: 70,
                 height: 70,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.asset(model.img!, width: 60),
                 ),
               ),
-              padding: EdgeInsets.all(5),
-              position: BadgePosition.topEnd(top: 5, end: 5),
             ),
             Expanded(
               child: Column(
@@ -137,23 +125,23 @@ class WxHomeCell extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
 //                Container(color: KColors.kLineColor, height: 0.8),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Row(
                     children: <Widget>[
-                      Expanded(flex: 70, child: Text(model.title.jhNullSafe, style: TextStyle(fontSize: 18))),
+                      Expanded(flex: 70, child: Text(model.title.jhNullSafe, style: const TextStyle(fontSize: 18))),
                       Expanded(
                         flex: 30,
                         child: Text(
                           model.time.jhNullSafe,
-                          style: TextStyle(fontSize: 13, color: Colors.grey),
+                          style: const TextStyle(fontSize: 13, color: Colors.grey),
                           textAlign: TextAlign.right,
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                     ],
                   ),
-                  SizedBox(height: 4),
-                  Text(model.subtitle.jhNullSafe, style: TextStyle(fontSize: 15, color: Colors.grey)),
+                  const SizedBox(height: 4),
+                  Text(model.subtitle.jhNullSafe, style: const TextStyle(fontSize: 15, color: Colors.grey)),
                 ],
               ),
             ),

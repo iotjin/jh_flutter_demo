@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/02/18.
 ///  description:  输入框（默认没有边框，宽充满屏幕，文字居左，默认显示1行，自动换行，最多5行，可设置键盘类型，右侧添加自定义widget，多行，最大长度，是否可编辑，文字样式）
 
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -92,7 +94,7 @@ class _JhTextFieldState extends State<JhTextField> {
     if ((widget.text ?? '').length > widget.maxLength) {
       _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
     }
-    _focusNode = widget.focusNode != null ? widget.focusNode : FocusNode();
+    _focusNode = widget.focusNode ?? FocusNode();
 
     _focusNode!.addListener(() {
       if (mounted) {
@@ -158,6 +160,10 @@ class _JhTextFieldState extends State<JhTextField> {
 
   @override
   Widget build(BuildContext context) {
+    return _body();
+  }
+
+  _body() {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
     var themeColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
@@ -173,12 +179,10 @@ class _JhTextFieldState extends State<JhTextField> {
       textInputAction: widget.textInputAction,
       style: widget.textStyle,
       textAlign: widget.textAlign,
-      minLines: widget.maxLines != null ? widget.maxLines : 1,
-      maxLines: widget.maxLines != null ? widget.maxLines : _maxLines,
+      minLines: widget.maxLines ?? 1,
+      maxLines: widget.maxLines ?? _maxLines,
       maxLength: widget.showMaxLength == true ? widget.maxLength : null,
-      inputFormatters: widget.inputFormatters != null
-          ? widget.inputFormatters
-          : [LengthLimitingTextInputFormatter(widget.maxLength)],
+      inputFormatters: widget.inputFormatters ?? [LengthLimitingTextInputFormatter(widget.maxLength)],
       decoration: InputDecoration(
         prefixIcon: widget.leftWidget,
         suffixIcon: widget.rightWidget,
@@ -189,8 +193,8 @@ class _JhTextFieldState extends State<JhTextField> {
         errorText: widget.errorText.isEmpty ? null : widget.errorText,
         isDense: true,
         contentPadding: widget.border != InputBorder.none
-            ? EdgeInsets.symmetric(horizontal: 5, vertical: 8)
-            : EdgeInsets.fromLTRB(0, 8, 5, 8),
+            ? const EdgeInsets.symmetric(horizontal: 5, vertical: 8)
+            : const EdgeInsets.fromLTRB(0, 8, 5, 8),
         border: widget.border,
       ),
       // 执行顺序为 onTap -> onChanged -> onEditingComplete -> onSubmitted

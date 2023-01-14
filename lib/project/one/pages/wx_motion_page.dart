@@ -53,6 +53,8 @@ List _dataArr = [
 ];
 
 class WxMotionPage extends StatelessWidget {
+  const WxMotionPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,15 +64,16 @@ class WxMotionPage extends StatelessWidget {
         bgColor: Colors.transparent,
         rightItemCallBack: () => _clickCell(context, '设置'),
       ),
-      body: _body(context, _dataArr),
+      body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
       bottomNavigationBar: _bottomView(context),
     );
   }
 
-  Widget _body(context, dataArr) {
+  Widget _body(context) {
+    var dataArr = _dataArr;
     return ListView.builder(
-      itemCount: _dataArr.length,
+      itemCount: dataArr.length,
       // itemExtent: 150.0, // 强制高度为100.0
       itemBuilder: (context, index) {
         WxMotionModel model = WxMotionModel.fromJson(dataArr[index]);
@@ -89,20 +92,21 @@ class WxMotionPage extends StatelessWidget {
       height: JhScreenUtils.bottomSafeHeight + 60,
       color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
       child: SafeArea(
-          child: Row(
-        children: <Widget>[
-          Expanded(
-            child: InkWell(
-              child: Container(
-                height: 60,
-                color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
-                child: Center(child: Text('步数排行榜')),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: InkWell(
+                child: Container(
+                  height: 60,
+                  color: KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor),
+                  child: const Center(child: Text('步数排行榜')),
+                ),
+                onTap: () => _clickCell(context, '步数排行榜'),
               ),
-              onTap: () => _clickCell(context, '步数排行榜'),
-            ),
-          )
-        ],
-      )),
+            )
+          ],
+        ),
+      ),
     );
   }
 

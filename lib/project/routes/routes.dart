@@ -26,11 +26,11 @@ class Routes {
     /// 指定路由跳转错误返回页
     router.notFoundHandler = Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
       debugPrint('未找到目标页');
-      return NotFoundPage();
+      return const NotFoundPage();
     });
 
     router.define(pHome,
-        handler: Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> params) => BaseTabBar()));
+        handler: Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>const BaseTabBar()));
 
     router.define(pWebViewPage, handler: Handler(handlerFunc: (_, params) {
       final String title = params['title']?.first ?? '';

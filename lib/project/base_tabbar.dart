@@ -20,14 +20,15 @@ const double _iconWH = 24.0;
 const double _fontSize = 10.0;
 
 class BaseTabBar extends StatefulWidget {
-  BaseTabBar({Key? key}) : super(key: key);
+  const BaseTabBar({Key? key}) : super(key: key);
 
-  _BaseTabBarState createState() => _BaseTabBarState();
+  @override
+  State<BaseTabBar> createState() => _BaseTabBarState();
 }
 
 class _BaseTabBarState extends State<BaseTabBar> {
   // int _currentIndex = 0;
-  List<Widget> _pageList = [OnePage(), TwoPage(), ThreePage(), FourPage()];
+  final List<Widget> _pageList = const [OnePage(), TwoPage(), ThreePage(), FourPage()];
 
   final PageController _pageController = PageController();
 
@@ -35,12 +36,12 @@ class _BaseTabBarState extends State<BaseTabBar> {
     return [
       BottomNavigationBarItem(
         label: '微信',
-        icon: JhLoadAssetImage('tab/nav_tab_1', width: _iconWH),
+        icon: const JhLoadAssetImage('tab/nav_tab_1', width: _iconWH),
         activeIcon: JhLoadAssetImage('tab/nav_tab_1_on', width: _iconWH, color: iconColor),
       ),
       BottomNavigationBarItem(
         label: '通讯录',
-        icon: JhLoadAssetImage('tab/nav_tab_2', width: _iconWH),
+        icon: const JhLoadAssetImage('tab/nav_tab_2', width: _iconWH),
         activeIcon: JhLoadAssetImage('tab/nav_tab_2_on', width: _iconWH, color: iconColor),
       ),
       BottomNavigationBarItem(
@@ -48,9 +49,9 @@ class _BaseTabBarState extends State<BaseTabBar> {
 //      icon: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH),
         activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH, color: iconColor),
         icon: Badge(
-            padding: EdgeInsets.all(4),
+            padding: const EdgeInsets.all(4),
             position: BadgePosition.topEnd(top: -4, end: -4),
-            child: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH)),
+            child: const JhLoadAssetImage('tab/nav_tab_3', width: _iconWH)),
 //      activeIcon: Badge(
 //          padding: EdgeInsets.all(4),
 //          position: BadgePosition.topRight(top: -4, right: -4),
@@ -58,7 +59,7 @@ class _BaseTabBarState extends State<BaseTabBar> {
       ),
       BottomNavigationBarItem(
         label: '我的',
-        icon: JhLoadAssetImage('tab/nav_tab_4', width: _iconWH),
+        icon: const JhLoadAssetImage('tab/nav_tab_4', width: _iconWH),
         activeIcon: JhLoadAssetImage('tab/nav_tab_4_on', width: _iconWH, color: iconColor),
       ),
     ];
@@ -81,6 +82,10 @@ class _BaseTabBarState extends State<BaseTabBar> {
 
   @override
   Widget build(BuildContext context) {
+    return _body();
+  }
+
+  _body() {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
     var bgColor = KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor);

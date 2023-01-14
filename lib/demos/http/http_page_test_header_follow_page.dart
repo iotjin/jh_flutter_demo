@@ -1,4 +1,5 @@
 // ignore_for_file: unused_local_variable, unused_element, unused_field
+// ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:easy_refresh/easy_refresh.dart';
@@ -11,19 +12,20 @@ import 'http_page_test_model.dart';
 const _headerHeight = 50.0;
 
 // 3.x 版本 EasyRefresh
+
 class HttpPageTestHeaderFollowPage extends StatefulWidget {
   const HttpPageTestHeaderFollowPage({Key? key}) : super(key: key);
 
   @override
-  _HttpPageTestHeaderFollowPageState createState() => _HttpPageTestHeaderFollowPageState();
+  State<HttpPageTestHeaderFollowPage> createState() => _HttpPageTestHeaderFollowPageState();
 }
 
 class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowPage> {
   List _dataArr = [];
   int _pageIndex = 0;
-  int _limit = 15;
+  final int _limit = 15;
 
-  EasyRefreshController _controller = EasyRefreshController(
+  final EasyRefreshController _controller = EasyRefreshController(
     controlFinishRefresh: true,
     controlFinishLoad: true,
   );
@@ -73,7 +75,7 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('分页加载 - header/footer跟随'),
+      appBar: const BaseAppBar('分页加载 - header/footer跟随'),
       // body: _body(),
       body: _body2(),
     );
@@ -124,7 +126,7 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
           alignment: Alignment.center,
           color: Colors.orange,
           height: _headerHeight,
-          child: Text('header', style: TextStyle(color: Colors.white)),
+          child: const Text('header', style: TextStyle(color: Colors.white)),
         )
       ],
     );
@@ -135,13 +137,13 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
       alignment: Alignment.center,
       color: Colors.orange,
       height: _headerHeight,
-      child: Text('footer', style: TextStyle(color: Colors.white)),
+      child: const Text('footer', style: TextStyle(color: Colors.white)),
     );
   }
 
   Widget _listWidget(List dataArr) {
-    if (dataArr.length == 0) {
-      return JhEmptyView();
+    if (dataArr.isEmpty) {
+      return const JhEmptyView();
       // return Container(
       //   alignment: Alignment.topCenter,
       //   padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
@@ -151,7 +153,7 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
       return ListView.separated(
         // 加header要加上这两个属性
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         // 加header要加上这两个属性
         itemCount: dataArr.length,
         itemBuilder: (context, index) {
@@ -160,23 +162,23 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
             model: model,
             onClickCell: (model) {
               print('点击的index $index');
-              print('点击的地点' + model['place']);
+              print('点击的地点${model['place']}');
             },
           );
         },
         separatorBuilder: (context, index) {
-          return Divider(height: .5, indent: 15, endIndent: 15, color: Colors.purple);
+          return const Divider(height: .5, indent: 15, endIndent: 15, color: Colors.purple);
         },
       );
     }
   }
 
   Widget _listWidget2(List dataArr) {
-    if (dataArr.length == 0) {
+    if (dataArr.isEmpty) {
       return SliverList(
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            return JhEmptyView();
+            return const JhEmptyView();
             // return Container(
             //   alignment: Alignment.topCenter,
             //   padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
@@ -214,7 +216,7 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
               model: model,
               onClickCell: (model) {
                 print('点击的index $index');
-                print('点击的地点' + model['place']);
+                print('点击的地点${model['place']}');
               },
             );
           },
@@ -225,7 +227,7 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
   }
 
   _refreshHeader() {
-    var header = BezierHeader(
+    var header = const BezierHeader(
       triggerOffset: 60,
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.grey,
@@ -238,15 +240,15 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
       spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
     );
 
-    var materialHeader = MaterialHeader(triggerOffset: 60, clamping: false, showBezierBackground: false);
-    var cupertinoHeader = CupertinoHeader();
-    var deliveryHeader = DeliveryHeader();
+    var materialHeader = const MaterialHeader(triggerOffset: 60, clamping: false, showBezierBackground: false);
+    var cupertinoHeader = const CupertinoHeader();
+    var deliveryHeader = const DeliveryHeader();
 
     return materialHeader;
   }
 
   _refreshFooter() {
-    var footer = BezierFooter(
+    var footer = const BezierFooter(
       triggerOffset: 60,
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.grey,
@@ -259,9 +261,9 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
       spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
     );
 
-    var materialFooter = MaterialFooter(triggerOffset: 60, clamping: false, showBezierBackground: false);
-    var cupertinoFooter = CupertinoFooter();
-    var deliveryFooter = DeliveryFooter();
+    var materialFooter = const MaterialFooter(triggerOffset: 60, clamping: false, showBezierBackground: false);
+    var cupertinoFooter = const CupertinoFooter();
+    var deliveryFooter = const DeliveryFooter();
 
     return materialFooter;
   }

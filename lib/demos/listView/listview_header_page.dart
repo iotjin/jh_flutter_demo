@@ -3,25 +3,27 @@ import '/jh_common/widgets/jh_empty_view.dart';
 import '/base_appbar.dart';
 
 class ListViewHeaderPage extends StatelessWidget {
+  const ListViewHeaderPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('ListViewHeader'),
+      appBar: const BaseAppBar('ListViewHeader'),
       body: _body(),
     );
   }
 
   _body() {
-    var _dataArr = [];
+    var dataArr = [];
     for (var i = 0; i < 30; i++) {
-      _dataArr.add(i);
+      dataArr.add(i);
     }
 
     return CustomScrollView(
       slivers: <Widget>[
         // 如果不是Sliver家族的Widget，需要使用SliverToBoxAdapter做层包裹
         SliverToBoxAdapter(child: _header()),
-        _listWidget(_dataArr),
+        _listWidget(dataArr),
         SliverToBoxAdapter(child: _footer()),
       ],
     );
@@ -34,7 +36,7 @@ class ListViewHeaderPage extends StatelessWidget {
           alignment: Alignment.center,
           color: Colors.yellow,
           height: 120,
-          child: Text('header', style: TextStyle(color: Colors.white)),
+          child: const Text('header', style: TextStyle(color: Colors.white)),
         )
       ],
     );
@@ -45,16 +47,16 @@ class ListViewHeaderPage extends StatelessWidget {
       alignment: Alignment.center,
       color: Colors.orange,
       height: 120,
-      child: Text('footer', style: TextStyle(color: Colors.white)),
+      child: const Text('footer', style: TextStyle(color: Colors.white)),
     );
   }
 
   Widget _listWidget(List dataArr) {
-    if (dataArr.length == 0) {
+    if (dataArr.isEmpty) {
       return SliverList(
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            return JhEmptyView();
+            return const JhEmptyView();
             // return Container(
             //   alignment: Alignment.topCenter,
             //   padding: EdgeInsets.fromLTRB(0, 50, 0, 0),

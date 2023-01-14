@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
+final List titleData = [
+  'ListviewDragSort',
+  'ListviewDragSort2 - reorderables',
+  'GridviewDragSort - reorderables',
+];
+final List routeData = [
+  'ListviewDragSortPage',
+  'ListviewDragSortPage2',
+  'GridviewDragSortPage',
+];
+
 class DragSortDemoListPage extends StatelessWidget {
-  final List titleData = [
-    'ListviewDragSort',
-    'ListviewDragSort2 - reorderables',
-    'GridviewDragSort - reorderables',
-  ];
-  final List routeData = [
-    'ListviewDragSortPage',
-    'ListviewDragSortPage2',
-    'GridviewDragSortPage',
-  ];
+  const DragSortDemoListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,6 @@ class DragSortDemoListPage extends StatelessWidget {
       title: 'DragSortDemoList',
       dataArr: titleData,
       callBack: (index, str) {
-        print(routeData[index]);
         JhNavUtils.pushNamed(context, routeData[index]);
       },
     );

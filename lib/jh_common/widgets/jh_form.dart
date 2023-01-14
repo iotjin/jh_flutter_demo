@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/02/21.
 ///  description:  表单录入样式
 
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
@@ -85,31 +87,44 @@ class JhForm {
       keyboardBarColor: Colors.grey[200],
       nextFocus: true,
       actions: List.generate(
-          list.length,
-          (i) => KeyboardActionsItem(
-                focusNode: list[i],
-                toolbarButtons: [
-                  (node) {
-                    return GestureDetector(
-                        onTap: () => node.unfocus(),
-                        child: Stack(alignment: Alignment.centerRight, children: <Widget>[
-                          Container(
-                            color: Colors.transparent,
-                            width: 100,
-                          ),
-                          Positioned(
-                            right: 15,
-                            child: Text('关闭'),
-                          ),
-                        ]));
-                  },
-                ],
-              )),
+        list.length,
+        (i) => KeyboardActionsItem(
+          focusNode: list[i],
+          toolbarButtons: [
+            (node) {
+              return GestureDetector(
+                onTap: () => node.unfocus(),
+                child: Stack(
+                  alignment: Alignment.centerRight,
+                  children: <Widget>[
+                    Container(
+                      color: Colors.transparent,
+                      width: 100,
+                    ),
+                    const Positioned(right: 15, child: Text('关闭')),
+                  ],
+                ),
+              );
+            },
+          ],
+        ),
+      ),
     );
   }
 }
 
 class CreateInputCell extends StatefulWidget {
+  const CreateInputCell({
+    Key? key,
+    required this.title,
+    this.inputInfo,
+    this.hintText,
+    this.focusNode,
+    this.keyboardType,
+    this.space,
+    this.inputCallBack,
+  }) : super(key: key);
+
   final String title;
   final String? inputInfo;
   final String? hintText;
@@ -118,18 +133,8 @@ class CreateInputCell extends StatefulWidget {
   final double? space;
   final _InputCallBack? inputCallBack;
 
-  CreateInputCell({
-    required this.title,
-    this.inputInfo,
-    this.hintText,
-    this.focusNode,
-    this.keyboardType,
-    this.space,
-    this.inputCallBack,
-  });
-
   @override
-  _CreateInputCellState createState() => _CreateInputCellState();
+  State<CreateInputCell> createState() => _CreateInputCellState();
 }
 
 class _CreateInputCellState extends State<CreateInputCell> {
@@ -147,40 +152,35 @@ class _CreateInputCellState extends State<CreateInputCell> {
     return Container(
       color: _bgColor,
       height: _cellHeight,
-      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Container(
+          SizedBox(
             width: widget.space,
-            child: Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: _textColor)),
+            child: Text(widget.title, style: const TextStyle(fontSize: _titleFontSize, color: _textColor)),
           ),
           Expanded(
-              child: Container(
-            color: _inputColor,
-            height: _inputCellHeight,
-            child: TextField(
-              controller: inputController,
-              focusNode: widget.focusNode,
-              keyboardType: widget.keyboardType,
-              // 键盘类型
-              maxLines: 1,
-              style: TextStyle(fontSize: _infoFontSize, color: _textColor),
-              decoration: InputDecoration(
-                hintText: widget.hintText,
-                contentPadding: EdgeInsets.all(5),
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _inputBorderColor),
+            child: Container(
+              color: _inputColor,
+              height: _inputCellHeight,
+              child: TextField(
+                controller: inputController,
+                focusNode: widget.focusNode,
+                keyboardType: widget.keyboardType,
+                // 键盘类型
+                maxLines: 1,
+                style: const TextStyle(fontSize: _infoFontSize, color: _textColor),
+                decoration: InputDecoration(
+                  hintText: widget.hintText,
+                  contentPadding: const EdgeInsets.all(5),
+                  border: const OutlineInputBorder(),
+                  enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: _inputBorderColor)),
                 ),
+                onChanged: (value) => widget.inputCallBack?.call(inputController.text),
               ),
-              onChanged: (value) {
-                if (widget.inputCallBack != null) {
-                  widget.inputCallBack!(inputController.text);
-                }
-              },
             ),
-          )),
+          ),
         ],
       ),
     );
@@ -188,22 +188,23 @@ class _CreateInputCellState extends State<CreateInputCell> {
 }
 
 class CreateTextViewCell extends StatefulWidget {
+  const CreateTextViewCell({
+    Key? key,
+    this.inputInfo,
+    this.hintText,
+    this.focusNode,
+    this.showRedStar,
+    this.inputCallBack,
+  }) : super(key: key);
+
   final String? inputInfo;
   final String? hintText;
   final FocusNode? focusNode;
   final bool? showRedStar;
   final _InputCallBack? inputCallBack;
 
-  CreateTextViewCell({
-    this.inputInfo,
-    this.hintText,
-    this.focusNode,
-    this.showRedStar,
-    this.inputCallBack,
-  });
-
   @override
-  _CreateTextViewCellState createState() => _CreateTextViewCellState();
+  State<CreateTextViewCell> createState() => _CreateTextViewCellState();
 }
 
 class _CreateTextViewCellState extends State<CreateTextViewCell> {
@@ -220,39 +221,34 @@ class _CreateTextViewCellState extends State<CreateTextViewCell> {
   Widget build(BuildContext context) {
     return Container(
       color: _bgColor,
-      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(widget.showRedStar! ? '*' : '', style: TextStyle(fontSize: 18.0, color: Colors.red)),
+          Text(widget.showRedStar! ? '*' : '', style: const TextStyle(fontSize: 18.0, color: Colors.red)),
           SizedBox(
             width: widget.showRedStar! ? 5 : 0,
           ),
           Expanded(
-              child: Container(
-            color: _inputColor,
-            child: TextField(
-              controller: inputController,
-              focusNode: widget.focusNode,
-              keyboardType: TextInputType.text,
-              // 键盘类型
-              maxLines: 5,
-              style: TextStyle(fontSize: _infoFontSize, color: _textColor),
-              decoration: InputDecoration(
-                hintText: widget.hintText,
-                contentPadding: EdgeInsets.all(5),
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: _inputBorderColor),
+            child: Container(
+              color: _inputColor,
+              child: TextField(
+                controller: inputController,
+                focusNode: widget.focusNode,
+                keyboardType: TextInputType.text,
+                // 键盘类型
+                maxLines: 5,
+                style: const TextStyle(fontSize: _infoFontSize, color: _textColor),
+                decoration: InputDecoration(
+                  hintText: widget.hintText,
+                  contentPadding: const EdgeInsets.all(5),
+                  border: const OutlineInputBorder(),
+                  enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: _inputBorderColor)),
                 ),
+                onChanged: (val) => widget.inputCallBack?.call(inputController.text),
               ),
-              onChanged: (val) {
-                if (widget.inputCallBack != null) {
-                  widget.inputCallBack!(inputController.text);
-                }
-              },
             ),
-          )),
+          ),
         ],
       ),
     );
@@ -260,22 +256,23 @@ class _CreateTextViewCellState extends State<CreateTextViewCell> {
 }
 
 class CreateSelectTextCell extends StatefulWidget {
+  const CreateSelectTextCell({
+    Key? key,
+    required this.title,
+    this.selectInfo,
+    this.hintText,
+    this.space,
+    this.clickCallBack,
+  }) : super(key: key);
+
   final String? title;
   final String? selectInfo;
   final String? hintText;
   final double? space;
   final _ClickCallBack? clickCallBack;
 
-  CreateSelectTextCell({
-    required this.title,
-    this.selectInfo,
-    this.hintText,
-    this.space,
-    this.clickCallBack,
-  });
-
   @override
-  _CreateSelectTextCellState createState() => _CreateSelectTextCellState();
+  State<CreateSelectTextCell> createState() => _CreateSelectTextCellState();
 }
 
 class _CreateSelectTextCellState extends State<CreateSelectTextCell> {
@@ -288,47 +285,42 @@ class _CreateSelectTextCellState extends State<CreateSelectTextCell> {
     return Container(
       color: _bgColor,
       height: _cellHeight,
-      padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Container(
+          SizedBox(
             width: widget.space,
-            child: Text(widget.title!, style: TextStyle(fontSize: _titleFontSize, color: _textColor)),
+            child: Text(widget.title!, style: const TextStyle(fontSize: _titleFontSize, color: _textColor)),
           ),
           Expanded(
-              child: GestureDetector(
-            child: Container(
-              color: Colors.transparent,
-              height: _inputCellHeight,
+            child: GestureDetector(
+              child: Container(
+                color: Colors.transparent,
+                height: _inputCellHeight,
 //                        decoration: BoxDecoration(
 //                          border: Border.all(width: 0.7, color: Colors.grey),
 //                          color: Colors.transparent,
 //                          borderRadius: BorderRadius.all(new Radius.circular(4.0)),
 //                        ),
-              child: TextField(
-                controller: selectController,
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                enabled: false,
-                style: TextStyle(fontSize: _infoFontSize, color: _textColor),
-                decoration: InputDecoration(
-                  hintText: widget.hintText,
-                  contentPadding: EdgeInsets.all(5),
-                  border: OutlineInputBorder(),
+                child: TextField(
+                  controller: selectController,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  enabled: false,
+                  style: const TextStyle(fontSize: _infoFontSize, color: _textColor),
+                  decoration: InputDecoration(
+                    hintText: widget.hintText,
+                    contentPadding: const EdgeInsets.all(5),
+                    border: const OutlineInputBorder(),
 //                              border: InputBorder.none,
-                  disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: _inputBorderColor),
+                    disabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: _inputBorderColor)),
                   ),
                 ),
               ),
+              onTap: () => widget.clickCallBack?.call(),
             ),
-            onTap: () {
-              if (widget.clickCallBack != null) {
-                widget.clickCallBack!();
-              }
-            },
-          )),
+          ),
         ],
       ),
     );

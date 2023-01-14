@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
@@ -12,7 +14,7 @@ class DeviceInfoTest extends StatefulWidget {
   const DeviceInfoTest({Key? key}) : super(key: key);
 
   @override
-  _DeviceInfoTestState createState() => _DeviceInfoTestState();
+  State<DeviceInfoTest> createState() => _DeviceInfoTestState();
 }
 
 class _DeviceInfoTestState extends State<DeviceInfoTest> {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
 import '/jh_common/widgets/base_refresh_view.dart';
-import '/jh_common/widgets/Jh_highlight_text.dart';
+import '/jh_common/widgets/jh_highlight_text.dart';
 import '/jh_common/widgets/jh_shimmer_view.dart';
 import '/project/configs/project_config.dart';
 
@@ -17,7 +17,7 @@ class BaseRefreshViewHeaderFixedPage extends StatefulWidget {
 class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFixedPage> {
   List _dataArr = [];
   int _pageIndex = 0;
-  int _limit = 15;
+  final int _limit = 15;
 
   List _searchData = [];
   var _keyWord = '';
@@ -26,7 +26,7 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       _requestData(isShowLoading: false);
     });
   }
@@ -36,7 +36,7 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
     return Scaffold(
       appBar: BaseAppBar(
         'BaseRefreshView - header/footer固定',
-        titleWidget: TwoLinesTitle(title: 'BaseRefreshView', subtitle: 'header/footer固定'),
+        titleWidget: const TwoLinesTitle(title: 'BaseRefreshView', subtitle: 'header/footer固定'),
         rightText: '空数据',
         rightItemCallBack: () {
           if (!mounted) return;
@@ -44,7 +44,7 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
             _dataArr = [];
           });
         },
-        bottomWidget: PreferredSize(preferredSize: Size.fromHeight(kSearchViewHeight), child: _header()),
+        bottomWidget: PreferredSize(preferredSize: const Size.fromHeight(kSearchViewHeight), child: _header()),
       ),
       body: _body(),
       bottomNavigationBar: _footer(),
@@ -60,7 +60,7 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
       inputCallBack: (value) {
         setState(() {
           _keyWord = value;
-          if (value.length == 0) {
+          if (value.isEmpty) {
             _searchData = [];
           }
           if (value.length >= 3) {
@@ -88,20 +88,18 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
         alignment: Alignment.center,
         color: Colors.orange,
         height: _headerHeight,
-        child: Text('footer', style: TextStyle(color: Colors.white)),
+        child: const Text('footer', style: TextStyle(color: Colors.white)),
       ),
     );
   }
 
   Widget _body() {
-    if (_searchData.length > 0) {
-      return Container(
-        child: ListView.builder(
-          itemBuilder: (_, index) {
-            return _searchResultItem(index);
-          },
-          itemCount: _searchData.length,
-        ),
+    if (_searchData.isNotEmpty) {
+      return ListView.builder(
+        itemBuilder: (_, index) {
+          return _searchResultItem(index);
+        },
+        itemCount: _searchData.length,
       );
     } else {
       return BaseRefreshView(
@@ -123,9 +121,9 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
   Widget _searchResultItem(index) {
     return InkWell(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10.0),
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        decoration: const BoxDecoration(
           border: Border(bottom: BorderSide(color: KColors.kLineColor, width: 0.5)),
         ),
         child: Row(
@@ -134,7 +132,7 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
             Flexible(
               child: JhHighlightText(text: _searchData[index]['name'], highlightText: _keyWord),
             ),
-            Icon(Icons.north_west, size: 15, color: Colors.black),
+            const Icon(Icons.north_west, size: 15, color: Colors.black),
           ],
         ),
       ),
@@ -143,7 +141,7 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
           _keyWord = _searchData[index]['name'];
           _searchData = [];
           JhNavUtils.unFocus();
-          Future.delayed(Duration(milliseconds: 100), () {
+          Future.delayed(const Duration(milliseconds: 100), () {
             _requestData(isShowLoading: false);
           });
         });
@@ -155,13 +153,13 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
     var cell = InkWell(
       child: Container(
         height: 100,
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: index % 2 == 0 ? Colors.red : Colors.yellow,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Container(
-          padding: EdgeInsets.only(left: 5, top: 5),
+          padding: const EdgeInsets.only(left: 5, top: 5),
           child: Text(_dataArr[index]['title']),
         ),
       ),

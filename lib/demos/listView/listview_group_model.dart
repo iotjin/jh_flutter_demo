@@ -11,15 +11,15 @@ class GroupModel {
     if (json['data'] != null) {
       data = [];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['groupTitle'] = this.groupTitle;
-    data['num'] = this.num;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['groupTitle'] = groupTitle;
+    data['num'] = num;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -43,11 +43,11 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['phone'] = this.phone;
-    data['content'] = this.content;
-    data['imageUrl'] = this.imageUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['phone'] = phone;
+    data['content'] = content;
+    data['imageUrl'] = imageUrl;
     return data;
   }
 }

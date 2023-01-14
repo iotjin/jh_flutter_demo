@@ -12,15 +12,17 @@ import '/project/model/user_model.dart';
 double _scrollMaxOffSet = 1000;
 
 class InfoPage extends StatefulWidget {
+  const InfoPage({Key? key}) : super(key: key);
+
   @override
-  _InfoPageState createState() => _InfoPageState();
+  State<InfoPage> createState() => _InfoPageState();
 }
 
 class _InfoPageState extends State<InfoPage> {
   UserModel? model;
 
   double _topH = 0;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -36,17 +38,17 @@ class _InfoPageState extends State<InfoPage> {
 
   void _addListener() {
     _scrollController.addListener(() {
-      double _y = _scrollController.offset;
-//      print('滑动距离: $_y');
+      double y = _scrollController.offset;
+//      print('滑动距离: $y');
 
-//      if (_y > 0 && _y < _scrollMaxOffSet) {
+//      if (y > 0 && y < _scrollMaxOffSet) {
 //        setState(() {
-//          _topH = _y;
+//          _topH = y;
 //        });
 //      }
-      if (_y < 0 && _y > -_scrollMaxOffSet) {
+      if (y < 0 && y > -_scrollMaxOffSet) {
         setState(() {
-          _topH = _y.abs();
+          _topH = y.abs();
 //          print(_topH);
         });
       }
@@ -63,68 +65,53 @@ class _InfoPageState extends State<InfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(''),
+      appBar: const BaseAppBar(''),
       body: _body(),
     );
   }
 
   Widget _body() {
-    return Stack(children: <Widget>[
-      Positioned(
-        top: 0,
-        child: Container(
-          color: KColors.kThemeColor,
-//          color: Colors.white,
-          constraints: BoxConstraints(
-            minWidth: JhScreenUtils.screenWidth,
-            maxHeight: _topH,
+    return Stack(
+      children: <Widget>[
+        Positioned(
+          top: 0,
+          child: Container(
+            color: KColors.kThemeColor,
+            constraints: BoxConstraints(minWidth: JhScreenUtils.screenWidth, maxHeight: _topH),
           ),
         ),
-      ),
-      _cell(),
-    ]);
+        _cell(),
+      ],
+    );
   }
 
   Widget _cell() {
     return ListView(
       controller: _scrollController,
       // physics: const AlwaysScrollableScrollPhysics(),
-      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       children: <Widget>[
         Container(
           height: 100,
           color: KColors.kThemeColor,
           alignment: Alignment.center,
           child: ListTile(
-              leading: Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-//                        color: Colors.pink,
-                  image: DecorationImage(
-                    image: NetworkImage(model!.avatarUrl!),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+            leading: Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                image: DecorationImage(image: NetworkImage(model!.avatarUrl!), fit: BoxFit.cover),
               ),
-              title: Text(
-                model!.userName!,
-                style: TextStyle(color: Colors.white),
-              ),
-              subtitle: Text(
-                model!.phone!,
-                style: TextStyle(color: Colors.white),
-              ),
-//                    trailing: Icon(Icons.arrow_forward_ios,size: 18,color: Colors.white),
-              contentPadding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-              onTap: () {}),
+            ),
+            title: Text(model!.userName!, style: const TextStyle(color: Colors.white)),
+            subtitle: Text(model!.phone!, style: const TextStyle(color: Colors.white)),
+            // trailing: const Icon(Icons.arrow_forward_ios,size: 18,color: Colors.white),
+            contentPadding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
+            onTap: () {},
+          ),
         ),
-        JhSetCell(
-          title: '用户名',
-          text: model!.userName!,
-          hiddenArrow: true,
-        ),
+        JhSetCell(title: '用户名', text: model!.userName!, hiddenArrow: true),
         JhSetCell(title: '手机号', text: model!.phone!, hiddenArrow: true),
       ],
     );

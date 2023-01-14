@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import './pages/wx_mine_page.dart';
 
 class FourPage extends StatefulWidget {
+  const FourPage({Key? key}) : super(key: key);
+
   @override
-  _FourPageState createState() => _FourPageState();
+  State<FourPage> createState() => _FourPageState();
 }
 
 class _FourPageState extends State<FourPage> with AutomaticKeepAliveClientMixin {
@@ -25,6 +27,6 @@ class _FourPageState extends State<FourPage> with AutomaticKeepAliveClientMixin 
   Widget build(BuildContext context) {
     super.build(context);
 
-    return WxMinePage();
+    return const WxMinePage();
   }
 }

@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/03/26.
 ///  description:  登录输入框
 
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +71,7 @@ class JhLoginTextField extends StatefulWidget {
   final EdgeInsetsGeometry? contentPadding; // 当父组件固定高度时，文本一行显示文本过多会出现文字显示不全bug,可设置EdgeInsets.symmetric(vertical: 4)
 
   @override
-  _JhLoginTextFieldState createState() => _JhLoginTextFieldState();
+  State<JhLoginTextField> createState() => _JhLoginTextFieldState();
 }
 
 class _JhLoginTextFieldState extends State<JhLoginTextField> {
@@ -149,6 +151,10 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 
   @override
   Widget build(BuildContext context) {
+    return _body();
+  }
+
+  _body() {
     if (widget.pwdOpen != null && widget.pwdClose != null) {
       if (widget.pwdOpen!.isNotEmpty && widget.pwdClose!.isNotEmpty) {
         _pwdImg = _pwdShow! ? ImageIcon(AssetImage(widget.pwdClose!)) : ImageIcon(AssetImage(widget.pwdOpen!));
@@ -175,7 +181,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 
     return Theme(
       // 主题设置主要针对左侧图标和光标
-      data: new ThemeData(
+      data: ThemeData(
         primaryColor: themeColor,
         primarySwatch: JhColorUtils.materialColor(themeColor),
         inputDecorationTheme: InputDecorationTheme(
@@ -194,23 +200,19 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 //            // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
 //            inputFormatters: (widget.keyboardType == TextInputType.number || widget.keyboardType == TextInputType.phone) ?
 //            [FilteringTextInputFormatter.allow(RegExp('[0-9]'))] : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
-            inputFormatters: widget.inputFormatters != null
-                ? widget.inputFormatters
-                : [LengthLimitingTextInputFormatter(widget.maxLength)],
+            inputFormatters: widget.inputFormatters ?? [LengthLimitingTextInputFormatter(widget.maxLength)],
             decoration: InputDecoration(
               contentPadding: widget.contentPadding,
               prefixIcon: widget.leftWidget,
-              labelText: widget.labelText != null ? widget.labelText : null,
+              labelText: widget.labelText,
               hintText: widget.hintText,
               hintStyle: hintTextStyle,
               labelStyle: _isFocused ? labelTextStyle : hintTextStyle,
               isDense: widget.isDense,
-              enabledBorder: widget.border != null
-                  ? widget.border
-                  : UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: _lineHeight)),
-              focusedBorder: widget.border != null
-                  ? widget.border
-                  : UnderlineInputBorder(borderSide: BorderSide(color: underlineColor, width: _lineHeight)),
+              enabledBorder: widget.border ??
+                  const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: _lineHeight)),
+              focusedBorder: widget.border ??
+                  UnderlineInputBorder(borderSide: BorderSide(color: underlineColor, width: _lineHeight)),
               // suffixIcon: Container(), //如果通过suffixIcon添加右侧自定义widget点击会弹出键盘
             ),
             obscureText: _pwdShow!,
@@ -240,18 +242,14 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
                 offstage: !widget.isShowDeleteBtn,
                 child: _isShowDelete!
                     ? IconButton(
-                        icon: Icon(
-                          Icons.cancel,
-                          color: Color(0xFFC8C8C8),
-                          size: 20,
-                        ),
+                        icon: const Icon(Icons.cancel, color: Color(0xFFC8C8C8), size: 20),
                         onPressed: () {
                           _textController!.text = '';
                           if (widget.inputCallBack != null) {
                             widget.inputCallBack!(_textController!.text);
                           }
                         })
-                    : Text(''),
+                    : const Text(''),
               ),
               Offstage(
                   offstage: _isHiddenPwdBtn!,

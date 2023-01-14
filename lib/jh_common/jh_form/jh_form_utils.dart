@@ -3,7 +3,10 @@
 ///  Created by iotjin on 2022/07/13.
 ///  description:  录入限制和校验
 
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/services.dart';
+import '/http/log_utils.dart';
 
 // 手机号
 final phone = [number, LengthLimitingTextInputFormatter(11)];
@@ -69,8 +72,8 @@ class _Strategies {
       return value.length >= len ? '' : message;
     }
     if (value is int || value is double) {
-      var _number = value.toDouble();
-      return _number >= len ? '' : message;
+      var number = value.toDouble();
+      return number >= len ? '' : message;
     }
     return message;
   }
@@ -81,8 +84,8 @@ class _Strategies {
       return value.length <= len ? '' : message;
     }
     if (value is int || value is double) {
-      var _number = value.toDouble();
-      return _number <= len ? '' : message;
+      var number = value.toDouble();
+      return number <= len ? '' : message;
     }
     return message;
   }
@@ -108,18 +111,18 @@ class JhValidate extends _Strategies {
       'maxLength': maxLength,
     };
     rule.forEach((keyIndex, ruleValue) {
-      var _value = params[keyIndex];
-      var _iterator = rules[keyIndex];
-      _iterator.forEach((item) {
-        item.forEach((key, value) {
+      var value = params[keyIndex];
+      var iterator = rules[keyIndex];
+      iterator.forEach((item) {
+        item.forEach((key, item2) {
           if (strategiesArr.containsKey(key)) {
-            if (key == 'require' && value == true) {
+            if (key == 'require' && item2 == true) {
               validateList.add(() {
-                return strategiesArr[key]!(_value, item['message']);
+                return strategiesArr[key]!(value, item['message']);
               });
             } else {
               validateList.add(() {
-                return strategiesArr[key]!(_value, item[key], item['message']);
+                return strategiesArr[key]!(value, item[key], item['message']);
               });
             }
           }
@@ -133,8 +136,8 @@ class JhValidate extends _Strategies {
     for (var index = 0; index < validateList.length; index++) {
       var message = validateList[index]();
       if (message != '') {
-        print('object: ${validateList[index]()}');
-        print('object: ${validateList[index]}');
+        LogUtils.print_('object: ${validateList[index]()}');
+        LogUtils.print_('object: ${validateList[index]}');
         return validateList[index]();
       }
     }
@@ -145,9 +148,9 @@ class JhValidate extends _Strategies {
 /// inputFormatters: [NumLengthInputFormatter(integerLength: 8, decimalLength: 2)]
 class NumLengthInputFormatter extends TextInputFormatter {
   NumLengthInputFormatter({
-    this.integerLength: 8,
-    this.decimalLength: 2,
-    this.allowInputDecimal: true,
+    this.integerLength = 8,
+    this.decimalLength = 2,
+    this.allowInputDecimal = true,
   });
 
   final int integerLength;
@@ -180,9 +183,9 @@ class NumLengthInputFormatter extends TextInputFormatter {
         selectionIndex = oldValue.selection.end;
       }
     }
-    return new TextEditingValue(
+    return TextEditingValue(
       text: value,
-      selection: new TextSelection.collapsed(offset: selectionIndex),
+      selection: TextSelection.collapsed(offset: selectionIndex),
     );
   }
 }

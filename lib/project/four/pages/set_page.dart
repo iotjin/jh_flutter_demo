@@ -9,21 +9,23 @@ import '/project/configs/project_config.dart';
 import '/project/login/login_router.dart';
 import '/project/login/pages/login_page.dart';
 
+final List titleData = [
+  '原我的界面',
+  '个人信息',
+  '图片下拉放大',
+  '图片下拉放大2',
+  '图片下拉放大3 - 图片固定顶部',
+  '个人主页 - SliverAppBar+tabbar',
+  '个人主页2',
+  '导航条渐变显隐',
+  '主题设置',
+  '关于',
+  '关于iOS',
+  '退出登录'
+];
+
 class SetPage extends StatelessWidget {
-  final List titleData = [
-    '原我的界面',
-    '个人信息',
-    '图片下拉放大',
-    '图片下拉放大2',
-    '图片下拉放大3 - 图片固定顶部',
-    '个人主页 - SliverAppBar+tabbar',
-    '个人主页2',
-    '导航条渐变显隐',
-    '主题设置',
-    '关于',
-    '关于iOS',
-    '退出登录'
-  ];
+  const SetPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class SetPage extends StatelessWidget {
                 context,
                 msg: '正在退出...',
               );
-              Future.delayed(Duration(seconds: 1), () {
+              Future.delayed(const Duration(seconds: 1), () {
                 // 退出时清除用户信息
                 JhAESStorageUtils.remove(kUserDefault_UserInfo);
 

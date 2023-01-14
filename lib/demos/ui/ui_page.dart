@@ -30,18 +30,23 @@ const ButtonStyle({
 * */
 
 class UIPage extends StatelessWidget {
+  const UIPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('UITest', style: TextStyle(color: Colors.white)),
-          elevation: 0.0,
-        ),
-        body: BaseScrollView());
+      appBar: AppBar(
+        title: const Text('UITest', style: TextStyle(color: Colors.white)),
+        elevation: 0.0,
+      ),
+      body: const BaseScrollView(),
+    );
   }
 }
 
 class BaseScrollView extends StatelessWidget {
+  const BaseScrollView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scrollbar(
@@ -65,20 +70,20 @@ class BaseScrollView extends StatelessWidget {
             height: 1500,
             width: double.infinity,
             color: Colors.yellow,
-            child: Text('往下滑动'),
+            child: const Text('往下滑动'),
           ),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
-          Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
+          const Text('data'),
         ],
       ),
     ));
@@ -87,28 +92,14 @@ class BaseScrollView extends StatelessWidget {
 
 List<String> bottomData = ['1111', '2222', '3333333333333333333', '4444'];
 
-Widget textListView = Container(
-  child: ListView(
-    shrinkWrap: true, // 是否根据子组件的总长度来设置ListView的长度，默认值为false
-    physics: const NeverScrollableScrollPhysics(), // 禁止滑动
-    children: <Widget>[
-      Text(bottomData[0],
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18.0,
-          )),
-      Text(bottomData[1],
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18.0,
-          )),
-      Text(bottomData[2],
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 18.0,
-          )),
-    ],
-  ),
+Widget textListView = ListView(
+  shrinkWrap: true, // 是否根据子组件的总长度来设置ListView的长度，默认值为false
+  physics: const NeverScrollableScrollPhysics(), // 禁止滑动
+  children: <Widget>[
+    Text(bottomData[0], style: const TextStyle(color: Colors.black, fontSize: 18.0)),
+    Text(bottomData[1], style: const TextStyle(color: Colors.black, fontSize: 18.0)),
+    Text(bottomData[2], style: const TextStyle(color: Colors.black, fontSize: 18.0)),
+  ],
 );
 
 Widget testBtn = Column(children: <Widget>[
@@ -118,7 +109,6 @@ Widget testBtn = Column(children: <Widget>[
     height: 40,
     child: TextButton(
       onPressed: () {},
-      child: Text('Submit', style: TextStyle(fontSize: 15.0)),
       style: ButtonStyle(
         // 背景色
         backgroundColor: MaterialStateProperty.resolveWith((states) {
@@ -135,27 +125,23 @@ Widget testBtn = Column(children: <Widget>[
         overlayColor: MaterialStateProperty.all(Colors.green),
         shadowColor: MaterialStateProperty.all(Colors.orange),
         // 边框
-        side: MaterialStateProperty.all(
-          BorderSide(color: Colors.red, width: 1),
-        ),
+        side: MaterialStateProperty.all(const BorderSide(color: Colors.red, width: 1)),
         // 圆角
         shape: MaterialStateProperty.all(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
       ),
+      child: const Text('Submit', style: TextStyle(fontSize: 15.0)),
     ),
   ),
   // 扁平按钮，默认背景透明并不带阴影。按下后，会有背景色
   TextButton(
-    child: Text(
-      '扁平按钮(TextButton)',
-      style: TextStyle(color: Colors.black),
-    ),
+    child: const Text('扁平按钮(TextButton)', style: TextStyle(color: Colors.black)),
     onPressed: () {},
   ),
   TextButton.icon(
-    icon: Icon(Icons.send),
-    label: Text('扁平按钮,带图标'),
+    icon: const Icon(Icons.send),
+    label: const Text('扁平按钮,带图标'),
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all(Colors.blue),
 //      backgroundColor: MaterialStateProperty.resolveWith((states) {
@@ -179,9 +165,9 @@ Widget testBtn = Column(children: <Widget>[
       // 设置水波纹颜色
       overlayColor: MaterialStateProperty.all(Colors.purpleAccent),
       // 设置按钮大小
-      minimumSize: MaterialStateProperty.all(Size(150, 80)),
+      minimumSize: MaterialStateProperty.all(const Size(150, 80)),
       // 设置边框
-      side: MaterialStateProperty.all(BorderSide(color: Colors.red, width: 1)),
+      side: MaterialStateProperty.all(const BorderSide(color: Colors.red, width: 1)),
       // 设置按钮形状
 //      shape: MaterialStateProperty.all(StadiumBorder(
 //        side: BorderSide(color: Colors.red, width: 1, style: BorderStyle.solid),
@@ -202,7 +188,7 @@ Widget testBtn = Column(children: <Widget>[
   // 带边框的按钮、Flutter1.22 之后新增
   // 默认有一个边框，不带阴影且背景透明。按下后，边框颜色会变亮、同时出现背景和阴影(较弱)，
   OutlinedButton(
-    child: Text('带边框的按钮（OutlinedButton）'),
+    child: const Text('带边框的按钮（OutlinedButton）'),
     onPressed: () {},
   ),
   // 废弃
@@ -212,10 +198,10 @@ Widget testBtn = Column(children: <Widget>[
   // ),
   // '漂浮'按钮，它默认带有阴影和灰色背景。按下后，阴影会变大
   ElevatedButton(
-    child: Text('凸起的按钮(ElevatedButton)'),
+    child: const Text('凸起的按钮(ElevatedButton)'),
     onPressed: () {},
   ),
-  IconButton(onPressed: () {}, icon: Icon(Icons.send)),
+  IconButton(onPressed: () {}, icon: const Icon(Icons.send)),
   // RaisedButton.icon(
   //   icon: Icon(Icons.send),
   //   label: Text('带图标的按钮(RaisedButton、Flutter1.22废弃)'),
@@ -227,7 +213,7 @@ Widget testText = Container(
   color: Colors.yellow,
   width: 200,
   height: 300,
-  child: Text(
+  child: const Text(
     '这是测试文本',
     style: TextStyle(
       fontSize: 13,
@@ -264,10 +250,10 @@ Widget testContainer = Container(
   height: 200,
 
 //  margin: EdgeInsets.all(10),
-  margin: EdgeInsets.only(left: 10, top: 10),
+  margin: const EdgeInsets.only(left: 10, top: 10),
 // margin: EdgeInsets.fromLTRB(left, top, right, bottom),
 //  EdgeInsets.symmetric(horizontal: val1, vertical: val2): // 用于设置水平/垂直方向上的值；
-  constraints: BoxConstraints(
+  constraints: const BoxConstraints(
 //      minWidth: double.infinity, // 宽度尽可能大
       minWidth: 300,
       minHeight: 50.0 //最小高度为50像素
@@ -276,7 +262,7 @@ Widget testContainer = Container(
   alignment: Alignment.topRight,
   // 子组件将以何种方式进行排列
   color: Colors.yellow,
-  child: Text('这是文字'),
+  child: const Text('这是文字'),
 );
 
 // 绝对定位
@@ -316,7 +302,7 @@ Widget textSection = Container(
 //    Alignment.topCenter
 //  constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0), // 卡片大小
 
-  child: Text(
+  child: const Text(
 //    '这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字',
     '这是一段文字',
     style: TextStyle(
@@ -331,7 +317,7 @@ Widget textSection = Container(
 
 Widget textListView0 = Container(
   color: Colors.red,
-  constraints: BoxConstraints(
+  constraints: const BoxConstraints(
     maxHeight: 100,
   ),
 //  margin: EdgeInsets.only(bottom: 20),
@@ -339,7 +325,7 @@ Widget textListView0 = Container(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(), // 禁止滑动
     padding: const EdgeInsets.all(20.0),
-    children: <Widget>[
+    children: const <Widget>[
       Text(
         '1313133',
         style: TextStyle(
@@ -348,9 +334,9 @@ Widget textListView0 = Container(
           fontSize: 18.0,
         ),
       ),
-      const Text('Domestic life was never quite my style'),
-      const Text('When you smile, you knock me out, I fall apart'),
-      const Text('And I thought I was so smart'),
+      Text('Domestic life was never quite my style'),
+      Text('When you smile, you knock me out, I fall apart'),
+      Text('And I thought I was so smart'),
     ],
   ),
 );

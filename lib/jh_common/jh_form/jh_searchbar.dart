@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2022/07/13.
 ///  description: 搜索框
 
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import '/project/configs/colors.dart';
 import 'jh_login_text_field.dart';
@@ -57,22 +59,22 @@ class JhSearchBar extends StatelessWidget {
         decoration: BoxDecoration(
           color: searchBarBgColor,
           border: isShowBorder ? Border.all(color: searchBarBorderColor, width: _borderWidth) : null,
-          borderRadius: BorderRadius.all(Radius.circular(_borderRadius)),
+          borderRadius: const BorderRadius.all(Radius.circular(_borderRadius)),
         ),
         alignment: Alignment.center,
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         height: kSearchViewHeight - 20,
         child: JhLoginTextField(
-          maxLength: this.maxLength,
-          leftWidget: Icon(Icons.search, size: 25),
-          text: this.text,
-          hintText: this.hintText,
-          isShowDeleteBtn: this.isShowDeleteBtn,
+          maxLength: maxLength,
+          leftWidget: const Icon(Icons.search, size: 25),
+          text: text,
+          hintText: hintText,
+          isShowDeleteBtn: isShowDeleteBtn,
           border: InputBorder.none,
-          contentPadding: this.contentPadding,
-          textInputAction: this.textInputAction,
-          inputCallBack: this.inputCallBack,
-          inputCompletionCallBack: this.inputCompletionCallBack,
+          contentPadding: contentPadding,
+          textInputAction: textInputAction,
+          inputCallBack: inputCallBack,
+          inputCompletionCallBack: inputCompletionCallBack,
         ),
       ),
     );

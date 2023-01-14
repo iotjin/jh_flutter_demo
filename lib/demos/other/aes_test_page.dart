@@ -1,13 +1,17 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_encrypt_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
-import '/jh_common/jh_form/jh_form_Input_cell.dart';
+import '/jh_common/jh_form/jh_form_input_cell.dart';
 import '/jh_common/widgets/jh_button.dart';
 import '/base_appbar.dart';
 
 class AESTestPage extends StatefulWidget {
+  const AESTestPage({Key? key}) : super(key: key);
+
   @override
-  _AESTestPageState createState() => _AESTestPageState();
+  State<AESTestPage> createState() => _AESTestPageState();
 }
 
 class _AESTestPageState extends State<AESTestPage> {
@@ -28,14 +32,17 @@ class _AESTestPageState extends State<AESTestPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: BaseAppBar('base64、AES、MD5和本地加密存储'), body: _body());
+    return Scaffold(
+      appBar: const BaseAppBar('base64、AES、MD5和本地加密存储'),
+      body: _body(),
+    );
   }
 
   Widget _body() {
     return Scrollbar(
         child: SingleChildScrollView(
             child: Padding(
-      padding: EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.only(top: 15),
       child: Column(
         children: <Widget>[
           JhFormInputCell(
@@ -51,8 +58,8 @@ class _AESTestPageState extends State<AESTestPage> {
           JhFormInputCell(title: 'AES加密', text: _aesEncryptStr, enabled: false),
           JhFormInputCell(title: 'AES解密', text: _aesDecryptStr, enabled: false),
           JhFormInputCell(title: 'MD5加密', text: _md5Str, enabled: false),
-          JhFormInputCell(text: '本地加密存储请看控制台输出', enabled: false),
-          SizedBox(height: 50),
+          const JhFormInputCell(text: '本地加密存储请看控制台输出', enabled: false),
+          const SizedBox(height: 50),
           JhButton(
             text: '更新',
             onPressed: () {

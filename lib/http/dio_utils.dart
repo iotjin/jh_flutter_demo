@@ -1,7 +1,7 @@
 ///  dio_utils.dart
 ///
 ///  Created by iotjin on 2020/07/06.
-///  description:  dio 工具类
+///  description:  dio工具类
 
 import 'dart:convert';
 import 'dart:io';
@@ -44,10 +44,10 @@ class DioUtils {
   DioUtils._() {
     // 全局属性：请求前缀、连接超时时间、响应超时时间
     final BaseOptions options = BaseOptions(
-      ///请求的Content-Type，默认值是"application/json; charset=utf-8".
-      ///如果您想以"application/x-www-form-urlencoded"格式编码请求数据,
-      ///可以设置此选项为 “Headers.formUrlEncodedContentType”,  这样[Dio]就会自动编码请求体.
-      ///contentType: Headers.formUrlEncodedContentType, // 适用于post form表单提交
+      /// 请求的Content-Type，默认值是"application/json; charset=utf-8".
+      /// 如果您想以"application/x-www-form-urlencoded"格式编码请求数据,
+      /// 可以设置此选项为 “Headers.formUrlEncodedContentType”,  这样[Dio]就会自动编码请求体.
+      /// contentType: Headers.formUrlEncodedContentType, // 适用于post form表单提交
 
       responseType: ResponseType.json,
       validateStatus: (status) {
@@ -79,6 +79,7 @@ class DioUtils {
     if (!LogUtils.inProduction) {
       (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
         client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+        return null;
       };
     }
 
@@ -119,7 +120,7 @@ class DioUtils {
         url,
         data: data,
         queryParameters: queryParameters,
-        options: _checkOptions(MethodValues[method], options),
+        options: _checkOptions(methodValues[method], options),
         cancelToken: cancelToken,
       );
       onSuccess?.call(response.data);
@@ -164,8 +165,8 @@ Map<String, dynamic> parseData(String data) {
 
 enum Method { get, post, put, patch, delete, head }
 
-/// 使用：MethodValues[Method.post]
-const MethodValues = {
+/// 使用：methodValues[Method.post]
+const methodValues = {
   Method.get: 'get',
   Method.post: 'post',
   Method.delete: 'delete',

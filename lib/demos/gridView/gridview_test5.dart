@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import '/base_appbar.dart';
 
 class GridViewTestPage5 extends StatefulWidget {
+  const GridViewTestPage5({Key? key}) : super(key: key);
+
   @override
-  _GridViewTestPage5State createState() => _GridViewTestPage5State();
+  State<GridViewTestPage5> createState() => _GridViewTestPage5State();
 }
 
 class _GridViewTestPage5State extends State<GridViewTestPage5> {
@@ -61,21 +63,23 @@ class _GridViewTestPage5State extends State<GridViewTestPage5> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: BaseAppBar('标题'),
-        backgroundColor: Color(0xFFF8F8F8),
-        body: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //可以直接指定每行（列）显示多少个Item
-              crossAxisCount: 3, //一行的Widget数量
-              crossAxisSpacing: 5.0, //水平间距
-              mainAxisSpacing: 5.0, //垂直间距
-              childAspectRatio: 1.0, //子Widget宽高比例
-            ),
-            padding: EdgeInsets.all(10.0), //GridView内边距
-            itemCount: _dataArr!.length,
-            itemBuilder: (context, index) {
-              return item(_dataArr!, index, context);
-            }));
+      appBar: const BaseAppBar('标题'),
+      backgroundColor: const Color(0xFFF8F8F8),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          // 可以直接指定每行（列）显示多少个Item
+          crossAxisCount: 3, // 一行的Widget数量
+          crossAxisSpacing: 5.0, // 水平间距
+          mainAxisSpacing: 5.0, // 垂直间距
+          childAspectRatio: 1.0, // 子Widget宽高比例
+        ),
+        padding: const EdgeInsets.all(10.0), // GridView内边距
+        itemCount: _dataArr!.length,
+        itemBuilder: (context, index) {
+          return item(_dataArr!, index, context);
+        },
+      ),
+    );
   }
 }
 
@@ -83,24 +87,16 @@ Widget item(List data, int index, context) {
   return InkWell(
     child: Container(
       decoration: BoxDecoration(
-        color: Color(0xFFF2F3F7),
+        color: const Color(0xFFF2F3F7),
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
 //            Image.asset(data[index]['img'], width: 50.0,height: 50,),
-          Image.network(
-            data[index]['img'],
-            width: 50,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            data[index]['text'],
-            style: TextStyle(color: Color(0xFF666666), fontSize: 13),
-          ),
+          Image.network(data[index]['img'], width: 50),
+          const SizedBox(height: 10),
+          Text(data[index]['text'], style: const TextStyle(color: Color(0xFF666666), fontSize: 13)),
         ],
       ),
     ),

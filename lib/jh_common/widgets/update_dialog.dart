@@ -13,13 +13,15 @@ import '/jh_common/utils/jh_theme_utils.dart';
 import '/project/routes/jh_nav_utils.dart';
 
 class UpdateDialog extends StatefulWidget {
+  const UpdateDialog({Key? key}) : super(key: key);
+
   @override
-  _UpdateDialogState createState() => _UpdateDialogState();
+  State<UpdateDialog> createState() => _UpdateDialogState();
 }
 
 class _UpdateDialogState extends State<UpdateDialog> {
   final CancelToken _cancelToken = CancelToken();
-  bool _isDownload = false;
+  final bool _isDownload = false;
   double _value = 0;
 
   @override
@@ -55,9 +57,9 @@ class _UpdateDialogState extends State<UpdateDialog> {
                     Container(
                       height: 120.0,
                       width: 280.0,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius:
-                            const BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+                            BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
                         image: DecorationImage(
                           image: AssetImage('assets/images/update_head.jpg'),
                           fit: BoxFit.cover,
@@ -76,7 +78,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                       padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0, top: 5.0),
                       child: _isDownload
                           ? LinearProgressIndicator(
-                              backgroundColor: Color(0xFFEEEEEE),
+                              backgroundColor: const Color(0xFFEEEEEE),
                               valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                               value: _value,
                             )
@@ -85,16 +87,15 @@ class _UpdateDialogState extends State<UpdateDialog> {
                               children: <Widget>[
                                 TextButton(
                                   onPressed: () => JhNavUtils.goBack(context),
-                                  child: Text('残忍拒绝', style: TextStyle(fontSize: 16.0)),
                                   style: ButtonStyle(
                                     // 设置按钮大小
-                                    minimumSize: MaterialStateProperty.all(Size(110.0, 36.0)),
+                                    minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
                                     // 背景色
                                     backgroundColor: MaterialStateProperty.resolveWith(
                                       (states) {
                                         if (states.contains(MaterialState.disabled)) {
                                           // disabled状态颜色
-                                          return Color(0xFFcccccc);
+                                          return const Color(0xFFcccccc);
                                         }
                                         // 默认状态颜色
                                         return Colors.transparent;
@@ -120,6 +121,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                                     ),
                                   ),
+                                  child: const Text('残忍拒绝', style: TextStyle(fontSize: 16.0)),
                                 ),
                                 TextButton(
                                   onPressed: () {
@@ -133,16 +135,15 @@ class _UpdateDialogState extends State<UpdateDialog> {
 //                                        _download();
                                     }
                                   },
-                                  child: Text('立即更新', style: TextStyle(fontSize: 16.0)),
                                   style: ButtonStyle(
                                     // 设置按钮大小
-                                    minimumSize: MaterialStateProperty.all(Size(110.0, 36.0)),
+                                    minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
                                     // 背景色
                                     backgroundColor: MaterialStateProperty.resolveWith(
                                       (states) {
                                         if (states.contains(MaterialState.disabled)) {
                                           // disabled状态颜色
-                                          return Color(0xFFcccccc);
+                                          return const Color(0xFFcccccc);
                                         }
                                         // 默认状态颜色
                                         return primaryColor;
@@ -159,6 +160,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                                     ),
                                   ),
+                                  child: const Text('立即更新', style: TextStyle(fontSize: 16.0)),
                                 ),
                               ],
                             ),
@@ -196,7 +198,6 @@ class _UpdateDialogState extends State<UpdateDialog> {
       );
     } catch (e) {
 //      Toast.show('下载失败!');
-      print(e);
 //      setState(() {
 //        _isDownload = false;
 //      });

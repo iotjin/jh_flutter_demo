@@ -16,8 +16,10 @@ const Color _borderColor = KColors.kThemeColor;
 const Color _gridLineColor = KColors.kThemeColor;
 
 class QrCodeGridScannerPage extends StatefulWidget {
+  const QrCodeGridScannerPage({Key? key}) : super(key: key);
+
   @override
-  _QrCodeGridScannerPageState createState() => _QrCodeGridScannerPageState();
+  State<QrCodeGridScannerPage> createState() => _QrCodeGridScannerPageState();
 }
 
 class _QrCodeGridScannerPageState extends State<QrCodeGridScannerPage> with TickerProviderStateMixin {
@@ -52,16 +54,16 @@ class _QrCodeGridScannerPageState extends State<QrCodeGridScannerPage> with Tick
   }
 
   void _initAnimation() {
-    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 2000));
+    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 2000));
     _animationController
       ..addListener(_upState)
       ..addStatusListener((state) {
         if (state == AnimationStatus.completed) {
-          _timer = Timer(Duration(seconds: 2), () {
+          _timer = Timer(const Duration(seconds: 2), () {
             _animationController.reverse(from: 1.0);
           });
         } else if (state == AnimationStatus.dismissed) {
-          _timer = Timer(Duration(seconds: 2), () {
+          _timer = Timer(const Duration(seconds: 2), () {
             _animationController.forward(from: 0.0);
           });
         }
@@ -78,80 +80,75 @@ class _QrCodeGridScannerPageState extends State<QrCodeGridScannerPage> with Tick
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Material(
-        color: Colors.black,
-        child: LayoutBuilder(builder: (context, constraints) {
-          final qrScanSize = constraints.maxWidth * 0.75;
-          return Stack(
-            children: <Widget>[
-              QRView(
-                key: qrKey,
-                onQRViewCreated: _onQRViewCreated,
-                onPermissionSet: (QRViewController controller, bool isGranted) {
-                  // 没有权限
-                  if (!isGranted) {
-                    JhProgressHUD.showText('没有相机权限！');
-                    Navigator.of(context).pop();
-                  }
-                },
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  AppBar(
-                    leading: BackButton(),
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                  ),
-                  SizedBox(
-                    height: 100,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    child: SizedBox(
-                      width: qrScanSize,
-                      height: qrScanSize,
-                      child: Stack(
-                        children: [
-                          CustomPaint(
-                            painter: QrScanBoxPainter(
-                              boxLineColor: _gridLineColor.withOpacity(0.5),
-                              animationValue: _animationController.value,
-                              isForward: _animationController.status == AnimationStatus.forward,
-                            ),
-                            child: Container(),
+      body: _body(),
+    );
+  }
+
+  _body() {
+    return Material(
+      color: Colors.black,
+      child: LayoutBuilder(builder: (context, constraints) {
+        final qrScanSize = constraints.maxWidth * 0.75;
+        return Stack(
+          children: <Widget>[
+            QRView(
+              key: qrKey,
+              onQRViewCreated: _onQRViewCreated,
+              onPermissionSet: (QRViewController controller, bool isGranted) {
+                // 没有权限
+                if (!isGranted) {
+                  JhProgressHUD.showText('没有相机权限！');
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                AppBar(leading: const BackButton(), elevation: 0, backgroundColor: Colors.transparent),
+                const SizedBox(height: 100),
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  child: SizedBox(
+                    width: qrScanSize,
+                    height: qrScanSize,
+                    child: Stack(
+                      children: [
+                        CustomPaint(
+                          painter: QrScanBoxPainter(
+                            boxLineColor: _gridLineColor.withOpacity(0.5),
+                            animationValue: _animationController.value,
+                            isForward: _animationController.status == AnimationStatus.forward,
                           ),
-                          Positioned(
-                            bottom: 10,
-                            width: qrScanSize,
-                            child: Align(
-                              alignment: Alignment.bottomCenter,
-                              child: GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () => setFlashlight(),
-                                child: Icon(
-                                  // _openFlashlight ? Icons.flashlight_on_outlined : Icons.flashlight_off_outlined,
-                                  _openFlashlight ? Icons.highlight_outlined : Icons.highlight_outlined,
-                                  size: 32,
-                                  color: Colors.white,
-                                ),
+                          child: Container(),
+                        ),
+                        Positioned(
+                          bottom: 10,
+                          width: qrScanSize,
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.translucent,
+                              onTap: () => setFlashlight(),
+                              child: Icon(
+                                // _openFlashlight ? Icons.flashlight_on_outlined : Icons.flashlight_off_outlined,
+                                _openFlashlight ? Icons.highlight_outlined : Icons.highlight_outlined,
+                                size: 32,
+                                color: Colors.white,
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  Text(
-                    '请将二维码/条形码置于方框中',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              )
-            ],
-          );
-        }),
-      ),
+                ),
+                const Text('请将二维码/条形码置于方框中', style: TextStyle(color: Colors.white)),
+              ],
+            )
+          ],
+        );
+      }),
     );
   }
 
@@ -195,7 +192,7 @@ class QrScanBoxPainter extends CustomPainter {
       ..color = _borderColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
-    final path = new Path();
+    final path = Path();
     // leftTop
     path.moveTo(0, borderLength);
     path.lineTo(0, radius);
@@ -228,15 +225,12 @@ class QrScanBoxPainter extends CustomPainter {
     linePaint.style = PaintingStyle.stroke;
     linePaint.shader = LinearGradient(
       colors: [Colors.transparent, boxLineColor],
-      begin: isForward ? Alignment.topCenter : Alignment(0.0, 2.0),
-      end: isForward ? Alignment(0.0, 0.5) : Alignment.topCenter,
+      begin: isForward ? Alignment.topCenter : const Alignment(0.0, 2.0),
+      end: isForward ? const Alignment(0.0, 0.5) : Alignment.topCenter,
     ).createShader(Rect.fromLTWH(0, leftPress, size.width, lineSize));
     for (int i = 0; i < size.height / 5; i++) {
       canvas.drawLine(
-        Offset(
-          i * 5.0,
-          leftPress,
-        ),
+        Offset(i * 5.0, leftPress),
         Offset(i * 5.0, leftPress + lineSize),
         linePaint,
       );
@@ -244,10 +238,7 @@ class QrScanBoxPainter extends CustomPainter {
     for (int i = 0; i < lineSize / 5; i++) {
       canvas.drawLine(
         Offset(0, leftPress + i * 5.0),
-        Offset(
-          size.width,
-          leftPress + i * 5.0,
-        ),
+        Offset(size.width, leftPress + i * 5.0),
         linePaint,
       );
     }

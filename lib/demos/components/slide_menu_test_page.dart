@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_slide_menu_view.dart';
 import '/project/configs/project_config.dart';
@@ -10,7 +12,7 @@ class SlideMenuTestPage extends StatefulWidget {
 }
 
 class _SlideMenuTestPageState extends State<SlideMenuTestPage> {
-  var _dataArr = [
+  final _dataArr = [
     {
       'text': '天猫',
       'image': 'assets/images/funcMenu/天猫.png',
@@ -93,7 +95,7 @@ class _SlideMenuTestPageState extends State<SlideMenuTestPage> {
     },
   ];
 
-  var _dataArr2 = [];
+  final _dataArr2 = [];
 
   @override
   void initState() {
@@ -101,7 +103,7 @@ class _SlideMenuTestPageState extends State<SlideMenuTestPage> {
     super.initState();
 
     for (int i = 0; i < 15; i++) {
-      var map = new Map();
+      var map = {};
       map['text'] = 'text$i';
       map['image'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
       _dataArr2.add(map);
@@ -111,7 +113,7 @@ class _SlideMenuTestPageState extends State<SlideMenuTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('JhSlideMenuView'),
+      appBar: const BaseAppBar('JhSlideMenuView'),
       body: _body(),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
@@ -120,7 +122,7 @@ class _SlideMenuTestPageState extends State<SlideMenuTestPage> {
   _body() {
     return Column(
       children: [
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         JhSlideMenuView(
           data: _dataArr,
           clickCallBack: (int selectIndex, dynamic selectItem) {
@@ -129,7 +131,7 @@ class _SlideMenuTestPageState extends State<SlideMenuTestPage> {
             JhProgressHUD.showText('点击了${selectItem['text']}');
           },
         ),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         JhSlideMenuView(
           data: _dataArr,
           maxRow: 1,
@@ -142,8 +144,8 @@ class _SlideMenuTestPageState extends State<SlideMenuTestPage> {
             JhProgressHUD.showText('点击了${selectItem['text']}');
           },
         ),
-        SizedBox(height: 30),
-        Text('网络图片'),
+        const SizedBox(height: 30),
+        const Text('网络图片'),
         JhSlideMenuView(
           data: _dataArr2,
           maxRow: 2,

@@ -37,7 +37,7 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.titleWidget,
     this.rightWidgets,
     this.brightness = _brightness,
-    this.elevation: _elevation,
+    this.elevation = _elevation,
     this.bottomWidget,
     this.leftItemCallBack,
     this.rightItemCallBack,
@@ -66,7 +66,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
   @override
   Widget build(BuildContext context) {
     var flexibleSpace = Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -103,7 +103,7 @@ class BaseAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.rightWidgets,
     this.bgColor,
     this.brightness = _brightness,
-    this.elevation: _elevation,
+    this.elevation = _elevation,
     this.bottomWidget,
     this.flexibleSpace,
     this.leftItemCallBack,
@@ -169,10 +169,7 @@ class _BaseAppBarState extends State<BaseAppBar> {
     // 左侧
     var backWidget = IconButton(
 //      icon: Icon(Icons.arrow_back_ios,color: _color),
-      icon: ImageIcon(
-        AssetImage('assets/images/common/ic_nav_back_white.png'),
-        color: titleAndIconColor,
-      ),
+      icon: ImageIcon(const AssetImage('assets/images/common/ic_nav_back_white.png'), color: titleAndIconColor),
       iconSize: 18,
       padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
       onPressed: () {
@@ -186,11 +183,11 @@ class _BaseAppBarState extends State<BaseAppBar> {
     var leftWidget = widget.leftWidget ?? backWidget;
 
     // 右侧
-    Widget rightWidget = Text('');
+    Widget rightWidget = const Text('');
     if (widget.rightText != null) {
       rightWidget = InkWell(
         child: Container(
-          margin: EdgeInsets.all(_itemSpace),
+          margin: const EdgeInsets.all(_itemSpace),
           color: Colors.transparent,
           child: Center(
             child: Text(widget.rightText!, style: TextStyle(fontSize: _textFontSize, color: titleAndIconColor)),
@@ -209,7 +206,7 @@ class _BaseAppBarState extends State<BaseAppBar> {
       Row(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[rightWidget, SizedBox(width: _rightSpace)],
+        children: <Widget>[rightWidget, const SizedBox(width: _rightSpace)],
       ),
     ];
     var rightWidgets = widget.rightWidgets ?? actions;

@@ -15,9 +15,7 @@ const Color _lineDarkColor = KColors.kLineDarkColor;
 const Color _cellBgColor = KColors.kCellBgColor;
 const Color _cellBgDarkColor = KColors.kCellBgDarkColor;
 
-typedef _CallBack = void Function(int selectIndex, String selectStr);
-
-class JhTextList extends StatelessWidget {
+class JhTextList extends StatefulWidget {
   const JhTextList({
     Key? key,
     this.title = '',
@@ -27,27 +25,32 @@ class JhTextList extends StatelessWidget {
 
   final List dataArr;
   final String title;
-  final _CallBack? callBack;
+  final Function(int selectIndex, String selectStr)? callBack;
 
+  @override
+  State<JhTextList> createState() => _JhTextListState();
+}
+
+class _JhTextListState extends State<JhTextList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(title),
+      appBar: BaseAppBar(widget.title),
       body: _body(),
     );
   }
 
   _body() {
     return ListView.builder(
-      physics: BouncingScrollPhysics(),
-      itemCount: dataArr.length,
+      physics: const BouncingScrollPhysics(),
+      itemCount: widget.dataArr.length,
       itemBuilder: (BuildContext context, int index) {
-        return _cell(context, index);
+        return _itemWidget(index);
       },
     );
   }
 
-  Widget _cell(context, index) {
+  Widget _itemWidget(index) {
     var lineColor = KColors.dynamicColor(context, _lineColor, _lineDarkColor);
     var cellBgColor = KColors.dynamicColor(context, _cellBgColor, _cellBgDarkColor);
 
@@ -58,8 +61,8 @@ class JhTextList extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            Positioned(left: _lfSpace, child: Text(dataArr[index])),
-            Positioned(
+            Positioned(left: _lfSpace, child: Text(widget.dataArr[index])),
+            const Positioned(
               right: _lfSpace,
               child: Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8)),
             ),
@@ -67,7 +70,7 @@ class JhTextList extends StatelessWidget {
           ],
         ),
       ),
-      onTap: () => callBack?.call(index, dataArr[index]),
+      onTap: () => widget.callBack?.call(index, widget.dataArr[index]),
     );
   }
 }

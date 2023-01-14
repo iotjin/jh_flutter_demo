@@ -1,4 +1,5 @@
 // ignore_for_file: unused_import, unnecessary_import, unused_element
+// ignore_for_file: avoid_print
 
 import 'dart:async';
 import 'dart:math';
@@ -23,27 +24,29 @@ class Point {
   }
 }
 
-class DBallPage3 extends StatefulWidget {
+class Ball3DPage4 extends StatefulWidget {
+  const Ball3DPage4({Key? key}) : super(key: key);
+
   @override
-  _DBallPage3State createState() => _DBallPage3State();
+  State<Ball3DPage4> createState() => _DBallPage4State();
 }
 
-class _DBallPage3State extends State<DBallPage3> {
+class _DBallPage4State extends State<Ball3DPage4> {
   double rpm = 3;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('3D球 - 文字'),
+      appBar: const BaseAppBar('3D球 - 圆形阴影'),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: LayoutBuilder(builder: (context, constraints) {
-              return TagCloud(constraints.maxWidth, constraints.maxHeight, rpm: this.rpm);
+              return TagCloud(constraints.maxWidth, constraints.maxHeight, rpm: rpm);
             }),
           ),
-          Text(
+          const Text(
             '滑动球体可以改变转动方向\n滑动条可以改变转动速度',
             style: TextStyle(color: Colors.black, fontSize: 15),
             textAlign: TextAlign.center,
@@ -51,12 +54,12 @@ class _DBallPage3State extends State<DBallPage3> {
           Container(
             color: Colors.white,
             child: Slider(
-                value: this.rpm,
+                value: rpm,
                 min: 0,
                 max: 10,
                 onChanged: (value) {
                   setState(() {
-                    this.rpm = value;
+                    rpm = value;
                   });
                 }),
           ),
@@ -67,19 +70,23 @@ class _DBallPage3State extends State<DBallPage3> {
 }
 
 class TagCloud extends StatefulWidget {
+  const TagCloud(
+    this.width,
+    this.height, {
+    Key? key,
+    this.rpm = 3,
+  }) : super(key: key);
   final double width, height, rpm; //rpm 每分钟圈数
 
-  TagCloud(this.width, this.height, {this.rpm = 3});
-
   @override
-  _TagCloudState createState() => _TagCloudState();
+  State<TagCloud> createState() => _TagCloudState();
 }
 
 class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin {
   Animation<double>? rotationAnimation;
   AnimationController? animationController;
   List<Point>? points;
-  int pointsCount = 20; //标签数量
+  int pointsCount = 6; //标签数量
   double? radius, //球体半径
       angleDelta,
       prevAngle = 0.0;
@@ -90,7 +97,7 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
     super.initState();
     radius = widget.width / 2;
     points = _generateInitialPoints();
-    animationController = new AnimationController(
+    animationController = AnimationController(
       vsync: this,
       //按rpm，转/每分来计算旋转速度
       duration: Duration(seconds: 60 ~/ widget.rpm),
@@ -118,9 +125,9 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
   }
 
   _stopAnimation() {
-    if (animationController!.isAnimating)
+    if (animationController!.isAnimating) {
       animationController!.stop();
-    else {
+    } else {
       animationController!.repeat();
     }
   }
@@ -138,7 +145,7 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
 
       double z = sqrt(1 - x * x - y * y) * (Random().nextBool() == true ? 1 : -1);
 
-      points.add(new Point(x * radius, y * radius, z * radius,
+      points.add(Point(x * radius, y * radius, z * radius,
           color: Color.fromRGBO(
             (x.abs() * 256).ceil(),
             (y.abs() * 256).ceil(),
@@ -166,12 +173,12 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
         bc = b * c,
         sinA = sin(angle),
         cosA = cos(angle);
-    points.forEach((point) {
+    for (var point in points) {
       var x = point.x, y = point.y, z = point.z;
       point.x = (a2 + (1 - a2) * cosA) * x + (ab * (1 - cosA) - c * sinA) * y + (ac * (1 - cosA) + b * sinA) * z;
       point.y = (ab * (1 - cosA) + c * sinA) * x + (b2 + (1 - b2) * cosA) * y + (bc * (1 - cosA) - a * sinA) * z;
       point.z = (ac * (1 - cosA) - b * sinA) * x + (bc * (1 - cosA) + a * sinA) * y + (c2 + (1 - c2) * cosA) * z;
-    });
+    }
     return points;
   }
 
@@ -187,7 +194,7 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
     //球体，添加了边界阴影
     var sphere = Container(
         height: radius! * 2,
-        decoration: BoxDecoration(color: Colors.blueAccent, shape: BoxShape.circle, boxShadow: [
+        decoration: const BoxDecoration(color: Colors.blueAccent, shape: BoxShape.circle, boxShadow: [
           BoxShadow(
 //                  color: Colors.white.withOpacity(0.9),
               color: Colors.yellow,
@@ -240,7 +247,7 @@ class TagsPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     canvas.translate(size.width / 2, size.width / 2);
-    points.forEach((point) {
+    for (var point in points) {
 //       /********************************* canvas  绘制球 ********************************/
 //      // canvas  绘制球
 //      var opacity = _getOpacity(point.z / size.width * 2);
@@ -326,15 +333,18 @@ class TagsPainter extends CustomPainter {
       // TextPainter 富文本 多个
       var text = TextPainter(
           textAlign: TextAlign.center,
-          text: TextSpan(text: '这是文字文字\n', style: TextStyle(fontSize: 12.0, color: Colors.white), children: <TextSpan>[
-            TextSpan(
-                text: 'AA',
-                style: TextStyle(fontSize: 12.0, color: Colors.yellow),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    print('===测试暂时有误，待研究==');
-                  }),
-          ]),
+          text: TextSpan(
+              text: '这是文字文字\n',
+              style: const TextStyle(fontSize: 12.0, color: Colors.white),
+              children: <TextSpan>[
+                TextSpan(
+                    text: 'AA',
+                    style: const TextStyle(fontSize: 12.0, color: Colors.yellow),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        print('===测试暂时有误，待研究==');
+                      }),
+              ]),
           textDirection: TextDirection.ltr)
         ..layout(maxWidth: 200, minWidth: 80)
         ..paint(canvas, Offset(point.x, point.y));
@@ -345,14 +355,72 @@ class TagsPainter extends CustomPainter {
       //长方形
 //      canvas.drawRect(Rect.fromCenter(center:Offset(point.x+text.width/2, point.y+15),width: text.width,height: 50), paintStyle);
 
-      //圆角矩形
-      paintStyle.strokeWidth = 1.0;
-      canvas.drawRRect(
-          RRect.fromRectAndRadius(
-              Rect.fromCenter(center: Offset(point.x + text.width / 2, point.y + 15), width: text.width, height: 50),
-              Radius.circular(10)),
-          paintStyle);
-    });
+//      //圆角矩形1
+//      paintStyle.strokeWidth = 1.0;
+//      canvas.drawRRect(
+//          RRect.fromRectAndRadius(
+//            Rect.fromCenter(center: Offset(point.x + text.width / 2, point.y + 15), width: text.width, height: 50),
+//            Radius.circular(10)
+//          ),
+//          paintStyle);
+
+//      //圆角矩形 2
+//      //用Rect构建一个边长50,中心点坐标为100,100的矩形
+//      Rect rect = Rect.fromCircle(center: Offset(point.x + text.width / 2, point.y + 15), radius: 50);
+//      //根据上面的矩形,构建一个圆角矩形
+//      RRect rrect = RRect.fromRectAndRadius(rect, Radius.circular(20));
+//      canvas.drawRRect(rrect, paintStyle);
+
+      //圆形加阴影
+      Color circleColor = Colors.red;
+      Offset offset = Offset(point.x + text.width / 2, point.y + 15);
+      double tempRadius = 50.0;
+      Path circlePath = Path();
+      circlePath.reset();
+      circlePath.addArc(Rect.fromCircle(center: offset, radius: tempRadius), 0, 2 * pi);
+      circlePath.close();
+      var circleShader = RadialGradient(colors: [
+        Colors.white.withAlpha(0),
+        Colors.white.withAlpha(0),
+        circleColor.withAlpha(0),
+        circleColor.withAlpha(0),
+        circleColor.withOpacity(0.1),
+        circleColor.withOpacity(0.6),
+      ]).createShader(Rect.fromCircle(center: offset, radius: tempRadius));
+      canvas.drawPath(
+          circlePath,
+          paintStyle
+            ..style = PaintingStyle.fill
+            ..shader = circleShader
+            ..strokeWidth = 15);
+
+      //圆形加阴影 通过多画几圈假装阴影效果
+//      Color circleColor = Colors.red;
+//      Offset offset = Offset(point.x + text.width / 2, point.y + 15);
+//
+//      double tempRadius = 50.0;
+//      var tempW = 10;
+//      for (var i = 0; i < 10; i++) {
+//        tempRadius = tempRadius -1.0;
+//        tempW = tempW - 1;
+//        double w= tempW/10.0;
+//        var paint1 = Paint()
+//          ..strokeWidth = w-0.05
+//          ..color = circleColor.withOpacity(w)
+//          ..style = PaintingStyle.stroke;
+//        Rect rect1 = Rect.fromCircle(center: offset, radius: tempRadius);
+//        RRect rrect1 = RRect.fromRectAndRadius(rect1, Radius.circular(tempRadius));
+//        canvas.drawRRect(rrect1, paint1);
+//
+//        var paint2 = Paint()
+//          ..strokeWidth = w-0.10
+//          ..color = circleColor.withOpacity(w)
+//          ..style = PaintingStyle.stroke;
+//        Rect rect2 = Rect.fromCircle(center: offset, radius: tempRadius);
+//        RRect rrect2 = RRect.fromRectAndRadius(rect2, Radius.circular(tempRadius));
+//        canvas.drawRRect(rrect2, paint2);
+//      }
+    }
   }
 
   @override

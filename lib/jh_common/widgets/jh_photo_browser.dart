@@ -32,7 +32,7 @@ class JhPhotoBrowser extends StatefulWidget {
   final bool isHiddenTitle;
 
   @override
-  _JhPhotoBrowserState createState() => _JhPhotoBrowserState();
+  State<JhPhotoBrowser> createState() => _JhPhotoBrowserState();
 }
 
 class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
@@ -63,46 +63,41 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
           bottom: 0,
           right: 0,
           child: Container(
-              color: Colors.black,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                onLongPress: () {
-                  if (widget.onLongPress != null) {
-                    widget.onLongPress!();
+            color: Colors.black,
+            child: GestureDetector(
+              onTap: () => Navigator.of(context).pop(),
+              onLongPress: () => widget.onLongPress?.call(),
+              child: PhotoViewGallery.builder(
+                scrollPhysics: const BouncingScrollPhysics(),
+                builder: (BuildContext context, int index) {
+                  var imgURL = widget.imgDataArr[index];
+                  ImageProvider picture;
+                  if (imgURL.startsWith('http')) {
+                    picture = NetworkImage(imgURL);
+                  } else {
+                    picture = AssetImage(imgURL);
                   }
+                  return PhotoViewGalleryPageOptions(
+                    imageProvider: picture,
+                    heroAttributes: widget.heroTag != null ? PhotoViewHeroAttributes(tag: widget.heroTag!) : null,
+                    initialScale: PhotoViewComputedScale.contained,
+                    minScale: PhotoViewComputedScale.contained,
+                    maxScale: PhotoViewComputedScale.covered * 2,
+                  );
                 },
-                child: PhotoViewGallery.builder(
-                  scrollPhysics: const BouncingScrollPhysics(),
-                  builder: (BuildContext context, int index) {
-                    var _imgURL = widget.imgDataArr[index];
-                    ImageProvider _picture;
-                    if (_imgURL.startsWith('http')) {
-                      _picture = NetworkImage(_imgURL);
-                    } else {
-                      _picture = AssetImage(_imgURL);
-                    }
-                    return PhotoViewGalleryPageOptions(
-                      imageProvider: _picture,
-                      heroAttributes: widget.heroTag != null ? PhotoViewHeroAttributes(tag: widget.heroTag!) : null,
-                      initialScale: PhotoViewComputedScale.contained,
-                      minScale: PhotoViewComputedScale.contained,
-                      maxScale: PhotoViewComputedScale.covered * 2,
-                    );
-                  },
-                  itemCount: widget.imgDataArr.length,
-                  // loadingChild: Container(),
-                  backgroundDecoration: null,
-                  pageController: _controller,
-                  enableRotation: false,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _currentIndex = index;
-                    });
-                  },
-                ),
-              )),
+                itemCount: widget.imgDataArr.length,
+                // loadingChild: Container(),
+                backgroundDecoration: null,
+                pageController: _controller,
+                enableRotation: false,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
+            ),
+          ),
         ),
         Positioned(
           top: JhScreenUtils.topSafeHeight + 20,
@@ -113,7 +108,7 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
             offstage: widget.imgDataArr.length == 1 || widget.isHiddenTitle,
             child: Center(
               child: Text('${_currentIndex + 1}/${widget.imgDataArr.length}',
-                  style: TextStyle(color: Colors.white, fontSize: 16)),
+                  style: const TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ),
         ),
@@ -124,22 +119,16 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
           child: Offstage(
             offstage: widget.isHiddenClose,
             child: IconButton(
-              padding: EdgeInsets.all(0),
-              icon: Icon(
-                Icons.close,
-                size: 30,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              padding: const EdgeInsets.all(0),
+              icon: const Icon(Icons.close, size: 30, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ),
         ),
         SafeArea(
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
+            child: SizedBox(
               height: widget.imgDataArr.length == 1 ? 0 : 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -147,12 +136,13 @@ class _JhPhotoBrowserState extends State<JhPhotoBrowser> {
                   widget.imgDataArr.length,
                   (i) => GestureDetector(
                     child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 3.5),
-                        child: CircleAvatar(
+                      padding: const EdgeInsets.symmetric(horizontal: 3.5),
+                      child: CircleAvatar(
 //                      foregroundColor: Theme.of(context).primaryColor,
-                          radius: 3.5,
-                          backgroundColor: _currentIndex == i ? _selColor : _otherColor,
-                        )),
+                        radius: 3.5,
+                        backgroundColor: _currentIndex == i ? _selColor : _otherColor,
+                      ),
+                    ),
                   ),
                 ).toList(),
               ),

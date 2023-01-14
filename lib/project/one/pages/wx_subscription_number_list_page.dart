@@ -10,12 +10,12 @@ import '/project/configs/project_config.dart';
 import '../models/wx_subscription_number_list_model.dart';
 import '../widgets/wx_subscription_number_list_cell.dart';
 
-var _dataArr;
+var _dataArr = [];
 
 List _getData() {
   _dataArr = [];
   for (int i = 0; i < 50; i++) {
-    var map = new Map<String, dynamic>();
+    var map = <String, dynamic>{};
     map['title'] = 'title$i';
     map['subtitle'] = '这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容这是内容';
     map['img'] = 'assets/images/ic_demo1.png';
@@ -47,18 +47,17 @@ class _WxSubscriptionNumberListPageState extends State<WxSubscriptionNumberListP
         '订阅号',
         rightImgPath: 'assets/images/ic_more_black.png',
         bgColor: Colors.transparent,
-        rightItemCallBack: () {
-          _clickCell(context, '更多');
-        },
+        rightItemCallBack: () => _clickCell('更多'),
       ),
-      body: _body(context, _dataArr),
+      body: _body(),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
   }
 
   // body
-  Widget _body(context, dataArr) {
-    Widget _searchBar = JhSearchBar(
+  Widget _body() {
+    var dataArr = _dataArr;
+    Widget searchBar = JhSearchBar(
       hintText: '微信号/手机号',
       bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
@@ -77,13 +76,13 @@ class _WxSubscriptionNumberListPageState extends State<WxSubscriptionNumberListP
       },
       itemBuilder: (context, index) {
         if (index == 0) {
-          return _searchBar;
+          return searchBar;
         }
         WxSubscriptionNumberListModel model = WxSubscriptionNumberListModel.fromJson(dataArr[index - 1]);
         return WxSubscriptionNumberListCell(
           model: model,
           onClickCell: (model) {
-            _clickCell(context, model['title']);
+            _clickCell(model['title']);
           },
         );
       },
@@ -91,12 +90,12 @@ class _WxSubscriptionNumberListPageState extends State<WxSubscriptionNumberListP
   }
 
   // 点击cell
-  _clickCell(context, text) {
+  _clickCell(text) {
     JhToast.showText(context, msg: '点击 $text');
   }
 
 // // 点击侧滑按钮
-// void _showSnackBar(context, text) {
+// void _showSnackBar(text) {
 //   print(text);
 //   JhToast.showText(context, msg: text);
 // }

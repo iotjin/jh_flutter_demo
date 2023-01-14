@@ -18,11 +18,14 @@ class GraphicLinePage extends StatefulWidget {
 class _GraphicLinePageState extends State<GraphicLinePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: BaseAppBar('Graphic - 折线图'), body: _scrollbar());
+    return Scaffold(
+      appBar: const BaseAppBar('Graphic - 折线图'),
+      body: _body(),
+    );
   }
 }
 
-Widget _scrollbar() {
+Widget _body() {
   return Scrollbar(
       child: SingleChildScrollView(
     child: Column(
@@ -197,39 +200,19 @@ Widget _initLineChart2() {
             values: ['Thu', 5],
           ),
           TagAnnotation(
-            label: Label(
-                '13',
-                LabelStyle(
-                  style: Defaults.textStyle,
-                  offset: const Offset(0, -10),
-                )),
+            label: Label('13', LabelStyle(style: Defaults.textStyle, offset: const Offset(0, -10))),
             values: ['Wed', 13],
           ),
           TagAnnotation(
-            label: Label(
-                '9',
-                LabelStyle(
-                  style: Defaults.textStyle,
-                  offset: const Offset(0, -10),
-                )),
+            label: Label('9', LabelStyle(style: Defaults.textStyle, offset: const Offset(0, -10))),
             values: ['Sun', 9],
           ),
           TagAnnotation(
-            label: Label(
-                '-2',
-                LabelStyle(
-                  style: Defaults.textStyle,
-                  offset: const Offset(0, -10),
-                )),
+            label: Label('-2', LabelStyle(style: Defaults.textStyle, offset: const Offset(0, -10))),
             values: ['Tue', -2],
           ),
           TagAnnotation(
-            label: Label(
-                '5',
-                LabelStyle(
-                  style: Defaults.textStyle,
-                  offset: const Offset(0, -10),
-                )),
+            label: Label('5', LabelStyle(style: Defaults.textStyle, offset: const Offset(0, -10))),
             values: ['Thu', 5],
           ),
         ],

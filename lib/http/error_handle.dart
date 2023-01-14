@@ -3,6 +3,7 @@
 ///  Created by iotjin on 2020/07/08.
 ///  description:  异常处理
 
+// ignore_for_file: constant_identifier_names
 import 'dart:io';
 import 'package:dio/dio.dart';
 

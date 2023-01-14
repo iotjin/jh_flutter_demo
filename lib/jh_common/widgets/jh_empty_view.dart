@@ -56,7 +56,7 @@ class _JhEmptyViewState extends State<JhEmptyView> {
     var image = widget.image ?? (widget.type == EmptyType.error ? _networkErrorImagePath : _emptyImagePath);
     var text = widget.text ?? (widget.type == EmptyType.error ? _networkErrorText : _emptyText);
     // 默认颜色
-    var textColor = Color(0xFFB1BBC3);
+    var textColor = const Color(0xFFB1BBC3);
     var bgColor = KColors.kThemeColor;
 
     // TODO: 通过ThemeProvider进行主题管理
@@ -78,12 +78,13 @@ class _JhEmptyViewState extends State<JhEmptyView> {
             visible: widget.type == EmptyType.error,
             child: InkWell(
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 50),
+                margin: const EdgeInsets.symmetric(horizontal: 50),
                 width: double.infinity,
                 height: 40,
                 decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(_btnBorderRadius)),
-                child:
-                    Center(child: Text(widget.btnTitle, style: TextStyle(fontSize: _btnFontSize, color: Colors.white))),
+                child: Center(
+                  child: Text(widget.btnTitle, style: const TextStyle(fontSize: _btnFontSize, color: Colors.white)),
+                ),
               ),
               onTap: () => widget.clickCallBack?.call(),
             ),

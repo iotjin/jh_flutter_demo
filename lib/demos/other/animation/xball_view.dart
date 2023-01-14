@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:collection';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -100,7 +102,7 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
   int lastHitTime = 0;
 
   //当前的旋转轴
-  Point axisVector = getAxisVector(Offset(2, -1));
+  Point axisVector = getAxisVector(const Offset(2, -1));
 
   @override
   void initState() {
@@ -118,10 +120,10 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
 //    controller = AnimationController(
 //        duration: Duration(milliseconds: 40000), vsync: this);
 
-    controller = new AnimationController(
+    controller = AnimationController(
       vsync: this,
       //按rpm，转/每分来计算旋转速度
-      duration: Duration(seconds: 60 ~/ 3),
+      duration: const Duration(seconds: 60 ~/ 3),
     );
 
     animation = Tween(begin: 0.0, end: pi * 2).animate(controller!);
@@ -214,7 +216,7 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
   ///检查此关键字是否需要高亮
   bool _needHight(String keyword) {
     bool ret = false;
-    if (widget.highlight.length > 0) {
+    if (widget.highlight.isNotEmpty) {
       for (int i = 0; i < widget.highlight.length; i++) {
         if (keyword == widget.highlight[i]) {
           ret = true;
@@ -231,7 +233,7 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -364,7 +366,7 @@ class _XBallViewState extends State<XBallView> with SingleTickerProviderStateMix
                 pointAnimationSequence = PointAnimationSequence(points[i], _needHight(points[i].name!));
 
                 //跳转页面
-                Future.delayed(Duration(milliseconds: 500), () {
+                Future.delayed(const Duration(milliseconds: 500), () {
                   print('点击“${points[i].name}”');
                 });
               }
@@ -541,7 +543,7 @@ ui.Paragraph buildText(
     String firstLine = text.substring(0, 5);
     String secondLine = text.substring(5);
     if (secondLine.length > 5) {
-      secondLine = secondLine.substring(0, 4) + '...';
+      secondLine = '${secondLine.substring(0, 4)}...';
     }
     text = '$firstLine\n$secondLine';
   }
@@ -550,13 +552,13 @@ ui.Paragraph buildText(
   paragraphBuilder.pushStyle(
     ui.TextStyle(
         fontSize: fontSize,
-        color: highLight ? Colors.white.withOpacity(opacity) : Color(0xFFC1E0FF).withOpacity(opacity),
+        color: highLight ? Colors.white.withOpacity(opacity) : const Color(0xFFC1E0FF).withOpacity(opacity),
         height: 1.0,
         shadows: highLight
             ? [
                 Shadow(
                   color: Colors.white.withOpacity(opacity),
-                  offset: Offset(0, 0),
+                  offset: const Offset(0, 0),
                   blurRadius: 10,
                 )
               ]

@@ -1,7 +1,9 @@
-///  wx_userInfo_page.dart
+///  wx_user_info_page.dart
 ///
 ///  Created by iotjin on 2020/09/01.
 ///  description: 用户信息
+
+// ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
@@ -30,30 +32,31 @@ class WxUserInfoPage extends StatelessWidget {
     WxContactsModel model = WxContactsModel.fromJson(jumpParams);
     print('上个页面传递过来的用户信息: ${model.toJson()}');
 
-    double _cellH = wxCellH;
-    double _rowSpace = wxRowSpace;
+    double cellH = wxCellH;
+    double rowSpace = wxRowSpace;
 
-    Widget _sex =
-        model.sex == '0' ? Icon(Icons.person, color: Colors.blue) : Icon(Icons.pregnant_woman, color: Colors.redAccent);
+    Widget sex = model.sex == '0'
+        ? const Icon(Icons.person, color: Colors.blue)
+        : const Icon(Icons.pregnant_woman, color: Colors.redAccent);
     return ListView(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
           color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                constraints: BoxConstraints(maxHeight: 66, maxWidth: 66),
+                constraints: const BoxConstraints(maxHeight: 66, maxWidth: 66),
                 height: 66,
                 width: 66,
-                margin: EdgeInsets.fromLTRB(20, 3, 15, 0),
+                margin: const EdgeInsets.fromLTRB(20, 3, 15, 0),
                 decoration: BoxDecoration(
                   color: JhColorUtils.hexColor(model.color!),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: Center(
-                  child: Text(model.name!.substring(0, 1), style: TextStyle(color: Colors.white, fontSize: 20)),
+                  child: Text(model.name!.substring(0, 1), style: const TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               ),
               Expanded(
@@ -64,69 +67,70 @@ class WxUserInfoPage extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Text(model.name!, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                        SizedBox(width: 5),
+                        Text(model.name!, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        const SizedBox(width: 5),
 //                      Icon(Icons.pregnant_woman, color: Colors.redAccent),
-////                      Icon(Icons.person, color: Colors.blue),
-                        _sex
+//                      Icon(Icons.person, color: Colors.blue),
+                        sex
                       ],
                     ),
-                    SizedBox(height: 3),
-                    Text('昵称：${model.namePinyin}', style: TextStyle(fontSize: 16, color: Colors.grey)),
-                    SizedBox(height: 3),
-                    Text('手机号：${model.phone}', style: TextStyle(fontSize: 16, color: Colors.grey)),
-                    SizedBox(height: 3),
-                    Text('地区：${model.region}', style: TextStyle(fontSize: 16, color: Colors.grey)),
+                    const SizedBox(height: 3),
+                    Text('昵称：${model.namePinyin}', style: const TextStyle(fontSize: 16, color: Colors.grey)),
+                    const SizedBox(height: 3),
+                    Text('手机号：${model.phone}', style: const TextStyle(fontSize: 16, color: Colors.grey)),
+                    const SizedBox(height: 3),
+                    Text('地区：${model.region}', style: const TextStyle(fontSize: 16, color: Colors.grey)),
                   ],
                 ),
               ),
               Expanded(
                 flex: 15,
-                child: model.isStar! ? Icon(Icons.star, color: Colors.yellow) : Container(),
+                child: model.isStar! ? const Icon(Icons.star, color: Colors.yellow) : Container(),
               ),
             ],
           ),
         ),
         Container(color: KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor), height: 0.5),
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           title: '备注和标签',
           text: model.label!,
           textAlign: TextAlign.left,
           clickCallBack: () => _clickCell(context, '备注和标签'),
         ),
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           title: '朋友权限',
           text: model.isStar! ? '' : '不看他的朋友圈和视频动态',
           textAlign: TextAlign.left,
           hiddenLine: true,
           clickCallBack: () => _clickCell(context, '朋友权限'),
         ),
-        SizedBox(height: _rowSpace),
+        SizedBox(height: rowSpace),
         JhSetCell(
-          cellHeight: _cellH + 20,
+          cellHeight: cellH + 20,
           title: '朋友圈',
           clickCallBack: () => _clickCell(context, '朋友圈'),
         ),
         JhSetCell(
-          cellHeight: _cellH,
+          cellHeight: cellH,
           title: '更多信息',
           hiddenLine: true,
           clickCallBack: () => _clickCell(context, '更多信息'),
         ),
-        SizedBox(height: _rowSpace),
+        SizedBox(height: rowSpace),
         InkWell(
           onTap: () => _clickCell(context, '发消息'),
           child: Container(
-            height: _cellH,
+            height: cellH,
             color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset('assets/wechat/contacts/ic_xinxi.png', width: 20, color: KColors.wxTextBlueColor),
-                SizedBox(width: 5),
-                Text('发消息', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: KColors.wxTextBlueColor))
+                const SizedBox(width: 5),
+                const Text('发消息',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: KColors.wxTextBlueColor))
               ],
             ),
           ),
@@ -135,14 +139,14 @@ class WxUserInfoPage extends StatelessWidget {
         InkWell(
           onTap: () => _clickCell(context, '音视频通话'),
           child: Container(
-            height: _cellH,
+            height: cellH,
             color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset('assets/wechat/contacts/ic_shipintonghua.png', width: 20, color: KColors.wxTextBlueColor),
-                SizedBox(width: 5),
-                Text('音视频通话',
+                const SizedBox(width: 5),
+                const Text('音视频通话',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: KColors.wxTextBlueColor))
               ],
             ),

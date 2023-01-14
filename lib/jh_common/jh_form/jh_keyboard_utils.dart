@@ -21,17 +21,15 @@ class JhKeyboardUtils {
                 toolbarButtons: [
                   (node) {
                     return GestureDetector(
-                        onTap: () => node.unfocus(),
-                        child: Stack(alignment: Alignment.centerRight, children: <Widget>[
-                          Container(
-                            color: Colors.transparent,
-                            width: 100,
-                          ),
-                          Positioned(
-                            right: 15,
-                            child: Text('关闭'),
-                          ),
-                        ]));
+                      onTap: () => node.unfocus(),
+                      child: Stack(
+                        alignment: Alignment.centerRight,
+                        children: <Widget>[
+                          Container(color: Colors.transparent, width: 100),
+                          const Positioned(right: 15, child: Text('关闭')),
+                        ],
+                      ),
+                    );
                   },
                 ],
               )),
@@ -41,7 +39,7 @@ class JhKeyboardUtils {
   static void unFocus() {
     // 关闭键盘方法：FocusScope.of(context).requestFocus(FocusNode());
     // 使用下面的方式，会触发不必要的build。
-    // FocusScope.of(context).unfocus();
+    // FocusScope.of(context).unFocus();
     // https://github.com/flutter/flutter/issues/47128#issuecomment-627551073
     FocusManager.instance.primaryFocus?.unfocus();
   }

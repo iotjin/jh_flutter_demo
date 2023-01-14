@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/08/18.
 ///  description:  base64、MD5、AES加解密(CBC/PKCS7)
 
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:encrypt/encrypt.dart';
 import 'package:flustars_flutter3/flustars_flutter3.dart';

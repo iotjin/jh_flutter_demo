@@ -1,12 +1,16 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_asset_picker.dart';
 import '/base_appbar.dart';
 
 class PhotoSelectTest extends StatelessWidget {
+  const PhotoSelectTest({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar('PhotoSelect'),
+      appBar: const BaseAppBar('PhotoSelect'),
       body: _body(),
     );
   }
@@ -14,14 +18,14 @@ class PhotoSelectTest extends StatelessWidget {
   Widget _body() {
     return Container(
         color: Colors.yellow,
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('请选择图片(最多3张)'),
-            SizedBox(height: 6),
+            const Text('请选择图片(最多3张)'),
+            const SizedBox(height: 6),
             Container(
-              padding: EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.only(left: 5),
               child: JhAssetPicker(
                 assetType: AssetType.image,
                 maxAssets: 3,
@@ -38,10 +42,10 @@ class PhotoSelectTest extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 6),
-            Text('请选择视频(最多1个)'),
+            const SizedBox(height: 6),
+            const Text('请选择视频(最多1个)'),
             Container(
-              padding: EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.only(left: 5),
               child: JhAssetPicker(
                 maxAssets: 1,
                 assetType: AssetType.video,
@@ -53,9 +57,9 @@ class PhotoSelectTest extends StatelessWidget {
                 },
               ),
             ),
-            Text('请选择图片或视频(一行展示4个)'),
+            const Text('请选择图片或视频(一行展示4个)'),
             Container(
-              padding: EdgeInsets.only(left: 5),
+              padding: const EdgeInsets.only(left: 5),
               child: JhAssetPicker(
                 assetType: AssetType.imageAndVideo,
                 lineCount: 4,
