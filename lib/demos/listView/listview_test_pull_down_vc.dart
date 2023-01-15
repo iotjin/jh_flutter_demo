@@ -155,6 +155,8 @@ Widget _listWidget(int dataCount) {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       // 加header要加上这两个属性
+      // 取消footer和cell之间的空白
+      padding: const EdgeInsets.all(0),
       itemCount: dataCount,
       itemBuilder: (context, index) {
         CustomViewModel model = CustomViewModel.fromJson(dataArr[index]);

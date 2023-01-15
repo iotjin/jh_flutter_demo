@@ -257,6 +257,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
 //                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
 //                  icon: Image.asset('assets/images/ic_pwd_close.png',width: 18.0,),
                     icon: _pwdImg!,
+                    color: const Color(0xFFC8C8C8),
                     iconSize: 18.0,
                     onPressed: () {
                       setState(() {

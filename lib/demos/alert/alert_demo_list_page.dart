@@ -9,7 +9,7 @@ final List titleData = [
   'JhToast',
   'JhDialog',
   '级联选择器（多维数组结构数据）',
-  '级级选择器（树形结构数据、支持搜索）',
+  '级联选择器（树形结构数据、支持搜索）',
 ];
 final List routeData = [
   'BottomSheetTest',

@@ -4,7 +4,7 @@
 ///  description:  微信样式 底部弹框
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/utils/jh_screen_utils.dart';
 import '/project/configs/colors.dart';
 
 const double _cellHeight = 50.0;

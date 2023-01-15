@@ -3,13 +3,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
-import '/jh_common/jh_form/jh_keyboard_utils.dart';
-import '/jh_common/jh_form/jh_login_text_field.dart';
-import '/jh_common/jh_form/jh_count_down_btn.dart';
+import '/jh_common/jh_form/jh_form.dart';
 import '/jh_common/widgets/jh_button.dart';
-import '/project/configs/colors.dart';
-import '/base_appbar.dart';
+import '/project/configs/project_config.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -110,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       TextSpan(
                         text: '《xxx服务协议》',
                         style: const TextStyle(color: Colors.red),
-                        recognizer: TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
+                        recognizer: TapGestureRecognizer()..onTap = () => _clickAgreement(),
                       ),
                     ],
                   ),
@@ -123,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void _clickOkBtn() async {
+  _clickOkBtn() async {
 //    Navigator.of(context).pushAndRemoveUntil(
 //         MaterialPageRoute(builder: (context) => BaseTabBar()
 //        ), (route) => route == null);
@@ -138,5 +134,10 @@ class _RegisterPageState extends State<RegisterPage> {
       Navigator.pop(context);
       hide();
     });
+  }
+
+  _clickAgreement() {
+    print('Tap Here onTap');
+    JhToast.showText(context, msg: '点击服务协议');
   }
 }

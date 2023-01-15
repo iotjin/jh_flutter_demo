@@ -4,7 +4,7 @@
 ///  description:
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/project/configs/project_config.dart';
+import '/project/configs/project_config.dart';
 
 double _scrollMaxOffSet = 1000;
 

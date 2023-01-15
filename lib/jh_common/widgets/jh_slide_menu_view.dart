@@ -76,7 +76,7 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
       child: Column(
         children: [
           SizedBox(
-            height: mainAxisExtent * widget.maxRow * 0.9,
+            height: mainAxisExtent * widget.maxRow * 1.0,
             width: JhScreenUtils.screenWidth,
             child: GridView.builder(
               controller: _scrollController,

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
-import '/jh_common/jh_form/jh_keyboard_utils.dart';
+import 'package:provider/provider.dart';
+import '/jh_common/jh_form/jh_form.dart';
 import '/jh_common/widgets/jh_button.dart';
-import '/base_appbar.dart';
+import '/project/provider/theme_provider.dart';
+import '/project/configs/project_config.dart';
 
 class FindPwdPage extends StatefulWidget {
   const FindPwdPage({Key? key}) : super(key: key);
@@ -21,11 +22,29 @@ class _FindPwdPageState extends State<FindPwdPage> {
 
   bool pwdShow = false; // 密码是否显示明文
 
+  bool _isFocused1 = false;
+  bool _isFocused2 = false;
+
   @override
   void initState() {
+    super.initState();
+
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
     _nameController.text = '';
-    super.initState();
+    _node1.addListener(() {
+      if (mounted) {
+        setState(() {
+          _isFocused1 = _node1.hasFocus;
+        });
+      }
+    });
+    _node2.addListener(() {
+      if (mounted) {
+        setState(() {
+          _isFocused2 = _node2.hasFocus;
+        });
+      }
+    });
   }
 
   @override
@@ -40,6 +59,13 @@ class _FindPwdPageState extends State<FindPwdPage> {
   }
 
   Widget _body() {
+    // TODO: 通过ThemeProvider进行主题管理
+    final provider = Provider.of<ThemeProvider>(context);
+    var themeColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var labelTextStyle = TextStyle(fontSize: 15.0, color: themeColor);
+    var hintColor = KColors.dynamicColor(context, KColors.kFormHintColor, KColors.kFormHintDarkColor);
+    var hintTextStyle = TextStyle(fontSize: 15.0, color: hintColor);
+
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
@@ -54,6 +80,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   controller: _nameController,
                   decoration: InputDecoration(
                     labelText: '用户名',
+                    labelStyle: _isFocused1 ? labelTextStyle : hintTextStyle,
                     hintText: '请输入用户名',
                     hintStyle: const TextStyle(fontSize: 15),
                     focusedBorder:
@@ -67,6 +94,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   controller: _pwdController,
                   decoration: InputDecoration(
                     labelText: '密码',
+                    labelStyle: _isFocused2 ? labelTextStyle : hintTextStyle,
                     hintText: '请输入密码',
                     hintStyle: const TextStyle(fontSize: 15),
                     focusedBorder:
@@ -74,6 +102,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
                     enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
                     suffixIcon: IconButton(
                       icon: Icon(pwdShow ? Icons.visibility : Icons.visibility_off),
+                      color: Theme.of(context).primaryColor,
                       onPressed: () {
                         setState(() {
                           pwdShow = !pwdShow;
