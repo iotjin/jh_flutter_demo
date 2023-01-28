@@ -4,6 +4,7 @@
 ///  description:
 
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/project/configs/project_config.dart';
 
 double _scrollMaxOffSet = 1000;
@@ -64,9 +65,9 @@ class _PersonCenterPageState extends State<PersonCenterPage> with SingleTickerPr
           pinned: true,
           elevation: 0,
           expandedHeight: _topH + 200,
-          flexibleSpace: FlexibleSpaceBar(
-            title: const Text('Sliver-sticky效果', style: TextStyle(color: KColors.kNavTitleColor)),
-            background: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover),
+          flexibleSpace: const FlexibleSpaceBar(
+            title: Text('Sliver-sticky效果', style: TextStyle(color: KColors.kNavTitleColor)),
+            background: JhNetworkImage('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg'),
           ),
         ),
         SliverPersistentHeader(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
 import '/jh_common/utils/jh_nav_router_utils.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
+import '/jh_common/widgets/jh_scrollview.dart';
 import '/project/routes/jh_nav_utils.dart';
 import '/base_appbar.dart';
 import '/demos/route_test_page/pass_value_page2.dart';
@@ -26,13 +27,13 @@ class PassValuePage extends StatelessWidget {
       'array': [1, 2, 3],
     };
 
-    return Scrollbar(
-        child: SingleChildScrollView(
+    return JhScrollView(
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const Text('以下是JhNavUtils方式(基于fluro路由封装) - 推荐'),
+            const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('带参数跳转带回传刷新 - pushNamedResult'),
               onPressed: () {
@@ -46,6 +47,7 @@ class PassValuePage extends StatelessWidget {
                 });
               },
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('带参数跳转带回传 - pushNamedResult'),
               onPressed: () {
@@ -57,6 +59,7 @@ class PassValuePage extends StatelessWidget {
                 });
               },
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('带参数跳转 - pushNamed'),
               onPressed: () {
@@ -65,7 +68,9 @@ class PassValuePage extends StatelessWidget {
                 JhNavUtils.pushNamed(context, 'PassValuePage2', arguments: params);
               },
             ),
+            const SizedBox(height: 10),
             const Text('以下是flutter原生方式'),
+            const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('带参数跳转带回传 - Navigator.push'),
               onPressed: () {
@@ -85,6 +90,7 @@ class PassValuePage extends StatelessWidget {
                 });
               },
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('带参数跳转 - Navigator.push'),
               onPressed: () {
@@ -98,6 +104,7 @@ class PassValuePage extends StatelessWidget {
                 JhNavRouterUtils.push(context, PassValuePage2(params));
               },
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('带参数跳转(渐隐转场动画) - Navigator.push'),
               onPressed: () {
@@ -119,6 +126,7 @@ class PassValuePage extends StatelessWidget {
                 });
               },
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               child: const Text('带参数跳转带回传 - Navigator.pushNamed'),
               onPressed: () {
@@ -132,7 +140,7 @@ class PassValuePage extends StatelessWidget {
               },
             ),
           ]),
-    ));
+    );
   }
 
   void _requestData() {

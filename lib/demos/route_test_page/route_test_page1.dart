@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
+import '/jh_common/widgets/jh_scrollview.dart';
 import '/project/routes/jh_nav_utils.dart';
 import '/project/routes/app_route_observer.dart';
 import '/base_appbar.dart';
@@ -98,32 +99,30 @@ class _RouteTestPage1State extends State<RouteTestPage1> with RouteAware {
       'array': [1, 2, 3],
     };
 
-    return Scrollbar(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(height: 10),
-            Text(_value),
-            const SizedBox(height: 20),
-            const Text('请前往控制台查看全部输出'),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              child: const Text('带参数跳转带回传 - pushNamedResult'),
-              onPressed: () {
-                params['type'] = '1';
+    return JhScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const SizedBox(height: 10),
+          Text(_value),
+          const SizedBox(height: 20),
+          const Text('请前往控制台查看全部输出'),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            child: const Text('带参数跳转带回传 - pushNamedResult'),
+            onPressed: () {
+              params['type'] = '1';
 
-                JhNavUtils.pushNamedResult(context, 'PassValuePage2', params, (returnData) {
-                  print('回传的值====$returnData');
-                  if (returnData['isRefresh'] == true) {
-                    _requestData();
-                  }
-                });
-              },
-            ),
-          ],
-        ),
+              JhNavUtils.pushNamedResult(context, 'PassValuePage2', params, (returnData) {
+                print('回传的值====$returnData');
+                if (returnData['isRefresh'] == true) {
+                  _requestData();
+                }
+              });
+            },
+          ),
+        ],
       ),
     );
   }

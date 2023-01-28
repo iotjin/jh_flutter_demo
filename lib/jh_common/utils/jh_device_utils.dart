@@ -12,19 +12,23 @@ class JhDeviceUtils {
 
   static bool get isMobile => isAndroid || isIOS;
 
+  static bool get isMobile2 =>
+      defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
+
+  /// Platform不能在web端使用
   static bool get isWeb => kIsWeb;
 
-  static bool get isWindows => Platform.isWindows;
+  static bool get isWindows => isWeb ? false : Platform.isWindows;
 
-  static bool get isLinux => Platform.isLinux;
+  static bool get isLinux => isWeb ? false : Platform.isLinux;
 
-  static bool get isMacOS => Platform.isMacOS;
+  static bool get isMacOS => isWeb ? false : Platform.isMacOS;
 
-  static bool get isAndroid => Platform.isAndroid;
+  static bool get isAndroid => isWeb ? false : Platform.isAndroid;
 
-  static bool get isFuchsia => Platform.isFuchsia;
+  static bool get isFuchsia => isWeb ? false : Platform.isFuchsia;
 
-  static bool get isIOS => Platform.isIOS;
+  static bool get isIOS => isWeb ? false : Platform.isIOS;
 
   static Future<PackageInfo> getPackageInfo() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();

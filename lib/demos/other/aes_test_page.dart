@@ -39,36 +39,32 @@ class _AESTestPageState extends State<AESTestPage> {
   }
 
   Widget _body() {
-    return Scrollbar(
-        child: SingleChildScrollView(
-            child: Padding(
+    return ListView(
       padding: const EdgeInsets.only(top: 15),
-      child: Column(
-        children: <Widget>[
-          JhFormInputCell(
-            title: '明文',
-            hintText: '请输入要加密的文字',
-            text: _textStr,
-            inputCallBack: (value) {
-              setState(() => _textStr = value);
-            },
-          ),
-          JhFormInputCell(title: 'Base64编码', text: _base64encodeStr, enabled: false),
-          JhFormInputCell(title: 'Base64解码', text: _base64decodeStr, enabled: false),
-          JhFormInputCell(title: 'AES加密', text: _aesEncryptStr, enabled: false),
-          JhFormInputCell(title: 'AES解密', text: _aesDecryptStr, enabled: false),
-          JhFormInputCell(title: 'MD5加密', text: _md5Str, enabled: false),
-          const JhFormInputCell(text: '本地加密存储请看控制台输出', enabled: false),
-          const SizedBox(height: 50),
-          JhButton(
-            text: '更新',
-            onPressed: () {
-              _test(_textStr);
-            },
-          )
-        ],
-      ),
-    )));
+      children: <Widget>[
+        JhFormInputCell(
+          title: '明文',
+          hintText: '请输入要加密的文字',
+          text: _textStr,
+          inputCallBack: (value) {
+            setState(() => _textStr = value);
+          },
+        ),
+        JhFormInputCell(title: 'Base64编码', text: _base64encodeStr, enabled: false),
+        JhFormInputCell(title: 'Base64解码', text: _base64decodeStr, enabled: false),
+        JhFormInputCell(title: 'AES加密', text: _aesEncryptStr, enabled: false),
+        JhFormInputCell(title: 'AES解密', text: _aesDecryptStr, enabled: false),
+        JhFormInputCell(title: 'MD5加密', text: _md5Str, enabled: false),
+        const JhFormInputCell(text: '本地加密存储请看控制台输出', enabled: false),
+        const SizedBox(height: 50),
+        JhButton(
+          text: '更新',
+          onPressed: () {
+            _test(_textStr);
+          },
+        )
+      ],
+    );
   }
 
   void _test(str) {

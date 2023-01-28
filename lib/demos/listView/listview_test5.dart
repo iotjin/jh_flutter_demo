@@ -46,8 +46,6 @@ class ContentBody extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
           image: DecorationImage(
             fit: BoxFit.cover,
-//                image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'),
-//                  image: JhImageUtils.getAssetImage('service/bg_service_gongdan'),
             image: JhImageUtils.getAssetImage(dataArr[index]['bgImg']),
           ),
         ),
@@ -148,7 +146,6 @@ Widget cell = Container(
   decoration: const BoxDecoration(
     image: DecorationImage(
       image: AssetImage('images/service/lufei.png'),
-//    image: Image.network(''),
       fit: BoxFit.cover,
     ),
   ),

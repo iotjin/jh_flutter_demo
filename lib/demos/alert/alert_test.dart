@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '/jh_common/widgets/jh_alert.dart';
+import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
 final List titleData = [
@@ -36,11 +36,11 @@ class AlertTestPage extends StatelessWidget {
               clickCallback: (index, text) {
             if (index == 0) {
               print('点击左侧按钮');
-              Fluttertoast.showToast(msg: '点击左侧按钮');
+              JhProgressHUD.showText('点击左侧按钮');
             }
             if (index == 1) {
               print('点击右侧按钮');
-              Fluttertoast.showToast(msg: '点击右侧按钮');
+              JhProgressHUD.showText('点击右侧按钮');
             }
           });
         }
@@ -48,7 +48,7 @@ class AlertTestPage extends StatelessWidget {
           JhAlert.showActionSheet(context, title: '提示', content: '这是提示内容这是提示内容这是提示内容这是提示内容', otherBtnTitles: ['一', '二'],
               clickCallback: (index, text) {
             print(index);
-            Fluttertoast.showToast(msg: text);
+            JhProgressHUD.showText(text);
           });
         }
         if (index == 3) {
@@ -59,7 +59,7 @@ class AlertTestPage extends StatelessWidget {
               redBtnTitle: '删除', clickCallback: (index, text) {
             print(index);
             print(text);
-            Fluttertoast.showToast(msg: text);
+            JhProgressHUD.showText(text);
           });
         }
         if (index == 4) {
@@ -67,21 +67,21 @@ class AlertTestPage extends StatelessWidget {
               clickCallback: (index, text) {
             print(index);
             print(text);
-            Fluttertoast.showToast(msg: text);
+            JhProgressHUD.showText(text);
           });
         }
         if (index == 5) {
           JhAlert.showActionSheet(context, otherBtnTitles: ['一'], redBtnTitle: '删除', clickCallback: (index, text) {
             print(index);
             print(text);
-            Fluttertoast.showToast(msg: text);
+            JhProgressHUD.showText(text);
           });
         }
         if (index == 6) {
           JhAlert.showActionSheet(context, title: '请选择', otherBtnTitles: ['一', '二'], clickCallback: (index, text) {
             print(index);
             print(text);
-            Fluttertoast.showToast(msg: text);
+            JhProgressHUD.showText(text);
           });
         }
       },

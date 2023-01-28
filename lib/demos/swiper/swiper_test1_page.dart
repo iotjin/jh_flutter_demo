@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety_flutter3/flutter_swiper_null_safety_flutter3.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 
 class SwiperTest1Page extends StatefulWidget {
   const SwiperTest1Page({Key? key}) : super(key: key);
@@ -16,6 +17,12 @@ class _SwiperTest1PageState extends State<SwiperTest1Page> {
     'https://gitee.com/iotjh/Picture/raw/master/lufei2.png',
     'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
   ];
+  List placeholderImgList = [
+    'newFeature/newFeature_0',
+    'newFeature/newFeature_1',
+    'newFeature/newFeature_2',
+    'newFeature/newFeature_3',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,8 @@ class _SwiperTest1PageState extends State<SwiperTest1Page> {
         itemCount: imgList.length,
         autoplay: true,
         itemBuilder: (BuildContext context, int index) {
-          return Image.network(imgList[index], fit: BoxFit.fill);
+          return JhNetworkImage(imgList[index],
+              placeholder: placeholderImgList[index], fit: BoxFit.fill, format: ImageFormat.jpeg);
         },
         // 点击事件 onTap
         onTap: (index) {

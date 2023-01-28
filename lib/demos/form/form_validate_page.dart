@@ -36,9 +36,7 @@ class _FormValidatePageState extends State<FormValidatePage> {
   }
 
   _body() {
-    return Scrollbar(
-        child: SingleChildScrollView(
-            child: Column(
+    return ListView(
       children: <Widget>[
         JhFormInputCell(
           title: '手机号',
@@ -223,7 +221,7 @@ class _FormValidatePageState extends State<FormValidatePage> {
         ),
         const SizedBox(height: 50),
       ],
-    )));
+    );
   }
 
   _onClickSubmit() {

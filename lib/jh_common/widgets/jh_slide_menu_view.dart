@@ -4,8 +4,9 @@
 ///  description: 水平滑动菜单(效果同拼多多首页、淘宝我的频道)
 
 import 'package:flutter/material.dart';
-import '/project/configs/colors.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/widgets/jh_network_image.dart';
+import '/project/configs/colors.dart';
 
 const double _sliderW = 20.0;
 const double _sliderH = 4.0;
@@ -121,7 +122,7 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
   Widget _buildCell(mainAxisExtent, index) {
     var img = _dataArr[index]['image'];
     Widget imageWidget =
-        img.startsWith('http') ? Image.network(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
+        img.startsWith('http') ? JhNetworkImage(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
 
     return GestureDetector(
       child: Column(

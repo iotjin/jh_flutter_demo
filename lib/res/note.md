@@ -16,6 +16,47 @@
 | flutter build iOS |  |
 | flutter run --release| 发布版本调试，发布版本测试需要连接真机方能调试。 |
 
+# web端打包注意事项：
+
+- 1、先清空历史数据：
+```
+flutter clean
+flutter pub get
+```
+- 2、查看是否支持web端：
+```
+flutter config -h
+```
+不支持运行
+```
+flutter config --enable-web
+```
+- 3、为现有项目添加 Web 支持
+```
+// 只添加web端
+flutter create --platforms=web .
+// 其他平台
+flutter create --platforms=windows,macos,linux .
+// 默认
+flutter create .
+```
+- 4、编译
+```
+// 打开速度一般,兼容性好
+flutter build web
+flutter build web --release
+
+// 打开速度快，兼容性好
+flutter build web --web-renderer html
+
+// 打开速度慢，对于复杂的页面兼容性好
+flutter build web --web-renderer canvaskit
+```
+注：
+>找到了index.html,用浏览器打开一片空白
+这个属于正常现象，不像正常的前端web，点击index.html就能访问。
+在flutter里面是不能直接访问的，要放到容器里面去才能访问，如：GitHub pages、tomcat等
+
 ```
 ListView({
   Axis scrollDirection = Axis.vertical, // 列表的滚动方向，可选值：Axis的horizontal、vertical

@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 
 double _scrollMaxOffSet = 1000;
 
@@ -80,7 +81,7 @@ class _PersonCenterPage2State extends State<PersonCenterPage2> with SingleTicker
         height: _topH + 200,
         child: Container(
           color: Colors.white,
-          child: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover),
+          child: const JhNetworkImage('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg'),
         ),
       ),
       Positioned(

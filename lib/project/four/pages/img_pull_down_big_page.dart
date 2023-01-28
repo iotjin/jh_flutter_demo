@@ -6,6 +6,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 
 class ImgPullDownBigPage extends StatefulWidget {
   const ImgPullDownBigPage({Key? key}) : super(key: key);
@@ -87,9 +88,9 @@ class _ImgPullDownBigPageState extends State<ImgPullDownBigPage> with TickerProv
             pinned: true,
             elevation: 0,
             expandedHeight: imgHeight + imgExtraHeight,
-            flexibleSpace: FlexibleSpaceBar(
-              title: const Text('图片下拉放大', style: TextStyle(color: Colors.white, fontSize: 18)),
-              background: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover),
+            flexibleSpace: const FlexibleSpaceBar(
+              title: Text('图片下拉放大', style: TextStyle(color: Colors.white, fontSize: 18)),
+              background: JhNetworkImage('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg'),
             ),
           ),
           SliverList(

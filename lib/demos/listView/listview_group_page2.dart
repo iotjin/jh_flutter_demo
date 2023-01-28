@@ -26,7 +26,10 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
     _groupData = _getData();
     _tabController = TabController(vsync: this, length: tabs.length);
     _tabController!.addListener(() {
-      print(_tabController!.index);
+      // _tabController.indexIsChanging     监听不到滑动
+      if (_tabController!.index.toDouble() == _tabController!.animation!.value) {
+        print(_tabController!.index);
+      }
     });
   }
 

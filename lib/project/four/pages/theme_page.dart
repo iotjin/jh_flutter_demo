@@ -72,12 +72,8 @@ class _ThemePageState extends State<ThemePage> {
     List<Widget> widgetList = dataArr.map((item) => _cell(item)).toList();
     widgetList.insert(0, topWidget);
 
-    return Scrollbar(
-      child: SingleChildScrollView(
-        child: Column(
-          children: widgetList,
-        ),
-      ),
+    return ListView(
+      children: widgetList,
     );
   }
 

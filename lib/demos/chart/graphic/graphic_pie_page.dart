@@ -21,19 +21,16 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
   }
 
   Widget _body() {
-    return Scrollbar(
-        child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          _initHeader('饼图 - 点击无提示框'),
-          _initPieChart1(),
-          _initHeader('饼图 - 设置文字背景颜色，点击显示提示框'),
-          _initPieChart2(),
-          _initHeader('空心饼图 - 中间文字'),
-          _initPieChart3(),
-        ],
-      ),
-    ));
+    return ListView(
+      children: <Widget>[
+        _initHeader('饼图 - 点击无提示框'),
+        _initPieChart1(),
+        _initHeader('饼图 - 设置文字背景颜色，点击显示提示框'),
+        _initPieChart2(),
+        _initHeader('空心饼图 - 中间文字'),
+        _initPieChart3(),
+      ],
+    );
   }
 
   Widget _initHeader(title) {

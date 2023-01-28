@@ -21,71 +21,67 @@ class _SetCellTestPageState extends State<SetCellTestPage> {
   }
 
   _body() {
-    return Scrollbar(
-        child: SingleChildScrollView(
-            child: Padding(
+    return ListView(
       padding: const EdgeInsets.only(top: 15),
-      child: Column(
-        children: <Widget>[
-          JhSetCell(
-            title: '左标题',
-            text: '右侧文字',
-            clickCallBack: () {
-              print('点击cell');
-            },
-          ),
-          const JhSetCell(
-            title: '左标题左标题',
-            text: '右侧文字',
-          ),
-          const JhSetCell(
-            title: '左标题左标题左标题',
-            text: '右侧文字',
-            titleWidth: 150,
-          ),
-          const JhSetCell(leftImgPath: 'assets/images/shezhi.png', title: '设置', text: '右侧文字'),
-          const JhSetCell(
-            leftImgPath: 'assets/images/shezhi.png',
-            title: '关于',
-            text: '有新版本',
-            textStyle: TextStyle(fontSize: 15.0, color: Colors.red),
-          ),
-          const JhSetCell(
-            leftImgPath: 'assets/images/shezhi.png',
-            title: '左侧文字红色',
-            titleStyle: TextStyle(fontSize: 15.0, color: Colors.red),
-          ),
-          const JhSetCell(
-            title: '左标题',
-            text: '隐藏箭头',
-            hiddenArrow: true,
-          ),
-          JhSetCell(
-            title: '左标题',
-            text: '左侧自定义',
-            leftWidget: Container(color: Colors.yellow, width: 35, height: 35),
-          ),
-          JhSetCell(
-            title: '左标题',
-            text: '右侧自定义',
-            rightWidget: Container(color: Colors.yellow, width: 150, height: 45),
-          ),
-          const SizedBox(height: 5),
-          const JhSetCell(
-            leftImgPath: 'assets/images/shezhi.png',
-            title: '左标题',
-            text: '隐藏底部线',
-            hiddenLine: true,
-          ),
-          const SizedBox(height: 5),
-          const JhSetCell(
-            leftImgPath: 'assets/images/shezhi.png',
-            title: '左标题',
-            text: '隐藏底部线',
-            hiddenLine: true,
-          ),
-        ],
-      ),
-    )));
+      children: <Widget>[
+        JhSetCell(
+          title: '左标题',
+          text: '右侧文字',
+          clickCallBack: () {
+            print('点击cell');
+          },
+        ),
+        const JhSetCell(
+          title: '左标题左标题',
+          text: '右侧文字',
+        ),
+        const JhSetCell(
+          title: '左标题左标题左标题',
+          text: '右侧文字',
+          titleWidth: 150,
+        ),
+        const JhSetCell(leftImgPath: 'assets/images/shezhi.png', title: '设置', text: '右侧文字'),
+        const JhSetCell(
+          leftImgPath: 'assets/images/shezhi.png',
+          title: '关于',
+          text: '有新版本',
+          textStyle: TextStyle(fontSize: 15.0, color: Colors.red),
+        ),
+        const JhSetCell(
+          leftImgPath: 'assets/images/shezhi.png',
+          title: '左侧文字红色',
+          titleStyle: TextStyle(fontSize: 15.0, color: Colors.red),
+        ),
+        const JhSetCell(
+          title: '左标题',
+          text: '隐藏箭头',
+          hiddenArrow: true,
+        ),
+        JhSetCell(
+          title: '左标题',
+          text: '左侧自定义',
+          leftWidget: Container(color: Colors.yellow, width: 35, height: 35),
+        ),
+        JhSetCell(
+          title: '左标题',
+          text: '右侧自定义',
+          rightWidget: Container(color: Colors.yellow, width: 150, height: 45),
+        ),
+        const SizedBox(height: 5),
+        const JhSetCell(
+          leftImgPath: 'assets/images/shezhi.png',
+          title: '左标题',
+          text: '隐藏底部线',
+          hiddenLine: true,
+        ),
+        const SizedBox(height: 5),
+        const JhSetCell(
+          leftImgPath: 'assets/images/shezhi.png',
+          title: '左标题',
+          text: '隐藏底部线',
+          hiddenLine: true,
+        ),
+      ],
+    );
   }
 }

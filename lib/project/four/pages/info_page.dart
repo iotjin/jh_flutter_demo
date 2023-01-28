@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/project/configs/project_config.dart';
 import '/project/model/user_model.dart';
 
@@ -19,7 +20,7 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-  UserModel? model;
+  late UserModel model;
 
   double _topH = 0;
   final ScrollController _scrollController = ScrollController();
@@ -96,23 +97,17 @@ class _InfoPageState extends State<InfoPage> {
           color: KColors.kThemeColor,
           alignment: Alignment.center,
           child: ListTile(
-            leading: Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                image: DecorationImage(image: NetworkImage(model!.avatarUrl!), fit: BoxFit.cover),
-              ),
-            ),
-            title: Text(model!.userName!, style: const TextStyle(color: Colors.white)),
-            subtitle: Text(model!.phone!, style: const TextStyle(color: Colors.white)),
+            leading: JhNetworkImage(model.avatarUrl.jhNullSafe,
+                placeholder: 'lufei', width: 50, height: 50, borderRadius: 25),
+            title: Text(model.userName.jhNullSafe, style: const TextStyle(color: Colors.white)),
+            subtitle: Text(model.phone.jhNullSafe, style: const TextStyle(color: Colors.white)),
             // trailing: const Icon(Icons.arrow_forward_ios,size: 18,color: Colors.white),
             contentPadding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
             onTap: () {},
           ),
         ),
-        JhSetCell(title: '用户名', text: model!.userName!, hiddenArrow: true),
-        JhSetCell(title: '手机号', text: model!.phone!, hiddenArrow: true),
+        JhSetCell(title: '用户名', text: model.userName.jhNullSafe, hiddenArrow: true),
+        JhSetCell(title: '手机号', text: model.phone.jhNullSafe, hiddenArrow: true),
       ],
     );
   }

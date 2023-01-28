@@ -8,9 +8,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_device_utils.dart';
-import '/jh_common/utils/jh_nav_router_utils.dart';
 import '/jh_common/widgets/click_item.dart';
-import '/base_appbar.dart';
+import '/project/configs/project_config.dart';
 
 class AboutIOSPage extends StatefulWidget {
   const AboutIOSPage({Key? key}) : super(key: key);
@@ -85,13 +84,12 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
         ClickItem(
           title: 'Github',
           content: 'Go Star',
-          onTap: () =>
-              JhNavRouterUtils.jumpWebViewPage(context, 'jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo'),
+          onTap: () => _jumpWeb('jh_flutter_demo', 'https://github.com/iotjin/jh_flutter_demo'),
         ),
         ClickItem(
           title: 'author',
           content: 'iotjin',
-          onTap: () => JhNavRouterUtils.jumpWebViewPage(context, '作者博客', 'https://blog.csdn.net/iotjin'),
+          onTap: () => _jumpWeb('作者博客', 'https://blog.csdn.net/iotjin'),
         ),
         ClickItem(
           title: '版本更新',
@@ -104,6 +102,14 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
         )
       ],
     );
+  }
+
+  _jumpWeb(String title, String url) {
+    if (JhDeviceUtils.isWeb) {
+      JhCommonUtils.launchWebURL(url);
+    } else {
+      JhNavUtils.jumpWebViewPage(context, title, url);
+    }
   }
 
   void _getAPPStoreVersion() async {

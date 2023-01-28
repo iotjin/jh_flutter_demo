@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 import '/res/list_data.dart';
 
@@ -22,7 +23,7 @@ class HomeContent extends StatelessWidget {
   Widget _getListData(context, index) {
     return ListTile(
       title: Text(listData[index]['title']),
-      leading: Image.network(listData[index]['imageUrl']),
+      leading: JhNetworkImage(listData[index]['imageUrl']),
       subtitle: Text(listData[index]['content']),
       onTap: () {
         print('点击的index ${index.toString()}');

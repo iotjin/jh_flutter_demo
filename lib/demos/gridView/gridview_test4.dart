@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 
 class GridViewTest4 extends StatelessWidget {
@@ -72,11 +73,7 @@ Widget getItemContainer(itemData) {
     decoration: BoxDecoration(border: Border.all(color: const Color.fromRGBO(233, 233, 233, 0.9), width: 1)),
     child: Column(
       children: <Widget>[
-        Image.network(
-          itemData['imageUrl'],
-          width: 100,
-        ),
-//        Image(image: JhImageUtils.getAssetImage(listData333[index]['imageUrl'])),
+        JhNetworkImage(itemData['imageUrl'], width: 100, height: 70),
         const SizedBox(height: 10),
         Text(
           itemData['title'],

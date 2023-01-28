@@ -72,8 +72,6 @@ class WxPayCell extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Image.asset(funcModel.img!, width: 50.0, height: 50),
-            // Image.network(funcModel.img!, width: 50),
             const Icon(Icons.card_membership),
             const SizedBox(height: 10),
             Text(funcModel.text.jhNullSafe, style: const TextStyle(color: Color(0xFF666666), fontSize: 13)),

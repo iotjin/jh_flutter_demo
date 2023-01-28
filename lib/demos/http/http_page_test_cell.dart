@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/project/configs/project_config.dart';
 import 'http_page_test_model.dart';
 
@@ -56,7 +57,7 @@ class HttPageTestCell extends StatelessWidget {
                   children: <Widget>[
                     Text(model.state.jhNullSafe, style: TextStyle(fontSize: 18.0, color: textColor)),
                     const SizedBox(width: 10),
-                    Image.network(model.imageUrl!, width: 30, height: 30),
+                    JhNetworkImage(model.imageUrl.jhNullSafe, width: 30, height: 30),
                   ],
                 )
               ],

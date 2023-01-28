@@ -1,10 +1,11 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print,unused_import
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '/jh_common/utils/jh_time_utils.dart';
 import '/jh_common/widgets/jh_bottom_sheet.dart';
 import '/jh_common/widgets/jh_picker_tool.dart';
+import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
 final List titleData = [
@@ -214,12 +215,14 @@ class BottomSheetTest extends StatelessWidget {
   }
 }
 
-void showText(str) {
-  Fluttertoast.showToast(
-    msg: str.toString(),
-    gravity: ToastGravity.CENTER,
-    backgroundColor: Colors.black,
-  );
+void showText(text) {
+  JhProgressHUD.showText(text.toString());
+
+  // Fluttertoast.showToast(
+  //   msg: str.toString(),
+  //   gravity: ToastGravity.CENTER,
+  //   backgroundColor: Colors.black,
+  // );
 
 //  Fluttertoast.showToast(
 //      msg: 'This is Center Short Toast',

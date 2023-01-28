@@ -8,6 +8,7 @@
 
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 
 class ImgPullDownBigPage2 extends StatefulWidget {
@@ -114,7 +115,7 @@ class _ImgPullDownBigPage2State extends State<ImgPullDownBigPage2> with SingleTi
           height: _imgChangeHeight,
           child: Container(
             color: Colors.white,
-            child: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover),
+            child: const JhNetworkImage('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg'),
           ),
         ),
         Positioned(

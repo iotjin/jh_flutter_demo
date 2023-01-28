@@ -36,31 +36,31 @@ class _BaseTabBarState extends State<BaseTabBar> {
     return [
       BottomNavigationBarItem(
         label: '微信',
-        icon: const JhLoadAssetImage('tab/nav_tab_1', width: _iconWH),
-        activeIcon: JhLoadAssetImage('tab/nav_tab_1_on', width: _iconWH, color: iconColor),
+        icon: const JhAssetImage('tab/nav_tab_1', width: _iconWH),
+        activeIcon: JhAssetImage('tab/nav_tab_1_on', width: _iconWH, color: iconColor),
       ),
       BottomNavigationBarItem(
         label: '通讯录',
-        icon: const JhLoadAssetImage('tab/nav_tab_2', width: _iconWH),
-        activeIcon: JhLoadAssetImage('tab/nav_tab_2_on', width: _iconWH, color: iconColor),
+        icon: const JhAssetImage('tab/nav_tab_2', width: _iconWH),
+        activeIcon: JhAssetImage('tab/nav_tab_2_on', width: _iconWH, color: iconColor),
       ),
       BottomNavigationBarItem(
         label: '发现',
-//      icon: JhLoadAssetImage('tab/nav_tab_3', width: _iconWH),
-        activeIcon: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH, color: iconColor),
+//      icon: JhAssetImage('tab/nav_tab_3', width: _iconWH),
+        activeIcon: JhAssetImage('tab/nav_tab_3_on', width: _iconWH, color: iconColor),
         icon: Badge(
             padding: const EdgeInsets.all(4),
             position: BadgePosition.topEnd(top: -4, end: -4),
-            child: const JhLoadAssetImage('tab/nav_tab_3', width: _iconWH)),
+            child: const JhAssetImage('tab/nav_tab_3', width: _iconWH)),
 //      activeIcon: Badge(
 //          padding: EdgeInsets.all(4),
 //          position: BadgePosition.topRight(top: -4, right: -4),
-//          child: JhLoadAssetImage('tab/nav_tab_3_on', width: _iconWH)),
+//          child: JhAssetImage('tab/nav_tab_3_on', width: _iconWH)),
       ),
       BottomNavigationBarItem(
         label: '我的',
-        icon: const JhLoadAssetImage('tab/nav_tab_4', width: _iconWH),
-        activeIcon: JhLoadAssetImage('tab/nav_tab_4_on', width: _iconWH, color: iconColor),
+        icon: const JhAssetImage('tab/nav_tab_4', width: _iconWH),
+        activeIcon: JhAssetImage('tab/nav_tab_4_on', width: _iconWH, color: iconColor),
       ),
     ];
   }

@@ -76,7 +76,7 @@ class _JhEmptyViewState extends State<JhEmptyView> {
           SizedBox(height: widget.type == EmptyType.error ? widget.space : 0),
           Visibility(
             visible: widget.type == EmptyType.error,
-            child: InkWell(
+            child: GestureDetector(
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 50),
                 width: double.infinity,

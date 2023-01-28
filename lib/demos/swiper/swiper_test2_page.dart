@@ -32,11 +32,9 @@ class _SwiperTest2PageState extends State<SwiperTest2Page> {
           itemBuilder: (BuildContext context, int index) {
             return Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: NetworkImage(imgList[index]),
-                    fit: BoxFit.fill,
-                  )),
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(image: NetworkImage(imgList[index]), fit: BoxFit.fill),
+              ),
             );
           },
           onTap: (index) {
@@ -44,21 +42,22 @@ class _SwiperTest2PageState extends State<SwiperTest2Page> {
           },
           // 分页指示器
           pagination: const SwiperPagination(
-              // 位置 Alignment.bottomCenter 底部中间
-              alignment: Alignment.bottomCenter,
-              // 距离调整
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              builder: DotSwiperPaginationBuilder(
-                  // 点之间的间隔
-                  space: 5,
-                  // 没选中时的大小
-                  size: 10,
-                  // 选中时的大小
-                  activeSize: 12,
-                  // 没选中时的颜色
-                  color: Colors.grey,
-                  // 选中时的颜色
-                  activeColor: Colors.white)),
+            // 位置 Alignment.bottomCenter 底部中间
+            alignment: Alignment.bottomCenter,
+            // 距离调整
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+            builder: DotSwiperPaginationBuilder(
+                // 点之间的间隔
+                space: 5,
+                // 没选中时的大小
+                size: 10,
+                // 选中时的大小
+                activeSize: 12,
+                // 没选中时的颜色
+                color: Colors.grey,
+                // 选中时的颜色
+                activeColor: Colors.white),
+          ),
           // 页面控制器 左右翻页按钮
 //          control: new SwiperControl(color: Colors.pink),
           scale: 0.85,

@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
+import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/widgets/jh_bottom_sheet.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/project/configs/colors.dart';
@@ -182,6 +183,10 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
 
   // 相册选择
   Future<void> _openAlbum() async {
+    if (!JhDeviceUtils.isMobile) {
+      JhProgressHUD.showText('当前平台暂不支持');
+      return;
+    }
     // 相册权限
     final PermissionState ps = await PhotoManager.requestPermissionExtend();
     if (ps != PermissionState.authorized && ps != PermissionState.limited) {
@@ -217,6 +222,10 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
 
   // 拍照或录像
   Future<void> _openCamera() async {
+    if (!JhDeviceUtils.isMobile) {
+      JhProgressHUD.showText('当前平台暂不支持');
+      return;
+    }
     // 相机权限
     var isGrantedCamera = await Permission.camera.request().isGranted;
     if (!isGrantedCamera) {

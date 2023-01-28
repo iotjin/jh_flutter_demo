@@ -1,7 +1,6 @@
 // ignore_for_file: unused_import, unnecessary_import
 // ignore_for_file: avoid_print
 
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,10 +44,12 @@ void main() async {
 
   runApp(MyApp(isHome: !isNewFeaturePage));
 
-  if (Platform.isAndroid) {
+  if (JhDeviceUtils.isAndroid) {
     print('Android');
-  } else if (Platform.isIOS) {
+  } else if (JhDeviceUtils.isIOS) {
     print('iOS');
+  } else if (JhDeviceUtils.isWeb) {
+    print('Web');
   }
 
   // 设置安卓透明状态栏
@@ -149,7 +150,7 @@ class _MyAppState extends State<MyApp> {
 //        Locale('en', 'US'),
       ],
       builder: (BuildContext context, Widget? child) {
-        if (Platform.isAndroid) {
+        if (JhDeviceUtils.isAndroid) {
           /// 设置安卓底部虚拟按键颜色
           JhStatusBarUtils.setSystemNavigationBarStyle(provider.isDark(context));
         }

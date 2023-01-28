@@ -54,32 +54,29 @@ class _EChartPage3State extends State<EChartPage3> {
   }
 
   Widget _body() {
-    return Scrollbar(
-        child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          _header('近一年温度'),
-          _initChart2(chartData),
+    return ListView(
+      children: <Widget>[
+        _header('近一年温度'),
+        _initChart2(chartData),
 //              _initChart(),
-          _header('未来趋势预测'),
-          Container(
-            color: Colors.white,
-            child: Center(
-              child: Image.asset(
-                'assets/images/ic_comingSoon.png',
-                width: 250,
-                height: 250,
-              ),
+        _header('未来趋势预测'),
+        Container(
+          color: Colors.white,
+          child: Center(
+            child: Image.asset(
+              'assets/images/ic_comingSoon.png',
+              width: 250,
+              height: 250,
             ),
           ),
-          Container(
-            height: 100,
-            width: double.infinity,
-            color: Colors.white,
-          ),
-        ],
-      ),
-    ));
+        ),
+        Container(
+          height: 100,
+          width: double.infinity,
+          color: Colors.white,
+        ),
+      ],
+    );
   }
 
   Widget _header(String title) {

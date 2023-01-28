@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety_flutter3/flutter_swiper_null_safety_flutter3.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 
 class SwiperTest3Page extends StatefulWidget {
@@ -43,7 +44,7 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
         height: 260,
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
-            return Image.network(imgList[index], fit: BoxFit.fill);
+            return JhNetworkImage(imgList[index], fit: BoxFit.fill);
           },
           onTap: (index) {
             print('点击了第$index');
@@ -51,16 +52,17 @@ class _SwiperTest3PageState extends State<SwiperTest3Page> {
           itemCount: imgList.length,
           autoplay: true,
           pagination: const SwiperPagination(
-              // 位置 Alignment.bottomCenter 底部中间
-              alignment: Alignment.bottomRight,
-              // 距离调整
-              margin: EdgeInsets.fromLTRB(0, 0, 20, 10),
-              builder: FractionPaginationBuilder(
-                color: Colors.white, // 字体颜色
-                activeColor: Colors.yellow, // 当前的指示字体颜色
-                fontSize: 20, // 字体大小
-                activeFontSize: 25, // 当前的指示字体大小
-              )),
+            // 位置 Alignment.bottomCenter 底部中间
+            alignment: Alignment.bottomRight,
+            // 距离调整
+            margin: EdgeInsets.fromLTRB(0, 0, 20, 10),
+            builder: FractionPaginationBuilder(
+              color: Colors.white, // 字体颜色
+              activeColor: Colors.yellow, // 当前的指示字体颜色
+              fontSize: 20, // 字体大小
+              activeFontSize: 25, // 当前的指示字体大小
+            ),
+          ),
         ));
   }
 

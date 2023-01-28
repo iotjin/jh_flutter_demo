@@ -42,60 +42,66 @@ class ScrollPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: BaseAppBar('ScrollPage'),
+    return Scaffold(
+      appBar: const BaseAppBar('ScrollPage'),
       body: BaseScrollView(),
       backgroundColor: KColors.wxBgColor,
     );
   }
 }
 
+/// web端同时使用 Scrollbar、SingleChildScrollView控制台报错: 添加ScrollController
+/// https://stackoverflow.com/questions/69853729/flutter-the-scrollbars-scrollcontroller-has-no-scrollposition-attached
 class BaseScrollView extends StatelessWidget {
-  const BaseScrollView({super.key});
+  BaseScrollView({super.key});
+
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return Scrollbar(
+        controller: _scrollController,
         child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 1500,
-            width: double.infinity,
-            color: Colors.yellow,
-            child: const Text('往下滑动'),
-          ),
-          RichText(
-            text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: <InlineSpan>[
-                const TextSpan(text: '登录即视为同意'),
-                TextSpan(
-                  text: '《xxx服务协议》',
-                  style: const TextStyle(color: Colors.red),
-                  recognizer: TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
+          controller: _scrollController,
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 1500,
+                width: double.infinity,
+                color: Colors.yellow,
+                child: const Text('往下滑动'),
+              ),
+              RichText(
+                text: TextSpan(
+                  style: DefaultTextStyle.of(context).style,
+                  children: <InlineSpan>[
+                    const TextSpan(text: '登录即视为同意'),
+                    TextSpan(
+                      text: '《xxx服务协议》',
+                      style: const TextStyle(color: Colors.red),
+                      recognizer: TapGestureRecognizer()..onTap = () => print('Tap Here onTap'),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              const Text('data'),
+              ElevatedButton(
+                child: const Text('点击'),
+                onPressed: () {},
+              ),
+            ],
           ),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          ElevatedButton(
-            child: const Text('点击'),
-            onPressed: () {},
-          ),
-        ],
-      ),
-    ));
+        ));
   }
 }

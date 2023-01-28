@@ -26,22 +26,19 @@ class _GraphicLinePageState extends State<GraphicLinePage> {
 }
 
 Widget _body() {
-  return Scrollbar(
-      child: SingleChildScrollView(
-    child: Column(
-      children: <Widget>[
-        _initHeader('折线图'),
-        _initLineChart1(),
-        _initHeader('多个折线图'),
-        _initLineChart2(),
-        _initHeader('折线图添加背景区域'),
-        _initLineChart3(),
-        _initHeader('混合折线图'),
-        _initLineChart4_1(),
-        _initLineChart4_2(),
-      ],
-    ),
-  ));
+  return ListView(
+    children: <Widget>[
+      _initHeader('折线图'),
+      _initLineChart1(),
+      _initHeader('多个折线图'),
+      _initLineChart2(),
+      _initHeader('折线图添加背景区域'),
+      _initLineChart3(),
+      _initHeader('混合折线图'),
+      _initLineChart4_1(),
+      _initLineChart4_2(),
+    ],
+  );
 }
 
 Widget _initHeader(title) {

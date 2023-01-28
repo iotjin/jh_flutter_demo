@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 
 var dataArr = [];
@@ -68,7 +69,7 @@ class ContentBody extends StatelessWidget {
 //    print(dataArr[index]['title']);
     return ListTile(
       title: Text(dataArr[index]['title']),
-      leading: Image.network(dataArr[index]['imageUrl']),
+      leading: JhNetworkImage(dataArr[index]['imageUrl']),
       subtitle: Text(dataArr[index]['content']),
       onTap: () {
         print('点击的index ${index.toString()}');
@@ -80,7 +81,7 @@ class ContentBody extends StatelessWidget {
 //    return Container(
 //     child:AspectRatio(
 //        aspectRatio: 20/9,
-//        child: Image.network(dataArr[index]['imageUrl'],fit: BoxFit.cover,),
+//        child: JhNetworkImage(dataArr[index]['imageUrl']),
 //      ),
 //    );
 //  }

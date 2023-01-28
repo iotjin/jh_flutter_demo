@@ -215,31 +215,28 @@ class _EChartPage4State extends State<EChartPage4> {
   }
 
   Widget _body() {
-    return Scrollbar(
-        child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          _header('今日温度'),
-          _initChart2(chartData),
-          _header('未来7天趋势预测'),
-          Container(
-            color: Colors.white,
-            child: Center(
-              child: Image.asset(
-                'assets/images/ic_comingSoon.png',
-                width: 250,
-                height: 250,
-              ),
+    return ListView(
+      children: <Widget>[
+        _header('今日温度'),
+        _initChart2(chartData),
+        _header('未来7天趋势预测'),
+        Container(
+          color: Colors.white,
+          child: Center(
+            child: Image.asset(
+              'assets/images/ic_comingSoon.png',
+              width: 250,
+              height: 250,
             ),
           ),
-          Container(
-            height: 100,
-            width: double.infinity,
-            color: Colors.white,
-          ),
-        ],
-      ),
-    ));
+        ),
+        Container(
+          height: 100,
+          width: double.infinity,
+          color: Colors.white,
+        ),
+      ],
+    );
   }
 
   Widget _header(String title) {

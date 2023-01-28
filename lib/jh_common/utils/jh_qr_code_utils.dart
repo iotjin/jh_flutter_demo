@@ -22,18 +22,18 @@ class JhQrCodeUtils {
     isShowGridLine = false, // 是否显示网格线动画，优先级高于扫描线
     Function(String data)? callBack,
   }) async {
-    if (JhDeviceUtils.isMobile) {
-      JhNavUtils.unFocus();
-      // 延时保证键盘收起，否则进入扫码页会黑屏
-      Future<dynamic>.delayed(const Duration(milliseconds: 500), () {
-        JhNavUtils.pushNamedResult(context, isShowGridLine ? 'QrCodeGridScannerPage' : 'QrCodeScannerPage',
-            isShowGridLine ? null : isShowScanLine, (dynamic code) {
-          callBack?.call(code.toString());
-        });
-      });
-    } else {
+    if (!JhDeviceUtils.isMobile) {
       JhProgressHUD.showText('当前平台暂不支持');
+      return;
     }
+    JhNavUtils.unFocus();
+    // 延时保证键盘收起，否则进入扫码页会黑屏
+    Future<dynamic>.delayed(const Duration(milliseconds: 500), () {
+      JhNavUtils.pushNamedResult(context, isShowGridLine ? 'QrCodeGridScannerPage' : 'QrCodeScannerPage',
+          isShowGridLine ? null : isShowScanLine, (dynamic code) {
+        callBack?.call(code.toString());
+      });
+    });
   }
 
   /// 生成二维码（中间带图片）
@@ -54,6 +54,10 @@ class JhQrCodeUtils {
   static Future scan({
     Function(String data)? callBack,
   }) async {
+    if (!JhDeviceUtils.isMobile) {
+      JhProgressHUD.showText('当前平台暂不支持');
+      return;
+    }
     Future.delayed(const Duration(milliseconds: 500), () {
       try {
         const ScanOptions options = ScanOptions(

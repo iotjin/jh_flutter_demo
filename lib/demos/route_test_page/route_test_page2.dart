@@ -32,17 +32,11 @@ class _RouteTestPage2State extends State<RouteTestPage2> with RouteAware {
   }
 
   _body() {
-    return Scrollbar(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const <Widget>[
-            SizedBox(height: 10),
-            Text('只能点击返回按钮返回'),
-          ],
-        ),
-      ),
+    return ListView(
+      children: const <Widget>[
+        SizedBox(height: 10),
+        Text('只能点击返回按钮返回'),
+      ],
     );
   }
 }

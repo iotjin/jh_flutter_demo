@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
+import '/project/configs/project_config.dart';
 
 class CustomViewModel {
   String? title;
@@ -57,7 +59,7 @@ class ListViewTestCustomCell extends StatelessWidget {
                   children: <Widget>[
                     Text('${data!.state}', style: const TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
                     const SizedBox(width: 10),
-                    Image.network('${data!.imageUrl}', width: 30, height: 30),
+                    JhNetworkImage(data!.imageUrl.jhNullSafe, width: 30, height: 30),
                   ],
                 )
               ],

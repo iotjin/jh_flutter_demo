@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
 import '/jh_common/widgets/jh_bottom_sheet.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/jh_common/widgets/jh_photo_browser.dart';
 import '/project/configs/project_config.dart';
 
@@ -31,18 +32,8 @@ Widget _body(context) {
       JhSetCell(
         cellHeight: 75,
         title: '头像',
-//      rightWidget: Image.network('https://gitee.com/iotjh/Picture/raw/master/lufei.png',width: 50,height: 50,),
-        rightWidget: Container(
-          height: 55,
-          width: 55,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            image: const DecorationImage(
-              fit: BoxFit.fitHeight,
-              image: NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'),
-            ),
-          ),
-        ),
+        rightWidget: const JhNetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png',
+            placeholder: 'lufei', width: 55, height: 55, borderRadius: 5),
         clickCallBack: () {
           var imgData = ['https://gitee.com/iotjh/Picture/raw/master/lufei.png'];
           Navigator.of(context).push(FadeRoute(

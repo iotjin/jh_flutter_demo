@@ -101,7 +101,7 @@ class _ListviewDragSortPageState extends State<ListviewDragSortPage> {
             const Text('Click to sort'),
             // Icon(Icons.sort),
             !_isSort
-                ? const JhLoadAssetImage('ic_sort', width: 22, height: 22, color: Colors.black)
+                ? const JhAssetImage('ic_sort', width: 22, height: 22, color: Colors.black)
                 : Row(
                     children: [
                       InkWell(

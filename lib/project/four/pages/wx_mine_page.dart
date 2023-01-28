@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
 import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/jh_common/widgets/update_dialog.dart';
 import '/project/configs/project_config.dart';
 import '/project/provider/tabbar_provider.dart';
@@ -217,7 +218,7 @@ class _WxMinePageState extends State<WxMinePage> {
   }
 
   // 头部
-  Widget _header(model) {
+  Widget _header(UserModel model) {
     return Container(
       padding: const EdgeInsets.only(left: 15, bottom: 40.0, top: 72.0),
       color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
@@ -227,14 +228,8 @@ class _WxMinePageState extends State<WxMinePage> {
         child: Row(
           children: <Widget>[
             InkWell(
-              child: Container(
-                height: 75,
-                width: 75,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(fit: BoxFit.fitHeight, image: NetworkImage(model.avatarUrl)),
-                ),
-              ),
+              child: JhNetworkImage(model.avatarUrl.jhNullSafe,
+                  placeholder: 'lufei', width: 75, height: 75, borderRadius: 10),
               onTap: () {
                 print('点击头像==  ${model.avatarUrl}');
               },
@@ -252,7 +247,7 @@ class _WxMinePageState extends State<WxMinePage> {
                       child: SizedBox(
                         width: double.maxFinite,
                         child: Text(
-                          model.userName,
+                          model.userName.jhNullSafe,
                           style: const TextStyle(fontSize: 28.0, fontWeight: FontWeight.w500),
                           textAlign: TextAlign.left,
                           maxLines: 1,

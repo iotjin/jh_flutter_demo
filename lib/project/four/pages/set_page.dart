@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
+import '/jh_common/utils/jh_common_utils.dart';
+import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/jh_common/widgets/jh_bottom_sheet.dart';
@@ -21,6 +23,7 @@ final List titleData = [
   '主题设置',
   '关于',
   '关于iOS',
+  'web版',
   '退出登录'
 ];
 
@@ -65,6 +68,15 @@ class SetPage extends StatelessWidget {
         }
         if (str == '关于iOS') {
           JhNavUtils.pushNamed(context, 'AboutIOSPage');
+        }
+        if (str == 'web版') {
+          var title = 'jh_flutter_demo';
+          var url = 'https://iotjin.github.io/jh_flutter_demo';
+          if (JhDeviceUtils.isWeb) {
+            JhCommonUtils.launchWebURL(url);
+          } else {
+            JhNavUtils.jumpWebViewPage(context, title, url);
+          }
         }
 
         if (str == '退出登录') {

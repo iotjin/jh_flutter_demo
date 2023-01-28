@@ -76,7 +76,11 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
     super.initState();
     _tabController = TabController(vsync: this, length: tabs.length);
     _tabController!.addListener(() {
-      print(_tabController!.index);
+      // _tabController.indexIsChanging     监听不到滑动
+      if (_tabController!.index.toDouble() == _tabController!.animation!.value) {
+        print(_tabController!.index);
+        _requestData();
+      }
     });
   }
 

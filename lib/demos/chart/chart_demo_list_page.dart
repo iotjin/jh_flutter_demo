@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/jh_common/utils/jh_device_utils.dart';
+import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 import '/project/routes/jh_nav_utils.dart';
 
@@ -40,7 +42,11 @@ class ChartDemoListPage extends StatelessWidget {
       title: 'Chart',
       dataArr: titleData,
       callBack: (index, str) {
-        JhNavUtils.pushNamed(context, routeData[index]);
+        if (str.startsWith('EChart') && JhDeviceUtils.isWeb) {
+          JhProgressHUD.showText('不支持Web端');
+        } else {
+          JhNavUtils.pushNamed(context, routeData[index]);
+        }
       },
     );
   }

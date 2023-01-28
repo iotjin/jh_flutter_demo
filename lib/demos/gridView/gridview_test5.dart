@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 
 class GridViewTestPage5 extends StatefulWidget {
@@ -93,8 +94,7 @@ Widget item(List data, int index, context) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-//            Image.asset(data[index]['img'], width: 50.0,height: 50,),
-          Image.network(data[index]['img'], width: 50),
+          JhNetworkImage(data[index]['img'], width: 50),
           const SizedBox(height: 10),
           Text(data[index]['text'], style: const TextStyle(color: Color(0xFF666666), fontSize: 13)),
         ],

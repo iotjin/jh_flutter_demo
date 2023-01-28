@@ -4,6 +4,7 @@
 ///  description:  九宫格图片展示 4图处理 加载本地和网络图片
 
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import 'jh_photo_browser.dart';
 
 const double _itemSpace = 5.0;
@@ -80,7 +81,7 @@ class JhNinePicture extends StatelessWidget {
   _itemCell(context, index) {
     var img = imgData![index];
     Widget picture =
-        img.startsWith('http') ? Image.network(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
+        img.startsWith('http') ? JhNetworkImage(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
 
     // CachedNetworkImage(
     //   imageUrl: imgData[index],

@@ -1,6 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:jhtoast/jhtoast.dart';
+import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/jh_common/jh_form/jh_form.dart';
@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
 
     logoColor = JhColorUtils.randomColor();
-    if (Platform.isIOS) {
+    if (JhDeviceUtils.isIOS) {
 //      SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
 //        statusBarColor: Colors.red,
 //      );

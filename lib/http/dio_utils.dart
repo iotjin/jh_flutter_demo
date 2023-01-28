@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import '/jh_common/utils/jh_device_utils.dart';
 import 'apis.dart';
 import 'error_handle.dart';
 import 'log_utils.dart';
@@ -76,7 +77,7 @@ class DioUtils {
 //    };
 
     /// 测试环境忽略证书校验
-    if (!LogUtils.inProduction) {
+    if (!LogUtils.inProduction && JhDeviceUtils.isMobile) {
       (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
         client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
         return null;
@@ -120,7 +121,7 @@ class DioUtils {
         url,
         data: data,
         queryParameters: queryParameters,
-        options: _checkOptions(methodValues[method], options),
+        options: _checkOptions(_methodValues[method], options),
         cancelToken: cancelToken,
       );
       onSuccess?.call(response.data);
@@ -165,8 +166,8 @@ Map<String, dynamic> parseData(String data) {
 
 enum Method { get, post, put, patch, delete, head }
 
-/// 使用：methodValues[Method.post]
-const methodValues = {
+/// 使用：_methodValues[Method.post]
+const _methodValues = {
   Method.get: 'get',
   Method.post: 'post',
   Method.delete: 'delete',

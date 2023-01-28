@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import '/jh_common/utils/jh_common_utils.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 
 class ListViewGroupPage extends StatefulWidget {
@@ -74,7 +75,7 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
         children: <Widget>[
           Text(item['title']),
           Text(item['phone']),
-          Image.network(item['imageUrl'], fit: BoxFit.cover, width: 50, height: 50.0),
+          JhNetworkImage(item['imageUrl'], placeholder: 'lufei', width: 50, height: 50.0)
         ],
       );
     }).toList();

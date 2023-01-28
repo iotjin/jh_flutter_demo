@@ -74,25 +74,6 @@ class _MinePageState extends State<MinePage> {
         ),
       ],
     );
-
-    // Scrollbar(
-    //     child: SingleChildScrollView(
-    //       child:
-    //       Column(
-    //         children: <Widget>[
-    //           SizedBox(height: 15,),
-    //           JhSetCell(leftImgPath: 'assets/images/ic_accountSafe.png', title: '账号安全'),
-    //           JhSetCell(leftImgPath: 'assets/images/ic_saoyisao.png', title: '扫一扫'),
-    //           JhSetCell(leftImgPath: 'assets/images/shezhi.png', title: '设置'),
-    //           JhSetCell(leftImgPath: 'assets/images/ic_about.png',
-    //             title: '检查更新',
-    //             text: '有新版本',
-    //             textStyle: TextStyle(fontSize: 14.0, color: Colors.red),),
-    //         ],
-    //       ),
-    //
-    //     )
-    // )
   }
 
   void _showUpdateDialog() {

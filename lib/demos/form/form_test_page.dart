@@ -23,9 +23,7 @@ class _FormTestPageState extends State<FormTestPage> {
   }
 
   _body() {
-    return Scrollbar(
-        child: SingleChildScrollView(
-            child: Column(
+    return ListView(
       children: <Widget>[
         const JhFormInputCell(
           title: '左标题',
@@ -97,6 +95,6 @@ class _FormTestPageState extends State<FormTestPage> {
           hiddenArrow: true,
         ),
       ],
-    )));
+    );
   }
 }

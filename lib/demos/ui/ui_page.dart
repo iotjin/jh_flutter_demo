@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_image_utils.dart';
+import '/jh_common/widgets/jh_scrollview.dart';
 
 /*
 1.22 版本前的按钮	       主题	          1.22 版本后的按钮	  主题
@@ -29,9 +30,14 @@ const ButtonStyle({
 
 * */
 
-class UIPage extends StatelessWidget {
-  const UIPage({super.key});
+class UIPage extends StatefulWidget {
+  const UIPage({Key? key}) : super(key: key);
 
+  @override
+  State<UIPage> createState() => _UIPageState();
+}
+
+class _UIPageState extends State<UIPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,18 +45,12 @@ class UIPage extends StatelessWidget {
         title: const Text('UITest', style: TextStyle(color: Colors.white)),
         elevation: 0.0,
       ),
-      body: const BaseScrollView(),
+      body: _body(),
     );
   }
-}
 
-class BaseScrollView extends StatelessWidget {
-  const BaseScrollView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scrollbar(
-        child: SingleChildScrollView(
+  _body() {
+    return JhScrollView(
       child: Column(
         children: <Widget>[
           testBtn,
@@ -86,7 +86,7 @@ class BaseScrollView extends StatelessWidget {
           const Text('data'),
         ],
       ),
-    ));
+    );
   }
 }
 

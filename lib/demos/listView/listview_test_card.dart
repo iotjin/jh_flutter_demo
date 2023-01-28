@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 import '/res/list_data.dart';
 
@@ -26,10 +27,7 @@ class ContentBody extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           child: Column(
             children: <Widget>[
-              AspectRatio(
-                aspectRatio: 20 / 9,
-                child: Image.network(value['imageUrl'], fit: BoxFit.cover),
-              ),
+              AspectRatio(aspectRatio: 20 / 9, child: JhNetworkImage(value['imageUrl'])),
               ListTile(
                 leading: CircleAvatar(backgroundImage: NetworkImage(value['imageUrl'])),
                 title: Text(value['title']),

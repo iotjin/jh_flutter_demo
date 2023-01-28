@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/base_appbar.dart';
 
 var dataArr = [];
@@ -81,7 +82,7 @@ class ContentBody extends StatelessWidget {
                   children: <Widget>[
                     Text(dataArr[index]['state'], style: const TextStyle(fontSize: 18.0, backgroundColor: Colors.blue)),
                     const Padding(padding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
-                    Image.network(dataArr[index]['imageUrl'], width: 30, height: 30),
+                    JhNetworkImage(dataArr[index]['imageUrl'], width: 30, height: 30),
                   ],
                 )
               ],

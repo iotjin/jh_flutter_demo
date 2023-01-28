@@ -23,8 +23,8 @@ const Color _purpleThemeColor = KColors.kThemePurpleColor;
 
 enum ThemeMethod { themeSystem, themeLight, themeDark, themeBlue, themePurple }
 
-/// 使用：ThemeMethodValues[ThemeMethod.themeSystem]
-const themeMethodValues = {
+/// 使用：_methodValues[ThemeMethod.themeSystem]
+const _methodValues = {
   ThemeMethod.themeSystem: _themeSystem,
   ThemeMethod.themeLight: _themeLight,
   ThemeMethod.themeDark: _themeDark,
@@ -53,7 +53,7 @@ class ThemeProvider extends ChangeNotifier {
 
   /// 设置主题
   void setTheme([ThemeMethod themeMode = ThemeMethod.themeLight]) {
-    JhAESStorageUtils.saveString(_appThemeKey, themeMethodValues[themeMode]!);
+    JhAESStorageUtils.saveString(_appThemeKey, _methodValues[themeMode]!);
     notifyListeners();
   }
 

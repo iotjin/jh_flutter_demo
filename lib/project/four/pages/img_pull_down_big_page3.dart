@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 
 double _scrollMaxOffSet = 1000;
 
@@ -82,7 +83,7 @@ class _ImgPullDownBigPage3State extends State<ImgPullDownBigPage3> with SingleTi
           child: Container(
 //            color: Colors.yellow,
               color: Colors.white,
-              child: Image.network('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg', fit: BoxFit.cover)),
+              child: const JhNetworkImage('http://img1.mukewang.com/5c18cf540001ac8206000338.jpg')),
         ),
         Positioned(
           top: JhScreenUtils.topSafeHeight + 18,

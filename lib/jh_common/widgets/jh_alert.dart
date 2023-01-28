@@ -40,29 +40,44 @@ class JhAlert {
             child: Container(padding: const EdgeInsets.only(top: 10), child: Text(content ?? '')),
           ),
           actions: <Widget>[
-//            CupertinoButton(
-//              child: Text(_cancelText,style: TextStyle(fontSize: 10),),
-//              onPressed: () {
-//                Navigator.pop(context); // Navigator.of(context).pop('点击了取消');
-//              },
-//            ),
+            // CupertinoButton(
+            //   child: Text(leftText),
+            //   onPressed: () {
+            //     clickCallback?.call(0, leftText);
+            //     Navigator.pop(context); // Navigator.of(context).pop('点击了取消');
+            //   },
+            // ),
+            // CupertinoButton(
+            //   child: Text(rightText),
+            //   onPressed: () {
+            //     clickCallback?.call(1, rightText);
+            //     Navigator.pop(context); // Navigator.of(context).pop('点击了确认');
+            //   },
+            // ),
+
             // 取消
-            TextButton(
-              onPressed: () {
-                clickCallback?.call(0, leftText);
-                Navigator.pop(context);
-              },
-              style: ButtonStyle(foregroundColor: MaterialStateProperty.all(_alertCancelTextColor)),
-              child: Text(leftText),
+            SizedBox(
+              height: 48,
+              child: TextButton(
+                onPressed: () {
+                  clickCallback?.call(0, leftText);
+                  Navigator.pop(context);
+                },
+                style: ButtonStyle(foregroundColor: MaterialStateProperty.all(_alertCancelTextColor)),
+                child: Text(leftText),
+              ),
             ),
             // 确认
-            TextButton(
-              onPressed: () {
-                clickCallback?.call(1, rightText);
-                Navigator.pop(context);
-              },
-              style: ButtonStyle(foregroundColor: MaterialStateProperty.all(_alertConfirmTextColor)),
-              child: Text(rightText),
+            SizedBox(
+              height: 48,
+              child: TextButton(
+                onPressed: () {
+                  clickCallback?.call(1, rightText);
+                  Navigator.pop(context);
+                },
+                style: ButtonStyle(foregroundColor: MaterialStateProperty.all(_alertConfirmTextColor)),
+                child: Text(rightText),
+              ),
             ),
           ],
         );

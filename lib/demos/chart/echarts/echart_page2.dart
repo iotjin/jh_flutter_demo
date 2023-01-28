@@ -26,33 +26,30 @@ class _EChartPage2State extends State<EChartPage2> {
   }
 
   Widget _body() {
-    return Scrollbar(
-        child: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 100,
-            width: double.infinity,
-            color: Colors.yellow,
-            child: const Text('往下滑动'),
-          ),
-          _initChart2(),
-          Container(
-            height: 500,
-            width: double.infinity,
-            color: Colors.yellow,
-            child: const Text('往下滑动'),
-          ),
-          _initChart(),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-          const Text('data'),
-        ],
-      ),
-    ));
+    return ListView(
+      children: <Widget>[
+        Container(
+          height: 100,
+          width: double.infinity,
+          color: Colors.yellow,
+          child: const Text('往下滑动'),
+        ),
+        _initChart2(),
+        Container(
+          height: 500,
+          width: double.infinity,
+          color: Colors.yellow,
+          child: const Text('往下滑动'),
+        ),
+        _initChart(),
+        const Text('data'),
+        const Text('data'),
+        const Text('data'),
+        const Text('data'),
+        const Text('data'),
+        const Text('data'),
+      ],
+    );
   }
 
   Widget _initChart2() {
