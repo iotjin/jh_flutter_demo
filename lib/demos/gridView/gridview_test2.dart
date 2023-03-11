@@ -63,7 +63,7 @@ class _GridViewTest2State extends State<GridViewTest2> {
               child: JhNinePicture(
                 imgData: dataArr,
                 lRSpace: 110,
-                onLongPress: () {
+                onLongPress: (int index, dynamic imgArr) {
                   JhBottomSheet.showText(context, dataArr: ['保存图片']);
                 },
               )),
@@ -75,7 +75,7 @@ class _GridViewTest2State extends State<GridViewTest2> {
               imgData: dataArr2,
               lRSpace: 110,
               isHandleFour: false,
-              onLongPress: () {
+              onLongPress: (int index, dynamic imgArr) {
                 JhBottomSheet.showText(context, dataArr: ['保存图片']);
               },
             ),

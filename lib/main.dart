@@ -8,7 +8,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars_flutter3/flustars_flutter3.dart';
 import 'package:provider/provider.dart';
-
 import 'package:jhtoast/jhtoast.dart';
 import 'jh_common/utils/jh_color_utils.dart';
 import 'jh_common/utils/jh_device_utils.dart';
@@ -26,7 +25,7 @@ import 'project/login/pages/login_page.dart';
 import 'project/new_feature/new_feature_page.dart';
 import 'project/model/user_model.dart';
 
-//void main() => runApp(MyApp());
+// void main() => runApp(MyApp());
 
 void main() async {
 //  debugProfileBuildsEnabled = true;
@@ -102,8 +101,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    JhScreenUtils.init(context);
-
     final Widget app = MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => ThemeProvider()),
@@ -113,13 +110,12 @@ class _MyAppState extends State<MyApp> {
             return _buildMaterialApp(provider);
           },
         ));
-
     return app;
   }
 
   Widget _buildMaterialApp(ThemeProvider provider) {
-    //警告:不要随意调整调用BotToastInit函数的位置
-    final botToastBuilder = BotToastInit(); //1.调用BotToastInit
+    // 警告:不要随意调整调用BotToastInit函数的位置
+    final botToastBuilder = BotToastInit(); // 1.调用BotToastInit
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -150,6 +146,8 @@ class _MyAppState extends State<MyApp> {
 //        Locale('en', 'US'),
       ],
       builder: (BuildContext context, Widget? child) {
+        JhScreenUtils.init(context);
+
         if (JhDeviceUtils.isAndroid) {
           /// 设置安卓底部虚拟按键颜色
           JhStatusBarUtils.setSystemNavigationBarStyle(provider.isDark(context));
@@ -198,8 +196,8 @@ class FallbackCupertinoLocalisationsDelegate extends LocalizationsDelegate<Cuper
   bool shouldReload(FallbackCupertinoLocalisationsDelegate old) => false;
 }
 
-//void main() => runApp(MyApp());
-//class MyApp extends StatelessWidget {
+// void main() => runApp(MyApp());
+// class MyApp extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) {
 //    return new MaterialApp(
@@ -214,4 +212,4 @@ class FallbackCupertinoLocalisationsDelegate extends LocalizationsDelegate<Cuper
 //      ),
 //    );
 //  }
-//}
+// }

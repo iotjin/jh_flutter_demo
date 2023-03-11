@@ -3,7 +3,9 @@
 ///  Created by iotjin on 2020/03/25.
 ///  description:  公共工具类
 
+import 'dart:io';
 import 'dart:math';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 
@@ -47,5 +49,16 @@ class JhCommonUtils {
     } else {
       JhProgressHUD.showText('跳转失败！');
     }
+  }
+
+  /// 退出应用程序
+  static void exitAndroidApp() async {
+    // await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+    await SystemNavigator.pop();
+  }
+
+  /// 退出应用程序
+  static void exitApp() {
+    exit(0);
   }
 }

@@ -165,6 +165,7 @@ Widget testBtn = Column(children: <Widget>[
       // 设置水波纹颜色
       overlayColor: MaterialStateProperty.all(Colors.purpleAccent),
       // 设置按钮大小
+      fixedSize: MaterialStateProperty.all(const Size(150, 80)),
       minimumSize: MaterialStateProperty.all(const Size(150, 80)),
       // 设置边框
       side: MaterialStateProperty.all(const BorderSide(color: Colors.red, width: 1)),

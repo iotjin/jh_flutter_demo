@@ -44,7 +44,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   }
 
   void _loadData() async {
-    // 获取微信运动排行榜数据
+    // 获取微信朋友圈数据
     final jsonStr = await rootBundle.loadString('lib/res/wx_friends_circle.json');
 
     Map dic = json.decode(jsonStr);

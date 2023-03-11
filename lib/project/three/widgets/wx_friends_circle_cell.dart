@@ -119,7 +119,7 @@ class WxFriendsCircleCell extends StatelessWidget {
     return JhNinePicture(
       imgData: model.images ?? [],
       lRSpace: (80.0 + 20.0),
-      onLongPress: () {
+      onLongPress: (int index, dynamic imgArr) {
         print('onLongPress:');
         JhBottomSheet.showText(context, dataArr: ['保存图片']);
       },

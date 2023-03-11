@@ -36,16 +36,10 @@ Widget _body(context) {
             placeholder: 'lufei', width: 55, height: 55, borderRadius: 5),
         clickCallBack: () {
           var imgData = ['https://gitee.com/iotjh/Picture/raw/master/lufei.png'];
-          Navigator.of(context).push(FadeRoute(
-              page: JhPhotoBrowser(
-            imgDataArr: imgData,
-            index: 0,
-            isHiddenClose: true,
-            isHiddenTitle: true,
-            onLongPress: () {
-              JhBottomSheet.showText(context, dataArr: ['保存图片'], clickCallback: (index, str) {});
-            },
-          )));
+          JhPhotoBrowser.show(context, data: imgData, index: 0, isHiddenClose: true,
+              onLongPress: (int index, dynamic imgArr) {
+            JhBottomSheet.showText(context, dataArr: ['保存图片'], clickCallback: (index, str) {});
+          });
         },
       ),
       JhSetCell(cellHeight: _cellH, title: '名字', text: 'jin'),

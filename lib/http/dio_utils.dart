@@ -77,7 +77,8 @@ class DioUtils {
 //    };
 
     /// 测试环境忽略证书校验
-    if (!LogUtils.inProduction && JhDeviceUtils.isMobile) {
+    var isTest = !LogUtils.inProduction || APIs.apiPrefix.startsWith('https://192');
+    if (isTest && JhDeviceUtils.isMobile) {
       (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
         client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
         return null;

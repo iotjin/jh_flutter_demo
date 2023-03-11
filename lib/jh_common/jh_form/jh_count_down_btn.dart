@@ -6,7 +6,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '/jh_common/utils/jh_device_utils.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/theme_provider.dart';
 
@@ -77,7 +76,8 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
         onPressed: () => _getVCode(),
         style: ButtonStyle(
           // 设置按钮大小
-          minimumSize: MaterialStateProperty.all(Size(120, JhDeviceUtils.isWeb ? 40 : 30)),
+          fixedSize: MaterialStateProperty.all(const Size(120, 32)),
+          minimumSize: MaterialStateProperty.all(const Size(120, 32)),
           // 背景色
           backgroundColor: MaterialStateProperty.all(bgColor),
           // 文字颜色

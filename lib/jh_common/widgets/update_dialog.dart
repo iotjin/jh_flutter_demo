@@ -58,8 +58,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                       height: 120.0,
                       width: 280.0,
                       decoration: const BoxDecoration(
-                        borderRadius:
-                            BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
                         image: DecorationImage(
                           image: AssetImage('assets/images/update_head.jpg'),
                           fit: BoxFit.cover,
@@ -89,6 +88,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                   onPressed: () => JhNavUtils.goBack(context),
                                   style: ButtonStyle(
                                     // 设置按钮大小
+                                    fixedSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
                                     minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
                                     // 背景色
                                     backgroundColor: MaterialStateProperty.resolveWith(
@@ -137,6 +137,7 @@ class _UpdateDialogState extends State<UpdateDialog> {
                                   },
                                   style: ButtonStyle(
                                     // 设置按钮大小
+                                    fixedSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
                                     minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
                                     // 背景色
                                     backgroundColor: MaterialStateProperty.resolveWith(

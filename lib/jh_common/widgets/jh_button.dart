@@ -39,6 +39,7 @@ class JhButton extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         // 设置按钮大小
+        fixedSize: MaterialStateProperty.all(const Size(double.infinity, 48)),
         minimumSize: MaterialStateProperty.all(const Size(double.infinity, 48)),
         // 背景色
         backgroundColor: MaterialStateProperty.resolveWith(

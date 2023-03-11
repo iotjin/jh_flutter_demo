@@ -105,6 +105,18 @@ pwd：123456
 ```
 </details>
 
+
+## 赞赏支持
+
+
+* 如果您觉得还不错，或者我的开源项目对您有所帮助，可以点右上角“Star”支持一下，您的支持就是我的动力，谢谢🙂  
+* 您也可以扫描下面的二维码，请作者喝杯奶茶 🧋
+
+<br>
+
+<img src="https://gitee.com/iotjh/res/raw/master/weapp/PayCode.jpg" width="400" height="400">
+
+
 <br>
 <br>
 <br>

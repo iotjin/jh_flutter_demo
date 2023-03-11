@@ -5,9 +5,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:jh_flutter_demo/project/configs/colors.dart';
 export '/jh_common/utils/jh_image_utils.dart';
 import '/jh_common/utils/jh_image_utils.dart';
+import '/project/configs/colors.dart';
 
 const String _normalPlaceholder = 'ic_placeholder';
 

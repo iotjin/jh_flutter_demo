@@ -3,12 +3,17 @@
 ///  Created by iotjin on 2020/09/14.
 ///  description:  九宫格图片展示 4图处理 加载本地和网络图片
 
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_network_image.dart';
 import 'jh_photo_browser.dart';
 
 const double _itemSpace = 5.0;
 const double _space = 5.0; // 上下左右间距
+
+/// 长按回调，返回当前索引和所有图片数组
+typedef _OnLongPress = void Function(int index, dynamic imgArr);
 
 class JhNinePicture extends StatelessWidget {
   const JhNinePicture({
@@ -21,7 +26,7 @@ class JhNinePicture extends StatelessWidget {
 
   final List? imgData;
   final double lRSpace; // 外部设置的左右间距
-  final GestureTapCallback? onLongPress;
+  final _OnLongPress? onLongPress;
   final bool isHandleFour;
 
   @override
@@ -107,13 +112,6 @@ class JhNinePicture extends StatelessWidget {
 
   /// 点击cell，展示全图
   _clickItemCell(context, index) {
-    // FadeRoute是自定义的切换过度动画（渐隐渐现） 如果不需要 可以使用默认的MaterialPageRoute
-    Navigator.of(context).push(FadeRoute(
-      page: JhPhotoBrowser(
-        imgDataArr: imgData!,
-        index: index,
-        onLongPress: onLongPress!,
-      ),
-    ));
+    JhPhotoBrowser.show(context, data: imgData!, index: index, onLongPress: onLongPress);
   }
 }
