@@ -1,19 +1,17 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_screen_utils.dart';
+import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_swiper_view.dart';
-import '/project/login/pages/login_page.dart';
 
-class NewFeaturePage extends StatefulWidget {
-  const NewFeaturePage({Key? key}) : super(key: key);
+class SwiperTest7Page extends StatefulWidget {
+  const SwiperTest7Page({Key? key}) : super(key: key);
 
   @override
-  State<NewFeaturePage> createState() => _NewFeaturePageState();
+  State<SwiperTest7Page> createState() => _SwiperTest7PageState();
 }
 
-class _NewFeaturePageState extends State<NewFeaturePage> {
-  // List imgList = [
+class _SwiperTest7PageState extends State<SwiperTest7Page> {
+  // final List _imgList = [
   //   'https://gitee.com/iotjh/Picture/raw/master/cat.png',
   //   'https://gitee.com/iotjh/Picture/raw/master/lufei2.png',
   //   'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
@@ -88,7 +86,7 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
   }
 
   _onClickBtn() {
-    print('跳转主界面');
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => (const LoginPage())));
+    JhProgressHUD.showText('点击按钮');
+    Navigator.pop(context);
   }
 }

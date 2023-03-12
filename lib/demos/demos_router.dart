@@ -128,8 +128,9 @@ import 'swiper/swiper_test1_page.dart';
 import 'swiper/swiper_test2_page.dart';
 import 'swiper/swiper_test3_page.dart';
 import 'swiper/swiper_test4_page.dart';
-import '/project/new_feature/new_feature_page.dart';
-import '/project/new_feature/full_screen_swiper_widget.dart';
+import 'swiper/swiper_test5_page.dart';
+import 'swiper/swiper_test6_page.dart';
+import 'swiper/swiper_test7_page.dart';
 
 // TopTabBar
 import 'topTabBar/top_tabbar_demo_list_page.dart';
@@ -279,8 +280,9 @@ class DemosRouter implements IRouterProvider {
     router.define('SwiperTest2Page', handler: Handler(handlerFunc: (_, __) => const SwiperTest2Page()));
     router.define('SwiperTest3Page', handler: Handler(handlerFunc: (_, __) => const SwiperTest3Page()));
     router.define('SwiperTest4Page', handler: Handler(handlerFunc: (_, __) => const SwiperTest4Page()));
-    router.define('NewFeaturePage', handler: Handler(handlerFunc: (_, __) => const NewFeaturePage()));
-    router.define('FullScreenSwiperWidget', handler: Handler(handlerFunc: (_, __) => const FullScreenSwiperWidget()));
+    router.define('SwiperTest5Page', handler: Handler(handlerFunc: (_, __) => const SwiperTest5Page()));
+    router.define('SwiperTest6Page', handler: Handler(handlerFunc: (_, __) => const SwiperTest6Page()));
+    router.define('SwiperTest7Page', handler: Handler(handlerFunc: (_, __) => const SwiperTest7Page()));
 
     // TopTabBarDemoListPage
     router.define('TopTabBarDemoListPage', handler: Handler(handlerFunc: (_, __) => const TopTabBarDemoListPage()));

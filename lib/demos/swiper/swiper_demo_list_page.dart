@@ -7,7 +7,10 @@ final List titleData = [
   'swiper2-缩放',
   'swiper3 - flutter_swiper',
   'swiper4 - carousel_slider',
-  '全屏',
+  'PageView - 全屏',
+  'JhSwiperView - 示例',
+  'JhSwiperView - 全屏',
+  'JhSwiperView - 全屏自定义',
 ];
 final List routeData = [
   'SwiperTest1Page',
@@ -15,6 +18,9 @@ final List routeData = [
   'SwiperTest3Page',
   'SwiperTest4Page',
   'FullScreenSwiperWidget',
+  'SwiperTest5Page',
+  'SwiperTest6Page',
+  'SwiperTest7Page',
 ];
 
 class SwiperDemoListPage extends StatelessWidget {
