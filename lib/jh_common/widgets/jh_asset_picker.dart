@@ -173,16 +173,16 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
   void _showBottomSheet() {
     JhBottomSheet.showText(context, dataArr: ['拍摄', '相册'], title: '请选择', clickCallback: (index, str) async {
       if (index == 1) {
-        _openCamera();
+        _openCamera(context);
       }
       if (index == 2) {
-        _openAlbum();
+        _openAlbum(context);
       }
     });
   }
 
   // 相册选择
-  Future<void> _openAlbum() async {
+  Future<void> _openAlbum(context) async {
     if (!JhDeviceUtils.isMobile) {
       JhProgressHUD.showText('当前平台暂不支持');
       return;
@@ -221,7 +221,7 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
   }
 
   // 拍照或录像
-  Future<void> _openCamera() async {
+  Future<void> _openCamera(context) async {
     if (!JhDeviceUtils.isMobile) {
       JhProgressHUD.showText('当前平台暂不支持');
       return;

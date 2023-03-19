@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/theme_provider.dart';
 import '/project/routes/jh_nav_utils.dart';
@@ -32,6 +33,8 @@ const double _searchResultTextFontSize = 14.0;
 typedef _ClickCallBack = void Function(dynamic selectItem, dynamic selectArr);
 
 class JhCascadeTreePicker {
+  static bool _isShowPicker = false;
+
   static void show(
     BuildContext context, {
     required List data, // tree数组
@@ -48,9 +51,10 @@ class JhCascadeTreePicker {
     bool isShowRadius = true,
     _ClickCallBack? clickCallBack,
   }) {
-    if (data.isEmpty) {
+    if (_isShowPicker || data.isEmpty) {
       return;
     }
+    _isShowPicker = true;
     var radius = isShowRadius ? _headerRadius : 0.0;
 
     showModalBottomSheet<void>(
@@ -84,7 +88,7 @@ class JhCascadeTreePicker {
           ),
         );
       },
-    );
+    ).then((value) => _isShowPicker = false);
   }
 }
 
@@ -552,7 +556,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
             child: JhSearchBar(
               hintText: widget.searchHintText,
               text: _searchKeyword,
-              inputCallBack: (value) {
+              inputCallBack: JhCommonUtils.debounceInput((value) {
                 setState(() {
                   _searchKeyword = value;
                   if (value.isNotEmpty) {
@@ -562,7 +566,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
                     _isShowSearchResult = false;
                   }
                 });
-              },
+              }, 500),
             ),
           );
   }

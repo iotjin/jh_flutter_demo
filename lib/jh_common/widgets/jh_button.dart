@@ -65,7 +65,8 @@ class JhButton extends StatelessWidget {
         ),
         // 边框
         side: MaterialStateProperty.all(
-          BorderSide(color: bgColor, width: _borderWidth),
+          BorderSide(
+              color: bgColor, width: _borderWidth, style: _borderWidth == 0 ? BorderStyle.none : BorderStyle.solid),
         ),
         // 圆角
         shape: MaterialStateProperty.all(

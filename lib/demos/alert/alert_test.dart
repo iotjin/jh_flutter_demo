@@ -6,13 +6,13 @@ import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
 final List titleData = [
-  'alert1-中间',
-  'alert2-中间',
-  'alert3-底部-带标题内容',
-  'alert4-底部-带标题内容红色按钮',
-  'alert5-底部只有标题红色按钮',
-  'alert6-底部只有红色按钮',
-  'alert7-底部标题常规按钮'
+  'JhAlert-中间-标题',
+  'JhAlert-中间-标题+内容',
+  'JhAlert-底部-带标题内容',
+  'JhAlert-底部-带标题内容红色按钮',
+  'JhAlert-底部-只有标题红色按钮',
+  'JhAlert-底部-只有红色按钮',
+  'JhAlert-底部-标题常规按钮'
 ];
 
 class AlertTestPage extends StatelessWidget {
@@ -24,14 +24,14 @@ class AlertTestPage extends StatelessWidget {
       title: 'AlertDemoList',
       dataArr: titleData,
       callBack: (index, str) {
-        if (index == 0) {
+        if (str == 'JhAlert-中间-标题') {
           JhAlert.showAlert(context, title: '提示', clickCallback: (index, text) {
             if (index == 1) {
               print('点击右侧按钮');
             }
           });
         }
-        if (index == 1) {
+        if (str == 'JhAlert-中间-标题+内容') {
           JhAlert.showAlert(context, title: '提示', content: '这是内容这是内容这是内容', leftText: '左侧', rightText: '右侧',
               clickCallback: (index, text) {
             if (index == 0) {
@@ -44,14 +44,14 @@ class AlertTestPage extends StatelessWidget {
             }
           });
         }
-        if (index == 2) {
+        if (str == 'JhAlert-底部-带标题内容') {
           JhAlert.showActionSheet(context, title: '提示', content: '这是提示内容这是提示内容这是提示内容这是提示内容', otherBtnTitles: ['一', '二'],
               clickCallback: (index, text) {
             print(index);
             JhProgressHUD.showText(text);
           });
         }
-        if (index == 3) {
+        if (str == 'JhAlert-底部-带标题内容红色按钮') {
           JhAlert.showActionSheet(context,
               title: '这是提示',
               content: '这是提示内容这是提示内容这是提示内容这是提示内容',
@@ -62,7 +62,7 @@ class AlertTestPage extends StatelessWidget {
             JhProgressHUD.showText(text);
           });
         }
-        if (index == 4) {
+        if (str == 'JhAlert-底部-只有标题红色按钮') {
           JhAlert.showActionSheet(context, title: '这是提示', otherBtnTitles: ['一'], redBtnTitle: '删除',
               clickCallback: (index, text) {
             print(index);
@@ -70,14 +70,14 @@ class AlertTestPage extends StatelessWidget {
             JhProgressHUD.showText(text);
           });
         }
-        if (index == 5) {
+        if (str == 'JhAlert-底部-只有红色按钮') {
           JhAlert.showActionSheet(context, otherBtnTitles: ['一'], redBtnTitle: '删除', clickCallback: (index, text) {
             print(index);
             print(text);
             JhProgressHUD.showText(text);
           });
         }
-        if (index == 6) {
+        if (str == 'JhAlert-底部-标题常规按钮') {
           JhAlert.showActionSheet(context, title: '请选择', otherBtnTitles: ['一', '二'], clickCallback: (index, text) {
             print(index);
             print(text);

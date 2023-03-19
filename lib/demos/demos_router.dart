@@ -121,6 +121,7 @@ import 'search/search_test1_page.dart';
 import 'search/search_test2_page.dart';
 import 'search/search_test3_page.dart';
 import 'search/search_test4_page.dart';
+import 'search/debounce_throttle_test_page.dart';
 
 // swiper
 import 'swiper/swiper_demo_list_page.dart';
@@ -273,6 +274,8 @@ class DemosRouter implements IRouterProvider {
     router.define('SearchTest2Page', handler: Handler(handlerFunc: (_, __) => const SearchTest2Page()));
     router.define('SearchTest3Page', handler: Handler(handlerFunc: (_, __) => const SearchTest3Page()));
     router.define('SearchTest4Page', handler: Handler(handlerFunc: (_, __) => const SearchTest4Page()));
+    router.define('DebounceThrottleTestPage',
+        handler: Handler(handlerFunc: (_, __) => const DebounceThrottleTestPage()));
 
     // swiper
     router.define('SwiperDemoListPage', handler: Handler(handlerFunc: (_, __) => const SwiperDemoListPage()));

@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:easy_refresh/easy_refresh.dart';
-import '/jh_common/widgets/jh_highlight_text.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
+import '/jh_common/utils/jh_common_utils.dart';
+import '/jh_common/widgets/jh_highlight_text.dart';
 import '/project/configs/project_config.dart';
 
 class SearchTest4Page extends StatefulWidget {
@@ -65,7 +66,7 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        'SearchTest4Page',
+        '搜索框4-带防抖节流',
         bottomWidget: PreferredSize(preferredSize: const Size.fromHeight(kSearchViewHeight), child: _header()),
       ),
       body: _body(),
@@ -80,28 +81,34 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
       maxLength: 140,
       textInputAction: TextInputAction.search,
       inputCallBack: (value) {
-        setState(() {
-          _keyWord = value;
-          if (value.isEmpty) {
-            _searchData = [];
-          }
-          if (value.length >= 3) {
-            _requestKeywordList(value);
-          }
-        });
+        print('未处理1 value : $value');
+        JhCommonUtils.debounce(() => _inputCallBack(value, false), 500);
       },
       inputCompletionCallBack: (value, isSubmitted) {
+        print('未处理2 value : $value');
         if (isSubmitted) {
-          setState(() {
-            _keyWord = value;
-            _searchData = [];
-            if (value.length >= 3) {
-              _requestData(isShowLoading: true);
-            }
-          });
+          print('未处理3 value : $value');
+          JhCommonUtils.debounce(() => _inputCallBack(value, true), 500);
         }
       },
     );
+  }
+
+  _inputCallBack(value, isSubmitted) {
+    print('防抖后 value : $value');
+    setState(() {
+      _keyWord = value;
+      if (value.isEmpty || isSubmitted) {
+        _searchData = [];
+      }
+      if (value.length >= 3) {
+        if (isSubmitted) {
+          _requestData(isShowLoading: true);
+        } else {
+          _requestKeywordList(value);
+        }
+      }
+    });
   }
 
   Widget _body() {
@@ -132,11 +139,11 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
         itemCount: dataArr.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {
+            onTap: JhCommonUtils.throttle2(() {
               var params = dataArr[index];
               print('params: $params');
               JhProgressHUD.showText(params['name']);
-            },
+            }, 3000),
             child: _cell(dataArr[index]),
           );
         },

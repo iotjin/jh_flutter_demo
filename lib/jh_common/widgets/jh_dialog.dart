@@ -17,6 +17,8 @@ const double _btnFontSize = 18.0;
 const Color _cancelTextColor = Color(0xFF999999);
 
 class JhDialog {
+  static bool _isShowDialog = false;
+
   /// 中间弹框
   static void show(
     BuildContext context, {
@@ -30,6 +32,11 @@ class JhDialog {
     bool hiddenCancel = false,
     bool clickBtnPop = true, // 点击确认按钮是否弹框消失
   }) {
+    if (_isShowDialog) {
+      return;
+    }
+    _isShowDialog = true;
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -51,13 +58,14 @@ class JhDialog {
           clickBtnPop: clickBtnPop,
         );
       },
-    );
+    ).then((value) => _isShowDialog = false);
   }
 
   /// 当clickBtnPop=false时，手动隐藏弹框
   static void hide(context) {
     FocusManager.instance.primaryFocus?.unfocus();
     Navigator.pop(context);
+    _isShowDialog = false;
   }
 
   /// 带输入框弹框
@@ -115,6 +123,11 @@ class JhDialog {
     bool hiddenCancel = false,
     bool clickBtnPop = true, // 点击确认按钮是否弹框消失
   }) {
+    if (_isShowDialog) {
+      return;
+    }
+    _isShowDialog = true;
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -131,7 +144,7 @@ class JhDialog {
           clickBtnPop: clickBtnPop,
         );
       },
-    );
+    ).then((value) => _isShowDialog = false);
   }
 
   /// 完全自定义弹框
@@ -141,13 +154,18 @@ class JhDialog {
     Widget? child,
     bool clickBgHidden = false,
   }) {
+    if (_isShowDialog) {
+      return;
+    }
+    _isShowDialog = true;
+
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) {
         return _CustomDialog(clickBgHidden: clickBgHidden, child: child);
       },
-    );
+    ).then((value) => _isShowDialog = false);
   }
 }
 

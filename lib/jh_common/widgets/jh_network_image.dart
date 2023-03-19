@@ -69,7 +69,7 @@ class JhNetworkImage extends StatelessWidget {
           width: width,
           height: height,
           fit: fit,
-          color: placeholderColor,
+          color: color,
           memCacheWidth: cacheWidth,
           memCacheHeight: cacheHeight,
         ),

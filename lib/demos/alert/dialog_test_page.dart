@@ -49,41 +49,41 @@ class _DialogTestPageState extends State<DialogTestPage> {
       title: 'JhDialog',
       dataArr: titleData,
       callBack: (index, str) {
-        if (index == 0) {
+        if (str == 'JhDialog-标题') {
           JhDialog.show(context, title: '提示', onConfirm: () {
             JhToast.showText(context, msg: '点击确定');
           });
         }
-        if (index == 1) {
+        if (str == 'JhDialog-标题不加粗') {
           JhDialog.show(context, title: '提示', isBoldTitle: false);
         }
-        if (index == 2) {
+        if (str == 'JhDialog-标题内容') {
           JhDialog.show(context, title: '提示', content: '您确定要退出登录吗？');
         }
-        if (index == 3) {
+        if (str == 'JhDialog-内容') {
           JhDialog.show(context, content: '确认要退出吗？');
         }
-        if (index == 4) {
+        if (str == 'JhDialog-标题内容只有确定') {
           JhDialog.show(context, title: '警告', content: '您的账号在异地登录，请重新登录！', rightText: '好的', hiddenCancel: true);
         }
-        if (index == 5) {
+        if (str == 'JhDialog-修改按钮文字') {
           JhDialog.show(context, title: '提示', content: '您需要同意相关协议才能使用！', leftText: '不同意', rightText: '同意');
         }
-        if (index == 6) {
+        if (str == 'JhDialog-点击按钮弹框不消失') {
           JhDialog.show(context, title: '提示', content: '点击取消按钮弹框消失，点击确认按钮延时3秒后弹框消失', clickBtnPop: false, onConfirm: () {
             Future.delayed(const Duration(seconds: 3), () {
               Navigator.pop(context);
             });
           });
         }
-        if (index == 7) {
+        if (str == 'JhDialog-拦截取消按钮点击事件') {
           JhDialog.show(context, title: '提示', content: '点击取消按钮弹框不消失，点击确认按钮弹框消失', onConfirm: () {
             JhToast.showText(context, msg: '点击确定');
           }, onCancel: () {
             JhToast.showText(context, msg: '点击取消');
           });
         }
-        if (index == 8) {
+        if (str == 'JhDialog-录入框') {
           var inputValue = '';
           JhDialog.showInputDialog(
             context,
@@ -107,30 +107,30 @@ class _DialogTestPageState extends State<DialogTestPage> {
           );
         }
 
-        if (index == 9) {
+        if (str == 'JhDialog-自定义内容') {
           JhDialog.showCustomDialog(context, content: Container(height: 200, color: Colors.red));
         }
-        if (index == 10) {
+        if (str == 'JhDialog-自定义内容2') {
           JhDialog.showCustomDialog(context, title: '提示', content: Container(height: 200, color: Colors.red));
         }
-        if (index == 11) {
+        if (str == 'JhDialog-自定义内容3-录入框') {
           _showInputDialog();
         }
-        if (index == 12) {
+        if (str == 'JhDialog-自定义内容4-选择类型更新数据') {
           var params = {
             'id': '123',
             'type': '456',
           };
           _showSelectDialog(params);
         }
-        if (index == 13) {
+        if (str == 'JhDialog-自定义内容5-选择类型更新数据2') {
           var params = {
             'id': '123',
             'type': '456',
           };
           _showSelectDialog2(params);
         }
-        if (index == 14) {
+        if (str == 'JhDialog-完全自定义') {
           JhDialog.showAllCustomDialog(
             context,
             clickBgHidden: true,
@@ -144,7 +144,7 @@ class _DialogTestPageState extends State<DialogTestPage> {
             ),
           );
         }
-        if (index == 15) {
+        if (str == 'JhDialog-完全自定义-外部点击事件') {
           JhDialog.showAllCustomDialog(
             context,
             child: GestureDetector(

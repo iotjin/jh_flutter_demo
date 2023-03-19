@@ -17,6 +17,8 @@ const Color _alertConfirmTextColor = Colors.blueAccent;
 typedef _ClickCallBack = void Function(int selectIndex, String selectText);
 
 class JhAlert {
+  static bool _isShowAlert = false;
+
   /// Alert
   /// 取消按钮的index 为 0 ,确认为 1
   static void showAlert(
@@ -27,6 +29,11 @@ class JhAlert {
     String rightText = _confirmText,
     _ClickCallBack? clickCallback,
   }) {
+    if (_isShowAlert) {
+      return;
+    }
+    _isShowAlert = true;
+
     showCupertinoDialog(
       context: context,
       builder: (context) {
@@ -82,7 +89,7 @@ class JhAlert {
           ],
         );
       },
-    );
+    ).then((value) => _isShowAlert = false);
   }
 
   /// ActionSheet
@@ -95,6 +102,11 @@ class JhAlert {
     String? redBtnTitle,
     _ClickCallBack? clickCallback,
   }) {
+    if (_isShowAlert) {
+      return;
+    }
+    _isShowAlert = true;
+
     List<CupertinoActionSheetAction> otherButtons = [];
     for (int i = 1; i < otherBtnTitles!.length + 1; i++) {
       var w = CupertinoActionSheetAction(
@@ -135,7 +147,7 @@ class JhAlert {
             ),
           );
         },
-      );
+      ).then((value) => _isShowAlert = false);
     } else {
       if (content != null) {
         showCupertinoModalPopup(
@@ -158,7 +170,7 @@ class JhAlert {
               ),
             );
           },
-        );
+        ).then((value) => _isShowAlert = false);
       } else {
         showCupertinoModalPopup(
           context: context,
@@ -179,7 +191,7 @@ class JhAlert {
               ),
             );
           },
-        );
+        ).then((value) => _isShowAlert = false);
       }
     }
   }

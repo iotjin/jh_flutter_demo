@@ -15,6 +15,8 @@ const double _textFontSize = 18.0;
 const String _cancelText = '取消';
 
 class JhBottomSheet {
+  static bool _isShowBottomSheet = false;
+
   /// 弹出底部文字
   /// index 从上往下 1，2，3，取消是0
   static void showText(
@@ -25,6 +27,10 @@ class JhBottomSheet {
     bool isShowRadius = true,
     Function(int selectIndex, String selectText)? clickCallback,
   }) {
+    if (_isShowBottomSheet) {
+      return;
+    }
+    _isShowBottomSheet = true;
     var radius = isShowRadius ? 10.0 : 0.0;
 
     showModalBottomSheet(
@@ -46,7 +52,7 @@ class JhBottomSheet {
           clickCallBack: clickCallback,
         );
       },
-    );
+    ).then((value) => _isShowBottomSheet = false);
   }
 }
 

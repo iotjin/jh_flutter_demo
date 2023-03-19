@@ -45,6 +45,8 @@ enum PickerType {
 }
 
 class JhPickerTool {
+  static bool _isShowPicker = false;
+
   /// 单列
   /// 单列选择器返回选中行对象和index
   static void showStringPicker<T>(
@@ -55,9 +57,11 @@ class JhPickerTool {
     int selectIndex = 0,
     _ClickCallBack? clickCallBack,
   }) {
-    if (data.isEmpty) {
+    if (_isShowPicker || data.isEmpty) {
       return;
     }
+    _isShowPicker = true;
+
     showModalBottomSheet(
       context: context,
       // 设置圆角
@@ -81,7 +85,7 @@ class JhPickerTool {
           clickCallBack: clickCallBack,
         );
       },
-    );
+    ).then((value) => _isShowPicker = false);
   }
 
   /// 多列
@@ -94,9 +98,11 @@ class JhPickerTool {
     List<int>? selectIndex,
     _ClickCallBack? clickCallBack,
   }) {
-    if (data.isEmpty) {
+    if (_isShowPicker || data.isEmpty) {
       return;
     }
+    _isShowPicker = true;
+
     showModalBottomSheet(
       context: context,
       // 设置圆角
@@ -124,7 +130,7 @@ class JhPickerTool {
           clickCallBack: clickCallBack,
         );
       },
-    );
+    ).then((value) => _isShowPicker = false);
   }
 
   /// 日期选择器
@@ -142,6 +148,11 @@ class JhPickerTool {
     int? maxHour = 23,
     _ClickCallBack? clickCallBack,
   }) {
+    if (_isShowPicker) {
+      return;
+    }
+    _isShowPicker = true;
+
     int timeType;
     if (dateType == PickerDateType.YM) {
       timeType = PickerDateTimeType.kYM;
@@ -186,7 +197,7 @@ class JhPickerTool {
           clickCallBack: clickCallBack,
         );
       },
-    );
+    ).then((value) => _isShowPicker = false);
   }
 }
 

@@ -19,18 +19,14 @@ class _SwiperTest5PageState extends State<SwiperTest5Page> {
     'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
   ];
 
-  List imgList2 = ['1', '2', '3', '4', '5'];
+  List textList2 = ['1111111111', '2222222222', '3333333333', '444444444444', '55555555555555', '6666666666666666666'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const BaseAppBar('JhSwiperView - 示例'),
       body: ListView(
-        children: <Widget>[
-          _swiper1(),
-          const SizedBox(height: 50),
-          _swiper2(),
-        ],
+        children: <Widget>[_swiper1(), const SizedBox(height: 50), _swiper2(), _swiper3()],
       ),
     );
   }
@@ -62,6 +58,33 @@ class _SwiperTest5PageState extends State<SwiperTest5Page> {
         radius: 0,
         enlargeCenterPage: false,
         isShowIndicator: true,
+      ),
+    );
+  }
+
+  _swiper3() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      child: JhSwiperView(
+          data: textList2,
+          scrollDirection: Axis.vertical,
+          height: 30,
+          viewportFraction: 1.0,
+          radius: 0,
+          enlargeCenterPage: false,
+          itemBuilder: (BuildContext context, int index) {
+            return _itemWidget(textList2[index]);
+          }),
+    );
+  }
+
+  _itemWidget(text) {
+    return Container(
+      height: 30,
+      color: Colors.yellow,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Text(text)],
       ),
     );
   }

@@ -20,6 +20,8 @@ const double _titleFontSize = 18.0;
 const double _textFontSize = 16.0;
 
 class JhCascadePicker {
+  static bool _isShowPicker = false;
+
   static void show(
     BuildContext context, {
     required List data, // 多维数组，根据维数决定列数
@@ -29,9 +31,10 @@ class JhCascadePicker {
     bool isShowRadius = true,
     Function(dynamic selectValue)? clickCallBack, // 选择回调，返回选中对象
   }) {
-    if (data.isEmpty) {
+    if (_isShowPicker || data.isEmpty) {
       return;
     }
+    _isShowPicker = true;
     var radius = isShowRadius ? _headerRadius : 0.0;
 
     showModalBottomSheet<void>(
@@ -58,7 +61,7 @@ class JhCascadePicker {
           ),
         );
       },
-    );
+    ).then((value) => _isShowPicker = false);
   }
 }
 
