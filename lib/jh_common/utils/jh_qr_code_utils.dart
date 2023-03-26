@@ -6,6 +6,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jh_flutter_demo/jh_common/utils/jh_common_utils.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:barcode_scan2/barcode_scan2.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
@@ -28,12 +29,12 @@ class JhQrCodeUtils {
     }
     JhNavUtils.unFocus();
     // 延时保证键盘收起，否则进入扫码页会黑屏
-    Future<dynamic>.delayed(const Duration(milliseconds: 500), () {
+    JhCommonUtils.debounce(() {
       JhNavUtils.pushNamedResult(context, isShowGridLine ? 'QrCodeGridScannerPage' : 'QrCodeScannerPage',
           isShowGridLine ? null : isShowScanLine, (dynamic code) {
         callBack?.call(code.toString());
       });
-    });
+    }, 500);
   }
 
   /// 生成二维码（中间带图片）

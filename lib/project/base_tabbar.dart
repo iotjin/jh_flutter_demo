@@ -4,10 +4,12 @@
 ///  description: tabbar基类
 
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart';
 import 'package:provider/provider.dart';
 import '/jh_common/utils/jh_image_utils.dart';
 import '/jh_common/widgets/base_refresh_view.dart';
+import '/jh_common/widgets/jh_pulse_animation_view.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/tabbar_provider.dart';
 import '/project/provider/theme_provider.dart';
@@ -32,36 +34,15 @@ class _BaseTabBarState extends State<BaseTabBar> {
 
   final PageController _pageController = PageController();
 
+  bool _isAnimating = true;
+  String _currentText = '';
+
   List<BottomNavigationBarItem> getBottomTabs(iconColor) {
     return [
-      BottomNavigationBarItem(
-        label: '微信',
-        icon: const JhAssetImage('tab/nav_tab_1', width: _iconWH),
-        activeIcon: JhAssetImage('tab/nav_tab_1_on', width: _iconWH, color: iconColor),
-      ),
-      BottomNavigationBarItem(
-        label: '通讯录',
-        icon: const JhAssetImage('tab/nav_tab_2', width: _iconWH),
-        activeIcon: JhAssetImage('tab/nav_tab_2_on', width: _iconWH, color: iconColor),
-      ),
-      BottomNavigationBarItem(
-        label: '发现',
-//      icon: JhAssetImage('tab/nav_tab_3', width: _iconWH),
-        activeIcon: JhAssetImage('tab/nav_tab_3_on', width: _iconWH, color: iconColor),
-        icon: Badge(
-            padding: const EdgeInsets.all(4),
-            position: BadgePosition.topEnd(top: -4, end: -4),
-            child: const JhAssetImage('tab/nav_tab_3', width: _iconWH)),
-//      activeIcon: Badge(
-//          padding: EdgeInsets.all(4),
-//          position: BadgePosition.topRight(top: -4, right: -4),
-//          child: JhAssetImage('tab/nav_tab_3_on', width: _iconWH)),
-      ),
-      BottomNavigationBarItem(
-        label: '我的',
-        icon: const JhAssetImage('tab/nav_tab_4', width: _iconWH),
-        activeIcon: JhAssetImage('tab/nav_tab_4_on', width: _iconWH, color: iconColor),
-      ),
+      _createItem('微信', 'tab/nav_tab_1', iconColor),
+      _createItem('通讯录', 'tab/nav_tab_2', iconColor),
+      _createItem('发现', 'tab/nav_tab_3', iconColor, showBadge: true),
+      _createItem('我的', 'tab/nav_tab_4', iconColor),
     ];
   }
 
@@ -129,11 +110,54 @@ class _BaseTabBarState extends State<BaseTabBar> {
                 // 改变状态
                 provider.currentIndex = index;
                 _pageController.jumpToPage(index);
+                // 动画相关
+                _isAnimating = true;
+                _currentText = getBottomTabs(selectIconColor)[index].label!;
               });
             },
           );
         }),
       ),
+    );
+  }
+
+  _createItem(String label, String imgPath, iconColor, {bool showBadge = false}) {
+    var item = BottomNavigationBarItem(
+      label: label,
+      icon: !showBadge ? JhAssetImage(imgPath, width: _iconWH) : _addBadge(JhAssetImage(imgPath, width: _iconWH)),
+      activeIcon: _addAnimation(label, JhAssetImage('${imgPath}_on', width: _iconWH, color: iconColor)),
+    );
+    return item;
+  }
+
+  _addBadge(child) {
+    return Badge(
+      padding: const EdgeInsets.all(4),
+      position: BadgePosition.topEnd(top: -4, end: -4),
+      child: child,
+    );
+  }
+
+  _addAnimation(label, child) {
+    if (_currentText != label) {
+      return child;
+    }
+    if (label == '微信') {
+      return Swing(child: child); // 摆动
+    }
+    if (label == '发现') {
+      return Spin(child: child); // 旋转
+    }
+    // 跳动
+    return JhPulseAnimationView(
+      child: child,
+      isAnimating: _isAnimating,
+      onCompleted: () {
+        setState(() {
+          // 动画完成改变状态
+          _isAnimating = false;
+        });
+      },
     );
   }
 }

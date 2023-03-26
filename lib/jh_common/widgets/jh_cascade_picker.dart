@@ -232,6 +232,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
           Container(
             color: bgColor,
             child: TabBar(
+              // key: UniqueKey(),
               tabs: _myTabs,
               controller: _tabController,
               isScrollable: true,

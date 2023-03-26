@@ -23,7 +23,7 @@ class WxContactsPage extends StatefulWidget {
 }
 
 class _WxContactsPageState extends State<WxContactsPage> {
-  final List<WxContactsModel> _dataList = [];
+  List<WxContactsModel> _dataList = [];
 
   // 联系人总数
   String _contactsCount = '';
@@ -51,58 +51,49 @@ class _WxContactsPageState extends State<WxContactsPage> {
   Future<void> _loadData() async {
     // 获取用户信息列表
     final jsonStr = await rootBundle.loadString('lib/res/wx_contacts.json');
-
     Map dic = json.decode(jsonStr);
     List dataArr = dic['data'];
+
+    // 处理数据
+    List<WxContactsModel> tempList = [];
     for (var item in dataArr) {
-//      print('name: ${item['name']}');
-//      _dataList.add(ContactsModel(name: item['name']));
+      // print('name: ${item['name']}');
       WxContactsModel model = WxContactsModel.fromJson(item);
-      _dataList.add(model);
-    }
-    _handleList(_dataList);
-
-//    print('_dataList=====');
-//    _dataList.forEach((item) {
-//      ContactsModel model = item;
-//      print(model.toJson());
-//    });
-    setState(() {});
-  }
-
-  void _handleList(List<WxContactsModel> list) {
-    for (int i = 0, length = list.length; i < length; i++) {
-      String pinyin = PinyinHelper.getPinyinE(list[i].name!);
+      String pinyin = PinyinHelper.getPinyinE(model.name!);
       String tag = pinyin.substring(0, 1).toUpperCase();
-      list[i].namePinyin = pinyin;
-      if (list[i].isStar == true) {
-        list[i].tagIndex = '★';
+      model.namePinyin = pinyin;
+      if (model.isStar == true) {
+        model.tagIndex = '★';
       } else if (RegExp('[A-Z]').hasMatch(tag)) {
-        list[i].tagIndex = tag;
+        model.tagIndex = tag;
       } else {
-        list[i].tagIndex = '#';
+        model.tagIndex = '#';
       }
+      tempList.add(model);
     }
+
     // 根据A-Z排序
-    SuspensionUtil.sortListBySuspensionTag(_dataList);
+    SuspensionUtil.sortListBySuspensionTag(tempList);
 
     // 把星标移到最前
-    for (var item in _dataList) {
+    for (var item in tempList) {
       if (item.isStar == true) {
-        _dataList.remove(item);
-        _dataList.insert(0, item);
+        tempList.remove(item);
+        tempList.insert(0, item);
       }
     }
 
     // show sus tag.
-    SuspensionUtil.setShowSuspensionStatus(_dataList);
+    SuspensionUtil.setShowSuspensionStatus(tempList);
 
     // add header.
-    _dataList.insert(0, WxContactsModel(name: 'header', tagIndex: '🔍'));
+    tempList.insert(0, WxContactsModel(name: 'header', tagIndex: '🔍'));
 
-    _contactsCount = '${_dataList.length} 位朋友及联系人';
+    _contactsCount = '${tempList.length} 位朋友及联系人';
 
-    setState(() {});
+    setState(() {
+      _dataList = tempList;
+    });
   }
 
   @override

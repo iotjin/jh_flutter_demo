@@ -100,12 +100,6 @@ import 'components/component_demo_list_page.dart';
 import 'components/slide_menu_test_page.dart';
 
 // other
-import 'other/animation/animation_demo_list_page.dart';
-import 'other/animation/ball_3d_page.dart';
-import 'other/animation/ball_3d_page2.dart';
-import 'other/animation/ball_3d_page3.dart';
-import 'other/animation/ball_3d_page4.dart';
-import 'other/animation/tag_cloud_page.dart';
 import 'other/form_test.dart';
 import 'other/photo_select_test.dart';
 import 'other/red_dot_page.dart';
@@ -114,6 +108,15 @@ import 'other/aes_test_page.dart';
 import 'other/sideslip_test_page.dart';
 import 'other/city_select_list_page.dart';
 import 'other/device_info_test.dart';
+
+// 动画
+import 'other/animation/animation_demo_list_page.dart';
+import 'other/animation/animation_test_page.dart';
+import 'other/animation/ball_3d_page.dart';
+import 'other/animation/ball_3d_page2.dart';
+import 'other/animation/ball_3d_page3.dart';
+import 'other/animation/ball_3d_page4.dart';
+import 'other/animation/tag_cloud_page.dart';
 
 // search
 import 'search/search_demo_list_page.dart';
@@ -253,13 +256,7 @@ class DemosRouter implements IRouterProvider {
     router.define('SlideMenuTestPage', handler: Handler(handlerFunc: (_, __) => const SlideMenuTestPage()));
 
     // other
-    router.define('AnimationDemoListPage', handler: Handler(handlerFunc: (_, __) => const AnimationDemoListPage()));
     router.define('AESTestPage', handler: Handler(handlerFunc: (_, __) => const AESTestPage()));
-    router.define('Ball3DPage', handler: Handler(handlerFunc: (_, __) => const Ball3DPage()));
-    router.define('Ball3DPage2', handler: Handler(handlerFunc: (_, __) => const Ball3DPage2()));
-    router.define('Ball3DPage3', handler: Handler(handlerFunc: (_, __) => const Ball3DPage3()));
-    router.define('Ball3DPage4', handler: Handler(handlerFunc: (_, __) => const Ball3DPage4()));
-    router.define('TagCloudPage', handler: Handler(handlerFunc: (_, __) => const TagCloudPage()));
     router.define('FormTest', handler: Handler(handlerFunc: (_, __) => const FormTest()));
     router.define('PhotoSelectTest', handler: Handler(handlerFunc: (_, __) => const PhotoSelectTest()));
     router.define('RedDotPage', handler: Handler(handlerFunc: (_, __) => const RedDotPage()));
@@ -267,6 +264,14 @@ class DemosRouter implements IRouterProvider {
     router.define('SideslipTestPage', handler: Handler(handlerFunc: (_, __) => const SideslipTestPage()));
     router.define('CitySelectListPage', handler: Handler(handlerFunc: (_, __) => const CitySelectListPage()));
     router.define('DeviceInfoTest', handler: Handler(handlerFunc: (_, __) => const DeviceInfoTest()));
+    // 动画
+    router.define('AnimationDemoListPage', handler: Handler(handlerFunc: (_, __) => const AnimationDemoListPage()));
+    router.define('AnimationTestPage', handler: Handler(handlerFunc: (_, __) => const AnimationTestPage()));
+    router.define('Ball3DPage', handler: Handler(handlerFunc: (_, __) => const Ball3DPage()));
+    router.define('Ball3DPage2', handler: Handler(handlerFunc: (_, __) => const Ball3DPage2()));
+    router.define('Ball3DPage3', handler: Handler(handlerFunc: (_, __) => const Ball3DPage3()));
+    router.define('Ball3DPage4', handler: Handler(handlerFunc: (_, __) => const Ball3DPage4()));
+    router.define('TagCloudPage', handler: Handler(handlerFunc: (_, __) => const TagCloudPage()));
 
     // search
     router.define('SearchDemoListPage', handler: Handler(handlerFunc: (_, __) => const SearchDemoListPage()));

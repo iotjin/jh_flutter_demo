@@ -75,6 +75,7 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
       return TextButton(
         onPressed: () => _getVCode(),
         style: ButtonStyle(
+          padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
           // 设置按钮大小
           fixedSize: MaterialStateProperty.all(const Size(120, 32)),
           minimumSize: MaterialStateProperty.all(const Size(120, 32)),

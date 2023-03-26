@@ -131,6 +131,8 @@ dependencies:
   lpinyin: ^2.0.3
   # 拖拽排序 https://pub.flutter-io.cn/packages/reorderables
   reorderables: ^0.5.1
+  # 动画 https://pub.flutter-io.cn/packages/animate_do
+  animate_do: ^3.0.2
 
 
   # ----- 废弃 -----

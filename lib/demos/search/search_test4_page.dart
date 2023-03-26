@@ -96,6 +96,7 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
 
   _inputCallBack(value, isSubmitted) {
     print('防抖后 value : $value');
+    var beforeKeyWord = _keyWord;
     setState(() {
       _keyWord = value;
       if (value.isEmpty || isSubmitted) {
@@ -104,7 +105,7 @@ class _SearchTest4PageState extends State<SearchTest4Page> {
       if (value.length >= 3) {
         if (isSubmitted) {
           _requestData(isShowLoading: true);
-        } else {
+        } else if (beforeKeyWord != _keyWord) {
           _requestKeywordList(value);
         }
       }
