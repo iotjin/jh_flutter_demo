@@ -72,7 +72,7 @@ Widget _initBarChart1() {
             accessor: (Map map) => map['sold'] as num,
           ),
         },
-        elements: [IntervalElement()],
+        marks: [IntervalMark()],
         axes: [
           Defaults.horizontalAxis,
           Defaults.verticalAxis,
@@ -96,17 +96,17 @@ Widget _initBarChart2() {
             accessor: (Map map) => map['sold'] as num,
           ),
         },
-        elements: [
-          IntervalElement(
+        marks: [
+          IntervalMark(
             // 文字设置
-            label: LabelAttr(
-              encoder: (tuple) =>
-                  Label(tuple['sold'].toString(), LabelStyle(style: const TextStyle(fontSize: 16, color: Colors.red))),
+            label: LabelEncode(
+              encoder: (tuple) => Label(
+                  tuple['sold'].toString(), LabelStyle(textStyle: const TextStyle(fontSize: 16, color: Colors.red))),
             ),
-            elevation: ElevationAttr(value: 0, updaters: {
+            elevation: ElevationEncode(value: 0, updaters: {
               'tap': {true: (_) => 5}
             }),
-            color: ColorAttr(value: Defaults.primaryColor, updaters: {
+            color: ColorEncode(value: Defaults.primaryColor, updaters: {
               'tap': {false: (color) => color.withAlpha(100)}
             }),
           )
@@ -138,14 +138,14 @@ Widget _initBarChart3() {
             accessor: (Map map) => map['sold'] as num,
           ),
         },
-        elements: [
-          IntervalElement(
-            label: LabelAttr(encoder: (tuple) => Label(tuple['sold'].toString())),
-            elevation: ElevationAttr(value: 0, updaters: {
+        marks: [
+          IntervalMark(
+            label: LabelEncode(encoder: (tuple) => Label(tuple['sold'].toString())),
+            elevation: ElevationEncode(value: 0, updaters: {
               'tap': {true: (_) => 5}
             }),
             // 背景色默认橙色，选中红色
-            color: ColorAttr(value: Colors.orange, updaters: {
+            color: ColorEncode(value: Colors.orange, updaters: {
               'tap': {true: (color) => Colors.red}
             }),
           )
@@ -177,13 +177,13 @@ Widget _initBarChart4() {
             accessor: (Map map) => map['sold'] as num,
           ),
         },
-        elements: [
-          IntervalElement(
-            label: LabelAttr(encoder: (tuple) => Label(tuple['sold'].toString())),
-            elevation: ElevationAttr(value: 0, updaters: {
+        marks: [
+          IntervalMark(
+            label: LabelEncode(encoder: (tuple) => Label(tuple['sold'].toString())),
+            elevation: ElevationEncode(value: 0, updaters: {
               'tap': {true: (_) => 5}
             }),
-            gradient: GradientAttr(
+            gradient: GradientEncode(
                 value: const LinearGradient(colors: [
                   Color(0x8883bff6),
                   Color(0x88188df0),
@@ -246,14 +246,14 @@ Widget _initBarChart5() {
             accessor: (Map map) => map['value'] as num,
           ),
         },
-        elements: [
-          IntervalElement(
+        marks: [
+          IntervalMark(
             position: Varset('index') * Varset('value') / Varset('type'),
-            color: ColorAttr(variable: 'type', values: Defaults.colors10),
+            color: ColorEncode(variable: 'type', values: Defaults.colors10),
             // modifiers: [StackModifier()],
             // modifiers: [SymmetricModifier()],
 
-            size: SizeAttr(value: 8),
+            size: SizeEncode(value: 8),
             modifiers: [DodgeModifier(ratio: 0.15)],
 
             // size: SizeAttr(value: 2),
@@ -272,49 +272,74 @@ Widget _initBarChart5() {
         tooltip: TooltipGuide(multiTuples: true),
         crosshair: CrosshairGuide(),
         annotations: [
-          MarkAnnotation(
-            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
-            style: Paint()..color = Defaults.colors10[0],
-            anchor: (size) => const Offset(25, 290),
+          CustomAnnotation(
+            renderer: (_, size) => [
+              CircleElement(
+                center: const Offset(25, 290),
+                radius: 5,
+                style: PaintStyle(fillColor: Defaults.colors10[0]),
+              )
+            ],
+            anchor: (p0) => const Offset(0, 0),
           ),
           TagAnnotation(
-            label: Label('Email', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
+            label: Label('Email', LabelStyle(textStyle: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => const Offset(34, 290),
           ),
-          MarkAnnotation(
-            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
-            style: Paint()..color = Defaults.colors10[1],
-            anchor: (size) => Offset(25 + size.width / 5, 290),
+          CustomAnnotation(
+            renderer: (_, size) => [
+              CircleElement(
+                center: Offset(25 + size.width / 5, 290),
+                radius: 5,
+                style: PaintStyle(fillColor: Defaults.colors10[1]),
+              )
+            ],
+            anchor: (p0) => const Offset(0, 0),
           ),
           TagAnnotation(
-            label: Label('Affiliate', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
+            label: Label('Affiliate', LabelStyle(textStyle: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => Offset(34 + size.width / 5, 290),
           ),
-          MarkAnnotation(
-            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
-            style: Paint()..color = Defaults.colors10[2],
-            anchor: (size) => Offset(25 + size.width / 5 * 2, 290),
+          CustomAnnotation(
+            renderer: (_, size) => [
+              CircleElement(
+                center: Offset(25 + size.width / 5 * 2, 290),
+                radius: 5,
+                style: PaintStyle(fillColor: Defaults.colors10[2]),
+              )
+            ],
+            anchor: (p0) => const Offset(0, 0),
           ),
           TagAnnotation(
-            label: Label('Video', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
+            label: Label('Video', LabelStyle(textStyle: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => Offset(34 + size.width / 5 * 2, 290),
           ),
-          MarkAnnotation(
-            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
-            style: Paint()..color = Defaults.colors10[3],
-            anchor: (size) => Offset(25 + size.width / 5 * 3, 290),
+          CustomAnnotation(
+            renderer: (_, size) => [
+              CircleElement(
+                center: Offset(25 + size.width / 5 * 3, 290),
+                radius: 5,
+                style: PaintStyle(fillColor: Defaults.colors10[3]),
+              )
+            ],
+            anchor: (p0) => const Offset(0, 0),
           ),
           TagAnnotation(
-            label: Label('Direct', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
+            label: Label('Direct', LabelStyle(textStyle: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => Offset(34 + size.width / 5 * 3, 290),
           ),
-          MarkAnnotation(
-            relativePath: Path()..addRect(Rect.fromCircle(center: const Offset(0, 0), radius: 5)),
-            style: Paint()..color = Defaults.colors10[4],
-            anchor: (size) => Offset(25 + size.width / 5 * 4, 290),
+          CustomAnnotation(
+            renderer: (_, size) => [
+              CircleElement(
+                center: Offset(25 + size.width / 5 * 4, 290),
+                radius: 5,
+                style: PaintStyle(fillColor: Defaults.colors10[4]),
+              )
+            ],
+            anchor: (p0) => const Offset(0, 0),
           ),
           TagAnnotation(
-            label: Label('Search', LabelStyle(style: Defaults.textStyle, align: Alignment.centerRight)),
+            label: Label('Search', LabelStyle(textStyle: Defaults.textStyle, align: Alignment.centerRight)),
             anchor: (size) => Offset(34 + size.width / 5 * 4, 290),
           ),
         ],
@@ -330,8 +355,8 @@ const _kMinBarSize = 4.0;
 @immutable
 class DodgeSizeModifier extends Modifier {
   @override
-  void modify(
-      AesGroups groups, Map<String, ScaleConv<dynamic, num>> scales, AlgForm form, CoordConv coord, Offset origin) {
+  void modify(AttributesGroups groups, Map<String, ScaleConv<dynamic, num>> scales, AlgForm form, CoordConv coord,
+      Offset origin) {
     final xField = form.first[0];
     final band = (scales[xField]! as DiscreteScaleConv).band;
 
@@ -344,9 +369,9 @@ class DodgeSizeModifier extends Modifier {
 
     final maxWidth = coord.convert(const Offset(1, 0)).dx;
     final maxWidthInBand = effectiveBand * maxWidth;
-    final maxWidthPerAes = maxWidthInBand / numGroups;
+    final maxWidthPerAttributes = maxWidthInBand / numGroups;
     final barHorizontalPadding = groupHorizontalPadding / 2;
-    final size = max(maxWidthPerAes - barHorizontalPadding, _kMinBarSize);
+    final size = max(maxWidthPerAttributes - barHorizontalPadding, _kMinBarSize);
 
     final bias = ratio * effectiveBand;
 
@@ -354,15 +379,15 @@ class DodgeSizeModifier extends Modifier {
     var accumulated = -bias * (numGroups + 1) / 2;
 
     for (final group in groups) {
-      for (final aes in group) {
-        final oldPosition = aes.position;
-        aes.position = oldPosition
+      for (final attributes in group) {
+        final oldPosition = attributes.position;
+        attributes.position = oldPosition
             .map(
               (point) => Offset(point.dx + accumulated + bias, point.dy),
             )
             .toList();
 
-        aes.size = size;
+        attributes.size = size;
       }
       accumulated += bias;
     }

@@ -4,8 +4,8 @@
 ///  description: 发现
 
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
+import '/jh_common/widgets/jh_badge.dart';
 import '/project/configs/project_config.dart';
 
 class WxDiscoverPage extends StatelessWidget {
@@ -36,10 +36,7 @@ Widget _body(context) {
 //      rightWidget: Image.network('https://gitee.com/iotjh/Picture/raw/master/lufei.png',width: 50,height: 50,),
         rightWidget: Container(
           padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-          child: Badge(
-              padding: const EdgeInsets.all(4),
-              position: BadgePosition.topEnd(top: -4, end: -4),
-              child: Image.asset('assets/images/lufei.png', width: 30, height: 30, fit: BoxFit.fill)),
+          child: JhBadge(child: Image.asset('assets/images/lufei.png', width: 30, height: 30, fit: BoxFit.fill)),
         ),
         clickCallBack: () => _clickCell(context, '朋友圈'),
       ),

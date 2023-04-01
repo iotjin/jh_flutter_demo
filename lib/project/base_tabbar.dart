@@ -5,10 +5,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:badges/badges.dart';
 import 'package:provider/provider.dart';
 import '/jh_common/utils/jh_image_utils.dart';
 import '/jh_common/widgets/base_refresh_view.dart';
+import '/jh_common/widgets/jh_badge.dart';
 import '/jh_common/widgets/jh_pulse_animation_view.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/tabbar_provider.dart';
@@ -131,9 +131,8 @@ class _BaseTabBarState extends State<BaseTabBar> {
   }
 
   _addBadge(child) {
-    return Badge(
+    return JhBadge(
       padding: const EdgeInsets.all(4),
-      position: BadgePosition.topEnd(top: -4, end: -4),
       child: child,
     );
   }

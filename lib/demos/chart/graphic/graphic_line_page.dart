@@ -68,14 +68,14 @@ Widget _initLineChart1() {
             accessor: (Map map) => (map['Close'] ?? double.nan) as num,
           ),
         },
-        elements: [
-          AreaElement(
-            shape: ShapeAttr(value: BasicAreaShape(smooth: true)),
-            color: ColorAttr(value: Defaults.colors10.first.withAlpha(80)),
+        marks: [
+          AreaMark(
+            shape: ShapeEncode(value: BasicAreaShape(smooth: true)),
+            color: ColorEncode(value: Defaults.colors10.first.withAlpha(80)),
           ),
-          LineElement(
-            shape: ShapeAttr(value: BasicLineShape(smooth: true)),
-            size: SizeAttr(value: 0.5),
+          LineMark(
+            shape: ShapeEncode(value: BasicLineShape(smooth: true)),
+            size: SizeEncode(value: 0.5),
           ),
         ],
         axes: [
@@ -123,10 +123,10 @@ Widget _initLineChart2() {
             accessor: (Map datum) => datum['group'] as String,
           ),
         },
-        elements: [
-          LineElement(
+        marks: [
+          LineMark(
             position: Varset('day') * Varset('value') / Varset('group'),
-            color: ColorAttr(
+            color: ColorEncode(
               variable: 'group',
               values: [
                 const Color(0xff5470c6),
@@ -163,53 +163,49 @@ Widget _initLineChart2() {
           LineAnnotation(
             dim: Dim.y,
             value: 11.14,
-            style: StrokeStyle(
-              color: const Color(0xff5470c6).withAlpha(100),
+            style: PaintStyle(
+              strokeColor: const Color(0xff5470c6).withAlpha(100),
               dash: [2],
             ),
           ),
           LineAnnotation(
             dim: Dim.y,
             value: 1.57,
-            style: StrokeStyle(
-              color: const Color(0xff91cc75).withAlpha(100),
+            style: PaintStyle(
+              strokeColor: const Color(0xff91cc75).withAlpha(100),
               dash: [2],
             ),
           ),
-          MarkAnnotation(
-            relativePath: Paths.circle(center: Offset.zero, radius: 5),
-            style: Paint()..color = const Color(0xff5470c6),
-            values: ['Wed', 13],
-          ),
-          MarkAnnotation(
-            relativePath: Paths.circle(center: Offset.zero, radius: 5),
-            style: Paint()..color = const Color(0xff5470c6),
-            values: ['Sun', 9],
-          ),
-          MarkAnnotation(
-            relativePath: Paths.circle(center: Offset.zero, radius: 5),
-            style: Paint()..color = const Color(0xff91cc75),
-            values: ['Tue', -2],
-          ),
-          MarkAnnotation(
-            relativePath: Paths.circle(center: Offset.zero, radius: 5),
-            style: Paint()..color = const Color(0xff91cc75),
-            values: ['Thu', 5],
-          ),
+          CustomAnnotation(
+              renderer: (offset, _) =>
+                  [CircleElement(center: offset, radius: 5, style: PaintStyle(fillColor: const Color(0xff5470c6)))],
+              values: ['Wed', 13]),
+          CustomAnnotation(
+              renderer: (offset, _) =>
+                  [CircleElement(center: offset, radius: 5, style: PaintStyle(fillColor: const Color(0xff5470c6)))],
+              values: ['Sun', 9]),
+          CustomAnnotation(
+              renderer: (offset, _) =>
+                  [CircleElement(center: offset, radius: 5, style: PaintStyle(fillColor: const Color(0xff91cc75)))],
+              values: ['Tue', -2]),
+          CustomAnnotation(
+              renderer: (offset, _) =>
+                  [CircleElement(center: offset, radius: 5, style: PaintStyle(fillColor: const Color(0xff91cc75)))],
+              values: ['Thu', 5]),
           TagAnnotation(
-            label: Label('13', LabelStyle(style: Defaults.textStyle, offset: const Offset(0, -10))),
+            label: Label('13', LabelStyle(textStyle: Defaults.textStyle, offset: const Offset(0, -10))),
             values: ['Wed', 13],
           ),
           TagAnnotation(
-            label: Label('9', LabelStyle(style: Defaults.textStyle, offset: const Offset(0, -10))),
+            label: Label('9', LabelStyle(textStyle: Defaults.textStyle, offset: const Offset(0, -10))),
             values: ['Sun', 9],
           ),
           TagAnnotation(
-            label: Label('-2', LabelStyle(style: Defaults.textStyle, offset: const Offset(0, -10))),
+            label: Label('-2', LabelStyle(textStyle: Defaults.textStyle, offset: const Offset(0, -10))),
             values: ['Tue', -2],
           ),
           TagAnnotation(
-            label: Label('5', LabelStyle(style: Defaults.textStyle, offset: const Offset(0, -10))),
+            label: Label('5', LabelStyle(textStyle: Defaults.textStyle, offset: const Offset(0, -10))),
             values: ['Thu', 5],
           ),
         ],
@@ -239,9 +235,9 @@ Widget _initLineChart3() {
           // ),
         ),
       },
-      elements: [
-        LineElement(
-          shape: ShapeAttr(value: BasicLineShape(smooth: true)),
+      marks: [
+        LineMark(
+          shape: ShapeEncode(value: BasicLineShape(smooth: true)),
         )
       ],
       axes: [
@@ -281,7 +277,7 @@ Widget _initLineChart3() {
 }
 
 Widget _initLineChart4_1() {
-  final priceVolumeChannel = StreamController<GestureSignal>.broadcast();
+  final priceVolumeStream = StreamController<GestureEvent>.broadcast();
   return Container(
       margin: const EdgeInsets.all(10),
       width: 350,
@@ -301,9 +297,9 @@ Widget _initLineChart4_1() {
             scale: LinearScale(min: 5, tickCount: 5),
           ),
         },
-        elements: [
-          LineElement(
-            size: SizeAttr(value: 1),
+        marks: [
+          LineMark(
+            size: SizeEncode(value: 1),
           )
         ],
         axes: [
@@ -321,16 +317,16 @@ Widget _initLineChart4_1() {
         crosshair: CrosshairGuide(
           followPointer: [true, false],
           styles: [
-            StrokeStyle(color: const Color(0xffbfbfbf), dash: [4, 2]),
-            StrokeStyle(color: const Color(0xffbfbfbf), dash: [4, 2]),
+            PaintStyle(strokeColor: const Color(0xffbfbfbf), dash: [4, 2]),
+            PaintStyle(strokeColor: const Color(0xffbfbfbf), dash: [4, 2]),
           ],
         ),
-        gestureChannel: priceVolumeChannel,
+        gestureStream: priceVolumeStream,
       ));
 }
 
 Widget _initLineChart4_2() {
-  final priceVolumeChannel = StreamController<GestureSignal>.broadcast();
+  final priceVolumeStream = StreamController<GestureEvent>.broadcast();
   return Container(
     margin: const EdgeInsets.only(top: 0),
     width: 350,
@@ -349,9 +345,9 @@ Widget _initLineChart4_2() {
           scale: LinearScale(min: 0),
         ),
       },
-      elements: [
-        IntervalElement(
-          size: SizeAttr(value: 1),
+      marks: [
+        IntervalMark(
+          size: SizeEncode(value: 1),
         )
       ],
       axes: [
@@ -366,11 +362,11 @@ Widget _initLineChart4_2() {
       crosshair: CrosshairGuide(
         followPointer: [true, false],
         styles: [
-          StrokeStyle(color: const Color(0xffbfbfbf), dash: [4, 2]),
-          StrokeStyle(color: const Color(0xffbfbfbf), dash: [4, 2]),
+          PaintStyle(strokeColor: const Color(0xffbfbfbf), dash: [4, 2]),
+          PaintStyle(strokeColor: const Color(0xffbfbfbf), dash: [4, 2]),
         ],
       ),
-      gestureChannel: priceVolumeChannel,
+      gestureStream: priceVolumeStream,
     ),
   );
 }

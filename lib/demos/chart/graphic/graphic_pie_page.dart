@@ -67,16 +67,16 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
             ),
           },
           transforms: [Proportion(variable: 'sold', as: 'percent')],
-          elements: [
-            IntervalElement(
+          marks: [
+            IntervalMark(
               position: Varset('percent') / Varset('genre'),
-              label: LabelAttr(
+              label: LabelEncode(
                 encoder: (tuple) => Label(
                   tuple['sold'].toString(),
-                  LabelStyle(style: Defaults.runeStyle),
+                  LabelStyle(textStyle: Defaults.runeStyle),
                 ),
               ),
-              color: ColorAttr(variable: 'genre', values: Defaults.colors10),
+              color: ColorEncode(variable: 'genre', values: Defaults.colors10),
               modifiers: [StackModifier()],
             )
           ],
@@ -103,16 +103,16 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
             ),
           },
           transforms: [Proportion(variable: 'sold', as: 'percent')],
-          elements: [
-            IntervalElement(
+          marks: [
+            IntervalMark(
               position: Varset('percent') / Varset('genre'),
-              label: LabelAttr(
+              label: LabelEncode(
                   encoder: (tuple) => Label(
                         tuple['sold'].toString(),
                         // LabelStyle(style: Defaults.runeStyle),
-                        LabelStyle(style: const TextStyle(fontSize: 18, color: Colors.black)),
+                        LabelStyle(textStyle: const TextStyle(fontSize: 18, color: Colors.black)),
                       )),
-              color: ColorAttr(
+              color: ColorEncode(
                   variable: 'genre', values: [Colors.red, Colors.orange, Colors.yellow, Colors.green, Colors.blue]),
               modifiers: [StackModifier()],
             )
@@ -140,10 +140,10 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
             ),
           },
           transforms: [Proportion(variable: 'sold', as: 'percent')],
-          elements: [
-            IntervalElement(
+          marks: [
+            IntervalMark(
               position: Varset('percent') / Varset('genre'),
-              color: ColorAttr(variable: 'genre', values: Defaults.colors10),
+              color: ColorEncode(variable: 'genre', values: Defaults.colors10),
               modifiers: [StackModifier()],
             )
           ],
@@ -157,40 +157,30 @@ class _GraphicPiePageState extends State<GraphicPiePage> {
         ));
   }
 
-  List<Figure> centralPieLabel(
+  List<MarkElement> centralPieLabel(
     Size size,
     Offset anchor,
     Map<int, Tuple> selectedTuples,
   ) {
     final tuple = selectedTuples.values.last;
 
-    var titleColor = Theme.of(context).textTheme.bodyText1?.color;
+    var titleColor = Theme.of(context).textTheme.bodyMedium?.color;
     // var titleColor = KColors.dynamicColor(context, KColors.kFormTitleColor, KColors.kFormTitleDarkColor);
 
-    final titleSpan = TextSpan(
+    var dx = size.width / 2;
+    var dy = size.height / 2;
+    final titleElement = LabelElement(
       text: '${tuple['genre']}\n',
-      style: TextStyle(fontSize: 14, color: titleColor),
+      anchor: Offset(dx, dy),
+      style: LabelStyle(textStyle: TextStyle(fontSize: 14, color: titleColor), align: Alignment.topCenter),
     );
 
-    final valueSpan = TextSpan(
+    final valueElement = LabelElement(
       text: tuple['sold'].toString(),
-      style: TextStyle(fontSize: 28, color: titleColor),
+      anchor: Offset(dx, dy),
+      style: LabelStyle(textStyle: TextStyle(fontSize: 28, color: titleColor), align: Alignment.bottomCenter),
     );
 
-    final painter = TextPainter(
-      text: TextSpan(children: [titleSpan, valueSpan]),
-      textDirection: TextDirection.ltr,
-      textAlign: TextAlign.center,
-    );
-    painter.layout();
-
-    final paintPoint = getPaintPoint(
-      const Offset(175, 150),
-      painter.width,
-      painter.height,
-      Alignment.center,
-    );
-
-    return [TextFigure(painter, paintPoint)];
+    return [titleElement, valueElement];
   }
 }

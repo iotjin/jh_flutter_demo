@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import '/base_appbar.dart';
 
 class RedDotPage extends StatefulWidget {
@@ -29,23 +29,25 @@ class _RedDotPageState extends State<RedDotPage> {
           body: Column(
             children: <Widget>[
               const SizedBox(height: 15),
-              Badge(
-                badgeContent: const Text('3'),
-                child: const Icon(Icons.settings),
+              const badges.Badge(
+                badgeContent: Text('3'),
+                child: Icon(Icons.settings),
               ),
               const SizedBox(height: 15),
-              Badge(child: const Icon(Icons.settings)),
+              const badges.Badge(child: Icon(Icons.settings)),
               const SizedBox(height: 15),
-              Badge(
+              const badges.Badge(
                 showBadge: false,
-                child: const Icon(Icons.settings),
+                child: Icon(Icons.settings),
               ),
               const SizedBox(height: 15),
-              Badge(
-                shape: BadgeShape.square,
-                borderRadius: BorderRadius.circular(5),
-                position: BadgePosition.topEnd(top: -12, end: -20),
-                padding: const EdgeInsets.all(2),
+              badges.Badge(
+                badgeStyle: badges.BadgeStyle(
+                  shape: badges.BadgeShape.square,
+                  borderRadius: BorderRadius.circular(5),
+                  padding: const EdgeInsets.all(2),
+                ),
+                position: badges.BadgePosition.topEnd(top: -12, end: -20),
                 badgeContent:
                     const Text('New', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                 child: Text('MUSIC', style: TextStyle(color: Colors.grey[600])),
@@ -59,17 +61,17 @@ class _RedDotPageState extends State<RedDotPage> {
     return BottomNavigationBar(
       elevation: 0,
       items: [
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           label: 'Events',
-          icon: Badge(
-            child: const Icon(Icons.event),
+          icon: badges.Badge(
+            child: Icon(Icons.event),
           ),
         ),
         BottomNavigationBarItem(
           label: 'Messages',
-          icon: Badge(
-            toAnimate: false,
-            position: BadgePosition.topEnd(top: -20, end: -20),
+          icon: badges.Badge(
+            badgeAnimation: const badges.BadgeAnimation.slide(toAnimate: false),
+            position: badges.BadgePosition.topEnd(top: -20, end: -20),
             badgeContent: Text(
               _count.toString(),
               style: const TextStyle(color: Colors.white, fontSize: 12),
@@ -79,9 +81,11 @@ class _RedDotPageState extends State<RedDotPage> {
         ),
         BottomNavigationBarItem(
           label: 'Settings',
-          icon: Badge(
-            shape: BadgeShape.circle,
-            borderRadius: BorderRadius.circular(100),
+          icon: badges.Badge(
+            badgeStyle: badges.BadgeStyle(
+              shape: badges.BadgeShape.circle,
+              borderRadius: BorderRadius.circular(100),
+            ),
             badgeContent: Container(
               height: 5,
               width: 5,
@@ -108,19 +112,23 @@ class _RedDotPageState extends State<RedDotPage> {
         color: Colors.yellow,
         child: TabBar(
           tabs: [
-            Tab(
-              icon: Badge(
-                badgeColor: Colors.blue,
-                badgeContent: const Text('3', style: TextStyle(color: Colors.red)),
-                child: const Icon(Icons.account_balance_wallet, color: Colors.white),
+            const Tab(
+              icon: badges.Badge(
+                badgeStyle: badges.BadgeStyle(
+                  badgeColor: Colors.blue,
+                ),
+                badgeContent: Text('3', style: TextStyle(color: Colors.red)),
+                child: Icon(Icons.account_balance_wallet, color: Colors.white),
               ),
             ),
             Tab(
-              icon: Badge(
-                shape: BadgeShape.square,
-                borderRadius: BorderRadius.circular(5),
-                position: BadgePosition.topEnd(top: -12, end: -20),
-                padding: const EdgeInsets.all(2),
+              icon: badges.Badge(
+                badgeStyle: badges.BadgeStyle(
+                  shape: badges.BadgeShape.square,
+                  borderRadius: BorderRadius.circular(5),
+                  padding: const EdgeInsets.all(2),
+                ),
+                position: badges.BadgePosition.topEnd(top: -12, end: -20),
                 badgeContent:
                     const Text('NEW', style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold)),
                 child: const Text('MUSIC', style: TextStyle(color: Colors.white)),

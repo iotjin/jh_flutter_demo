@@ -4,11 +4,11 @@
 ///  description:  顶部分页效果的tabBar(类似新闻APP顶部切换效果)
 
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart';
 import 'package:provider/provider.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/theme_provider.dart';
 import '/base_appbar.dart';
+import 'jh_badge.dart';
 
 // const Color _bgColor = Color(0xFFF2F2F2); //242
 // const Color _indicatorColor = KColors.kThemeColor;
@@ -19,7 +19,7 @@ import '/base_appbar.dart';
 class JhTopTabBarModel {
   final String? title; // 标题
   final Widget? widget; // 对应的widget
-  final Badge? badge; // 设置badge，不用设置title
+  final JhBadge? badge; // 设置badge，不用设置title
 
   const JhTopTabBarModel({this.title, this.widget, this.badge});
 }

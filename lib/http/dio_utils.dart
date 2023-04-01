@@ -6,8 +6,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import '/jh_common/utils/jh_device_utils.dart';
 import 'apis.dart';
 import 'error_handle.dart';
@@ -15,9 +15,9 @@ import 'log_utils.dart';
 
 /// 默认dio配置
 String _baseUrl = APIs.apiPrefix;
-int _connectTimeout = 15000; // 15s
-int _receiveTimeout = 15000;
-int _sendTimeout = 10000;
+Duration _connectTimeout = const Duration(seconds: 15);
+Duration _receiveTimeout = const Duration(seconds: 15);
+Duration _sendTimeout = const Duration(seconds: 10);
 List<Interceptor> _interceptors = [];
 
 typedef NetSuccessCallback<T> = Function(T data);
@@ -26,9 +26,9 @@ typedef NetErrorCallback = Function(int code, String msg);
 
 /// 初始化Dio配置
 void configDio({
-  int? connectTimeout,
-  int? receiveTimeout,
-  int? sendTimeout,
+  Duration? connectTimeout,
+  Duration? receiveTimeout,
+  Duration? sendTimeout,
   String? baseUrl,
   List<Interceptor>? interceptors,
 }) {
@@ -65,24 +65,26 @@ class DioUtils {
     _dio = Dio(options);
 
     /// Fiddler抓包代理配置
-//    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-//        (HttpClient client) {
-//      client.findProxy = (uri) {
-//        //proxy all request to localhost:8888
-//        return 'PROXY localhost:8888';
-//      };
-//      // 抓Https包设置
-//      client.badCertificateCallback =
-//          (X509Certificate cert, String host, int port) => true;
-//    };
+    // dio.httpClientAdapter = IOHttpClientAdapter()
+    //   ..onHttpClientCreate = (client) {
+    //     // Config the client.
+    //     client.findProxy = (uri) {
+    //       // Forward all request to proxy "localhost:8888".
+    //       return 'PROXY localhost:8888';
+    //     };
+    //     // 抓Https包设置
+    //     client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+    //     return client;
+    //   };
 
     /// 测试环境忽略证书校验
     var isTest = !LogUtils.inProduction || APIs.apiPrefix.startsWith('https://192');
     if (isTest && JhDeviceUtils.isMobile) {
-      (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (HttpClient client) {
-        client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-        return null;
-      };
+      dio.httpClientAdapter = IOHttpClientAdapter()
+        ..onHttpClientCreate = (client) {
+          client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+          return client;
+        };
     }
 
     /// 添加拦截器

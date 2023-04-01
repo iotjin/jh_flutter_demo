@@ -119,6 +119,7 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: KStrings.navigatorKey,
       // 多主题切换
       theme: provider.getThemeData(),
       darkTheme: provider.getThemeData(isDarkMode: true),

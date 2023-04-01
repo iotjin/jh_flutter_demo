@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2020/07/06.
 ///  description:  字符串配置
 
+import 'package:flutter/cupertino.dart';
+
 class KStrings {
   // 默认  屏幕像素  基于该像素进行适配
   static double deviceHeightPix = 1920;
@@ -19,4 +21,10 @@ class KStrings {
   static String wxPayManager = '支付管理';
 
   static String testTitle = 'DemoList';
+
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+// 使用
+// Future.delayed(Duration(milliseconds: 200), () {
+//   BuildContext context = KStrings.navigatorKey.currentContext!;
+// });
 }

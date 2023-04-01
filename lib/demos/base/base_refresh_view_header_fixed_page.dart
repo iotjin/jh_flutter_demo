@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/widgets/base_refresh_view.dart';
 import '/jh_common/widgets/jh_highlight_text.dart';
 import '/jh_common/widgets/jh_shimmer_view.dart';
@@ -58,28 +59,31 @@ class _BaseRefreshViewHeaderFixedPageState extends State<BaseRefreshViewHeaderFi
       maxLength: 140,
       textInputAction: TextInputAction.search,
       inputCallBack: (value) {
-        setState(() {
-          _keyWord = value;
-          if (value.isEmpty) {
-            _searchData = [];
-          }
-          if (value.length >= 3) {
-            _requestKeywordList(value);
-          }
-        });
+        JhCommonUtils.debounce(() => _inputCallBack(value, false), 500);
       },
       inputCompletionCallBack: (value, isSubmitted) {
         if (isSubmitted) {
-          setState(() {
-            _keyWord = value;
-            _searchData = [];
-            if (value.length >= 3) {
-              _requestData(isShowLoading: true);
-            }
-          });
+          JhCommonUtils.debounce(() => _inputCallBack(value, true), 500);
         }
       },
     );
+  }
+
+  _inputCallBack(value, isSubmitted) {
+    var beforeKeyWord = _keyWord;
+    setState(() {
+      _keyWord = value;
+      if (value.isEmpty || isSubmitted) {
+        _searchData = [];
+      }
+      if (value.length >= 3) {
+        if (isSubmitted) {
+          _requestData(isShowLoading: true);
+        } else if (beforeKeyWord != _keyWord) {
+          _requestKeywordList(value);
+        }
+      }
+    });
   }
 
   Widget _footer() {

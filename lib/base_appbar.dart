@@ -4,6 +4,7 @@
 ///  description:  导航条基类
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'jh_common/utils/jh_status_bar_utils.dart';
 import 'project/configs/colors.dart';
@@ -225,10 +226,11 @@ class _BaseAppBarState extends State<BaseAppBar> {
   }
 }
 
-void _popThis(BuildContext context) {
-  if (Navigator.of(context).canPop()) {
-    FocusManager.instance.primaryFocus?.unfocus();
-    Navigator.of(context).pop();
+void _popThis(BuildContext context) async {
+  FocusManager.instance.primaryFocus?.unfocus();
+  final isBack = await Navigator.maybePop(context);
+  if (!isBack) {
+    await SystemNavigator.pop();
   }
 }
 

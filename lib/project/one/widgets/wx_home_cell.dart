@@ -4,9 +4,9 @@
 ///  description: 微信首页 cell
 
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:jhtoast/jhtoast.dart';
+import '/jh_common/widgets/jh_badge.dart';
 import '/project/configs/project_config.dart';
 import '../models/wx_home_model.dart';
 
@@ -105,10 +105,11 @@ class WxHomeCell extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Badge(
+            JhBadge(
               showBadge: (model.isNew ?? false),
               padding: const EdgeInsets.all(5),
-              position: BadgePosition.topEnd(top: 5, end: 5),
+              topValue: 5,
+              endValue: 5,
               child: Container(
                 width: 70,
                 height: 70,

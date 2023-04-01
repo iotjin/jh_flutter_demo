@@ -80,8 +80,8 @@ class JhPickerTool {
           selecteds: [selectIndex],
           pickerType: PickerType.string,
           adapter: labelKey != null
-              ? PickerDataAdapter(pickerdata: data.map((e) => e[labelKey]).toList())
-              : PickerDataAdapter(pickerdata: data),
+              ? PickerDataAdapter(pickerData: data.map((e) => e[labelKey]).toList())
+              : PickerDataAdapter(pickerData: data),
           clickCallBack: clickCallBack,
         );
       },
@@ -122,11 +122,11 @@ class JhPickerTool {
           pickerType: PickerType.array,
           adapter: labelKey != null
               ? PickerDataAdapter(
-                  pickerdata: data.map((e) {
+                  pickerData: data.map((e) {
                     return e.map((e2) => e2[labelKey]).toList();
                   }).toList(),
                   isArray: true)
-              : PickerDataAdapter(pickerdata: data, isArray: true),
+              : PickerDataAdapter(pickerData: data, isArray: true),
           clickCallBack: clickCallBack,
         );
       },

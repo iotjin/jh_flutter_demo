@@ -369,6 +369,9 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
             color: bgColor,
             child: TabBar(
               // key: UniqueKey(),
+              // tabs: _myTabs.map<Tab>((Tab tab) {
+              //   return Tab(text: tab.text);
+              // }).toList(),
               tabs: _myTabs,
               controller: _tabController,
               isScrollable: true,

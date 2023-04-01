@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import '/jh_common/widgets/jh_badge.dart';
 import '/jh_common/widgets/jh_network_image.dart';
 import '/jh_common/widgets/jh_top_tabbar.dart';
 import '/res/list_data.dart';
@@ -21,18 +21,20 @@ class _TopTabBarTest3PageState extends State<TopTabBarTest3Page> {
     return JhTopTabBar(
       title: '标题',
       tabModelArr: [
-        JhTopTabBarModel(
-            widget: const HomeContent(),
-            badge: Badge(
+        const JhTopTabBarModel(
+            widget: HomeContent(),
+            badge: JhBadge(
               toAnimate: false,
-              position: BadgePosition.topEnd(top: -5, end: -20),
-              child: const Text('标题一'),
+              topValue: -5,
+              endValue: -20,
+              child: Text('标题一'),
             )),
         JhTopTabBarModel(
             widget: const HomeContent(),
-            badge: Badge(
+            badge: JhBadge(
               toAnimate: false,
-              position: BadgePosition.topEnd(top: -12, end: -20),
+              topValue: -12,
+              endValue: -20,
               badgeContent: Text(_count.toString(), style: const TextStyle(color: Colors.white, fontSize: 10)),
               child: const Text('标题二'),
             )),

@@ -11,13 +11,13 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 3.3.0+1
+version: 3.7.0+3
 
 publish_to: 'none'
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
-  flutter: ">=3.0.0 <4.0.0"
+  sdk: ">=2.19.0 <3.0.0"
+  flutter: ">=3.7.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -34,17 +34,17 @@ dependencies:
   # 三方库未适配空安全，点击main.dart -> Additional arguments 添加 --no-sound-null-safety
 
   # 网络请求 https://pub.flutter-io.cn/packages/dio
-  dio: ^4.0.6
+  dio: ^5.1.1
   #  # 网络请求 https://pub.flutter-io.cn/packages/dio_http_cache
   #  dio_http_cache: ^0.3.0
   # 监测网络状态 https://pub.flutter-io.cn/packages/connectivity_plus
-  connectivity_plus: ^3.0.2
+  connectivity_plus: ^3.0.3
   # 路由管理 https://pub.flutter-io.cn/packages/fluro
-  fluro: ^2.0.4
+  fluro: ^2.0.5
   # 状态管理 https://pub.flutter-io.cn/packages/provider
   provider: ^6.0.5
   # 屏幕参数适配 https://pub.flutter-io.cn/packages/flutter_screenutil
-  flutter_screenutil: ^5.6.0
+  flutter_screenutil: ^5.7.0
   # 常用工具类库（本地化 屏幕适配） https://pub.flutter-io.cn/packages/flustars
   #  flustars: ^2.0.1
   # flustars很久不维护，可以使用这个替代 https://pub.flutter-io.cn/packages/flustars_flutter3
@@ -52,15 +52,15 @@ dependencies:
   # 加密 https://pub.flutter-io.cn/packages/encrypt
   encrypt: ^5.0.1
   # 本地化存储 https://pub.flutter-io.cn/packages/shared_preferences
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.0.20
   # sq https://pub.flutter-io.cn/packages/sqflite
-  sqflite: ^2.2.2
+  sqflite: ^2.2.6
   # webview https://pub.flutter-io.cn/packages/webview_flutter
-  webview_flutter: ^3.0.4 # flutter_echarts ^2.4.0 requires webview_flutter ^3.0.4.
+  webview_flutter: ^4.0.7
   # url打开工具 https://pub.flutter-io.cn/packages/url_launcher
-  url_launcher: ^6.1.7
+  url_launcher: ^6.1.10
   # 处理键盘事件 https://pub.flutter-io.cn/packages/keyboard_actions
-  keyboard_actions: ^4.1.0
+  keyboard_actions: ^4.2.0
   # 时间格式转换 https://pub.flutter-io.cn/packages/date_format
   date_format: ^2.0.7
   # 图片缓存 https://pub.flutter-io.cn/packages/cached_network_image
@@ -70,25 +70,25 @@ dependencies:
   # 手机权限 https://pub.flutter-io.cn/packages/permission_handler
   permission_handler: ^10.2.0
   # 图片视频选择器(微信UI) https://pub.flutter-io.cn/packages/wechat_assets_picker
-  wechat_assets_picker: ^8.3.0
+  wechat_assets_picker: 8.4.0
   # 拍照与录像(微信UI) https://pub.flutter-io.cn/packages/wechat_camera_picker
-  wechat_camera_picker: ^3.6.5
+  wechat_camera_picker: ^3.7.0
   # 获取安卓iOS设备信息 https://pub.flutter-io.cn/packages/device_info_plus
-  device_info_plus: ^8.0.0
+  device_info_plus: ^8.1.0
   # 获取版本信息 https://pub.flutter-io.cn/packages/package_info_plus
-  package_info_plus: ^3.0.2
+  package_info_plus: ^3.0.3
   # 图片库 https://pub.flutter-io.cn/packages/cupertino_icons
   cupertino_icons: ^1.0.5
   # toast https://pub.flutter-io.cn/packages/jhtoast
   jhtoast: ^1.2.0
   # 加载框 https://pub.flutter-io.cn/packages/bot_toast
-  bot_toast: 4.0.3
+  bot_toast: ^4.0.3
   # 弹框 https://pub.flutter-io.cn/packages/fluttertoast
-  fluttertoast: ^8.1.2
+  fluttertoast: ^8.2.1
   # 底部弹出 日期选择器 单列多列  https://pub.flutter-io.cn/packages/flutter_picker
-  flutter_picker: ^2.0.5
+  flutter_picker: ^2.1.0
   # 下拉刷新(flutter_easyrefresh 3.0版本) https://pub.flutter-io.cn/packages/easy_refresh
-  easy_refresh: ^3.2.0
+  easy_refresh: ^3.3.1
   # 加载动画 https://pub.flutter-io.cn/packages/flutter_spinkit
   flutter_spinkit: ^5.1.0
   # 骨架屏 https://pub.flutter-io.cn/packages/shimmer
@@ -100,13 +100,13 @@ dependencies:
   # 列表悬浮头 https://pub.flutter-io.cn/packages/sticky_headers
   sticky_headers: ^0.3.0+2
   # 进度条 https://pub.flutter-io.cn/packages/percent_indicator
-  percent_indicator: ^4.2.2
+  percent_indicator: ^4.2.3
   # 侧滑删除 https://pub.flutter-io.cn/packages/flutter_slidable
   flutter_slidable: ^2.0.0
   # 小红点 https://pub.flutter-io.cn/packages/badges
-  badges: ^2.0.3
+  badges: ^3.0.3
   # 图表（EChart Flutter版） https://pub.flutter-io.cn/packages/graphic
-  graphic: ^1.0.1
+  graphic: ^1.1.0
   # EChart 图表（缩放手势冲突，不稳定） https://pub.flutter-io.cn/packages/flutter_echarts
   flutter_echarts: ^2.4.0
   # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter
@@ -118,7 +118,7 @@ dependencies:
   # 二维码扫描(跳页面) https://pub.flutter-io.cn/packages/qr_code_scanner
   qr_code_scanner: ^1.0.1
   # 二维码扫描 https://pub.flutter-io.cn/packages/barcode_scan2
-  barcode_scan2: ^4.2.2
+  barcode_scan2: ^4.2.4
   # 轮播 https://pub.flutter-io.cn/packages/flutter_swiper
   #  flutter_swiper: ^1.1.6
   # Flutter 轮播图 https://pub.flutter-io.cn/packages/flutter_swiper_null_safety_flutter3
@@ -130,7 +130,7 @@ dependencies:
   # 汉字转拼音 https://pub.flutter-io.cn/packages/lpinyin
   lpinyin: ^2.0.3
   # 拖拽排序 https://pub.flutter-io.cn/packages/reorderables
-  reorderables: ^0.5.1
+  reorderables: ^0.6.0
   # 动画 https://pub.flutter-io.cn/packages/animate_do
   animate_do: ^3.0.2
 
@@ -155,7 +155,13 @@ dependency_overrides:
   # 如果引用了GitHub的库，要确保能访问GitHub
 
   # wechat_camera_picker引用，有警告
-  camera: ^0.10.0+1
+  camera: 0.10.3+2
+
+  # fix flutter_echarts ^2.4.0 requires webview_flutter ^3.0.4.
+  flutter_echarts:
+    git:
+      url: https://github.com/sirkalmi/flutter_echarts.git
+      ref: c65629
 
 dev_dependencies:
   flutter_test:

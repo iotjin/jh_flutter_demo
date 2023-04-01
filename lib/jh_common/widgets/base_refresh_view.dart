@@ -44,6 +44,7 @@ class BaseRefreshView extends StatefulWidget {
     this.onLoad,
     this.firstRefresh = false,
     this.header,
+    this.padding = const EdgeInsets.all(0),
     this.footer,
     this.refreshType = RefreshType.classic,
     this.emptyText = '暂无数据',
@@ -64,6 +65,7 @@ class BaseRefreshView extends StatefulWidget {
   final FutureOr Function()? onLoad; // 加载回调(null为不开启上拉加载)
   final bool firstRefresh; // 首次刷新
   final Header? header; // 不传使用默认header，优先级高于refreshType
+  final EdgeInsetsGeometry? padding;
   final Footer? footer; // 不传使用默认footer，优先级高于refreshType
   final RefreshType refreshType; // 默认刷新样式(easy_refresh的header、footer样式)
   final String emptyText; // 空视图文字
@@ -149,6 +151,8 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
         return widget.child;
       }
       return ListView.separated(
+        // 取消footer和cell之间的空白
+        padding: widget.padding,
         shrinkWrap: hasHeaderOrFooter,
         physics: hasHeaderOrFooter ? const NeverScrollableScrollPhysics() : null,
         itemCount: widget.data.length,
@@ -221,7 +225,7 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
           spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
         );
       case RefreshType.cupertino:
-        return const CupertinoFooter();
+        return const CupertinoFooter(position: IndicatorPosition.locator);
       case RefreshType.delivery:
         return const DeliveryFooter();
       default:
