@@ -214,7 +214,16 @@ class _WxMinePageState extends State<WxMinePage> {
   }
 
   void _showUpdateDialog() {
-    showDialog<void>(context: context, barrierDismissible: false, builder: (_) => const UpdateDialog());
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const UpdateDialog(
+        titleText: '新版本更新',
+        contentList: ['1、又双叒修复了一大堆bug。', '2、祭天了多名程序猿。'],
+        cancelText: '残忍拒绝',
+        confirmText: '立即更新',
+      ),
+    );
   }
 
   // 头部

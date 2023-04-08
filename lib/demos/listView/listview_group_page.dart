@@ -28,7 +28,7 @@ class _ListViewGroupPageState extends State<ListViewGroupPage> {
       groupDict['groupTitle'] = 'groupTitle_$i';
       groupDict['num'] = '$i';
       var tempArr = [];
-      int length = JhCommonUtils.getRandom(2, 5).toInt();
+      int length = JhCommonUtils.getRandomInt(2, 5);
       for (int j = 0; j < length; j++) {
         var tempDict = {};
         tempDict['title'] = 'group$i' '_title$j';

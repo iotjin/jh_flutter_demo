@@ -107,6 +107,7 @@ import 'other/qr_code_test.dart';
 import 'other/aes_test_page.dart';
 import 'other/sideslip_test_page.dart';
 import 'other/city_select_list_page.dart';
+import 'other/permission_test.dart';
 import 'other/device_info_test.dart';
 
 // 动画
@@ -263,6 +264,7 @@ class DemosRouter implements IRouterProvider {
     router.define('QRCodeTest', handler: Handler(handlerFunc: (_, __) => const QRCodeTest()));
     router.define('SideslipTestPage', handler: Handler(handlerFunc: (_, __) => const SideslipTestPage()));
     router.define('CitySelectListPage', handler: Handler(handlerFunc: (_, __) => const CitySelectListPage()));
+    router.define('PermissionTestPage', handler: Handler(handlerFunc: (_, __) => const PermissionTestPage()));
     router.define('DeviceInfoTest', handler: Handler(handlerFunc: (_, __) => const DeviceInfoTest()));
     // 动画
     router.define('AnimationDemoListPage', handler: Handler(handlerFunc: (_, __) => const AnimationDemoListPage()));

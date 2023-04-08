@@ -11,13 +11,20 @@ import 'package:url_launcher/url_launcher.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 
 class JhCommonUtils {
-  /// 获取随机数
-  static double getRandom(int min, int max) {
-    if (max > min) {
-      return min + Random.secure().nextInt(max - min) + 0.0;
-    } else {
-      return max + Random.secure().nextInt(min - max) + 0.0;
-    }
+  /// 获取随机整数（默认包含最大最小值）
+  static int getRandomInt(int min, int max, {bool inclusiveMin = true, bool inclusiveMax = true}) {
+    assert(min <= max, 'Min must be less than or equal to Max，Invalid arguments: min=$min, max=$max');
+    int minVal = inclusiveMin ? min : min + 1;
+    int maxVal = inclusiveMax ? max : max - 1;
+    return minVal + Random.secure().nextInt(maxVal - minVal + 1);
+  }
+
+  /// 获取随机小数（默认包含最大最小值）
+  static double getRandomDouble(double min, double max, {bool inclusiveMin = true, bool inclusiveMax = true}) {
+    assert(min <= max, 'Min must be less than or equal to Max，Invalid arguments: min=$min, max=$max');
+    double minVal = inclusiveMin ? min : min + 0.0000000001;
+    double maxVal = inclusiveMax ? max : max - 0.0000000001;
+    return minVal + Random.secure().nextDouble() * (maxVal - minVal);
   }
 
   /// 打开链接
@@ -37,18 +44,6 @@ class JhCommonUtils {
       await launchUrl(uri);
     } else {
       JhProgressHUD.showText('拨号失败！');
-    }
-  }
-
-  /// 跳转AppStore
-  static Future<void> jumpAppStore({String? url}) async {
-    // 这是微信的地址，到时候换成自己的应用的地址
-    final tempURL = url ?? 'itms-apps://itunes.apple.com/cn/app/id414478124?mt=8';
-    final Uri uri = Uri.parse(tempURL);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      JhProgressHUD.showText('跳转失败！');
     }
   }
 

@@ -4,11 +4,11 @@
 ///  description: 基于微信UI的图片/视频选择器(支持拍照及录制视频) 封装wechat_assets_picker、wechat_camera_picker
 
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 import '/jh_common/utils/jh_device_utils.dart';
+import '/jh_common/utils/jh_permission_utils.dart';
 import '/jh_common/widgets/jh_bottom_sheet.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/project/configs/colors.dart';
@@ -188,9 +188,8 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
       return;
     }
     // 相册权限
-    final PermissionState ps = await PhotoManager.requestPermissionExtend();
-    if (ps != PermissionState.authorized && ps != PermissionState.limited) {
-      JhProgressHUD.showText('暂无相册权限,请前往设置开启权限');
+    bool isGrantedPhotos = await JhPermissionUtils.photos();
+    if (!isGrantedPhotos) {
       return;
     }
 
@@ -227,25 +226,22 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
       return;
     }
     // 相机权限
-    var isGrantedCamera = await Permission.camera.request().isGranted;
+    bool isGrantedCamera = await JhPermissionUtils.camera();
     if (!isGrantedCamera) {
-      JhProgressHUD.showText('暂无相机权限,请前往设置开启权限');
       return;
     }
 
     if (widget.assetType != AssetType.image) {
       // 麦克风权限
-      var isGrantedMicrophone = await Permission.microphone.request().isGranted;
+      bool isGrantedMicrophone = await JhPermissionUtils.microphone();
       if (!isGrantedMicrophone) {
-        JhProgressHUD.showText('暂无麦克风权限,请前往设置开启权限');
         return;
       }
     }
 
     // 相册权限
-    final PermissionState ps = await PhotoManager.requestPermissionExtend();
-    if (ps != PermissionState.authorized && ps != PermissionState.limited) {
-      JhProgressHUD.showText('暂无相册权限,请前往设置开启权限');
+    bool isGrantedPhotos = await JhPermissionUtils.photos();
+    if (!isGrantedPhotos) {
       return;
     }
 

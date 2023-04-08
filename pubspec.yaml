@@ -133,6 +133,12 @@ dependencies:
   reorderables: ^0.6.0
   # 动画 https://pub.flutter-io.cn/packages/animate_do
   animate_do: ^3.0.2
+  # 打开文件 https://pub.flutter-io.cn/packages/open_filex
+  open_filex: ^4.3.2
+  # 打开文件 https://pub.flutter-io.cn/packages/open_file_plus
+  #  open_file_plus: 3.3.0
+  # 后台文件下载 https://pub.flutter-io.cn/packages/flutter_downloader
+  #  flutter_downloader: ^1.10.2
 
 
   # ----- 废弃 -----

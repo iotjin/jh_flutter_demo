@@ -27,6 +27,7 @@ final List titleData = [
   '列表侧滑',
   '城市选择列表',
   '拖拽排序',
+  '权限检查和请求',
   '设备信息'
 ];
 final List routeData = [
@@ -52,6 +53,7 @@ final List routeData = [
   'SideslipTestPage',
   'CitySelectListPage',
   'DragSortDemoListPage',
+  'PermissionTestPage',
   'DeviceInfoTest',
 ];
 

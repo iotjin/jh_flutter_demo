@@ -42,6 +42,9 @@ flutter create .
 ```
 - 4、编译
 ```
+// 编译时自动修改base标签
+flutter build web --web-renderer html --base-href=/jh_flutter_demo/
+
 // 打开速度一般,兼容性好
 flutter build web
 flutter build web --release

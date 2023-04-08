@@ -38,13 +38,13 @@ class _ListViewGroupPage2State extends State<ListViewGroupPage2> with SingleTick
     for (int i = 0; i < 30; i++) {
       var groupDict = {};
       groupDict['groupTitle'] = 'groupTitle_$i';
-      groupDict['num'] = JhCommonUtils.getRandom(50, 100).toInt().toString();
+      groupDict['num'] = JhCommonUtils.getRandomInt(50, 100).toString();
       var tempArr = [];
-      int length = JhCommonUtils.getRandom(2, 5).toInt();
+      int length = JhCommonUtils.getRandomInt(2, 5);
       for (int j = 0; j < length; j++) {
         var tempDict = {};
         tempDict['title'] = 'group$i' '_title$j';
-        tempDict['num'] = JhCommonUtils.getRandom(1, 50).toInt().toString();
+        tempDict['num'] = JhCommonUtils.getRandomInt(1, 50).toString();
         tempDict['phone'] = '$j$j$j' 'xxxxxxx';
         tempDict['content'] = 'content{$j}-content{$j}-content{$j}-content{$j}-content{$j}-content{$j}';
         tempDict['imageUrl'] = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';

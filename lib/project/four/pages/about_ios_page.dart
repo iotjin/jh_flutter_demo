@@ -9,6 +9,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
 import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_device_utils.dart';
+import '/jh_common/utils/jh_version_utils.dart';
 import '/jh_common/widgets/jh_photo_browser.dart';
 import '/project/configs/project_config.dart';
 
@@ -33,15 +34,17 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
   }
 
   void _getInfo() async {
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    print(iosInfo.toString());
-    print('name ${iosInfo.name}');
-    print('Running on ${iosInfo.utsname.machine}');
-    print('Running on ${iosInfo.utsname.sysname}');
-    print('Running on ${iosInfo.utsname.nodename}');
-    print('Running on ${iosInfo.utsname.release}');
-    print('Running on ${iosInfo.utsname.version}');
+    if (JhDeviceUtils.isIOS) {
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      print(iosInfo.toString());
+      print('name ${iosInfo.name}');
+      print('Running on ${iosInfo.utsname.machine}');
+      print('Running on ${iosInfo.utsname.sysname}');
+      print('Running on ${iosInfo.utsname.nodename}');
+      print('Running on ${iosInfo.utsname.release}');
+      print('Running on ${iosInfo.utsname.version}');
+    }
 
     print('---------------------------------------');
 
@@ -107,7 +110,7 @@ class _AboutIOSPageState extends State<AboutIOSPage> {
                 textStyle: const TextStyle(color: Colors.red),
                 clickCallBack: () {
                   if (_isNeedUpdate == true) {
-                    JhCommonUtils.jumpAppStore();
+                    JhVersionUtils.jumpAppStore();
                   }
                 },
               ),

@@ -3,12 +3,12 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import '/jh_common/jh_form/jh_form.dart';
 import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_device_utils.dart';
+import '/jh_common/utils/jh_version_utils.dart';
 import '/jh_common/widgets/jh_photo_browser.dart';
+import '/jh_common/widgets/update_dialog.dart';
 import '/project/configs/project_config.dart';
 
 class AboutPage extends StatefulWidget {
@@ -57,11 +57,27 @@ class _AboutPageState extends State<AboutPage> {
   Timer? _countdownTimer;
 
   var _currentVersion = '';
+  var _info = '';
+  var _isNeedUpdate = false;
+  var _androidData = {};
 
   @override
   void initState() {
     super.initState();
 
+    _initTimer();
+    _getCurrentVersion();
+    _checkUpdate();
+  }
+
+  @override
+  void dispose() {
+    _countdownTimer?.cancel();
+    _countdownTimer = null;
+    super.dispose();
+  }
+
+  _initTimer() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 2s定时器
       _countdownTimer = Timer.periodic(const Duration(seconds: 2), (timer) {
@@ -72,49 +88,40 @@ class _AboutPageState extends State<AboutPage> {
         setState(() {});
       });
     });
-
-    _getInfo(); // 获取设备信息
   }
 
-  void _getInfo() async {
-    if (JhDeviceUtils.isIOS) {
-      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      print(iosInfo.toString());
-      print('name ${iosInfo.name}');
-      print('Running on ${iosInfo.utsname.machine}');
-      print('Running on ${iosInfo.utsname.sysname}');
-      print('Running on ${iosInfo.utsname.nodename}');
-      print('Running on ${iosInfo.utsname.release}');
-      print('Running on ${iosInfo.utsname.version}');
-    }
-
-    print('---------------------------------------');
-
-    PackageInfo packageInfo = await JhDeviceUtils.getPackageInfo();
-
-    String appName = packageInfo.appName;
-    String packageName = packageInfo.packageName;
-    String version = packageInfo.version;
-    String buildNumber = packageInfo.buildNumber;
-
-    print('appName $appName');
-    print('packageName $packageName');
-    print('version $version');
-    print('buildNumber $buildNumber');
-
+  _getCurrentVersion() async {
+    String version = await JhDeviceUtils.version();
     setState(() {
       _currentVersion = version;
     });
-
-//   print('$appName=$packageName=$version=$buildNumber');
   }
 
-  @override
-  void dispose() {
-    _countdownTimer?.cancel();
-    _countdownTimer = null;
-    super.dispose();
+  _checkUpdate() async {
+    if (JhDeviceUtils.isIOS) {
+      setState(() {
+        _isNeedUpdate = true;
+        _info = '有新版本,去更新';
+      });
+    }
+    if (JhDeviceUtils.isAndroid) {
+      JhVersionUtils.androidCheckUpdate().then((data) {
+        print('安卓检查更新: $data');
+        if (data['hasNewVersion'] == true) {
+          setState(() {
+            _androidData = data;
+            _isNeedUpdate = true;
+            _info = '有新版本,去更新';
+          });
+        } else {
+          setState(() {
+            _androidData = {};
+            _isNeedUpdate = false;
+            _info = '已是最新版本';
+          });
+        }
+      });
+    }
   }
 
   @override
@@ -159,7 +166,9 @@ class _AboutPageState extends State<AboutPage> {
               ),
               JhSetCell(
                 title: '检查更新',
-                clickCallBack: () => JhCommonUtils.jumpAppStore,
+                text: _info,
+                textStyle: const TextStyle(color: Colors.red),
+                clickCallBack: () => _clickUpdate(),
               ),
             ],
           ),
@@ -179,5 +188,43 @@ class _AboutPageState extends State<AboutPage> {
   _showPicture() {
     var imgData = ['assets/images/PayCode.jpg'];
     JhPhotoBrowser.show(context, data: imgData, index: 0, isHiddenClose: true);
+  }
+
+  _clickUpdate() {
+    if (_isNeedUpdate == true) {
+      _showUpdateDialog();
+    }
+  }
+
+  void _showUpdateDialog() {
+    if (JhDeviceUtils.isAndroid) {
+      var url = _androidData['url'];
+      var version = _androidData['tagName'];
+      if (url != null && version != null) {
+        showDialog<void>(
+          context: context,
+          barrierDismissible: false,
+          builder: (_) => UpdateDialog(
+            androidAPKURL: url,
+            androidVersion: version,
+            titleText: '发现新版本',
+            contentList: const ['1、更新 Flutter SDK和依赖库', '2、项目优化、更新组件和工具类'],
+            cancelText: '稍后更新',
+            confirmText: '立即更新',
+          ),
+        );
+      }
+    } else {
+      showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const UpdateDialog(
+          titleText: '发现新版本',
+          contentList: ['1、更新 Flutter SDK和依赖库', '2、项目优化、更新组件和工具类'],
+          cancelText: '稍后更新',
+          confirmText: '立即更新',
+        ),
+      );
+    }
   }
 }

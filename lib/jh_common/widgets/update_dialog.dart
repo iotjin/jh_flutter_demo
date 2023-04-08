@@ -1,19 +1,42 @@
 ///  update_dialog.dart
 ///
 ///  Created by iotjin on 2020/07/28.
-///  description:  APP更新弹框
+///  description: APP更新弹框（点确认安卓下载apk，iOS跳转appstore）
+
+// ignore_for_file: unused_import
 
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flustars_flutter3/flustars_flutter3.dart';
-import 'package:flutter/foundation.dart';
-import '/jh_common/utils/jh_common_utils.dart';
+import '/jh_common/utils/jh_device_utils.dart';
+import '/jh_common/utils/jh_permission_utils.dart';
 import '/jh_common/utils/jh_theme_utils.dart';
-import '/project/routes/jh_nav_utils.dart';
+import '/jh_common/utils/jh_version_utils.dart';
+import '/project/configs/project_config.dart';
+import 'jh_scrollview.dart';
+
+const double _dialogWidth = 280.0;
+const double _dialogRadius = 8.0;
 
 class UpdateDialog extends StatefulWidget {
-  const UpdateDialog({Key? key}) : super(key: key);
+  const UpdateDialog({
+    Key? key,
+    this.androidAPKURL = '',
+    this.androidVersion = '',
+    this.titleText = '发现新版本', // 新版本更新、新版本上线了
+    this.contentList = const ['1、功能优化、性能优化', '2、修复一些已知问题'],
+    this.cancelText = '稍后更新', // 稍后再说、暂不升级、下次再说、残忍拒绝
+    this.confirmText = '立即更新', // 立即升级
+  }) : super(key: key);
+
+  final String androidAPKURL; // 传值代表需要更新，为空点击确认隐藏弹框
+  final String androidVersion;
+
+  final String titleText;
+  final List<String> contentList;
+  final String cancelText;
+  final String confirmText;
 
   @override
   State<UpdateDialog> createState() => _UpdateDialogState();
@@ -21,7 +44,7 @@ class UpdateDialog extends StatefulWidget {
 
 class _UpdateDialogState extends State<UpdateDialog> {
   final CancelToken _cancelToken = CancelToken();
-  final bool _isDownload = false;
+  late bool _isDownload = false;
   double _value = 0;
 
   @override
@@ -34,6 +57,10 @@ class _UpdateDialogState extends State<UpdateDialog> {
 
   @override
   Widget build(BuildContext context) {
+    return _body();
+  }
+
+  _body() {
     final Color primaryColor = Theme.of(context).primaryColor;
     return WillPopScope(
       onWillPop: () async {
@@ -41,149 +68,183 @@ class _UpdateDialogState extends State<UpdateDialog> {
         return true;
       },
       child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.transparent,
-          body: Center(
-            child: Container(
-                decoration: BoxDecoration(
-                  color: JhThemeUtils.getDialogBackgroundColor(context),
-                  borderRadius: BorderRadius.circular(8.0),
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: JhThemeUtils.getDialogBackgroundColor(context),
+              borderRadius: BorderRadius.circular(_dialogRadius),
+            ),
+            width: _dialogWidth,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Container(
+                  height: 120.0,
+                  width: _dialogWidth,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(_dialogRadius), topRight: Radius.circular(_dialogRadius)),
+                    image: DecorationImage(image: AssetImage('assets/images/update_head.jpg'), fit: BoxFit.cover),
+                  ),
                 ),
-                width: 280.0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      height: 120.0,
-                      width: 280.0,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/update_head.jpg'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10.0, bottom: 10.0),
+                  child: Text(widget.titleText, style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                ),
+                Container(
+                  width: _dialogWidth,
+                  constraints: const BoxConstraints(minHeight: 50, maxHeight: 100),
+                  child: Scrollbar(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: widget.contentList.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+                          child: Text(widget.contentList[index]),
+                        );
+                      },
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 16.0),
-                      child: Text('新版本更新', style: TextStyle(fontSize: 16.0)),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-                      child: Text('1.又双叒修复了一大堆bug。\n\n2.祭天了多名程序猿。'),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0, top: 5.0),
-                      child: _isDownload
-                          ? LinearProgressIndicator(
-                              backgroundColor: const Color(0xFFEEEEEE),
-                              valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
-                              value: _value,
-                            )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                TextButton(
-                                  onPressed: () => JhNavUtils.goBack(context),
-                                  style: ButtonStyle(
-                                    // 设置按钮大小
-                                    fixedSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
-                                    minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
-                                    // 背景色
-                                    backgroundColor: MaterialStateProperty.resolveWith(
-                                      (states) {
-                                        if (states.contains(MaterialState.disabled)) {
-                                          // disabled状态颜色
-                                          return const Color(0xFFcccccc);
-                                        }
-                                        // 默认状态颜色
-                                        return Colors.transparent;
-                                      },
-                                    ),
-                                    // 文字颜色
-                                    foregroundColor: MaterialStateProperty.resolveWith(
-                                      (states) {
-                                        if (states.contains(MaterialState.disabled)) {
-                                          // disabled状态颜色
-                                          return Colors.white;
-                                        }
-                                        // 默认状态颜色
-                                        return primaryColor;
-                                      },
-                                    ),
-                                    // 边框
-                                    side: MaterialStateProperty.all(
-                                      BorderSide(color: primaryColor, width: 0.8),
-                                    ),
-                                    // 圆角
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
-                                    ),
-                                  ),
-                                  child: const Text('残忍拒绝', style: TextStyle(fontSize: 16.0)),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    if (defaultTargetPlatform == TargetPlatform.iOS) {
-                                      JhNavUtils.goBack(context);
-                                      JhCommonUtils.jumpAppStore();
-                                    } else {
-//                                        setState(() {
-//                                          _isDownload = true;
-//                                        });
-//                                        _download();
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 15.0, left: 15.0, right: 15.0, top: 5.0),
+                  child: _isDownload
+                      ? LinearProgressIndicator(
+                          backgroundColor: const Color(0xFFEEEEEE),
+                          valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                          value: _value,
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            TextButton(
+                              onPressed: () => JhNavUtils.goBack(context),
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                                // 设置按钮大小
+                                fixedSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
+                                minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
+                                // 背景色
+                                backgroundColor: MaterialStateProperty.resolveWith(
+                                  (states) {
+                                    if (states.contains(MaterialState.disabled)) {
+                                      // disabled状态颜色
+                                      return const Color(0xFFcccccc);
                                     }
+                                    // 默认状态颜色
+                                    return Colors.transparent;
                                   },
-                                  style: ButtonStyle(
-                                    // 设置按钮大小
-                                    fixedSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
-                                    minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
-                                    // 背景色
-                                    backgroundColor: MaterialStateProperty.resolveWith(
-                                      (states) {
-                                        if (states.contains(MaterialState.disabled)) {
-                                          // disabled状态颜色
-                                          return const Color(0xFFcccccc);
-                                        }
-                                        // 默认状态颜色
-                                        return primaryColor;
-                                      },
-                                    ),
-                                    // 文字颜色
-                                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                                    // 边框
-                                    side: MaterialStateProperty.all(
-                                      BorderSide(color: primaryColor, width: 0.8),
-                                    ),
-                                    // 圆角
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
-                                    ),
-                                  ),
-                                  child: const Text('立即更新', style: TextStyle(fontSize: 16.0)),
                                 ),
-                              ],
+                                // 文字颜色
+                                foregroundColor: MaterialStateProperty.resolveWith(
+                                  (states) {
+                                    if (states.contains(MaterialState.disabled)) {
+                                      // disabled状态颜色
+                                      return Colors.white;
+                                    }
+                                    // 默认状态颜色
+                                    return primaryColor;
+                                  },
+                                ),
+                                // 边框
+                                side: MaterialStateProperty.all(BorderSide(color: primaryColor, width: 0.8)),
+                                // 圆角
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                                ),
+                              ),
+                              child: Text(widget.cancelText, style: const TextStyle(fontSize: 16.0)),
                             ),
-                    )
-                  ],
-                )),
-          )),
+                            TextButton(
+                              onPressed: () => _onClickUpdate(),
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                                // 设置按钮大小
+                                fixedSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
+                                minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
+                                // 背景色
+                                backgroundColor: MaterialStateProperty.resolveWith(
+                                  (states) {
+                                    if (states.contains(MaterialState.disabled)) {
+                                      // disabled状态颜色
+                                      return const Color(0xFFcccccc);
+                                    }
+                                    // 默认状态颜色
+                                    return primaryColor;
+                                  },
+                                ),
+                                // 文字颜色
+                                foregroundColor: MaterialStateProperty.all(Colors.white),
+                                // 边框
+                                side: MaterialStateProperty.all(BorderSide(color: primaryColor, width: 0.8)),
+                                // 圆角
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
+                                ),
+                              ),
+                              child: Text(widget.confirmText, style: const TextStyle(fontSize: 16.0)),
+                            ),
+                          ],
+                        ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 
+  _onClickUpdate() {
+    if (JhDeviceUtils.isIOS) {
+      JhNavUtils.goBack(context);
+      JhVersionUtils.jumpAppStore();
+    } else if (JhDeviceUtils.isAndroid) {
+      if (widget.androidAPKURL.isNotEmpty && widget.androidVersion.isNotEmpty) {
+        setState(() {
+          _isDownload = true;
+        });
+        _requestPermission();
+      } else {
+        JhNavUtils.goBack(context);
+      }
+    } else {
+      JhNavUtils.goBack(context);
+    }
+  }
+
+  Future<void> _requestPermission() async {
+    // bool isGrantedStorage = await JhPermissionUtils.storage();
+    // if (!isGrantedStorage) {
+    //   return;
+    // }
+    _downloadAPK(widget.androidAPKURL, widget.androidVersion);
+  }
+
   /// 下载apk
-  Future<void> _download() async {
+  Future<void> _downloadAPK(
+    String downURL,
+    String version, {
+    fileName = 'jh_flutter_demo',
+    category = 'Download',
+    format = 'apk',
+  }) async {
     try {
       setInitDir(initStorageDir: true);
       await DirectoryUtil.getInstance();
       DirectoryUtil.createStorageDirSync(category: 'Download');
-      String? path = DirectoryUtil.getStoragePath(fileName: 'deer', category: 'Download', format: 'apk');
-      File file = File(path!);
+      String path = DirectoryUtil.getStoragePath(fileName: fileName, category: category, format: format).jhNullSafe;
+      // final String path = DirectoryUtil.getStoragePath(fileName: 'jh_flutter_demo_$version', category: 'Download', format: 'apk').jhNullSafe;
+      final File file = File(path);
 
-      /// 链接可能会失效
+      /// 下载apk
       await Dio().download(
-        'https://54a0bf2343ff38bdc347780545bd8c9e.dd.cdntips.com/imtt.dd.qq.com/16891/apk/E664A57DD3EA0540676EFC830BFDDE97.apk',
+        downURL,
         file.path,
         cancelToken: _cancelToken,
         onReceiveProgress: (int count, int total) {
@@ -191,17 +252,18 @@ class _UpdateDialogState extends State<UpdateDialog> {
             _value = count / total;
             setState(() {});
             if (count == total) {
+              debugPrint('下载完成，apk路径: $path');
               JhNavUtils.goBack(context);
-//              VersionUtils.install(path);
+              JhVersionUtils.openAPK(path);
             }
           }
         },
       );
     } catch (e) {
-//      Toast.show('下载失败!');
-//      setState(() {
-//        _isDownload = false;
-//      });
+      JhProgressHUD.showText('下载失败!');
+      setState(() {
+        _isDownload = false;
+      });
     }
   }
 }
