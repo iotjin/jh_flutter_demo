@@ -106,7 +106,7 @@ dependencies:
   # 小红点 https://pub.flutter-io.cn/packages/badges
   badges: ^3.0.3
   # 图表（EChart Flutter版） https://pub.flutter-io.cn/packages/graphic
-  graphic: ^1.1.0
+  graphic: ^2.0.3
   # EChart 图表（缩放手势冲突，不稳定） https://pub.flutter-io.cn/packages/flutter_echarts
   flutter_echarts: ^2.4.0
   # 图表 （没有图例） https://pub.flutter-io.cn/packages/charts_flutter
