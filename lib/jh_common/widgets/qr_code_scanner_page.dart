@@ -6,6 +6,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/project/configs/colors.dart';
 import '/project/routes/jh_nav_utils.dart';
@@ -140,6 +141,11 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
   }
 
   void _onQRViewCreated(QRViewController controller) {
+    // https://github.com/juliuscanute/qr_code_scanner/issues/550
+    if (JhDeviceUtils.isAndroid) {
+      controller.pauseCamera();
+      controller.resumeCamera();
+    }
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       /// 避免扫描结果多次回调
