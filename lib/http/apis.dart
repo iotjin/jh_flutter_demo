@@ -21,4 +21,7 @@ class APIs {
 
   /// 获取固定数据
   static const String getSimpleArrDic = '/getSimpleArrDic';
+
+  /// 微信朋友圈
+  static const String getFriendsCircleList = '/mock/wx/friendsCircle';
 }

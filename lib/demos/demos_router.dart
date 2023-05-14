@@ -142,6 +142,12 @@ import 'topTabBar/top_tabbar_demo_list_page.dart';
 import 'topTabBar/top_tabbar_test1_page.dart';
 import 'topTabBar/top_tabbar_test2_page.dart';
 import 'topTabBar/top_tabbar_test3_page.dart';
+import 'topTabBar/top_tabbar_test4_page.dart';
+import 'topTabBar/personal_center_page1.dart';
+import 'topTabBar/personal_center_page2.dart';
+import 'topTabBar/personal_center_page3.dart';
+import 'topTabBar/personal_center_page4.dart';
+import 'topTabBar/personal_center_page5.dart';
 
 import 'ui/ui_demo_list_page.dart';
 import 'ui/ui_page.dart';
@@ -299,6 +305,13 @@ class DemosRouter implements IRouterProvider {
     router.define('TopTabBarTest1Page', handler: Handler(handlerFunc: (_, __) => const TopTabBarTest1Page()));
     router.define('TopTabBarTest2Page', handler: Handler(handlerFunc: (_, __) => const TopTabBarTest2Page()));
     router.define('TopTabBarTest3Page', handler: Handler(handlerFunc: (_, __) => const TopTabBarTest3Page()));
+    router.define('TopTabBarTest4Page', handler: Handler(handlerFunc: (_, __) => const TopTabBarTest4Page()));
+    router.define('PersonalCenterPage1', handler: Handler(handlerFunc: (_, __) => const PersonalCenterPage1()));
+    router.define('PersonalCenterPage2', handler: Handler(handlerFunc: (_, __) => const PersonalCenterPage2()));
+    router.define('PersonalCenterPage3', handler: Handler(handlerFunc: (_, __) => const PersonalCenterPage3()));
+    router.define('PersonalCenterPage4', handler: Handler(handlerFunc: (_, __) => const PersonalCenterPage4()));
+    router.define('PersonalCenterPage5', handler: Handler(handlerFunc: (_, __) => const PersonalCenterPage5()));
+
     // ui
     router.define('UIDemoListPage', handler: Handler(handlerFunc: (_, __) => const UIDemoListPage()));
     router.define('UIPage', handler: Handler(handlerFunc: (_, __) => const UIPage()));

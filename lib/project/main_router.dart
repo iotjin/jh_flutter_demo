@@ -44,6 +44,7 @@ import 'two/pages/wx_group_chat_page.dart';
 // 发现
 import 'three/pages/wx_discover_page.dart';
 import 'three/pages/wx_friends_circle_page.dart';
+import 'three/pages/wx_friends_circle_page2.dart';
 
 // 我的
 import 'four/pages/wx_mine_page.dart';
@@ -115,6 +116,7 @@ class MainRouter implements IRouterProvider {
 
     router.define('WxDiscoverPage', handler: Handler(handlerFunc: (_, __) => const WxDiscoverPage()));
     router.define('WxFriendsCirclePage', handler: Handler(handlerFunc: (_, __) => const WxFriendsCirclePage()));
+    router.define('WxFriendsCirclePage2', handler: Handler(handlerFunc: (_, __) => const WxFriendsCirclePage2()));
 
     /********************************* 我的 ********************************/
 

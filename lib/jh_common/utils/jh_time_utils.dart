@@ -85,6 +85,29 @@ class JhTimeUtils {
     return dateTimeToTime(DateTime.now(), formats);
   }
 
+  /// 将某个格式时间转化为多久前
+  static String formatTimeAgo(time) {
+    DateTime dateTime = DateTime.parse(_handleTime(time));
+    final now = DateTime.now();
+    final difference = now.difference(dateTime);
+
+    if (difference.inDays >= 365) {
+      return '${(difference.inDays / 365).floor()}年前';
+    } else if (difference.inDays >= 30) {
+      return '${(difference.inDays / 30).floor()}个月前';
+    } else if (difference.inDays >= 7) {
+      return '${(difference.inDays / 7).floor()}周前';
+    } else if (difference.inDays >= 1) {
+      return '${difference.inDays}天前';
+    } else if (difference.inHours >= 1) {
+      return '${difference.inHours}小时前';
+    } else if (difference.inMinutes >= 1) {
+      return '${difference.inMinutes}分钟前';
+    } else {
+      return '刚刚';
+    }
+  }
+
   /// 处理传入的字符串时间
   /// 将2019年2月2日 | 2019年02月02日 10:09:05 | 2019/2/2 |2019/02/02 00:00:00
   /// 转换成 2019-02-02 00:00:00

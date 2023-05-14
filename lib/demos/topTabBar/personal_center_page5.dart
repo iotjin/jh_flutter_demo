@@ -1,29 +1,23 @@
-///  wx_friends_circle_page.dart
-///
-///  Created by iotjin on 2020/09/14.
-///  description: 朋友圈
-
-import 'dart:math';
-import 'package:easy_refresh/easy_refresh.dart';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_time_utils.dart';
-import 'package:jhtoast/jhtoast.dart';
-import '/jh_common/widgets/jh_bottom_sheet.dart';
+import 'package:easy_refresh/easy_refresh.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/widgets/jh_empty_view.dart';
+import '/jh_common/widgets/jh_network_image.dart';
 import '/project/configs/project_config.dart';
-import '/project/two/models/wx_contacts_model.dart';
-import '../models/wx_friends_circle_model.dart';
-import '../widgets/wx_friends_circle_cell.dart';
+import '../http/http_page_test_cell.dart';
+import '../http/http_page_test_model.dart';
 
-class WxFriendsCirclePage extends StatefulWidget {
-  const WxFriendsCirclePage({Key? key}) : super(key: key);
+const _headerHeight = 50.0;
+
+class PersonalCenterPage5 extends StatefulWidget {
+  const PersonalCenterPage5({Key? key}) : super(key: key);
 
   @override
-  State<WxFriendsCirclePage> createState() => _WxFriendsCirclePageState();
+  State<PersonalCenterPage5> createState() => _PersonalCenterPage5State();
 }
 
-class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
+class _PersonalCenterPage5State extends State<PersonalCenterPage5> {
   final ScrollController _scrollController = ScrollController();
 
   // 图片下拉放大
@@ -45,13 +39,17 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
   List _dataArr = [];
   int _pageIndex = 0;
 
+  int _pageType = 0;
+
   // 自定义指示器相关
   final _listenable = IndicatorStateListenable();
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
 
+    _pageType = JhCommonUtils.getRandomInt(0, 1);
     _initAndAddListener();
     _requestData(isShowLoading: true);
   }
@@ -105,7 +103,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
       'limit': _limit,
     };
     var loadingText = isShowLoading == true ? 'Loading...' : null;
-    HttpUtils.get(APIs.getFriendsCircleList, params, loadingText: loadingText, success: (res) {
+    HttpUtils.get(APIs.getPage, params, loadingText: loadingText, success: (res) {
       var tempData = res['data'];
       setState(() {
         if (isLoadMore) {
@@ -156,14 +154,19 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
 
     return Stack(
       children: <Widget>[
-        _mainBody(physics),
-        Positioned(top: 0, left: 0, right: 0, height: _imgAllHeight, child: _header()),
+        _pageType == 0 ? _mainBody(physics) : _mainBody2(physics),
+        Positioned(
+          top: 0,
+          width: JhScreenUtils.screenWidth,
+          height: _imgAllHeight,
+          child: JhNetworkImage(KStrings.headBgImage),
+        ),
         Positioned(
           top: 0,
           left: 0,
           right: 0,
           child: BaseAppBar(
-            '朋友圈',
+            'Title',
             bgColor: navBgColor,
             brightness: _appbarOpacity == 1.0 ? Brightness.light : Brightness.dark,
             rightWidgets: [_customRightItem(iconColor)],
@@ -192,23 +195,86 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
       shrinkWrap: true,
       physics: physics,
       itemBuilder: (context, index) {
-        WxFriendsCircleModel model = WxFriendsCircleModel.fromJson(dataList[index]);
-        model.time = JhTimeUtils.formatTimeAgo(model.time.jhNullSafe);
-        return WxFriendsCircleCell(
-          model: model,
-          onClickCell: (model) => _clickCell(model['name']),
-          onClickHeadPortrait: (model) => _jumpInfo(),
-          onClickComment: (model) => _clickCell('评论'),
+        var model = dataList[index];
+        var image = '${KStrings.avatarImage}?random=$index';
+        return ListTile(
+          leading: JhNetworkImage(image, width: 50, height: 50, borderRadius: 25),
+          title: Text(model['name2']),
+          subtitle: Text(model['dateTime']),
+          trailing: Text(model['city']),
         );
       },
     );
   }
 
+  _mainBody2(physics) {
+    return ListView(
+      padding: EdgeInsets.only(top: _imgNormalHeight),
+      controller: _scrollController,
+      physics: physics,
+      children: [
+        _header(),
+        _listWidget(_dataArr),
+        _footer(),
+      ],
+    );
+  }
+
+  Widget _header() {
+    return Column(
+      children: [
+        Container(
+          alignment: Alignment.center,
+          color: Colors.orange,
+          height: _headerHeight,
+          child: const Text('header', style: TextStyle(color: Colors.white)),
+        )
+      ],
+    );
+  }
+
+  Widget _footer() {
+    return Container(
+      alignment: Alignment.center,
+      color: Colors.orange,
+      height: _headerHeight,
+      child: const Text('footer', style: TextStyle(color: Colors.white)),
+    );
+  }
+
+  Widget _listWidget(List dataArr) {
+    if (dataArr.isEmpty) {
+      return const JhEmptyView();
+    } else {
+      return ListView.separated(
+        padding: const EdgeInsets.all(0),
+        // 加header要加上这两个属性
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        // 加header要加上这两个属性
+        itemCount: dataArr.length,
+        itemBuilder: (context, index) {
+          HttpPageTestModel model = HttpPageTestModel.fromJson(dataArr[index]);
+          return HttPageTestCell(
+            model: model,
+            onClickCell: (model) {
+              debugPrint('点击的index $index');
+              debugPrint('点击的地点${model['place']}');
+            },
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const Divider(height: .5, indent: 15, endIndent: 15, color: Colors.purple);
+        },
+      );
+    }
+  }
+
   _customRightItem(iconColor) {
     var normalItem = Center(
       child: IconButton(
-        icon: Image.asset('assets/wechat/discover/ic_camera.png', width: 22, height: 22, color: iconColor),
-        onPressed: () => _clickNav(),
+        icon: Image.asset('assets/images/ic_more_black.png', width: 22, height: 22, color: iconColor),
+        onPressed: () => JhProgressHUD.showText('点击更多'),
       ),
     );
 
@@ -227,7 +293,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         } else if (mode == IndicatorMode.processing) {
           value = null;
         } else if (mode == IndicatorMode.drag || mode == IndicatorMode.armed) {
-          value = min(offset / actualTriggerOffset, 1) * 0.75;
+          value = math.min(offset / actualTriggerOffset, 1) * 0.75;
         } else if (mode == IndicatorMode.ready || mode == IndicatorMode.processing) {
           value == null;
         } else {
@@ -237,8 +303,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         if (value != null && value < 0.1) {
           indicator = normalItem;
         } else if (value == 1) {
-          indicator = normalItem;
-          // indicator = Icon(Icons.done, color: iconColor);
+          indicator = Icon(Icons.done, color: iconColor);
         } else {
           indicator = RefreshProgressIndicator(value: value);
         }
@@ -265,82 +330,5 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
       },
     );
     return rightItem;
-  }
-
-  // _header
-  Widget _header() {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          // child: Image.network(
-          //   'http://img1.mukewang.com/5c18cf540001ac8206000338.jpg',
-          //   fit: BoxFit.cover,
-          // ),
-          child: Image.asset(
-            'assets/wechat/discover/friends/wx_bg0.jpeg',
-            // 'assets/wechat/discover/friends/wx_bg1.jpg',
-            fit: BoxFit.cover,
-          ),
-        ),
-        Positioned(
-          right: 20,
-          bottom: 0,
-          child: Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                child: const Text(
-                  '小于',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w500),
-                ),
-              ),
-              const SizedBox(width: 20),
-              InkWell(
-                child: Container(
-                  height: 75,
-                  width: 75,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: const DecorationImage(
-                      fit: BoxFit.fitHeight,
-                      image: AssetImage('assets/images/lufei.png'),
-                    ),
-                  ),
-                ),
-                onTap: () => _jumpInfo(),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  // 点击cell
-  _clickCell(text) {
-    JhToast.showText(context, msg: '点击 $text');
-  }
-
-  _clickNav() {
-    JhBottomSheet.showText(context, title: '请选择操作', dataArr: ['拍摄', '从手机相册选择'], clickCallback: (index, text) {});
-  }
-
-  // 跳转个人信息页
-  _jumpInfo() {
-    WxContactsModel model = WxContactsModel();
-    model.id = 123;
-    model.name = '小于';
-    model.namePinyin = '小于';
-    model.phone = '17372826674';
-    model.sex = '0';
-    model.region = '淮北市';
-    model.label = '';
-    model.color = '#c579f2';
-    model.avatarUrl = 'https://gitee.com/iotjh/Picture/raw/master/lufei.png';
-    model.isStar = false;
-
-    JhNavUtils.pushNamed(context, 'WxUserInfoPage', arguments: model.toJson());
   }
 }

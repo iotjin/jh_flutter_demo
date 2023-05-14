@@ -15,7 +15,7 @@ final List titleData = [
   '底部、中间、toast、自定义弹框',
   'JhForm表单',
   'Form',
-  'JhTopTabBar',
+  '十字滑动(个人中心效果)',
   '路由相关',
   '图片选择',
   '功能组件',

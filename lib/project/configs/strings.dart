@@ -23,8 +23,14 @@ class KStrings {
   static String testTitle = 'DemoList';
 
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
 // 使用
 // Future.delayed(Duration(milliseconds: 200), () {
 //   BuildContext context = KStrings.navigatorKey.currentContext!;
 // });
+
+  // static String headBgImage = 'https://picsum.photos/800/200';
+  static String headBgImage = 'https://placekitten.com/800/200';
+  static String headBgImage2 = 'https://picsum.photos/500/500';
+  static String avatarImage = 'https://picsum.photos/300/300'; // 'https://picsum.photos/300/300?random=$index'
 }

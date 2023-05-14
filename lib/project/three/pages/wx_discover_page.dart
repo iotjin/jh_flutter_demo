@@ -32,13 +32,20 @@ Widget _body(context) {
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_social_circle.png',
         title: '朋友圈',
-        hiddenLine: true,
+        // hiddenLine: true,
 //      rightWidget: Image.network('https://gitee.com/iotjh/Picture/raw/master/lufei.png',width: 50,height: 50,),
         rightWidget: Container(
           padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
           child: JhBadge(child: Image.asset('assets/images/lufei.png', width: 30, height: 30, fit: BoxFit.fill)),
         ),
         clickCallBack: () => _clickCell(context, '朋友圈'),
+      ),
+      JhSetCell(
+        cellHeight: _cellH,
+        leftImgPath: 'assets/wechat/discover/ic_social_circle.png',
+        title: '朋友圈-假数据',
+        hiddenLine: true,
+        clickCallBack: () => _clickCell(context, '朋友圈-假数据'),
       ),
       SizedBox(height: _rowSpace),
       JhSetCell(
@@ -118,6 +125,9 @@ Widget _body(context) {
 _clickCell(context, text) {
   if (text == '朋友圈') {
     JhNavUtils.pushNamed(context, 'WxFriendsCirclePage');
+  }
+  if (text == '朋友圈-假数据') {
+    JhNavUtils.pushNamed(context, 'WxFriendsCirclePage2');
   }
 }
 

@@ -87,6 +87,8 @@ dependencies:
   fluttertoast: ^8.2.1
   # 底部弹出 日期选择器 单列多列  https://pub.flutter-io.cn/packages/flutter_picker
   flutter_picker: ^2.1.0
+  # NestedScrollView https://pub.flutter-io.cn/packages/extended_nested_scroll_view
+  extended_nested_scroll_view: ^6.0.0
   # 下拉刷新(flutter_easyrefresh 3.0版本) https://pub.flutter-io.cn/packages/easy_refresh
   easy_refresh: ^3.3.1
   # 加载动画 https://pub.flutter-io.cn/packages/flutter_spinkit
