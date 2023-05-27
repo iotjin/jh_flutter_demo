@@ -6,124 +6,124 @@
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/iotjin/jh_flutter_demo?include_prereleases)](https://github.com/iotjin/jh_flutter_demo/releases/)
 
 
-## English | [简体中文](README.zh-CN.md)
+## [English](README.md) | 中文
 
-A new Flutter project - implement common UI effects, encapsulate components and utils. <br>
+A new Flutter project - 实现一些常用效果、封装通用组件和工具类 <br>
 <br>
 
 pwd：123456
 
-The code is updated irregularly.
+代码不定期更新
 <br>
 <br>
 
-## Online preview
+## 在线预览
 
-  https://iotjin.github.io/jh_flutter_demo
+https://iotjin.github.io/jh_flutter_demo
 
-## Project environment
+## 项目运行环境
 
 * Flutter version 3.7.0
 * Dart version 2.19.0
 
 
-## Some UI effects implemented
+## 实现的一些效果
 
-* Common framework construction, common base class implementation
-* Macro Definitions for Font, Color, Frame, String, etc.
-* Dio network request encapsulation
-* API interface management and data management
-* Modularized management of routes
-* Screen adaptation
-* Dark Mode adaptation
-* Theme switch
-* Components
+* 通用框架搭建、通用基类实现
+* 字体、颜色、Frame、字符串等宏定义
+* dio网络请求封装
+* API接口管理和数据管理
+* 路由模块化管理
+* 屏幕适配
+* 暗黑模式(DarkMode)适配
+* 主题切换
+* 组件
   * BaseAppBar、BaseTabBar、BaseRefreshView、BaseWebView
-  * Dialogs (center、bottom、toast、dialog、custom dialogs)
-  * Time、Date、single-column、multi-column and bottom pickers
-  * Cascading picker (multi-dimensional array or tree structure, supports search)
-  * JhForm form input (single row、multi-row input style、select style、setting style、login style)
-  * JhTopTabBar(navigation bar page switching)
-  * Gradient color AppBar, multi-line title AppBar
-  * Imitation of WeChat's upper-right corner pop-up box
-  * Countdown button
-  * APP update dialog
-  * Picture/video picker based on WeChat UI (supports taking pictures and recording videos)
-  * Taking photos, local image selection, nine-grid display, full-screen image viewing
-  * Highlighting specified text in text
-  * Empty data and network exceptions
-  * Skeleton screen
-  * Horizontal sliding menu (same effect as Pinduoduo homepage, Taobao My channel)
-  * Carousel image(full screen, zoom)
-  * Shake, zoom, translate animation
-* Utils
-  * AES encryption/decryption, MD5 encryption, base64 encoding/decoding
-  * Local data AES encrypted storage
-  * Real-time network monitoring
-  * Getting device information, screen information, and notch screen detection
-  * Loading image resources, color settings
-  * Status bar settings
-  * QR code scanning and generation
-  * Navigation route jumping
-  * Listening for page appearance or disappearance
-  * Time format conversion
-  * String processing
-  * Random numbers
-  * Exit the APP/jump to the app store
-  * Debounce / Throttle
-* UI related
-  * ListView related (paging up/down refresh, grouping up/down refresh, group sticking)
-  * GridView related
-  * Chart related (dynamic loading of multiple charts, gradient line charts, mixed line and bar charts)
-  * Badges
-  * AppBar search and header search
-  * Animation (tag cloud)
-  * List slide button
-  * City selection list
-  * ListView/GridView drag and drop sorting
-  * Rich text
-  * log in / Register
-  * Version new features
-  * Checking for updates
-  * Imitation of WeChat UI (home page, address book, discovery, and personal center, etc.)
-  * AppBar image pull-down zoom and gradient effect (WeChat Sports Ranking List, personal homepage)
-  * WeChat friends circle and image browsing
-  * Cross-slide (personal center effect)
+  * 弹框(中间、底部、toast、dialog、自定义弹框)
+  * 时间、日期、单列、多列、底部选择器
+  * 级联选择器（多维数组或树形结构、支持搜索）
+  * JhForm 表单录入(单行多行输入样式、选择样式、设置样式、登录样式)
+  * JhTopTabBar(导航条分页切换)
+  * 渐变色导航条、多行标题导航条
+  * 仿微信右上角弹框
+  * 倒计时按钮
+  * APP更新弹框
+  * 基于微信UI的图片/视频选择器(支持拍照及录制视频)
+  * 拍照、本地图片多选、九宫格展示、全屏查看图片
+  * 文本高亮显示指定文本
+  * 空数据和网络异常
+  * 骨架屏
+  * 水平滑动菜单(效果同拼多多首页、淘宝我的频道)
+  * 轮播图(全屏、缩放)
+  * 抖动、缩放、位移动画
+* 工具类
+  * AES加解密、MD5加密、base64编码解码
+  * 本地数据AES加密存储
+  * 实时网络监测
+  * 获取设备信息、屏幕信息、刘海屏判断
+  * 加载图片资源、颜色设置
+  * 状态栏设置
+  * 二维码扫描与生成
+  * 导航路由跳转
+  * 监听页面出现或消失
+  * 时间格式转换
+  * 字符串处理
+  * 随机数
+  * 退出APP/跳转应用商店
+  * 防抖/节流
+* UI相关
+  * ListView相关(分页上下拉刷新、分组上下拉刷新、分组吸顶)
+  * GridView相关
+  * Chart相关(多图表动态加载、渐变折线图、折线柱状图混合图表)
+  * 小红点
+  * 导航条搜索框和header搜索框
+  * Animation(标签云)
+  * 列表侧滑按钮
+  * 城市选择列表
+  * ListView/GridView拖拽排序
+  * 富文本
+  * 登录注册
+  * 版本新特性
+  * 检查更新
+  * 仿微信UI（首页，通讯录，发现和个人中心等）
+  * 导航条图片下拉放大和渐变效果(微信运动排行榜，个人主页)
+  * 微信朋友圈和图片浏览
+  * 十字滑动(个人中心效果)
 
 
-Note:
-* Packaged components and utils in the `jh_common` folder
-* For more, please download the project to view
+注：
+* 封装的组件和工具类都在`jh_common`文件夹
+* 更多请下载工程查看
 
 <br>
 
 
-## Precautions
+## 注意事项
 
-* There will be some freezes in debug mode, which is normal. A good experience requires a release package. iOS can execute the command `flutter build ios` to create a release version. Android can execute the command `flutter build apk` to create a release version.
-* iOS14 crashes when running on a real machine, which can be run on a real machine through `flutter run --release`
+* debug模式下会有部分卡顿现象，这属于正常现象。良好的体验需要打release 包。 iOS可以执行命令`flutter build ios` 以创建release版本。 Android可以执行命令`flutter build apk` 以创建release版本。
+* iOS14真机运行闪退，可通过 `flutter run --release` 真机运行
 
-## <a id="Update record"></a> Update record
-<details open id="Important update">
-  <summary><strong>Important update</strong></summary>
-   
+## <a id="更新记录"></a> 更新记录
+<details open id="重要更新">
+  <summary><strong>重要更新</strong></summary>
+
 ```
-* v3.7.0  - Update pubspec library and flutter version（Flutter 3.7.0，Dart 2.19.0）
-* v3.3.0  - Update pubspec library and flutter version（Flutter 3.3.0，Dart 2.18.0），iOS minimum build version changed to 11.0
-* v3.0.0  - Update pubspec library and flutter version（Flutter 3.0.0，Dart 2.17.0）
-* v2.10.1 - Dark Mode adaptation
-* v2.10.0 - Update pubspec library and flutter version（Flutter 2.10.0，Dart 2.16.0）
-* v2.0.0  - Update Flutter SDK（ 2.0.3 ）and pubspec library
-* v1.0.0  - environment：Flutter version 1.22.3，Dart version 2.10.3
+* v3.7.0  - 更新三方库和flutter版本（Flutter 3.7.0，Dart 2.19.0）
+* v3.3.0  - 更新三方库和flutter版本（Flutter 3.3.0，Dart 2.18.0），iOS最低构建版本改为11.0
+* v3.0.0  - 更新三方库和flutter版本（Flutter 3.0.0，Dart 2.17.0）
+* v2.10.1 - 暗黑模式(DarkMode)适配
+* v2.10.0 - 更新三方库和flutter版本（Flutter 2.10.0，Dart 2.16.0）
+* v2.0.0  - 更新 Flutter SDK（ 2.0.3 ）和依赖库
+* v1.0.0  - 环境：Flutter version 1.22.3，Dart version 2.10.3
 ```
 </details>
 
 
-## Appreciate the support
+## 赞赏支持
 
 
-* If you think it's good, or my open source project is helpful to you, you can click "Star" in the upper right corner to support it. Your support is my motivation, thank you 🙂
-* You can also scan the QR code below, invite the author to have a cup of milk tea 🧋
+* 如果您觉得还不错，或者我的开源项目对您有所帮助，可以点右上角“Star”支持一下，您的支持就是我的动力，谢谢🙂
+* 您也可以扫描下面的二维码，请作者喝杯奶茶 🧋
 
 <br>
 
@@ -131,9 +131,9 @@ Note:
 
 <br>
 
-## Preview
+## 预览
 
-Some page effects are as follows:
+部分页面效果如下：
 
 
 <br>
@@ -152,7 +152,7 @@ Some page effects are as follows:
 <br>
 <br>
 
-## WeChat UI：
+## 微信UI：
 
 | ![](./ScreenShot/wx/wx_home.jpg)    |  ![](./ScreenShot/wx/wx_contacts.jpg)    | ![](./ScreenShot/wx/wx_discover.jpg)   |  ![](./ScreenShot/wx/wx_mine.jpg)   |
 | :--------------------------------: | :---------------------------------: | :-------------------------------: | :-------------------------------:  |
@@ -163,7 +163,7 @@ Some page effects are as follows:
 
 <br>
 
-## Licenses
+## 开源协议
 
 ```
 
