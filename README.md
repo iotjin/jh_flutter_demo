@@ -163,7 +163,9 @@ Some page effects are as follows:
 
 <br>
 
-## Licenses
+## <a id="Licenses"></a> Licenses
+<details open id="Licenses">
+  <summary><strong>Licenses</strong></summary>
 
 ```
 
@@ -194,3 +196,5 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ```
+
+</details>

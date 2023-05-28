@@ -6,7 +6,7 @@
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/iotjin/jh_flutter_demo?include_prereleases)](https://github.com/iotjin/jh_flutter_demo/releases/)
 
 
-## [English](README.md) | 中文
+## [English](README.md) | 简体中文
 
 A new Flutter project - 实现一些常用效果、封装通用组件和工具类 <br>
 <br>
@@ -163,7 +163,9 @@ https://iotjin.github.io/jh_flutter_demo
 
 <br>
 
-## 开源协议
+## <a id="Licenses"></a> 开源协议
+<details open id="Licenses">
+  <summary><strong>Licenses</strong></summary>
 
 ```
 
@@ -194,3 +196,5 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ```
+
+</details>
