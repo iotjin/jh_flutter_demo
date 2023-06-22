@@ -114,9 +114,9 @@ class _GradientAppBarState extends State<GradientAppBar> {
 
     IconThemeData? appBarIconTheme = widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
     TextStyle? centerStyle =
-        widget.textTheme?.subtitle1 ?? appBarTheme.textTheme?.subtitle1 ?? themeData.primaryTextTheme.subtitle1;
+        widget.textTheme?.subtitle1 ?? Theme.of(context).textTheme.subtitle1 ?? themeData.primaryTextTheme.subtitle1;
     TextStyle? sideStyle =
-        widget.textTheme?.subtitle1 ?? appBarTheme.textTheme?.bodyText1 ?? themeData.primaryTextTheme.bodyText1;
+        widget.textTheme?.subtitle1 ?? Theme.of(context).textTheme.bodyText1 ?? themeData.primaryTextTheme.bodyText1;
 
 //    IconThemeData appBarIconTheme =
 //        widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
@@ -262,7 +262,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
       child: appBar,
     );
 
-    final Brightness brightness = widget.brightness ?? appBarTheme.brightness ?? themeData.primaryColorBrightness;
+    final Brightness brightness = widget.brightness ?? Theme.of(context).brightness;
     final SystemUiOverlayStyle overlayStyle =
         brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark;
 

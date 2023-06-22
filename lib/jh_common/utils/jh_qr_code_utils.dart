@@ -40,11 +40,14 @@ class JhQrCodeUtils {
   /// 生成二维码（中间带图片）
   static Widget createQRCode(String data, double size,
       {Color? backgroundColor, Color? foregroundColor, EdgeInsets? padding, ImageProvider? image, Size? imageSize}) {
-    return QrImage(
+    foregroundColor = foregroundColor ?? const Color(0xFF000000);
+    return QrImageView(
       data: data,
       size: size,
       backgroundColor: backgroundColor ?? const Color(0x00FFFFFF),
-      foregroundColor: foregroundColor ?? const Color(0xFF000000),
+      eyeStyle: QrEyeStyle(eyeShape: QrEyeShape.square, color: foregroundColor),
+      dataModuleStyle: QrDataModuleStyle(dataModuleShape: QrDataModuleShape.square, color: foregroundColor),
+      // foregroundColor: foregroundColor ?? const Color(0xFF000000),
       padding: padding ?? const EdgeInsets.all(10.0),
       embeddedImage: image,
       embeddedImageStyle: QrEmbeddedImageStyle(size: imageSize),
@@ -115,5 +118,4 @@ class JhQrCodeUtils {
          });
     });
 */
-
 }

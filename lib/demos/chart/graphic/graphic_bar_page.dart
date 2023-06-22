@@ -180,9 +180,10 @@ Widget _initBarChart4() {
         marks: [
           IntervalMark(
             label: LabelEncode(encoder: (tuple) => Label(tuple['sold'].toString())),
-            elevation: ElevationEncode(value: 0, updaters: {
+            elevation: ElevationEncode(value: 1, updaters: {
               'tap': {true: (_) => 5}
             }),
+            // elevation: ElevationEncode(value: 1),
             gradient: GradientEncode(
                 value: const LinearGradient(colors: [
                   Color(0x8883bff6),

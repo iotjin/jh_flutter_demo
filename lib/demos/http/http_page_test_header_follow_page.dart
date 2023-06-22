@@ -227,7 +227,7 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
   }
 
   _refreshHeader() {
-    var header = const BezierHeader(
+    const bezierHeader = BezierHeader(
       triggerOffset: 60,
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.grey,
@@ -237,18 +237,20 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
       showBalls: false,
       // 弹簧回弹
       springRebound: false,
-      spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
+      spinWidget: SpinKitThreeBounce(size: 35, color: Colors.blue),
+      onlySpin: true,
+      processedDuration: Duration(milliseconds: 100),
     );
 
-    var materialHeader = const MaterialHeader(triggerOffset: 60, clamping: false, showBezierBackground: false);
-    var cupertinoHeader = const CupertinoHeader();
-    var deliveryHeader = const DeliveryHeader();
+    const materialHeader = MaterialHeader(triggerOffset: 60, clamping: false, showBezierBackground: false);
+    const cupertinoHeader = CupertinoHeader();
+    const deliveryHeader = DeliveryHeader();
 
     return materialHeader;
   }
 
   _refreshFooter() {
-    var footer = const BezierFooter(
+    const bezierFooter = BezierFooter(
       triggerOffset: 60,
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.grey,
@@ -258,12 +260,14 @@ class _HttpPageTestHeaderFollowPageState extends State<HttpPageTestHeaderFollowP
       showBalls: false,
       // 弹簧回弹
       springRebound: false,
-      spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
+      spinWidget: SpinKitThreeBounce(size: 35, color: Colors.blue),
+      onlySpin: true,
+      processedDuration: Duration(milliseconds: 100),
     );
 
-    var materialFooter = const MaterialFooter(triggerOffset: 60, clamping: false, showBezierBackground: false);
-    var cupertinoFooter = const CupertinoFooter();
-    var deliveryFooter = const DeliveryFooter();
+    const materialFooter = MaterialFooter(triggerOffset: 60, clamping: false, showBezierBackground: false);
+    const cupertinoFooter = CupertinoFooter();
+    const deliveryFooter = DeliveryFooter();
 
     return materialFooter;
   }

@@ -70,11 +70,11 @@ class _QRCodeTestState extends State<QRCodeTest> {
           imageSize: const Size(20, 20),
         ),
         Center(
-          child: QrImage(
+          child: QrImageView(
             data: '这是二维码的内容',
             size: 200,
             embeddedImage: const NetworkImage('https://gitee.com/iotjh/Picture/raw/master/lufei.png'),
-            embeddedImageStyle: QrEmbeddedImageStyle(size: const Size(50, 50)),
+            embeddedImageStyle: const QrEmbeddedImageStyle(size: Size(50, 50)),
           ),
         ),
       ],

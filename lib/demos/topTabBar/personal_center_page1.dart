@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '/jh_common/widgets/jh_network_image.dart';
 import '/jh_common/widgets/jh_tabbar.dart';
 import '/project/configs/strings.dart';
+import '/project/routes/jh_nav_utils.dart';
 import './content_page.dart';
 
 class PersonalCenterPage1 extends StatefulWidget {
@@ -43,7 +44,14 @@ class _PersonalCenterPage1State extends State<PersonalCenterPage1> with TickerPr
 
   Widget _buildSliverAppBar() {
     return SliverAppBar(
-      title: const Text('Title'),
+      title: const Text('Title', style: TextStyle(color: Colors.white)),
+      centerTitle: true,
+      leading: IconButton(
+        icon: const ImageIcon(AssetImage('assets/images/common/ic_nav_back_white.png')),
+        iconSize: 18,
+        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+        onPressed: () => JhNavUtils.goBack(context),
+      ),
       pinned: true,
       expandedHeight: 200,
       flexibleSpace: FlexibleSpaceBar(

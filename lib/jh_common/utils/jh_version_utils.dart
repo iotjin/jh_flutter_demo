@@ -44,10 +44,38 @@ class JhVersionUtils {
 
   /// 版本比较，是否有新版本
   /// appVersion：项目当前版本
-  /// version：要比较的版本(比如最新版本)
+  /// version：要比较的版本(比如从服务器获取的最新版本)
   static bool hasNewVersion(String appVersion, String version) {
+    // compareTo比较时如果某一位为10以上判断错误
     // print(appVersion.compareTo(version)); // 字符串 比较大小, 0:相同、1:大于、-1:小于
-    return appVersion.compareTo(version) < 0 ? true : false;
+    // return appVersion.compareTo(version) < 0 ? true : false;
+    return compareVersions(appVersion, version) < 0 ? true : false;
+  }
+
+  /// 版本比较
+  ///  1：version1 > version2
+  /// -1：version1 < version2
+  ///  0：version1 = version2
+  static int compareVersions(String version1, String version2) {
+    List<String> v1Segments = version1.split('.');
+    List<String> v2Segments = version2.split('.');
+    final minLength = v1Segments.length < v2Segments.length ? v1Segments.length : v2Segments.length;
+    for (int i = 0; i < minLength; i++) {
+      final v1 = int.parse(v1Segments[i]);
+      final v2 = int.parse(v2Segments[i]);
+      if (v1 > v2) {
+        return 1;
+      } else if (v1 < v2) {
+        return -1;
+      }
+    }
+    if (v1Segments.length > v2Segments.length) {
+      return 1;
+    } else if (v1Segments.length < v2Segments.length) {
+      return -1;
+    } else {
+      return 0;
+    }
   }
 
   /// 打开手机文档中的apk文件

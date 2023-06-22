@@ -183,7 +183,14 @@ class _PersonalCenterPage3State extends State<PersonalCenterPage3> with SingleTi
 
   Widget _buildSliverAppBar() {
     return SliverAppBar(
-      title: const Text('Title'),
+      title: const Text('Title', style: TextStyle(color: Colors.white)),
+      centerTitle: true,
+      leading: IconButton(
+        icon: const ImageIcon(AssetImage('assets/images/common/ic_nav_back_white.png')),
+        iconSize: 18,
+        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+        onPressed: () => JhNavUtils.goBack(context),
+      ),
       pinned: true,
       expandedHeight: 200,
       flexibleSpace: FlexibleSpaceBar(background: JhNetworkImage(KStrings.headBgImage)),

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:jh_flutter_demo/demos/ui/scroll_page.dart';
 import '/jh_common/widgets/jh_slide_menu_view.dart';
 import '/project/configs/project_config.dart';
 
@@ -120,45 +121,49 @@ class _SlideMenuTestPageState extends State<SlideMenuTestPage> {
   }
 
   _body() {
-    return Column(
+    return ListView(
       children: [
-        const SizedBox(height: 10),
-        JhSlideMenuView(
-          data: _dataArr,
-          clickCallBack: (int selectIndex, dynamic selectItem) {
-            print('点击第$selectIndex个');
-            print(selectItem);
-            JhProgressHUD.showText('点击了${selectItem['text']}');
-          },
-        ),
-        const SizedBox(height: 30),
-        JhSlideMenuView(
-          data: _dataArr,
-          maxRow: 1,
-          maxColumn: 4,
-          margin: 10,
-          radius: 15,
-          clickCallBack: (int selectIndex, dynamic selectItem) {
-            print('点击第$selectIndex个');
-            print(selectItem);
-            JhProgressHUD.showText('点击了${selectItem['text']}');
-          },
-        ),
-        const SizedBox(height: 30),
-        const Text('网络图片'),
-        JhSlideMenuView(
-          data: _dataArr2,
-          maxRow: 2,
-          maxColumn: 4,
-          margin: 10,
-          radius: 5,
-          // isShowSlider: false,
-          clickCallBack: (int selectIndex, dynamic selectItem) {
-            print('点击第$selectIndex个');
-            print(selectItem);
-            JhProgressHUD.showText('点击了${selectItem['text']}');
-          },
-        ),
+        Column(
+          children: [
+            const SizedBox(height: 10),
+            JhSlideMenuView(
+              data: _dataArr,
+              clickCallBack: (int selectIndex, dynamic selectItem) {
+                print('点击第$selectIndex个');
+                print(selectItem);
+                JhProgressHUD.showText('点击了${selectItem['text']}');
+              },
+            ),
+            const SizedBox(height: 30),
+            JhSlideMenuView(
+              data: _dataArr,
+              maxRow: 1,
+              maxColumn: 4,
+              margin: 10,
+              radius: 15,
+              clickCallBack: (int selectIndex, dynamic selectItem) {
+                print('点击第$selectIndex个');
+                print(selectItem);
+                JhProgressHUD.showText('点击了${selectItem['text']}');
+              },
+            ),
+            const SizedBox(height: 30),
+            const Text('网络图片'),
+            JhSlideMenuView(
+              data: _dataArr2,
+              maxRow: 2,
+              maxColumn: 4,
+              margin: 10,
+              radius: 5,
+              // isShowSlider: false,
+              clickCallBack: (int selectIndex, dynamic selectItem) {
+                print('点击第$selectIndex个');
+                print(selectItem);
+                JhProgressHUD.showText('点击了${selectItem['text']}');
+              },
+            ),
+          ],
+        )
       ],
     );
   }

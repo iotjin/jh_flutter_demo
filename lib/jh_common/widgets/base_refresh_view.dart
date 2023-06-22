@@ -187,7 +187,9 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
           showBalls: false,
           // 弹簧回弹
           springRebound: false,
-          spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
+          spinWidget: SpinKitThreeBounce(size: 35, color: Colors.blue),
+          onlySpin: true,
+          processedDuration: Duration(milliseconds: 100),
         );
       case RefreshType.cupertino:
         return const CupertinoHeader();
@@ -222,7 +224,9 @@ class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
           showBalls: false,
           // 弹簧回弹
           springRebound: false,
-          spinWidget: SpinKitThreeBounce(size: 32, color: Colors.blue),
+          spinWidget: SpinKitThreeBounce(size: 35, color: Colors.blue),
+          onlySpin: true,
+          processedDuration: Duration(milliseconds: 100),
         );
       case RefreshType.cupertino:
         return const CupertinoFooter(position: IndicatorPosition.locator);
