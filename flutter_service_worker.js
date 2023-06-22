@@ -2,47 +2,37 @@
 const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
-const RESOURCES = {
-  "version.json": "a2d95bdf0b2bbfda81442fe0390c9c11",
-"index.html": "34760018df25f4dea8537314f59a9689",
-"/": "34760018df25f4dea8537314f59a9689",
-"main.dart.js": "9777cd27fff313923f96cedce6199ab1",
-"flutter.js": "1cfe996e845b3a8a33f57607e8b09ee4",
+
+const RESOURCES = {"version.json": "da3fc4e8da4062aff0f579e7550b4ef1",
+"index.html": "e8c4170a1685b4bee11acedf81ce9a48",
+"/": "e8c4170a1685b4bee11acedf81ce9a48",
+"main.dart.js": "42058a33aae3ed7a35e603addd325c7b",
+"flutter.js": "6fef97aeca90b426343ba6c5c9dc5d4a",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "7a95b8a19c9efd5639c7ad1ee7f4a3fc",
-"assets/AssetManifest.json": "28d0f30b2d888f7cbcf68f88e7172128",
-"assets/NOTICES": "3f85a399d0935f9a303a6658d264c136",
+"assets/AssetManifest.json": "98a6141ebd05f401fc35db491aca3109",
+"assets/NOTICES": "94224de9c8ad2537aa5e8ffb56591e29",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
+"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "1bbd2e642062f58b0b0b0404c69961f9",
 "assets/packages/jhtoast/assets/images/toast_success.png": "35c2d9503db54caf521fa42f2dc76620",
 "assets/packages/jhtoast/assets/images/toast_error.png": "b9ac5fe507b044775a83a297c19f57d5",
 "assets/packages/jhtoast/assets/images/loading.gif": "0e6e0f46d7504242302bc8055ad9c8c2",
-"assets/packages/fluttertoast/assets/toastify.js": "e7006a0a033d834ef9414d48db3be6fc",
+"assets/packages/fluttertoast/assets/toastify.js": "56e2c9cedd97f10e7e5f1cebd85d53e3",
 "assets/packages/fluttertoast/assets/toastify.css": "a85675050054f179444bc5ad70ffc635",
+"assets/shaders/ink_sparkle.frag": "f8b80e740d33eb157090be4e995febdf",
 "assets/lib/res/wx_motion_top.json": "b4df48d67b734fb22b7184eba0b6668e",
 "assets/lib/res/china.json": "981508d9619356a8deca0aa642792c51",
 "assets/lib/res/wx_contacts.json": "6681d67db9eacc43d9077413aaab6119",
 "assets/lib/res/wx_friends_circle.json": "3e177d6b278dcb6be687625443ffaa2f",
-"assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
+"assets/AssetManifest.bin": "3f6e012010fe0e762868d614644e41ab",
+"assets/fonts/MaterialIcons-Regular.otf": "f5473c50ba84ef0c7ddd42b8a7950ebd",
 "assets/assets/images/selectPhoto_add.png": "d901b656b09df42f59d5dd248ce1c625",
 "assets/assets/images/ic_more_white.png": "457a529245ecefb78239bdb11d4fa9f8",
 "assets/assets/images/ic_about.png": "240fb52343b07a225d4faa9de9868350",
-"assets/assets/images/swiper/swiper_gif4.gif": "2865c399b3ab18de5969048150c13cbc",
-"assets/assets/images/swiper/swiper_gif5.gif": "bb0a3d0d9dd2061f8f4a18d1482c70a3",
-"assets/assets/images/swiper/swiper_gif2.gif": "7f084aaa535f3dd5f94ac4c8ace2c5b3",
-"assets/assets/images/swiper/swiper_gif3.gif": "9f0372743b6419294fdaedbacd493e60",
-"assets/assets/images/swiper/swiper_gif0.gif": "9ca1119199e4e7e5c8e3607f570fe59d",
-"assets/assets/images/swiper/swiper_6.jpeg": "bf6c2200b6cba663805fe230e7f04a7c",
-"assets/assets/images/swiper/swiper_4.jpg": "30374e0f0e4f6c40df633f32fd2dc978",
-"assets/assets/images/swiper/swiper_5.jpg": "bd3db5dbedaab66a6888af656bc3a462",
-"assets/assets/images/swiper/swiper_1.jpg": "9afb77ee84fd42e65a22a9c64ab8580e",
-"assets/assets/images/swiper/swiper_0.jpg": "c13dd7d02d2e4a388b2ea63f67a645c7",
-"assets/assets/images/swiper/swiper_2.jpg": "e1c077602f4f941d3eb55f8adc9d4d46",
-"assets/assets/images/swiper/swiper_3.jpg": "89ab3359a4072a5721a5e7a35e1c3f73",
 "assets/assets/images/funcMenu/%25E5%2588%2586%25E7%25B1%25BB.png": "174fdb019a82fb4324ab435226e26eaa",
 "assets/assets/images/funcMenu/%25E6%2596%25B0%25E4%25BA%25BA%25E5%258C%2585%25E9%2582%25AE.png": "3a1d2891ef51886611241d9aca751684",
 "assets/assets/images/funcMenu/%25E5%25AE%25B6%25E6%25B8%2585%25E5%25AE%25B6%25E5%25B1%2585.png": "1468247fd23b8205e72b7de199aec60d",
@@ -159,6 +149,7 @@ const RESOURCES = {
 "assets/assets/wechat/home/ic_file_transfer.png": "3c1dd7c5645c3fbe09c61ec7c8f43aba",
 "assets/assets/wechat/discover/ic_quick_search.png": "88ae0a78071339a4f189f269329496d4",
 "assets/assets/wechat/discover/ic_feeds.png": "6d119194ae229621f409f33c03500371",
+"assets/assets/wechat/discover/ic_camera.png": "79db8bacdac08a222d8c298c94d9b88a",
 "assets/assets/wechat/discover/ic_mini_program.png": "97b957265f27bfa06a5056b1dc819ecc",
 "assets/assets/wechat/discover/ic_shake_phone.png": "3ba874a7bfeabc7771aed6fd24ddb590",
 "assets/assets/wechat/discover/ic_game_entry.png": "380dd8f1d55bfcef27ce1bad57bb19d2",
@@ -222,7 +213,6 @@ const RESOURCES = {
 "assets/assets/wechat/discover/friends/wx_img11.JPG": "55582fb20d8efafd747cd2f8c3a5fd92",
 "assets/assets/wechat/discover/ic_shopping.png": "4e46c3a401c683e231bfac5fd0a04a32",
 "assets/assets/wechat/discover/ic_fengchao.png": "65516c1047a2e3e3abaaef25f4e11dd0",
-"assets/assets/wechat/discover/ic_xiangji.png": "79db8bacdac08a222d8c298c94d9b88a",
 "assets/assets/wechat/discover/ic_quick_scan.png": "1e61b7eb747804df08d86a26ad4c95b7",
 "assets/assets/wechat/discover/ic_bottle_msg.png": "e52a8cfa421cf803d95c15972e8be9ba",
 "assets/assets/wechat/contacts/ic_tag.png": "89b66d7956f8ef6deea4d63e6dfb3159",
@@ -256,27 +246,6 @@ const RESOURCES = {
 "assets/assets/wechat/contacts/contact_index_bar_bubble_0.png": "bf51af51244b57aa8f83de815ad33071",
 "assets/assets/wechat/contacts/ic_index_bar_bubble_white.png": "3a428b9603817acb16fc3abcfade936f",
 "assets/assets/wechat/contacts/ic_shipintonghua.png": "897ab9d066e6738b5c60e7d3a0ae2e3b",
-"assets/assets/wechat/other/AppIcon_29x29_@2x.png": "39cfe5f7e4e9f0f01afd4a50b1a181e4",
-"assets/assets/wechat/other/AppIcon_76x76_@2x.png": "00f51d6a299183dcd0d0927eee3d1f91",
-"assets/assets/wechat/other/AppIcon_50x50_@2x.png": "ae5212c3b9c274e379a831a7d4215115",
-"assets/assets/wechat/other/AppIcon_108x108_@2x.png": "cd80c927cf712207a82e7e504c39f3e5",
-"assets/assets/wechat/other/DownVideo_169x137_@2x.png": "04d864f47c57ec0d68e2d25ca0042d6f",
-"assets/assets/wechat/other/AppIcon_29x29_@3x.png": "33fdf96ae8c037c669b09aee97189285",
-"assets/assets/wechat/other/AppIcon_83x83_@2x.png": "cd6c0df7f6ba9aa7c80fe408283660a8",
-"assets/assets/wechat/other/AppIcon_90x90_@2x.png": "7b8614d23b7caeefd40bb63767693bb1",
-"assets/assets/wechat/other/AppIcon_98x98_@2x.png": "021b23a811c4748ff47e72a7e7254286",
-"assets/assets/wechat/other/AppIcon_1024x1024_@1x.png": "cf93b829248c26504ce47930a0032644",
-"assets/assets/wechat/other/AppIcon_27x27_@2x.png": "6c34d599b61982b2f3d82c9da7ea85a4",
-"assets/assets/wechat/other/AppIcon_86x86_@2x.png": "7c9d286e483230588047280609cfb417",
-"assets/assets/wechat/other/News_VideoSmall_16x16_@2x.png": "c033930c2686eeb2f8c9cf2e8cd49f4e",
-"assets/assets/wechat/other/News_VideoBIG_31x31_@2x.png": "71a3162163258125076524d256f6ae99",
-"assets/assets/wechat/other/AppIcon_40x40_@2x.png": "3f0bc52ec83ee6d04323a46978333696",
-"assets/assets/wechat/other/DeviceRankNoLikeIcon_96x96_@2x.png": "0df910aedc927e0cc3c02d0a27b19f2c",
-"assets/assets/wechat/other/AppIcon_24x24_@2x.png": "c9070b9113871e2ce9903fdf1f59108d",
-"assets/assets/wechat/other/AppIcon_60x60_@2x.png": "666755d084ed5d4705b44deb0c94527d",
-"assets/assets/wechat/other/AppIcon_44x44_@2x.png": "dc473192465e31c2bc2eaf057aae50c3",
-"assets/assets/wechat/other/AppIcon_76x76_@1x.png": "67c9b7ad0a04f2c4f1ee825c2fe42084",
-"assets/assets/wechat/other/AppIcon_60x60_@3x.png": "7b8614d23b7caeefd40bb63767693bb1",
 "assets/assets/wechat/mine/default_nor_avatar.png": "0aee694846b1fc31fa66e16d3fe74201",
 "assets/assets/wechat/mine/ic_about.png": "d7dad38a21145981030ee1eae848b84b",
 "assets/assets/wechat/mine/About_WeChat_AppIcon_64x64_@3x.png": "4da1f474c63141c3b74d2ed002c9e817",
@@ -290,19 +259,20 @@ const RESOURCES = {
 "assets/assets/wechat/mine/ic_shoufukuan.png": "20e6b824c97147989c87bdcc8f9761f5",
 "assets/assets/wechat/mine/ic_wallet.png": "66f0fb4c7462babf2aba9021fa77eb2b",
 "assets/assets/wechat/mine/ic_collections.png": "e1c68203ca9679a87606f65f387c72e6",
-"canvaskit/canvaskit.js": "97937cb4c2c2073c968525a3e08c86a3",
-"canvaskit/profiling/canvaskit.js": "c21852696bc1cc82e8894d851c01921a",
-"canvaskit/profiling/canvaskit.wasm": "371bc4e204443b0d5e774d64a046eb99",
-"canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e"
-};
-
+"canvaskit/skwasm.js": "1df4d741f441fa1a4d10530ced463ef8",
+"canvaskit/skwasm.wasm": "6711032e17bf49924b2b001cef0d3ea3",
+"canvaskit/chromium/canvaskit.js": "8c8392ce4a4364cbb240aa09b5652e05",
+"canvaskit/chromium/canvaskit.wasm": "fc18c3010856029414b70cae1afc5cd9",
+"canvaskit/canvaskit.js": "76f7d822f42397160c5dfc69cbc9b2de",
+"canvaskit/canvaskit.wasm": "f48eaf57cada79163ec6dec7929486ea",
+"canvaskit/skwasm.worker.js": "19659053a277272607529ef87acf9d8a"};
 // The application shell files that are downloaded before a service worker can
 // start.
-const CORE = [
-  "main.dart.js",
+const CORE = ["main.dart.js",
 "index.html",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
+
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
@@ -313,7 +283,6 @@ self.addEventListener("install", (event) => {
     })
   );
 });
-
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
 // MANIFEST, then use this to retain unchanged resource files.
@@ -335,6 +304,8 @@ self.addEventListener("activate", function(event) {
         await caches.delete(TEMP);
         // Save the manifest to make future upgrades efficient.
         await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
+        // Claim client to enable caching on first launch
+        self.clients.claim();
         return;
       }
       var oldManifest = await manifest.json();
@@ -360,6 +331,8 @@ self.addEventListener("activate", function(event) {
       await caches.delete(TEMP);
       // Save the manifest to make future upgrades efficient.
       await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
+      // Claim client to enable caching on first launch
+      self.clients.claim();
       return;
     } catch (err) {
       // On an unhandled exception the state of the cache cannot be guaranteed.
@@ -370,7 +343,6 @@ self.addEventListener("activate", function(event) {
     }
   }());
 });
-
 // The fetch handler redirects requests for RESOURCE files to the service
 // worker cache.
 self.addEventListener("fetch", (event) => {
@@ -410,7 +382,6 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-
 self.addEventListener('message', (event) => {
   // SkipWaiting can be used to immediately activate a waiting service worker.
   // This will also require a page refresh triggered by the main worker.
@@ -423,7 +394,6 @@ self.addEventListener('message', (event) => {
     return;
   }
 });
-
 // Download offline will check the RESOURCES for all files not in the cache
 // and populate them.
 async function downloadOffline() {
@@ -444,7 +414,6 @@ async function downloadOffline() {
   }
   return contentCache.addAll(resources);
 }
-
 // Attempt to download the resource online before falling back to
 // the offline cache.
 function onlineFirst(event) {
