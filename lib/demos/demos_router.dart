@@ -118,6 +118,8 @@ import 'other/animation/ball_3d_page2.dart';
 import 'other/animation/ball_3d_page3.dart';
 import 'other/animation/ball_3d_page4.dart';
 import 'other/animation/tag_cloud_page.dart';
+import 'other/animation/wave_page.dart';
+import 'other/animation/lottie_page.dart';
 
 // search
 import 'search/search_demo_list_page.dart';
@@ -280,6 +282,8 @@ class DemosRouter implements IRouterProvider {
     router.define('Ball3DPage3', handler: Handler(handlerFunc: (_, __) => const Ball3DPage3()));
     router.define('Ball3DPage4', handler: Handler(handlerFunc: (_, __) => const Ball3DPage4()));
     router.define('TagCloudPage', handler: Handler(handlerFunc: (_, __) => const TagCloudPage()));
+    router.define('WavePage', handler: Handler(handlerFunc: (_, __) => const WavePage()));
+    router.define('LottiePage', handler: Handler(handlerFunc: (_, __) => const LottiePage()));
 
     // search
     router.define('SearchDemoListPage', handler: Handler(handlerFunc: (_, __) => const SearchDemoListPage()));

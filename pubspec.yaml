@@ -136,6 +136,10 @@ dependencies:
   reorderables: ^0.6.0
   # 动画 https://pub.flutter-io.cn/packages/animate_do
   animate_do: ^3.0.2
+  # 波浪动画 https://pub-web.flutter-io.cn/packages/wave
+  wave: ^0.2.2
+  # lottie动画 https://pub-web.flutter-io.cn/packages/lottie
+  lottie: ^2.4.0
   # 打开文件 https://pub.flutter-io.cn/packages/open_filex
   open_filex: ^4.3.2
   # 打开文件 https://pub.flutter-io.cn/packages/open_file_plus
@@ -207,6 +211,7 @@ flutter:
     - assets/wechat/discover/
     - assets/wechat/discover/friends/
     - assets/wechat/mine/
+    - assets/lottie/
 
     #假数据
     - lib/res/china.json

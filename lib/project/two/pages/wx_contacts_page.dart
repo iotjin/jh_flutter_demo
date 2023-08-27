@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:azlistview/azlistview.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:lpinyin/lpinyin.dart';
 import '/project/configs/project_config.dart';
 import '../models/wx_contacts_model.dart';
@@ -115,7 +116,7 @@ class _WxContactsPageState extends State<WxContactsPage> {
 
     return Scaffold(
       appBar: appbar as PreferredSizeWidget,
-      body: _body(),
+      body: SlidableAutoCloseBehavior(child: _body()),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
     );
   }
