@@ -219,8 +219,8 @@ class _ListViewGroupPage3State extends State<ListViewGroupPage3> with SingleTick
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                  children: const <Widget>[
+                const Row(
+                  children: <Widget>[
                     SizedBox(width: 8),
                     Text('这是title', style: TextStyle(fontSize: 18)),
                     SizedBox(width: 8)

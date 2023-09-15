@@ -114,20 +114,22 @@ class _JhTextFieldState extends State<JhTextField> {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
 
-    /// 更新text的值，并处理光标
-    /// https://github.com/flutter/flutter/issues/11416
-    var cursorPos = _textController!.selection;
-    // 更新text值到_textController
-    _textController!.text = widget.text ?? '';
-    // 超过最大长度截取
-    if ((widget.text ?? '').length > widget.maxLength) {
-      _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+    if (widget.text != oldWidget.text) {
+      /// 更新text的值，并处理光标
+      /// https://github.com/flutter/flutter/issues/11416
+      var cursorPos = _textController!.selection;
+      // 更新text值到_textController
+      _textController!.text = widget.text ?? '';
+      // 超过最大长度截取
+      if ((widget.text ?? '').length > widget.maxLength) {
+        _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+      }
+      if (cursorPos.start > _textController!.text.length) {
+        // 光标保持在文本最后
+        cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
+      }
+      _textController!.selection = cursorPos;
     }
-    if (cursorPos.start > _textController!.text.length) {
-      // 光标保持在文本最后
-      cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
-    }
-    _textController!.selection = cursorPos;
 
     // 有bug，删除中间的文字会跳到最后
     // // 更新text值到_textController

@@ -40,6 +40,7 @@ class JhLoginTextField extends StatefulWidget {
     this.maxLength = 20,
     this.isShowDeleteBtn = false,
     this.inputFormatters,
+    this.tapCallBack,
     this.inputCallBack,
     this.inputCompletionCallBack,
     this.pwdOpen,
@@ -62,6 +63,7 @@ class JhLoginTextField extends StatefulWidget {
   final int maxLength; // 最大长度，默认20
   final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认不显示
   final List<TextInputFormatter>? inputFormatters;
+  final void Function()? tapCallBack; // 点击搜索框回调
   final _InputCallBack? inputCallBack;
   final _InputCompletionCallBack? inputCompletionCallBack;
   final String? pwdOpen; // 自定义密码图片路径 睁眼
@@ -124,20 +126,22 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
 
-    /// 更新text的值，并处理光标
-    /// https://github.com/flutter/flutter/issues/11416
-    var cursorPos = _textController!.selection;
-    // 更新text值到_textController
-    _textController!.text = widget.text ?? '';
-    // 超过最大长度截取
-    if ((widget.text ?? '').length > widget.maxLength) {
-      _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+    if (widget.text != oldWidget.text) {
+      /// 更新text的值，并处理光标
+      /// https://github.com/flutter/flutter/issues/11416
+      var cursorPos = _textController!.selection;
+      // 更新text值到_textController
+      _textController!.text = widget.text ?? '';
+      // 超过最大长度截取
+      if ((widget.text ?? '').length > widget.maxLength) {
+        _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+      }
+      if (cursorPos.start > _textController!.text.length) {
+        // 光标保持在文本最后
+        cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
+      }
+      _textController!.selection = cursorPos;
     }
-    if (cursorPos.start > _textController!.text.length) {
-      // 光标保持在文本最后
-      cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
-    }
-    _textController!.selection = cursorPos;
   }
 
   @override
@@ -220,6 +224,7 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
             // 点击输入框
             onTap: () {
               _isSubmitted = false;
+              widget.tapCallBack?.call();
             },
             // 每次输入框文字改变，均会执行
             onChanged: (value) {

@@ -129,5 +129,5 @@ Widget cell = Container(
       fit: BoxFit.cover,
     ),
   ),
-  child: Column(),
+  child: const Column(),
 );

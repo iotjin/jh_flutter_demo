@@ -87,11 +87,11 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
   Widget _body() {
     return Column(
       children: <Widget>[
-        ListTile(
-            title: const Text('当前城市'),
+        const ListTile(
+            title: Text('当前城市'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
-              children: const <Widget>[
+              children: <Widget>[
                 Icon(Icons.place, size: 20.0),
                 Text(' 成都市'),
               ],

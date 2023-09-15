@@ -40,7 +40,7 @@ https://iotjin.github.io/jh_flutter_demo
 * 组件
   * BaseAppBar、BaseTabBar、BaseRefreshView、BaseWebView
   * 弹框(中间、底部、toast、dialog、自定义弹框)
-  * 时间、日期、单列、多列、底部选择器
+  * 时间、日期、单列、多列、底部单选/多选选择器
   * 级联选择器（多维数组或树形结构、支持搜索）
   * JhForm 表单录入(单行多行输入样式、选择样式、设置样式、登录样式)
   * JhTopTabBar(导航条分页切换)
@@ -58,6 +58,7 @@ https://iotjin.github.io/jh_flutter_demo
   * 抖动、缩放、位移动画
   * 波浪动画
   * lottie动画
+  * Tag 标签
 * 工具类
   * AES加解密、MD5加密、base64编码解码
   * 本地数据AES加密存储

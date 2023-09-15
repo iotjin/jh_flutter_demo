@@ -189,3 +189,35 @@ class NumLengthInputFormatter extends TextInputFormatter {
     );
   }
 }
+
+/// 限制录入的最大值和最小值
+/// inputFormatters: [number,NumMaxValueInputFormatter(max:num.parse(numStr))]
+class NumMaxValueInputFormatter extends TextInputFormatter {
+  NumMaxValueInputFormatter({
+    required this.max,
+    this.min = 0,
+  });
+
+  final num min;
+  final num max;
+
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.text.isNotEmpty) {
+      num? parsed = num.tryParse(newValue.text);
+      if (parsed != null) {
+        if (parsed < min) {
+          return oldValue.copyWith(text: min.toString()); // 输入小于最小值时返回最小值
+        } else if (parsed > max) {
+          return oldValue.copyWith(text: max.toString()); // 输入大于最大值时返回最大值
+        } else {
+          return newValue;
+        }
+      }
+    } else {
+      // 如果输入为空,返回最小值
+      return oldValue.copyWith(text: min.toString());
+    }
+    return oldValue;
+  }
+}

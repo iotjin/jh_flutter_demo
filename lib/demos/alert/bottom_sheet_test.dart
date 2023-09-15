@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '/jh_common/utils/jh_time_utils.dart';
 import '/jh_common/widgets/jh_bottom_sheet.dart';
+import '/jh_common/widgets/jh_multi_picker.dart';
 import '/jh_common/widgets/jh_picker_tool.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
@@ -23,6 +24,7 @@ final List titleData = [
   'JhPickerTool-时间选择YMD_HM',
   'JhPickerTool-时间选择YMD_AP_HM',
   'JhPickerTool-时间选择设置最大最小时间',
+  'JhMultiPicker-多选（对象数组）',
 ];
 
 final stringArr = ['11', '22', '33', '44'];
@@ -72,6 +74,18 @@ final dictArr3 = [
     {'label': '小类一', 'value': '1'},
     {'label': '小类二', 'value': '2'},
   ],
+];
+
+final multiDictArr = [
+  {'label': '类型一', 'value': '1'},
+  {'label': '类型二', 'value': '2'},
+  {'label': '类型三', 'value': '3'},
+  {'label': '类型四', 'value': '4'},
+  {'label': '类型五', 'value': '5'},
+  {'label': '类型六', 'value': '6'},
+  {'label': '类型七类型七类型七类型七', 'value': '7'},
+  {'label': '类型八类型八类型八类型八类型八类型八类型八类型八类型八类型八', 'value': '8'},
+  {'label': '类型九', 'value': '9'},
 ];
 
 class BottomSheetTest extends StatelessWidget {
@@ -209,6 +223,15 @@ class BottomSheetTest extends StatelessWidget {
               print(selectValue);
               print(selectIndexArr);
               showText(selectValue);
+            });
+          }
+
+          if (str == 'JhMultiPicker-多选（对象数组）') {
+            JhMultiPicker.show(context, data: multiDictArr, values: ['3', '5'], title: '选择类型',
+                clickCallBack: (selectValues, selectItemArr) {
+              print('selectValues==  $selectValues');
+              print('selectItemArr==  $selectItemArr');
+              showText(selectValues);
             });
           }
         });

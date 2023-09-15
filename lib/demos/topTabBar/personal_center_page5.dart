@@ -295,7 +295,7 @@ class _PersonalCenterPage5State extends State<PersonalCenterPage5> {
         } else if (mode == IndicatorMode.drag || mode == IndicatorMode.armed) {
           value = math.min(offset / actualTriggerOffset, 1) * 0.75;
         } else if (mode == IndicatorMode.ready || mode == IndicatorMode.processing) {
-          value == null;
+          value = null;
         } else {
           value = 1;
         }

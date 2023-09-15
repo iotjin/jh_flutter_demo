@@ -40,7 +40,7 @@ The code is updated irregularly.
 * Components
   * BaseAppBar、BaseTabBar、BaseRefreshView、BaseWebView
   * Dialogs (center、bottom、toast、dialog、custom dialogs)
-  * Time、Date、single-column、multi-column and bottom pickers
+  * Time、Date、single-column、multi-column and bottom single/multiple pickers
   * Cascading picker (multi-dimensional array or tree structure, supports search)
   * JhForm form input (single row、multi-row input style、select style、setting style、login style)
   * JhTopTabBar(navigation bar page switching)
@@ -58,6 +58,7 @@ The code is updated irregularly.
   * Shake, zoom, translate animation
   * wave animation
   * lottie animation
+  * tag view
 * Utils
   * AES encryption/decryption, MD5 encryption, base64 encoding/decoding
   * Local data AES encrypted storage

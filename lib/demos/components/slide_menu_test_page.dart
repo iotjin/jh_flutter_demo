@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/demos/ui/scroll_page.dart';
 import '/jh_common/widgets/jh_slide_menu_view.dart';
 import '/project/configs/project_config.dart';
 

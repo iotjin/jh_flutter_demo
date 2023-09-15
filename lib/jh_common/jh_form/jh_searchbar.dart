@@ -29,6 +29,9 @@ class JhSearchBar extends StatelessWidget {
     this.isShowBorder = false,
     this.contentPadding = _contentPadding,
     this.textInputAction = TextInputAction.done,
+    this.margin = const EdgeInsets.all(10),
+    this.focusNode,
+    this.tapCallBack,
     this.inputCallBack,
     this.inputCompletionCallBack,
   }) : super(key: key);
@@ -41,6 +44,9 @@ class JhSearchBar extends StatelessWidget {
   final bool isShowBorder; // 是否显示边框，默认不显示
   final EdgeInsetsGeometry contentPadding; // 当父组件固定高度时，文本一行显示文本过多会出现文字显示不全bug,可设置EdgeInsets.symmetric(vertical: 4)
   final TextInputAction? textInputAction; // 键盘右下角按钮类型
+  final EdgeInsetsGeometry? margin;
+  final FocusNode? focusNode;
+  final void Function()? tapCallBack; // 点击搜索框回调
   final _InputCallBack? inputCallBack;
   final _InputCompletionCallBack? inputCompletionCallBack;
 
@@ -62,7 +68,7 @@ class JhSearchBar extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(_borderRadius)),
         ),
         alignment: Alignment.center,
-        margin: const EdgeInsets.all(10),
+        margin: margin,
         height: kSearchViewHeight - 20,
         child: JhLoginTextField(
           maxLength: maxLength,
@@ -73,6 +79,8 @@ class JhSearchBar extends StatelessWidget {
           border: InputBorder.none,
           contentPadding: contentPadding,
           textInputAction: textInputAction,
+          focusNode: focusNode,
+          tapCallBack: tapCallBack,
           inputCallBack: inputCallBack,
           inputCompletionCallBack: inputCompletionCallBack,
         ),

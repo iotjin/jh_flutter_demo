@@ -6,8 +6,7 @@
 import 'dart:math';
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_image_utils.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_time_utils.dart';
+import '/jh_common/utils/jh_time_utils.dart';
 import 'package:jhtoast/jhtoast.dart';
 import '/jh_common/widgets/jh_bottom_sheet.dart';
 import '/jh_common/widgets/jh_empty_view.dart';
@@ -229,7 +228,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
         } else if (mode == IndicatorMode.drag || mode == IndicatorMode.armed) {
           value = min(offset / actualTriggerOffset, 1) * 0.75;
         } else if (mode == IndicatorMode.ready || mode == IndicatorMode.processing) {
-          value == null;
+          value = null;
         } else {
           value = 1;
         }

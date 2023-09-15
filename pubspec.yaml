@@ -43,6 +43,8 @@ dependencies:
   fluro: ^2.0.5
   # 状态管理 https://pub.flutter-io.cn/packages/provider
   provider: ^6.0.5
+  # 国际化 https://pub.flutter-io.cn/packages/intl
+  intl: 0.18.1
   # 屏幕参数适配 https://pub.flutter-io.cn/packages/flutter_screenutil
   flutter_screenutil: ^5.8.4
   # 常用工具类库（本地化 屏幕适配） https://pub.flutter-io.cn/packages/flustars

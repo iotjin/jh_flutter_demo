@@ -98,6 +98,7 @@ import 'dragSort/listview_drag_sort_page2.dart';
 // 功能组件
 import 'components/component_demo_list_page.dart';
 import 'components/slide_menu_test_page.dart';
+import 'components/tag_view_test_page.dart';
 
 // other
 import 'other/form_test.dart';
@@ -127,6 +128,7 @@ import 'search/search_test1_page.dart';
 import 'search/search_test2_page.dart';
 import 'search/search_test3_page.dart';
 import 'search/search_test4_page.dart';
+import 'search/search_test5_page.dart';
 import 'search/debounce_throttle_test_page.dart';
 
 // swiper
@@ -263,6 +265,7 @@ class DemosRouter implements IRouterProvider {
     // 功能组件
     router.define('ComponentDemoListPage', handler: Handler(handlerFunc: (_, __) => const ComponentDemoListPage()));
     router.define('SlideMenuTestPage', handler: Handler(handlerFunc: (_, __) => const SlideMenuTestPage()));
+    router.define('TagViewTestPage', handler: Handler(handlerFunc: (_, __) => const TagViewTestPage()));
 
     // other
     router.define('AESTestPage', handler: Handler(handlerFunc: (_, __) => const AESTestPage()));
@@ -291,6 +294,7 @@ class DemosRouter implements IRouterProvider {
     router.define('SearchTest2Page', handler: Handler(handlerFunc: (_, __) => const SearchTest2Page()));
     router.define('SearchTest3Page', handler: Handler(handlerFunc: (_, __) => const SearchTest3Page()));
     router.define('SearchTest4Page', handler: Handler(handlerFunc: (_, __) => const SearchTest4Page()));
+    router.define('SearchTest5Page', handler: Handler(handlerFunc: (_, __) => const SearchTest5Page()));
     router.define('DebounceThrottleTestPage',
         handler: Handler(handlerFunc: (_, __) => const DebounceThrottleTestPage()));
 

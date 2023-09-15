@@ -110,6 +110,14 @@ class _FormValidatePageState extends State<FormValidatePage> {
           inputCallBack: (value) => params['num2'] = value,
         ),
         JhFormInputCell(
+          title: '数字',
+          text: params['num3'],
+          hintText: '请输入数字(大于0,小于等于888)',
+          keyboardType: TextInputType.number,
+          inputFormatters: [length8, number, NumMaxValueInputFormatter(min: 1, max: 888)],
+          inputCallBack: (value) => params['num2'] = value,
+        ),
+        JhFormInputCell(
           title: '金额',
           text: params['money'],
           hintText: '请输入金额(整数不限，小数2位)',

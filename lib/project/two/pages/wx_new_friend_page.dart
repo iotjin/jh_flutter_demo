@@ -88,8 +88,8 @@ class WxNewFriendPage extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
 //        height: 60,
-        child: Column(
-          children: const <Widget>[
+        child: const Column(
+          children: <Widget>[
             Icon(Icons.phone_iphone, color: KColors.wxThemeColor),
             SizedBox(height: 10),
             Text('添加手机联系人', style: TextStyle(color: Colors.grey)),

@@ -69,7 +69,7 @@ class _WxMotionTopCellState extends State<WxMotionTopCell> {
                     style: const TextStyle(fontSize: 16),
                   ),
                   trailing: Text(
-                    widget.model.steps.jhIntToStr,
+                    widget.model.steps.jhToIntStr,
                     style: TextStyle(
                         fontSize: 28, color: (widget.model.steps ?? 0) > 10000 ? Colors.orange : KColors.wxTextColor),
                   ),
@@ -81,7 +81,7 @@ class _WxMotionTopCellState extends State<WxMotionTopCell> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      widget.model.starNum.jhIntToStr,
+                      widget.model.starNum.jhToIntStr,
                       style: const TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                     const SizedBox(height: 5),

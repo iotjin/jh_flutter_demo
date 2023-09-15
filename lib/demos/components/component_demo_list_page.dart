@@ -4,9 +4,11 @@ import '/project/routes/jh_nav_utils.dart';
 
 final List titleData = [
   '水平滑动菜单',
+  'Tags标签',
 ];
 final List routeData = [
   'SlideMenuTestPage',
+  'TagViewTestPage',
 ];
 
 class ComponentDemoListPage extends StatelessWidget {

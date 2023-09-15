@@ -3,7 +3,6 @@
 ///  Created by iotjin on 2020/07/04.
 ///  description:  屏幕信息
 
-import 'dart:ui' as ui show window;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,39 +38,61 @@ class JhScreenUtils {
   // static double get bottomBarHeight => ScreenUtil.bottomBarHeight;
 
   // 系统方法获取
+  static MediaQueryData get mediaQuery {
+    /// 3.10 之后
+    /// https://stackoverflow.com/questions/76317057/get-screen-size-in-flutter-without-having-to-pass-context-and-without-layout-bui
+    /// https://www.xjx100.cn/news/329933.html?action=onClick
+    return MediaQueryData.fromView(WidgetsBinding.instance.platformDispatcher.views.first);
+
+    /// 3.10 之前
+    // MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+    // return mediaQuery;
+  }
+
+  static Size get size {
+    /// 3.10 之后
+    return mediaQuery.size;
+
+    /// 3.10 之前
+    // MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+    // return mediaQuery.size;
+  }
 
   static double get screenWidth {
-    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
-    return mediaQuery.size.width;
+    /// 3.10 之后
+    return size.width;
+
+    /// 3.10 之前
+    // MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+    // return mediaQuery.size.width;
   }
 
   static double get screenHeight {
-    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
-    return mediaQuery.size.height;
+    /// 3.10 之后
+    return size.height;
+
+    /// 3.10 之前
+    // MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
+    // return mediaQuery.size.height;
   }
 
   static double get scale {
-    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.devicePixelRatio;
   }
 
   static double get textScaleFactor {
-    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.textScaleFactor;
   }
 
   static double get navigationBarHeight {
-    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.padding.top + kToolbarHeight;
   }
 
   static double get topSafeHeight {
-    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.padding.top;
   }
 
   static double get bottomSafeHeight {
-    MediaQueryData mediaQuery = MediaQueryData.fromWindow(ui.window);
     return mediaQuery.padding.bottom;
   }
 

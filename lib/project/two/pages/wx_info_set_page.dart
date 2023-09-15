@@ -109,9 +109,9 @@ class _WxInfoSetPageState extends State<WxInfoSetPage> {
           child: Container(
             height: cellH,
             color: KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCellBgDarkColor),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children: <Widget>[
                 Text('删除', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red))
               ],
             ),
