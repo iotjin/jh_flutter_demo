@@ -17,7 +17,8 @@ class JhThemeUtils {
 
   /// 暗黑模式判断
   static bool jhIsDark() {
-    final brightness = SchedulerBinding.instance.window.platformBrightness;
+    // final brightness = SchedulerBinding.instance.window.platformBrightness; // “window”已弃用
+    final brightness = SchedulerBinding.instance.platformDispatcher.platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
     return isDarkMode;
   }

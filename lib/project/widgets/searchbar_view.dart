@@ -40,7 +40,7 @@ class SearchBarView extends StatefulWidget {
   final FocusNode? focusNode;
   final void Function()? tapCallBack;
   final void Function(String value)? inputCallBack;
-  final void Function()? clickBtnCallBack;
+  final void Function(String value)? clickBtnCallBack;
 
   @override
   State<SearchBarView> createState() => _SearchBarViewState();
@@ -112,6 +112,6 @@ class _SearchBarViewState extends State<SearchBarView> {
 
   _requestData({isShowLoading = false}) {
     JhNavUtils.unFocus();
-    widget.clickBtnCallBack?.call();
+    widget.clickBtnCallBack?.call(_keyWord);
   }
 }

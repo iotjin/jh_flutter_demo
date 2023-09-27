@@ -65,26 +65,30 @@ class DioUtils {
     _dio = Dio(options);
 
     /// Fiddler抓包代理配置
-    // dio.httpClientAdapter = IOHttpClientAdapter()
-    //   ..onHttpClientCreate = (client) {
-    //     // Config the client.
+    // dio.httpClientAdapter = IOHttpClientAdapter(
+    //   createHttpClient: () {
+    //     final client = HttpClient();
     //     client.findProxy = (uri) {
-    //       // Forward all request to proxy "localhost:8888".
+    //       // 将请求代理至 localhost:8888。
+    //       // 请注意，代理会在你正在运行应用的设备上生效，而不是在宿主平台生效。
     //       return 'PROXY localhost:8888';
     //     };
     //     // 抓Https包设置
     //     client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
     //     return client;
-    //   };
+    //   },
+    // );
 
     /// 测试环境忽略证书校验
     var isTest = !LogUtils.inProduction || APIs.apiPrefix.startsWith('https://192');
     if (isTest && JhDeviceUtils.isMobile) {
-      dio.httpClientAdapter = IOHttpClientAdapter()
-        ..onHttpClientCreate = (client) {
+      dio.httpClientAdapter = IOHttpClientAdapter(
+        createHttpClient: () {
+          final client = HttpClient();
           client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
           return client;
-        };
+        },
+      );
     }
 
     /// 添加拦截器
@@ -128,7 +132,7 @@ class DioUtils {
         cancelToken: cancelToken,
       );
       onSuccess?.call(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       _cancelLogPrint(e, url);
       final NetError error = ExceptionHandle.handleException(e);
       _onError(error.code, error.msg, onError);
@@ -143,7 +147,7 @@ Options _checkOptions(String? method, Options? options) {
 }
 
 void _cancelLogPrint(dynamic e, String url) {
-  if (e is DioError && CancelToken.isCancel(e)) {
+  if (e is DioException && CancelToken.isCancel(e)) {
     LogUtils.e('取消请求接口： $url');
   }
 }

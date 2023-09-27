@@ -100,12 +100,13 @@ class _SearchTest5PageState extends State<SearchTest5Page> {
           }
         });
       },
-      clickBtnCallBack: () {
-        if (_keyWord.length < 2) {
+      clickBtnCallBack: (value) {
+        if (value.length < 2) {
           JhProgressHUD.showText('Please enter at least 2 characters');
           return;
         }
         setState(() {
+          _keyWord = value;
           _searchData = [];
           _requestData(isShowLoading: true);
         });

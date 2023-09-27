@@ -38,7 +38,7 @@ class ExceptionHandle {
   };
 
   static NetError handleException(dynamic error) {
-    if (error is DioError) {
+    if (error is DioException) {
       if (error.type.errorCode == 0) {
         return _handleException(error.error);
       } else {
@@ -71,7 +71,7 @@ class NetError {
   NetError(this.code, this.msg);
 }
 
-extension DioErrorTypeExtension on DioErrorType {
+extension DioErrorTypeExtension on DioExceptionType {
   int get errorCode => [
         ExceptionHandle.connect_timeout_error,
         ExceptionHandle.send_timeout_error,
