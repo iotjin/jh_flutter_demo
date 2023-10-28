@@ -74,6 +74,7 @@ https://iotjin.github.io/jh_flutter_demo
   * 随机数
   * 退出APP/跳转应用商店
   * 防抖/节流
+  * 跳转三方地图APP导航
 * UI相关
   * ListView相关(分页上下拉刷新、分组上下拉刷新、分组吸顶)
   * GridView相关

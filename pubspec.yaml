@@ -60,7 +60,9 @@ dependencies:
   # webview https://pub.flutter-io.cn/packages/webview_flutter
   webview_flutter: ^4.2.2
   # url打开工具 https://pub.flutter-io.cn/packages/url_launcher
-  url_launcher: ^6.1.11
+  url_launcher: ^6.1.14
+  # 打开地图工具 https://pub.flutter-io.cn/packages/map_launcher
+  map_launcher: ^2.5.0+1
   # 处理键盘事件 https://pub.flutter-io.cn/packages/keyboard_actions
   keyboard_actions: ^4.2.0
   # 时间格式转换 https://pub.flutter-io.cn/packages/date_format

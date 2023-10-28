@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
 import '/jh_common/utils/jh_common_utils.dart';
+import '/jh_common/utils/jh_screen_utils.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/theme_provider.dart';
 import '/project/routes/jh_nav_utils.dart';
@@ -114,6 +115,7 @@ class JhMultiPickerView extends StatefulWidget {
 
 class _JhMultiPickerViewState extends State<JhMultiPickerView> {
   late List<dynamic> _selectedValues = [];
+  bool _isSelectAll = false;
 
   // 搜索数据
   List _searchData = [];
@@ -124,6 +126,7 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
   void initState() {
     super.initState();
     _selectedValues = List.from(widget.values);
+    _isSelectAll = _isSelectAllItem();
   }
 
   @override
@@ -216,6 +219,7 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
           } else {
             _selectedValues.remove(selectValue);
           }
+          _isSelectAll = _isSelectAllItem();
           // widget.clickCallBack?.call(_selectedValues, _getSelectItemList());
         });
       },
@@ -225,6 +229,10 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
   _getSelectItemList() {
     var newList = (widget.data ?? []).where((item) => _selectedValues.contains(item[widget.valueKey])).toList();
     return newList;
+  }
+
+  _isSelectAllItem() {
+    return _selectedValues.length == (widget.data ?? []).length;
   }
 
   Widget _searchBar() {
@@ -245,7 +253,39 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
         }, 500);
       },
     );
-    return !widget.isShowSearch ? Container() : searchbar;
+    var viewBgColor = KColors.dynamicColor(context, KColors.kBgColor, KColors.kBgDarkColor);
+    Widget bgView = Container(
+      color: viewBgColor,
+      child: Row(
+        children: [
+          SizedBox(width: JhScreenUtils.screenWidth - 20 - 45, child: searchbar),
+          InkWell(
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              child: Icon(_isSelectAll ? Icons.done_all : Icons.remove_done, size: 20, color: Colors.grey),
+            ),
+            onTap: () => _handleSelectSwitch(),
+          )
+        ],
+      ),
+    );
+    return !widget.isShowSearch ? Container() : bgView;
+  }
+
+  _handleSelectSwitch() {
+    setState(() {
+      if (_isSelectAllItem() == false) {
+        _selectedValues = (widget.data ?? []).map((item) => item[widget.valueKey]).toList();
+        _isSelectAll = true;
+      } else {
+        _isSelectAll = !_isSelectAll;
+        if (!_isSelectAll) {
+          _selectedValues = [];
+        } else {
+          _selectedValues = (widget.data ?? []).map((item) => item[widget.valueKey]).toList();
+        }
+      }
+    });
   }
 
   /// 根据搜索文字过滤数据

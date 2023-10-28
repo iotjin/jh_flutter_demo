@@ -28,7 +28,8 @@ final List titleData = [
   '城市选择列表',
   '拖拽排序',
   '权限检查和请求',
-  '设备信息'
+  '设备信息',
+  '跳转三方地图导航',
 ];
 final List routeData = [
   'UIDemoListPage',
@@ -55,6 +56,7 @@ final List routeData = [
   'DragSortDemoListPage',
   'PermissionTestPage',
   'DeviceInfoTest',
+  'MapJumpTestPage',
 ];
 
 class DemoListPage extends StatelessWidget {

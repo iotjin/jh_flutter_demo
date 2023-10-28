@@ -110,6 +110,7 @@ import 'other/sideslip_test_page.dart';
 import 'other/city_select_list_page.dart';
 import 'other/permission_test.dart';
 import 'other/device_info_test.dart';
+import 'other/map_jump_test_page.dart';
 
 // 动画
 import 'other/animation/animation_demo_list_page.dart';
@@ -277,6 +278,8 @@ class DemosRouter implements IRouterProvider {
     router.define('CitySelectListPage', handler: Handler(handlerFunc: (_, __) => const CitySelectListPage()));
     router.define('PermissionTestPage', handler: Handler(handlerFunc: (_, __) => const PermissionTestPage()));
     router.define('DeviceInfoTest', handler: Handler(handlerFunc: (_, __) => const DeviceInfoTest()));
+    router.define('MapJumpTestPage', handler: Handler(handlerFunc: (_, __) => const MapJumpTestPage()));
+
     // 动画
     router.define('AnimationDemoListPage', handler: Handler(handlerFunc: (_, __) => const AnimationDemoListPage()));
     router.define('AnimationTestPage', handler: Handler(handlerFunc: (_, __) => const AnimationTestPage()));

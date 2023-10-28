@@ -22,15 +22,24 @@ class _TagViewTestPageState extends State<TagViewTestPage> {
   _body() {
     return ListView(children: const [
       Column(children: [
-        JhTagView(
-          textList: ['111', '22', '333', '44444', '5555555', '66666', '7777'],
-        ),
+        JhTagView(textList: ['111', '22', '333', '44444', '5555555', '66666', '7777']),
         SuccessTag(text: 'success'),
         ErrorTag(text: 'error'),
         WarningTag(text: 'warning'),
         SuccessTag(textList: ['111', '22', '333', '44444', '5555555', '66666', '7777']),
         ErrorTag(textList: ['111', '22', '333', '44444', '5555555', '66666', '7777']),
         WarningTag(textList: ['111', '22', '333', '44444', '5555555', '66666', '7777']),
+        Row(
+          children: [
+            Text('Left'),
+            SizedBox(width: 10),
+            Expanded(
+                child: JhTagView(
+                    textList: ['123456789123456789123456789123456789123456789123456789', '111', '22', '333'])),
+            SizedBox(width: 10),
+            Text('Right'),
+          ],
+        ),
       ])
     ]);
   }

@@ -74,6 +74,7 @@ The code is updated irregularly.
   * Random numbers
   * Exit the APP/jump to the app store
   * Debounce / Throttle
+  * Jump tripartite map APP navigation
 * UI related
   * ListView related (paging up/down refresh, grouping up/down refresh, group sticking)
   * GridView related
