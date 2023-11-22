@@ -1,7 +1,7 @@
 # jh_flutter_demo
 
-[![Flutter version](https://img.shields.io/badge/Flutter%20version-3.10.0-brightgreen)](https://flutter.dev)
-[![Dart version](https://img.shields.io/badge/Dart%20version-3.0.0-brightgreen)](https://dart.dev)
+[![Flutter version](https://img.shields.io/badge/Flutter%20version-3.13.0-brightgreen)](https://flutter.dev)
+[![Dart version](https://img.shields.io/badge/Dart%20version-3.1.0-brightgreen)](https://dart.dev)
 [![License](https://img.shields.io/badge/license-BSD--2--Clause-green)](LICENSE)
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/iotjin/jh_flutter_demo?include_prereleases)](https://github.com/iotjin/jh_flutter_demo/releases/)
 
@@ -23,8 +23,8 @@ https://iotjin.github.io/jh_flutter_demo
 
 ## 项目运行环境
 
-* Flutter version 3.10.0
-* Dart version 3.0.0
+* Flutter version 3.13.0
+* Dart version 3.1.0
 
 
 ## 实现的一些效果
@@ -112,6 +112,7 @@ https://iotjin.github.io/jh_flutter_demo
   <summary><strong>重要更新</strong></summary>
 
 ```
+* v3.13.0 - 更新三方库和flutter版本（Flutter 3.13.0，Dart 3.1.0）
 * v3.10.0 - 更新三方库和flutter版本（Flutter 3.10.0，Dart 3.0.0）
 * v3.7.0  - 更新三方库和flutter版本（Flutter 3.7.0，Dart 2.19.0）
 * v3.3.0  - 更新三方库和flutter版本（Flutter 3.3.0，Dart 2.18.0），iOS最低构建版本改为11.0

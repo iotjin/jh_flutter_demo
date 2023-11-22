@@ -43,7 +43,7 @@ class JhImageUtils {
     if (imageUrl.isEmpty) {
       return AssetImage(getImgPath(placeholder));
     }
-    return CachedNetworkImageProvider(imageUrl, errorListener: () => print('图片加载失败！'));
+    return CachedNetworkImageProvider(imageUrl, errorListener: (error) => print('图片加载失败！$error'));
   }
 }
 
