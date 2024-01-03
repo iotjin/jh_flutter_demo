@@ -40,6 +40,10 @@ class HttpUtils {
     );
   }
 
+  static setBaseUrl(String baseUrl) {
+    DioUtils.instance.dio.options.baseUrl = baseUrl;
+  }
+
   /// get 请求
   static void get<T>(
     String url,

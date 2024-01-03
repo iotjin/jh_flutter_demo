@@ -58,7 +58,7 @@ class JhSetCell extends StatefulWidget {
   final double lineLeftEdge; // 底部横线左侧距离 默认_leftEdge
   final double lineRightEdge; // 底部横线右侧距离 默认0
   final Color? bgColor; // 背景颜色，默认白色
-  final double cellHeight; // 底部横线右侧距离 默认_cellHeight
+  final double cellHeight; // cell高度 默认_cellHeight
   final double leftImgWH; // 左侧图片宽高，默认_imgWH
   final TextAlign textAlign; // 默认靠右
 

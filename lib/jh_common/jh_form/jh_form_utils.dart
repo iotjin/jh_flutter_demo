@@ -209,7 +209,7 @@ class NumMaxValueInputFormatter extends TextInputFormatter {
         if (parsed < min) {
           return oldValue.copyWith(text: min.toString()); // 输入小于最小值时返回最小值
         } else if (parsed > max) {
-          return oldValue.copyWith(text: max.toString()); // 输入大于最大值时返回最大值
+          return TextEditingValue(text: max.toString(), selection: TextSelection.collapsed(offset: max.toString().length)); // 输入大于最大值时返回最大值
         } else {
           return newValue;
         }
