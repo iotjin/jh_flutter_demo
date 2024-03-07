@@ -121,6 +121,8 @@ dependencies:
   #  fl_chart: ^0.55.2
   # 二维码生成 https://pub.flutter-io.cn/packages/qr_flutter
   qr_flutter: ^4.1.0
+  # 二维码扫描(跳页面) https://pub.flutter-io.cn/packages/mobile_scanner
+  mobile_scanner: 3.5.5
   # 二维码扫描(跳页面) https://pub.flutter-io.cn/packages/qr_code_scanner
   qr_code_scanner: ^1.0.1
   # 二维码扫描 https://pub.flutter-io.cn/packages/barcode_scan2

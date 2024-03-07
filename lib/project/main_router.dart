@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fluro/fluro.dart';
 
 import '/project/routes/router_init.dart';
+import '/jh_common/widgets/mobile_scanner_page.dart';
 import '/jh_common/widgets/qr_code_grid_scanner_page.dart';
 import '/jh_common/widgets/qr_code_scanner_page.dart';
 
@@ -65,6 +66,7 @@ class MainRouter implements IRouterProvider {
     router.define(pThreePage, handler: Handler(handlerFunc: (_, __) => const ThreePage()));
     router.define(pFourPage, handler: Handler(handlerFunc: (_, __) => const FourPage()));
     // 二维码扫描
+    router.define('MobileScannerPage', handler: Handler(handlerFunc: (_, __) => const MobileScannerPage()));
     router.define('QrCodeGridScannerPage', handler: Handler(handlerFunc: (_, __) => const QrCodeGridScannerPage()));
     router.define('QrCodeScannerPage', handler: Handler(handlerFunc: (_, params) {
       var jumpParams = params['jumpParams']!.first;
@@ -88,10 +90,8 @@ class MainRouter implements IRouterProvider {
 
     router.define('WxHomePage', handler: Handler(handlerFunc: (_, __) => const WxHomePage()));
     router.define('WxQQMessagePage', handler: Handler(handlerFunc: (_, __) => const WxQQMessagePage()));
-    router.define('WxSubscriptionNumberPage',
-        handler: Handler(handlerFunc: (_, __) => const WxSubscriptionNumberPage()));
-    router.define('WxSubscriptionNumberListPage',
-        handler: Handler(handlerFunc: (_, __) => const WxSubscriptionNumberListPage()));
+    router.define('WxSubscriptionNumberPage', handler: Handler(handlerFunc: (_, __) => const WxSubscriptionNumberPage()));
+    router.define('WxSubscriptionNumberListPage', handler: Handler(handlerFunc: (_, __) => const WxSubscriptionNumberListPage()));
     router.define('WxMotionPage', handler: Handler(handlerFunc: (_, __) => const WxMotionPage()));
     router.define('WxMotionTopPage', handler: Handler(handlerFunc: (_, __) => const WxMotionTopPage()));
 

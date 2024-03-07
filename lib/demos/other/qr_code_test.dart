@@ -29,28 +29,35 @@ class _QRCodeTestState extends State<QRCodeTest> {
     return JhScrollView(
         child: Column(
       children: <Widget>[
+        const Text('二维码扫描 - mobile_scanner'),
+        const SizedBox(height: 10),
+        ElevatedButton(
+          child: const Text('二维码扫描'),
+          onPressed: () => _scan0(),
+        ),
+        const SizedBox(height: 10),
         const Text('二维码扫描 - qr_code_scanner'),
         const SizedBox(height: 10),
         ElevatedButton(
           child: const Text('二维码扫描'),
-          onPressed: () => _scan1(context),
+          onPressed: () => _scan1(),
         ),
         const SizedBox(height: 10),
         ElevatedButton(
           child: const Text('二维码扫描-显示扫描线动画'),
-          onPressed: () => _scan2(context),
+          onPressed: () => _scan2(),
         ),
         const SizedBox(height: 10),
         ElevatedButton(
           child: const Text('二维码扫描-显示网格线动画'),
-          onPressed: () => _scan3(context),
+          onPressed: () => _scan3(),
         ),
         const SizedBox(height: 10),
         const Text('二维码扫描 - barcode_scan'),
         const SizedBox(height: 10),
         ElevatedButton(
           child: const Text('二维码扫描'),
-          onPressed: () => _scan4(context),
+          onPressed: () => _scan4(),
         ),
         const SizedBox(height: 20),
         const Text('扫描到的信息：'),
@@ -81,7 +88,17 @@ class _QRCodeTestState extends State<QRCodeTest> {
     ));
   }
 
-  void _scan1(context) {
+  void _scan0() {
+    JhQrCodeUtils.jumpScan2(context, callBack: (data) {
+      print('扫码结果：$data');
+      JhToast.showText(context, msg: '扫码结果：$data');
+      setState(() {
+        _textStr = data;
+      });
+    });
+  }
+
+  void _scan1() {
     JhQrCodeUtils.jumpScan(context, callBack: (data) {
       print('扫码结果：$data');
       JhToast.showText(context, msg: '扫码结果：$data');
@@ -91,7 +108,7 @@ class _QRCodeTestState extends State<QRCodeTest> {
     });
   }
 
-  void _scan2(context) {
+  void _scan2() {
     JhQrCodeUtils.jumpScan(context, isShowScanLine: true, callBack: (data) {
       print('扫码结果：$data');
       JhToast.showText(context, msg: '扫码结果：$data');
@@ -101,7 +118,7 @@ class _QRCodeTestState extends State<QRCodeTest> {
     });
   }
 
-  void _scan3(context) {
+  void _scan3() {
     JhQrCodeUtils.jumpScan(context, isShowGridLine: true, callBack: (data) {
       print('扫码结果：$data');
       JhToast.showText(context, msg: '扫码结果：$data');
@@ -111,7 +128,7 @@ class _QRCodeTestState extends State<QRCodeTest> {
     });
   }
 
-  void _scan4(context) {
+  void _scan4() {
     JhQrCodeUtils.scan(callBack: (data) {
       print('扫码结果：$data');
       JhToast.showText(context, msg: '扫码结果：$data');

@@ -30,8 +30,28 @@ class JhQrCodeUtils {
     JhNavUtils.unFocus();
     // 延时保证键盘收起，否则进入扫码页会黑屏
     JhCommonUtils.debounce(() {
-      JhNavUtils.pushNamedResult(context, isShowGridLine ? 'QrCodeGridScannerPage' : 'QrCodeScannerPage',
-          isShowGridLine ? null : isShowScanLine, (dynamic code) {
+      JhNavUtils.pushNamedResult(context, isShowGridLine ? 'QrCodeGridScannerPage' : 'QrCodeScannerPage', isShowGridLine ? null : isShowScanLine,
+          (dynamic code) {
+        callBack?.call(code.toString());
+      });
+    }, 500);
+  }
+
+  /// 跳转二维码扫码页扫码
+  /// 需配置路由
+  /// 添加 --enable-software-rendering debug模式闪退
+  static Future jumpScan2(
+    BuildContext context, {
+    Function(String data)? callBack,
+  }) async {
+    if (!JhDeviceUtils.isMobile) {
+      JhProgressHUD.showText('当前平台暂不支持');
+      return;
+    }
+    JhNavUtils.unFocus();
+    // 延时保证键盘收起，否则进入扫码页会黑屏
+    JhCommonUtils.debounce(() {
+      JhNavUtils.pushNamedResult(context, 'MobileScannerPage', {}, (dynamic code) {
         callBack?.call(code.toString());
       });
     }, 500);

@@ -67,6 +67,18 @@ class _JhSwiperViewState extends State<JhSwiperView> {
   int _currentIndex = 0;
   final CarouselController _controller = CarouselController();
 
+  // @override
+  // void initState() {
+  //   // Prefetch Image
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     widget.data.forEach((imgURL) {
+  //       ImageProvider image = imgURL.startsWith('http') ? NetworkImage(imgURL) : AssetImage(imgURL) as ImageProvider;
+  //       precacheImage(image, context);
+  //     });
+  //   });
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return _body(context);
@@ -121,8 +133,7 @@ class _JhSwiperViewState extends State<JhSwiperView> {
   }
 
   Widget _itemWidget(imgURL) {
-    Widget imageWidget =
-        imgURL.startsWith('http') ? JhNetworkImage(imgURL, fit: BoxFit.fill) : Image.asset(imgURL, fit: BoxFit.fill);
+    Widget imageWidget = imgURL.startsWith('http') ? JhNetworkImage(imgURL, fit: BoxFit.fill) : Image.asset(imgURL, fit: BoxFit.fill);
 
     return GestureDetector(
       onTap: () => widget.clickCallBack?.call(_currentIndex, widget.data),

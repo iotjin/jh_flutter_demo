@@ -225,7 +225,7 @@ class _WxHomePageState extends State<WxHomePage> {
   // }
 
   void _scan() {
-    JhQrCodeUtils.jumpScan(context, isShowGridLine: true, isShowScanLine: false, callBack: (data) {
+    JhQrCodeUtils.jumpScan2(context, callBack: (data) {
       print('扫码结果：$data');
       JhToast.showText(context, msg: '扫码结果：$data');
     });

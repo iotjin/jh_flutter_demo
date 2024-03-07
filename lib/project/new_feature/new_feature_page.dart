@@ -13,7 +13,7 @@ class NewFeaturePage extends StatefulWidget {
 }
 
 class _NewFeaturePageState extends State<NewFeaturePage> {
-  // List imgList = [
+  // final List _imgList = [
   //   'https://gitee.com/iotjh/Picture/raw/master/cat.png',
   //   'https://gitee.com/iotjh/Picture/raw/master/lufei2.png',
   //   'https://gitee.com/iotjh/Picture/raw/master/swiper/picture0.jpeg',
@@ -24,6 +24,17 @@ class _NewFeaturePageState extends State<NewFeaturePage> {
     'assets/images/newFeature/newFeature_2.jpeg',
     'assets/images/newFeature/newFeature_3.jpeg',
   ];
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _imgList.forEach((imgURL) {
+        ImageProvider image = imgURL.startsWith('http') ? NetworkImage(imgURL) : AssetImage(imgURL) as ImageProvider;
+        precacheImage(image, context);
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
