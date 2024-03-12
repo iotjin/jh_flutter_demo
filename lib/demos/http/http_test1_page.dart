@@ -54,7 +54,7 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
 }
 
 void postRequest() async {
-  var url = APIs.apiPrefix + APIs.getSimpleArrDic;
+  var url = APIs.apiPrefix + APIs.getSimpleDictList;
   var dio = Dio();
   var response = await dio.post(url, data: {'id': 12, 'name': 'wendu'});
   var result = response.data.toString();
@@ -63,7 +63,7 @@ void postRequest() async {
 }
 
 void postRequest2() async {
-  var url = APIs.apiPrefix + APIs.getSimpleArrDic;
+  var url = APIs.apiPrefix + APIs.getSimpleDictList;
   var response = await Dio().post(url);
   print('返回数据： ${response.data.toString()}');
   print(response.data['msg']);
