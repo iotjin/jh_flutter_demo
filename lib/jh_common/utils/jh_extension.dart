@@ -16,7 +16,7 @@ extension MediaQueryExtension on BuildContext {
 
   double get jhScale => jhMediaQuery.devicePixelRatio;
 
-  double get jhTextScaleFactor => jhMediaQuery.textScaleFactor;
+  // double get jhTextScaleFactor => jhMediaQuery.textScaleFactor;
 
   double get jhNavigationBarHeight => jhMediaQuery.padding.top + kToolbarHeight;
 

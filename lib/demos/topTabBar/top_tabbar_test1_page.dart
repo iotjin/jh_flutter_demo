@@ -16,14 +16,14 @@ class _TopTabBarTest1PageState extends State<TopTabBarTest1Page> {
       title: '标题一',
       widget: Container(
         alignment: Alignment.center,
-        child: const Text('页面一', textScaleFactor: 3),
+        child: Text('页面一', textScaler: TextScaler.linear(3)),
       ),
     ),
     JhTopTabBarModel(
       title: '标题二',
       widget: Container(
         alignment: Alignment.center,
-        child: const Text('页面二', textScaleFactor: 3),
+        child: Text('页面二', textScaler: TextScaler.linear(3)),
       ),
     ),
   ];

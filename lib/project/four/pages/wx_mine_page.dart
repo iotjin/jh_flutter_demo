@@ -8,10 +8,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_status_bar_utils.dart';
 import '/jh_common/utils/jh_storage_utils.dart';
 import '/jh_common/widgets/jh_network_image.dart';
-import '/jh_common/widgets/update_dialog.dart';
+import '/jh_common/widgets/jh_update_dialog.dart';
 import '/project/configs/project_config.dart';
 import '/project/provider/tabbar_provider.dart';
 import '/project/model/user_model.dart';
@@ -214,16 +215,24 @@ class _WxMinePageState extends State<WxMinePage> {
   }
 
   void _showUpdateDialog() {
-    showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => const UpdateDialog(
+    if (JhCommonUtils.getRandomInt(0, 1) == 0) {
+      JhUpdateDialog.show(
+        context,
         titleText: '新版本更新',
-        contentList: ['1、又双叒修复了一大堆bug。', '2、祭天了多名程序猿。'],
+        contentList: const ['1、又双叒修复了一大堆bug。', '2、祭天了多名程序猿。'],
         cancelText: '残忍拒绝',
         confirmText: '立即更新',
-      ),
-    );
+      );
+    } else {
+      JhUpdateDialog.show(
+        context,
+        titleText: '发现新版本',
+        contentList: const ['1、功能优化、性能优化', '2、修复一些已知问题'],
+        cancelText: '稍后更新',
+        confirmText: '立即更新',
+        useStyle2: true,
+      );
+    }
   }
 
   // 头部
@@ -237,8 +246,7 @@ class _WxMinePageState extends State<WxMinePage> {
         child: Row(
           children: <Widget>[
             InkWell(
-              child: JhNetworkImage(model.avatarUrl.jhNullSafe,
-                  placeholder: 'lufei', width: 75, height: 75, borderRadius: 10),
+              child: JhNetworkImage(model.avatarUrl.jhNullSafe, placeholder: 'lufei', width: 75, height: 75, borderRadius: 10),
               onTap: () {
                 print('点击头像==  ${model.avatarUrl}');
               },

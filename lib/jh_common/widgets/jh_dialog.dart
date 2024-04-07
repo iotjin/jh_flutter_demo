@@ -121,6 +121,7 @@ class JhDialog {
     final VoidCallback? onCancel,
     final VoidCallback? onConfirm,
     bool hiddenCancel = false,
+    bool hiddenConfirm = false,
     bool clickBtnPop = true, // 点击确认按钮是否弹框消失
   }) {
     if (_isShowDialog) {
@@ -141,6 +142,7 @@ class JhDialog {
           onCancel: onCancel,
           onConfirm: onConfirm,
           hiddenCancel: hiddenCancel,
+          hiddenConfirm: hiddenConfirm,
           clickBtnPop: clickBtnPop,
         );
       },
@@ -180,6 +182,7 @@ class BaseDialog extends StatelessWidget {
     this.onCancel,
     this.onConfirm,
     this.hiddenCancel = false,
+    this.hiddenConfirm = false,
     this.clickBtnPop = true,
   }) : super(key: key);
 
@@ -191,6 +194,7 @@ class BaseDialog extends StatelessWidget {
   final VoidCallback? onCancel;
   final VoidCallback? onConfirm;
   final bool hiddenCancel;
+  final bool hiddenConfirm;
   final bool clickBtnPop;
 
   @override
@@ -215,7 +219,7 @@ class BaseDialog extends StatelessWidget {
       children: <Widget>[
         hiddenCancel
             ? Container()
-            : _DialogButton(
+            : DialogButton(
                 text: leftText,
                 textColor: _cancelTextColor,
                 onPressed: () {
@@ -227,16 +231,18 @@ class BaseDialog extends StatelessWidget {
                 },
               ),
         const SizedBox(height: 48.0, width: 0.6, child: VerticalDivider()),
-        _DialogButton(
-          text: rightText,
-          textColor: confirmTextColor,
-          onPressed: () {
-            if (clickBtnPop == true) {
-              Navigator.pop(context);
-            }
-            onConfirm?.call();
-          },
-        ),
+        hiddenConfirm
+            ? Container()
+            : DialogButton(
+                text: rightText,
+                textColor: confirmTextColor,
+                onPressed: () {
+                  if (clickBtnPop == true) {
+                    Navigator.pop(context);
+                  }
+                  onConfirm?.call();
+                },
+              ),
       ],
     );
 
@@ -249,8 +255,14 @@ class BaseDialog extends StatelessWidget {
           dialogTitle,
           content == null ? Container() : Flexible(child: content!),
           const SizedBox(height: 8),
-          const Divider(height: 1),
-          bottomButton,
+          Offstage(
+            offstage: hiddenCancel && hiddenConfirm,
+            child: const Divider(height: 1),
+          ),
+          Offstage(
+            offstage: hiddenCancel && hiddenConfirm,
+            child: bottomButton,
+          ),
         ],
       ),
     );
@@ -276,8 +288,8 @@ class BaseDialog extends StatelessWidget {
   }
 }
 
-class _DialogButton extends StatelessWidget {
-  const _DialogButton({
+class DialogButton extends StatelessWidget {
+  const DialogButton({
     Key? key,
     this.text = '',
     this.textColor,

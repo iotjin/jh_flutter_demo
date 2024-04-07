@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import '/jh_common/jh_form/jh_set_cell.dart';
 import '/jh_common/utils/jh_qr_code_utils.dart';
-import '/jh_common/widgets/update_dialog.dart';
+import '/jh_common/widgets/jh_update_dialog.dart';
 import '/jh_common/widgets/jh_dialog.dart';
 import '/project/configs/strings.dart';
 import '/project/routes/jh_nav_utils.dart';
@@ -77,6 +77,6 @@ class _MinePageState extends State<MinePage> {
   }
 
   void _showUpdateDialog() {
-    showDialog<void>(context: context, barrierDismissible: false, builder: (_) => const UpdateDialog());
+    JhUpdateDialog.show(context);
   }
 }

@@ -8,7 +8,7 @@ import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/utils/jh_version_utils.dart';
 import '/jh_common/widgets/jh_photo_browser.dart';
-import '/jh_common/widgets/update_dialog.dart';
+import '/jh_common/widgets/jh_update_dialog.dart';
 import '/project/configs/project_config.dart';
 
 class AboutPage extends StatefulWidget {
@@ -201,29 +201,23 @@ class _AboutPageState extends State<AboutPage> {
       var url = _androidData['url'];
       var version = _androidData['tagName'];
       if (url != null && version != null) {
-        showDialog<void>(
-          context: context,
-          barrierDismissible: false,
-          builder: (_) => UpdateDialog(
-            androidAPKURL: url,
-            androidVersion: version,
-            titleText: '发现新版本',
-            contentList: const ['1、更新 Flutter SDK和依赖库', '2、项目优化、更新组件和工具类'],
-            cancelText: '稍后更新',
-            confirmText: '立即更新',
-          ),
+        JhUpdateDialog.show(
+          context,
+          androidAPKURL: url,
+          androidVersion: version,
+          titleText: '发现新版本',
+          contentList: const ['1、更新 Flutter SDK和依赖库', '2、项目优化、更新组件和工具类'],
+          cancelText: '稍后更新',
+          confirmText: '立即更新',
         );
       }
     } else {
-      showDialog<void>(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) => const UpdateDialog(
-          titleText: '发现新版本',
-          contentList: ['1、更新 Flutter SDK和依赖库', '2、项目优化、更新组件和工具类'],
-          cancelText: '稍后更新',
-          confirmText: '立即更新',
-        ),
+      JhUpdateDialog.show(
+        context,
+        titleText: '发现新版本',
+        contentList: const ['1、更新 Flutter SDK和依赖库', '2、项目优化、更新组件和工具类'],
+        cancelText: '稍后更新',
+        confirmText: '立即更新',
       );
     }
   }

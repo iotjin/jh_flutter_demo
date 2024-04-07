@@ -21,7 +21,7 @@ class SideslipTestPage extends StatelessWidget {
       Slidable(
         startActionPane: ActionPane(
           motion: const ScrollMotion(),
-          extentRatio: 0.4,
+          extentRatio: 0.5,
           children: [
             SlidableAction(
               label: 'Archive',
@@ -40,7 +40,7 @@ class SideslipTestPage extends StatelessWidget {
         // 右侧按钮列表
         endActionPane: ActionPane(
           motion: const ScrollMotion(),
-          extentRatio: 0.4,
+          extentRatio: 0.5,
           children: [
             SlidableAction(
               label: 'More',

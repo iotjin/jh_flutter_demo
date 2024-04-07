@@ -80,9 +80,9 @@ class JhScreenUtils {
     return mediaQuery.devicePixelRatio;
   }
 
-  static double get textScaleFactor {
-    return mediaQuery.textScaleFactor;
-  }
+  // static double get textScaleFactor {
+  //   return mediaQuery.textScaleFactor;
+  // }
 
   static double get navigationBarHeight {
     return mediaQuery.padding.top + kToolbarHeight;

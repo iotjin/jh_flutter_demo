@@ -38,8 +38,7 @@ const bool isPriorityApp = true;
 
 class ThemeProvider extends ChangeNotifier {
   /// 是否跟随系统
-  bool get isFollowSystem =>
-      getThemeMode() == ThemeMode.system && getThemeColor() != _blueThemeColor && getThemeColor() != _purpleThemeColor;
+  bool get isFollowSystem => getThemeMode() == ThemeMode.system && getThemeColor() != _blueThemeColor && getThemeColor() != _purpleThemeColor;
 
   /// 获取主题列表
   List getThemeList() {
@@ -121,6 +120,7 @@ class MyThemes {
     var darkPrimaryThemeColor = KColors.kThemeColor;
 
     return ThemeData(
+      useMaterial3: false,
       primarySwatch: JhColorUtils.materialColor(themeColor),
       primaryColor: themeColor,
       // 页面背景色

@@ -156,7 +156,7 @@ class _MyAppState extends State<MyApp> {
 
         /// 保证文字大小不受手机系统设置影响
         child = MediaQuery(
-          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
           child: child!,
         );
         // 1.调用BotToastInit

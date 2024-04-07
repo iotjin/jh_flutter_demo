@@ -148,7 +148,7 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
 
   Map<String, dynamic> _readWebBrowserInfo(WebBrowserInfo data) {
     return <String, dynamic>{
-      'browserName': describeEnum(data.browserName),
+      'browserName': data.browserName.name,
       'appCodeName': data.appCodeName,
       'appName': data.appName,
       'appVersion': data.appVersion,
@@ -173,6 +173,9 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
       'arch': data.arch,
       'model': data.model,
       'kernelVersion': data.kernelVersion,
+      'majorVersion': data.majorVersion,
+      'minorVersion': data.minorVersion,
+      'patchVersion': data.patchVersion,
       'osRelease': data.osRelease,
       'activeCPUs': data.activeCPUs,
       'memorySize': data.memorySize,
