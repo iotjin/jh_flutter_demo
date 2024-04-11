@@ -35,7 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BaseAppBar('账号注册'),
+      appBar: BaseAppBar(IntlKeys.registerTitle.tr),
       body: KeyboardActions(
         config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2, _node3]),
         child: _body(),
@@ -54,8 +54,8 @@ class _RegisterPageState extends State<RegisterPage> {
               children: <Widget>[
                 JhLoginTextField(
                   text: _phone,
-                  hintText: '请输入手机号',
-                  labelText: '手机号',
+                  hintText: IntlKeys.loginHintPhone.tr,
+                  labelText: IntlKeys.loginPhoneText.tr,
                   focusNode: _node1,
                   maxLength: 11,
                   keyboardType: TextInputType.number,
@@ -65,12 +65,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 10),
                 JhLoginTextField(
                   text: _code,
-                  hintText: '请输入验证码',
-                  labelText: '验证码',
+                  hintText: IntlKeys.loginHintCode.tr,
+                  labelText: IntlKeys.loginCodeText.tr,
                   focusNode: _node2,
                   maxLength: 6,
                   keyboardType: TextInputType.number,
                   rightWidget: JhCountDownBtn(
+                    getCodeText: IntlKeys.loginGetCode.tr,
+                    resendAfterText: IntlKeys.codeResendAfter.tr,
                     showBorder: true,
                     getVCode: () async {
                       return true;
@@ -82,8 +84,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 10),
                 JhLoginTextField(
                   text: _pwd,
-                  hintText: '请输入密码',
-                  labelText: '密码',
+                  hintText: IntlKeys.loginHintPwd.tr,
+                  labelText: IntlKeys.loginPwdText.tr,
                   focusNode: _node3,
                   isShowDeleteBtn: true,
                   isPwd: true,
@@ -93,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   inputCallBack: (value) => _pwd = value,
                 ),
                 const SizedBox(height: 65),
-                JhButton(text: '注 册', onPressed: _clickOkBtn),
+                JhButton(text: IntlKeys.registerBtn.tr, onPressed: _clickOkBtn),
                 const SizedBox(height: 20),
                 RichText(
                   text: TextSpan(
@@ -102,9 +104,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       color: KColors.dynamicColor(context, KColors.kFormTitleColor, KColors.kFormTitleDarkColor),
                     ),
                     children: <InlineSpan>[
-                      const TextSpan(text: '注册即视为同意'),
+                      TextSpan(text: IntlKeys.registerAgreement1.tr),
                       TextSpan(
-                        text: '《xxx服务协议》',
+                        text: IntlKeys.registerAgreement2.tr,
                         style: const TextStyle(color: Colors.red),
                         recognizer: TapGestureRecognizer()..onTap = () => _clickAgreement(),
                       ),
@@ -126,10 +128,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
 //    Navigator.pushReplacementNamed(context, 'BaseTabBar');
 
-    var hide = JhToast.showIOSLoadingText(
-      context,
-      msg: '正在注册...',
-    );
+    // var hide = JhToast.showIOSLoadingText(context, msg: '正在注册...');
+    var hide = JhToast.showIOSLoadingText(context, msg: IntlKeys.registerLoading.tr);
+
     Future.delayed(const Duration(seconds: 1), () {
       Navigator.pop(context);
       hide();
@@ -138,6 +139,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   _clickAgreement() {
     print('Tap Here onTap');
-    JhToast.showText(context, msg: '点击服务协议');
+    JhToast.showText(context, msg: IntlKeys.registerMsgAgreement.tr);
   }
 }

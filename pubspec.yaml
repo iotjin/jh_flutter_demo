@@ -153,6 +153,9 @@ dependencies:
   # 后台文件下载 https://pub.flutter-io.cn/packages/flutter_downloader
   #  flutter_downloader: ^1.11.4
 
+  # 使用国际化 https://pub-web.flutter-io.cn/packages/get
+  get: ^4.6.6
+
 
   # ----- 废弃 -----
   # 图片选择(改为使用wechat_assets_picker) https://pub.flutter-io.cn/packages/image_picker

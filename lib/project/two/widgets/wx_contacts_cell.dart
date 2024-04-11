@@ -43,19 +43,19 @@ class WxContactsCell extends StatelessWidget {
   Widget _buildHeader(context) {
     List topData = [
       {
-        'title': '新的朋友',
+        'title': IntlKeys.contactsNewFriends.tr,
         'imgUrl': 'assets/wechat/contacts/ic_new_friend.png',
       },
       {
-        'title': '群聊',
+        'title': IntlKeys.contactsGroupChats.tr,
         'imgUrl': 'assets/wechat/contacts/ic_group_chat.png',
       },
       {
-        'title': '标签',
+        'title': IntlKeys.contactsTags.tr,
         'imgUrl': 'assets/wechat/contacts/ic_tag.png',
       },
       {
-        'title': '公众号',
+        'title': IntlKeys.contactsOfficialAccounts.tr,
         'imgUrl': 'assets/wechat/contacts/ic_public_account.png',
       },
     ];
@@ -66,6 +66,7 @@ class WxContactsCell extends StatelessWidget {
       double imgWH = 40;
 
       return JhSetCell(
+        titleWidth: 200,
         leftImgWH: imgWH,
         cellHeight: cellH,
         lineLeftEdge: leftSpace,
@@ -91,7 +92,7 @@ class WxContactsCell extends StatelessWidget {
     List<Widget> topWidgetList = topData.map((item) => topCell(context, item)).toList();
 
     Widget searchBar = JhSearchBar(
-      hintText: '搜索',
+      hintText: IntlKeys.contactsSearch.tr,
       bgColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor),
       textInputAction: TextInputAction.search,
       inputCompletionCallBack: (value, isSubmitted) {
@@ -140,16 +141,16 @@ class WxContactsCell extends StatelessWidget {
         Slidable(
           endActionPane: ActionPane(
             motion: const ScrollMotion(),
-            extentRatio: 0.2,
+            extentRatio: 0.25,
             children: [
               CustomSlidableAction(
                 backgroundColor: Colors.black54,
-                child: const Text(
-                  '备注',
-                  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
+                child: Text(
+                  IntlKeys.contactsRemarks.tr,
+                  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
                 ),
                 onPressed: (context) {
-                  JhToast.showText(context, msg: '点击备注');
+                  JhToast.showText(context, msg: IntlKeys.contactsMsgRemarks.tr);
                 },
               ),
             ],

@@ -161,7 +161,7 @@ class _WxMinePageState extends State<WxMinePage> {
         JhSetCell(
           cellHeight: _cellH,
           leftImgPath: 'assets/wechat/mine/ic_wallet.png',
-          title: '支付',
+          title: IntlKeys.meServices.tr,
           hiddenLine: true,
           clickCallBack: () => JhNavUtils.pushNamed(context, 'WxPayPage'),
         ),
@@ -170,32 +170,32 @@ class _WxMinePageState extends State<WxMinePage> {
           cellHeight: _cellH,
           lineLeftEdge: _leftSpace,
           leftImgPath: 'assets/wechat/mine/ic_collections.png',
-          title: '收藏',
+          title: IntlKeys.meFavorites.tr,
         ),
         JhSetCell(
           cellHeight: _cellH,
           lineLeftEdge: _leftSpace,
           leftImgPath: 'assets/wechat/mine/ic_album.png',
-          title: '相册',
+          title: IntlKeys.meAlbum.tr,
         ),
         JhSetCell(
           cellHeight: _cellH,
           lineLeftEdge: _leftSpace,
           leftImgPath: 'assets/wechat/mine/ic_cards_wallet.png',
-          title: '卡包',
+          title: IntlKeys.meCardsOffers.tr,
         ),
         JhSetCell(
           cellHeight: _cellH,
           lineLeftEdge: _leftSpace,
           leftImgPath: 'assets/wechat/mine/ic_emotions.png',
-          title: '表情',
+          title: IntlKeys.meStickerGallery.tr,
           hiddenLine: true,
         ),
         SizedBox(height: _rowSpace),
         JhSetCell(
           cellHeight: _cellH,
           leftImgPath: 'assets/wechat/mine/ic_settings.png',
-          title: '设置',
+          title: IntlKeys.meSettings.tr,
           hiddenLine: true,
           clickCallBack: () => JhNavUtils.pushNamed(context, 'SetPage'),
         ),
@@ -203,8 +203,8 @@ class _WxMinePageState extends State<WxMinePage> {
         JhSetCell(
           cellHeight: _cellH,
           leftImgPath: 'assets/images/ic_about.png',
-          title: '检查更新',
-          text: '有新版本',
+          title: IntlKeys.meCheckUpdate.tr,
+          text: IntlKeys.meNewVersion.tr,
           textStyle: const TextStyle(fontSize: 14.0, color: Colors.red),
           hiddenLine: true,
           clickCallBack: () => _showUpdateDialog(),
@@ -281,7 +281,7 @@ class _WxMinePageState extends State<WxMinePage> {
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Row(
                           children: <Widget>[
-                            const Expanded(child: Text('微信号：abc', style: TextStyle(fontSize: 17, color: Colors.grey))),
+                            const Expanded(child: Text('${IntlKeys.meWeiXinID}：abc', style: TextStyle(fontSize: 17, color: Colors.grey))),
                             Padding(
                               padding: const EdgeInsets.only(right: 20.0),
                               child: Image.asset(

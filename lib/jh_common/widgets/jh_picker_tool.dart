@@ -53,9 +53,12 @@ class JhPickerTool {
     BuildContext context, {
     required List data,
     String? title,
+    String? cancelText,
+    String? confirmText,
     String? labelKey, // 对象数组的文字字段
     int selectIndex = 0,
     _ClickCallBack? clickCallBack,
+    void Function()? onCancel,
   }) {
     if (_isShowPicker || data.isEmpty) {
       return;
@@ -77,12 +80,13 @@ class JhPickerTool {
         return BasePickerView(
           data: data,
           title: title,
-          selecteds: [selectIndex],
+          cancelText: cancelText,
+          confirmText: confirmText,
+          selectedIds: [selectIndex],
           pickerType: PickerType.string,
-          adapter: labelKey != null
-              ? PickerDataAdapter(pickerData: data.map((e) => e[labelKey]).toList())
-              : PickerDataAdapter(pickerData: data),
+          adapter: labelKey != null ? PickerDataAdapter(pickerData: data.map((e) => e[labelKey]).toList()) : PickerDataAdapter(pickerData: data),
           clickCallBack: clickCallBack,
+          onCancel: onCancel,
         );
       },
     ).then((value) => _isShowPicker = false);
@@ -94,9 +98,12 @@ class JhPickerTool {
     BuildContext context, {
     required List data,
     String? title,
+    String? cancelText,
+    String? confirmText,
     String? labelKey, // 对象数组的文字字段
     List<int>? selectIndex,
     _ClickCallBack? clickCallBack,
+    void Function()? onCancel,
   }) {
     if (_isShowPicker || data.isEmpty) {
       return;
@@ -118,7 +125,9 @@ class JhPickerTool {
         return BasePickerView(
           data: data,
           title: title,
-          selecteds: selectIndex,
+          cancelText: cancelText,
+          confirmText: confirmText,
+          selectedIds: selectIndex,
           pickerType: PickerType.array,
           adapter: labelKey != null
               ? PickerDataAdapter(
@@ -128,6 +137,7 @@ class JhPickerTool {
                   isArray: true)
               : PickerDataAdapter(pickerData: data, isArray: true),
           clickCallBack: clickCallBack,
+          onCancel: onCancel,
         );
       },
     ).then((value) => _isShowPicker = false);
@@ -138,6 +148,8 @@ class JhPickerTool {
   static void showDatePicker(
     BuildContext context, {
     String? title,
+    String? cancelText,
+    String? confirmText,
     PickerDateType? dateType,
     DateTime? maxTime,
     DateTime? minTime,
@@ -147,6 +159,7 @@ class JhPickerTool {
     int? minHour = 0,
     int? maxHour = 23,
     _ClickCallBack? clickCallBack,
+    Function()? onCancel,
   }) {
     if (_isShowPicker) {
       return;
@@ -178,6 +191,8 @@ class JhPickerTool {
       builder: (BuildContext context) {
         return BasePickerView(
           title: title,
+          cancelText: cancelText,
+          confirmText: confirmText,
           pickerType: PickerType.date,
           adapter: DateTimePickerAdapter(
             type: timeType,
@@ -195,6 +210,7 @@ class JhPickerTool {
             yearEnd: yearEnd,
           ),
           clickCallBack: clickCallBack,
+          onCancel: onCancel,
         );
       },
     ).then((value) => _isShowPicker = false);
@@ -206,19 +222,25 @@ class BasePickerView extends StatefulWidget {
   const BasePickerView({
     Key? key,
     this.data,
-    this.title,
-    this.selecteds,
+    this.title = _titleNormalText,
+    this.cancelText = _cancelText,
+    this.confirmText = _confirmText,
+    this.selectedIds,
     this.pickerType,
     required this.adapter,
     this.clickCallBack,
+    this.onCancel,
   }) : super(key: key);
 
   final List? data;
   final String? title;
-  final List<int>? selecteds;
+  final String? cancelText;
+  final String? confirmText;
+  final List<int>? selectedIds;
   final PickerType? pickerType;
   final PickerAdapter adapter;
   final _ClickCallBack? clickCallBack;
+  final Function()? onCancel;
 
   @override
   State<BasePickerView> createState() => BasePickerViewState();
@@ -233,8 +255,7 @@ class BasePickerViewState extends State<BasePickerView> {
   _body() {
     var bgColor = KColors.dynamicColor(context, KColors.kPickerBgColor, KColors.kPickerBgDarkColor);
     var headerColor = KColors.dynamicColor(context, KColors.kPickerHeaderColor, KColors.kPickerHeaderDarkColor);
-    var headerLineColor =
-        KColors.dynamicColor(context, KColors.kPickerHeaderLineColor, KColors.kPickerHeaderLineDarkColor);
+    var headerLineColor = KColors.dynamicColor(context, KColors.kPickerHeaderLineColor, KColors.kPickerHeaderLineDarkColor);
     var titleColor = KColors.dynamicColor(context, KColors.kPickerTitleColor, KColors.kPickerTitleDarkColor);
     var btnColor = KColors.dynamicColor(context, KColors.kPickerBtnColor, KColors.kPickerBtnDarkColor);
     var selectTextColor = KColors.dynamicColor(context, KColors.kPickerTextColor, KColors.kPickerTextDarkColor);
@@ -242,13 +263,13 @@ class BasePickerViewState extends State<BasePickerView> {
 
     var picker = Picker(
       adapter: widget.adapter,
-      selecteds: widget.selecteds,
+      selecteds: widget.selectedIds,
       height: _kPickerHeight,
       itemExtent: _kItemHeight,
       title: Text(widget.title ?? _titleNormalText, style: TextStyle(color: titleColor, fontSize: _kTitleFontSize)),
-      cancelText: _cancelText,
+      cancelText: widget.cancelText,
       cancelTextStyle: TextStyle(color: btnColor, fontSize: _kBtnFontSize),
-      confirmText: _confirmText,
+      confirmText: widget.confirmText,
       confirmTextStyle: TextStyle(color: btnColor, fontSize: _kBtnFontSize),
       textAlign: TextAlign.center,
       textStyle: TextStyle(color: selectTextColor, fontSize: _textFontSize),
@@ -258,6 +279,7 @@ class BasePickerViewState extends State<BasePickerView> {
       headerDecoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: headerLineColor, width: _kHeaderLineHeight)),
       ),
+      onCancel: () => widget.onCancel?.call(),
       onConfirm: (Picker picker, List selectIndexArr) {
         if (widget.pickerType == PickerType.string) {
           var selectIndex = selectIndexArr[0];

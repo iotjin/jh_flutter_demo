@@ -21,6 +21,7 @@ final List titleData = [
   '个人主页2',
   '导航条渐变显隐',
   '主题设置',
+  '多语言',
   '关于',
   '关于iOS',
   'web版',
@@ -63,6 +64,9 @@ class SetPage extends StatelessWidget {
         if (str == '主题设置') {
           JhNavUtils.pushNamed(context, 'ThemePage');
         }
+        if (str == '多语言') {
+          JhNavUtils.pushNamed(context, 'LocalePage');
+        }
         if (str == '关于') {
           JhNavUtils.pushNamed(context, 'AboutPage');
         }
@@ -80,29 +84,27 @@ class SetPage extends StatelessWidget {
         }
 
         if (str == '退出登录') {
-          JhBottomSheet.showText(context, title: '请选择操作', redBtnTitle: '退出登录', clickCallback: (index, str) {
-            if (str == '退出登录') {
-              var hide = JhToast.showIOSLoadingText(
-                context,
-                msg: '正在退出...',
-              );
-              Future.delayed(const Duration(seconds: 1), () {
-                // 退出时清除用户信息
-                JhAESStorageUtils.remove(kUserDefault_UserInfo);
-
-                // Navigator.of(context).pushAndRemoveUntil(
-                //   MaterialPageRoute(builder: (context) => LoginPage()),
-                //   (route) => false,
-                // );
-
-                JhNavUtils.pushReplacement(context, LoginRouter.pLoginPage);
-
-                hide();
-              });
-            }
-          });
+          _handleExitLogin(context);
         }
       },
     );
+  }
+
+  _handleExitLogin(context) {
+    JhBottomSheet.showText(context, title: '请选择操作', redBtnTitle: '退出登录', clickCallback: (index, str) {
+      if (str == '退出登录') {
+        var hide = JhToast.showIOSLoadingText(context, msg: '正在退出...');
+        Future.delayed(const Duration(seconds: 1), () {
+          // 退出时清除用户信息
+          JhAESStorageUtils.remove(kUserDefault_UserInfo);
+          // Navigator.of(context).pushAndRemoveUntil(
+          //   MaterialPageRoute(builder: (context) => LoginPage()),
+          //   (route) => false,
+          // );
+          JhNavUtils.pushReplacement(context, LoginRouter.pLoginPage);
+          hide();
+        });
+      }
+    });
   }
 }

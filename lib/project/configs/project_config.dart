@@ -22,6 +22,9 @@ export '/jh_common/widgets/jh_progress_hud.dart';
 export '/project/routes/jh_nav_utils.dart';
 export '/base_appbar.dart';
 
+export 'package:get/get.dart';
+export '/intl/intl_config.dart';
+
 double wxCellH = 55.0;
 double wxRowSpace = 6.0;
 

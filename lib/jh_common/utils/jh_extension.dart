@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 
-extension MediaQueryExtension on BuildContext {
+extension JhMediaQueryExtension on BuildContext {
   MediaQueryData get jhMediaQuery => MediaQuery.of(this);
 
   Size get jhSize => jhMediaQuery.size;
@@ -25,7 +25,7 @@ extension MediaQueryExtension on BuildContext {
   double get jhBottomSafeHeight => jhMediaQuery.padding.bottom;
 }
 
-extension StringExtension on String? {
+extension JhStringExtension on String? {
   /// String 空安全处理
   String get jhNullSafe => this ?? '';
 
@@ -33,7 +33,7 @@ extension StringExtension on String? {
   num get jhToNum => num.tryParse(this ?? '') ?? 0;
 }
 
-extension NumExtension on num? {
+extension JhNumExtension on num? {
   /// num 空安全处理
   String get jhNullSafe => this?.toString() ?? '';
 
@@ -41,7 +41,7 @@ extension NumExtension on num? {
   String get jhToIntStr => (this ?? 0).toInt().toString();
 }
 
-extension IntExtension on int? {
+extension JhIntExtension on int? {
   /// int 空安全处理
   String get jhNullSafe => this?.toString() ?? '';
 
@@ -49,21 +49,21 @@ extension IntExtension on int? {
   String get jhToIntStr => (this ?? 0).toString();
 }
 
-extension NullListExtension<T> on List<T>? {
+extension JhNullListExtension<T> on List<T>? {
   /// List 空安全处理
   List<T> get jhNullSafe => this ?? [];
 
   bool get jhIsNullOrEmpty => this == null || this!.isEmpty;
 }
 
-extension NullMapExtension<K, V> on Map<K, V>? {
+extension JhNullMapExtension<K, V> on Map<K, V>? {
   /// Map 空安全处理
   Map<K, V> get jhNullSafe => this ?? {};
 
   bool get jhIsNullOrEmpty => this == null || this!.isEmpty;
 }
 
-extension NullBoolExtension on bool? {
+extension JhNullBoolExtension on bool? {
   /// bool 空安全处理
   bool get jhNullSafe => this ?? false;
 }

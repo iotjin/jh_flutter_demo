@@ -9,6 +9,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flustars_flutter3/flustars_flutter3.dart';
 import 'package:provider/provider.dart';
 import 'package:jhtoast/jhtoast.dart';
+import 'intl/intl_config.dart';
+import 'intl/locale_utils.dart';
 import 'jh_common/utils/jh_color_utils.dart';
 import 'jh_common/utils/jh_device_utils.dart';
 import 'jh_common/utils/jh_status_bar_utils.dart';
@@ -117,7 +119,7 @@ class _MyAppState extends State<MyApp> {
     // 警告:不要随意调整调用BotToastInit函数的位置
     final botToastBuilder = BotToastInit(); // 1.调用BotToastInit
 
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       navigatorKey: KStrings.navigatorKey,
       // 多主题切换
@@ -135,17 +137,16 @@ class _MyAppState extends State<MyApp> {
       // 路由
       onGenerateRoute: Routes.router.generator,
       onUnknownRoute: (RouteSettings settings) => MaterialPageRoute(builder: (context) => const NotFoundPage()),
-      //        locale: Locale('en','US'),
       localizationsDelegates: const [
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         FallbackCupertinoLocalisationsDelegate()
       ],
-      supportedLocales: const [
-        Locale('zh', 'CN'),
-//        Locale('en', 'US'),
-      ],
+      locale: LocaleUtils.currentLocale,
+      fallbackLocale: LocaleUtils.fallbackLocale,
+      supportedLocales: LocaleUtils.supportedLocales,
+      translations: LangTranslations(),
       builder: (BuildContext context, Widget? child) {
         JhScreenUtils.init(context);
 

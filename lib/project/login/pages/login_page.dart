@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Align(
                     alignment: Alignment.topRight,
                     child: InkWell(
-                      child: const Text('注册', style: TextStyle(fontSize: 18)),
+                      child: Text(IntlKeys.loginRegisterText.tr, style: TextStyle(fontSize: 18)),
                       onTap: () => JhNavUtils.pushNamed(context, 'RegisterPage'),
                     ),
                   ),
@@ -127,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 30),
                 JhLoginTextField(
                   text: _name,
-                  hintText: '请输入用户名',
+                  hintText: IntlKeys.loginHintUser.tr,
                   focusNode: _node1,
                   leftWidget: const Icon(Icons.person),
                   isShowDeleteBtn: true,
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 10),
                 JhLoginTextField(
                   text: _pwd,
-                  hintText: '请输入密码',
+                  hintText: IntlKeys.loginHintPwd.tr,
                   focusNode: _node2,
                   leftWidget: const Icon(Icons.lock),
                   isShowDeleteBtn: true,
@@ -148,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                   inputCallBack: (value) => _pwd = value,
                 ),
                 const SizedBox(height: 50),
-                JhButton(text: '登 录', onPressed: _isClick ? _clickOkBtn : null),
+                JhButton(text: IntlKeys.loginBtn.tr, onPressed: _isClick ? _clickOkBtn : null),
                 const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,14 +156,14 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 50.0,
                       child: GestureDetector(
-                        child: const Text('验证码登录'),
+                        child: Text(IntlKeys.loginCode.tr),
                         onTap: () => JhNavUtils.pushNamed(context, 'CodeLoginPage'),
                       ),
                     ),
                     SizedBox(
                       height: 50.0,
                       child: GestureDetector(
-                        child: const Text('忘记密码'),
+                        child: Text(IntlKeys.loginForgotPwd.tr),
                         onTap: () => JhNavUtils.pushNamed(context, 'FindPwdPage'),
                       ),
                     ),
@@ -178,10 +178,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _clickOkBtn() async {
-    var hide = JhToast.showIOSLoadingText(
-      context,
-      msg: '正在登录...',
-    );
+    // var hide = JhToast.showIOSLoadingText(context, msg: '正在登录...');
+    var hide = JhToast.showIOSLoadingText(context, msg: IntlKeys.loginLoading.tr);
 
     var params = {'userName': _name, 'pwd': _pwd};
     // 登录请求
@@ -189,7 +187,9 @@ class _LoginPageState extends State<LoginPage> {
       hide();
       // 保存本地
       JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res['data']);
-      JhToast.showSuccess(context, msg: res['msg']);
+      // JhToast.showSuccess(context, msg: res['msg']);
+      var msg = res['msg'] == '登录成功' ? IntlKeys.loginMsgSuc.tr : IntlKeys.loginMsgFail.tr;
+      JhToast.showSuccess(context, msg: msg);
       JhNavUtils.pushReplacement(context, Routes.pHome);
     }, fail: (code, msg) {
       hide();

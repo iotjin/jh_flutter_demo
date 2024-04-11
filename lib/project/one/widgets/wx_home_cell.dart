@@ -30,35 +30,35 @@ class WxHomeCell extends StatelessWidget {
       padding: const EdgeInsets.all(0),
 //      foregroundColor:Colors.white,
       backgroundColor: Colors.black87,
-      child: const Text(
-        '标为未读',
-        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
+      child: Text(
+        IntlKeys.homeMarkAsUnread.tr,
+        style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
       ),
       onPressed: (context) {
-        JhToast.showText(context, msg: '点击标为未读');
+        JhToast.showText(context, msg: IntlKeys.homeMsgMarkAsUnread.tr);
       },
     );
 
     Widget noAttention = CustomSlidableAction(
       padding: const EdgeInsets.all(0),
       backgroundColor: Colors.black87,
-      child: const Text(
-        '不再关注',
-        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
+      child: Text(
+        IntlKeys.homeUnfollow.tr,
+        style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
       ),
       onPressed: (context) {
-        JhToast.showText(context, msg: '点击不再关注');
+        JhToast.showText(context, msg: IntlKeys.homeMsgUnfollow.tr);
       },
     );
 
     Widget delete = CustomSlidableAction(
       backgroundColor: Colors.red,
-      child: const Text(
-        '删除',
-        style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
+      child: Text(
+        IntlKeys.homeDelete.tr,
+        style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w400),
       ),
       onPressed: (context) {
-        JhToast.showText(context, msg: '点击删除');
+        JhToast.showText(context, msg: IntlKeys.homeMsgDelete.tr);
       },
     );
 

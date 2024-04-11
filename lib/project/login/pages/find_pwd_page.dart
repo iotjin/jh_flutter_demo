@@ -50,7 +50,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const BaseAppBar('重置密码'),
+      appBar: BaseAppBar(IntlKeys.resetPwd.tr),
       body: KeyboardActions(
         config: JhKeyboardUtils.getKeyboardConfig(context, [_node1, _node2]),
         child: _body(),
@@ -79,12 +79,11 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   focusNode: _node1,
                   controller: _nameController,
                   decoration: InputDecoration(
-                    labelText: '用户名',
+                    labelText: IntlKeys.loginUserText.tr,
                     labelStyle: _isFocused1 ? labelTextStyle : hintTextStyle,
-                    hintText: '请输入用户名',
+                    hintText: IntlKeys.loginHintUser.tr,
                     hintStyle: const TextStyle(fontSize: 15),
-                    focusedBorder:
-                        UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+                    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
                     enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
                   ),
                 ),
@@ -93,12 +92,11 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   focusNode: _node2,
                   controller: _pwdController,
                   decoration: InputDecoration(
-                    labelText: '密码',
+                    labelText: IntlKeys.loginPwdText.tr,
                     labelStyle: _isFocused2 ? labelTextStyle : hintTextStyle,
-                    hintText: '请输入密码',
+                    hintText: IntlKeys.loginHintPwd.tr,
                     hintStyle: const TextStyle(fontSize: 15),
-                    focusedBorder:
-                        UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
+                    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 0.8)),
                     enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 0.5)),
                     suffixIcon: IconButton(
                       icon: Icon(pwdShow ? Icons.visibility : Icons.visibility_off),
@@ -113,7 +111,7 @@ class _FindPwdPageState extends State<FindPwdPage> {
                   obscureText: !pwdShow,
                 ),
                 const SizedBox(height: 50),
-                JhButton(text: '重 置', onPressed: _clickOkBtn)
+                JhButton(text: IntlKeys.resetBtn.tr, onPressed: _clickOkBtn)
               ],
             ),
           ),
@@ -129,10 +127,8 @@ class _FindPwdPageState extends State<FindPwdPage> {
 
 //    Navigator.pushReplacementNamed(context, 'BaseTabBar');
 
-    var hide = JhToast.showIOSLoadingText(
-      context,
-      msg: '正在重置...',
-    );
+    // var hide = JhToast.showIOSLoadingText(context, msg: '正在重置...');
+    var hide = JhToast.showIOSLoadingText(context, msg: IntlKeys.resetLoading.tr);
     Future.delayed(const Duration(seconds: 1), () {
       Navigator.pop(context);
       hide();

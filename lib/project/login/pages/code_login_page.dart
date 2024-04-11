@@ -44,11 +44,11 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text('验证码登录', style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
+            Text(IntlKeys.loginCode.tr, style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
             const SizedBox(height: 80),
             JhLoginTextField(
               text: _phone,
-              hintText: '请输入手机号',
+              hintText: IntlKeys.loginHintPhone.tr,
               focusNode: _node1,
               maxLength: 11,
               keyboardType: TextInputType.number,
@@ -57,11 +57,13 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
             const SizedBox(height: 10),
             JhLoginTextField(
               text: _code,
-              hintText: '请输入验证码',
+              hintText: IntlKeys.loginHintCode.tr,
               focusNode: _node2,
               maxLength: 6,
               keyboardType: TextInputType.number,
               rightWidget: JhCountDownBtn(
+                getCodeText: IntlKeys.loginGetCode.tr,
+                resendAfterText: IntlKeys.codeResendAfter.tr,
                 showBorder: true,
                 getVCode: () async {
                   return true;
@@ -70,7 +72,7 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
               inputCallBack: (value) => _code = value,
             ),
             const SizedBox(height: 50),
-            JhButton(text: '登 录', onPressed: _clickOkBtn),
+            JhButton(text: IntlKeys.loginBtn.tr, onPressed: _clickOkBtn),
             const SizedBox(height: 15),
           ],
         ),
@@ -79,10 +81,9 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
   }
 
   void _clickOkBtn() async {
-    var hide = JhToast.showIOSLoadingText(
-      context,
-      msg: '正在登录...',
-    );
+    // var hide = JhToast.showIOSLoadingText(context, msg: '正在登录...');
+    var hide = JhToast.showIOSLoadingText(context, msg: IntlKeys.loginLoading.tr);
+
     // 登录请求
     DataUtils.login({'userName': 'jin', 'pwd': '123456'}, success: (res) {
       hide();
@@ -94,7 +95,9 @@ class _CodeLoginPageState extends State<CodeLoginPage> {
 
       // 保存本地
       JhAESStorageUtils.saveModel(kUserDefault_UserInfo, res['data']);
-      JhToast.showSuccess(context, msg: res['msg']);
+      // JhToast.showSuccess(context, msg: res['msg']);
+      var msg = res['msg'] == '登录成功' ? IntlKeys.loginMsgSuc.tr : IntlKeys.loginMsgFail.tr;
+      JhToast.showSuccess(context, msg: msg);
       JhNavUtils.pushReplacement(context, Routes.pHome);
     }, fail: (code, msg) {
       hide();

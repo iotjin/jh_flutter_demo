@@ -10,9 +10,9 @@ import '/jh_common/utils/jh_image_utils.dart';
 import '/jh_common/widgets/base_refresh_view.dart';
 import '/jh_common/widgets/jh_badge.dart';
 import '/jh_common/widgets/jh_pulse_animation_view.dart';
-import '/project/configs/colors.dart';
 import '/project/provider/tabbar_provider.dart';
 import '/project/provider/theme_provider.dart';
+import '/project/configs/project_config.dart';
 import '/project/one/one_page.dart';
 import '/project/Two/two_page.dart';
 import '/project/Three/three_page.dart';
@@ -39,10 +39,10 @@ class _BaseTabBarState extends State<BaseTabBar> {
 
   List<BottomNavigationBarItem> getBottomTabs(iconColor) {
     return [
-      _createItem('微信', 'tab/nav_tab_1', iconColor),
-      _createItem('通讯录', 'tab/nav_tab_2', iconColor),
-      _createItem('发现', 'tab/nav_tab_3', iconColor, showBadge: true),
-      _createItem('我的', 'tab/nav_tab_4', iconColor),
+      _createItem(IntlKeys.oneTabTitle.tr, 'tab/nav_tab_1', iconColor),
+      _createItem(IntlKeys.twoTabTitle.tr, 'tab/nav_tab_2', iconColor),
+      _createItem(IntlKeys.threeTabTitle.tr, 'tab/nav_tab_3', iconColor, showBadge: true),
+      _createItem(IntlKeys.fourTabTitle.tr, 'tab/nav_tab_4', iconColor),
     ];
   }
 
@@ -70,8 +70,7 @@ class _BaseTabBarState extends State<BaseTabBar> {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
     var bgColor = KColors.dynamicColor(context, KColors.kTabBarBgColor, KColors.kTabBarBgDarkColor);
-    var normalTextColor =
-        KColors.dynamicColor(context, KColors.kTabBarNormalTextColor, KColors.kTabBarNormalTextDarkColor);
+    var normalTextColor = KColors.dynamicColor(context, KColors.kTabBarNormalTextColor, KColors.kTabBarNormalTextDarkColor);
     var selectTextColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
     var selectIconColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
 

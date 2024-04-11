@@ -14,81 +14,6 @@ import '/project/configs/project_config.dart';
 import '../models/wx_home_model.dart';
 import '../widgets/wx_home_cell.dart';
 
-List _dataArr = [
-  {
-    'title': 'Demo 列表',
-    'subtitle': '点击跳转demo列表',
-    'img': 'assets/images/ic_demo1.png',
-    'time': '',
-    'isNew': false,
-    'type': '0',
-  },
-  {
-    'title': '微信运动',
-    'subtitle': '[应用消息]',
-    'img': 'assets/wechat/home/wechat_motion.png',
-    'time': '22:23',
-    'isNew': true,
-    'type': '1',
-  },
-  {
-    'title': '订阅号消息',
-    'subtitle': '新闻联播开始啦',
-    'img': 'assets/wechat/home/ic_subscription_number.png',
-    'time': '19:00',
-    'isNew': true,
-    'type': '1',
-  },
-  {
-    'title': 'QQ邮箱提醒',
-    'subtitle': '您有一封新的邮件，请前往查收',
-    'img': 'assets/wechat/home/Ic_email.png',
-    'time': '17:30',
-    'isNew': false,
-    'type': '3',
-  },
-  {
-    'title': '张三',
-    'subtitle': '欢迎欢迎',
-    'img': 'assets/images/picture/touxiang_1.jpeg',
-    'time': '17:30',
-    'isNew': false,
-    'type': '2',
-  },
-  {
-    'title': '李四',
-    'subtitle': 'hello',
-    'img': 'assets/images/picture/touxiang_2.jpeg',
-    'time': '17:30',
-    'isNew': false,
-    'type': '2',
-  },
-  {
-    'title': '王五',
-    'subtitle': '[图片]',
-    'img': 'assets/images/picture/touxiang_3.jpeg',
-    'time': '17:30',
-    'isNew': false,
-    'type': '2',
-  },
-  {
-    'title': '赵六',
-    'subtitle': '[动画表情]',
-    'img': 'assets/images/picture/touxiang_4.jpeg',
-    'time': '17:30',
-    'isNew': false,
-    'type': '2',
-  },
-  {
-    'title': '微信团队',
-    'subtitle': '安全登录提醒',
-    'img': 'assets/wechat/home/ic_about.png',
-    'time': '2020/8/8',
-    'isNew': false,
-    'type': '1',
-  },
-];
-
 class WxHomePage extends StatefulWidget {
   const WxHomePage({Key? key}) : super(key: key);
 
@@ -104,7 +29,7 @@ class _WxHomePageState extends State<WxHomePage> {
 
     return Scaffold(
       appBar: BaseAppBar(
-        KStrings.oneTabTitle,
+        IntlKeys.oneTabTitle.tr,
         leftWidget: Container(),
         rightImgPath: 'assets/images/ic_nav_add.png',
         rightItemCallBack: () => _showPop(),
@@ -205,13 +130,13 @@ class _WxHomePageState extends State<WxHomePage> {
   // 点击cell
   void _clickCell(item) {
     // JhToast.showText(context, msg: '点击 $item['title']');
-    if (item['title'] == 'Demo 列表') {
+    if (item['title'] == IntlKeys.homeDemoList.tr) {
       JhNavUtils.pushNamed(context, 'DemoListPage');
-    } else if (item['title'] == 'QQ邮箱提醒') {
+    } else if (item['title'] == IntlKeys.homeQQMail.tr) {
       JhNavUtils.pushNamed(context, 'WxQQMessagePage');
-    } else if (item['title'] == '订阅号消息') {
+    } else if (item['title'] == IntlKeys.homeSubscriptions.tr) {
       JhNavUtils.pushNamed(context, 'WxSubscriptionNumberPage');
-    } else if (item['title'] == '微信运动') {
+    } else if (item['title'] == IntlKeys.homeWeRun.tr) {
       JhNavUtils.pushNamed(context, 'WxMotionPage');
     } else {
       JhNavUtils.pushNamed(context, 'DemoListPage');
@@ -230,4 +155,79 @@ class _WxHomePageState extends State<WxHomePage> {
       JhToast.showText(context, msg: '扫码结果：$data');
     });
   }
+
+  List _dataArr = [
+    {
+      'title': IntlKeys.homeDemoList.tr,
+      'subtitle': IntlKeys.homeDemoListDescribe.tr,
+      'img': 'assets/images/ic_demo1.png',
+      'time': '',
+      'isNew': false,
+      'type': '0',
+    },
+    {
+      'title': IntlKeys.homeWeRun.tr,
+      'subtitle': IntlKeys.homeWeRunDescribe.tr,
+      'img': 'assets/wechat/home/wechat_motion.png',
+      'time': '22:23',
+      'isNew': true,
+      'type': '1',
+    },
+    {
+      'title': IntlKeys.homeSubscriptions.tr,
+      'subtitle': IntlKeys.homeSubscriptionsDescribe.tr,
+      'img': 'assets/wechat/home/ic_subscription_number.png',
+      'time': '19:00',
+      'isNew': true,
+      'type': '1',
+    },
+    {
+      'title': IntlKeys.homeQQMail.tr,
+      'subtitle': IntlKeys.homeQQMailDescribe.tr,
+      'img': 'assets/wechat/home/Ic_email.png',
+      'time': '17:30',
+      'isNew': false,
+      'type': '3',
+    },
+    {
+      'title': '张三',
+      'subtitle': '欢迎欢迎',
+      'img': 'assets/images/picture/touxiang_1.jpeg',
+      'time': '17:30',
+      'isNew': false,
+      'type': '2',
+    },
+    {
+      'title': '李四',
+      'subtitle': 'hello',
+      'img': 'assets/images/picture/touxiang_2.jpeg',
+      'time': '17:30',
+      'isNew': false,
+      'type': '2',
+    },
+    {
+      'title': '王五',
+      'subtitle': '[图片]',
+      'img': 'assets/images/picture/touxiang_3.jpeg',
+      'time': '17:30',
+      'isNew': false,
+      'type': '2',
+    },
+    {
+      'title': '赵六',
+      'subtitle': '[动画表情]',
+      'img': 'assets/images/picture/touxiang_4.jpeg',
+      'time': '17:30',
+      'isNew': false,
+      'type': '2',
+    },
+    {
+      'title': IntlKeys.homeWeTeam.tr,
+      'subtitle': IntlKeys.homeWeTeamDescribe.tr,
+      'img': 'assets/wechat/home/ic_about.png',
+      'time': '2020/8/8',
+      'isNew': false,
+      'type': '1',
+    },
+  ];
 }

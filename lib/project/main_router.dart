@@ -15,6 +15,7 @@ import '/project/four/four_page.dart';
 import '/project/four/pages/set_page.dart';
 import '/project/four/pages/info_page.dart';
 import '/project/four/pages/theme_page.dart';
+import '/project/four/pages/locale_page.dart';
 import '/project/four/pages/about_page.dart';
 import '/project/four/pages/about_ios_page.dart';
 import '/project/four/pages/mine_page.dart';
@@ -76,6 +77,7 @@ class MainRouter implements IRouterProvider {
     router.define('SetPage', handler: Handler(handlerFunc: (_, __) => const SetPage()));
     router.define('InfoPage', handler: Handler(handlerFunc: (_, __) => const InfoPage()));
     router.define('ThemePage', handler: Handler(handlerFunc: (_, __) => const ThemePage()));
+    router.define('LocalePage', handler: Handler(handlerFunc: (_, __) => const LocalePage()));
     router.define('AboutPage', handler: Handler(handlerFunc: (_, __) => const AboutPage()));
     router.define('AboutIOSPage', handler: Handler(handlerFunc: (_, __) => const AboutIOSPage()));
     router.define('MinePage', handler: Handler(handlerFunc: (_, __) => const MinePage()));

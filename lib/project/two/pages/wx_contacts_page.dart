@@ -41,7 +41,7 @@ class _WxContactsPageState extends State<WxContactsPage> {
   }
 
   void _requestData() {
-    JhProgressHUD.showLoadingText();
+    JhProgressHUD.showLoadingText(IntlKeys.loading.tr);
     Future.delayed(const Duration(milliseconds: 500), () {
       _loadData().then((value) {
         JhProgressHUD.hide();
@@ -101,14 +101,14 @@ class _WxContactsPageState extends State<WxContactsPage> {
   Widget build(BuildContext context) {
     var appbar = context.jhIsDark
         ? BaseAppBar(
-            KStrings.twoTabTitle,
+            IntlKeys.twoTabTitle.tr,
             bgColor: KColors.kNavBgDarkColor,
             leftWidget: Container(),
             rightImgPath: 'assets/images/tianjiahaoyou.png',
             rightItemCallBack: () => JhNavUtils.pushNamed(context, 'WxAddFriendPage'),
           )
         : GradientAppBar(
-            KStrings.twoTabTitle,
+            IntlKeys.twoTabTitle.tr,
             leftWidget: Container(),
             rightImgPath: 'assets/images/tianjiahaoyou.png',
             rightItemCallBack: () => JhNavUtils.pushNamed(context, 'WxAddFriendPage'),
@@ -186,7 +186,7 @@ class _WxContactsPageState extends State<WxContactsPage> {
       ),
       alignment: Alignment.centerLeft,
       child: Text(
-        susTag == '★' ? '★ 星标朋友' : susTag,
+        susTag == '★' ? '★ ${IntlKeys.contactsStarred.tr}' : susTag,
         softWrap: false,
         style: TextStyle(
           fontSize: 18,
@@ -199,10 +199,10 @@ class _WxContactsPageState extends State<WxContactsPage> {
 
   void _clickCell(text) {
     // JhToast.showText(context, msg: '点击 $text');
-    if (text == '新的朋友') {
+    if (text == IntlKeys.contactsNewFriends.tr) {
       JhNavUtils.pushNamed(context, 'WxNewFriendPage');
     }
-    if (text == '群聊') {
+    if (text == IntlKeys.contactsGroupChats.tr) {
       JhNavUtils.pushNamed(context, 'WxGroupChatPage');
     }
   }

@@ -14,7 +14,7 @@ class WxDiscoverPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(KStrings.threeTabTitle, bgColor: Colors.transparent, leftWidget: Container()),
+      appBar: BaseAppBar(IntlKeys.threeTabTitle.tr, bgColor: Colors.transparent, leftWidget: Container()),
       body: _body(context),
       backgroundColor: KColors.dynamicColor(context, KColors.wxBgColor, KColors.kBgDarkColor),
     );
@@ -31,90 +31,91 @@ Widget _body(context) {
       JhSetCell(
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_social_circle.png',
-        title: '朋友圈',
+        title: IntlKeys.discoverMoments.tr,
         // hiddenLine: true,
 //      rightWidget: Image.network('https://gitee.com/iotjh/Picture/raw/master/lufei.png',width: 50,height: 50,),
         rightWidget: Container(
           padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
           child: JhBadge(child: Image.asset('assets/images/lufei.png', width: 30, height: 30, fit: BoxFit.fill)),
         ),
-        clickCallBack: () => _clickCell(context, '朋友圈'),
+        clickCallBack: () => _clickCell(context, 'WxFriendsCirclePage'),
       ),
       JhSetCell(
+        titleWidth: 200,
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_social_circle.png',
-        title: '朋友圈-假数据',
+        title: IntlKeys.discoverMomentsMock.tr,
         hiddenLine: true,
-        clickCallBack: () => _clickCell(context, '朋友圈-假数据'),
+        clickCallBack: () => _clickCell(context, 'WxFriendsCirclePage2'),
       ),
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_video_number.png',
-        title: '视频号',
+        title: IntlKeys.discoverChannels.tr,
         hiddenLine: true,
-        clickCallBack: () => _clickCell(context, '视频号'),
+        clickCallBack: () => _clickCell(context, ''),
       ),
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
         leftImgPath: 'assets/wechat/discover/ic_quick_scan.png',
-        title: '扫一扫',
-        clickCallBack: () => _clickCell(context, '扫一扫'),
+        title: IntlKeys.discoverScan.tr,
+        clickCallBack: () => _clickCell(context, ''),
       ),
       JhSetCell(
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_shake_phone.png',
-        title: '摇一摇',
+        title: IntlKeys.discoverShake.tr,
         hiddenLine: true,
-        clickCallBack: () => _clickCell(context, '摇一摇'),
+        clickCallBack: () => _clickCell(context, ''),
       ),
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
         leftImgPath: 'assets/wechat/discover/ic_feeds.png',
-        title: '看一看',
-        clickCallBack: () => _clickCell(context, '看一看'),
+        title: IntlKeys.discoverTopStories.tr,
+        clickCallBack: () => _clickCell(context, ''),
       ),
       JhSetCell(
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_quick_search.png',
-        title: '搜一搜',
+        title: IntlKeys.discoverSearch.tr,
         hiddenLine: true,
-        clickCallBack: () => _clickCell(context, '搜一搜'),
+        clickCallBack: () => _clickCell(context, ''),
       ),
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_people_nearby.png',
-        title: '附近的人',
+        title: IntlKeys.discoverNearby.tr,
         hiddenLine: true,
-        clickCallBack: () => _clickCell(context, '附近的人'),
+        clickCallBack: () => _clickCell(context, ''),
       ),
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
         lineLeftEdge: _leftSpace,
         leftImgPath: 'assets/wechat/discover/ic_shopping.png',
-        title: '购物',
-        clickCallBack: () => _clickCell(context, '购物'),
+        title: IntlKeys.discoverShopping.tr,
+        clickCallBack: () => _clickCell(context, ''),
       ),
       JhSetCell(
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_game_entry.png',
-        title: '游戏',
+        title: IntlKeys.discoverGames.tr,
         hiddenLine: true,
-        clickCallBack: () => _clickCell(context, '游戏'),
+        clickCallBack: () => _clickCell(context, ''),
       ),
       SizedBox(height: _rowSpace),
       JhSetCell(
         cellHeight: _cellH,
         leftImgPath: 'assets/wechat/discover/ic_mini_program.png',
-        title: '小程序',
+        title: IntlKeys.discoverMiniPrograms.tr,
         hiddenLine: true,
-        clickCallBack: () => _clickCell(context, '小程序'),
+        clickCallBack: () => _clickCell(context, ''),
       ),
       const SizedBox(height: 15),
     ],
@@ -122,12 +123,9 @@ Widget _body(context) {
 }
 
 // 点击cell
-_clickCell(context, text) {
-  if (text == '朋友圈') {
-    JhNavUtils.pushNamed(context, 'WxFriendsCirclePage');
-  }
-  if (text == '朋友圈-假数据') {
-    JhNavUtils.pushNamed(context, 'WxFriendsCirclePage2');
+_clickCell(context, String path) {
+  if (path.isNotEmpty) {
+    JhNavUtils.pushNamed(context, path);
   }
 }
 
