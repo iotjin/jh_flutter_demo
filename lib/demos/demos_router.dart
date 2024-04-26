@@ -99,6 +99,7 @@ import 'dragSort/listview_drag_sort_page2.dart';
 import 'components/component_demo_list_page.dart';
 import 'components/slide_menu_test_page.dart';
 import 'components/tag_view_test_page.dart';
+import 'components/collapse_view_test_page.dart';
 
 // other
 import 'other/form_test.dart';
@@ -172,14 +173,10 @@ class DemosRouter implements IRouterProvider {
       var jumpParams = params['jumpParams']!.first;
       return BaseRefreshViewTestPage(jsonDecode(jumpParams));
     }));
-    router.define('BaseListViewShimmerTestPage',
-        handler: Handler(handlerFunc: (_, __) => const BaseListViewShimmerTestPage()));
-    router.define('BaseGridViewShimmerTestPage',
-        handler: Handler(handlerFunc: (_, __) => const BaseGridViewShimmerTestPage()));
-    router.define('BaseRefreshViewHeaderFixedPage',
-        handler: Handler(handlerFunc: (_, __) => const BaseRefreshViewHeaderFixedPage()));
-    router.define('BaseRefreshViewHeaderFollowPage',
-        handler: Handler(handlerFunc: (_, __) => const BaseRefreshViewHeaderFollowPage()));
+    router.define('BaseListViewShimmerTestPage', handler: Handler(handlerFunc: (_, __) => const BaseListViewShimmerTestPage()));
+    router.define('BaseGridViewShimmerTestPage', handler: Handler(handlerFunc: (_, __) => const BaseGridViewShimmerTestPage()));
+    router.define('BaseRefreshViewHeaderFixedPage', handler: Handler(handlerFunc: (_, __) => const BaseRefreshViewHeaderFixedPage()));
+    router.define('BaseRefreshViewHeaderFollowPage', handler: Handler(handlerFunc: (_, __) => const BaseRefreshViewHeaderFollowPage()));
     router.define('NavTestPage', handler: Handler(handlerFunc: (_, __) => const NavTestPage()));
     router.define('EmptyDemoListPage', handler: Handler(handlerFunc: (_, __) => const EmptyDemoListPage()));
 
@@ -229,8 +226,7 @@ class DemosRouter implements IRouterProvider {
     router.define('HttpDemoListPage', handler: Handler(handlerFunc: (_, __) => const HttpDemoListPage()));
     router.define('HttpTest1Page', handler: Handler(handlerFunc: (_, __) => const HttpTest1Page()));
     router.define('HttpPageTestPage', handler: Handler(handlerFunc: (_, __) => const HttpPageTestPage()));
-    router.define('HttpPageTestHeaderFollowPage',
-        handler: Handler(handlerFunc: (_, __) => const HttpPageTestHeaderFollowPage()));
+    router.define('HttpPageTestHeaderFollowPage', handler: Handler(handlerFunc: (_, __) => const HttpPageTestHeaderFollowPage()));
     // ListView
     router.define('ListViewDemoListPage', handler: Handler(handlerFunc: (_, __) => const ListViewDemoListPage()));
     router.define('ListViewTest', handler: Handler(handlerFunc: (_, __) => const ListViewTest()));
@@ -267,6 +263,7 @@ class DemosRouter implements IRouterProvider {
     router.define('ComponentDemoListPage', handler: Handler(handlerFunc: (_, __) => const ComponentDemoListPage()));
     router.define('SlideMenuTestPage', handler: Handler(handlerFunc: (_, __) => const SlideMenuTestPage()));
     router.define('TagViewTestPage', handler: Handler(handlerFunc: (_, __) => const TagViewTestPage()));
+    router.define('CollapseViewTestPage', handler: Handler(handlerFunc: (_, __) => const CollapseViewTestPage()));
 
     // other
     router.define('AESTestPage', handler: Handler(handlerFunc: (_, __) => const AESTestPage()));
@@ -298,8 +295,7 @@ class DemosRouter implements IRouterProvider {
     router.define('SearchTest3Page', handler: Handler(handlerFunc: (_, __) => const SearchTest3Page()));
     router.define('SearchTest4Page', handler: Handler(handlerFunc: (_, __) => const SearchTest4Page()));
     router.define('SearchTest5Page', handler: Handler(handlerFunc: (_, __) => const SearchTest5Page()));
-    router.define('DebounceThrottleTestPage',
-        handler: Handler(handlerFunc: (_, __) => const DebounceThrottleTestPage()));
+    router.define('DebounceThrottleTestPage', handler: Handler(handlerFunc: (_, __) => const DebounceThrottleTestPage()));
 
     // swiper
     router.define('SwiperDemoListPage', handler: Handler(handlerFunc: (_, __) => const SwiperDemoListPage()));

@@ -60,6 +60,7 @@ The code is updated irregularly.
   * wave animation
   * lottie animation
   * tag view
+  * collapse view
 * Utils
   * AES encryption/decryption, MD5 encryption, base64 encoding/decoding
   * Local data AES encrypted storage

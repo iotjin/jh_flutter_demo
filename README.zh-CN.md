@@ -60,6 +60,7 @@ https://iotjin.github.io/jh_flutter_demo
   * 波浪动画
   * lottie动画
   * Tag 标签
+  * 折叠面板
 * 工具类
   * AES加解密、MD5加密、base64编码解码
   * 本地数据AES加密存储
