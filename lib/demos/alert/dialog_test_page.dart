@@ -178,7 +178,7 @@ class _DialogTestPageState extends State<DialogTestPage> {
         var bgColor = KColors.dynamicColor(context, KColors.kAlertInputBgColor, KColors.kAlertInputBgDarkColor);
 
         return Container(
-          height: 50,
+          height: 55,
           margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: bgColor,
@@ -217,20 +217,21 @@ class _DialogTestPageState extends State<DialogTestPage> {
       clickBtnPop: false,
       content: StatefulBuilder(builder: (context, state) {
         var lineColor = KColors.dynamicColor(context, KColors.kLineColor, KColors.transparent);
-        return Container(
-          height: 56,
-          margin: const EdgeInsets.all(8),
-          decoration: BoxDecoration(border: Border.all(color: lineColor, width: 1)),
-          child: Column(
-            children: [
-              JhFormSelectCell(
-                showRedStar: true,
-                hiddenLine: true,
-                text: _selectItem['label'],
-                labelText: '类型',
-                clickCallBack: () => _showPicker(state),
-              ),
-            ],
+        return IntrinsicHeight(
+          child: Container(
+            margin: const EdgeInsets.all(8),
+            decoration: BoxDecoration(border: Border.all(color: lineColor, width: 0.5)),
+            child: Column(
+              children: [
+                JhFormSelectCell(
+                  showRedStar: true,
+                  hiddenLine: true,
+                  text: _selectItem['label'],
+                  labelText: '类型',
+                  clickCallBack: () => _showPicker(state),
+                ),
+              ],
+            ),
           ),
         );
       }),
@@ -254,7 +255,7 @@ class _DialogTestPageState extends State<DialogTestPage> {
               isBoldTitle: false,
               clickBtnPop: false,
               content: Container(
-                height: 56,
+                height: 57,
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(border: Border.all(color: lineColor, width: 1)),
                 child: Column(children: [

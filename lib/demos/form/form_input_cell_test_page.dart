@@ -84,10 +84,7 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
         JhFormInputCell(
           title: '左标题',
           hintText: '自定义inputFormatters 长度10，a-zA-Z0-9',
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
-            LengthLimitingTextInputFormatter(10)
-          ],
+          inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')), LengthLimitingTextInputFormatter(10)],
         ),
         JhFormInputCell(
           hintText: '左侧自定义，maxLength=15',
@@ -136,6 +133,8 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
             borderRadius: BorderRadius.all(Radius.circular(4)),
             borderSide: BorderSide(width: 1, style: BorderStyle.none),
           ),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1)),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1)),
         ),
         const SizedBox(height: 10),
         const JhFormInputCell(
@@ -151,6 +150,8 @@ class _FormInputCellTestPageState extends State<FormInputCellTestPage> {
             borderRadius: BorderRadius.all(Radius.circular(4)),
             borderSide: BorderSide(width: 1, style: BorderStyle.none),
           ),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1)),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: 1)),
         ),
         const SizedBox(height: 10),
       ],

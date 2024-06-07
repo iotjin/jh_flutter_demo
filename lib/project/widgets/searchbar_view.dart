@@ -4,9 +4,9 @@
 ///  description:
 
 import 'package:flutter/material.dart';
-import '../configs/colors.dart';
 import '/jh_common/utils/jh_common_utils.dart';
 import '/jh_common/jh_form/jh_searchbar.dart';
+import '/project/configs/colors.dart';
 import '/project/routes/jh_nav_utils.dart';
 
 const String _hintText = 'keyword';

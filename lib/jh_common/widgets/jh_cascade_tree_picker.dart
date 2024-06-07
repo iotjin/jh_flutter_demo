@@ -215,9 +215,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
 
   /// 判断Children是否为空
   bool _isNotEmptyChildren(listData) {
-    if (listData.containsKey(widget.childrenKey) &&
-        listData[widget.childrenKey] != null &&
-        listData[widget.childrenKey].length > 0) {
+    if (listData.containsKey(widget.childrenKey) && listData[widget.childrenKey] != null && listData[widget.childrenKey].length > 0) {
       return true;
     }
     return false;
@@ -379,6 +377,8 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
               labelColor: labelColor,
               unselectedLabelColor: unselectedLabelColor,
               indicatorColor: indicatorColor,
+              tabAlignment: TabAlignment.start,
+              dividerHeight: 0.5,
               onTap: (index) {
                 if ((_myTabs[index].text ?? '').isEmpty) {
                   // 拦截点击事件
@@ -608,8 +608,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
         child: Row(
           children: <Widget>[
             Flexible(
-              child: Text(_searchData[index]['text'],
-                  style: TextStyle(fontSize: _searchResultTextFontSize, color: textColor)),
+              child: Text(_searchData[index]['text'], style: TextStyle(fontSize: _searchResultTextFontSize, color: textColor)),
             ),
           ],
         ),

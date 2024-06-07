@@ -45,6 +45,8 @@ class JhTextField extends StatefulWidget {
     this.labelTextStyle,
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
+    this.focusedBorder,
+    this.enabledBorder,
     this.controller,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.done,
@@ -69,6 +71,8 @@ class JhTextField extends StatefulWidget {
   final TextStyle? labelTextStyle; // 默认为hintTextStyle，高亮为主题色
   final TextAlign textAlign; // 对齐方式，默认左对齐
   final InputBorder border; // 边框样式，默认无边框
+  final InputBorder? focusedBorder; // 聚焦时边框样式
+  final InputBorder? enabledBorder; // 未聚焦时边框样式
   final TextEditingController? controller;
   final TextInputType keyboardType; // 键盘类型，默认文字
   final TextInputAction? textInputAction; // 键盘右下角按钮类型
@@ -194,10 +198,11 @@ class _JhTextFieldState extends State<JhTextField> {
         labelStyle: _isFocused ? labelTextStyle : widget.hintTextStyle,
         errorText: widget.errorText.isEmpty ? null : widget.errorText,
         isDense: true,
-        contentPadding: widget.border != InputBorder.none
-            ? const EdgeInsets.symmetric(horizontal: 5, vertical: 8)
-            : const EdgeInsets.fromLTRB(0, 8, 5, 8),
+        contentPadding:
+            widget.border != InputBorder.none ? const EdgeInsets.symmetric(horizontal: 5, vertical: 8) : const EdgeInsets.fromLTRB(0, 8, 5, 8),
         border: widget.border,
+        focusedBorder: widget.focusedBorder,
+        enabledBorder: widget.enabledBorder,
       ),
       // 执行顺序为 onTap -> onChanged -> onEditingComplete -> onSubmitted
       // 点击输入框

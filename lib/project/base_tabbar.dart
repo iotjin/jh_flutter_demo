@@ -88,32 +88,39 @@ class _BaseTabBarState extends State<BaseTabBar> {
           children: _pageList,
         ),
         bottomNavigationBar: Consumer<TabbarProvider>(builder: (_, provider, __) {
-          return BottomNavigationBar(
-            backgroundColor: bgColor,
-            // 未选中颜色
-            unselectedItemColor: normalTextColor,
-            // 选中颜色,与fixedColor不能同时设置
-            // selectedItemColor: selectColor,
-            // 选中的颜色
-            fixedColor: selectTextColor,
-            unselectedFontSize: _fontSize,
-            selectedFontSize: _fontSize,
-            // 配置底部BaseTabBar可以有多个按钮
-            type: BottomNavigationBarType.fixed,
-            items: getBottomTabs(selectIconColor),
-            // 配置对应的索引值选中
-            currentIndex: provider.currentIndex,
-            // 配置对应的索引值选中
-            onTap: (int index) {
-              setState(() {
-                // 改变状态
-                provider.currentIndex = index;
-                _pageController.jumpToPage(index);
-                // 动画相关
-                _isAnimating = true;
-                _currentText = getBottomTabs(selectIconColor)[index].label!;
-              });
-            },
+          return Theme(
+            data: ThemeData(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              // splashFactory: InkSplash.splashFactory,
+            ),
+            child: BottomNavigationBar(
+              backgroundColor: bgColor,
+              // 未选中颜色
+              unselectedItemColor: normalTextColor,
+              // 选中颜色,与fixedColor不能同时设置
+              // selectedItemColor: selectColor,
+              // 选中的颜色
+              fixedColor: selectTextColor,
+              unselectedFontSize: _fontSize,
+              selectedFontSize: _fontSize,
+              // 配置底部BaseTabBar可以有多个按钮
+              type: BottomNavigationBarType.fixed,
+              items: getBottomTabs(selectIconColor),
+              // 配置对应的索引值选中
+              currentIndex: provider.currentIndex,
+              // 配置对应的索引值选中
+              onTap: (int index) {
+                setState(() {
+                  // 改变状态
+                  provider.currentIndex = index;
+                  _pageController.jumpToPage(index);
+                  // 动画相关
+                  _isAnimating = true;
+                  _currentText = getBottomTabs(selectIconColor)[index].label!;
+                });
+              },
+            ),
           );
         }),
       ),

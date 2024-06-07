@@ -240,6 +240,8 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with SingleTi
               labelColor: labelColor,
               unselectedLabelColor: unselectedLabelColor,
               indicatorColor: indicatorColor,
+              tabAlignment: TabAlignment.start,
+              dividerHeight: 0.5,
               onTap: (index) {
                 if ((_myTabs[index].text ?? '').isEmpty) {
                   // 拦截点击事件

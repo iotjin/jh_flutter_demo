@@ -36,12 +36,41 @@ class _UIPage2State extends State<UIPage2> {
                       onChanged → ValueChanged - 改变时触发。
                       value → bool - 切换按钮的值。
                     * */
+
+        Switch(
+          value: _switchSelected,
+          onChanged: (value) {
+            setState(() {
+              _switchSelected = value;
+            });
+          },
+        ),
         Switch(
           // 当前状态
           value: _switchSelected,
           // 激活时原点颜色
-          activeColor: Colors.blue,
-          inactiveTrackColor: Colors.blue.shade50,
+          activeColor: Colors.yellow,
+          // 激活时的背景色
+          activeTrackColor: Colors.red,
+          // 非激活时圆点颜色
+          inactiveThumbColor: Colors.green,
+          // 非激活时的背景色
+          inactiveTrackColor: Colors.blue,
+          trackOutlineWidth: MaterialStateProperty.all(0.0),
+          trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+          onChanged: (value) {
+            setState(() {
+              _switchSelected = value;
+            });
+          },
+        ),
+        Switch(
+          value: _switchSelected,
+          thumbColor: MaterialStateProperty.all(Colors.orange),
+          trackColor: MaterialStateProperty.all(_switchSelected ? Colors.yellow : Colors.grey[300]),
+          // thumbIcon: MaterialStatePropertyAll(Icon(Icons.add)),
+          trackOutlineWidth: MaterialStateProperty.all(0.0),
+          trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
           onChanged: (value) {
             // 重新构建页面
             setState(() {

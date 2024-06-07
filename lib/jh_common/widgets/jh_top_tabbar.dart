@@ -46,6 +46,7 @@ class JhTopTabBar extends StatefulWidget {
     this.titleWidget,
     this.rightWidgets,
     this.elevation = 3,
+    this.shadowColor = const Color(0xFFC8C8C8),
     this.rightItemCallBack,
     this.leftItemCallBack,
     this.switchPageCallBack,
@@ -72,6 +73,7 @@ class JhTopTabBar extends StatefulWidget {
   final Widget? titleWidget; // 标题Widget，优先级高于title
   final List<Widget>? rightWidgets; // 优先级高于rightText和rightImgPath
   final double elevation;
+  final Color? shadowColor;
   final Function? rightItemCallBack;
   final Function? leftItemCallBack;
   final Function? switchPageCallBack; // 页面切换的回调，返回index
@@ -131,6 +133,7 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
         titleWidget: widget.titleWidget,
         rightWidgets: widget.rightWidgets,
         elevation: widget.elevation,
+        shadowColor: widget.shadowColor,
         rightItemCallBack: widget.rightItemCallBack,
         leftItemCallBack: widget.leftItemCallBack,
         bottomWidget: PreferredSize(
@@ -146,6 +149,8 @@ class _JhTopTabBarState extends State<JhTopTabBar> with SingleTickerProviderStat
                     indicatorSize: TabBarIndicatorSize.label,
                     indicatorColor: indicatorColor,
                     indicatorWeight: widget.indicatorWeight,
+                    dividerColor: centerLineColor,
+                    dividerHeight: 0.5,
                     labelColor: labelColor,
                     unselectedLabelColor: unselectedLabelColor,
                     labelStyle: widget.labelStyle,

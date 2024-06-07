@@ -38,6 +38,7 @@ https://iotjin.github.io/jh_flutter_demo
 * 暗黑模式(DarkMode)适配
 * 主题切换
 * 国际化（GetX实现）
+* Material3适配
 * 组件
   * BaseAppBar、BaseTabBar、BaseRefreshView、BaseWebView
   * 弹框(中间、底部、toast、dialog、自定义弹框)

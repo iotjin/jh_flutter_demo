@@ -29,8 +29,8 @@ class KStrings {
 //   BuildContext context = KStrings.navigatorKey.currentContext!;
 // });
 
-  // static String headBgImage = 'https://picsum.photos/800/200';
-  static const String headBgImage = 'https://placekitten.com/800/200';
+  static String headBgImage = 'https://picsum.photos/800/200';
+  // static const String headBgImage = 'https://placekitten.com/800/200';
   static const String headBgImage2 = 'https://picsum.photos/500/500';
   static const String avatarImage = 'https://picsum.photos/300/300'; // 'https://picsum.photos/300/300?random=$index'
 }

@@ -56,6 +56,8 @@ class JhTabBar extends StatefulWidget implements PreferredSizeWidget {
     this.labelStyle,
     this.unselectedLabelStyle,
     this.indicator,
+    this.dividerColor,
+    this.dividerHeight = 0.5,
     this.showCenterLine = false,
     this.switchPageCallBack,
   }) : super(key: key);
@@ -71,6 +73,8 @@ class JhTabBar extends StatefulWidget implements PreferredSizeWidget {
   final TextStyle? labelStyle;
   final TextStyle? unselectedLabelStyle;
   final Decoration? indicator; // 指示器样式
+  final Color? dividerColor;
+  final double dividerHeight;
   final bool showCenterLine;
   final Function? switchPageCallBack; // 页面切换的回调，返回index
 
@@ -148,6 +152,8 @@ class _JhTabBarState extends State<JhTabBar> with TickerProviderStateMixin {
               labelStyle: widget.labelStyle,
               unselectedLabelStyle: widget.unselectedLabelStyle,
               indicator: widget.indicator,
+              dividerColor: widget.dividerColor,
+              dividerHeight: widget.dividerHeight,
               tabs: widget.tabModelList.map((item) => Tab(text: item.title, icon: item.badge)).toList(),
             ),
           ),

@@ -105,6 +105,9 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
   }
 
   _body() {
+    var bgColor = Colors.white;
+    var titleColor = KColors.dynamicColor(context, KColors.kFormTitleColor, KColors.kFormTitleDarkColor);
+
     return PopScope(
       canPop: true, // 使用false禁止返回键返回，达到强制升级目的
       child: Scaffold(
@@ -113,7 +116,7 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
         body: Center(
           child: Container(
             decoration: BoxDecoration(
-              color: JhThemeUtils.getDialogBackgroundColor(context),
+              color: bgColor,
               borderRadius: BorderRadius.circular(_dialogRadius),
             ),
             width: _dialogWidth,
@@ -145,7 +148,7 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
                       itemBuilder: (context, index) {
                         return Container(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-                          child: Text(widget.contentList[index]),
+                          child: Text(widget.contentList[index], style: TextStyle(color: titleColor)),
                         );
                       },
                     ),
@@ -317,6 +320,7 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
     var themeColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var lineColor = KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineColor);
 
     return _isDownload
         ? Container(
@@ -344,7 +348,7 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
                     widget.onCancel?.call();
                   },
                 ),
-                SizedBox(height: 48.0, width: 0.6, child: VerticalDivider()),
+                SizedBox(height: 48.0, width: 0.6, child: VerticalDivider(color: lineColor)),
                 DialogButton(
                   text: widget.confirmText,
                   textColor: themeColor,

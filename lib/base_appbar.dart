@@ -39,6 +39,7 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.rightWidgets,
     this.brightness = _brightness,
     this.elevation = _elevation,
+    this.shadowColor,
     this.bottomWidget,
     this.leftItemCallBack,
     this.rightItemCallBack,
@@ -52,6 +53,7 @@ class GradientAppBar extends StatefulWidget implements PreferredSizeWidget {
   final List<Widget>? rightWidgets;
   final Brightness brightness;
   final double elevation;
+  final Color? shadowColor;
   final PreferredSizeWidget? bottomWidget;
   final Function? leftItemCallBack;
   final Function? rightItemCallBack;
@@ -84,6 +86,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
       rightWidgets: widget.rightWidgets,
       bgColor: Colors.white.withOpacity(0),
       elevation: widget.elevation,
+      shadowColor: widget.shadowColor,
       bottomWidget: widget.bottomWidget,
       rightItemCallBack: widget.rightItemCallBack,
       leftItemCallBack: widget.leftItemCallBack,
@@ -105,6 +108,7 @@ class BaseAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.bgColor,
     this.brightness = _brightness,
     this.elevation = _elevation,
+    this.shadowColor,
     this.bottomWidget,
     this.flexibleSpace,
     this.leftItemCallBack,
@@ -120,6 +124,7 @@ class BaseAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Color? bgColor; // 背景颜色，默认主题色，设置的颜色优先级高于暗黑模式
   final Brightness brightness;
   final double elevation;
+  final Color? shadowColor;
   final PreferredSizeWidget? bottomWidget;
   final Widget? flexibleSpace;
   final Function? leftItemCallBack;
@@ -145,9 +150,7 @@ class _BaseAppBarState extends State<BaseAppBar> {
     var brightness = widget.brightness;
 
     // 如果背景透明或者是白色，设置字体和图标、状态栏字体为黑色
-    if (widget.bgColor == Colors.transparent ||
-        widget.bgColor == Colors.white ||
-        widget.bgColor == KColors.kNavWhiteBgColor) {
+    if (widget.bgColor == Colors.transparent || widget.bgColor == Colors.white || widget.bgColor == KColors.kNavWhiteBgColor) {
       titleAndIconColor = Colors.black;
       brightness = Brightness.dark;
     } else {
@@ -164,8 +167,7 @@ class _BaseAppBarState extends State<BaseAppBar> {
     }
 
     // 标题
-    var titleWidget = widget.titleWidget ??
-        Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: titleAndIconColor), maxLines: 2);
+    var titleWidget = widget.titleWidget ?? Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: titleAndIconColor), maxLines: 2);
 
     // 左侧
     var backWidget = IconButton(
@@ -222,6 +224,7 @@ class _BaseAppBarState extends State<BaseAppBar> {
       leading: leftWidget,
       actions: rightWidgets,
       flexibleSpace: widget.flexibleSpace,
+      shadowColor: widget.shadowColor,
     );
   }
 }

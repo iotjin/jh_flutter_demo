@@ -70,7 +70,7 @@ class JhLoginTextField extends StatefulWidget {
   final String? pwdClose; // 自定义密码图片路径 闭眼
   final InputBorder? border; // 边框样式
   final bool isDense; // 是否紧凑显示，默认false
-  final EdgeInsetsGeometry? contentPadding; // 当父组件固定高度时，文本一行显示文本过多会出现文字显示不全bug,可设置EdgeInsets.symmetric(vertical: 4)
+  final EdgeInsetsGeometry? contentPadding; // 当父组件固定高度时，文本一行显示文本过多会出现文字显示不全bug,可设置EdgeInsets.symmetric(vertical: 0)
 
   @override
   State<JhLoginTextField> createState() => _JhLoginTextFieldState();

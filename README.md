@@ -38,6 +38,7 @@ The code is updated irregularly.
 * Dark Mode adaptation
 * Theme switch
 * Internationalization (GetX)
+* Material3 adaptation
 * Components
   * BaseAppBar、BaseTabBar、BaseRefreshView、BaseWebView
   * Dialogs (center、bottom、toast、dialog、custom dialogs)

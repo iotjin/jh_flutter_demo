@@ -43,6 +43,9 @@ class _ListviewDragSortPageState extends State<ListviewDragSortPage> {
       header: _header(),
       onReorder: _onReorder,
       children: _mList.map((e) => _cell(e)).toList(),
+      // proxyDecorator: (widget, index, animation) {
+      //   return Container(color: Colors.white, child: widget);
+      // },
     );
   }
 

@@ -85,11 +85,12 @@ class _CollapseViewTestPageState extends State<CollapseViewTestPage> {
         JhCollapseView(
           isFold: true,
           collapseStyle: JhCollapseStyle.card,
+          headerColor: Colors.pink,
           // headerPadding: EdgeInsets.all(0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.pink,
             borderRadius: BorderRadius.circular(3),
-            boxShadow: [BoxShadow(color: Colours.red, spreadRadius: 1.5, blurRadius: 1.5)],
+            boxShadow: [BoxShadow(color: Colors.blue, spreadRadius: 1.5, blurRadius: 1.5)],
           ),
           titleWidget: _titleW2(),
           content: _testView(),

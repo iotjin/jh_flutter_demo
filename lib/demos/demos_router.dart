@@ -158,6 +158,7 @@ import 'topTabBar/personal_center_page5.dart';
 import 'ui/ui_demo_list_page.dart';
 import 'ui/ui_page.dart';
 import 'ui/ui_page2.dart';
+import 'ui/ui_page3.dart';
 import 'ui/scroll_page.dart';
 import 'ui/grammar_test_page.dart';
 
@@ -323,6 +324,7 @@ class DemosRouter implements IRouterProvider {
     router.define('UIDemoListPage', handler: Handler(handlerFunc: (_, __) => const UIDemoListPage()));
     router.define('UIPage', handler: Handler(handlerFunc: (_, __) => const UIPage()));
     router.define('UIPage2', handler: Handler(handlerFunc: (_, __) => const UIPage2()));
+    router.define('UIPage3', handler: Handler(handlerFunc: (_, __) => const UIPage3()));
     router.define('ScrollPage', handler: Handler(handlerFunc: (_, __) => const ScrollPage()));
     router.define('GrammarTestPage', handler: Handler(handlerFunc: (_, __) => const GrammarTestPage()));
   }

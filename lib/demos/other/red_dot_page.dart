@@ -59,6 +59,7 @@ class _RedDotPageState extends State<RedDotPage> {
 
   Widget _bottomNavigationBar() {
     return BottomNavigationBar(
+      backgroundColor: Colors.yellow,
       elevation: 0,
       items: [
         const BottomNavigationBarItem(

@@ -49,6 +49,8 @@ class JhFormInputCell extends StatefulWidget {
     this.labelTextStyle,
     this.textAlign = TextAlign.left,
     this.border = InputBorder.none, // 去掉下划线
+    this.focusedBorder,
+    this.enabledBorder,
     this.hiddenLine = false,
     this.topAlign = false,
     this.bgColor,
@@ -79,6 +81,8 @@ class JhFormInputCell extends StatefulWidget {
   final TextStyle? labelTextStyle; // 默认为hintTextStyle，高亮为主题色
   final TextAlign textAlign; // 输入文字对齐方式，默认左对齐
   final InputBorder border; // 输入边框样式，默认无边框
+  final InputBorder? focusedBorder; // 聚焦时边框样式
+  final InputBorder? enabledBorder; // 未聚焦时边框样式
   final bool hiddenLine; // 隐藏底部横线
   final bool topAlign; // 左侧标题顶部对齐，默认居中
   final Color? bgColor; // 背景颜色，默认白色
@@ -166,6 +170,8 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                 labelTextStyle: widget.labelTextStyle,
                 textAlign: widget.textAlign,
                 border: widget.border,
+                focusedBorder: widget.focusedBorder,
+                enabledBorder: widget.enabledBorder,
               ),
             ),
             widget.rightWidget ?? Container(),

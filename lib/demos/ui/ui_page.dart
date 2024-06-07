@@ -10,22 +10,35 @@ FlatButton（扁平按钮）	   ButtonTheme	  TextButton	        TextButtonTheme
 OutlineButton（边框按钮）  ButtonTheme	  OutlinedButton	    OutlinedButtonTheme
 RaisedButton（背景色按钮） ButtonTheme	  ElevatedButton	    ElevatedButtonTheme
 
+MaterialButton: 默认按钮，扁平，背景透明，按下后，会有背景色。
+RaisedButton:  已经弃用
+FlatButton： 已经弃用
+IconButton:  图标按钮，只能是纯图标，按钮不可展示文案。
+FloatingActionButton:  浮动按钮，可显示文字和图标。
+OutlineButton:  外边框按钮，可设置按钮外边框颜色。
+ButtonBar:  水平布局的按钮容器，可放置多个Button或Text。
+TextButton：  文字按钮，按钮中带文字
+TextButton.icon():  带图标文字混合按钮，它可以轻松创建带图标和文字的按钮。
+
 const ButtonStyle({
-  this.textStyle, // 字体
+  this.textStyle, // 文本的样式 但是对于颜色是不起作用
   this.backgroundColor, // 背景色
-  this.foregroundColor, // 前景色，文字颜色
+  this.foregroundColor, // 前景色，文字及图标颜色
   this.overlayColor, // 高亮色(水波纹颜色)，按钮处于focused, hovered, or pressed时的颜色
   this.shadowColor, // 阴影颜色
   this.elevation, // 阴影值
   this.padding, // padding
   this.minimumSize, // 最小尺寸
+  this.fixedSize, // 按钮大小
+  this.maximumSize, // 最大尺寸
   this.side, // 边框
-  this.shape, // 形状
+  this.shape, // 形状，可设置圆角弧度
   this.mouseCursor, // 鼠标指针的光标进入或悬停在此按钮的[InkWell]上时。
-  this.visualDensity, // 按钮布局的紧凑程度
+  this.visualDensity, // 按钮布局的紧凑程度（按钮的文字可显示区域的大小）
   this.tapTargetSize, // 响应触摸的区域
   this.animationDuration, // [shape]和[elevation]的动画更改的持续时间。
   this.enableFeedback, // 检测到的手势是否应提供声音和/或触觉反馈。例如，在Android上，点击会产生咔哒声，启用反馈后，长按会产生短暂的振动。通常，组件默认值为true。
+  this.alignment, // 按钮子对象的对齐方式
 });
 
 * */

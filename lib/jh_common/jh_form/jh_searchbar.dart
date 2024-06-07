@@ -13,7 +13,7 @@ const double kSearchViewHeight = 58.0;
 const String _hintText = '请输入';
 const double _borderRadius = 5.0;
 const double _borderWidth = 0.3;
-const EdgeInsetsGeometry _contentPadding = EdgeInsets.symmetric(vertical: 4);
+const EdgeInsetsGeometry _contentPadding = EdgeInsets.symmetric(vertical: 0);
 
 typedef _InputCallBack = void Function(String value);
 typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted);
@@ -44,7 +44,7 @@ class JhSearchBar extends StatelessWidget {
   final Color? bgColor;
   final bool isShowDeleteBtn; // 是否显示右侧删除按钮，默认显示
   final bool isShowBorder; // 是否显示边框，默认不显示
-  final EdgeInsetsGeometry contentPadding; // 当父组件固定高度时，文本一行显示文本过多会出现文字显示不全bug,可设置EdgeInsets.symmetric(vertical: 4)
+  final EdgeInsetsGeometry contentPadding; // 当父组件固定高度时，文本一行显示文本过多会出现文字显示不全bug,可设置EdgeInsets.symmetric(vertical: 0)
   final TextInputAction? textInputAction; // 键盘右下角按钮类型
   final EdgeInsetsGeometry? margin;
   final FocusNode? focusNode;

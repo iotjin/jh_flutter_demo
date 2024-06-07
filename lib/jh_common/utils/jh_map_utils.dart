@@ -6,6 +6,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '/jh_common/widgets/jh_progress_hud.dart';
 import 'jh_device_utils.dart';
 
 class JhMapUtils {
@@ -24,9 +25,9 @@ class JhMapUtils {
   static Future<bool> isInstallMap(String url) async {
     // var url = Uri.parse(Uri.encodeFull(url));
     final Uri uri = Uri.parse(url);
-    bool canLaunch = await canLaunchUrl(uri);
+    bool canLaunch = await canLaunchUrl(Uri.parse(url));
     debugPrint('canLaunch: $canLaunch');
-    return canLaunchUrl(uri);
+    return canLaunch;
   }
 
   /// 跳转高德导航 - 路径规划
@@ -47,13 +48,11 @@ class JhMapUtils {
       return;
     }
     var type = JhDeviceUtils.isIOS ? 'iosamap://path?sourceApplication=applicationName&' : 'amapuri://route/plan/?';
-    var url =
-        '${type}sid=&slat=${sLatitude ?? ''}&slon=${sLongitude ?? ''}&sname=$sName&dlat=$dLatitude&dlon=$dLongitude&dname=$dName&dev=$dev&t=$t';
-    // if (!(await canLaunchUrl(Uri.parse(url)))) {
-    //   debugPrint(message);
-    //   // JhProgressHUD.showText(message);
-    //   return;
-    // }
+    var url = '${type}sid=&slat=${sLatitude ?? ''}&slon=${sLongitude ?? ''}&sname=$sName&dlat=$dLatitude&dlon=$dLongitude&dname=$dName&dev=$dev&t=$t';
+    if (!await isInstallMap(url)) {
+      JhProgressHUD.showText(message);
+      return;
+    }
     await launchUrl(Uri.parse(url));
   }
 
@@ -68,11 +67,10 @@ class JhMapUtils {
   }) async {
     var device = JhDeviceUtils.isAndroid ? 'android' : 'ios';
     var url = '${device}amap://navi?sourceApplication=amap&poiname=$poiName&lat=$latitude&lon=$longitude&dev=$dev';
-    // if (!(await canLaunchUrl(Uri.parse(url)))) {
-    //   debugPrint(message);
-    //   // JhProgressHUD.showText(message);
-    //   return;
-    // }
+    if (!await isInstallMap(url)) {
+      JhProgressHUD.showText(message);
+      return;
+    }
     await launchUrl(Uri.parse(url));
   }
 
@@ -86,17 +84,15 @@ class JhMapUtils {
     required double dLongitude, // 终点经度
     String dName = '', // 终点名称
     String mode = 'driving', // 导航模式，可选transit（公交）、driving（驾车）、walking（步行）和riding（骑行）默认:driving
-    String coordType =
-        'gcj02', // 坐标类型，必选参数。coord_type= bd09ll 允许的值为：bd09ll（百度经纬度坐标） bd09mc（百度墨卡托坐标） gcj02（经国测局加密的坐标） wgs84（gps获取的原始坐标）
+    String coordType = 'gcj02', // 坐标类型，必选参数。coord_type= bd09ll 允许的值为：bd09ll（百度经纬度坐标） bd09mc（百度墨卡托坐标） gcj02（经国测局加密的坐标） wgs84（gps获取的原始坐标）
     String message = '您没有安装百度地图，请先安装百度地图！',
   }) async {
     var url =
         'baidumap://map/direction?origin=name:$sName|latlng:$sLatitude,$sLongitude&destination=name:$dName|latlng:$dLatitude,$dLongitude&mode=$mode&coord_type=$coordType';
-    // if (!(await canLaunchUrl(Uri.parse(url)))) {
-    //   debugPrint(message);
-    //   // JhProgressHUD.showText(message);
-    //   return;
-    // }
+    if (!await isInstallMap(url)) {
+      JhProgressHUD.showText(message);
+      return;
+    }
     await launchUrl(Uri.parse(url));
   }
 
@@ -114,15 +110,12 @@ class JhMapUtils {
     String message = '您没有安装腾讯地图，请先安装腾讯地图！',
   }) async {
     // 起点坐标，格式：lat,lng （纬度在前，经度在后，逗号分隔）  功能参数值：CurrentLocation ：使用定位点作为起点坐标
-    var formInfo = (sLatitude == null || sLongitude == null)
-        ? 'from=$sName&CurrentLocation'
-        : 'from=$sName&fromcoord=$sLatitude,$sLongitude';
+    var formInfo = (sLatitude == null || sLongitude == null) ? 'from=$sName&CurrentLocation' : 'from=$sName&fromcoord=$sLatitude,$sLongitude';
     var url = 'qqmap://map/routeplan?type=$type&$formInfo&to=$dName&tocoord=$dLatitude,$dLongitude&referer=$referer';
-    // if (!(await canLaunchUrl(Uri.parse(url)))) {
-    //   debugPrint(message);
-    //   // JhProgressHUD.showText(message);
-    //   return;
-    // }
+    if (!await isInstallMap(url)) {
+      JhProgressHUD.showText(message);
+      return;
+    }
     await launchUrl(Uri.parse(url));
   }
 

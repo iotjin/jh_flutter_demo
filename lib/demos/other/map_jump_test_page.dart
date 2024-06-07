@@ -113,7 +113,10 @@ class _MapJumpTestPageState extends State<MapJumpTestPage> {
     try {
       const title = "Ocean Beach";
       final availableMaps = await MapLauncher.installedMaps;
-
+      if (availableMaps.isEmpty) {
+        JhProgressHUD.showText('无法跳转,未安装地图');
+        return;
+      }
       showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {

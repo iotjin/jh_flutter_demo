@@ -4,7 +4,7 @@
 ///  description:  折叠面板
 
 import 'package:flutter/material.dart';
-import '/project/configs/styles.dart';
+import '/project/configs/colors.dart';
 
 enum JhCollapseStyle {
   flat,
@@ -33,11 +33,11 @@ class JhCollapseView extends StatefulWidget {
     this.headerPadding,
     this.decoration,
     this.title = '',
-    this.titleStyle = const TextStyle(color: Colors.black),
+    this.titleStyle,
     this.titleCrossAxisAlignment = CrossAxisAlignment.start,
     this.arrowColor,
-    this.bgColor = Colors.white,
-    this.headerColor = Colors.white,
+    this.bgColor,
+    this.headerColor,
     this.hiddenDivider = false,
     this.collapseType = JhCollapseType.rightArrow,
     this.collapseStyle = JhCollapseStyle.flat,
@@ -52,11 +52,11 @@ class JhCollapseView extends StatefulWidget {
   final EdgeInsetsGeometry? headerPadding; // header padding,默认 flat样式: 10, card样式:展开8,折叠0，传值则覆盖默认值
   final Decoration? decoration;
   final String title;
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
   final CrossAxisAlignment titleCrossAxisAlignment;
   final Color? arrowColor; // 箭头颜色
-  final Color bgColor;
-  final Color headerColor;
+  final Color? bgColor;
+  final Color? headerColor;
   final bool hiddenDivider; // 是否隐藏分割线，仅对 JhCollapseType.centerArrow、JhCollapseType.seeMore 生效
   final JhCollapseType collapseType; // 折叠类型
   final JhCollapseStyle collapseStyle; // 折叠样式。flat: 扁平 card: 卡片
@@ -91,10 +91,18 @@ class _JhCollapseViewState extends State<JhCollapseView> {
   }
 
   _body() {
+    var bgColor = widget.bgColor ?? KColors.dynamicColor(context, KColors.kCellBgColor, KColors.kCardBgDarkColor);
+    var shadowColor = KColors.dynamicColor(context, Colors.black12, Colors.white24);
+    var cardBorderStyle = BoxDecoration(
+      color: bgColor,
+      borderRadius: BorderRadius.circular(3),
+      boxShadow: [BoxShadow(color: shadowColor, spreadRadius: 1.5, blurRadius: 1.5)],
+    );
+
     return Container(
       margin: widget.margin ?? (widget.collapseStyle == JhCollapseStyle.card ? _cardMargin : _flatMargin),
       padding: widget.padding ?? (widget.collapseStyle == JhCollapseStyle.card ? EdgeInsets.all(10) : EdgeInsets.all(0)),
-      decoration: widget.decoration ?? (widget.collapseStyle == JhCollapseStyle.card ? KStyles.cellBorderStyle : null),
+      decoration: widget.decoration ?? (widget.collapseStyle == JhCollapseStyle.card ? cardBorderStyle : null),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -110,6 +118,11 @@ class _JhCollapseViewState extends State<JhCollapseView> {
   }
 
   _headerW() {
+    var headerColor = widget.headerColor ?? KColors.dynamicColor(context, KColors.kCardBgColor, KColors.kCardBgDarkColor);
+    var textColor = KColors.dynamicColor(context, KColors.kBlackTextColor, KColors.kBlackTextDarkColor);
+    var lineColor = KColors.dynamicColor(context, KColors.kLineColor, KColors.kGreyTextDarkColor);
+    var titleStyle = widget.titleStyle ?? TextStyle(color: textColor);
+
     var isExpand = !_isFold;
     Widget w = Container();
     var padding = EdgeInsets.all(0);
@@ -117,7 +130,7 @@ class _JhCollapseViewState extends State<JhCollapseView> {
       w = Row(
         crossAxisAlignment: widget.titleCrossAxisAlignment,
         children: [
-          Expanded(flex: 9, child: widget.titleWidget ?? _title()),
+          Expanded(flex: 9, child: widget.titleWidget ?? _title(titleStyle)),
           // Icon(isExpand ? Icons.arrow_drop_down : Icons.arrow_drop_up, size: 22, color: widget.arrowColor),
           Icon(isExpand ? Icons.arrow_drop_down : Icons.arrow_right, size: 22, color: widget.arrowColor),
         ],
@@ -126,19 +139,24 @@ class _JhCollapseViewState extends State<JhCollapseView> {
     }
     if (widget.collapseType == JhCollapseType.centerArrow) {
       w = separatorView(isExpand,
-          title: widget.title, titleStyle: widget.titleStyle, arrowColor: widget.arrowColor, hiddenDivider: widget.hiddenDivider);
+          title: widget.title, titleStyle: titleStyle, arrowColor: widget.arrowColor, lineColor: lineColor, hiddenDivider: widget.hiddenDivider);
       padding = EdgeInsets.only(bottom: isExpand ? 8 : 0);
     }
     if (widget.collapseType == JhCollapseType.seeMore) {
       w = separatorView(isExpand,
-          title: widget.title, titleStyle: widget.titleStyle, arrowColor: widget.arrowColor, isSeeMore: true, hiddenDivider: widget.hiddenDivider);
+          title: widget.title,
+          titleStyle: titleStyle,
+          arrowColor: widget.arrowColor,
+          isSeeMore: true,
+          lineColor: lineColor,
+          hiddenDivider: widget.hiddenDivider);
       padding = EdgeInsets.only(top: isExpand ? 8 : 0);
     }
 
     return GestureDetector(
       child: Container(
         padding: widget.headerPadding ?? (widget.collapseStyle == JhCollapseStyle.card ? padding : _headerPadding),
-        color: widget.headerColor,
+        color: headerColor,
         child: w,
       ),
       onTap: () {
@@ -150,10 +168,10 @@ class _JhCollapseViewState extends State<JhCollapseView> {
     );
   }
 
-  _title() {
+  _title(titleStyle) {
     return Row(
       children: [
-        Flexible(child: Text(widget.title, style: widget.titleStyle)),
+        Flexible(child: Text(widget.title, style: titleStyle)),
         SizedBox(width: 10),
       ],
     );
@@ -164,13 +182,19 @@ Widget separator({Color? color = _lineColor, EdgeInsetsGeometry? margin = const 
   return Container(margin: margin, height: 1, color: color);
 }
 
-Widget separatorView(isExpand, {String title = '', TextStyle? titleStyle, Color? arrowColor, bool hiddenDivider = false, bool isSeeMore = false}) {
+Widget separatorView(isExpand,
+    {String title = '',
+    TextStyle? titleStyle,
+    Color? arrowColor,
+    Color? lineColor = _lineColor,
+    bool hiddenDivider = false,
+    bool isSeeMore = false}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Visibility(
         visible: !hiddenDivider,
-        child: Expanded(flex: 1, child: Container(height: 1, color: _lineColor, margin: EdgeInsets.only(left: 15))),
+        child: Expanded(flex: 1, child: Container(height: 1, color: lineColor, margin: EdgeInsets.only(left: 15))),
       ),
       Expanded(
         flex: 2,
@@ -188,7 +212,7 @@ Widget separatorView(isExpand, {String title = '', TextStyle? titleStyle, Color?
       ),
       Visibility(
         visible: !hiddenDivider,
-        child: Expanded(flex: 1, child: Container(height: 1, color: _lineColor, margin: EdgeInsets.only(right: 15))),
+        child: Expanded(flex: 1, child: Container(height: 1, color: lineColor, margin: EdgeInsets.only(right: 15))),
       ),
     ],
   );

@@ -145,6 +145,10 @@ class KColors {
   static const Color kPickerBtnColor = kBlackTextColor;
   static const Color kPickerBtnDarkColor = kBlackTextDarkColor;
 
+  // card颜色
+  static const Color kCardBgColor = Colors.white;
+  static const Color kCardBgDarkColor = Color(0xFF2C2C2C); // (44, 44, 44)
+
   // icon颜色
   static const Color kIconColor = Color(0xFF646464); // (100, 100, 100)
   static const Color kIconDarkColor = Color(0xFFC8C8C8); // (200, 200, 200)

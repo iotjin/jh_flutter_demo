@@ -202,6 +202,7 @@ class BaseDialog extends StatelessWidget {
     // TODO: 通过ThemeProvider进行主题管理
     final provider = Provider.of<ThemeProvider>(context);
     var confirmTextColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
+    var bgColor = KColors.dynamicColor(context, KColors.kAlertBgColor, KColors.kAlertBgDarkColor);
 
     Widget dialogTitle = Offstage(
       offstage: title == '',
@@ -247,6 +248,7 @@ class BaseDialog extends StatelessWidget {
     );
 
     Widget body = Material(
+      color: bgColor,
       borderRadius: BorderRadius.circular(8.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -307,7 +309,11 @@ class DialogButton extends StatelessWidget {
         height: 48.0,
         child: TextButton(
           onPressed: onPressed,
-          style: ButtonStyle(foregroundColor: MaterialStateProperty.all(textColor)),
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(textColor),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
+            splashFactory: InkSplash.splashFactory, // 设置水波纹
+          ),
           child: Text(text, style: const TextStyle(fontSize: _btnFontSize)),
         ),
       ),
@@ -370,20 +376,22 @@ class _InputWidget extends StatelessWidget {
     var lineColor = KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor);
     var bgColor = KColors.dynamicColor(context, KColors.kAlertInputBgColor, KColors.kAlertInputBgDarkColor);
 
-    return Container(
-      height: 55,
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(border: Border.all(color: lineColor, width: 1)),
-      child: JhFormInputCell(
-        bgColor: bgColor,
-        text: inputText,
-        hintText: hintText,
-        labelText: labelText,
-        keyboardType: keyboardType,
-        hiddenLine: true,
-        inputFormatters: inputFormatters,
-        inputCallBack: inputCallBack,
-        inputCompletionCallBack: inputCompletionCallBack,
+    return IntrinsicHeight(
+      child: Container(
+        // height: 55,
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(border: Border.all(color: lineColor, width: 1)),
+        child: JhFormInputCell(
+          bgColor: bgColor,
+          text: inputText,
+          hintText: hintText,
+          labelText: labelText,
+          keyboardType: keyboardType,
+          hiddenLine: true,
+          inputFormatters: inputFormatters,
+          inputCallBack: inputCallBack,
+          inputCompletionCallBack: inputCompletionCallBack,
+        ),
       ),
     );
   }

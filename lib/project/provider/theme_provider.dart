@@ -3,6 +3,8 @@
 ///  Created by iotjin on 2022/07/10.
 ///  description: 主题管理
 
+// ignore_for_file: unused_element
+
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '/jh_common/utils/jh_color_utils.dart';
@@ -116,6 +118,17 @@ class MyThemes {
   );
 
   static getThemeData(Color themeColor, {bool isDarkMode = false}) {
+    // return ThemeData();
+    // return ThemeData(
+    //   colorSchemeSeed: themeColor,
+    //   brightness: isDarkMode ? Brightness.dark : Brightness.light,
+    // );
+
+    // return _m2ThemeData(themeColor, isDarkMode: isDarkMode);
+    return _m3ThemeData(themeColor, isDarkMode: isDarkMode);
+  }
+
+  static _m2ThemeData(Color themeColor, {bool isDarkMode = false}) {
     // 暗黑模式高亮显示颜色
     var darkPrimaryThemeColor = KColors.kThemeColor;
 
@@ -123,6 +136,12 @@ class MyThemes {
       useMaterial3: false,
       primarySwatch: JhColorUtils.materialColor(themeColor),
       primaryColor: themeColor,
+      colorScheme: ColorScheme.fromSwatch().copyWith(
+        brightness: isDarkMode ? Brightness.dark : Brightness.light,
+        secondary: isDarkMode ? KColors.kThemeDarkColor : themeColor,
+        // surfaceTint: Colors.transparent, // 影响 card 的配色，M3下是applySurfaceTint
+        // outline: Colors.grey, // M3 设置OutlinedButton、TextField 边框颜色(尽量单独设置) ， Color(0xff79747e)
+      ),
       // 页面背景色
       scaffoldBackgroundColor: isDarkMode ? KColors.kBgDarkColor : KColors.kBgColor,
       // 导航条在base_appbar页面配置（没使用base_appbar的按下面配置的）
@@ -130,6 +149,7 @@ class MyThemes {
         systemOverlayStyle: JhStatusBarUtils.getStatusBarStyle(isDark: isDarkMode),
         color: isDarkMode ? KColors.kNavBgDarkColor : themeColor,
         iconTheme: const IconThemeData(color: Colors.white),
+        // shadowColor: Colors.grey, // M3 设置阴影颜色
       ),
       // 主界面tabbar，在base_tabbar页面配置
       // bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -137,10 +157,6 @@ class MyThemes {
       //   selectedItemColor: KColors.kTabBarSelectTextColor,
       //   unselectedItemColor: KColors.kTabBarNormalTextColor,
       // ),
-      colorScheme: ColorScheme.fromSwatch().copyWith(
-        brightness: isDarkMode ? Brightness.dark : Brightness.light,
-        secondary: isDarkMode ? KColors.kThemeDarkColor : themeColor,
-      ),
       // 分割线
       dividerTheme: DividerThemeData(color: isDarkMode ? KColors.kLineDarkColor : KColors.kLineColor),
       // Tab指示器颜色
@@ -159,6 +175,103 @@ class MyThemes {
       //   brightness: isDarkMode ? Brightness.dark : Brightness.light,
       // ),
       // visualDensity: VisualDensity.standard,
+    );
+  }
+
+  static _m3ThemeData(Color themeColor, {bool isDarkMode = false}) {
+    // 暗黑模式高亮显示颜色
+    var darkPrimaryThemeColor = KColors.kThemeColor;
+
+    return ThemeData(
+      useMaterial3: true,
+      primarySwatch: JhColorUtils.materialColor(themeColor),
+      primaryColor: themeColor,
+      // 页面背景色
+      scaffoldBackgroundColor: isDarkMode ? KColors.kBgDarkColor : KColors.kBgColor,
+      // 导航条在base_appbar页面配置（没使用base_appbar的按下面配置的）
+      appBarTheme: AppBarTheme(
+        systemOverlayStyle: JhStatusBarUtils.getStatusBarStyle(isDark: isDarkMode),
+        color: isDarkMode ? KColors.kNavBgDarkColor : themeColor,
+        iconTheme: const IconThemeData(color: Colors.white),
+        // shadowColor: Colors.grey, // M3 设置阴影颜色
+      ),
+      // 主界面tabbar，在base_tabbar页面配置
+      // bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      //   backgroundColor: Colors.white,
+      //   selectedItemColor: KColors.kTabBarSelectTextColor,
+      //   unselectedItemColor: KColors.kTabBarNormalTextColor,
+      // ),
+      // 分割线
+      dividerTheme: DividerThemeData(color: isDarkMode ? KColors.kLineDarkColor : KColors.kLineColor),
+      // Tab指示器颜色
+      indicatorColor: isDarkMode ? darkPrimaryThemeColor : themeColor,
+      // 文字选择色（输入框选择文字等）
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: isDarkMode ? darkPrimaryThemeColor.withAlpha(70) : themeColor.withAlpha(70),
+        selectionHandleColor: isDarkMode ? darkPrimaryThemeColor : themeColor,
+        cursorColor: isDarkMode ? darkPrimaryThemeColor : themeColor, // 光标
+      ),
+
+      // 主要用于Material背景色
+      // canvasColor: isDarkMode ? KColors.kMaterialBgDarkColor : KColors.kMaterialBgColor,
+      // errorColor: isDarkMode ? KColors.kErrorTextDarkColor : KColors.kErrorTextColor,
+      // cupertinoOverrideTheme: CupertinoThemeData(
+      //   brightness: isDarkMode ? Brightness.dark : Brightness.light,
+      // ),
+      // visualDensity: VisualDensity.standard,
+
+      /// ------------------------------ Material3适配 ------------------------------
+      /// https://docs.flutter.dev/release/breaking-changes/material-3-migration
+      /// 一些调整适配详见 UITest3
+      /// 根据需要打开并配置, 如果有基础组件也可以针对组件单独配置
+
+      /// M3设置主题色 方式一
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: isDarkMode ? darkPrimaryThemeColor : themeColor,
+        brightness: isDarkMode ? Brightness.dark : Brightness.light,
+        surfaceTint: Colors.transparent, // 影响 card 的配色，M3下是applySurfaceTint
+        // outline: Colors.grey, // M3 设置OutlinedButton、TextField、Switch 边框颜色(尽量单独设置) ， Color(0xff79747e)
+      ),
+
+      /// M3设置主题色 方式二
+      // colorScheme: ColorScheme.fromSwatch().copyWith(
+      //   brightness: isDarkMode ? Brightness.dark : Brightness.light,
+      //   secondary: isDarkMode ? KColors.kThemeDarkColor : themeColor,
+      //   surfaceTint: Colors.transparent, // 影响 card 的配色，M3下是applySurfaceTint
+      //   // outline: Colors.grey, // M3 设置OutlinedButton、TextField 边框颜色(尽量单独设置) ， Color(0xff79747e)
+      // ),
+      // textTheme: TextTheme(
+      //   bodyMedium: TextStyle(color: isDarkMode ? KColors.kBlackTextDarkColor : KColors.kBlackTextColor),
+      // ),
+      // textButtonTheme: TextButtonThemeData(
+      //   style: TextButton.styleFrom(
+      //     // side: BorderSide(width: 1.0, color: themeColor), // 设置边框
+      //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0)), // 设置圆角
+      //     splashFactory: InkSplash.splashFactory, // 设置水波纹
+      //   ),
+      // ),
+      // outlinedButtonTheme: OutlinedButtonThemeData(
+      //   style: ButtonStyle(side: MaterialStateProperty.all(BorderSide(color: themeColor))),
+      // ),
+      // floatingActionButtonTheme: FloatingActionButtonThemeData(
+      //   backgroundColor: themeColor,
+      //   foregroundColor: Colors.white,
+      //   shape: CircleBorder(), // 浮动按钮设成圆形
+      // ),
+      // progressIndicatorTheme: ProgressIndicatorThemeData(
+      //   refreshBackgroundColor: isDarkMode ? KColors.kMaterialBgDarkColor : KColors.kMaterialBgColor, // 下拉刷新MaterialHeader()背景色适配
+      //
+      //   // color: Colors.purpleAccent, // 设置进度指示器的颜色
+      //   // linearTrackColor: Colors.black, // 设置线性进度指示器的背景颜色
+      //   // linearMinHeight: 4.0, // 设置线性进度指示器的最小高度
+      //   // circularTrackColor: Colors.green, // 设置圆形进度指示器的背景颜色
+      //   // refreshBackgroundColor: Colors.orange, // 设置刷新指示器的背景颜色
+      // ),
+      // tabBarTheme: TabBarTheme(
+      //   dividerColor: Colors.grey[400],
+      //   dividerHeight: 0.5,
+      // ),
+      // BottomNavigationBar()点击水波纹样式变更，通过Theme() 设置splashFactory: InkSplash.splashFactory
     );
   }
 }
