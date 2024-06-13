@@ -24,7 +24,7 @@ class JhMapUtils {
   /// 判断地图是否有安装
   static Future<bool> isInstallMap(String url) async {
     // var url = Uri.parse(Uri.encodeFull(url));
-    final Uri uri = Uri.parse(url);
+    // final Uri uri = Uri.parse(url);
     bool canLaunch = await canLaunchUrl(Uri.parse(url));
     debugPrint('canLaunch: $canLaunch');
     return canLaunch;
