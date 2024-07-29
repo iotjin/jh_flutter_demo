@@ -65,8 +65,84 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
+//            ndk {
+//                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64' // 'armeabi','x86'
+//            }
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    /*
+     一次打包不同的apk
+
+     添加flavor后编译报错
+     需要在 编辑器顶部 Run/Debug Configuration 里面 build flavors 设置对应的flavor 如 app1
+
+    编译运行命令
+        flutter run --flavor app1 -t lib/main.dart
+
+    打包命令
+        flutter build apk --flavor app1 --release
+        flutter build apk --release --flavor app1 --target-platform=android-arm64
+
+    清除build缓存并且打包app1和app2的debug和release包
+    flutter clean; flutter build apk --flavor app1 --debug; flutter build apk --flavor app1 --release; flutter build apk --flavor app2 --debug; flutter build apk --flavor app2 --release
+
+
+     查看包名
+       aapt dump badging D:\apk\xxx.apk | findstr package
+       package: name='com.jh.jh_flutter_demo.dev' versionCode='6' versionName='3.16.0'
+
+       aapt dump badging D:\apk\xxx.apk
+
+     安裝apk
+       adb install -r D:\apk\xxx.apk
+
+
+     */
+
+//    flavorDimensions("default") // 定义一个维度，这个维度的名字叫default，和下面的productFlavors中的dimension "default"对应
+//    productFlavors {
+//        // app1 | dev
+//        app1 {
+//            dimension "default"
+//            // 设置applicationId（这里很重要，两个相同applicationId的apk不能同时安装在同一台Android手机中）
+//            // applicationId "com.jh.demo1"
+//            applicationId "${defaultConfig.applicationId}.dev"
+//            // 自动生成@string/app_name为demo 把AndroidManifest.xml中的 android:label="demo"替换成 android:label="@string/app_name"
+//            // resValue "string", "app_name", "jh-demo1"
+//            // 定义app_icon字段，在AndroidManifest.xml文件中用到
+//            manifestPlaceholders = [
+//                    app_name: "jh-demo1",
+//                    app_icon: "@mipmap/ic_launcher",
+//            ]
+//        }
+//        // app2 | prod
+//        app2 {
+//            dimension "default"
+//            // applicationId "com.jh.demo2"
+//            applicationId "${defaultConfig.applicationId}"
+//            // resValue "string", "app_name", "jh-demo2"
+//            manifestPlaceholders = [
+//                    app_name: "jh-demo2",
+//                    app_icon: "@mipmap/ic_launcher",
+//            ]
+//        }
+//    }
+
+//    lintOptions {
+//        //在打包Release版本的时候不进行检测
+//        checkReleaseBuilds false
+//        // 有报错也不会停止打包
+//        abortOnError false
+//        // 防止报错：Error: The resource string/app_name has not been translated
+//        disable 'InvalidPackage'
+//    }
+
 }
 
 flutter {

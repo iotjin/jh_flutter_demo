@@ -39,6 +39,9 @@ extension JhNumExtension on num? {
 
   /// num类型转String类型整数
   String get jhToIntStr => (this ?? 0).toInt().toString();
+
+  /// num类型转int类型
+  int get jhToInt => (this ?? 0).toInt();
 }
 
 extension JhIntExtension on int? {
