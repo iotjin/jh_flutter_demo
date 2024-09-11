@@ -115,7 +115,7 @@ Note:
   <summary><strong>Important update</strong></summary>
    
 ```
-* v3.16.0  - Update pubspec library and flutter version（Flutter 3.16.0，Dart 3.2.0）
+* v3.16.0  - Update pubspec library and flutter version（Flutter 3.16.0，Dart 3.2.0），iOS minimum build version changed to 12.0 , Material3 adaptation
 * v3.13.0  - Update pubspec library and flutter version（Flutter 3.13.0，Dart 3.1.0）
 * v3.10.0  - Update pubspec library and flutter version（Flutter 3.10.0，Dart 3.0.0）
 * v3.7.0  - Update pubspec library and flutter version（Flutter 3.7.0，Dart 2.19.0）

@@ -115,7 +115,7 @@ https://iotjin.github.io/jh_flutter_demo
   <summary><strong>重要更新</strong></summary>
 
 ```
-* v3.16.0 - 更新三方库和flutter版本（Flutter 3.16.0，Dart 3.2.0）
+* v3.16.0 - 更新三方库和flutter版本（Flutter 3.16.0，Dart 3.2.0），iOS最低构建版本改为12.0 , Material3适配
 * v3.13.0 - 更新三方库和flutter版本（Flutter 3.13.0，Dart 3.1.0）
 * v3.10.0 - 更新三方库和flutter版本（Flutter 3.10.0，Dart 3.0.0）
 * v3.7.0  - 更新三方库和flutter版本（Flutter 3.7.0，Dart 2.19.0）
