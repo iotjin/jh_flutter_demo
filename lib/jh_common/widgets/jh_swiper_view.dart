@@ -65,7 +65,7 @@ class JhSwiperView extends StatefulWidget {
 
 class _JhSwiperViewState extends State<JhSwiperView> {
   int _currentIndex = 0;
-  final CarouselController _controller = CarouselController();
+  final CarouselSliderController _controller = CarouselSliderController();
 
   // @override
   // void initState() {

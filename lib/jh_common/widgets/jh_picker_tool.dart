@@ -6,7 +6,7 @@
 // ignore_for_file: constant_identifier_names, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:flutter_picker/flutter_picker.dart';
+import 'package:flutter_picker_plus/flutter_picker_plus.dart';
 import '/project/configs/colors.dart';
 
 const String _titleNormalText = '请选择';

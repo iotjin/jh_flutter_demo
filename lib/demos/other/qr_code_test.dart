@@ -52,13 +52,13 @@ class _QRCodeTestState extends State<QRCodeTest> {
           child: const Text('二维码扫描-显示网格线动画'),
           onPressed: () => _scan3(),
         ),
-        const SizedBox(height: 10),
-        const Text('二维码扫描 - barcode_scan'),
-        const SizedBox(height: 10),
-        ElevatedButton(
-          child: const Text('二维码扫描'),
-          onPressed: () => _scan4(),
-        ),
+        // const SizedBox(height: 10),
+        // const Text('二维码扫描 - barcode_scan'),
+        // const SizedBox(height: 10),
+        // ElevatedButton(
+        //   child: const Text('二维码扫描'),
+        //   onPressed: () => _scan4(),
+        // ),
         const SizedBox(height: 20),
         const Text('扫描到的信息：'),
         const SizedBox(height: 20),
@@ -128,13 +128,13 @@ class _QRCodeTestState extends State<QRCodeTest> {
     });
   }
 
-  void _scan4() {
-    JhQrCodeUtils.scan(callBack: (data) {
-      print('扫码结果：$data');
-      JhToast.showText(context, msg: '扫码结果：$data');
-      setState(() {
-        _textStr = data;
-      });
-    });
-  }
+  // void _scan4() {
+  //   JhQrCodeUtils.scan(callBack: (data) {
+  //     print('扫码结果：$data');
+  //     JhToast.showText(context, msg: '扫码结果：$data');
+  //     setState(() {
+  //       _textStr = data;
+  //     });
+  //   });
+  // }
 }

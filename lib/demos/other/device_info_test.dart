@@ -52,17 +52,14 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
       if (kIsWeb) {
         deviceData = _readWebBrowserInfo(await deviceInfoPlugin.webBrowserInfo);
       } else {
-        if (Platform.isAndroid) {
-          deviceData = _readAndroidBuildData(await deviceInfoPlugin.androidInfo);
-        } else if (Platform.isIOS) {
-          deviceData = _readIosDeviceInfo(await deviceInfoPlugin.iosInfo);
-        } else if (Platform.isLinux) {
-          deviceData = _readLinuxDeviceInfo(await deviceInfoPlugin.linuxInfo);
-        } else if (Platform.isMacOS) {
-          deviceData = _readMacOsDeviceInfo(await deviceInfoPlugin.macOsInfo);
-        } else if (Platform.isWindows) {
-          deviceData = _readWindowsDeviceInfo(await deviceInfoPlugin.windowsInfo);
-        }
+        deviceData = switch (defaultTargetPlatform) {
+          TargetPlatform.android => _readAndroidBuildData(await deviceInfoPlugin.androidInfo),
+          TargetPlatform.iOS => _readIosDeviceInfo(await deviceInfoPlugin.iosInfo),
+          TargetPlatform.linux => _readLinuxDeviceInfo(await deviceInfoPlugin.linuxInfo),
+          TargetPlatform.windows => _readWindowsDeviceInfo(await deviceInfoPlugin.windowsInfo),
+          TargetPlatform.macOS => _readMacOsDeviceInfo(await deviceInfoPlugin.macOsInfo),
+          TargetPlatform.fuchsia => <String, dynamic>{'Error:': 'Fuchsia platform isn\'t supported'},
+        };
       }
     } on PlatformException {
       deviceData = <String, dynamic>{'Error:': 'Failed to get platform version.'};
@@ -103,13 +100,8 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
       'type': build.type,
       'isPhysicalDevice': build.isPhysicalDevice,
       'systemFeatures': build.systemFeatures,
-      'displaySizeInches': ((build.displayMetrics.sizeInches * 10).roundToDouble() / 10),
-      'displayWidthPixels': build.displayMetrics.widthPx,
-      'displayWidthInches': build.displayMetrics.widthInches,
-      'displayHeightPixels': build.displayMetrics.heightPx,
-      'displayHeightInches': build.displayMetrics.heightInches,
-      'displayXDpi': build.displayMetrics.xDpi,
-      'displayYDpi': build.displayMetrics.yDpi,
+      'serialNumber': build.serialNumber,
+      'isLowRamDevice': build.isLowRamDevice,
     };
   }
 

@@ -114,9 +114,9 @@ class _GradientAppBarState extends State<GradientAppBar> {
 
     IconThemeData? appBarIconTheme = widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
     TextStyle? centerStyle =
-        widget.textTheme?.subtitle1 ?? Theme.of(context).textTheme.subtitle1 ?? themeData.primaryTextTheme.subtitle1;
+        widget.textTheme?.bodyMedium ?? Theme.of(context).textTheme.bodyMedium ?? themeData.primaryTextTheme.bodyMedium;
     TextStyle? sideStyle =
-        widget.textTheme?.subtitle1 ?? Theme.of(context).textTheme.bodyText1 ?? themeData.primaryTextTheme.bodyText1;
+        widget.textTheme?.bodyMedium ?? Theme.of(context).textTheme.bodyMedium ?? themeData.primaryTextTheme.bodyMedium;
 
 //    IconThemeData appBarIconTheme =
 //        widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
