@@ -1,7 +1,7 @@
 # jh_flutter_demo
 
-[![Flutter version](https://img.shields.io/badge/Flutter%20version-3.22.0-brightgreen)](https://flutter.dev)
-[![Dart version](https://img.shields.io/badge/Dart%20version-3.4.0-brightgreen)](https://dart.dev)
+[![Flutter version](https://img.shields.io/badge/Flutter%20version-3.27.0-brightgreen)](https://flutter.dev)
+[![Dart version](https://img.shields.io/badge/Dart%20version-3.6.0-brightgreen)](https://dart.dev)
 [![License](https://img.shields.io/badge/license-BSD--2--Clause-green)](LICENSE)
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/iotjin/jh_flutter_demo?include_prereleases)](https://github.com/iotjin/jh_flutter_demo/releases/)
 
@@ -23,8 +23,8 @@ The code is updated irregularly.
 
 ## Project environment
 
-* Flutter version 3.22.0
-* Dart version 3.4.0
+* Flutter version 3.27.0
+* Dart version 3.6.0
 
 
 ## Some UI effects implemented
@@ -115,6 +115,7 @@ Note:
   <summary><strong>Important update</strong></summary>
    
 ```
+* v3.27.0  - Update pubspec library and flutter version（Flutter 3.27.0，Dart 3.6.0），Android 15 adaptation
 * v3.22.0  - Update pubspec library and flutter version（Flutter 3.22.0，Dart 3.4.0），Android 14 adaptation
 * v3.16.0  - Update pubspec library and flutter version（Flutter 3.16.0，Dart 3.2.0），iOS minimum build version changed to 12.0 , Material3 adaptation
 * v3.13.0  - Update pubspec library and flutter version（Flutter 3.13.0，Dart 3.1.0）

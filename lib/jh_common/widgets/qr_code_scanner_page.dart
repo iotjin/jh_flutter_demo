@@ -5,7 +5,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 import '/jh_common/utils/jh_device_utils.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
 import '/project/configs/colors.dart';

@@ -18,8 +18,8 @@ pluginManagement {
 
 plugins {
     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
-    id "com.android.application" version "7.4.0" apply false // gradle插件版本
-    id "org.jetbrains.kotlin.android" version "1.7.10" apply false // kotlin插件版本
+    id "com.android.application" version "8.6.0" apply false // gradle插件版本
+    id "org.jetbrains.kotlin.android" version "1.9.0" apply false // kotlin插件版本
 }
 
 include ":app"
