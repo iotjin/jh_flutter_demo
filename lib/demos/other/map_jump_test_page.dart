@@ -4,9 +4,9 @@
 ///  description:
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/jh_common/widgets/jh_progress_hud.dart';
 import 'package:map_launcher/map_launcher.dart';
 import '/jh_common/utils/jh_map_utils.dart';
+import '/jh_common/widgets/jh_progress_hud.dart';
 import '/jh_common/widgets/jh_text_list.dart';
 
 // ignore_for_file: avoid_print

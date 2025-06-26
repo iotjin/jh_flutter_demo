@@ -6,10 +6,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jh_flutter_demo/jh_common/utils/jh_common_utils.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 // import 'package:barcode_scan2/barcode_scan2.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';
+import '/jh_common/utils/jh_common_utils.dart';
 import '/project/routes/jh_nav_utils.dart';
 import 'jh_device_utils.dart';
 

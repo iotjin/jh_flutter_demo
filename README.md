@@ -51,6 +51,7 @@ The code is updated irregularly.
   * Countdown button
   * APP update dialog
   * Picture/video picker based on WeChat UI (supports taking pictures and recording videos)
+  * Picture/Video Browser
   * Taking photos, local image selection, nine-grid display, full-screen image viewing
   * Highlighting specified text in text
   * Empty data and network exceptions

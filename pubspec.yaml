@@ -71,6 +71,10 @@ dependencies:
   cached_network_image: ^3.4.1
   # 图片手势 https://pub.flutter-io.cn/packages/photo_view
   photo_view: ^0.15.0
+  # 视频播放 https://pub-web.flutter-io.cn/packages/video_player
+  video_player: 2.9.3
+  # 视频播放 https://pub-web.flutter-io.cn/packages/chewie
+  chewie: 1.11.3
   # 手机权限 https://pub.flutter-io.cn/packages/permission_handler
   permission_handler: ^11.4.0
   # 图片视频选择器(微信UI) https://pub.flutter-io.cn/packages/wechat_assets_picker

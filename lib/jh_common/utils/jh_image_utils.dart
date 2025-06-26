@@ -45,6 +45,42 @@ class JhImageUtils {
     }
     return CachedNetworkImageProvider(imageUrl, errorListener: (error) => print('图片加载失败！$error'));
   }
+
+  /*
+    iOS 11 和 macOS High Sierra 支持下面这两种新的行业标准媒体格式：
+    适用于照片的 HEIF（高效图像文件格式）, 之前用的是HEIC
+    适用于视频的 HEVC（高效视频编码），也称为 H.265
+   */
+
+  /// 根据文件名判断是否是图片
+  static isImageFormat(String fileName) {
+    if (fileName.isEmpty) return false;
+    final parts = fileName.split('.');
+    if (parts.length < 2) return false;
+    final suffix = parts.last.toLowerCase();
+    const imageExtensions = ['jpg', 'jpeg', 'jpe', 'png', 'gif', 'webp', 'svg', 'jfif', 'heif'];
+    return imageExtensions.contains(suffix);
+  }
+
+  /// 根据文件名判断是否是视频
+  static bool isVideoFormat(String fileName) {
+    if (fileName.isEmpty) return false;
+    final parts = fileName.split('.');
+    if (parts.length < 2) return false;
+    final suffix = parts.last.toLowerCase();
+    const videoExtensions = ['mp4', 'avi', 'mov', 'hevc', 'flv', 'mkv', 'wmv', '3gp'];
+    return videoExtensions.contains(suffix);
+  }
+
+  /// 根据文件名判断是否是excel
+  static bool isExcelFormat(String fileName) {
+    if (fileName.isEmpty) return false;
+    final parts = fileName.split('.');
+    if (parts.length < 2) return false;
+    final suffix = parts.last.toLowerCase();
+    const excelExtensions = ['xls', 'xlsx', 'csv', 'xltx', 'xltm'];
+    return excelExtensions.contains(suffix);
+  }
 }
 
 /// 加载本地图片

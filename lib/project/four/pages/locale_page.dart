@@ -4,8 +4,8 @@
 ///  description:
 
 import 'package:flutter/material.dart';
-import 'package:jh_flutter_demo/intl/locale_utils.dart';
 import 'package:provider/provider.dart';
+import '/intl/locale_utils.dart';
 import '/project/provider/theme_provider.dart';
 import '/project/configs/project_config.dart';
 

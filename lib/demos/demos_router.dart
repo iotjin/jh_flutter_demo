@@ -104,6 +104,7 @@ import 'components/collapse_view_test_page.dart';
 // other
 import 'other/form_test.dart';
 import 'other/photo_select_test.dart';
+import 'other/media_preview_test_page.dart';
 import 'other/red_dot_page.dart';
 import 'other/qr_code_test.dart';
 import 'other/aes_test_page.dart';
@@ -270,6 +271,7 @@ class DemosRouter implements IRouterProvider {
     router.define('AESTestPage', handler: Handler(handlerFunc: (_, __) => const AESTestPage()));
     router.define('FormTest', handler: Handler(handlerFunc: (_, __) => const FormTest()));
     router.define('PhotoSelectTest', handler: Handler(handlerFunc: (_, __) => const PhotoSelectTest()));
+    router.define('MediaPreviewTestPage', handler: Handler(handlerFunc: (_, __) => const MediaPreviewTestPage()));
     router.define('RedDotPage', handler: Handler(handlerFunc: (_, __) => const RedDotPage()));
     router.define('QRCodeTest', handler: Handler(handlerFunc: (_, __) => const QRCodeTest()));
     router.define('SideslipTestPage', handler: Handler(handlerFunc: (_, __) => const SideslipTestPage()));
