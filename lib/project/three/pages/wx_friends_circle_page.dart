@@ -145,7 +145,7 @@ class _WxFriendsCirclePageState extends State<WxFriendsCirclePage> {
 
   Widget _body(physics) {
     var navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
-    navBgColor = navBgColor.withOpacity(_appbarOpacity);
+    navBgColor = navBgColor.withValues(alpha: _appbarOpacity);
 
     var iconColor = KColors.kNavTitleColor;
     // 如果背景透明或者是白色，设置字体和图标、状态栏字体为黑色

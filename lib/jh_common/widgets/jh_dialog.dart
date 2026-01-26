@@ -310,8 +310,8 @@ class DialogButton extends StatelessWidget {
         child: TextButton(
           onPressed: onPressed,
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(textColor),
-            shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
+            foregroundColor: WidgetStateProperty.all(textColor),
+            shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
             splashFactory: InkSplash.splashFactory, // 设置水波纹
           ),
           child: Text(text, style: const TextStyle(fontSize: _btnFontSize)),

@@ -552,12 +552,12 @@ ui.Paragraph buildText(
   paragraphBuilder.pushStyle(
     ui.TextStyle(
         fontSize: fontSize,
-        color: highLight ? Colors.white.withOpacity(opacity) : const Color(0xFFC1E0FF).withOpacity(opacity),
+        color: highLight ? Colors.white.withValues(alpha: opacity) : const Color(0xFFC1E0FF).withValues(alpha: opacity),
         height: 1.0,
         shadows: highLight
             ? [
                 Shadow(
-                  color: Colors.white.withOpacity(opacity),
+                  color: Colors.white.withValues(alpha: opacity),
                   offset: const Offset(0, 0),
                   blurRadius: 10,
                 )

@@ -70,7 +70,7 @@ class JhAlert {
                   clickCallback?.call(0, leftText);
                   Navigator.pop(context);
                 },
-                style: ButtonStyle(foregroundColor: MaterialStateProperty.all(_alertCancelTextColor)),
+                style: ButtonStyle(foregroundColor: WidgetStateProperty.all(_alertCancelTextColor)),
                 child: Text(leftText),
               ),
             ),
@@ -82,7 +82,7 @@ class JhAlert {
                   clickCallback?.call(1, rightText);
                   Navigator.pop(context);
                 },
-                style: ButtonStyle(foregroundColor: MaterialStateProperty.all(_alertConfirmTextColor)),
+                style: ButtonStyle(foregroundColor: WidgetStateProperty.all(_alertConfirmTextColor)),
                 child: Text(rightText),
               ),
             ),

@@ -182,14 +182,14 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
                     widget.onCancel?.call();
                   },
                   style: ButtonStyle(
-                    padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                    padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
                     // 设置按钮大小
-                    fixedSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
-                    minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
+                    fixedSize: WidgetStateProperty.all(const Size(110.0, 36.0)),
+                    minimumSize: WidgetStateProperty.all(const Size(110.0, 36.0)),
                     // 背景色
-                    backgroundColor: MaterialStateProperty.resolveWith(
+                    backgroundColor: WidgetStateProperty.resolveWith(
                       (states) {
-                        if (states.contains(MaterialState.disabled)) {
+                        if (states.contains(WidgetState.disabled)) {
                           // disabled状态颜色
                           return const Color(0xFFcccccc);
                         }
@@ -198,9 +198,9 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
                       },
                     ),
                     // 文字颜色
-                    foregroundColor: MaterialStateProperty.resolveWith(
+                    foregroundColor: WidgetStateProperty.resolveWith(
                       (states) {
-                        if (states.contains(MaterialState.disabled)) {
+                        if (states.contains(WidgetState.disabled)) {
                           // disabled状态颜色
                           return Colors.white;
                         }
@@ -209,9 +209,9 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
                       },
                     ),
                     // 边框
-                    side: MaterialStateProperty.all(BorderSide(color: primaryColor, width: 0.8)),
+                    side: WidgetStateProperty.all(BorderSide(color: primaryColor, width: 0.8)),
                     // 圆角
-                    shape: MaterialStateProperty.all(
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                     ),
                   ),
@@ -220,14 +220,14 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
                 TextButton(
                   onPressed: () => _onClickUpdate(),
                   style: ButtonStyle(
-                    padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+                    padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
                     // 设置按钮大小
-                    fixedSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
-                    minimumSize: MaterialStateProperty.all(const Size(110.0, 36.0)),
+                    fixedSize: WidgetStateProperty.all(const Size(110.0, 36.0)),
+                    minimumSize: WidgetStateProperty.all(const Size(110.0, 36.0)),
                     // 背景色
-                    backgroundColor: MaterialStateProperty.resolveWith(
+                    backgroundColor: WidgetStateProperty.resolveWith(
                       (states) {
-                        if (states.contains(MaterialState.disabled)) {
+                        if (states.contains(WidgetState.disabled)) {
                           // disabled状态颜色
                           return const Color(0xFFcccccc);
                         }
@@ -236,11 +236,11 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
                       },
                     ),
                     // 文字颜色
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    foregroundColor: WidgetStateProperty.all(Colors.white),
                     // 边框
-                    side: MaterialStateProperty.all(BorderSide(color: primaryColor, width: 0.8)),
+                    side: WidgetStateProperty.all(BorderSide(color: primaryColor, width: 0.8)),
                     // 圆角
-                    shape: MaterialStateProperty.all(
+                    shape: WidgetStateProperty.all(
                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0)),
                     ),
                   ),

@@ -184,7 +184,7 @@ class _TagCloudState extends State<TagCloud> with SingleTickerProviderStateMixin
     var sphere = Container(
         height: radius! * 2,
         decoration: BoxDecoration(color: Colors.blueAccent, shape: BoxShape.circle, boxShadow: [
-          BoxShadow(color: Colors.white.withOpacity(0.9), blurRadius: 30.0, spreadRadius: 10.0),
+          BoxShadow(color: Colors.white.withValues(alpha: 0.9), blurRadius: 30.0, spreadRadius: 10.0),
         ]));
 
     children.add(sphere);
@@ -234,7 +234,7 @@ class TagsPainter extends CustomPainter {
     canvas.translate(size.width / 2, size.width / 2);
     for (var point in points) {
       var opacity = _getOpacity(point.z / size.width * 2);
-      paintStyle.color = point.color.withOpacity(opacity);
+      paintStyle.color = point.color.withValues(alpha: opacity);
       var r = _getScale(point.z / size.width * 2) * radius;
       canvas.drawCircle(Offset(point.x, point.y), r, paintStyle);
     }

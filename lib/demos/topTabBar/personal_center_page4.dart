@@ -140,7 +140,7 @@ class _PersonalCenterPage4State extends State<PersonalCenterPage4> {
 
   Widget _body(physics) {
     var navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
-    navBgColor = navBgColor.withOpacity(_appbarOpacity);
+    navBgColor = navBgColor.withValues(alpha: _appbarOpacity);
 
     return Stack(
       children: <Widget>[

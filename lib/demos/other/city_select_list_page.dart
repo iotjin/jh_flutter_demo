@@ -156,8 +156,8 @@ class _CitySelectListPageState extends State<CitySelectListPage> {
         children: hotCityList.map((e) {
           return TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.white),
-              foregroundColor: MaterialStateProperty.all(Colors.black),
+              backgroundColor: WidgetStateProperty.all(Colors.white),
+              foregroundColor: WidgetStateProperty.all(Colors.black),
             ),
             onPressed: () {
               print('OnItemClick: ${e.name}');

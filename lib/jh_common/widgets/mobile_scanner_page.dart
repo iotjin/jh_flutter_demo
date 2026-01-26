@@ -95,7 +95,7 @@ class _MobileScannerPageState extends State<MobileScannerPage> with TickerProvid
               key: qrKey,
               controller: _cameraController,
               onDetect: onDetect,
-              errorBuilder: (context, error, child) {
+              errorBuilder: (context, error) {
                 return ScannerErrorWidget(error: error);
               },
             ),
@@ -113,7 +113,7 @@ class _MobileScannerPageState extends State<MobileScannerPage> with TickerProvid
                       children: [
                         CustomPaint(
                           painter: QrScanBoxPainter(
-                            boxLineColor: _gridLineColor.withOpacity(0.5),
+                            boxLineColor: _gridLineColor.withValues(alpha: 0.5),
                             animationValue: _animationController.value,
                             isForward: _animationController.status == AnimationStatus.forward,
                           ),

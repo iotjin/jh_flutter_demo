@@ -110,7 +110,7 @@ class _WxFriendsCirclePage2State extends State<WxFriendsCirclePage2> {
 
   Widget _body(dataArr) {
     var navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
-    navBgColor = navBgColor.withOpacity(_appbarOpacity);
+    navBgColor = navBgColor.withValues(alpha: _appbarOpacity);
 
     return Stack(
       children: <Widget>[

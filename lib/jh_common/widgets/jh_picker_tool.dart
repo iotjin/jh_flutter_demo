@@ -259,7 +259,7 @@ class BasePickerViewState extends State<BasePickerView> {
     var titleColor = KColors.dynamicColor(context, KColors.kPickerTitleColor, KColors.kPickerTitleDarkColor);
     var btnColor = KColors.dynamicColor(context, KColors.kPickerBtnColor, KColors.kPickerBtnDarkColor);
     var selectTextColor = KColors.dynamicColor(context, KColors.kPickerTextColor, KColors.kPickerTextDarkColor);
-    var selectItemBgColor = Colors.grey.withOpacity(0.15);
+    var selectItemBgColor = Colors.grey.withValues(alpha: 0.15);
 
     var picker = Picker(
       adapter: widget.adapter,

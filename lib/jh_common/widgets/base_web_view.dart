@@ -59,8 +59,8 @@ class _BaseWebViewState extends State<BaseWebView> {
   _body() {
     return PopScope(
       canPop: false, // false表示拦截物理按键，true不拦截
-      onPopInvoked: (didPop) async {
-        // 不管canPop是否为true，onPopInvoked都会调用
+      onPopInvokedWithResult: (didPop, result) async {
+        // 不管canPop是否为true，onPopInvokedWithResult都会调用
         if (didPop) return;
         final bool canGoBack = await _controller.canGoBack();
         if (canGoBack) {

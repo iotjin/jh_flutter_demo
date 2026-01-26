@@ -53,7 +53,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
     if (widget.isShowScanLine) {
       _animationController.dispose();
     }
-    controller.dispose();
+    // controller.dispose();
     super.dispose();
   }
 
@@ -149,7 +149,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       /// 避免扫描结果多次回调
-      controller.dispose();
+      // controller.dispose();
       JhNavUtils.goBackWithParams(context, scanData.code ?? '');
     });
   }

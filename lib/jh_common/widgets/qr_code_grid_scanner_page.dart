@@ -44,7 +44,7 @@ class _QrCodeGridScannerPageState extends State<QrCodeGridScannerPage> with Tick
       _timer?.cancel();
       _timer = null;
     }
-    controller.dispose();
+    // controller.dispose();
     _animationController.removeListener(_upState);
     _animationController.dispose();
     super.dispose();
@@ -117,7 +117,7 @@ class _QrCodeGridScannerPageState extends State<QrCodeGridScannerPage> with Tick
                       children: [
                         CustomPaint(
                           painter: QrScanBoxPainter(
-                            boxLineColor: _gridLineColor.withOpacity(0.5),
+                            boxLineColor: _gridLineColor.withValues(alpha: 0.5),
                             animationValue: _animationController.value,
                             isForward: _animationController.status == AnimationStatus.forward,
                           ),
@@ -162,7 +162,7 @@ class _QrCodeGridScannerPageState extends State<QrCodeGridScannerPage> with Tick
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       /// 避免扫描结果多次回调
-      controller.dispose();
+      // controller.dispose();
       JhNavUtils.goBackWithParams(context, scanData.code ?? '');
     });
   }

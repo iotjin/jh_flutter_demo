@@ -88,18 +88,18 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
       return TextButton(
         onPressed: () => _getVCode(),
         style: ButtonStyle(
-          padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+          padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
           // 设置按钮大小
-          fixedSize: MaterialStateProperty.all(const Size(120, 32)),
-          minimumSize: MaterialStateProperty.all(const Size(120, 32)),
+          fixedSize: WidgetStateProperty.all(const Size(120, 32)),
+          minimumSize: WidgetStateProperty.all(const Size(120, 32)),
           // 背景色
-          backgroundColor: MaterialStateProperty.all(bgColor),
+          backgroundColor: WidgetStateProperty.all(bgColor),
           // 文字颜色
-          foregroundColor: MaterialStateProperty.all(textColor),
+          foregroundColor: WidgetStateProperty.all(textColor),
           // 边框
-          side: widget.showBorder == false ? null : MaterialStateProperty.all(BorderSide(color: borderColor, width: _borderWidth)),
+          side: widget.showBorder == false ? null : WidgetStateProperty.all(BorderSide(color: borderColor, width: _borderWidth)),
           // 圆角
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(widget.borderRadius!))),
+          shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(widget.borderRadius!))),
         ),
         child: Text(_btnStr, style: TextStyle(fontSize: widget.fontSize)),
       );

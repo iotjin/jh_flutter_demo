@@ -180,7 +180,7 @@ class _TagCloudWidgetState extends State<TagCloudWidget> with SingleTickerProvid
           Container(
               height: radius! * 2,
               decoration: BoxDecoration(color: _bgColor, shape: BoxShape.circle, boxShadow: [
-                BoxShadow(color: _shadowColor.withOpacity(0.9), blurRadius: _blurRadius, spreadRadius: _spreadRadius),
+                BoxShadow(color: _shadowColor.withValues(alpha: 0.9), blurRadius: _blurRadius, spreadRadius: _spreadRadius),
               ])),
           // 每个点
           CustomPaint(

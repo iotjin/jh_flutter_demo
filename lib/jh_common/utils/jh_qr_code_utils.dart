@@ -5,7 +5,6 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 // import 'package:barcode_scan2/barcode_scan2.dart';
 import '/jh_common/widgets/jh_progress_hud.dart';

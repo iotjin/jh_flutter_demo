@@ -30,23 +30,38 @@ class JhColorUtils {
 
   /// 创建Material风格的color
   static MaterialColor materialColor(Color color) {
-    List strengths = <double>[.05];
-    Map swatch = <int, Color>{};
-    final int r = color.red, g = color.green, b = color.blue;
+    final List<double> strengths = <double>[0.05];
+    final Map<int, Color> swatch = <int, Color>{};
+
+    // Helper function to convert a double [0.0, 1.0] to an int [0, 255]
+    int to255(double v) => (v * 255.0).round() & 0xff;
+
+    final int r = to255(color.r);
+    final int g = to255(color.g);
+    final int b = to255(color.b);
 
     for (int i = 1; i < 10; i++) {
       strengths.add(0.1 * i);
     }
-    for (var strength in strengths) {
+
+    for (final double strength in strengths) {
       final double ds = 0.5 - strength;
-      swatch[(strength * 1000).round()] = Color.fromRGBO(
-        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
-        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
-        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
-        1,
+
+      int calc(int value) {
+        final int result = value + ((ds < 0 ? value : (255 - value)) * ds).round();
+        return result.clamp(0, 255);
+      }
+
+      swatch[(strength * 1000).round()] = Color.fromARGB(
+        255,
+        calc(r),
+        calc(g),
+        calc(b),
       );
     }
-    return MaterialColor(color.value, swatch as Map<int, Color>);
+
+    // ⚠️ 不再使用 color.value
+    return MaterialColor(color.toARGB32(), swatch);
   }
 
   /// 取随机颜色

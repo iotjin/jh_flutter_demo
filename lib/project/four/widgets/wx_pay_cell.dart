@@ -67,7 +67,7 @@ class WxPayCell extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(1.0),
-          border: Border.all(color: Colors.grey.withOpacity(0.3), width: 0.5), //边框
+          border: Border.all(color: Colors.grey.withValues(alpha: 0.3), width: 0.5), //边框
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

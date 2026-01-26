@@ -17,14 +17,14 @@ class _RouteTestPage2State extends State<RouteTestPage2> with RouteAware {
       appBar: BaseAppBar('禁用手势返回和安卓返回键', leftItemCallBack: () => _onClickBackItem(context)),
       body: PopScope(
         canPop: false, // false表示拦截物理按键，true不拦截
-        onPopInvoked: (didPop) async {
-          // 不管canPop是否为true，onPopInvoked都会调用
+        onPopInvokedWithResult: (didPop, result) async {
+          // 不管canPop是否为true，onPopInvokedWithResult都会调用
           if (didPop) return;
           // 在这里添加你想要执行的逻辑，比如弹出确认框等
           // 一些操作
           //
           // if (!context.mounted) return;
-          // Navigator.of(context).pop(); // 如果需要返回则再执行 Navigator.of(context).pop();
+          // Navigator.of(context).pop(result); // 如果需要返回则再执行 Navigator.of(context).pop();
         },
         child: _body(),
       ),

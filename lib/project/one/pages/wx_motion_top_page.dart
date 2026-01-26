@@ -112,7 +112,7 @@ class _WxMotionTopPageState extends State<WxMotionTopPage> {
   Widget _body() {
     var dataArr = _dataArr;
     var navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
-    navBgColor = navBgColor.withOpacity(_appbarOpacity);
+    navBgColor = navBgColor.withValues(alpha: _appbarOpacity);
 
     return Stack(
       children: <Widget>[

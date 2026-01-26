@@ -19,7 +19,7 @@ pluginManagement {
 plugins {
     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
     id "com.android.application" version "8.6.0" apply false // gradle插件版本
-    id "org.jetbrains.kotlin.android" version "1.9.0" apply false // kotlin插件版本
+    id "org.jetbrains.kotlin.android" version "2.1.0" apply false // kotlin插件版本
 }
 
 include ":app"
@@ -28,17 +28,17 @@ include ":app"
 
 //println "flutterSdkPath: $flutterSdkPath"
 
-
-def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
-
-def plugins = new Properties()
-def pluginsFile = new File(flutterProjectRoot.toFile(), '.flutter-plugins')
-if (pluginsFile.exists()) {
-    pluginsFile.withReader('UTF-8') { reader -> plugins.load(reader) }
-}
-
-plugins.each { name, path ->
-    def pluginDirectory = flutterProjectRoot.resolve(path).resolve('android').toFile()
-    include ":$name"
-    project(":$name").projectDir = pluginDirectory
-}
+// --- 升级 flutter 3.32.0 编译报错之后，需要注释掉下面的代码 ---
+//def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
+//
+//def plugins = new Properties()
+//def pluginsFile = new File(flutterProjectRoot.toFile(), '.flutter-plugins')
+//if (pluginsFile.exists()) {
+//    pluginsFile.withReader('UTF-8') { reader -> plugins.load(reader) }
+//}
+//
+//plugins.each { name, path ->
+//    def pluginDirectory = flutterProjectRoot.resolve(path).resolve('android').toFile()
+//    include ":$name"
+//    project(":$name").projectDir = pluginDirectory
+//}

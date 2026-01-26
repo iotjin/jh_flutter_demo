@@ -384,8 +384,8 @@ class TagsPainter extends CustomPainter {
         Colors.white.withAlpha(0),
         circleColor.withAlpha(0),
         circleColor.withAlpha(0),
-        circleColor.withOpacity(0.1),
-        circleColor.withOpacity(0.6),
+        circleColor.withValues(alpha: 0.1),
+        circleColor.withValues(alpha: 0.6),
       ]).createShader(Rect.fromCircle(center: offset, radius: tempRadius));
       canvas.drawPath(
           circlePath,

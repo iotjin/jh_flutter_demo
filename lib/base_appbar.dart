@@ -84,7 +84,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
       leftWidget: widget.leftWidget,
       titleWidget: widget.titleWidget,
       rightWidgets: widget.rightWidgets,
-      bgColor: Colors.white.withOpacity(0),
+      bgColor: Colors.white.withValues(alpha: 0),
       elevation: widget.elevation,
       shadowColor: widget.shadowColor,
       bottomWidget: widget.bottomWidget,

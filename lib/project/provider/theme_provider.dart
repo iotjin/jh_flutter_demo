@@ -160,7 +160,13 @@ class MyThemes {
       // 分割线
       dividerTheme: DividerThemeData(color: isDarkMode ? KColors.kLineDarkColor : KColors.kLineColor),
       // Tab指示器颜色
-      indicatorColor: isDarkMode ? darkPrimaryThemeColor : themeColor,
+      // indicatorColor: isDarkMode ? darkPrimaryThemeColor : themeColor, // 废弃，使用tabBarTheme 设置
+      tabBarTheme: TabBarThemeData(
+        indicatorColor: isDarkMode ? darkPrimaryThemeColor : themeColor,
+        // indicatorColor: Colors.yellow,
+        // dividerColor: Colors.orange,
+        // dividerHeight: 0.5,
+      ),
       // 文字选择色（输入框选择文字等）
       textSelectionTheme: TextSelectionThemeData(
         selectionColor: isDarkMode ? darkPrimaryThemeColor.withAlpha(70) : themeColor.withAlpha(70),
@@ -204,7 +210,13 @@ class MyThemes {
       // 分割线
       dividerTheme: DividerThemeData(color: isDarkMode ? KColors.kLineDarkColor : KColors.kLineColor),
       // Tab指示器颜色
-      indicatorColor: isDarkMode ? darkPrimaryThemeColor : themeColor,
+      // indicatorColor: isDarkMode ? darkPrimaryThemeColor : themeColor, // 废弃，使用tabBarTheme 设置
+      tabBarTheme: TabBarThemeData(
+        indicatorColor: isDarkMode ? darkPrimaryThemeColor : themeColor,
+        // indicatorColor: Colors.yellow,
+        // dividerColor: Colors.orange,
+        // dividerHeight: 0.5,
+      ),
       // 文字选择色（输入框选择文字等）
       textSelectionTheme: TextSelectionThemeData(
         selectionColor: isDarkMode ? darkPrimaryThemeColor.withAlpha(70) : themeColor.withAlpha(70),

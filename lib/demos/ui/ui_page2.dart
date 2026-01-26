@@ -56,8 +56,8 @@ class _UIPage2State extends State<UIPage2> {
           inactiveThumbColor: Colors.green,
           // 非激活时的背景色
           inactiveTrackColor: Colors.blue,
-          trackOutlineWidth: MaterialStateProperty.all(0.0),
-          trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+          trackOutlineWidth: WidgetStateProperty.all(0.0),
+          trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
           onChanged: (value) {
             setState(() {
               _switchSelected = value;
@@ -66,11 +66,11 @@ class _UIPage2State extends State<UIPage2> {
         ),
         Switch(
           value: _switchSelected,
-          thumbColor: MaterialStateProperty.all(Colors.orange),
-          trackColor: MaterialStateProperty.all(_switchSelected ? Colors.yellow : Colors.grey[300]),
+          thumbColor: WidgetStateProperty.all(Colors.orange),
+          trackColor: WidgetStateProperty.all(_switchSelected ? Colors.yellow : Colors.grey[300]),
           // thumbIcon: MaterialStatePropertyAll(Icon(Icons.add)),
-          trackOutlineWidth: MaterialStateProperty.all(0.0),
-          trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
+          trackOutlineWidth: WidgetStateProperty.all(0.0),
+          trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
           onChanged: (value) {
             // 重新构建页面
             setState(() {
