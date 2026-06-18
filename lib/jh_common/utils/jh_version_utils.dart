@@ -84,6 +84,9 @@ class JhVersionUtils {
     final result = await OpenFilex.open(path);
     debugPrint('打开apk result: ${result.type}');
     debugPrint(result.message);
+    if (result.type != ResultType.done) {
+      JhProgressHUD.showText(_formatOpenApkFailMessage(result));
+    }
     return result;
     // 打开apk
     // var path = '/storage/emulated/0/Android/data/com.jh.jh_flutter_demo/files/Download/jh_flutter_demo.apk';
@@ -94,5 +97,21 @@ class JhVersionUtils {
 
     // 另一个三方库
     // OpenFile.open(path);
+  }
+
+  /// 格式化 APK 打开/安装失败提示（Android 下识别安装权限问题并追加引导）
+  static String _formatOpenApkFailMessage(OpenResult result) {
+    final msg = result.message.trim();
+    const tip = '请在系统设置中开启“允许安装未知应用”后重试';
+    if (msg.isEmpty) {
+      return JhDeviceUtils.isAndroid ? '打开安装包失败，$tip' : '打开安装包失败，请重试';
+    }
+    if (!JhDeviceUtils.isAndroid || msg.contains(tip)) return msg;
+
+    final text = '$msg ${result.type}'.toLowerCase();
+    final needTip = text.contains('permission') ||
+        text.contains('request_install_packages') ||
+        text.contains('not allowed to install');
+    return needTip ? '$msg\n$tip' : msg;
   }
 }

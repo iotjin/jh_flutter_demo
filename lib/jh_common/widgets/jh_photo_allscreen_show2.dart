@@ -165,7 +165,7 @@ class _PictureWidgetState extends State<_PictureWidget> {
         index--;
         index = index.clamp(0, widget.picList.length - 1);
       });
-    } else if (delta < 50) {
+    } else if (delta < -50) {
       setState(() {
         index++;
         index = index.clamp(0, widget.picList.length - 1);

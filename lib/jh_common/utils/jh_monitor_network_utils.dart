@@ -5,32 +5,42 @@
 
 // ignore_for_file: body_might_complete_normally_nullable, avoid_print
 
+import 'dart:async';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class JhMonitorNetworkUtils {
   /// 是否有网
   static Future<bool> isNetwork() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    return connectivityResult != ConnectivityResult.none;
+    final results = await Connectivity().checkConnectivity();
+    return results.any((r) => r != ConnectivityResult.none);
   }
 
-  /// 获取网络状态：0 无网络，1 手机，2 wifi
+  /// 获取网络状态：0 无网络，1 手机，2 wifi，3 其他（以太网、VPN、蓝牙等）
   static Future<int> getNetworkStatus() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile) {
-      // 网络类型为移动网络
-      return 1;
-    } else if (connectivityResult == ConnectivityResult.wifi) {
-      // 网络类型为WIFI
-      return 2;
-    } else {
+    final results = await Connectivity().checkConnectivity();
+    if (!results.any((r) => r != ConnectivityResult.none)) {
       return 0;
     }
+    if (results.contains(ConnectivityResult.mobile)) {
+      // 网络类型为移动网络
+      return 1;
+    }
+    if (results.contains(ConnectivityResult.wifi)) {
+      // 网络类型为WIFI
+      return 2;
+    }
+    // 以太网、VPN、蓝牙、卫星等
+    return 3;
   }
 
-  static String? monitorNetwork() {
-    Connectivity().onConnectivityChanged.listen((event) {
-      print(event);
+  /// 监听网络变化，返回 [StreamSubscription] 供调用方 cancel，避免泄漏
+  static StreamSubscription<List<ConnectivityResult>> monitorNetwork({
+    void Function(List<ConnectivityResult>)? onChanged,
+  }) {
+    return Connectivity().onConnectivityChanged.listen((results) {
+      onChanged?.call(results);
+      print(results);
     });
   }
 

@@ -32,6 +32,7 @@ class JhSearchBar extends StatelessWidget {
     this.margin = const EdgeInsets.all(10),
     this.leftWidget = const Icon(Icons.search, size: 25),
     this.rightWidget,
+    this.controller,
     this.focusNode,
     this.tapCallBack,
     this.inputCallBack,
@@ -47,6 +48,7 @@ class JhSearchBar extends StatelessWidget {
   final EdgeInsetsGeometry contentPadding; // 当父组件固定高度时，文本一行显示文本过多会出现文字显示不全bug,可设置EdgeInsets.symmetric(vertical: 0)
   final TextInputAction? textInputAction; // 键盘右下角按钮类型
   final EdgeInsetsGeometry? margin;
+  final TextEditingController? controller;
   final FocusNode? focusNode;
   final Widget? leftWidget; // 左侧widget ，默认显示搜索图标
   final Widget? rightWidget; // 右侧widget ，默认隐藏
@@ -66,18 +68,19 @@ class JhSearchBar extends StatelessWidget {
     return Container(
       color: viewBgColor,
       child: Container(
+        margin: margin,
+        height: kSearchViewHeight - 20,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           color: searchBarBgColor,
           border: isShowBorder ? Border.all(color: searchBarBorderColor, width: _borderWidth) : null,
           borderRadius: const BorderRadius.all(Radius.circular(_borderRadius)),
         ),
-        alignment: Alignment.center,
-        margin: margin,
-        height: kSearchViewHeight - 20,
         child: JhLoginTextField(
           maxLength: maxLength,
-          leftWidget: const Icon(Icons.search, size: 25),
-          rightWidget: this.rightWidget,
+          leftWidget: leftWidget,
+          rightWidget: rightWidget,
+          controller: controller,
           text: text,
           hintText: hintText,
           isShowDeleteBtn: isShowDeleteBtn,

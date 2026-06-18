@@ -85,10 +85,10 @@ class HttpUtils {
 
     Object? data;
     Map<String, dynamic>? queryParameters;
-    if (method == Method.get) {
+    if (method == Method.get || method == Method.head) {
       queryParameters = params;
     }
-    if (method == Method.post) {
+    if (method == Method.post || method == Method.put || method == Method.patch || method == Method.delete) {
       data = params;
     }
 
@@ -103,12 +103,20 @@ class HttpUtils {
       if (loadingText != null && loadingText.isNotEmpty) {
         JhProgressHUD.hide();
       }
-      if (result['code'] == ExceptionHandle.success) {
+      if (result is! Map) {
+        var msg = '数据解析错误！';
+        JhProgressHUD.showText(msg);
+        fail?.call(ExceptionHandle.parse_error, msg);
+        return;
+      }
+      final int code = result['code'] is int ? result['code'] : int.tryParse('${result['code']}') ?? ExceptionHandle.parse_error;
+      final String msg = result['msg'] is String ? result['msg'] : '请求失败，请稍后重试！';
+      if (code == ExceptionHandle.success) {
         success?.call(result);
       } else {
         // 其他状态，弹出错误提示信息
-        JhProgressHUD.showText(result['msg']);
-        fail?.call(result['code'], result['msg']);
+        JhProgressHUD.showText(msg);
+        fail?.call(code, msg);
       }
     }, onError: (code, msg) {
       if (loadingText != null && loadingText.isNotEmpty) {

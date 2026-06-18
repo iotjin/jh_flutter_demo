@@ -50,19 +50,17 @@ class JhMultiPicker {
     if (_isShowPicker || data.isEmpty) {
       return;
     }
+    _isShowPicker = true;
 
     var radius = isShowRadius ? _headerRadius : 0.0;
 
     showModalBottomSheet<void>(
       context: context,
       // 使用true则高度不受16分之9的最高限制
-      isScrollControlled: false,
+      isScrollControlled: true,
       // 设置圆角
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(radius),
-          topRight: Radius.circular(radius),
-        ),
+        borderRadius: BorderRadius.only(topLeft: Radius.circular(radius), topRight: Radius.circular(radius)),
       ),
       // 抗锯齿
       clipBehavior: Clip.antiAlias,
@@ -139,12 +137,18 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
     var bgColor = KColors.dynamicColor(context, KColors.kPickerBgColor, KColors.kPickerBgDarkColor);
     var lineColor = KColors.dynamicColor(context, KColors.kLineColor, KColors.kLineDarkColor);
 
+    final sheetHeight = MediaQuery.of(context).size.height * 11.0 / 16.0;
+
     return Container(
       color: bgColor,
+      height: sheetHeight,
       child: Column(
         children: <Widget>[
           _header(),
-          SizedBox(height: _headerLineHeight, child: Container(color: lineColor)),
+          SizedBox(
+            height: _headerLineHeight,
+            child: Container(color: lineColor),
+          ),
           _searchBar(),
           _mainWidget(),
         ],
@@ -167,23 +171,33 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
           GestureDetector(
             child: Container(
               padding: const EdgeInsets.only(left: 15),
-              child: Text(_cancelText, style: TextStyle(fontSize: _btnFontSize, color: btnColor)),
+              child: Text(
+                _cancelText,
+                style: TextStyle(fontSize: _btnFontSize, color: btnColor),
+              ),
             ),
             onTap: () {
               widget.clickCallBack?.call([], []);
               JhNavUtils.goBack(context);
             },
           ),
-          Text(widget.title, style: TextStyle(fontSize: _titleFontSize, color: titleColor)),
+          Text(
+            widget.title,
+            style: TextStyle(fontSize: _titleFontSize, color: titleColor),
+          ),
           GestureDetector(
-              child: Container(
-                padding: const EdgeInsets.only(right: 15),
-                child: Text(_confirmText, style: TextStyle(fontSize: _btnFontSize, color: btnColor)),
+            child: Container(
+              padding: const EdgeInsets.only(right: 15),
+              child: Text(
+                _confirmText,
+                style: TextStyle(fontSize: _btnFontSize, color: btnColor),
               ),
-              onTap: () {
-                widget.clickCallBack?.call(_selectedValues, _getSelectItemList());
-                JhNavUtils.goBack(context);
-              }),
+            ),
+            onTap: () {
+              widget.clickCallBack?.call(_selectedValues, _getSelectItemList());
+              JhNavUtils.goBack(context);
+            },
+          ),
         ],
       ),
     );
@@ -193,7 +207,6 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
     List dataArr = _isShowSearchResult ? _searchData : (widget.data ?? []);
     return Expanded(
       child: ListView.builder(
-        shrinkWrap: true,
         itemCount: dataArr.length,
         itemBuilder: (BuildContext context, int index) {
           return _buildItem(dataArr[index], index);
@@ -239,6 +252,7 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
     Widget searchbar = JhSearchBar(
       hintText: widget.searchHintText,
       text: _searchKeyword,
+      margin: const EdgeInsets.fromLTRB(10, 5, 0, 5),
       inputCallBack: (value) {
         JhCommonUtils.debounce(() {
           setState(() {
@@ -265,7 +279,7 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
               child: Icon(_isSelectAll ? Icons.done_all : Icons.remove_done, size: 20, color: Colors.grey),
             ),
             onTap: () => _handleSelectSwitch(),
-          )
+          ),
         ],
       ),
     );
@@ -290,9 +304,7 @@ class _JhMultiPickerViewState extends State<JhMultiPickerView> {
 
   /// 根据搜索文字过滤数据
   _getSearchData(keyword) {
-    var newList = (widget.data ?? [])
-        .where((item) => item[widget.labelKey].toLowerCase().contains(keyword.toLowerCase()))
-        .toList();
+    var newList = (widget.data ?? []).where((item) => item[widget.labelKey].toLowerCase().contains(keyword.toLowerCase())).toList();
     return newList;
   }
 }

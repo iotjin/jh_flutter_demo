@@ -22,6 +22,7 @@ class JhCountDownBtn extends StatefulWidget {
     this.getVCode,
     this.getCodeText = _normalText,
     this.resendAfterText = _resendAfterText,
+    this.countDownSeconds = _normalTime,
     this.textColor,
     this.bgColor,
     this.fontSize = _fontSize,
@@ -33,6 +34,7 @@ class JhCountDownBtn extends StatefulWidget {
   final Future<bool> Function()? getVCode;
   final String getCodeText;
   final String resendAfterText;
+  final int countDownSeconds;
   final Color? textColor;
   final Color? bgColor;
   final double? fontSize;
@@ -46,8 +48,10 @@ class JhCountDownBtn extends StatefulWidget {
 
 class _JhCountDownBtnState extends State<JhCountDownBtn> {
   Timer? _countDownTimer;
-  String _btnStr = _normalText;
-  int _countDownNum = _normalTime;
+  late String _btnStr;
+  late int _countDownNum;
+
+  bool get _isCountingDown => _countDownTimer != null;
 
   @override
   void initState() {
@@ -55,6 +59,21 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
     super.initState();
 
     _btnStr = widget.getCodeText;
+    _countDownNum = widget.countDownSeconds;
+  }
+
+  @override
+  void didUpdateWidget(covariant JhCountDownBtn oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (!_isCountingDown) {
+      if (widget.getCodeText != oldWidget.getCodeText) {
+        _btnStr = widget.getCodeText;
+      }
+      if (widget.countDownSeconds != oldWidget.countDownSeconds) {
+        _countDownNum = widget.countDownSeconds;
+      }
+    }
   }
 
   /// 释放掉Timer
@@ -72,7 +91,7 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
 
   _body() {
     // TODO: 通过ThemeProvider进行主题管理
-    final provider = Provider.of<ThemeProvider>(context);
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     var bgColor = Colors.transparent;
     var textColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
     var borderColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
@@ -86,7 +105,7 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
       return Container();
     } else {
       return TextButton(
-        onPressed: () => _getVCode(),
+        onPressed: _isCountingDown ? null : () => _getVCode(),
         style: ButtonStyle(
           padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
           // 设置按钮大小
@@ -121,6 +140,7 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
       if (_countDownTimer != null) {
         return;
       }
+      _countDownNum = widget.countDownSeconds;
       // Timer的第一秒倒计时是有一点延迟的，为了立刻显示效果可以添加下一行。
       // _btnStr = '重新获取(${_countDownNum--}s)';
       _btnStr = '${widget.resendAfterText}(${_countDownNum--}s)';
@@ -132,7 +152,7 @@ class _JhCountDownBtnState extends State<JhCountDownBtn> {
           } else {
             // _btnStr = _normalText;
             _btnStr = widget.getCodeText;
-            _countDownNum = _normalTime;
+            _countDownNum = widget.countDownSeconds;
             _countDownTimer?.cancel();
             _countDownTimer = null;
           }

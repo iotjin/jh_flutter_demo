@@ -72,7 +72,7 @@ class JhCascadeTreePicker {
       clipBehavior: Clip.antiAlias,
       builder: (BuildContext context) {
         return SafeArea(
-          child: JhCascadePickerView(
+          child: JhCascadeTreePickerView(
             data: data,
             labelKey: labelKey,
             valueKey: valueKey,
@@ -92,8 +92,8 @@ class JhCascadeTreePicker {
   }
 }
 
-class JhCascadePickerView extends StatefulWidget {
-  const JhCascadePickerView({
+class JhCascadeTreePickerView extends StatefulWidget {
+  const JhCascadeTreePickerView({
     Key? key,
     required this.data,
     this.labelKey = _labelKey,
@@ -123,10 +123,10 @@ class JhCascadePickerView extends StatefulWidget {
   final _ClickCallBack? clickCallBack;
 
   @override
-  State<JhCascadePickerView> createState() => _JhCascadePickerViewState();
+  State<JhCascadeTreePickerView> createState() => _JhCascadeTreePickerViewState();
 }
 
-class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerProviderStateMixin {
+class _JhCascadeTreePickerViewState extends State<JhCascadeTreePickerView> with TickerProviderStateMixin {
   TabController? _tabController;
   final ScrollController _scrollController = ScrollController();
 
@@ -271,6 +271,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
       if (_myTabs.length <= _currentColumn) {
         _myTabs.add(Tab(text: widget.tabText));
         _positions.add(0);
+        _tabController?.dispose();
         _tabController = TabController(initialIndex: _currentColumn - 1, vsync: this, length: _myTabs.length);
       }
       // 更新前的tabText
@@ -284,6 +285,7 @@ class _JhCascadePickerViewState extends State<JhCascadePickerView> with TickerPr
         _myTabs.removeRange(_currentColumn + 1, _myTabs.length);
         _myTabs[_myTabs.length - 1] = Tab(text: widget.tabText);
         _positions.removeRange(_currentColumn + 1, _positions.length);
+        _tabController?.dispose();
         _tabController = TabController(initialIndex: _currentColumn - 1, vsync: this, length: _myTabs.length);
       }
       // 设置下一级数据

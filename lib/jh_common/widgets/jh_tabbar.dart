@@ -99,8 +99,10 @@ class _JhTabBarState extends State<JhTabBar> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    if (widget.tabController == null) {
+      _tabController?.dispose();
+    }
     super.dispose();
-    _tabController!.dispose();
   }
 
   _addTabListener() {

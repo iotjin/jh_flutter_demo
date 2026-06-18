@@ -144,7 +144,7 @@ class _PersonalCenterPage5State extends State<PersonalCenterPage5> {
 
   Widget _body(physics) {
     var navBgColor = KColors.dynamicColor(context, KColors.wxBgColor, KColors.kNavBgDarkColor);
-    navBgColor = navBgColor..withValues(alpha: _appbarOpacity);
+    navBgColor = navBgColor.withValues(alpha: _appbarOpacity);
 
     var iconColor = KColors.kNavTitleColor;
     // 如果背景透明或者是白色，设置字体和图标、状态栏字体为黑色

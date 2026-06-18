@@ -15,6 +15,7 @@ const double _lineHeight = 0.6; // 底部线高
 const double _titleFontSize = 15.0;
 const double _textFontSize = 15.0;
 const double _hintTextFontSize = 15.0;
+const double _topAlignSpace = 8.0; // title 顶对齐 间距
 
 typedef _ClickCallBack = void Function();
 
@@ -69,17 +70,12 @@ class JhFormSelectCell extends StatefulWidget {
 }
 
 class _JhFormSelectCellState extends State<JhFormSelectCell> {
-  bool _hiddenArrow = false;
+  bool get _hiddenArrow => widget.hiddenArrow || widget.border != InputBorder.none;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    _hiddenArrow = widget.hiddenArrow;
-    if (widget.border != InputBorder.none) {
-      _hiddenArrow = true;
-    }
   }
 
   @override
@@ -89,7 +85,7 @@ class _JhFormSelectCellState extends State<JhFormSelectCell> {
 
   _body() {
     double starW = widget.showRedStar == false && widget.title.isEmpty ? 0 : 8;
-    double topSpace = 0; // title 顶对齐 间距
+    double topSpace = widget.topAlign ? _topAlignSpace : 0; // title 顶对齐 间距
 
     // 默认颜色
     var bgColor = KColors.dynamicColor(context, KColors.kBgColor, KColors.kBgDarkColor);

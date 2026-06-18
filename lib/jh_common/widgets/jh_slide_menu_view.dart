@@ -63,6 +63,12 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return _body();
   }
@@ -106,8 +112,7 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
                     child: Container(
                       width: _sliderW,
                       height: _sliderH,
-                      decoration:
-                          BoxDecoration(color: _sliderColor, borderRadius: BorderRadius.circular(_sliderRadius)),
+                      decoration: BoxDecoration(color: _sliderColor, borderRadius: BorderRadius.circular(_sliderRadius)),
                     ),
                   ),
                 ],
@@ -121,8 +126,7 @@ class _JhSlideMenuViewState extends State<JhSlideMenuView> {
 
   Widget _buildCell(mainAxisExtent, index) {
     var img = _dataArr[index]['image'];
-    Widget imageWidget =
-        img.startsWith('http') ? JhNetworkImage(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
+    Widget imageWidget = img.startsWith('http') ? JhNetworkImage(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
 
     return GestureDetector(
       child: Column(

@@ -401,6 +401,16 @@ class _UpdateDialogViewState extends State<UpdateDialogView> {
       // final String path = DirectoryUtil.getStoragePath(fileName: 'jh_flutter_demo_$version', category: 'Download', format: 'apk').jhNullSafe;
       final File file = File(path);
 
+      // setInitDir(initAppDocDir: true);
+      // await DirectoryUtil.getInstance();
+      // DirectoryUtil.createAppDocDirSync(category: category);
+      // String path = DirectoryUtil.getAppDocPath(fileName: fileName, category: category, format: format).jhNullSafe;
+      // final File file = File(path);
+
+      // debugPrint(path);
+      // debugPrint(await File(path).exists());
+      // debugPrint(await File(path).length());
+
       /// 下载apk
       await Dio().download(
         downURL,

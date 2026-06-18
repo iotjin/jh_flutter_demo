@@ -79,22 +79,25 @@ class BaseRefreshView extends StatefulWidget {
 class BaseRefreshViewState<T extends BaseRefreshView> extends State<T> {
   bool _isNetWorkError = false;
   bool _isShowShimmer = false;
-  EasyRefreshController _controller = EasyRefreshController(
-    controlFinishRefresh: true,
-    controlFinishLoad: true,
-  );
+  late EasyRefreshController _controller;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = widget.controller ?? _controller;
+    _controller = widget.controller ??
+        EasyRefreshController(
+          controlFinishRefresh: true,
+          controlFinishLoad: true,
+        );
     _isShowShimmer = widget.enableShimmer;
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 

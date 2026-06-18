@@ -49,7 +49,7 @@ class _UIPage2State extends State<UIPage2> {
           // 当前状态
           value: _switchSelected,
           // 激活时原点颜色
-          activeColor: Colors.yellow,
+          activeThumbColor: Colors.yellow,
           // 激活时的背景色
           activeTrackColor: Colors.red,
           // 非激活时圆点颜色
@@ -88,7 +88,7 @@ class _UIPage2State extends State<UIPage2> {
         ),
         SwitchListTile(
           secondary: const Icon(Icons.snooze),
-          activeColor: Colors.red,
+          activeThumbColor: Colors.red,
           title: const Text('闹钟1'),
           value: _switchSelected,
           onChanged: (bool value) {
@@ -144,35 +144,22 @@ class _UIPage2State extends State<UIPage2> {
             });
           },
         ),
-        Radio(
-            value: 1,
-            activeColor: Colors.red,
-            groupValue: radioValue,
-            onChanged: (int? value) {
-              setState(() {
-                radioValue = value!;
-              });
-            }),
-        RadioListTile(
-            title: const Text('第二个单选按钮'),
-            value: 2,
-            activeColor: Colors.red,
-            groupValue: radioValue,
-            onChanged: (int? value) {
-              setState(() {
-                radioValue = value!;
-              });
-            }),
-        RadioListTile(
-            title: const Text('第三个单选按钮'),
-            value: 3,
-            activeColor: Colors.red,
-            groupValue: radioValue,
-            onChanged: (int? value) {
-              setState(() {
-                radioValue = value!;
-              });
-            })
+        RadioGroup<int>(
+          groupValue: radioValue,
+          onChanged: (int? value) {
+            setState(() {
+              radioValue = value!;
+            });
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Radio(value: 1, activeColor: Colors.red),
+              RadioListTile(title: const Text('第二个单选按钮'), value: 2, activeColor: Colors.red),
+              RadioListTile(title: const Text('第三个单选按钮'), value: 3, activeColor: Colors.red),
+            ],
+          ),
+        ),
       ],
     );
   }

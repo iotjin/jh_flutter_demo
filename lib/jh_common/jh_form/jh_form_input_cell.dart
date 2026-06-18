@@ -17,6 +17,7 @@ const double _lineHeight = 0.6;
 const double _titleFontSize = 15.0;
 const double _textFontSize = 15.0;
 const double _hintTextFontSize = 15.0;
+const double _topAlignSpace = 8.0; // title 顶对齐 间距
 
 typedef _InputCallBack = void Function(String value);
 typedef _InputCompletionCallBack = void Function(String value, bool isSubmitted);
@@ -32,6 +33,7 @@ class JhFormInputCell extends StatefulWidget {
     this.textInputAction = TextInputAction.done,
     this.hintText = '请输入',
     this.focusNode,
+    this.controller,
     this.showRedStar = false,
     this.leftWidget,
     this.rightWidget,
@@ -42,6 +44,7 @@ class JhFormInputCell extends StatefulWidget {
     this.inputFormatters,
     this.inputCallBack,
     this.inputCompletionCallBack,
+    this.tapCallBack,
     this.space = _titleSpace,
     this.titleStyle,
     this.textStyle,
@@ -64,6 +67,7 @@ class JhFormInputCell extends StatefulWidget {
   final TextInputType keyboardType; // 键盘类型，默认文字
   final TextInputAction? textInputAction; // 键盘右下角按钮类型
   final FocusNode? focusNode;
+  final TextEditingController? controller;
   final bool showRedStar; // 显示左侧小红星，默认不显示
   final Widget? leftWidget; // 左侧widget ，默认隐藏
   final Widget? rightWidget; // 右侧widget ，默认隐藏
@@ -74,6 +78,7 @@ class JhFormInputCell extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final _InputCallBack? inputCallBack;
   final _InputCompletionCallBack? inputCompletionCallBack;
+  final void Function()? tapCallBack;
   final double space; // 标题宽度
   final TextStyle? titleStyle;
   final TextStyle? textStyle;
@@ -93,13 +98,19 @@ class JhFormInputCell extends StatefulWidget {
 
 class _JhFormInputCellState extends State<JhFormInputCell> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return _body();
   }
 
   _body() {
     double starW = widget.showRedStar == false && widget.title.isEmpty ? 0 : 8;
-    double topSpace = 0; // title 顶对齐 间距
+    double topSpace = widget.topAlign ? _topAlignSpace : 0; // title 顶对齐 间距
 
     // 默认颜色
     var bgColor = KColors.dynamicColor(context, KColors.kBgColor, KColors.kBgDarkColor);
@@ -152,6 +163,7 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
             Expanded(
               child: JhTextField(
                 text: widget.text,
+                controller: widget.controller,
                 keyboardType: widget.keyboardType,
                 textInputAction: widget.textInputAction,
                 hintText: widget.hintText,
@@ -163,6 +175,7 @@ class _JhFormInputCellState extends State<JhFormInputCell> {
                 showMaxLength: widget.showMaxLength,
                 enabled: widget.enabled,
                 inputFormatters: widget.inputFormatters,
+                tapCallBack: widget.tapCallBack,
                 inputCallBack: widget.inputCallBack,
                 inputCompletionCallBack: widget.inputCompletionCallBack,
                 textStyle: textStyle,

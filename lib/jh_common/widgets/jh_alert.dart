@@ -98,7 +98,7 @@ class JhAlert {
     BuildContext context, {
     String? title,
     String? content,
-    @required List<String>? otherBtnTitles,
+    required List<String> otherBtnTitles,
     String? redBtnTitle,
     _ClickCallBack? clickCallback,
   }) {
@@ -108,7 +108,7 @@ class JhAlert {
     _isShowAlert = true;
 
     List<CupertinoActionSheetAction> otherButtons = [];
-    for (int i = 1; i < otherBtnTitles!.length + 1; i++) {
+    for (int i = 1; i < otherBtnTitles.length + 1; i++) {
       var w = CupertinoActionSheetAction(
         onPressed: () {
           clickCallback?.call(i, otherBtnTitles[i - 1]);

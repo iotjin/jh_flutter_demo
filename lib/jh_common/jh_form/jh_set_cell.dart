@@ -67,14 +67,10 @@ class JhSetCell extends StatefulWidget {
 }
 
 class _JhSetCellState extends State<JhSetCell> {
-  bool _hiddenArrow = false;
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    _hiddenArrow = widget.hiddenArrow;
   }
 
   @override
@@ -136,7 +132,7 @@ class _JhSetCellState extends State<JhSetCell> {
               ),
               widget.rightWidget ?? Container(),
               Offstage(
-                offstage: _hiddenArrow,
+                offstage: widget.hiddenArrow,
                 child: const Icon(Icons.arrow_forward_ios, size: 18, color: Color(0xFFC8C8C8)),
               ),
             ],

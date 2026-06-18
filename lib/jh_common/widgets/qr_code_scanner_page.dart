@@ -3,6 +3,7 @@
 ///  Created by iotjin on 2022/06/05.
 ///  description:  二维码扫码页(带扫码线动画)
 
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
@@ -33,11 +34,13 @@ class QrCodeScannerPage extends StatefulWidget {
 // 动画要添加 TickerProviderStateMixin
 class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProviderStateMixin {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  late QRViewController controller;
+  QRViewController? controller;
 
   // 动画
   late AnimationController _animationController;
   late Animation<EdgeInsets> _animationSize;
+  StreamSubscription<Barcode>? _scanSubscription;
+  bool _hasScanned = false;
 
   @override
   void didChangeDependencies() {
@@ -50,10 +53,10 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
 
   @override
   void dispose() {
+    _scanSubscription?.cancel();
     if (widget.isShowScanLine) {
       _animationController.dispose();
     }
-    // controller.dispose();
     super.dispose();
   }
 
@@ -63,10 +66,10 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
-      controller.pauseCamera();
-      controller.resumeCamera();
+      controller?.pauseCamera();
+      controller?.resumeCamera();
     } else if (Platform.isIOS) {
-      controller.resumeCamera();
+      controller?.resumeCamera();
     }
   }
 
@@ -78,8 +81,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
   }
 
   _body() {
-    final scanArea =
-        (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
+    final scanArea = (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
 
     return Stack(
       alignment: Alignment.center,
@@ -116,7 +118,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
           child: Center(
             child: IconButton(
               icon: const Icon(Icons.highlight_outlined, size: 32, color: Colors.white),
-              onPressed: () => controller.toggleFlash(),
+              onPressed: () => controller?.toggleFlash(),
             ),
           ),
         ),
@@ -147,16 +149,24 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
       controller.resumeCamera();
     }
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
+    _scanSubscription = controller.scannedDataStream.listen((scanData) {
+      if (_hasScanned) {
+        return;
+      }
+      final code = scanData.code ?? '';
+      if (code.isEmpty) {
+        return;
+      }
+      _hasScanned = true;
+
       /// 避免扫描结果多次回调
       // controller.dispose();
-      JhNavUtils.goBackWithParams(context, scanData.code ?? '');
+      JhNavUtils.goBackWithParams(context, code);
     });
   }
 
   _initAnimation() {
-    final scanArea =
-        (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
+    final scanArea = (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
 
     _animationController = AnimationController(
       vsync: this,
@@ -196,8 +206,7 @@ class _QrCodeScannerPageState extends State<QrCodeScannerPage> with TickerProvid
   }
 
   _animatedBuilder() {
-    final scanArea =
-        (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
+    final scanArea = (MediaQuery.of(context).size.width < 400 || MediaQuery.of(context).size.height < 400) ? 250.0 : 300.0;
 
     return AnimatedBuilder(
       animation: _animationController,

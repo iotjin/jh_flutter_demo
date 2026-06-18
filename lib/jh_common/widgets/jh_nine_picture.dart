@@ -31,26 +31,28 @@ class JhNinePicture extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final data = imgData ?? [];
+
     var kScreenWidth = MediaQuery.of(context).size.width;
 
     var ninePictureW = (kScreenWidth - _space * 2 - 2 * _itemSpace - lRSpace);
     var itemWH = ninePictureW / 3;
-    int columnCount = imgData!.length > 6
+    int columnCount = data.length > 6
         ? 3
-        : imgData!.length <= 3
+        : data.length <= 3
             ? 1
             : 2;
     // print('九宫格宽 $_ninePictureW ');
     // print('item宽  $_itemWH ');
 
-    bool isHandleFourNew = isHandleFour && imgData!.length == 4;
+    bool isHandleFourNew = isHandleFour && data.length == 4;
 
     var bgWidth = isHandleFourNew ? (_space * 2 + _itemSpace + itemWH * 2) : (kScreenWidth - lRSpace);
     var bgHeight = columnCount * itemWH + _space * 2 + (columnCount - 1) * _itemSpace;
     var crossAxisCount = isHandleFourNew ? 2 : 3;
     var childAspectRatio = 1.0;
 
-    if (imgData!.length == 1) {
+    if (data.length == 1) {
       bgWidth = (kScreenWidth - lRSpace) * 0.55;
       bgHeight = (kScreenWidth - lRSpace) * 0.75;
       crossAxisCount = 1;
@@ -58,7 +60,7 @@ class JhNinePicture extends StatelessWidget {
     }
 
     return Offstage(
-      offstage: imgData!.isEmpty,
+      offstage: data.isEmpty,
       child: SizedBox(
         width: bgWidth,
         height: bgHeight,
@@ -74,7 +76,7 @@ class JhNinePicture extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           // GridView内边距
           padding: const EdgeInsets.all(_space),
-          itemCount: imgData!.length,
+          itemCount: data.length,
           itemBuilder: (context, index) {
             return _itemCell(context, index);
           },
@@ -84,9 +86,8 @@ class JhNinePicture extends StatelessWidget {
   }
 
   _itemCell(context, index) {
-    var img = imgData![index];
-    Widget picture =
-        img.startsWith('http') ? JhNetworkImage(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
+    var img = (imgData ?? [])[index];
+    Widget picture = img.startsWith('http') ? JhNetworkImage(img, fit: BoxFit.cover) : Image.asset(img, fit: BoxFit.cover);
 
     // CachedNetworkImage(
     //   imageUrl: imgData[index],
@@ -112,6 +113,6 @@ class JhNinePicture extends StatelessWidget {
 
   /// 点击cell，展示全图
   _clickItemCell(context, index) {
-    JhPhotoBrowser.show(context, data: imgData!, index: index, onLongPress: onLongPress);
+    JhPhotoBrowser.show(context, data: imgData ?? [], index: index, onLongPress: onLongPress);
   }
 }

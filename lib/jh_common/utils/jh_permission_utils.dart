@@ -43,9 +43,12 @@ class JhPermissionUtils {
     return false;
   }
 
-  static _showDialog(String message) {
+  static void _showDialog(String message) {
     Future.delayed(const Duration(milliseconds: 200), () {
-      BuildContext context = KStrings.navigatorKey.currentContext!;
+      final context = KStrings.navigatorKey.currentContext;
+      if (context == null || !context.mounted) {
+        return;
+      }
       JhDialog.show(context, title: '提示', content: message, clickBtnPop: false, onConfirm: () {
         Navigator.of(context).pop(false);
         openAppSettings();
@@ -68,22 +71,45 @@ class JhPermissionUtils {
     return isGranted;
   }
 
+  /// 视频 权限检查和请求
+  static Future<bool> videos({String message = '暂无视频权限，请前往设置开启权限'}) async {
+    Permission permission = Permission.photos;
+    if (JhDeviceUtils.isAndroid) {
+      AndroidDeviceInfo androidInfo = await DeviceInfoPlugin().androidInfo;
+      if (androidInfo.version.sdkInt >= 33) {
+        permission = Permission.videos;
+      } else {
+        permission = Permission.storage;
+      }
+    }
+    bool isGranted = await _requestPermission(permission, message);
+    return isGranted;
+  }
+
   /// 相机 权限检查和请求
   static Future<bool> camera({String message = '暂无相机权限，请前往设置开启权限'}) async {
-    bool isGranted = await _requestPermission(Permission.camera, message);
-    return isGranted;
+    return _requestPermission(Permission.camera, message);
   }
 
   /// 麦克风 权限检查和请求
   static Future<bool> microphone({String message = '暂无麦克风权限，请前往设置开启权限'}) async {
-    bool isGranted = await _requestPermission(Permission.microphone, message);
-    return isGranted;
+    return _requestPermission(Permission.microphone, message);
   }
 
   /// 手机存储 权限检查和请求
   static Future<bool> storage({String message = '暂无手机存储权限，请前往设置开启权限'}) async {
-    bool isGranted = await _requestPermission(Permission.storage, message);
-    return isGranted;
+    if (JhDeviceUtils.isAndroid) {
+      final androidInfo = await DeviceInfoPlugin().androidInfo;
+      // Android 13+ 媒体权限已拆分，storage 需同时覆盖图片与视频读取
+      if (androidInfo.version.sdkInt >= 33) {
+        bool isGrantedPhotos = await photos(message: message);
+        if (!isGrantedPhotos) {
+          return false;
+        }
+        return videos(message: message);
+      }
+    }
+    return _requestPermission(Permission.storage, message);
   }
 }
 

@@ -19,7 +19,7 @@ String getToken() {
   return token;
 }
 
-void setToken(accessToken) {
+void setToken(String accessToken) {
   JhStorageUtils.saveString('accessToken', accessToken);
 }
 
@@ -28,7 +28,7 @@ String getRefreshToken() {
   return refreshToken;
 }
 
-void setRefreshToken(refreshToken) {
+void setRefreshToken(String refreshToken) {
   JhStorageUtils.saveString('refreshToken', refreshToken);
 }
 
@@ -58,32 +58,48 @@ class TokenInterceptor extends QueuedInterceptor {
       _tokenDio!.options.headers['Authorization'] = 'Bearer ${getToken()}';
       final Response<dynamic> response = await _tokenDio!.post<dynamic>(kRefreshTokenUrl, data: params);
       var res = response.data as dynamic;
-      if (res['code'] == ExceptionHandle.success) {
-        return response.data;
+      if (res is Map && res['code'] == ExceptionHandle.success) {
+        return Map<String, dynamic>.from(res);
       }
       // if (response.statusCode == ExceptionHandle.success) {
       //   return response.data;
       // }
     } catch (e) {
-      LogUtils.e('---------- 刷新Token失败！----------');
+      LogUtils.e('---------- 刷新Token失败！error: $e ----------');
     }
     return null;
   }
 
   @override
   Future<void> onResponse(Response<dynamic> response, ResponseInterceptorHandler handler) async {
-    // 401代表token过期
-    if (response.statusCode == ExceptionHandle.unauthorized) {
+    // 401代表token过期（兼容Http状态码和业务码）
+    final responseData = response.data;
+    int? responseCode;
+    if (responseData is Map) {
+      responseCode = responseData['code'] is int ? responseData['code'] : int.tryParse('${responseData['code']}');
+    }
+    if (response.statusCode == ExceptionHandle.unauthorized || responseCode == ExceptionHandle.unauthorized) {
       LogUtils.d('---------- 自动刷新Token ----------');
 
       var res = await refreshTokenRequest(); // 获取新的accessToken
       if (res != null) {
+        final dynamic data = res['data'];
         var accessToken = res['accessToken'];
+        var refreshToken = res['refreshToken'];
+        if (data is Map) {
+          accessToken = accessToken ?? data['accessToken'];
+          refreshToken = refreshToken ?? data['refreshToken'];
+        }
+        if (accessToken is! String || accessToken.isEmpty) {
+          return super.onResponse(response, handler);
+        }
         LogUtils.e('---------- NewToken: $accessToken ----------');
 
         // 保存token
         setToken(accessToken);
-        setRefreshToken(res['refreshToken']);
+        if (refreshToken is String && refreshToken.isNotEmpty) {
+          setRefreshToken(refreshToken);
+        }
 
         // 重新请求失败接口
         final RequestOptions request = response.requestOptions;

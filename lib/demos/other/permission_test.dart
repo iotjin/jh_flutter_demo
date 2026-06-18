@@ -5,6 +5,7 @@ import '/jh_common/widgets/jh_text_list.dart';
 
 final List titleData = [
   'JhPermissionUtils-photos',
+  'JhPermissionUtils-videos',
   'JhPermissionUtils-camera',
   'JhPermissionUtils-microphone',
   'JhPermissionUtils-storage',
@@ -24,6 +25,9 @@ class PermissionTestPage extends StatelessWidget {
         }
         if (str == 'JhPermissionUtils-camera') {
           _cameraPermission();
+        }
+        if (str == 'JhPermissionUtils-videos') {
+          _videosPermission();
         }
         if (str == 'JhPermissionUtils-microphone') {
           _microphonePermission();
@@ -49,6 +53,14 @@ class PermissionTestPage extends StatelessWidget {
       return;
     }
     JhProgressHUD.showText('已授权camera权限');
+  }
+
+  _videosPermission() async {
+    bool isGranted = await JhPermissionUtils.videos();
+    if (!isGranted) {
+      return;
+    }
+    JhProgressHUD.showText('已授权videos权限');
   }
 
   _microphonePermission() async {

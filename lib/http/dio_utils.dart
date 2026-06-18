@@ -5,10 +5,10 @@
 
 import 'dart:convert';
 import 'dart:io';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import '/jh_common/utils/jh_device_utils.dart';
+import '/jh_common/utils/jh_monitor_network_utils.dart';
 import 'apis.dart';
 import 'error_handle.dart';
 import 'log_utils.dart';
@@ -119,8 +119,7 @@ class DioUtils {
   }) async {
     try {
       // 没有网络
-      var connectivityResult = await (Connectivity().checkConnectivity());
-      if (connectivityResult == ConnectivityResult.none) {
+      if (!await JhMonitorNetworkUtils.isNetwork()) {
         _onError(ExceptionHandle.net_error, '网络异常，请检查你的网络！', onError);
         return;
       }
@@ -134,6 +133,9 @@ class DioUtils {
       onSuccess?.call(response.data);
     } on DioException catch (e) {
       _cancelLogPrint(e, url);
+      final NetError error = ExceptionHandle.handleException(e);
+      _onError(error.code, error.msg, onError);
+    } catch (e) {
       final NetError error = ExceptionHandle.handleException(e);
       _onError(error.code, error.msg, onError);
     }
@@ -157,7 +159,7 @@ void _onError(int? code, String msg, NetErrorCallback? onError) {
     code = ExceptionHandle.unknown_error;
     msg = '未知异常';
   }
-  LogUtils.e('接口请求异常： code: $code, mag: $msg');
+  LogUtils.e('接口请求异常： code: $code, msg: $msg');
   onError?.call(code, msg);
 }
 

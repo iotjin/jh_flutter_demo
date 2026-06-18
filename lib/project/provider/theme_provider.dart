@@ -147,7 +147,7 @@ class MyThemes {
       // 导航条在base_appbar页面配置（没使用base_appbar的按下面配置的）
       appBarTheme: AppBarTheme(
         systemOverlayStyle: JhStatusBarUtils.getStatusBarStyle(isDark: isDarkMode),
-        color: isDarkMode ? KColors.kNavBgDarkColor : themeColor,
+        backgroundColor: isDarkMode ? KColors.kNavBgDarkColor : themeColor,
         iconTheme: const IconThemeData(color: Colors.white),
         // shadowColor: Colors.grey, // M3 设置阴影颜色
       ),
@@ -189,15 +189,16 @@ class MyThemes {
     var darkPrimaryThemeColor = KColors.kThemeColor;
 
     return ThemeData(
-      useMaterial3: true,
-      primarySwatch: JhColorUtils.materialColor(themeColor),
+      useMaterial3: true,      
+      // M3 主题色由下方 colorScheme.fromSeed 生成，primarySwatch 为 M2 兼容项，保留不影响 M3 配色，可省略
+      primarySwatch: JhColorUtils.materialColor(themeColor), 
       primaryColor: themeColor,
       // 页面背景色
       scaffoldBackgroundColor: isDarkMode ? KColors.kBgDarkColor : KColors.kBgColor,
       // 导航条在base_appbar页面配置（没使用base_appbar的按下面配置的）
       appBarTheme: AppBarTheme(
         systemOverlayStyle: JhStatusBarUtils.getStatusBarStyle(isDark: isDarkMode),
-        color: isDarkMode ? KColors.kNavBgDarkColor : themeColor,
+        backgroundColor: isDarkMode ? KColors.kNavBgDarkColor : themeColor,
         iconTheme: const IconThemeData(color: Colors.white),
         // shadowColor: Colors.grey, // M3 设置阴影颜色
       ),

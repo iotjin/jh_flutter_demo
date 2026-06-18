@@ -72,12 +72,24 @@ class NetError {
 }
 
 extension DioErrorTypeExtension on DioExceptionType {
-  int get errorCode => [
-        ExceptionHandle.connect_timeout_error,
-        ExceptionHandle.send_timeout_error,
-        ExceptionHandle.receive_timeout_error,
-        0,
-        ExceptionHandle.cancel_error,
-        0,
-      ][index];
+  int get errorCode {
+    switch (this) {
+      case DioExceptionType.connectionTimeout:
+        return ExceptionHandle.connect_timeout_error;
+      case DioExceptionType.sendTimeout:
+        return ExceptionHandle.send_timeout_error;
+      case DioExceptionType.receiveTimeout:
+        return ExceptionHandle.receive_timeout_error;
+      case DioExceptionType.badCertificate:
+        return ExceptionHandle.http_error;
+      case DioExceptionType.badResponse:
+        return ExceptionHandle.http_error;
+      case DioExceptionType.cancel:
+        return ExceptionHandle.cancel_error;
+      case DioExceptionType.connectionError:
+        return 0;
+      case DioExceptionType.unknown:
+        return 0;
+    }
+  }
 }

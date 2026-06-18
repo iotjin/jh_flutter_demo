@@ -61,17 +61,15 @@ class _WxFriendsCirclePage2State extends State<WxFriendsCirclePage2> {
       double y = _scrollController.offset;
       // print('滑动距离: $y');
 
+      double newImgChangeHeight = _imgChangeHeight;
       if (y < _scrollMinOffSet) {
         _imgExtraHeight = -y;
 //        print(_topH);
-        setState(() {
-          _imgChangeHeight = _imgNormalHeight + _imgExtraHeight;
-        });
+        newImgChangeHeight = _imgNormalHeight + _imgExtraHeight;
       } else {
-        setState(() {
-          _imgChangeHeight = _navH;
-        });
+        newImgChangeHeight = _navH;
       }
+
       // // 小于0 ，下拉放大
       // if (y < 0) {
       // } else {}
@@ -85,12 +83,13 @@ class _WxFriendsCirclePage2State extends State<WxFriendsCirclePage2> {
         // 不透明
         appBarOpacity = 1.0;
       }
-
-      // 更新透明度
-      setState(() {
-        _appbarOpacity = appBarOpacity;
-        // print('_appbarO: ${_appbarOpacity}');
-      });
+      if (newImgChangeHeight != _imgChangeHeight || appBarOpacity != _appbarOpacity) {
+        setState(() {
+          _imgChangeHeight = newImgChangeHeight;
+          _appbarOpacity = appBarOpacity;
+          // print('_appbarO: ${_appbarOpacity}');
+        });
+      }
     });
   }
 

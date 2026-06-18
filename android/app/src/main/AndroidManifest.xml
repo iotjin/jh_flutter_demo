@@ -76,12 +76,11 @@
     <!-- 闪光灯 -->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <!-- 写权限 -->
-    <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-    <!-- 读权限(Android 13 (API 33)失效) -->
-    <!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
-
-    <!-- 写权限 -->
+    <!-- 读取外部存储，Android 6~12 (API 23~32) 相册/媒体访问使用，Android 13+ 请使用下方 READ_MEDIA_* -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <!-- 写入外部存储，Android 10 及以下 (API 29 及以下) 兼容旧版写文件场景 -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="29" />
@@ -91,9 +90,12 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <!-- 如果需要获取视频，添加该权限 -->
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <!-- 录像需要麦克风权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 如果需要获取音频，添加该权限 -->
     <!-- <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" /> -->
 
     <!-- 图片选择器使用 -->
+    <!-- Android 11+ 不再依赖 requestLegacyExternalStorage，因此下面的失效，媒体访问请以 READ_MEDIA_* 和运行时权限为准  -->
     <!-- 如果compileSdkVersion超过29，必须将android:requestLegacyExternalStorage="true"添加到AndroidManifest.xml中才能获得资源 -->
 </manifest>

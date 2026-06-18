@@ -15,6 +15,9 @@ const int _maxLines = 5; // 最大行数
 const int _maxLength = 100; // 最大录入长度
 const double _labelTextFontSize = 15.0;
 
+/// 点击回调
+typedef _TapCallBack = void Function();
+
 /// 录入回调
 typedef _InputCallBack = void Function(String value);
 
@@ -38,6 +41,7 @@ class JhTextField extends StatefulWidget {
     this.showMaxLength = false,
     this.enabled = true,
     this.inputFormatters,
+    this.tapCallBack,
     this.inputCallBack,
     this.inputCompletionCallBack,
     this.textStyle,
@@ -64,6 +68,7 @@ class JhTextField extends StatefulWidget {
   final bool showMaxLength; // 是否显示右侧最大长度文字，默认不显示
   final bool enabled; // 是否可编辑，默认true
   final List<TextInputFormatter>? inputFormatters;
+  final _TapCallBack? tapCallBack;
   final _InputCallBack? inputCallBack;
   final _InputCompletionCallBack? inputCompletionCallBack;
   final TextStyle? textStyle;
@@ -82,35 +87,58 @@ class JhTextField extends StatefulWidget {
 }
 
 class _JhTextFieldState extends State<JhTextField> {
-  TextEditingController? _textController;
-  FocusNode? _focusNode;
+  late TextEditingController _textController;
+  late FocusNode _focusNode;
   bool _isFocused = false;
   bool _isSubmitted = false; // 记录是否点击键盘右下角按钮
+
+  void _onFocusChange() {
+    if (!mounted) return;
+    setState(() {
+      _isFocused = _focusNode.hasFocus;
+      // 录入完成回调，失去焦点并且不是点击键盘右下角时触发
+      if (!_isFocused && !_isSubmitted) {
+        widget.inputCompletionCallBack?.call(_textController.text, false);
+      }
+    });
+  }
+
+  void _applyTextToController(String? text) {
+    var value = text ?? '';
+    // 超过最大长度截取
+    if (value.length > widget.maxLength) {
+      value = value.substring(0, widget.maxLength);
+    }
+    if (_textController.text == value) return;
+
+    /// 更新text的值，并处理光标
+    /// https://github.com/flutter/flutter/issues/11416
+    var cursorPos = _textController.selection;
+    // 更新text值到_textController
+    _textController.text = value;
+    if (cursorPos.start > _textController.text.length) {
+      // 光标保持在文本最后
+      cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController.text.length));
+    }
+    _textController.selection = cursorPos;
+  }
+
+  void _initController() {
+    _textController = widget.controller ?? TextEditingController();
+    _applyTextToController(widget.text);
+  }
+
+  void _initFocusNode() {
+    _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode.addListener(_onFocusChange);
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    _textController = widget.controller ?? TextEditingController();
-    _textController!.text = widget.text ?? '';
-    // 超过最大长度截取
-    if ((widget.text ?? '').length > widget.maxLength) {
-      _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
-    }
-    _focusNode = widget.focusNode ?? FocusNode();
-
-    _focusNode!.addListener(() {
-      if (mounted) {
-        setState(() {
-          _isFocused = _focusNode!.hasFocus;
-          // 录入完成回调，失去焦点并且不是点击键盘右下角时触发
-          if (!_isFocused && !_isSubmitted) {
-            widget.inputCompletionCallBack?.call(_textController!.text, false);
-          }
-        });
-      }
-    });
+    _initController();
+    _initFocusNode();
   }
 
   @override
@@ -118,21 +146,27 @@ class _JhTextFieldState extends State<JhTextField> {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
 
-    if (widget.text != oldWidget.text) {
-      /// 更新text的值，并处理光标
-      /// https://github.com/flutter/flutter/issues/11416
-      var cursorPos = _textController!.selection;
-      // 更新text值到_textController
-      _textController!.text = widget.text ?? '';
-      // 超过最大长度截取
-      if ((widget.text ?? '').length > widget.maxLength) {
-        _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+    if (widget.controller != oldWidget.controller) {
+      if (oldWidget.controller == null) {
+        _textController.dispose();
       }
-      if (cursorPos.start > _textController!.text.length) {
-        // 光标保持在文本最后
-        cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
+      _initController();
+    } else if (widget.text != oldWidget.text) {
+      _applyTextToController(widget.text);
+    }
+
+    if (widget.focusNode != oldWidget.focusNode) {
+      _focusNode.removeListener(_onFocusChange);
+      if (oldWidget.focusNode == null) {
+        _focusNode.dispose();
       }
-      _textController!.selection = cursorPos;
+      _initFocusNode();
+    }
+
+    if (widget.maxLength != oldWidget.maxLength) {
+      if (_textController.text.length > widget.maxLength) {
+        _textController.text = _textController.text.substring(0, widget.maxLength);
+      }
     }
 
     // 有bug，删除中间的文字会跳到最后
@@ -158,8 +192,14 @@ class _JhTextFieldState extends State<JhTextField> {
   void dispose() {
     // TODO: implement dispose
 
-    _focusNode!.unfocus();
-    _textController!.dispose();
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.unfocus();
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
+    }
+    if (widget.controller == null) {
+      _textController.dispose();
+    }
     super.dispose();
 //    print('JhTextField dispose');
   }
@@ -171,7 +211,7 @@ class _JhTextFieldState extends State<JhTextField> {
 
   _body() {
     // TODO: 通过ThemeProvider进行主题管理
-    final provider = Provider.of<ThemeProvider>(context);
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     var themeColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
     var labelTextStyle = TextStyle(fontSize: _labelTextFontSize, color: themeColor);
     // 设置的颜色优先级高于暗黑模式
@@ -208,19 +248,20 @@ class _JhTextFieldState extends State<JhTextField> {
       // 点击输入框
       onTap: () {
         _isSubmitted = false;
+        widget.tapCallBack?.call();
       },
       // 每次输入框文字改变，均会执行
       onChanged: (value) {
-        widget.inputCallBack?.call(_textController!.text);
+        widget.inputCallBack?.call(_textController.text);
       },
       // 输入完成，提交按钮点击后会先执行这里
       onEditingComplete: () {
-        _focusNode!.unfocus();
+        _focusNode.unfocus();
       },
       // 提交按钮点击
       onSubmitted: (value) {
         _isSubmitted = true;
-        widget.inputCompletionCallBack?.call(_textController!.text, true);
+        widget.inputCompletionCallBack?.call(_textController.text, true);
       },
     );
   }

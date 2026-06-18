@@ -103,7 +103,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    final AppBarTheme appBarTheme = AppBarTheme.of(context);
+    final AppBarThemeData appBarTheme = AppBarTheme.of(context);
     final ScaffoldState scaffold = Scaffold.of(context);
     final ModalRoute<dynamic> parentRoute = ModalRoute.of(context)!;
 
@@ -113,10 +113,8 @@ class _GradientAppBarState extends State<GradientAppBar> {
     final bool useCloseButton = parentRoute is PageRoute<dynamic> && parentRoute.fullscreenDialog;
 
     IconThemeData? appBarIconTheme = widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
-    TextStyle? centerStyle =
-        widget.textTheme?.bodyMedium ?? Theme.of(context).textTheme.bodyMedium ?? themeData.primaryTextTheme.bodyMedium;
-    TextStyle? sideStyle =
-        widget.textTheme?.bodyMedium ?? Theme.of(context).textTheme.bodyMedium ?? themeData.primaryTextTheme.bodyMedium;
+    TextStyle? centerStyle = widget.textTheme?.bodyMedium ?? Theme.of(context).textTheme.bodyMedium ?? themeData.primaryTextTheme.bodyMedium;
+    TextStyle? sideStyle = widget.textTheme?.bodyMedium ?? Theme.of(context).textTheme.bodyMedium ?? themeData.primaryTextTheme.bodyMedium;
 
 //    IconThemeData appBarIconTheme =
 //        widget.iconTheme ?? appBarTheme.iconTheme ?? themeData.primaryIconTheme;
@@ -263,8 +261,7 @@ class _GradientAppBarState extends State<GradientAppBar> {
     );
 
     final Brightness brightness = widget.brightness ?? Theme.of(context).brightness;
-    final SystemUiOverlayStyle overlayStyle =
-        brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark;
+    final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark;
 
     return Material(
       color: Colors.transparent,

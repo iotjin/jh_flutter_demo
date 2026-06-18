@@ -33,6 +33,14 @@ class _JhScrollViewState extends State<JhScrollView> {
   }
 
   @override
+  void dispose() {
+    if (widget.controller == null) {
+      _scrollController.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scrollbar(
       controller: _scrollController,

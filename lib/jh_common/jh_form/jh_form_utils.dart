@@ -18,7 +18,7 @@ final code = [FilteringTextInputFormatter.digitsOnly, length6];
 // 数字
 final number = FilteringTextInputFormatter.allow(RegExp('[0-9]'));
 // 年龄
-final age = FilteringTextInputFormatter.allow(RegExp('[1-9]'));
+final age = [number, LengthLimitingTextInputFormatter(3)];
 // 字母
 final letter = FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]'));
 // 允许中文
@@ -28,7 +28,8 @@ final decimal = FilteringTextInputFormatter.allow(RegExp('[0-9.]'));
 // 金额：10位整数。2位小数
 final money = NumLengthInputFormatter(integerLength: 8, decimalLength: 2);
 // 两位小数，整数不限
-final twoDecimal = FilteringTextInputFormatter.allow(RegExp(r'^\d+(\.)?[0-9]{0,2}'));
+// final twoDecimal = FilteringTextInputFormatter.allow(RegExp(r'^\d+(\.)?[0-9]{0,2}'));
+final twoDecimal = NumLengthInputFormatter(integerLength: 999, decimalLength: 2);
 
 // 不允许录入中文
 final denyChinese = FilteringTextInputFormatter.deny(RegExp('[\u4e00-\u9fa5]'));
@@ -131,16 +132,17 @@ class JhValidate extends _Strategies {
     });
   }
 
-  /// 校验
-  check() {
+  /// 校验，全部通过返回空字符串
+  String check() {
     for (var index = 0; index < validateList.length; index++) {
       var message = validateList[index]();
       if (message != '') {
-        LogUtils.print_('object: ${validateList[index]()}');
+        LogUtils.print_('object: $message');
         LogUtils.print_('object: ${validateList[index]}');
-        return validateList[index]();
+        return message;
       }
     }
+    return '';
   }
 }
 
@@ -159,6 +161,14 @@ class NumLengthInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    if (!allowInputDecimal && newValue.text.contains('.')) {
+      return oldValue;
+    }
+
+    if ('.'.allMatches(newValue.text).length > 1) {
+      return oldValue;
+    }
+
     String value = newValue.text;
     int selectionIndex = newValue.selection.end;
     if (newValue.text.contains('.')) {
@@ -191,33 +201,55 @@ class NumLengthInputFormatter extends TextInputFormatter {
 }
 
 /// 限制录入的最大值和最小值
-/// inputFormatters: [number,NumMaxValueInputFormatter(max:num.parse(numStr))]
+/// inputFormatters: [number,length8, NumMaxValueInputFormatter(max:num.parse(numStr))]
 class NumMaxValueInputFormatter extends TextInputFormatter {
   NumMaxValueInputFormatter({
     required this.max,
-    this.min = 0,
-  });
+    this.min,
+  }) : assert(min == null || min <= max, 'min must be <= max');
 
-  final num min;
+  final num? min;
   final num max;
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-    if (newValue.text.isNotEmpty) {
-      num? parsed = num.tryParse(newValue.text);
-      if (parsed != null) {
-        if (parsed < min) {
-          return oldValue.copyWith(text: min.toString()); // 输入小于最小值时返回最小值
-        } else if (parsed > max) {
-          return TextEditingValue(text: max.toString(), selection: TextSelection.collapsed(offset: max.toString().length)); // 输入大于最大值时返回最大值
-        } else {
-          return newValue;
-        }
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final text = newValue.text;
+
+    if (text.isEmpty) {
+      // 如果设置了最小值，不允许删空
+      if (min != null) {
+        return _clampValue(min!);
       }
-    } else {
-      // 如果输入为空,返回最小值
-      return oldValue.copyWith(text: min.toString());
+      // 没有设置最小值，允许空值（由 number / length formatter 负责拦截）
+      return newValue;
     }
-    return oldValue;
+
+    // 不能解析直接回退
+    final parsed = num.tryParse(text);
+    if (parsed == null) return oldValue;
+
+    // 超过最大值
+    if (parsed > max) {
+      return _clampValue(max);
+    }
+
+    // 最小值限制（仅当设置了 min）
+    if (min != null && parsed < min!) {
+      return _clampValue(min!);
+    }
+
+    return _clampValue(parsed);
+    // return newValue;
+  }
+
+  TextEditingValue _clampValue(num value) {
+    final text = value.toString();
+    return TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: text.length),
+    );
   }
 }

@@ -273,7 +273,7 @@ class _FormValidatePageState extends State<FormValidatePage> {
     var validate = JhValidate(rules, params);
     var message = validate.check();
     print(message);
-    if (message != null) {
+    if (message.isNotEmpty) {
       JhProgressHUD.showText(message);
     } else {
       print('校验成功，提交数据');

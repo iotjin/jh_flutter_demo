@@ -29,6 +29,7 @@ class _MobileScannerPageState extends State<MobileScannerPage> with TickerProvid
   late AnimationController _animationController;
   late bool _openFlashlight;
   Timer? _timer;
+  bool _hasScanned = false;
 
   @override
   void initState() {
@@ -150,11 +151,20 @@ class _MobileScannerPageState extends State<MobileScannerPage> with TickerProvid
   }
 
   Future<void> onDetect(BarcodeCapture capture) async {
-    _cameraController.barcodes.listen((event) {
-      // 避免扫描结果多次回调
-      _cameraController.dispose();
-      JhNavUtils.goBackWithParams(context, capture.barcodes.first.rawValue ?? '');
-    });
+    if (_hasScanned) {
+      return;
+    }
+    final barcodes = capture.barcodes;
+    if (barcodes.isEmpty) {
+      return;
+    }
+    final value = barcodes.first.rawValue ?? '';
+    if (value.isEmpty) {
+      return;
+    }
+    _hasScanned = true;
+    // 避免扫描结果多次回调
+    JhNavUtils.goBackWithParams(context, value);
   }
 }
 
@@ -259,10 +269,13 @@ class ScannerErrorWidget extends StatelessWidget {
     switch (error.errorCode) {
       case MobileScannerErrorCode.controllerUninitialized:
         errorMessage = 'Controller not ready.';
+        break;
       case MobileScannerErrorCode.permissionDenied:
         errorMessage = 'Permission denied';
+        break;
       case MobileScannerErrorCode.unsupported:
         errorMessage = 'Scanning is unsupported on this device';
+        break;
       default:
         errorMessage = 'Generic Error';
         break;

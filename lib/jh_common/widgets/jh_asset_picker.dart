@@ -187,9 +187,9 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
       JhProgressHUD.showText('当前平台暂不支持');
       return;
     }
-    // 相册权限
-    bool isGrantedPhotos = await JhPermissionUtils.photos();
-    if (!isGrantedPhotos) {
+    // 根据选择类型申请媒体权限（Android 13+ 区分图片和视频）
+    bool isGrantedMedia = await _requestMediaPermissionByAssetType();
+    if (!isGrantedMedia) {
       return;
     }
 
@@ -239,9 +239,9 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
       }
     }
 
-    // 相册权限
-    bool isGrantedPhotos = await JhPermissionUtils.photos();
-    if (!isGrantedPhotos) {
+    // 根据可拍摄类型申请媒体权限（用于保存拍摄结果）
+    bool isGrantedMedia = await _requestMediaPermissionByAssetType();
+    if (!isGrantedMedia) {
       return;
     }
 
@@ -262,5 +262,23 @@ class _JhAssetPickerState extends State<JhAssetPicker> {
         widget.callBack?.call(_selectedAssets);
       });
     }
+  }
+
+  Future<bool> _requestMediaPermissionByAssetType() async {
+    if (widget.assetType == AssetType.image) {
+      return JhPermissionUtils.photos();
+    }
+    if (widget.assetType == AssetType.video) {
+      return JhPermissionUtils.videos();
+    }
+    bool isGrantedPhotos = await JhPermissionUtils.photos(message: '暂无图片权限，请前往设置开启权限');
+    if (!isGrantedPhotos) {
+      return false;
+    }
+    bool isGrantedVideos = await JhPermissionUtils.videos(message: '暂无视频权限，请前往设置开启权限');
+    if (!isGrantedVideos) {
+      return false;
+    }
+    return true;
   }
 }

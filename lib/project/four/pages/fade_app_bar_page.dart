@@ -88,6 +88,12 @@ class _FadeAppBarPageState extends State<FadeAppBarPage> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double bottomBarHeight = MediaQuery.of(context).padding.bottom;
     bottomBarHeight += 49;

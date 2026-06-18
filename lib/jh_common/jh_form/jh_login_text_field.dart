@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import '/jh_common/utils/jh_color_utils.dart';
 import '/project/configs/colors.dart';
 import '/project/provider/theme_provider.dart';
 
@@ -77,48 +76,73 @@ class JhLoginTextField extends StatefulWidget {
 }
 
 class _JhLoginTextFieldState extends State<JhLoginTextField> {
-  TextEditingController? _textController;
-  FocusNode? _focusNode;
+  late TextEditingController _textController;
+  late FocusNode _focusNode;
   bool _isFocused = false;
   bool? _isShowDelete;
-  bool? _isHiddenPwdBtn; // 是否隐藏 右侧密码明文切换按钮 ，密码样式才显示（isPwd =true），
-  bool? _pwdShow; // 控制密码 明文切换
-  Widget? _pwdImg; // 自定义密码图片
+  bool _isHiddenPwdBtn = true; // 是否隐藏 右侧密码明文切换按钮 ，密码样式才显示（isPwd =true），
+  bool _pwdShow = false; // 控制密码 明文切换
   bool _isSubmitted = false; // 记录是否点击键盘右下角按钮
+
+  void _onFocusChange() {
+    if (!mounted) return;
+    setState(() {
+      _isFocused = _focusNode.hasFocus;
+      _isShowDelete = _textController.text.isNotEmpty && _focusNode.hasFocus;
+      // 录入完成回调，失去焦点并且不是点击键盘右下角时触发
+      if (!_isFocused && !_isSubmitted) {
+        widget.inputCompletionCallBack?.call(_textController.text, false);
+      }
+    });
+  }
+
+  void _onControllerChange() {
+    if (!mounted) return;
+    setState(() {
+      _isShowDelete = _textController.text.isNotEmpty && _focusNode.hasFocus;
+    });
+  }
+
+  void _applyTextToController(String? text) {
+    var value = text ?? '';
+    // 超过最大长度截取
+    if (value.length > widget.maxLength) {
+      value = value.substring(0, widget.maxLength);
+    }
+    if (_textController.text == value) return;
+
+    /// 更新text的值，并处理光标
+    /// https://github.com/flutter/flutter/issues/11416
+    var cursorPos = _textController.selection;
+    // 更新text值到_textController
+    _textController.text = value;
+    if (cursorPos.start > _textController.text.length) {
+      // 光标保持在文本最后
+      cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController.text.length));
+    }
+    _textController.selection = cursorPos;
+  }
+
+  void _initController() {
+    _textController = widget.controller ?? TextEditingController();
+    _applyTextToController(widget.text);
+  }
+
+  void _initFocusNode() {
+    _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode.addListener(_onFocusChange);
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    _textController = widget.controller ?? TextEditingController();
-    _textController!.text = widget.text ?? '';
-    // 超过最大长度截取
-    if ((widget.text ?? '').length > widget.maxLength) {
-      _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
-    }
-    _focusNode = widget.focusNode ?? FocusNode();
+    _initController();
+    _initFocusNode();
     _isHiddenPwdBtn = !widget.isPwd;
     _pwdShow = widget.isPwd;
-
-    _isShowDelete = _focusNode!.hasFocus && _textController!.text.isNotEmpty;
-    _textController!.addListener(() {
-      setState(() {
-        _isShowDelete = _textController!.text.isNotEmpty && _focusNode!.hasFocus;
-      });
-    });
-    _focusNode!.addListener(() {
-      if (mounted) {
-        setState(() {
-          _isFocused = _focusNode!.hasFocus;
-          _isShowDelete = _textController!.text.isNotEmpty && _focusNode!.hasFocus;
-          // 录入完成回调，失去焦点并且不是点击键盘右下角时触发
-          if (!_isFocused && !_isSubmitted) {
-            widget.inputCompletionCallBack?.call(_textController!.text, false);
-          }
-        });
-      }
-    });
+    _isShowDelete = _focusNode.hasFocus && _textController.text.isNotEmpty;
+    _textController.addListener(_onControllerChange);
   }
 
   @override
@@ -126,21 +150,35 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
 
-    if (widget.text != oldWidget.text) {
-      /// 更新text的值，并处理光标
-      /// https://github.com/flutter/flutter/issues/11416
-      var cursorPos = _textController!.selection;
-      // 更新text值到_textController
-      _textController!.text = widget.text ?? '';
-      // 超过最大长度截取
-      if ((widget.text ?? '').length > widget.maxLength) {
-        _textController!.text = (widget.text ?? '').substring(0, widget.maxLength);
+    if (widget.controller != oldWidget.controller) {
+      _textController.removeListener(_onControllerChange);
+      if (oldWidget.controller == null) {
+        _textController.dispose();
       }
-      if (cursorPos.start > _textController!.text.length) {
-        // 光标保持在文本最后
-        cursorPos = TextSelection.fromPosition(TextPosition(offset: _textController!.text.length));
+      _initController();
+      _textController.addListener(_onControllerChange);
+      _isShowDelete = _focusNode.hasFocus && _textController.text.isNotEmpty;
+    } else if (widget.text != oldWidget.text) {
+      _applyTextToController(widget.text);
+    }
+
+    if (widget.focusNode != oldWidget.focusNode) {
+      _focusNode.removeListener(_onFocusChange);
+      if (oldWidget.focusNode == null) {
+        _focusNode.dispose();
       }
-      _textController!.selection = cursorPos;
+      _initFocusNode();
+    }
+
+    if (widget.maxLength != oldWidget.maxLength) {
+      if (_textController.text.length > widget.maxLength) {
+        _textController.text = _textController.text.substring(0, widget.maxLength);
+      }
+    }
+
+    if (widget.isPwd != oldWidget.isPwd) {
+      _isHiddenPwdBtn = !widget.isPwd;
+      _pwdShow = widget.isPwd;
     }
   }
 
@@ -148,8 +186,15 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
   void dispose() {
     // TODO: implement dispose
 
-    _focusNode!.unfocus();
-    _textController!.dispose();
+    _textController.removeListener(_onControllerChange);
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.unfocus();
+    if (widget.focusNode == null) {
+      _focusNode.dispose();
+    }
+    if (widget.controller == null) {
+      _textController.dispose();
+    }
     super.dispose();
   }
 
@@ -159,18 +204,6 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
   }
 
   _body() {
-    if (widget.pwdOpen != null && widget.pwdClose != null) {
-      if (widget.pwdOpen!.isNotEmpty && widget.pwdClose!.isNotEmpty) {
-        _pwdImg = _pwdShow! ? ImageIcon(AssetImage(widget.pwdClose!)) : ImageIcon(AssetImage(widget.pwdOpen!));
-      } else {
-        _pwdImg = Icon(_pwdShow! ? Icons.visibility_off : Icons.visibility);
-      }
-    } else {
-      _pwdImg = Icon(_pwdShow! ? Icons.visibility_off : Icons.visibility);
-//      _pwdImg = _pwdShow?Image.asset('assets/images/ic_pwd_close.png',width: 18.0,):Image.asset('assets/images/ic_pwd_open.png',width: 18.0,);
-//      _pwdImg = _pwdShow?ImageIcon(AssetImage('assets/images/ic_pwd_close.png')):ImageIcon(AssetImage('assets/images/ic_pwd_open.png')) ;
-    }
-
     // 默认颜色
     var textColor = KColors.dynamicColor(context, KColors.kFormInfoColor, KColors.kFormInfoDarkColor);
     var textStyle = TextStyle(fontSize: _textFontSize, color: textColor);
@@ -179,18 +212,31 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
     var underlineColor = KColors.dynamicColor(context, Theme.of(context).primaryColor, KColors.kFocusedBorderDarkColor);
 
     // TODO: 通过ThemeProvider进行主题管理
-    final provider = Provider.of<ThemeProvider>(context);
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
     var themeColor = KColors.dynamicColor(context, provider.getThemeColor(), KColors.kThemeColor);
     var labelTextStyle = TextStyle(fontSize: _hintTextFontSize, color: themeColor);
 
+    Widget pwdImg;
+    if (widget.pwdOpen != null && widget.pwdClose != null) {
+      if (widget.pwdOpen!.isNotEmpty && widget.pwdClose!.isNotEmpty) {
+        pwdImg = _pwdShow ? ImageIcon(AssetImage(widget.pwdClose!)) : ImageIcon(AssetImage(widget.pwdOpen!));
+      } else {
+        pwdImg = Icon(_pwdShow ? Icons.visibility_off : Icons.visibility);
+      }
+    } else {
+      pwdImg = Icon(_pwdShow ? Icons.visibility_off : Icons.visibility);
+      // _pwdImg = _pwdShow ? Image.asset('assets/images/ic_pwd_close.png', width: 18.0,) : Image.asset('assets/images/ic_pwd_open.png', width: 18.0,);
+      // _pwdImg = _pwdShow ? ImageIcon(AssetImage('assets/images/ic_pwd_close.png')) : ImageIcon(AssetImage('assets/images/ic_pwd_open.png'));
+    }
+
     return Theme(
-      // 主题设置主要针对左侧图标和光标
-      data: ThemeData(
+      // 主题设置主要针对左侧图标和光标，基于父主题扩展以保留 textSelectionTheme 等配置
+      data: Theme.of(context).copyWith(
         primaryColor: themeColor,
-        primarySwatch: JhColorUtils.materialColor(themeColor),
-        inputDecorationTheme: InputDecorationTheme(
-          prefixIconColor: _isFocused ? themeColor : hintColor,
-        ),
+        // Flutter 3.38+ ThemeData.copyWith 已移除 primarySwatch；Material 3 主题色改由 colorScheme.primary 控制
+        // primarySwatch: JhColorUtils.materialColor(themeColor),
+        colorScheme: Theme.of(context).colorScheme.copyWith(primary: themeColor),
+        inputDecorationTheme: Theme.of(context).inputDecorationTheme.copyWith(prefixIconColor: _isFocused ? themeColor : hintColor),
       ),
       child: Stack(
         alignment: Alignment.centerRight,
@@ -201,9 +247,9 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
             keyboardType: widget.keyboardType,
             textInputAction: widget.textInputAction,
             style: textStyle,
-//            // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
-//            inputFormatters: (widget.keyboardType == TextInputType.number || widget.keyboardType == TextInputType.phone) ?
-//            [FilteringTextInputFormatter.allow(RegExp('[0-9]'))] : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
+            // // 数字、手机号限制格式为0到9(白名单)， 密码限制不包含汉字（黑名单）
+            // inputFormatters: (widget.keyboardType == TextInputType.number || widget.keyboardType == TextInputType.phone) ?
+            // [FilteringTextInputFormatter.allow(RegExp('[0-9]'))] : [BlacklistingTextInputFormatter(RegExp('[\u4e00-\u9fa5]'))],
             inputFormatters: widget.inputFormatters ?? [LengthLimitingTextInputFormatter(widget.maxLength)],
             decoration: InputDecoration(
               contentPadding: widget.contentPadding,
@@ -213,13 +259,19 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
               hintStyle: hintTextStyle,
               labelStyle: _isFocused ? labelTextStyle : hintTextStyle,
               isDense: widget.isDense,
-              enabledBorder: widget.border ??
-                  const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey, width: _lineHeight)),
-              focusedBorder: widget.border ??
-                  UnderlineInputBorder(borderSide: BorderSide(color: underlineColor, width: _lineHeight)),
+              enabledBorder:
+                  widget.border ??
+                  const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: _lineHeight),
+                  ),
+              focusedBorder:
+                  widget.border ??
+                  UnderlineInputBorder(
+                    borderSide: BorderSide(color: underlineColor, width: _lineHeight),
+                  ),
               // suffixIcon: Container(), //如果通过suffixIcon添加右侧自定义widget点击会弹出键盘
             ),
-            obscureText: _pwdShow!,
+            obscureText: _pwdShow,
             // 执行顺序为 onTap -> onChanged -> onEditingComplete -> onSubmitted
             // 点击输入框
             onTap: () {
@@ -228,16 +280,16 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
             },
             // 每次输入框文字改变，均会执行
             onChanged: (value) {
-              widget.inputCallBack?.call(_textController!.text);
+              widget.inputCallBack?.call(_textController.text);
             },
             // 输入完成，提交按钮点击后会先执行这里
             onEditingComplete: () {
-              _focusNode!.unfocus();
+              _focusNode.unfocus();
             },
             // 提交按钮点击
             onSubmitted: (value) {
               _isSubmitted = true;
-              widget.inputCompletionCallBack?.call(_textController!.text, true);
+              widget.inputCompletionCallBack?.call(_textController.text, true);
             },
           ),
           Row(
@@ -249,27 +301,29 @@ class _JhLoginTextFieldState extends State<JhLoginTextField> {
                     ? IconButton(
                         icon: const Icon(Icons.cancel, color: Color(0xFFC8C8C8), size: 20),
                         onPressed: () {
-                          _textController!.text = '';
+                          _textController.text = '';
                           if (widget.inputCallBack != null) {
-                            widget.inputCallBack!(_textController!.text);
+                            widget.inputCallBack!(_textController.text);
                           }
-                        })
+                        },
+                      )
                     : const Text(''),
               ),
               Offstage(
-                  offstage: _isHiddenPwdBtn!,
-                  child: IconButton(
-//                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
-//                  icon: Image.asset('assets/images/ic_pwd_close.png',width: 18.0,),
-                    icon: _pwdImg!,
-                    color: const Color(0xFFC8C8C8),
-                    iconSize: 18.0,
-                    onPressed: () {
-                      setState(() {
-                        _pwdShow = !_pwdShow!;
-                      });
-                    },
-                  )),
+                offstage: _isHiddenPwdBtn,
+                child: IconButton(
+                  //                  icon: Icon(_pwdShow ? Icons.visibility_off : Icons.visibility),
+                  //                  icon: Image.asset('assets/images/ic_pwd_close.png',width: 18.0,),
+                  icon: pwdImg,
+                  color: const Color(0xFFC8C8C8),
+                  iconSize: 18.0,
+                  onPressed: () {
+                    setState(() {
+                      _pwdShow = !_pwdShow;
+                    });
+                  },
+                ),
+              ),
               widget.rightWidget ?? Container(),
             ],
           ),

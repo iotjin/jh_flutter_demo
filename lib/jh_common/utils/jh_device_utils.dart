@@ -1,4 +1,4 @@
-///  jh_common_utils.dart
+///  jh_device_utils.dart
 ///
 ///  Created by iotjin on 2020/07/28.
 ///  description:  设备信息工具类
@@ -12,8 +12,7 @@ class JhDeviceUtils {
 
   static bool get isMobile => isAndroid || isIOS;
 
-  static bool get isMobile2 =>
-      defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
+  static bool get isMobile2 => defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
 
   /// Platform不能在web端使用
   static bool get isWeb => kIsWeb;
@@ -102,5 +101,4 @@ class JhDeviceUtils {
   }
 
 */
-
 }
