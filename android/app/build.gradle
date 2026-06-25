@@ -94,9 +94,22 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
+
+            // 本项目通过打包命令控制架构，不在 Gradle 固定 abiFilters；需要时可打开注释：
+            // Flutter 3.35+ 插件会默认写入多架构 abiFilters，需先 clear 再指定
+//            ndk {
+//                abiFilters.clear()
+//                abiFilters.add("arm64-v8a") 
+//            }
+            // 旧写法（Flutter 3.35 前常用；3.35+ 需配合 clear，见上方配置）：
 //            ndk {
 //                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64' // 'armeabi','x86'
 //            }
+            // armeabi-v7a  - 32 位 ARM，兼容较老 32 位 Android 真机
+            // arm64-v8a    - 64 位 ARM，目前绝大多数在售 Android 真机（推荐）
+            // x86_64       - 64 位 x86，Android 模拟器及少数 x86 平板/设备
+            // armeabi      - 已废弃，Android 5.0 之前极老 32 位 ARM 设备，现网可忽略
+            // x86          - 32 位 x86，老旧模拟器，现网可忽略
         }
     }
 

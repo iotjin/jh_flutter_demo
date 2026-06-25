@@ -16,6 +16,94 @@
 | flutter build iOS |  |
 | flutter run --release| 发布版本调试，发布版本测试需要连接真机方能调试。 |
 
+# Android 打包配置注意事项：
+
+## 为什么 APK 体积变大了？
+
+Flutter 3.35+ 起，Gradle 插件默认会把 **armeabi-v7a、arm64-v8a、x86_64** 三套 native 库打进同一个 APK（Fat APK），体积约为单架构的 2～3 倍。
+**推荐**使用 `--split-per-abi` 按架构分包；真机分发一般只需 `app-arm64-v8a-release.apk` 即可。
+
+## CPU 架构（ABI）说明
+
+| ABI | 说明 | 典型设备 |
+| --- | --- | --- |
+| **arm64-v8a** | 64 位 ARM，2014 年后主流 Android 真机 | 目前绝大多数在售手机（推荐默认只打此架构） |
+| **armeabi-v7a** | 32 位 ARM，兼容较老 32 位手机 | 老旧或低端 32 位设备 |
+| **x86_64** | 64 位 x86 | Android 模拟器、少数 x86 平板/设备 |
+| **armeabi** | 已废弃的 32 位 ARM | Android 5.0 之前极老设备，现网基本可忽略 |
+| **x86** | 32 位 x86 | 老旧模拟器，现网基本可忽略 |
+
+注释里的 `'armeabi-v7a', 'arm64-v8a', 'x86_64'` 表示同时打进三种架构（Fat APK）；`'armeabi','x86'` 为更早期架构，一般不再使用。
+
+## 场景 A：直接发 APK（官网、内测、侧载）
+
+**按架构拆成多个 APK（推荐）** — 一次打出各架构小包，体积小，可按设备分发；真机一般发 `app-arm64-v8a-release.apk`：
+```
+flutter build apk --release --split-per-abi
+```
+输出示例：`app-armeabi-v7a-release.apk`、`app-arm64-v8a-release.apk`、`app-x86_64-release.apk`（路径：`build/app/outputs/flutter-apk/`）。
+
+
+**按指定架构打单包**（输出均为 `build/app/outputs/flutter-apk/app-release.apk`）：
+
+| 架构 | 命令 | 适用设备 |
+| --- | --- | --- |
+| armeabi-v7a | `flutter build apk --release --target-platform=android-arm` | 较老 32 位 ARM 真机 |
+| arm64-v8a（推荐） | `flutter build apk --release --target-platform=android-arm64` | 目前绝大多数 Android 真机 |
+| x86_64 | `flutter build apk --release --target-platform=android-x64` | Android 模拟器、少数 x86 设备 |
+
+```
+# 只打 armeabi-v7a
+flutter build apk --release --target-platform=android-arm
+
+# 只打 arm64-v8a（推荐）
+flutter build apk --release --target-platform=android-arm64
+
+# 只打 x86_64
+flutter build apk --release --target-platform=android-x64
+```
+
+**默认 Fat APK**（不推荐，体积最大；Flutter 3.35+ 默认打入 armeabi-v7a + arm64-v8a + x86_64）：
+```
+flutter build apk --release
+```
+输出：`build/app/outputs/flutter-apk/app-release.apk`
+
+## 场景 B：上架 Google Play
+
+商店会按用户设备自动下发对应架构，应打 App Bundle：
+```
+flutter build appbundle --release
+```
+输出：`build/app/outputs/bundle/release/app-release.aab`
+
+## 场景 C：Gradle 固定架构
+
+若希望**不加命令行参数**、每次 `flutter build apk --release` 都固定某一架构，
+可在 `android/app/build.gradle` 的 `release` 中配置（Flutter 3.35+ 必须先 `clear` 再添加，否则会被插件默认值覆盖）：
+
+```
+ndk {
+    abiFilters.clear()
+    abiFilters.add("arm64-v8a")   // 或 "armeabi-v7a" / "x86_64"
+}
+```
+
+配置后执行 `flutter build apk --release` 即只打对应架构。
+
+与 `--target-platform`、`--split-per-abi` 同时使用时，以 Gradle `abiFilters` 为准；
+例如只配 arm64 时，`--split-per-abi` 也只会产出 arm64 分包。
+
+若仅偶尔需要指定架构，优先使用场景 A 的 `--target-platform` 命令，更灵活。
+
+## 体积分析（可选）
+
+```
+flutter build apk --release --analyze-size
+```
+
+---
+
 # web端打包注意事项：
 
 - 1、先清空历史数据：
