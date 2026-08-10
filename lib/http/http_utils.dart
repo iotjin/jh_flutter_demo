@@ -11,6 +11,7 @@ import 'dio_utils.dart';
 import 'error_handle.dart';
 import 'intercept.dart';
 import 'log_utils.dart';
+import 'mock/mock_interceptor.dart';
 
 typedef Success<T> = Function(T data);
 typedef Fail = Function(int code, String msg);
@@ -23,6 +24,11 @@ class HttpUtils {
   /// dio main函数初始化
   static void initDio() {
     final List<Interceptor> interceptors = <Interceptor>[];
+
+    /// 本地 Mock（默认开启）
+    if (kEnableLocalMock) {
+      interceptors.add(MockInterceptor());
+    }
 
     /// 统一添加身份验证请求头
     interceptors.add(AuthInterceptor());

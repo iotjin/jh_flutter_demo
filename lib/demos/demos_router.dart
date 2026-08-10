@@ -163,6 +163,11 @@ import 'ui/ui_page3.dart';
 import 'ui/scroll_page.dart';
 import 'ui/grammar_test_page.dart';
 
+// 签名
+import 'signature/signature_demo_list_page.dart';
+import 'signature/signature_test_page.dart';
+import 'signature/hand_signature_test_page.dart';
+
 class DemosRouter implements IRouterProvider {
   static String pDemoListPage = 'DemoListPage';
 
@@ -329,5 +334,10 @@ class DemosRouter implements IRouterProvider {
     router.define('UIPage3', handler: Handler(handlerFunc: (_, __) => const UIPage3()));
     router.define('ScrollPage', handler: Handler(handlerFunc: (_, __) => const ScrollPage()));
     router.define('GrammarTestPage', handler: Handler(handlerFunc: (_, __) => const GrammarTestPage()));
+
+    // 签名
+    router.define('SignatureDemoListPage', handler: Handler(handlerFunc: (_, __) => const SignatureDemoListPage()));
+    router.define('SignatureTestPage', handler: Handler(handlerFunc: (_, __) => const SignatureTestPage()));
+    router.define('HandSignatureTestPage', handler: Handler(handlerFunc: (_, __) => const HandSignatureTestPage()));
   }
 }

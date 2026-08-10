@@ -97,6 +97,7 @@ https://iotjin.github.io/jh_flutter_demo
   * 导航条图片下拉放大和渐变效果(微信运动排行榜，个人主页)
   * 微信朋友圈和图片浏览
   * 十字滑动(个人中心效果)
+  * 手写签字(signature、hand_signature库)
 
 
 注：

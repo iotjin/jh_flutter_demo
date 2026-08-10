@@ -31,6 +31,7 @@ final List titleData = [
   '权限检查和请求',
   '设备信息',
   '跳转三方地图导航',
+  '签名',
 ];
 final List routeData = [
   'UIDemoListPage',
@@ -59,6 +60,7 @@ final List routeData = [
   'PermissionTestPage',
   'DeviceInfoTest',
   'MapJumpTestPage',
+  'SignatureDemoListPage',
 ];
 
 class DemoListPage extends StatelessWidget {

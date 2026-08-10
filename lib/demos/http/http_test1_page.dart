@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 
 //import 'package:dio_http_cache/dio_http_cache.dart';
 import '/http/apis.dart';
+import '/http/mock/mock_interceptor.dart';
 import '/base_appbar.dart';
 
 class HttpTest1Page extends StatefulWidget {
@@ -33,16 +34,16 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const BaseAppBar('HttpTest1'),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(15),
-          child: Text(_text),
-        ));
+      appBar: const BaseAppBar('HttpTest1'),
+      body: SingleChildScrollView(padding: const EdgeInsets.all(15), child: Text(_text)),
+    );
   }
 
   void getRequest() async {
-    var url = APIs.apiPrefix + APIs.getPage;
-    var dio = Dio();
+    // var url = APIs.apiPrefix + APIs.getPage;
+    // var dio = Dio();
+    var url = APIs.getPage;
+    var dio = createDio();
     var response = await dio.get(url, queryParameters: {'page': 0, 'limit': 10});
     var result = response.data.toString();
     print('返回数据： $result');
@@ -53,9 +54,18 @@ class _HttpTest1PageState extends State<HttpTest1Page> {
   }
 }
 
+// 创建 Dio 实例，并挂载 MockInterceptor
+Dio createDio() {
+  var dio = Dio(BaseOptions(baseUrl: APIs.apiPrefix));
+  MockInterceptor.attachIfNeeded(dio);
+  return dio;
+}
+
 void postRequest() async {
-  var url = APIs.apiPrefix + APIs.getSimpleDictList;
-  var dio = Dio();
+  // var url = APIs.apiPrefix + APIs.getSimpleDictList;
+  // var dio = Dio();
+  var url = APIs.getSimpleDictList;
+  var dio = createDio();
   var response = await dio.post(url, data: {'id': 12, 'name': 'wendu'});
   var result = response.data.toString();
   print('返回数据： $result');
@@ -63,23 +73,25 @@ void postRequest() async {
 }
 
 void postRequest2() async {
-  var url = APIs.apiPrefix + APIs.getSimpleDictList;
-  var response = await Dio().post(url);
+  // var url = APIs.apiPrefix + APIs.getSimpleDictList;
+  // var response = await Dio().post(url);
+  var url = APIs.getSimpleDictList;
+  var response = await createDio().post(url);
   print('返回数据： ${response.data.toString()}');
   print(response.data['msg']);
 }
 
 void postRequest3() async {
   print('response----');
-//      var url = 'https://itunes.apple.com/lookup?id=id414478124';
+  //      var url = 'https://itunes.apple.com/lookup?id=id414478124';
   var url = 'https://itunes.apple.com/cn/lookup?id=414478124';
   Options options = Options(headers: {HttpHeaders.acceptHeader: 'Content-Type:application/x-www-form-urlencoded'});
 
   var response = await Dio().post(url, options: options);
 
   print('results---');
-//  print(response.toString());
-//  print('--${response.data.trim()}--');
+  //  print(response.toString());
+  //  print('--${response.data.trim()}--');
 
   Map<String, dynamic> data = json.decode(response.data.trim());
 

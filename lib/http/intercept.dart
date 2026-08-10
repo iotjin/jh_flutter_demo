@@ -9,6 +9,7 @@ import 'apis.dart';
 import 'dio_utils.dart';
 import 'error_handle.dart';
 import 'log_utils.dart';
+import 'mock/mock_data.dart';
 
 // default token
 const String defaultToken = '';
@@ -56,6 +57,13 @@ class TokenInterceptor extends QueuedInterceptor {
       _tokenDio ??= Dio();
       _tokenDio!.options = DioUtils.instance.dio.options;
       _tokenDio!.options.headers['Authorization'] = 'Bearer ${getToken()}';
+
+      if (kEnableLocalMock) {
+        final mockRes = MockData.resolve(APIs.refreshToken, method: 'POST', data: params);
+        if (mockRes != null && mockRes['code'] == ExceptionHandle.success) {
+          return mockRes;
+        }
+      }
       final Response<dynamic> response = await _tokenDio!.post<dynamic>(kRefreshTokenUrl, data: params);
       var res = response.data as dynamic;
       if (res is Map && res['code'] == ExceptionHandle.success) {
@@ -105,10 +113,7 @@ class TokenInterceptor extends QueuedInterceptor {
         final RequestOptions request = response.requestOptions;
         request.headers['Authorization'] = 'Bearer $accessToken';
 
-        final Options options = Options(
-          headers: request.headers,
-          method: request.method,
-        );
+        final Options options = Options(headers: request.headers, method: request.method);
 
         try {
           LogUtils.e('---------- 重新请求接口 ----------');

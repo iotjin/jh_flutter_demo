@@ -97,6 +97,7 @@ The code is updated irregularly.
   * AppBar image pull-down zoom and gradient effect (WeChat Sports Ranking List, personal homepage)
   * WeChat friends circle and image browsing
   * Cross-slide (personal center effect)
+  * Handwritten signature (signature / hand_signature libraries)
 
 
 Note:

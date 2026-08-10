@@ -165,6 +165,10 @@ dependencies:
   #  open_file_plus: 3.4.1
   # 后台文件下载 https://pub.flutter-io.cn/packages/flutter_downloader
   #  flutter_downloader: ^1.11.4
+  # 手写签名 https://pub.flutter-io.cn/packages/signature
+  signature: ^6.4.0
+  # 手写签名(平滑笔迹/SVG) https://pub.flutter-io.cn/packages/hand_signature
+  hand_signature: ^3.1.0+2
 
   # 使用国际化 https://pub-web.flutter-io.cn/packages/get
   get: ^4.7.3
