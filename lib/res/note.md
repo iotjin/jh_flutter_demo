@@ -129,6 +129,24 @@ flutter create --platforms=windows,macos,linux .
 flutter create .
 ```
 - 4、编译
+
+【新版】Flutter 3.29+（stable 起正式移除 HTML 渲染器与 `--web-renderer` 参数，默认 CanvasKit）：
+```
+// 编译时自动修改 base 标签
+flutter build web --base-href=/jh_flutter_demo/
+
+// 默认 release
+flutter build web
+flutter build web --release
+
+// 编译为 Wasm（有 JS fallback），体积/性能更好，但兼容性要求更高
+flutter build web --wasm
+
+// 不走 CDN，把 CanvasKit 等资源打进包（内网/离线部署常用）
+flutter build web --no-web-resources-cdn
+```
+
+【旧版】Flutter 3.29 之前仍可用 `--web-renderer`：
 ```
 // 编译时自动修改base标签
 flutter build web --web-renderer html --base-href=/jh_flutter_demo/
@@ -143,6 +161,7 @@ flutter build web --web-renderer html
 // 打开速度慢，对于复杂的页面兼容性好
 flutter build web --web-renderer canvaskit
 ```
+
 注：
 >找到了index.html,用浏览器打开一片空白
 这个属于正常现象，不像正常的前端web，点击index.html就能访问。
