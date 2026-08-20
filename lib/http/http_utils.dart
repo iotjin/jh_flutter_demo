@@ -72,6 +72,17 @@ class HttpUtils {
     request(Method.post, url, params, loadingText: loadingText, success: success, fail: fail);
   }
 
+  /// upload file (multipart/form-data)
+  static void upload(
+      String url,
+      FormData formData, {
+        String? loadingText,
+        Success? success,
+        Fail? fail,
+      }) {
+    request(Method.post, url, formData, loadingText: loadingText, success: success, fail: fail);
+  }
+
   /// _request 请求
   static void request<T>(
     Method method,

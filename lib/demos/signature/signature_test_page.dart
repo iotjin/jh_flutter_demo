@@ -25,7 +25,7 @@ class SignatureTestPage extends StatefulWidget {
 }
 
 class _SignatureTestPageState extends State<SignatureTestPage> {
-  // 上传/入库固定尺寸
+  // 上传/入库固定尺寸（横握签字后旋转得到的正向图）
   static const int _exportW = 1000;
   static const int _exportH = 400;
 
@@ -155,11 +155,19 @@ class _SignatureTestPageState extends State<SignatureTestPage> {
     }
     final Uint8List? raw = await _controller.toPngBytes();
     if (raw == null || raw.isEmpty) {
-      JhProgressHUD.showText('签字导出失败');
+      JhProgressHUD.showText('生成签字图片失败，请重试');
       return;
     }
-    // 将笔迹缩放到固定 1000x400 画布
-    final Uint8List bytes = await _fitExport(raw);
+    // 逆时针旋转 90° 得到正向图，再缩放到固定 1000x400
+    final Uint8List? rotated = await _rotatePng(raw);
+    if (rotated == null) {
+      JhProgressHUD.showText('生成签字图片失败，请重试');
+      return;
+    }
+    final Uint8List bytes = await _fitExport(rotated);
+    if (!mounted) {
+      return;
+    }
     final params = {
       'signatureImage': base64Encode(bytes),
       'fileName': 'signature_${DateTime.now().millisecondsSinceEpoch}.png',
@@ -170,12 +178,30 @@ class _SignatureTestPageState extends State<SignatureTestPage> {
       'source': 'SignatureTestPage',
     };
     print(params);
-    JhDialog.show(
+    JhDialog.showCustomDialog(
       context,
-      title: '提示',
-      content: '确定将签字保存到相册吗？',
+      title: '确定将签字保存到相册吗？',
+      content: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+        child: Image.memory(bytes, fit: BoxFit.contain, width: double.infinity),
+      ),
       onConfirm: () => _saveToAlbum(bytes),
     );
+  }
+
+  /// 逆时针旋转 90°，与横握签字 / 「请在此签字」同向
+  Future<Uint8List?> _rotatePng(Uint8List bytes) async {
+    final ui.Image src = (await (await ui.instantiateImageCodec(bytes)).getNextFrame()).image;
+    final ui.PictureRecorder rec = ui.PictureRecorder();
+    final Canvas canvas = Canvas(rec);
+    canvas.translate(0, src.width.toDouble());
+    canvas.rotate(-math.pi / 2);
+    canvas.drawImage(src, Offset.zero, Paint());
+    final ui.Image out = await rec.endRecording().toImage(src.height, src.width);
+    final ByteData? data = await out.toByteData(format: ui.ImageByteFormat.png);
+    src.dispose();
+    out.dispose();
+    return data?.buffer.asUint8List();
   }
 
   // signature 的 toPngBytes() 不能指定宽高，只能按屏幕画布导出后再缩放到 1000x400

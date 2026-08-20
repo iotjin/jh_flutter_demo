@@ -7,6 +7,7 @@
 import 'dart:convert';
 import 'dart:math' as math;
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:hand_signature/signature.dart';
@@ -24,7 +25,7 @@ class HandSignatureTestPage extends StatefulWidget {
 }
 
 class _HandSignatureTestPageState extends State<HandSignatureTestPage> {
-  // 上传/入库固定尺寸
+  // 上传/入库固定尺寸（横握签字后旋转得到的正向图）
   static const int _exportW = 1000;
   static const int _exportH = 400;
 
@@ -154,20 +155,28 @@ class _HandSignatureTestPageState extends State<HandSignatureTestPage> {
       JhProgressHUD.showText('请先完成签字');
       return;
     }
-    // 直接导出为固定 1000x400 PNG
+    // 按竖屏画布导出 400x1000，再逆时针旋转得到正向 1000x400
     final ByteData? raw = await _control.toImage(
-      width: _exportW,
-      height: _exportH,
+      width: _exportH,
+      height: _exportW,
       color: Colors.black,
       background: Colors.white,
       drawer: _drawer,
       fit: true,
     );
     if (raw == null) {
-      JhProgressHUD.showText('签字导出失败');
+      JhProgressHUD.showText('生成签字图片失败，请重试');
       return;
     }
-    final Uint8List bytes = raw.buffer.asUint8List();
+    final Uint8List? bytes = await _rotatePng(raw.buffer.asUint8List());
+    if (bytes == null) {
+      JhProgressHUD.showText('生成签字图片失败，请重试');
+      return;
+    }
+    if (!mounted) {
+      return;
+    }
+
     final params = {
       'signatureImage': base64Encode(bytes),
       'fileName': 'signature_${DateTime.now().millisecondsSinceEpoch}.png',
@@ -178,12 +187,30 @@ class _HandSignatureTestPageState extends State<HandSignatureTestPage> {
       'source': 'HandSignatureTestPage',
     };
     print(params);
-    JhDialog.show(
+    JhDialog.showCustomDialog(
       context,
-      title: '提示',
-      content: '确定将签字保存到相册吗？',
+      title: '确定将签字保存到相册吗？',
+      content: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+        child: Image.memory(bytes, fit: BoxFit.contain, width: double.infinity),
+      ),
       onConfirm: () => _saveToAlbum(bytes),
     );
+  }
+
+  /// 逆时针旋转 90°，与横握签字 / 「请在此签字」同向
+  Future<Uint8List?> _rotatePng(Uint8List bytes) async {
+    final ui.Image src = (await (await ui.instantiateImageCodec(bytes)).getNextFrame()).image;
+    final ui.PictureRecorder rec = ui.PictureRecorder();
+    final Canvas canvas = Canvas(rec);
+    canvas.translate(0, src.width.toDouble());
+    canvas.rotate(-math.pi / 2);
+    canvas.drawImage(src, Offset.zero, Paint());
+    final ui.Image out = await rec.endRecording().toImage(src.height, src.width);
+    final ByteData? data = await out.toByteData(format: ui.ImageByteFormat.png);
+    src.dispose();
+    out.dispose();
+    return data?.buffer.asUint8List();
   }
 
   /// 保存签字图片到相册

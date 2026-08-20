@@ -24,6 +24,13 @@ typedef NetSuccessCallback<T> = Function(T data);
 typedef NetSuccessListCallback<T> = Function(List<T> data);
 typedef NetErrorCallback = Function(int code, String msg);
 
+class _DevHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 /// 初始化Dio配置
 void configDio({
   Duration? connectTimeout,
@@ -82,6 +89,7 @@ class DioUtils {
     /// 测试环境忽略证书校验
     var isTest = !LogUtils.inProduction || APIs.apiPrefix.startsWith('https://192');
     if (isTest && JhDeviceUtils.isMobile) {
+      HttpOverrides.global = _DevHttpOverrides();
       dio.httpClientAdapter = IOHttpClientAdapter(
         createHttpClient: () {
           final client = HttpClient();
