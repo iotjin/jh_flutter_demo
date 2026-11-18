@@ -37,7 +37,7 @@ class _HandSignatureTestPageState extends State<HandSignatureTestPage> {
   @override
   void initState() {
     super.initState();
-    // 笔迹变化时刷新，用于显示或隐藏签字区域「'请在此签字'」提示文字
+    // 笔迹变化时刷新，用于显示或隐藏「请在横线上方签字」提示文字
     _control.addListener(() {
       if (mounted) setState(() {});
     });
@@ -135,16 +135,27 @@ class _HandSignatureTestPageState extends State<HandSignatureTestPage> {
         fit: StackFit.expand,
         children: [
           HandSignature(control: _control, drawer: _drawer),
-          // 提示文字旋转，横握手机时可正向阅读
-          if (!_control.isFilled)
-            IgnorePointer(
-              child: Center(
-                child: Transform.rotate(
-                  angle: math.pi / 2,
-                  child: const Text('请在此签字', style: TextStyle(fontSize: 14, color: KColors.kFormHintColor)),
+          // 竖屏左侧基线 + 提示文字（横握时可正向阅读）
+          IgnorePointer(
+            child: Stack(
+              children: [
+                // 竖屏左侧 = 横握签字时的底边基线，距边框留白
+                Positioned(
+                  left: 15,
+                  top: 24,
+                  bottom: 24,
+                  child: Container(width: 1, color: KColors.kFormHintColor),
                 ),
-              ),
+                if (!_control.isFilled)
+                  Center(
+                    child: Transform.rotate(
+                      angle: math.pi / 2,
+                      child: const Text('请在横线上方签字', style: TextStyle(fontSize: 14, color: KColors.kFormHintColor)),
+                    ),
+                  ),
+              ],
             ),
+          ),
         ],
       ),
     );
@@ -192,13 +203,24 @@ class _HandSignatureTestPageState extends State<HandSignatureTestPage> {
       title: '确定将签字保存到相册吗？',
       content: Padding(
         padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-        child: Image.memory(bytes, fit: BoxFit.contain, width: double.infinity),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.memory(bytes, fit: BoxFit.contain, width: double.infinity),
+            const SizedBox(height: 10),
+            const Text(
+              '图片已旋转，请确认方向是否正确。',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 13, color: KColors.kGreyTextColor),
+            ),
+          ],
+        ),
       ),
       onConfirm: () => _saveToAlbum(bytes),
     );
   }
 
-  /// 逆时针旋转 90°，与横握签字 / 「请在此签字」同向
+  /// 逆时针旋转 90°，与横握签字 / 「请在横线上方签字」同向
   Future<Uint8List?> _rotatePng(Uint8List bytes) async {
     final ui.Image src = (await (await ui.instantiateImageCodec(bytes)).getNextFrame()).image;
     final ui.PictureRecorder rec = ui.PictureRecorder();
